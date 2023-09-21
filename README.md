@@ -1,1 +1,1 @@
-Web content via Spot-On on GitHub organized by link names.
+Web content via Spot-On shared with GitHub and organized by link names.
