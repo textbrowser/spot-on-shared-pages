@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Creating the First Confidential GPUs - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Security" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3623393" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>September 7, 2023<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3623393">Volume 21, issue 4 </a></b></label>
+<p>
+
+&nbsp;
+<a href="http://portal.acm.org/citation.cfm?id=3623391">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Creating the First Confidential GPUs</h1>
+<h2>The team at NVIDIA brings confidentiality and integrity to user code and data for accelerated computing.</h2>
+<h3>Gobikrishna Dhanuskodi, Sudeshna Guha, Vidhya Krishnan, Aruna Manjunatha, Rob Nertney, Michael O'Connor, and Phil Rogers</h3>
+<p>Today’s datacenter GPU has a long and storied 3D graphics heritage. In the 1990s, graphics chips for PCs and consoles had fixed pipelines for geometry, rasterization, and pixels using integer and fixed-point arithmetic. In 1999, NVIDIA invented the modern GPU, which put a set of programmable cores at the heart of the chip, enabling rich 3D scene generation with great efficiency. It did not take long for developers and researchers to realize “I could run compute on those parallel cores, and it would be blazing fast.” In 2004, Ian Buck created Brook at Stanford, the first compute library for GPUs, and in 2006, NVIDIA created CUDA, which is the gold standard for accelerated computing on GPUs today.</p>
+<p>&nbsp;</p>
+<h3>How the Idea for a Confidential GPU Took Shape</h3>
+<p>In addition to running 3D graphics and compute, GPUs also run video workloads, including the ability to play back protected content such as Hollywood movies. To protect such content, NVIDIA GPUs include hardware and firmware to secure the area of GPU memory, which holds the decrypted and decoded output frames. This feature is referred to as VPR (video protected region). When an area of GPU memory is set up as VPR, with the exception of a secured display engine that can read from VPR and write to HDMI or DisplayPort channels, any engine that reads from that region will fault if it attempts to write outside of VPR. When CC (confidential computing) started to be discussed, a few of us at NVIDIA started brainstorming about the question, “Can we leverage VPR, or a similar approach, to do confidential compute?” We realized that NVIDIA’s Ampere series of GPUs provided the building blocks for a partial confidential compute mode. New firmware could enable an enclave in GPU memory for protected compute, where:</p>
+<p>• Only the SEC2 secure microcontroller can read from the enclave and write outside; and when it writes outside, it will first encrypt the data.</p>
+<p>• All other engines would fault if they tried to write outside the enclave.</p>
+<p>CC requires both confidentiality and integrity for data and code. <i>Confidentiality</i> means that data and code cannot be read by an attacker. <i>Integrity</i> means that an attacker cannot modify the execution and, for example, cause wrong answers to be generated. The leveraged Ampere approach could provide confidentiality for data but not for code, and it could protect integrity for neither code nor data. This approach was called APM (Ampere Protected Memory) to prevent confusion with full CC capabilities. We built a POC (proof of concept) for APM and partnered with Microsoft to enable APM in an Azure Private Preview, asking users to try it and provide feedback.</p>
+<p>The next step was enabling full CC capability for the Hopper H100 GPUs. It was late in the H100 hardware development phase when we requested the necessary CC features, but all the teams at NVIDIA pulled together to find a way.</p>
+<p>&nbsp;</p>
+<h3>H100: The First Confidential GPU</h3>
+<p>The GPU confidential compute solution relies on a CVM (confidential virtual machine) TEE (trusted execution environment) on the CPU, enabled by SEV-SNP on AMD CPUs or by TDX 1.x on Intel CPUs. Figure 1 shows the high-level architecture of the GPU CC solution.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers1.png" alt="Creating the First Confidential GPUs" />
+<p>GPU device memory is logically partitioned into protected and unprotected memory regions. The GPU CPR (compute protected region) of memory is secured so that the GPU can process data at full speed in its HBM (high-bandwidth memory). Additional details on how this is accomplished are shared later. There is no restriction on unprotected GPU memory access from outside the GPU. </p>
+<p>When the Hopper GPU boots in confidential mode, it blocks ingress and egress for the CPR of GPU memory. The PCIe (Peripheral Component Interconnect Express) firewall blocks access by the CPU to most registers and all the GPU CPR memory, and the NVIDIA NVLink firewall blocks access by NVLink peer GPUs to GPU CPR memory.</p>
+<p>Additionally, hardware engines that operate in CC mode have protections to ensure they cannot write outside compute protected memory unless they have hardware enforcement for encryption in this mode. This approach prevents engines from leaking data outside protected memory. </p>
+<p>The DMA (direct memory access) engines are the only user-mode accessible engines that are enabled to read or write outside of CPR. DMA hardware ensures that data written outside the CPR is pre-encrypted by hardware, which ensures that no data leak is possible. The DMA engine in the H100 GPU supports AES GCM 256 encryption for this purpose, and this engine is used to transfer data between CPU and GPU in both directions. </p>
+<p>CC protects data that is in use by performing a computation in a hardware-based, attested TEE (refer to the <a href="https://confidentialcomputing.io/about/">Confidential Computing Consortium</a> definition). The NVIDIA H100 GPU meets this definition because its TEE is anchored in an on-die hardware RoT (root of trust), and when it boots in CC-On mode, the GPU enables hardware protections for providing confidentiality and integrity of code and data. </p>
+<p>1. A chain of trust is established through the GPU boot sequence, with secure and measured boot. </p>
+<p>2. An SPDM (Security Protocol and Data Model) session is used to securely connect to the driver in a CPU TEE. </p>
+<p>3. An attestation report is generated that provides a cryptographically signed set of measurements. </p>
+<p>Users in the CC environment can check the attestation report and proceed only if the report is valid and correct.</p>
+<p>The firmware components that run on the GPU are within the TCB (trusted computing base) in CC mode. Only NVIDIA-signed and -attested firmware components are allowed to run in CC mode.</p>
+<p>The NVIDIA driver in the CVM establishes a secure channel with the GPU hardware TEE to transfer data, initiate computation, and retrieve results. To communicate with the hardware, unique encryption keys are used for each guest driver component.</p>
+<p>A new hardware feature was developed to create a limited view of the GPU registers that can be accessed using PCIe BAR0 (base address register 0). Since the host or hypervisor is not trusted in CC mode, any register that compromises the security of the GPU in CC mode (compromising integrity or confidentiality of the guest) must be protected. This new feature is referred to as the <i>BAR0 decoupler</i>, which allows access to a limited register space to manage the GPU while protecting the majority of the register space from the host and hypervisor.</p>
+<p>To protect against side-channel attacks, hardware enforces that all GPU performance counters are disabled when the GPU is operating in CC mode. A new mode, called CC DevTools, supports the performance debugging of applications in CC mode. The CC DevTools mode shows in the attestation report when enabled.</p>
+<p>Without CC enabled, the hypervisor has full access to system memory and GPU memory. <i>With</i> CC <i>enabled</i>, the hypervisor is blocked from accessing the Confidential VM in system memory and blocked from reading GPU memory, as shown in figure 2.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers2.png" alt="Creating the First Confidential GPUs" />
+<p>&nbsp;</p>
+<h3>Starting the GPU in CC Mode</h3>
+<p>The H100 GPU supports these operational modes:</p>
+<p>• CC enabled (CC = on)</p>
+<p>• CC disabled (CC = off)</p>
+<p>• CC devtools (CC = devtools) </p>
+<p>To make provisioning more secure, the GPU CC modes are designed to be persistent across PF-FLRs (physical function function-level-resets). GPU CC mode selection is accomplished using an H100 GPU CC control bit in the GPU EEPROM (electrically erasable programmable read-only memory) that can be set/unset by an in-band tool such as gpu_cc_tool.py or through an OOB (out-of-band) API. For updates to this bit to take effect, a PF-FLR is required that will scrub memory and ensure all the states in registers and SRAMs (static random access memory) are correctly reset before the GPU is handed to the next tenant.</p>
+<p>Figure 3 shows the GPU state transitions for enabling CC.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers3.png" alt="Creating the First Confidential GPUs" />
+<p>A trusted VM with an AMD SEV-SNP CPU or Intel TDX-enabled CPU is required to validate a GPU in the VM before using the GPU for confidential workloads. To validate that a GPU is capable and ready to run a CC workload, these steps must be followed:</p>
+<p>1. Authenticate the GPU to be a legitimate NVIDIA GPU that supports CC.</p>
+<p>2. Ensure that the GPU is not revoked for CC. </p>
+<p>3. Verify the GPU attestation report.&nbsp;</p>
+<p>Authentication of the GPU uses the PKI (public-key infrastructure) method. Every NVIDIA H100 GPU carries a unique, per-device ECC (elliptic curve cryptography) keypair and its corresponding public certificate. NVIDIA hosts an OCSP (Online Certificate Status Protocol) service that allows users to check the validity of the certificate and the GPU revocation status for CC. </p>
+<p>The GPU driver initiates a key-exchange sequence to establish a secure session with the GPU and uses SPDM messages to authenticate, attest, and perform key exchange with GPUs. Users must query the attestation report and certificate to attest the GPU, and after a successful attestation, toggle the GPU ready state to ON to allow CUDA programs to run on the GPU in CC mode.</p>
+<p>&nbsp;</p>
+<h3>Attesting the GPU</h3>
+<p>For a GPU to be included in the trust boundary of a CVM, it must be authenticated to prove legitimacy, verified to ensure it is not revoked, and requested to provide evidence of it being in a good known state. Evidence is provided in measurements, and a measurement is a one-way hash of GPU states that are critical for its security. An attestation report is evidence that is signed by the RoT of the device under evaluation. Signing ensures that measurements cannot be altered and eliminates chain-of-custody concerns. Fetching an attestation report using an established secure communication channel eliminates device-spoofing attacks. </p>
+<p>After fetching the report, the CVM (or interested party) must validate the authenticity of the evidence and evaluate the report to judge whether the GPU is in a good known state. Evaluating a report requires a golden set of measurements called RIM (reference integrity manifest), which is generated offline by NVIDIA and released with every driver and VBIOS update. The process of comparing the measurements from attestation report with RIM is an <i>attestation verification</i>, and the entity performing this process is called a <i>verifier</i>. The verifier can be local, built into the CVM; or remote, hosted by the device manufacturer or a trusted third party. The CVM (or interested party) must authenticate and confirm the legitimacy of the verifier before trusting its results. Figure 4 shows a high-level flow of the sequence.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers4.png" alt="Creating the First Confidential GPUs" />
+<p>The sequence in figure 4 introduces two new terms: </p>
+<p>• RTR (root of trust for reporting). Responsible for fetching the stored measurements, creating a report, and signing them with an attestation key.</p>
+<p>• RTS (root of trust for storage). Secure storage that tracks the measurements collected so far.</p>
+<p>Another entity, RTM (root of trust for measurements), shown in figure 5, is responsible for measuring the selected states and saves the measurement in RTS. The NVIDIA GPU has one RTR implemented in the firmware, multiple RTMs, and one hardware-based RTS with storage for up to 64 independent measurements. RTS hardware supports measurement extensions to prevent overwriting and allows for tracking its evolution. Each slot has an RTM owner and stores a measurement that was calculated with one or more states that are related to each other and evolve in an orderly manner. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers5.png" alt="Creating the First Confidential GPUs" />
+<p>Determining the correct states to measure in a GPU is a challenging problem. Ideally, measuring all registers, video memory, and SRAMs in the GPU would provide a complete indication of GPU state, but that is impractical because of the volume of states and complexity in generating golden values for comparison. To overcome this challenge and still measure the current state of the GPU with reasonable accuracy, the selected approach is to measure select high-value registers and prove that the GPU configuration for CC=On has been completed as expected. In figure 6, firewalls in the form of registers, select fuses, debug registers, and all microcodes (μcodes) are measured. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers6.png" alt="Creating the First Confidential GPUs" />
+<p>Security events, error triggers, and user policies that impact the security posture of the device are also measured and logged. These policies cannot be directly compared with RIM but can be used by CVM to confirm that the intended actions have taken place. Because VBIOS and GPU drivers are released independently, each has its own RIM and the verifier requires both RIMs for verification, as shown in figure 7 and table 1.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers7.png" alt="Creating the First Confidential GPUs" />
+<p>&nbsp;</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers-t1.png" alt="Creating the First Confidential GPUs" />
+<p>Verifiers play a critical role in setting up a GPU to be included in a CVM trust boundary that might assist relying parties in the decision-making process. There are two classes of verifiers based on where they run: the local verifier, which runs as a dedicated process in CVM; and the remote verifier, which is hosted by a trusted third party.</p>
+<p>The local verifier is a stand-alone tool that is available from NVIDIA and acts as a verifier and the relying party. The local verifier comes with a default policy that allows applications to use the GPU only <i>after</i> a successful attestation verification. The local verifier is open sourced, downloadable by the VMI (virtual machine image) creator and can be launched as part of the CVM initialization sequence. This tool is implicitly trusted by CVM to play this role. The local verifier requires these remote services hosted by NVIDIA:</p>
+<p>• NVIDIA OCSP service. Validates certificate chains of GPU, attestation, and RIM files.</p>
+<p>• NVIDIA RIM provider service. A remote service that hosts RIM files for all drivers and VBIOS releases. The verifier uses unique identifiers from the attestation report to fetch appropriate RIM files.</p>
+<p>Although the local verifier enables fast and simple adoption of CC, it has certain challenges that can hinder longer-term usage:</p>
+<p>• the local verifier is not scalable as the portfolio of GPUs supporting CC expands.</p>
+<p>• the local verifier must be implicitly trusted by the CVM. </p>
+<p>The remote verifier addresses these concerns by hosting a verification service on a remote server and allowing the relying party to authenticate the hosted service before delegating report verification. NVIDIA has launched such a service, called NRAS (NVIDIA Remote Attestation Service), which currently supports GPU attestation and may be extended in the future to cover additional NVIDIA products. In addition to NRAS, NVIDIA is introducing an NVIDIA Attestation SDK to integrate the NRAS flow into applications, as shown in figure 8.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers8.png" alt="Creating the First Confidential GPUs" />
+<p>&nbsp;</p>
+<h3>Running the GPU in Confidential Computing Mode</h3>
+<p>After a CVM with the H100 has been correctly configured, booted, and attested, users can start securely processing data on their H100 GPUs. We worked to ensure as much of a <i>lift-and-shift</i> style of coding as possible. The goal is to have the existing code and kernels from users work without changes when H100 CC modes are enabled.</p>
+<p>By default, devices are blocked from interacting with the CVM and cannot directly access CVM memory. The driver enables H100 to securely communicate with the CVM in CC mode.</p>
+<p>A CC-capable CPU isolates the CVM by configuring the MMU (memory management unit) to isolate pages of memory so that only the associated VM can access it. This isolation does not simply present encrypted/signed data to unauthorized parties but will page-fault when a component other than the associated CVM tries to access it.</p>
+<p>In figure 9, an H100 GPU is assigned to VM[1], which has been configured with its associated memory ASID (address-space identifier)[1]. Any access to memory in ASID[1] from outside of VM[1] will result in the previously mentioned fault unless the VM[1] specifically marks certain pages as “shared” (the gray box within ASID[1].)</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers9.png" alt="Creating the First Confidential GPUs" />
+<p>The H100 GPU has DMA engines with encrypt/decrypt capability, which are responsible for the movement of data to and from the CPU’s memory. In a confidential environment, DMA engines are allowed to access shared memory pages to retrieve and place data. To ensure the confidentiality and integrity of the payloads, models, and data, the data in these pages is encrypted and signed. These shared memory regions are called <i>bounce buffers</i> because they are used to stage the secured data before it is transferred into the secured memory enclaves, decrypted, authenticated, and then processed.</p>
+<p>Figure 10 shows the layout of CPU Memory and GPU Memory and the location of encrypted bounce buffers.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers10.png" alt="Creating the First Confidential GPUs" />
+<p>NVIDIA provides developers with a solution called UVM (unified virtual memory) that automatically handles page migrations between the GPU memory and the CPU memory based on a memory allocation API called <code>cudaMallocManaged()</code>. When the CPU accesses the data, UVM migrates the pages to the CPU system memory. When the data is needed on the GPU, UVM migrates it to the GPU memory. For CC, UVM was extended to use encrypted and authenticated paging through bounce buffers in shared memory.</p>
+<p>Following is a summary of some of the considerations that developers should be aware of when using the H100 in CC mode.</p>
+<p>• Because of how CPU vendors isolate their CVM memory from outside sources, pinned memory allocations such as from <code>cudaHostAlloc()</code> and <code>cudaMallocHost()</code> cannot be directly accessed by the GPU. Instead, they are handled by UVM with encrypted paging, as if they were allocated by <code>cudaManagedAlloc()</code>. This means pinned memory accesses are slower in CC mode.</p>
+<p>• <code>cudaHostRegister()</code> cannot be supported because this API gives direct access to memory created by <code>malloc()</code> or <code>new()</code> inside the CVM. This API, among a few others, will return an error code when the GPU is in CC modes. <code>cudaHostRegister()</code> does not have widespread use in NVIDIA libraries, and where it is used, we are modifying the code paths to work seamlessly with the H100 in CC mode.</p>
+<p>• Developers must use the <code>nvidia-persistenced</code> daemon when using the H100 GPU in CC mode to keep the driver loaded, even when not in use. In a typical operation, when the NVIDIA device resources are no longer being used, the NVIDIA kernel driver tears down the device state. In CC mode, however, this would lead to destroying the shared session keys that were established during the setup SPDM phase of the driver. To protect user data, the GPU does not allow the restart of an SPDM session establishment without an FLR, which resets and scrubs the GPU. <code>nvidia-persistenced</code> provides a configuration option called persistence mode that can be set by NVIDIA management software, such as <code>nvidia-smi</code>. When the persistence mode is enabled, the NVIDIA kernel driver is prevented from exiting. <code>nvidia-persistenced</code> does not use any device resources; it simply sleeps while maintaining a reference to the NVIDIA device state.</p>
+<p>With these considerations in mind, users can proceed to use the H100 GPU in CC mode.</p>
+<p>&nbsp;</p>
+<h3>Performance</h3>
+<p>A primary goal of delivering CC to customers is that CUDA applications can run unchanged while maximizing the acceleration potential of the underlying hardware and software. CUDA provides lift-and-shift benefits to applications that will be run in CC mode. As a result, the NVIDIA GPU CC architecture is compatible with the CPU architectures that also provide application portability from nonconfidential to CC environments.</p>
+<p>Given the description so far, it should not be surprising that CC workloads on the GPU perform close to non-CC mode when the amount of compute is large compared with the amount of input data. When the amount of compute is low compared with the input data, the overhead of communicating across the nonsecure interconnect limits the application throughput. </p>
+<p>To help understand performance in CC mode, these performance primitives are on par with nonconfidential mode:</p>
+<p>• <b><i>GPU raw compute performance.</i></b> The compute engines execute unencrypted code on unencrypted data resident in GPU memory.</p>
+<p>• <b><i>GPU memory bandwidth.</i></b> The on-package HBM is considered secure against common physical attack tools, such as interposers, and is not encrypted.</p>
+<p>These performance primitives are impacted by additional encryption and decryption overheads:</p>
+<p>• CPU-GPU interconnect bandwidth is limited by CPU encryption performance. Currently this is approximately 4GB/sec.</p>
+<p>• Data-transfer across the PCIe bus incurs a latency overhead for transit through encrypted bounce buffers in shared memory.</p>
+<p>Figure 11 shows an example server topology with GPUs in and out of CC mode.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers11.png" alt="Creating the First Confidential GPUs" />
+<p>There is also an overhead for encrypting GPU command buffers, synchronization primitives, exception metadata, and other internal driver data that is exchanged between the GPU and the confidential VM running on the CPU. Encrypting and authenticating these data structures prevents side-channel attacks on the user data.</p>
+<p>Figure 12 shows an example of a workload with a high compute-to-I/O ratio, and figure 13 is an example of a workload with a low compute-to-I/O ratio. BS is batch size, and SL is sequence length.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers12.png" alt="Creating the First Confidential GPUs" />
+<p>&nbsp;</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623393.3623391/assets/html/rogers13.png" alt="Creating the First Confidential GPUs" />
+<p>&nbsp;</p>
+<h3>Summary</h3>
+<p>CC is available for H100 Tensor Core GPUs as an early access feature as of CUDA 12.2, released in July 2023. The CC feature will become generally available after we complete performance optimization and allow for sufficient security soak time. The key value propositions delivered with this feature are:</p>
+<p>• We bring CC to the most demanding workloads such as AI, machine learning, and high-performance computing.</p>
+<p>• Existing CUDA programs, deep-learning frameworks, etc., run without changes.</p>
+<p>• User code and user data are protected end to end.</p>
+<p>• The GPU and its firmware are attested as part of total platform attestation.</p>
+<p>Creating the first confidential GPU has been an exciting journey for the entire team at NVIDIA and for our collaborators at other companies who are committed to the confidential computing vision. Today, confidential computing is a great innovation. In a few years’ time, we expect all computing will be confidential, and we will all wonder why it was ever any other way.</p>
+<p>&nbsp;</p>
+<p><b>Gobikrishna Dhanuskodi</b> is a distinguished engineer in the GPU system software group and a lead software architect of GPU Confidential Computing at NVIDIA. During his long tenure at NVIDIA, he has worked primarily on product security, DRM solutions, and GPU virtualization technologies. He is currently focused on enabling the use of CC technologies in accelerated computing and making it ubiquitous across a broader spectrum of use cases.</p>
+<p><b>Sudeshna Guha</b> is a senior system software engineer at NVIDIA. As a member of the Confidential Computing working group, she develops the CUDA driver and runtime for GPU confidential computing. In 18 years of hardware and software engineering leadership roles, she has architected and designed many hardware and software features and processes across generations of NVIDIA SOCs and GPUs.</p>
+<p><b>Vidhya Krishnan</b> is a distinguished architect and the lead hardware architect for NVIDIA GPU confidential compute. She has worked on GPUs for the majority of her career. She is passionate about confidential computing as a technology and looks forward to it becoming the default mode of deployment.</p>
+<p><b>Aruna Manjunatha</b> is a director of system software engineering in the GPU software team at NVIDIA. She has worked for almost 15 years in the kernel-mode driver software team, taking new GPU families from design to production. Her latest role has her working as the software engineering lead for GPU confidential computing. She is keen about mentoring and coaching, which she views as a great way to learn from others.</p>
+<p><b>Rob Nertney</b> is a senior technical product manager for CUDA. He has spent nearly 15 years architecting the features and deployment of accelerator hardware into hyperscale environments for both internal and external use by developers. He has several patents in processor design relating to secure solutions that are in production today. In his spare time, he loves golfing when the weather is nice, and gaming (on RTX hardware, of course) when it isn’t.</p>
+<p><b>Michael O’Connor</b> is a system software architect and senior distinguished engineer at NVIDIA. He has been at NVIDIA for almost 10 years, focusing primarily on GPU optimization of deep-learning frameworks such as PyTorch, TensorFlow, and MXNet. He joined the confidential computing team a year ago to focus on attestation and overall workflow. </p>
+<p><b>Phil Rogers</b> is a compute server software architect and vice president of system software at NVIDIA. He is the software leader for multiple programs at NVIDIA, including confidential computing, Fleet Command, NVIDIA-certified systems, long-term support for the whole stack, and NGC. Phil is passionate about all aspects of accelerated computing, including ease of use, performance, scalability, and security.</p>
+<p>Copyright &copy; 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'80a6c2af69cc82b7',t:'MTY5NTM0NTk5NC4zMDEwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;80a6c2af69cc82b7&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;b&quot;:1,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 4</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3623391">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Antoine Delignat-Lavaud, C&#233;dric Fournet, Kapil Vaswani, Sylvan Clebsch, Maik Riechert, Manuel Costa, Mark Russinovich</span> - <a href="detail.cfm?id=3623460"><b>Why Should I Trust Your Code?</b></a>
+<br/>
+For Confidential Computing to become ubiquitous in the cloud, in the same way that HTTPS became the default for networking, a different, more flexible approach is needed. Although there is no guarantee that every malicious code behavior will be caught upfront, precise auditability can be guaranteed: Anyone who suspects that trust has been broken by a confidential service should be able to audit any part of its attested code base, including all updates, dependencies, policies, and tools. To achieve this, we propose an architecture to track code provenance and to hold code providers accountable. At its core, a new Code Transparency Service (CTS) maintains a public, append-only ledger that records all code deployed for confidential services.
+</p>
+<br/>
+<p>
+<span>David Kaplan</span> - <a href="detail.cfm?id=3623392"><b>Hardware VM Isolation in the Cloud</b></a>
+<br/>
+Confidential computing is a security model that fits well with the public cloud. It enables customers to rent VMs while enjoying hardware-based isolation that ensures that a cloud provider cannot purposefully or accidentally see or corrupt their data. SEV-SNP was the first commercially available x86 technology to offer VM isolation for the cloud and is deployed in Microsoft Azure, AWS, and Google Cloud. As confidential computing technologies such as SEV-SNP develop, confidential computing is likely to simply become the default trust model for the cloud.
+</p>
+<br/>
+<p>
+<span>Mark Russinovich</span> - <a href="detail.cfm?id=3623461"><b>Confidential Computing: Elevating Cloud Security and Privacy</b></a>
+<br/>
+Confidential Computing (CC) fundamentally improves our security posture by drastically reducing the attack surface of systems. While traditional systems encrypt data at rest and in transit, CC extends this protection to data in use. It provides a novel, clearly defined security boundary, isolating sensitive data within trusted execution environments during computation. This means services can be designed that segment data based on least-privilege access principles, while all other code in the system sees only encrypted data. Crucially, the isolation is rooted in novel hardware primitives, effectively rendering even the cloud-hosting infrastructure and its administrators incapable of accessing the data.
+</p>
+<br/>
+<p>
+<span>Samuel W. Stark, A. Theodore Markettos, Simon W. Moore</span> - <a href="detail.cfm?id=3606014"><b>How Flexible is CXL's Memory Protection?</b></a>
+<br/>
+CXL, a new interconnect standard for cache-coherent memory sharing, is becoming a reality - but its security leaves something to be desired. Decentralized capabilities are flexible and resilient against malicious actors, and should be considered while CXL is under active development.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
