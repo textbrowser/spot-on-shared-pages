@@ -1,4 +1,4 @@
-Web content via Spot-On shared with GitHub and organized by link names.
+This repository contains complete Web pages generated and shared by a Spot-On instance. A future version of Spot-On may also include page titles. Of course, other instances of Spot-On may in the future download and import the content. One may also view the pages online.
 
 **Page Viewing**
 
