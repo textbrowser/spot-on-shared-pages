@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Locating Everyday Objects Using NFC Textiles | October 2023 | Communications of the ACM</title>
+<meta name="title" content="Locating Everyday Objects Using NFC Textiles" />
+<meta name="author" content="Jingxian Wang, Junbo Zhang, Ke Li, Chengfeng Pan, Carmel Majidi, Swarun Kumar" />
+<meta name="date" content="2023-10-1" />
+<meta name="year" content="2023" />
+<meta name="subjects" content="artificial intelligence,computer systems,human-computer interaction,hardware,performance and reliability,personal computing" />
+<meta name="sections" content="Technology Reports" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2023/10/276637-locating-everyday-objects-using-nfc-textiles/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2023/10/276637-locating-everyday-objects-using-nfc-textiles/fulltext" /><meta property="og:title" content="Locating Everyday Objects Using NFC Textiles" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6345/091823_Locating-Everyday1.large.jpg?1695058568&amp;1695058568" /><meta property="og:description" content="This paper builds a Near-Field Communication-based localization system that allows ordinary surfaces to locate surrounding objects with high accuracy in the near-field.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2023/10/276637-locating-everyday-objects-using-nfc-textiles/fulltext" /><meta property="og:title" content="Locating Everyday Objects Using NFC Textiles" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6345/091823_Locating-Everyday1.large.jpg?1695058568&amp;1695058568" /><meta property="og:description" content="This paper builds a Near-Field Communication-based localization system that allows ordinary surfaces to locate surrounding objects with high accuracy in the near-field.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2023/10">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2023/10">
+<img src="https://cacm.acm.org/system/assets/0004/6347/Oct2023.Cover.1000x1338.large.jpg?1695058613&1695058612" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: October 2023</span>
+<a href="/magazines/2023/10/276635-beyond-deep-fakes">Beyond Deep Fakes</a>
+<a href="/magazines/2023/10/276628-barbershop-computing">Barbershop Computing</a>
+<a href="/magazines/2023/10/276633-low-code-programming-models">Low-Code Programming Models</a>
+<a class="lastLink" href="/magazines/2023/10">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2023/10">
+October 2023 (Vol. 66, No. 10)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/9">
+September 2023 (Vol. 66, No. 9)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/8">
+August 2023 (Vol. 66, No. 8)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2023/10">October 2023 (Vol. 66, No. 10)</a><span>/</span><a href="/magazines/2023/10/276637-locating-everyday-objects-using-nfc-textiles">Locating Everyday Objects Using NFC Textiles</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research Highlights</span>
+<h2>Locating Everyday Objects Using NFC Textiles</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Jingxian Wang, Junbo Zhang, Ke Li, Chengfeng Pan, Carmel Majidi, Swarun Kumar
+<br/>
+Communications of the ACM,
+October 2023,
+Vol. 66 No. 10, Pages 107-114<br/>
+10.1145/3615450<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3625456.3615450&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2023/10/276637-locating-everyday-objects-using-nfc-textiles/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3615450&ftid=2289145&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46345">
+<figure>
+<img alt="furniture emits radio waves as a dog sleeps nearby" src="/system/assets/0004/6345/091823_Locating-Everyday1.large.jpg?1695058568&amp;1695058568" title="furniture emits radio waves as a dog sleeps nearby" />
+</figure>
+</div>
+<div class="videoThumb">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ieil0NQlk_M?si=xHZ-ZH-44dmOWBCW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>This paper builds a Near-Field Communication (NFC) based localization system that allows ordinary surfaces to locate surrounding objects with high accuracy in the near-field. While there is rich prior work on device-free localization using far-field wireless technologies, the near-field is less explored. Prior work in this space operates at extremely small ranges (a few centimeters), leading to designs that sense close proximity rather than location. We propose TextileSense, a near-field beamforming system that can track everyday objects made of conductive materials (for example, a human hand) even if they are a few tens of centimeters away. We use multiple flexible NFC coil antennas embedded in ordinary and irregularly shaped surfaces we interact with in smart environments&mdash;furniture, carpets, and so forth. We design and fabricate specialized textile coils woven into the fabric of the furniture and easily hidden by acrylic paint. We then develop a near-field blind beam-forming algorithm to efficiently detect surrounding objects, and use a data-driven approach to further infer their location. A detailed experimental evaluation of TextileSense shows an average accuracy of 3.5 cm in tracking the location of objects of interest within a few tens of centimeters from the furniture.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>1. Introduction</h3>
+<p>This paper seeks to build a Near-Field Communication (NFC) MIMO beamforming system that can accurately localize objects, with or without NFC capability in the <em>near-field.</em> While there has been rich prior work on the device and device-free localization in the far-field, for instance, using technologies such as Bluetooth,<sup><a href="#R1">1</a></sup> mm-wave,<sup><a href="#R5">5</a></sup> ultrasound,<sup><a href="#R3">3</a></sup> RFID,<sup><a href="#R15">15</a></sup> and visible light,<sup><a href="#R16">16</a></sup> much less exploration exists in the near-field. However, near-field technologies have significant advantages that are worth exploring: (1) their shorter range raises less privacy implications compared to the far-field counterparts; and (2) technologies such as NFC are ubiquitous in our smartphones as well as battery-free everyday objects (for example, credit cards, ID cards, and so on). The few systems that do explore near-field localization in prior work are limited, however, in one of two key ways: (1) first, they only operate at extremely close ranges (for example, few cm), at which point, localization reduces to proximity sensing.<sup><a href="#R11">11</a></sup> This excludes ranges of tens of centimeters&mdash;an interesting region where both near-field and far-field effects are in play, and (2) second, most prior near-field localization systems require rigid coils that can only be mounted on regular and flat surfaces.<sup><a href="#R6">6</a>,<a href="#R8">8</a></sup></p>
+<p>This paper aims to use NFC multi-coil beamforming to detect the presence and location of certain objects of interest within tens of centimeters&mdash;where both near-field and far-field effects interplay. We seek to sense certain classes of objects made of conductive material (for example, objects containing metal or human hands) in close proximity (for example, few tens of centimeters). Our system senses these objects with flexible textile-friendly coils attached to existing irregularly shaped home surfaces like a couch or a carpet. We demonstrate how this opens up several applications for human-computer interfaces, gesture, and posture sensing (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=623,height=501'); return false;">Figure 1</a>). </p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=623,height=501'); return false;"><img alt="f1.jpg" height="334" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f1.jpg" width="415" /></a><br/>
+<strong>Figure 1. TextileSense can be integrated into ordinary furniture (for example, couch, bed, or carpet). Multiple textile coils sense the presence and location of conductive objects within a few tens of centimeters. This opens up many applications: (a) Body posture sensing; (b) Lost and found: TextileSense notifies the user where he/she left a wallet; and (c) User interface: the blanket serves as a touchless screen to control home appliances.</strong></p>
+<p>We present TextileSense&mdash;a near-field sensing system for flexible textile surfaces that senses surrounding objects made of conductive materials. TextileSense&#39;s core includes multiple textile coil antennas that can be embedded in the furniture covering and readily hidden by puffy paints. The coils together operate as a near-field multiple-in multiple-out (MIMO) system and can manipulate the near-field to recognize objects of interest at unknown locations across farther distances. We consider two classes of objects: (1) Tagged non-conductive objects, such as NFC-enabled credit cards and key fobs, whose identity and location can be obtained; and (2) Untagged conductive objects, such as human hands and metallic objects, whose presence and location can be identified. A detailed experimental evaluation on TextileSense shows a 3.6 cm accuracy in locating NFC tags with various distances and orientations and a 2.9 cm accuracy in locating human hands. We further show that TextileSense can operate accurately at a distance of 20.3 cm, a fourfold improvement over the range limit of 5 cm of commercial NFC.</p>
+<p>TextileSense&#39;s secret sauce is a mechanism to develop a textile NFC reader with the ability to accurately sense the location of tagged/untagged objects, within a few tens of centimeters of the furniture, regardless of their position or orientation. To do so, we rely on a familiar wireless technology: MIMO. In far-field wireless technologies (such as Wi-Fi, cellular, and so forth), MIMO uses multi-antenna radios to collectively beam signal power toward different spatial directions so as to improve radio coverage and enable advanced location tracking. However, developing the analogous multi-coil MIMO in the near-field poses several new challenges. First, to beam energy accurately and sense an object, one needs to know the direction; yet, for tag-free objects at unknown locations, this is unknown a priori, leading to a chicken-or-egg problem. Second, unlike in the traditional far-field propagation model, even if we do find the optimal beamforming direction, it may not directly relate to the location of objects. The rest of this paper describes how we solve these key challenges to enable near-field MIMO for NFC.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>1.1. Detecting objects using near-field beamforming</strong></p>
+<p>The first challenge is to address the chicken-or-egg problem: how to know the direction to beam RF energy without knowing the object&#39;s location. A natural approach to do so is to apply a variety of beamforming weights and beam energy to different subsets of the space within proximity of the NFC furniture. These beamforming weights must be carefully chosen to fully cover the space around the furniture, yet minimizing the overlap between them to speed up the search. This calls for precise models on how beam-forming weights in the near-field translate into the spatial patterns of energy. While such models have been explored in the far-field (for example, in the RFID context<sup><a href="#R13">13</a></sup>), doing so for the near-field communication is more complicated. The energized pattern is not only determined by the set of phase shifts applied across the array of NFC readers, but also impacted by the location, orientation, and impedance of the unknown objects.</p>
+<p>To address this challenge, TextileSense develops a blind near-field beamforming algorithm to sense objects in the near-field with unknown locations, orientations, and impedance. At a high level, TextileSense uses the magnetic coupling between the object and the reader to infer the optimal beam-forming weights to detect its presence, regardless of whether this object has NFC coils or is made of conductive materials. Specifically, once the object couples with the reader, it can be seen as a high-impedance load to the transmitter circuit (NFC reader). In other words, the transmitter circuit should notice a voltage variation if a load is introduced into the circuit. The voltage variation will change when the load (for example, NFC card, metal, human body, and so forth) harvests more energy from the NFC readers, and this variation can be measured from the transmitter side. By leveraging this physical principle, TextileSense uses a gradient-based approach favoring the set of beamforming weights that introduce large voltage variation into the transmitter circuit. By repeating this process, our algorithm converges to the optimal set of beam-forming weights that sense the presence of objects in proximity. Section 4 further details our solution to detect objects.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>1.2. Locating objects in the near-field</strong></p>
+<p>Once detected, the next challenge TextileSense must address is to locate the objects of interest. A key challenge here is the limited bandwidth of NFC as well as the non-applicability of traditional far-field MIMO location tracking solutions that rely on the distance between the objects of interest and the reader being farther than one wavelength. To address this, our approach relies on the fact that unlike the far-field, the near-field experiences significant voltage shifts at readers due to coupling that can be reliably measured. TextileSense develops a detailed empirical model of the locations of the object based on the beamforming weights as well as the amplitude of object-related voltage response as perceived by the readers.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>1.3. Building NFC-enabled flexible textiles</strong></p>
+<p>Finally, TextileSense should integrate textile-compatible coils to build NFC-enabled furniture. In collaboration with material science researchers, we present a novel solution to fabricate coils with conductive fabric, which can be woven into the furniture covering and allows for flexibility and stretchability to ensure user comfort. Section 5 describes how TextileSense is informed by experimentation and analysis to ensure the robustness of its textile coils when subject to bending and crumpling, and how it models the consequent resonant frequency shift and antenna gain degradation.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>1.4. Applications</strong></p>
+<p>TextileSense opens up several applications which we briefly explain below and evaluate in Section 6:</p>
+<ul>
+<li><em>Object Tracking</em>: TextileSense can identify and track the location of objects of interest already with an NFC coil, for example, a credit card. This can be used to track your credit card if it is lost, as well as track NFC-tagged objects at fine-grained accuracy in virtual reality games.</li>
+<li><em>User Interface</em>: TextileSense can also serve as a user interface that transforms your furniture into a touchless screen to control your devices. We evaluate the specific application of tracking fine-grained gestures of a human hand.</li>
+<li><em>Body Posture Estimation</em>: TextileSense can detect the location where the user is seated on the couch and recognize their body posture relying on the coupling between the human body and TextileSense.</li>
+</ul>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>1.5. Limitations</strong></p>
+<p>We emphasize a few important limitations of TextileSense (1) TextileSense cannot deal with extremely small spacing between multiple objects that need to be simultaneously discerned (within 1.5 mm) due to the strong coupling among them; (2) TextileSense&#39;s performance can be degraded by extreme folds or wrinkles of textiles, and our approach explicitly designs solutions to minimize this degradation; and (3) TextileSense NFC readers require a power source; however, it can readily piggyback on access to wall power commonly available in configurable furniture (for example, reclinable couches).</p>
+<p>We implement TextileSense on four software-defined radios, each connected to an 18 &times; 18 cm custom conductive Nylon-based square coil attached to the couch. Our results show:</p>
+<ul>
+<li>TextileSense achieves an average accuracy of 3.6 cm in locating passive NFC tags.</li>
+<li>TextileSense achieves an average accuracy of 2.9 cm in locating a human hand.</li>
+<li>TextileSense achieves a detection range of 20.3 cm using four software-defined radios in tracking NFC cards in close proximity, a 4 &times; improvement compared to commercial NFC systems.</li>
+</ul>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>1.6. Contributions</strong></p>
+<p>We propose a localization system design of a MIMO-enabled NFC reader which locates surrounding NFC tags as well as untagged conductive objects. Our system achieves few centimeter level location tracking of nearby tagged and untagged objects and an overall detection range of 20.3 cm from the textile NFC reader.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>2. NFC Fundamentals</h3>
+<p>This section describes the basics of the NFC protocol and the mechanics of near-field magnetic coupling for both tagged and untagged objects.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>2.1. NFC protocol</strong></p>
+<p>According to the ISO 14443 NFC protocol, an NFC reader initiates communication by periodically broadcasting a universal query command to wake up nearby tags (if any) and solicit responses (standard acknowledgment and unique IDs). Meanwhile, it inevitably experiences magnetic coupling with nearby conducting objects, even if they do not contain NFC coils.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>2.2. Magnetic coupling in NFC</strong></p>
+<p>The underlying communication principle of NFC is based on magnetic coupling. The NFC reader operates in the 13.56MHz ISM band. The current flowing through the coil antenna of the NFC reader generates a magnetic field that couples with nearby NFC tags or conductive untagged objects. In the rest of this discussion, we use <em>object</em> to denote either a tagged or untagged object that magnetically couples with the NFC reader&mdash;the underlying physics remains largely the same. The magnetic coupling effect transfers energy from the NFC reader to the object owing to an induced current in the object. In the near-field, since the strength of magnetic fields decreases rapidly with distance by its inverse 3rd power,<sup><a href="#R10">10</a></sup> the communication range of commercial NFC systems is around 5 cm.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=603,height=254'); return false;">Figure 2(a)</a> shows a simplified circuit diagram for a single pair of reader and object, with the latter shown by its equivalent circuit. Due to the magnetic coupling between the reader and the object, the current <em>I<sub>T</sub></em> in the reader will induce a voltage <em>V<sub>R</sub></em> on the object:</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=603,height=254'); return false;"><img alt="f2.jpg" height="175" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f2.jpg" width="415" /></a><br/>
+<strong>Figure 2. (a) The magnetic coupling between the active NFC reader and an object of interest can be quantified as the mutual inductance <em>m.</em> It induces a voltage <em>V<sub>R</sub></em> across the object&#39;s equivalent circuit; and (b) A team of reader coils couple with a tagged or untagged object.</strong></p>
+<p><img alt="eq01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq01.gif" /></p>
+<p>where <em>m</em> is the mutual inductance between the antenna of the object and the reader at the resonant frequency; and <em>Z<sub>R</sub></em> and <em>I<sub>R</sub></em> are the impedance and current induced in the object&#39;s equivalent circuit.</p>
+<p>As the object perceives an induced voltage from the reader, the current induced also generates its own magnetic field which changes the voltage across the reader antenna. The voltage <em>V<sub>T</sub></em> across the reader antenna is written as:</p>
+<p><img alt="eq02.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq02.gif" /></p>
+<p>where <em>V&#39;<sub>R</sub></em> is the voltage introduced by the object; and <em>V</em><sub>0</sub> is the original voltage on the reader antenna without any object in range. In effect, the object functions as a voltage divider. Hence, we conclude that when there is less energy delivered to the nearby object, the voltage on the corresponding NFC reader antenna will be larger. In the paper, we show how TextileSense leverages this basic property of NFC to detect the presence of nearby objects without knowledge of their orientation, location, and impedance.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>3. Overview</h3>
+<p>TextileSense aims to detect and locate objects in the proximity of a multiple-coil textile NFC reader. It specifically aims to beamform electromagnetic waves in the near-field to detect the influence of conductive objects.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>3.1. Approach</strong></p>
+<p>TextileSense&#39;s system design is as follows: TextileSense applies different beamforming weights across multiple textile coils of an NFC reader, which can alter the magnetic field to maximize the influence of conductive objects (tagged or untagged) in the near-field. It infers the optimal set of beamforming weights by measuring the voltage across multiple reader coils. The underlying principle relies on the weak magnetic coupling between the object and the reader coils. As we gradually measure the voltage across multiple coils corresponding to different beamforming weight vectors, we can learn the environment and improve the searching of optimal beamforming vectors to discover various objects in the near-field. Once TextileSense discovers an object, it leverages the voltage measurement on the object&#39;s influence across reader coils with a data-driven model to locate the object.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>3.2. Challenges</strong></p>
+<p>We address the key challenges in designing three main aspects of TextileSense:</p>
+<ol>
+<li><strong>Optimal near-field beamforming.</strong> First, TextileSense needs to measure the wireless channel corresponding to the magnetic coupling of the objects of interest to infer the optimal beamforming vector that can best detect this object. While the channel can be measured indirectly by magnetic coupling, TextileSense needs to detect objects that are outside the range of measurement sensitivity of any single NFC reader coil. Thus, TextileSense must collaboratively process signals across all coils to search for potential objects and amplify the magnetic feedback. While one may measure the channel of each object individually in the far-field, the induced magnetic field across objects can interfere with each other in the near-field. Thus, a key to finding the accurate optimal beamforming vector for each object is to model and estimate the radio environment including the coupling among multiple objects and the influence of undesired ambient conductors. Section 4 describes our approach.</li>
+<li><strong>Localization in the near-field.</strong> Second, TextileSense should localize the object using the voltage measured across multiple reader coils. At a first glance, we may consider using traditional far-field localization techniques.<sup><a href="#R4">4</a>,<a href="#R14">14</a></sup> However, in the near-field, modeling the magnetic field under multiple reader coils is complex and different from the far-field electromagnetic (EM) modeling. Thus, we propose a near-field localization algorithm, where a data-driven model captures the relationship between the voltage measurement across multiple reader coils and the location of objects while taking the beamforming vectors into account. We describe more details about our approach in the original paper.<sup><a href="#R12">12</a></sup></li>
+<li><strong>Designing textile coils for near-field MIMO.</strong> Finally, we explore how TextileSense designs coils that can be embedded in textiles. While TextileSense can improve its performance of localization and coverage by adding more reader coils, one must consider the physical constraints of the total available area to deploy a multi-coil system on furniture, like on a couch. In addition, TextileSense must account for distortions such as folding and crumpling of the fabric on which coils are attached. Section 5 describes how we mitigate these challenges.</li>
+</ol>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>4. Near-Field Blind Beamforming</h3>
+<p>TextileSense provides a near-field MIMO solution that detects the presence of conductive objects whose location, impedance, and orientation are a priori unknown. We call this <em>near-field blind beamforming</em>, where <em>blind</em> denotes the fact that neither do we have prior wireless channel measurements from the objects nor are we aware of their existence or location. This leads to a chicken-or-egg problem: to beam energy to an object, we need its location, which is precisely what we are aiming to find. Unlike the far-field,<sup><a href="#R13">13</a></sup> beamforming weights in the near-field under the NFC context are heavily influenced by the environment, the reader itself, and the presence of conductive objects. In this section, we illustrate how this fundamentally changes our approach to perform blind beamforming.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.1. Indirect channel measurements</strong></p>
+<p>In this section, we describe our approach to detect the presence of passive conductive objects. In the far-field, without prior knowledge of the object&#39;s location or wireless channels, the reader would struggle to detect if the object is present or otherwise. In the near-field, however, a reader may detect the presence of a conductive object with no energy source. This is because the object and the reader can magnetically couple with each other. This coupling effect is captured by the mutual inductance between the object and the reader, which is a function of the impedance and location of both the reader and the object. Thus, the mutual inductance plays a role in near-field magnetic channels which is similar to the wireless channel state information in the far-field. We seek to use this information to find the optimal beamforming vector that maximizes the amount of energy delivered to the object. This is critical in improving our location-tracking algorithm given that the amount of energy absorbed by the object gives us important cues about the location of the object.</p>
+<p>To obtain the optimal beamforming vector to an object, TextileSense needs to measure its near-field magnetic channel (we deal with multiple objects in Section 4.3). Consider a team of reader coils (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=603,height=254'); return false;">Figure 2</a>). Mathematically, let us assume that a team of <em>N</em> reader coils collaboratively beam energy to one nearby object. The voltage induced by the object at the <em>i</em><sup>th</sup> reader coil can be written as:</p>
+<p><img alt="eq03.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq03.gif" /></p>
+<p>where <em>m<sub>T<sub>i</sub></sub></em> is the mutual inductance between the nearby object and the <em>i</em><sup>th</sup> reader coil, <em>I<sub>T<sub>t</sub></sub></em> is the current in the <em>k</em><sup>th</sup> reader coil; and <em>Z<sub>R</sub></em> is the unknown object&#39;s impedance as in the equivalent circuit in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=603,height=254'); return false;">Figure 2(b)</a>. In this equation, <img alt="cacm6610_c.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_c.gif" /> is the voltage introduced to the object by all <em>N</em> reader coils, and can be represented by <em>V<sub>R</sub></em>. In other words, the voltage induced at the NFC reader coil is proportional to the mutual inductance, <em>m<sub>T<sub>i</sub></sub></em>. Indeed, the magnetic channel <em>m<sub>T<sub>i</sub></sub></em> is critical in performing optimal beamforming of energy toward the object. This is because, for optimal beam-forming, one needs to apply a set of weights to the current of the transmitted signal <em>I<sub>T<sub>i</sub></sub></em> which can add up the induced signal <em>V<sub>R</sub></em> constructively at the object. Based on the channel reciprocity, if we know the channel between the object and each reader coil <em>m<sub>T<sub>i</sub></sub></em>, one can write the optimal beamforming vector <em>B</em>* as:</p>
+<p><img alt="eq04.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq04.gif" /></p>
+<p>where &dagger; is the conjugate operator.</p>
+<p>However, obtaining the magnetic channel <em>m<sub>T<sub>i</sub></sub></em> directly from the measured voltage at the reader coil <em>V<sub>T<sub>i</sub></sub></em> is not straight-forward. The reason is twofold: (1) The voltage induced at a certain reader coil is also influenced by the magnetic channels of other coils. Ideally, one can measure the channel by making all other reader coils open-circuit, then use a known impedance of the object with Equation (3) and apply <em>B</em>* to beamform optimally to the object.<sup><a href="#R2">2</a></sup> However, turning off the coils would reduce the voltage and decrease the system&#39;s effective range, and (2) we typically do not know the impedance of the object a priori, which influences <em>m<sub>T<sub>i</sub></sub></em>. The following section details how TextileSense infers the object&#39;s voltage with unknown impedance, location, and orientation.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.2. Finding optimal beamforming vectors</strong></p>
+<p>As explained in the previous section, measuring the precise voltage induced at the objects purely from the voltage at a reader coil is challenging due to several unknowns, such as the impedance of the object and the influence of other coils. However, even in absence of these quantities, we can make the following intuitive observation: if the optimal beamforming vector is used across coils to maximize energy delivered to a specific object, the sum of voltage measured across all reader coils should reach a minimum. At a high level, this is because transferring higher net energy to the object will reduce the net energy available to the readers.</p>
+<p>To mathematically see why, we revisit Equation (2) and rewrite it by including the mutual inductance between the reader coils. We write the voltage at the <em>i</em><sup>th</sup> reader coil as:</p>
+<p><img alt="eq05.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq05.gif" /></p>
+<p>where <em>V</em><sub>0<sub><em>i</em></sub></sub> is the voltage of <em>i</em><sup>th</sup> reader coil when other reader coils are open-circuit and no other objects are present in the near-field; and <em>V<sub>T<sub>ik</sub></sub></em> is the voltage introduced by nearby reader coils (<em>V</em><sub><em>T</em><sub><em>ik</em></sub></sub> = <em>m</em><sub><em>T</em><sub><em>ik</em></sub></sub> <em>I</em><sub><em>T</em><sub><em>k</em></sub></sub>, where <em>m<sub>T<sub>ik</sub></sub></em> is the mutual inductance between the <em>i</em><sup>th</sup> reader coil and the <em>k</em><sup>th</sup> reader coil). These two components can be calculated as known priors, and we use <em>V</em><sub><em>T</em>0<sub><em>i</em></sub></sub> to represent the sum of them. Therefore, it is easy to see that the voltage at the object is maximized when the voltage at the reader is minimized.</p>
+<p>At this point, we can formulate an optimization problem that finds the beamforming weights that minimize the net reader voltage. Assume the space of beamforming vectors has <em>J</em> discrete elements <em>B<sub>j</sub></em> (<em>j</em> = 1, &hellip;, <em>J</em>), and <img alt="cacm6610_d.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_d.gif" /> is the voltage of the <em>i</em><sup>th</sup> reader coil when the beamforming vector <em>B<sub>j</sub></em> is applied. Let <img alt="cacm6610_e.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_e.gif" />, be the initial voltage of the <em>i</em><sup>th</sup> reader coil when the beamforming vector <em>B<sub>j</sub></em> is applied without any object present. Specifically, we write <img alt="cacm6610_f.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_f.gif" />. Our objective is to find the beamforming vector that delivers a maximum amount of energy to the nearby object. Given that we assume only one object is in the near-field for now, we can obtain the optimal beamforming vector as follows:</p>
+<p><img alt="eq06.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq06.gif" /></p>
+<p>Our analysis shows that for arrays of coils, the space of beamforming weights is locally convex. For example, we analyze a three-coil system with one nearby object while applying various beamforming weights across two coils. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1543,height=443'); return false;">Figure 3</a> plots the sum of the voltage measurement on three coils. It shows a global minimum that delivers maximized energy to the object (see the zoomed-in version in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1543,height=443'); return false;">Figure 3(b)</a> ). Hence, we use Stochastic Gradient Descent to perform the optimization.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1543,height=443'); return false;"><img alt="f3.jpg" height="119" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f3.jpg" width="415" /></a><br/>
+<strong>Figure 3. (a) Sum of voltage (normalized) measured across three coils when two of them apply different beamforming weights with a step of 5&deg; from 0&deg; to 360&deg;. The global minimum represents the beamforming vector that delivers a maximum amount of power to the nearby object; (b) Zoomed-in version in the proximity of the global minimum; and (c) Voltage measurements when another object is present in the proximity of the target object.</strong></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.3. Beamforming to multiple objects</strong></p>
+<p>While our discussion so far considers only one object in the near-field, this section deals with the case of multiple objects. In traditional far-field beamforming, multiple objects do not pose a problem, since they do not influence each other. However, in the near-field, multiple objects can potentially couple with each other at the same time. TextileSense, therefore, has to consider multiple objects&mdash;if not, the voltage measured from the reader coils will not optimally beam energy to all objects. To see why, we revisit our example in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1543,height=443'); return false;">Figure 3(b)</a>, add another object, and measure again the sum of the voltage across three coils corresponding to different beamforming weights, as shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1543,height=443'); return false;">Figure 3(c)</a>. We notice that the consequent voltage map varies considerably from the single-object case.</p>
+<p>While prior work in the near-field in wireless charging<sup><a href="#R9">9</a></sup> can charge multiple mobile phones, it does not guarantee to deliver optimized energy to individual receivers; Hence, it cannot guarantee to detect all objects in the near-field.</p>
+<p>As a result, TextileSense must account for multiple objects and decouple their influence on the voltage across reader coils. It then finds the optimal beamforming vector for each object in the near-field. We further note that a simple exhaustive search is too time-consuming to be practical. Therefore, TextileSense needs to maximize the total number of objects found under a limited overall time budget.</p>
+<p>TextileSense&#39;s high-level approach to do so relies on the voltage measurements from multiple reader coils, and it progressively detects objects in the near-field. It then uses this information to update its optimization algorithm.</p>
+<p><strong>Discovering objects.</strong> Our approach to discover objects initializes by assuming the presence of a single object in hope of finding a response. We then utilize any response we receive, particularly from nearby objects to infer the presence of other objects. Specifically, we leverage the fact that the responses from nearby objects are impacted by the coupling between objects that are farther away.</p>
+<p>To model the coupling among multiple objects, we revisit Equation (3) and rewrite the voltage induced by the object <em>r</em> (<em>r</em> = 1, &hellip;, <em>Q</em>) at the reader coil <em>i</em> when the beamforming vector <em>B<sub>j</sub></em> is applied as:</p>
+<p><img alt="eq07.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq07.gif" /></p>
+<p><img alt="eq08.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/eq08.gif" /></p>
+<p>where <em>Z<sub>r</sub></em> and <em>Z<sub>q</sub></em> are the unknown impedance for the object <em>r</em> and <em>q</em> (in their equivalent circuit representations); <img alt="cacm6610_g.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_g.gif" /> is the current in the <em>k</em><sup>th</sup> reader coil when the <em>j</em><sup>th</sup> beamforming vector is applied; <img alt="cacm6610_h.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_h.gif" /> is the corresponding current in the object <em>q</em>; <em>m<sub>T<sub>i</sub></sub></em>, is the mutual inductance between the <em>i</em><sup>th</sup> reader coil and the object <em>r</em>; and <em>m<sub>R<sub>q</sub></sub></em>, is the mutual inductance between the object <em>r</em> and the object <em>q.</em> Now, we can write the voltage at the <em>i</em><sup>th</sup> reader coil as <img alt="cacm6610_i.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_i.gif" /> when the beamforming vector <em>B<sub>j</sub></em> is applied.</p>
+<p>At this point, we aim to estimate the channel information for each potential object. We set an upper bound <em>Q</em> for the number of potential objects in the near-field. For an <em>N</em>-coil system and <em>R</em> potential objects in the near-field, there are <em>N</em> * <em>Q</em> unknown mutual inductance between the objects and the reader coils, <img alt="cacm6610_j.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_j.gif" /> unknown mutual inductance among the objects, and <em>Q</em> unknown impedance of the objects. While there are <img alt="cacm6610_k.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_k.gif" /> unknown parameters, we can resolve them by applying <img alt="cacm6610_l.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_l.gif" /> different sets of beamforming weights since we obtain <em>N</em> equations from each reader coil every time we apply one beamforming vector. For example, with four coils and five potential objects, we need to apply nine different sets of beamforming weights. While the equations are non-linear, we use Powell&#39;s hybrid algorithm<sup><a href="#R7">7</a></sup> to solve them.</p>
+<p><strong>Choosing beamforming vectors.</strong> There are many possible combinations of beamforming vectors to be applied for estimating the channel of potential objects. TextileSense needs to favor the beamforming vector which delivers a larger amount of energy to these objects. In Section 4.2, we formulate an optimization problem to find the beamforming weights that minimize net voltage. TextileSense leverages the beamforming weights along the gradient to estimate the magnetic channels by solving the non-linear equations.</p>
+<p><strong>Improving object count estimates.</strong> A key to accurately estimating the potential conductive objects in the near-field is to set an appropriate upper bound of the number of them. TextileSense adaptively tunes the upper bound <em>Q</em> based on the responses from tagged objects in the environment, if available, which provide accurate channel information. We always start estimating the number of objects with an initial <em>Q.</em> If there is no response from a tagged object when we apply the estimated channel for potential objects, we increase <em>Q</em> by one. As we gradually receive responses, we can progressively fine-tune our estimates of these parameters with increasing accuracy. In our experiment, we set the initial value of <em>Q</em> to be 5. With this approach, we can decouple the influence of multiple objects on the voltage of the reader coils and calculate the optimal beamforming vector for each object.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.4. Tagged vs. untagged objects</strong></p>
+<p><strong>Telling apart tagged vs. untagged objects.</strong> Untagged objects that are conductive and close to the reader will also couple with our coil antennas. Note that TextileSense models the magnetic channels for both tagged and untagged objects in an identical way. In Section 4.3, TextileSense estimates the magnetic channels for all potential objects. With optimal beamforming, TextileSense can discover them in the near-field. Of these objects, NFC tags actively harvest energy in the near-field and can therefore provide a response. We treat the non-responsive objects as untagged conductors.</p>
+<p><strong>How well can we detect untagged conducting objects?</strong> An important factor that decides how well TextileSense can sense a conductive object is how effectively it resonates with the NFC frequency of operation. We note that different shapes, volumes, and materials of conductors lead to various resonant frequencies. For example, water, mobile phones, computer monitors, and even the human body have distinct resonant frequencies. Our NFC signal is at 13.56MHz, which may not resonate equally well with all classes of objects. Any mismatch lowers the mutual inductance between the reader coil and the object, leading to a small voltage variation at the reader.</p>
+<p><strong>Modeling fleeting conductors.</strong> While our optimization problem models objects that are static, objects that were computed in the past may no longer exist at the same location in the future. To account for this, TextileSense tracks the magnetic channel of discovered objects. Note that as conductive objects couple with nearby objects, their movement changes the channel of these objects. Thus, TextileSense adaptively tracks the optimal beamforming vectors of the objects based on the voltage feedback from the reader coils. Specifically, TextileSense monitors the variation of the measured voltage across the reader coils, which indicates that the magnetic channels have been changed.</p>
+<p>Once TextileSense detects the object using the proposed near-field blind beamforming, it leverages an efficient data-driven algorithm to localize the object.<sup><a href="#R12">12</a></sup></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-6"></a></p>
+<h3>5. Textile Coil Fabrication</h3>
+<p>This section describes our methods to design and fabricate textile coils. Specifically, we discuss: (1) the design of a coil pattern that maximizes the radiation characteristics within the constraints of the available area, while remaining robust to bending and crumpling; and (2) fabrication methods that integrate textile coils on the furniture.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>5.1. Textile coil material and fabrication</strong></p>
+<p><strong>Textile coil material.</strong> There are primarily two types of conductive fabric: (1) intrinsically conductive fibers; and (2) non-conductive substrates, which are then coated with an electrically conductive element such as copper and silver. A key trade-off that dictates our choice of conductive fabrics to build our coil antennas is the balance between high conductivity and low parasitic capacitance. Intrinsically conductive fibers have better conductivity; yet, woven conductive fibers tend to have large parasitic capacitance due to the spacing between individual threads of fibers that is negative to the performance of coils. In this case, we choose Nickel-Copper fabric as the conductive textile. This conductive textile sheet is made of copper and nickel-coated nylon rip-stop fabric and has an acrylic adhesive layer for better transfer.</p>
+<p><strong>Textile coil fabrication.</strong> The conductive textile sheet is attached to a 0.4 mm flexible acrylic sheet as the flexible substrate. A laser prototyping system (LPKF U3) is then used to cut the textile sheet into the desired coil shape. The laser scanning parameters are carefully selected to cut through the textile sheet without damaging the acrylic substrate.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>5.2. Textile coil design</strong></p>
+<p>Our objective is to design a coil geometry with an optimized antenna gain within the furniture&#39;s limited area. In this paper, we particularly consider one side of the couch as the designed area to deploy our system (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1542,height=362'); return false;">Figure 5(d)</a>). To achieve an optimized antenna gain, TextileSense needs to consider the trade-off between the trace width and the number of loops. We model the Q-factor of an inductor to capture the efficiency of our coil antenna. Specifically, the Q-factor can be represented as the ratio of the inductance <em>L</em> to the resistance <em>R</em> of a coil at a given frequency. Note that the inductance and the resistance of the coil antenna is a function of the trace width and the number of loops. We then use the trace width and the number of loops as the unknown parameters to empirically optimize for the Q-factor. Our evaluation shows that the optimal design of the textile coil uses nine turns of loops, 8mm trace width of each loop and 2mm gap between loops. We note that the available deployment area depends on the furniture. Our approach can be used to design the optimal configuration for various sizes of furniture.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>5.3. Textile bending and crumpling</strong></p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1077,height=307'); return false;">Figure 4(b)</a> shows the simulated magnetic field of our textile coil without bending (flat). We note that it has high radiation strength and its radiation pattern is perfectly symmetric. However, when the textile coils are deployed on the furniture like a couch, it may not always remain flat. This section describes the effect of bending and crumpling on TextileSense&#39;s performance, as measured by degradation in antenna gain.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1077,height=307'); return false;"><img alt="f4.jpg" height="118" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f4.jpg" width="415" /></a><br/>
+<strong>Figure 4. (a) TextileSense&#39;s localization algorithm with four coils; (b) Magnetic radiation pattern of a flat TextileSense coil. The bottom small figures show the radiation strength from Top and Right view; and (c) Magnetic radiation pattern of a curved TextileSense coil with 90&deg; bending angle.</strong></p>
+<p><strong>Bending and crumpling effect.</strong> We first study the impact of bending on TextileSense&#39;s performance when deployed on a couch. We use a <em>bending angle</em> to model the bending effect. The bending angle can be represented as <img alt="cacm6610_m.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm6610_m.gif" />, where <em>W</em> is the length of the square coil, and <em>R</em> is the radius of an imaginary cylinder to which the antenna is bent. We notice that the overall radiation strength suffers from degradation due to bending. This is because when we bend the coil antenna, the resonant frequency of the antenna shifts toward a higher frequency, hence the gain of the coil decreases. We then evaluate the resonant frequency shift and the antenna gain degradation across different bending angles from 20&deg; to 110&deg;. We notice that the resonant frequency shift and antenna gain degradation is quasi-linear with different bending angles. We see a 0.2MHz resonant frequency shift and a 6dB antenna gain decrease with a 110&deg; bending angle. Also, we model the crumpling of a coil using multiple cylinders with different bending angles. We show that our coil antenna has a 9dB antenna gain degradation and 0.24MHz resonant frequency shift when curved by two imaginary cylinders, both with 110&deg; bending angles, from below and above, respectively. TextileSense mitigates the gain degradation by using our near-field beamforming algorithm.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-7"></a></p>
+<h3>6. Results and Applications</h3>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>6.1. Object tracking</strong></p>
+<p>We show the cumulative distribution function (CDF) of the tracking accuracy of tagged and untagged objects in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1542,height=362'); return false;">Figure 5(a)</a> and (c), respectively. TextileSense is able to locate a tagged object within a median accuracy of 2.84 cm. Consider the case where a wallet/watch is accidentally left on the couch. TextileSense is able to quickly detect this situation through its algorithm and notify the user. Further, our system can potentially support gaming such as augmented and virtual reality where the location of objects needs to be known. We show that TextileSense can detect the location of an NFC-tagged plush toy on the TextileSense couch.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1542,height=362'); return false;"><img alt="f5.jpg" height="97" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f5.jpg" width="415" /></a><br/>
+<strong>Figure 5. CDF of localization accuracy for (a) NFC-tagged object; (b) Human hand; (c) Untagged metallic object; and (d) Example application setup.</strong></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>6.2. User interface</strong></p>
+<p>TextileSense furniture can be potentially used as a touchless screen, and we evaluate this possibility in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/f5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1542,height=362'); return false;">Figure 5(b)</a>. TextileSense can locate a human hand with a median error of 1.53 cm when the user puts his/her hand in close vicinity, making it a promising candidate for touchless screen interfaces. With its ability to locate a human hand, TextileSense can thus track a user&#39;s hand once its presence is detected. The user can move his/her hand to form fine-grained gestures, and TextileSense is expected to perform consistent localization to keep tracking and analyzing. We show the user can finely adjust the TV volume by waving the hand over different locations on top of the furniture. Here&#39;s a video of our system in action: <a href="https://youtu.be/Ieil0NQlk_M">https://youtu.be/Ieil0NQlk_M</a>.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>6.3. Pose estimation</strong></p>
+<p>TextileSense can also be used to sense the user when the user sits on the couch. Specifically, it can track the location of the user and also the posture of the user. We demonstrate that our system can sense the user&#39;s posture&mdash;lying or sitting on the couch with 91.3% accuracy.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-8"></a></p>
+<h3>7. Conclusion</h3>
+<p>This paper designs TextileSense, an NFC-based system that locates objects (tagged or untagged) in the surroundings using multiple textile coils. TextileSense senses the voltage variation of its transmitter coils induced by proximate objects to detect them and identify their location. We optimize the geometry of the coils and fabricate them to remain robust to fabric bending and crumpling. Through extensive experiments, we demonstrate cm-level localization of both tagged and untagged objects in the near-field.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Faragher, R., Harle, R. An analysis of the accuracy of bluetooth low energy for indoor positioning applications. <em>Proc. ION GNSS+ 812</em> (2014), 201&ndash;210.</p>
+<p><a name="R2"></a>2. Jadidian, J., Katabi, D. Magnetic mimo: How to charge your phone in your pocket. In <em>Proceedings of the 20<sup>th</sup> Annual International Conference on Mobile Computing and Networking</em> (2014), ACM, NY, 495&ndash;506.</p>
+<p><a name="R3"></a>3. Knauth, S., Kaufmann, L., Jost, C., Kistler, R., Klapproth, A. The iloc ultrasound indoor localization system at the EVAAL 2011 competition. In <em>International Competition on Evaluating AAL Systems through Competitive Benchmarking</em> (2011), Springer, Berlin, Heidelberg, 52&ndash;64.</p>
+<p><a name="R4"></a>4. Lanzisera, S., Zats, D., Pister, K.S. Radio frequency time-of-flight distance measurement for low-cost wireless sensor localization. <em>IEEE Sens. J. 11</em>, 3 (2011), 837&ndash;845.</p>
+<p><a name="R5"></a>5. Lemic, F., Martin, J., Yarp, C., Chan, D., Handziski, V., Brodersen, R., et al. Localization as a feature of mmwave communication. In <em>IWCMC</em> (2016), IEEE, Paphos, Cyprus, 1033&ndash;1038.</p>
+<p><a name="R6"></a>6. Liang, R.-H., Kuo, H.-C., Chen, B.-Y. Gaussrfid: Reinventing physical toys using magnetic RFID development kits. In <em>CHI</em> (2016), ACM, NY, 4233&ndash;4237.</p>
+<p><a name="R7"></a>7. Mor&eacute;, J.J., Garbow, B.S., Hillstrom, K.E. User guide for minpack-1. Technical Report, CM-P00068642 (1980).</p>
+<p><a name="R8"></a>8. Ranganathan, V., Waters, B.H., Smith, J.R. Localization of receivers using phased-array wireless power transfer systems. In <em>2015 IEEE Wireless Power Transfer Conference (WPTC)</em> (2015), IEEE, Boulder, CO, USA, 1&ndash;4.</p>
+<p><a name="R9"></a>9. Shi, L., Kabelac, Z., Katabi, D., Perreault, D. Wireless power hotspot that charges all of your devices. In <em>MobiCom</em> (2015), ACM, NY, 2&ndash;13.</p>
+<p><a name="R10"></a>10. Tipler, P.A., Mosca, G. <em>Physics for Scientists and Engineers: Electricity.</em> WH Freeman, New York, 2003.</p>
+<p><a name="R11"></a>11. Villar, N., Cletheroe, D., Saul, G., Holz, C., Regan, T., Salandin, O., et al. Project Zanzibar: A portable and flexible tangible interaction platform. In <em>CHI</em> (2018), ACM, NY, 1&ndash;13.</p>
+<p><a name="R12"></a>12. Wang, J., Zhang, J., Li, K., Pan, C., Majidi, C., Kumar, S. Locating everyday objects using NFC textiles. In <em>IEEE/ACM IPSN</em> (2021), ACM, NY.</p>
+<p><a name="R13"></a>13. Wang, J., Zhang, J., Saha, R., Jin, H., Kumar, S. Pushing the range limits of commercial passive RFIDS. In <em>NSDI</em> (2019), USENIX Association, USA, 301&ndash;316.</p>
+<p><a name="R14"></a>14. Xiong, J., Jamieson, K. Arraytrack: A fine-grained indoor location system. In <em>NSDI</em> (2013), USENIX Association, USA, 71&ndash;84.</p>
+<p><a name="R15"></a>15. Yang, L., Chen, Y., Li, X.-Y., Xiao, C., Li, M., Liu, Y. Tagoram: Real-time tracking of mobile RFID tags to high precision using cots devices. In <em>Proceedings of ACM MobiCom</em> (2014), ACM, NY, 237&ndash;248.</p>
+<p><a name="R16"></a>16. Zhu, S., Zhang, X. Enabling high-precision visible light localization in today&#39;s buildings. In <em>MobiSys</em> (2017), ACM, NY, 96&ndash;108.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Authors</h3>
+<p><strong>Jingxian Wang,</strong> <a href="mailto:wang@nus.edu.sg">wang@nus.edu.sg</a>, Microsoft Research &amp; National University of Singapore, Singapore.</p>
+<p><strong>Junbo Zhang</strong> (<a href="mailto:junboz2@andrew.ciriu.edu">junboz2@andrew.ciriu.edu</a>), Carnegie Mellon University, Pittsburgh, PA, USA.</p>
+<p><strong>Ke Li,</strong> <a href="mailto:kl975@cornell.edu">kl975@cornell.edu</a>, Cornell University, Ithaca, NY, USA.</p>
+<p><strong>Chengfeng Pan,</strong> <a href="mailto:cfpan@cuhk.edu.hk">cfpan@cuhk.edu.hk</a>, The Chinese University of Hong Kong, Hong Kong.</p>
+<p><strong>Carmel Majidi</strong> (<a href="mailto:cmajidi@andrew.ciriu.edu">cmajidi@andrew.ciriu.edu</a>), Carnegie Mellon University, Pittsburgh, PA, USA.</p>
+<p><strong>Swarun Kumar,</strong> <a href="mailto:swarun@cmu.edu">swarun@cmu.edu</a>, Carnegie Mellon University, Pittsburgh, PA, USA.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-footnotes"><a name="footnotes"></a>
+<h3>Footnotes</h3>
+<p>To view the accompanying Technical Perspective, visit <a href="http://doi.acm.org/10.1145/3615451/html">doi.acm.org/10.1145/3615451</a></p>
+<p>The original version of this paper was published in <em>Proceedings of the 2021 ACM/IEEE Int. Conf. on Processing in Sensor Networks.</em></p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p><img alt="cacm_ccby.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3615450/assets/html/cacm_ccby.gif" /> This work is licensed under a Creative Commons Attribution International 4.0 License. <a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2023 ACM, Inc.</p>
+
+<p>&nbsp;</p>
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Abstract</a></li>
+<li class="miniWidgetItem"><a href="#body-2">1. Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-3">2. NFC Fundamentals</a></li>
+<li class="miniWidgetItem"><a href="#body-4">3. Overview</a></li>
+<li class="miniWidgetItem"><a href="#body-5">4. Near-Field Blind Beamforming</a></li>
+<li class="miniWidgetItem"><a href="#body-6">5. Textile Coil Fabrication</a></li>
+<li class="miniWidgetItem"><a href="#body-7">6. Results and Applications</a></li>
+<li class="miniWidgetItem"><a href="#body-8">7. Conclusion</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Authors</a></li>
+<li class="miniWidgetItem"><a href="#footnotes">Footnotes</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/272577-can-artistry-be-built-into-a-machine">
+Can Artistry Be Built Into a Machine?
+</a>
+</h5>
+<span class="dateNews">The New York Times</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/8/274935-why-you-should-be-able-to-make-your-own-individualized-digital-nano-currency">
+Why You Should Be Able to Make Your Own Individualized, Digital Nano-Currency
+</a>
+</h5>
+<span class="dateNews">Wesley Sheh, Joel Nishimura</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/274694-is-bard-better-than-chatgpt">
+Is Bard Better than ChatGPT?
+</a>
+</h5>
+<span class="dateNews">Herbert Bruderer</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href="<iframe width=" 560" height="315" src="https://www.youtube.com/embed/Ieil0NQlk_M?si=xHZ-ZH-44dmOWBCW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2023/10/276637-locating-everyday-objects-using-nfc-textiles/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2023 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
