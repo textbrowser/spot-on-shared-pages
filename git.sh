@@ -3,13 +3,13 @@
 
 if [ -z ${GIT_A} ];
 then
-    echo "Please export GIT_A."
+    echo "Please export the account (GIT_A)."
     exit 1
 fi
 
 if [ -z ${GIT_T} ];
 then
-    echo "Please export GIT_T."
+    echo "Please export the token (GIT_T)."
     exit 1
 fi
 
