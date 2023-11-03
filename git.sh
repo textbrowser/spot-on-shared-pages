@@ -14,7 +14,6 @@ then
 fi
 
 while
-    git pull
     git add .
     git commit -m "New pages."
     git push \
