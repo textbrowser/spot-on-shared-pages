@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Device Onboarding using FDO and the Untrusted Installer Model - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Networks" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3632533" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>November 9, 2023<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3632533">Volume 21, issue 5 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3631327">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Device Onboarding using FDO and the Untrusted Installer Model</h1>
+<h2>FDO's untrusted model is contrasted with Wi-Fi Easy Connect to illustrate the advantages of each mechanism.</h2>
+<h3>Geoffrey H. Cooper</h3>
+<p>The IoT (Internet of Things) market has grown into a major business, with millions of devices and servers dedicated to tracking, logging, and measuring real-world features. This covers many areas of society, including home, retail, manufacturing, street lighting, and transportation. </p>
+<p>All the devices, in all these fields, share an important characteristic: They were all manufactured under some initial ownership, and they were all transferred into their target application, coming under another ownership. Only in the target context does the IoT device perform its intended function while interacting with supporting servers. The challenge is to set up this interaction in a manner that is fast, reliable, and secure. This process is referred to as <i>onboarding</i>. </p>
+<p>Table 1 outlines a simplified onboarding terminology for this article. Both machine and human entities are involved. Onboarding involves creating trust between a target <i>device</i> and a target <i>server</i>, with enough mechanisms that the server may subsequently communicate with the device and control some or all of its functions. The <i>installer</i> is a person, trusted to install the physical device in a particular place; report which device is installed where; and connect the device to power and, if necessary, network cabling or wireless networking. In some cases, the installer interacts with programs on the device and server using tools that are collectively called the <i>configurator</i>.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3631327/assets/html/cooper-t1.png" alt="Device Onboarding using FDO and the Untrusted Installer Model" />
+<p>The simplest way to onboard an IoT device is for an installer (person) to reset the device to factory settings, then install, by hand, all the software and credentials needed for the application to access the target service. When the installer hits the final Enter key, the device is onboarded and in service.</p>
+<p>This has been the default model for onboarding devices in legacy applications, but it scales poorly. Problems that are likely to occur include:</p>
+<ul>
+<li> Incorrectly installed software, or wrong version used.</li>
+<li> Incorrect or missing credentials for the device.</li>
+<li> Inconsistent installation across multiple devices.</li>
+<li> Device inadequately secured into its new environment.</li>
+</ul>
+<p>The obvious answer to all these problems is to automate the onboarding process. Typically, this means running a script that installs all the correct software and credentials on the device, verifies the installation, then secures the device. To install and run the script requires the device to have at least some security disabled, so the script must also enable security. </p>
+<p>But the device cannot be secured from the installer, who runs the onboarding script. The installer needs both privileged status (e.g., <i>root</i> access) and visibility into all the credentials that are added to the device. At the instant that onboarding is complete, an installer, previously trusted, becomes the weak link for mistakes or attacks. If the installer is a contract employee of another company or organization, the very knowledge of these secrets outside the company security perimeter constitutes a built-in security breach.</p>
+<p>The alternative is to automate onboarding, so the installer who keeps with the principle of “least privilege” has access to the device and server only for the purposes of physical installation and initiating the automatic onboarding process. The installer never learns enough to breach the security relationship created during onboarding.</p>
+<p>Various mechanisms are used to implement least-privilege access for the installer in automated onboarding, such as <i>trusted installer</i> and <i>untrusted installer </i>protocols. In a trusted installer protocol, the installer (a person) transfers specific information that allows the device and server to establish trust. After this, the device and server perform the rest of the onboarding protocol, so the installer does not learn the credentials derived by the onboarding process. In the untrusted installer protocol, the installer has no role in the onboarding communications protocol. The device and server must find each other using preprogrammed credentials and/or clues in the network environment. </p>
+<p>An example of the trusted installer model is the Wi-Fi Easy Connect protocol from the Wi-Fi Alliance, which allows a device to connect to a local Wi-Fi router.<sup>12</sup> The installer runs a configurator app connected to the same router. The goal of the onboarding is network admission; the credentials passed for onboarding are relatively simple. </p>
+<p>The FDO (FIDO Device Onboard) protocol is an example of an untrusted installer.<sup>6</sup> In FDO, an explicit credential, called the ownership voucher, is issued for each device. This credential is installed into the server to allow the device to onboard. FDO is an example of application onboarding, so it has a rich set of primitives to allow credentials and other onboarding materials to be configured.</p>
+<p>This article looks at each of these protocols to contrast the trusted and untrusted installer models for onboarding.</p>
+<p>&nbsp;</p>
+<h3>Basic Cryptography for Onboarding</h3>
+<p>Onboarding protocols use cryptography. Although this is not a discussion about cryptographic methods for onboarding, a basic outline of the techniques is necessary. </p>
+<p>The details of the cryptography used for the two protocols under discussion vary, but the basic components fit into the following model.</p>
+<p>First, the server and device must authenticate, so that each has confirmed the trustworthiness of the other to onboard. In some protocols, server authentication is based on the environment and is considered optional.</p>
+<p>Client (device) authentication is always mandatory. Authentication usually uses a digital signature. In some cases, the public key is wrapped in a digital certificate, usually in X.509 format, which implies PKI (public-key infrastructure).<sup>5</sup></p>
+<p>Since certificates have an expiration date, and since devices in the supply chain may sit on a shelf for months before being installed, conventional PKI methodology presents challenges for automatic onboarding. Sometimes expiration dates are extended for this purpose. Alternatively, public-key cryptography is deployed without certificates, so that the public key’s cryptographic material is surrounded only by protocol fields.</p>
+<p>After authentication, a cryptographic key exchange is performed.<sup>1 </sup>A popular method is ECDH (Elliptical Curve Diffie-Hellman). Since ECDH is subject to a so-called MITM (manipulator-in-the-middle) attack,<sup>11</sup> a digital signature is also needed in this context. The authentication and key-exchange elements are sometimes combined in the protocol so that one digital signature can cover both authentication and key exchange, while also optimizing the number of message round trips. This makes it harder to map the protocol messages to the operations above.</p>
+<p>Key exchange establishes a shared secret known only to the device and server. A KDF (key derivation function)<sup>3</sup> is used to generate common credentials and establish an authenticated, encrypted tunnel between server and device. Then onboarding information may be shared over the tunnel, visible only to the device and server at each “end” of the tunnel.</p>
+<p>&nbsp;</p>
+<h3>Wi-Fi Easy Connect</h3>
+<p>Wi-Fi Easy Connect is a feature of WPA3 (Wi-Fi Protected Access 3) from the Wi-Fi Alliance. It provides automatic configuration of a device to access a Wi-Fi network using the trusted installer model. The installer uses a configurator program, which must already be connected to the target network.</p>
+<p>The configurator may be an app on a cellphone or Wi-Fi gateway. It takes on the server role in onboarding, establishing trust with a device, and shares the credentials for the network with it. Afterward, the device can use these credentials to enter the network as needed.</p>
+<p>The Wi-Fi Alliance specifications are complex, having been developed to satisfy many diverse communications requirements. Wi-Fi Easy Connect has many options and interacts with other Wi-Fi standards. This article describes a simplified single path through these standards and is not intended to represent the full power of the collective Wi-Fi standards. (See the Wi-Fi Easy Connect specification for more details.<sup>12</sup>) </p>
+<p>To support Wi-Fi Easy Connect, a device contains an identifying asymmetric key pair. The private key is embedded in the device and is accessible only to the device’s software or firmware. The public key is imprinted on a QR code (a rectangular scanning code) that comes with the device, perhaps on a sticker affixed to the back. Other information is present in the QR code (e.g., a list of frequency bands) but does not affect the integrity or security of onboarding. Wi-Fi Easy Connect can also use mechanisms other than a QR code.</p>
+<p>An installer who wishes to attach the new device to the network uses the configurator to scan the device’s QR code. This action identifies and authorizes onboarding the device to the configurator. The device (still powered off) can now authenticate itself using its private key. By default, there is no strong authentication of the configurator to the device. Wi-Fi WPA3 optionally adds bidirectional authentication (e.g., for enterprise networks). Figure 1 illustrates the installation process with Wi-Fi Easy Connect.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3631327/assets/html/cooper1.png" alt="Device Onboarding using FDO and the Untrusted Installer Model" />
+<p>Next, the installer powers on the device. Since the device is not yet connected to a Wi-Fi network, it sends a broadcast Wi-Fi <i>beacon</i> message to announce its availability. This allows the configurator to sense the device and connect to it using a one-to-one Wi-Fi connection called Wi-Fi Direct. If needed because of hardware limitations, the configurator may temporarily drop the connection to the target Wi-Fi network and talk only to the device.</p>
+<p>Once a configurator has connected to it, the device initiates a key exchange protocol, signed with its private key. The configurator, having received the device’s public key from the QR code scan, uses it to verify the signature and key exchange, and shares its own key-exchange information, allowing a mutual shared secret to be created. From this shared secret, keys for authentication and encryption are derived, sufficient to create a secured, authenticated, encrypted tunnel. An onboarding payload is transmitted across this tunnel, containing the long-lived parameters of the target Wi-Fi network. For example, a home network’s SSID (service set identifier) and password might be transmitted.</p>
+<p>Once the onboarding payload is received and acknowledged, the onboarding operation is complete. The device and configurator terminate their private connection, and the configurator continues as a member of the target Wi-Fi network. The device is now also able to use its downloaded network parameters to connect to the target network.</p>
+<p>Although the onboarding payload for Wi-Fi Easy Connect is small, this is not a limitation of the technique. Since it creates an authenticated tunnel, the trusted installer method is able to provision an arbitrarily large payload to the device. </p>
+<p>The trusted installer has functioned as a key component of the onboarding, choosing the device to onboard and selecting the network and configurator program to interact with the device. Even so, the installer is not required to modify the device’s software or firmware, or perform any significant operation on the device, other than to turn it on. Although the installer has arranged for credentials to be shared between the device and the configurator, neither device nor configurator needs to expose these credentials to the installer. </p>
+<p>Indeed, as long as the installer can cause the configurator to scan a barcode, the installer might not actually be able to log in to the network at all. Trust in the installer is pared down to an introductory role only. For example, a home router might include a configurator program (and a barcode scanner), removing the need for the installer to access the local network. A plumber installing a home dishwasher might use the home gateway to scan the Easy Connect QR code and provide dishwasher access to the home network. The only network information that leaves with the installer is that the new dishwasher is connected to it.</p>
+<p>On the other hand, an installer might not be trusted just by being in the home. The configurator must be secured by ad hoc mechanisms; otherwise, anyone in—or close to—the home could admit devices to the home network. For example, a visitor with configurator access could install and leave behind a camera that streams video to the Internet. </p>
+<p>With the proviso that the configurator program is secured, the trusted installer provides a powerful and easy-to-implement technique for onboarding devices. It is often used for devices in home networks. In commercial or industrial settings, it is appropriate when the trust relationship to the installer is well understood. This may require, for example, that only direct employees take on the trusted installer role in a corporate network.</p>
+<p>&nbsp;</p>
+<div style="border:1px solid #999;padding:20px;margin:20px;">
+<h3>FDO Credentials </h3>
+<p>FDO is implemented by interaction among credentials that include:</p>
+<ul>
+<li>A GUID that identifies the instance of credentials. <br/>It is used to pair the ownership voucher with the device.</li>
+<li>A device asymmetric key pair (private key and certificate), where the private and public keys uniquely identify the device.</li>
+<li>A set of instructions, called RendezvousInfo, to find a mutually agreed-upon rendezvous server. <br/>In the simplest case, this is the DNS name of a rendezvous server, whose operation is described in the article.</li>
+<li>An ownership voucher, a new cryptographic credential, defined for FDO. <br/>This voucher contains a ledger of public keys for supply-chain entities. <br/>The last key in the ledger is owned by the server that runs the FDO protocols to onboard the device. <br/>Note that, although the term <i>ledger</i> is commonly used for blockchain devices, the ownership voucher does not use blockchain technology.</li>
+<li>A private and public key pair for each supply-chain entity that processes the ownership voucher.</li>
+<li>Additional credentials, provided for practicality and convenience.</li>
+</ul>
+</div>
+<p>&nbsp;</p>
+<h3>FIDO Device Onboard</h3>
+<p>FDO is published as a standard by the FIDO Alliance. It is the first technical publication of the FIDO Alliance’s IoT Technical Working Group. FDO is distinct from the previous authentication-based standards published by FIDO, sometimes called FIDO2.<sup>7</sup> The description here is based on FDO version 1.1.<sup>6</sup> </p>
+<p>FDO data formats are built on several IETF (Internet Engineering Task Force) standards. FDO messages and data objects (including the ownership voucher) are encoded using the CBOR (Concise Binary Object Representation) format.<sup>2</sup> Digital signatures use the COSE (CBOR Object Signing and Encryption) format<sup>10</sup> or the EAT (Entity Attestation Token).<sup>8</sup></p>
+<p>FDO is an automatic onboarding protocol based on the untrusted installer model. Since the installer is not trusted to interact in the protocol, there is no configurator role. The server and device have all the information needed to onboard the device. All the installer does is press the device’s power button.</p>
+<p>In FDO, two sets of related credentials are created when the device is initialized, usually during manufacturing. One set of credentials is placed in the device. The other credentials are used to create an object called the ownership voucher. It is cryptographically linked to the device’s credentials, allowing the voucher to be used to authenticate the server. Figure 2 illustrates the installation process with FDO.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3631327/assets/html/cooper2.png" alt="Device Onboarding using FDO and the Untrusted Installer Model" />
+<p>The device and the server are both identified by asymmetric key pairs. The device’s private key is secreted in the device, and the public key of the device is in an X.509 certificate created by the device manufacturer, itself embedded inside the ownership voucher. The server is identified by an asymmetric key pair. The private key lives in the server, and the public key lives in the ownership voucher. </p>
+<p>The innovation of the ownership voucher is that it permits the device to be manufactured and distributed without prior knowledge of the server’s credentials.</p>
+<p>The ownership voucher initially contains a public key owned by the device manufacturer. This public key is also embedded in the device. When the device is sent to a supply-chain partner, the ownership voucher is extended to contain the partner’s public key, signed by the manufacturer. This is the digital equivalent of endorsing a bank check to a third party. The partner may further extend the ownership voucher using a digital signature, until eventually it is extended to the server that wishes to onboard the device. This server now uses the ownership voucher, the device credentials, and the FDO protocols to onboard the device.</p>
+<p>The signature chain in the ownership voucher forms a trust chain that mirrors the supply chain. The logic is that the same trust that allows the physical device to be used with its base configuration also permits it to be onboarded. Conversely, if the device fails to onboard, it is returned in failure through the same supply chain. The ownership voucher signature chain was first proposed by Ernie Brickell at Intel Corporation.</p>
+<p>The ledger of signatures in the ownership voucher allows the device to be routed from supplier to supplier on an “as determined” basis. A distributor can stock many units of a device, then send units to other distributors or end customers as they are ordered by extending the ownership voucher signatures to the shipping target. Extending the ownership voucher requires that public keys be provided or kept on file for expected product destinations.</p>
+<p>To help understand this new data structure, a couple of “building rules” for the ledger are helpful. For a given subsegment of the supply chain:</p>
+<p> &nbsp; <b>A.</b> Where every entity independently decides the next destination of the device, the ownership voucher’s ledger includes a key for each entity. </p>
+<p> &nbsp; <b>B.</b> Where an arbitrary set of entities always routes the device to one destination, the ownership voucher’s ledger contains only that one destination.</p>
+<p>Rule A applies to resellers, who extend the supply chain as buyers appear. Rule B applies to delivery services and predetermined supply chains. </p>
+<p>Rule B also applies to the entire supply chain when all devices onboard to a single cloud service. In this case, a trick is possible, where the cloud service assigns each tenant a key for FDO. The device manufacturer extends each ownership voucher to the key of the purchasing tenant instead of unboxing the device to insert a tenant token. When the device onboards, the key in the ownership voucher identifies the tenant.</p>
+<p>A cryptographically random identifier of 128 bits is chosen as a device identifier for FDO, or GUID (globally unique identifier), and is stored in both the device and the ownership voucher. This serves as an identifier for protocols, making it easier for the server to choose the correct ownership voucher for a given device. The randomness makes it hard for an attacker to predict the GUID value. The GUID lasts until the device is successfully onboarded; it is then replaced with a new one.</p>
+<p>&nbsp;</p>
+<h4>FDO protocols</h4>
+<p>FDO specifies four protocols:</p>
+<ul>
+<li> <b>DI (Device Initialize).</b> Permits storing the FDO device’s credentials using a protocol interaction. For some devices, it is more convenient to store FDO credentials directly, such as in flash memory. This is also permitted.</li>
+<li> <b>TO0 (Transfer Ownership 0).</b> Allows the server to register its IP address and/or DNS name with a rendezvous server, explained in the next section.</li>
+<li> <b>TO1 (Transfer Ownership 1).</b> Allows the onboarding device to query the IP address and/or DNS name from the rendezvous server.</li>
+<li> <b>TO2 (Transfer Ownership 2).</b> Allows the onboarding device to authenticate and onboard to the intended server.</li>
+</ul>
+<p>In special environments where the intended server can be found directly, such as using network broadcast, the TO0 and TO1 protocols may be skipped, and the TO2 protocol stands alone.</p>
+<p>&nbsp;</p>
+<h4>Network connection</h4>
+<p>As an application onboarding protocol, FDO does not specifically address the network layer connection. For an unauthenticated, wired Ethernet, the installer plugs in a connector. For Wi-Fi networks, FDO uses a Wi-Fi segment with fixed parameters as an onboarding network. This can be restricted from general access. Alternatively, the FDO device can be attached to the Wi-Fi network manually. </p>
+<p>Mechanisms to automatically attach FDO hosts to a Wi-Fi network have been proposed, which is an area of active development for FDO.</p>
+<p>&nbsp;</p>
+<h4>Device and server rendezvous (TO0 and TO1 protocols)</h4>
+<p>When the FDO device is powered on for the first time, it has its FDO credentials but no information about the network to which it is connected or the identity of the server. Finding the correct server is its first task. The “correct” server means the one with the ownership voucher having the device’s GUID. This is accomplished using a rendezvous server and the TO0 and TO1 protocols. </p>
+<p>The ownership voucher and device credentials include instructions to find a compatible set of rendezvous servers. The prospective server uses the TO0 protocol to register its GUID against its address (e.g., IP address and TCP port) with a rendezvous server. The device uses its GUID in the TO1 protocol to obtain the address of a prospective server. The device then uses the TO2 protocol to authenticate directly to the server.</p>
+<p>The rendezvous protocol is similar in concept to a DNS lookup but has some advantages:</p>
+<ul>
+<li> The server can autonomically register itself with the rendezvous server using information in the ownership voucher. </li>
+<li> Since the rendezvous server is an application server, no special rights to the network are needed.</li>
+<li> Rendezvous works the same using an on-premises server as on the Internet.</li>
+<li> Rendezvous works in a closed network, as long as the server, device, and rendezvous server are all accessible to each other.</li>
+</ul>
+<p>An escape allows network-specific mechanisms to substitute for the rendezvous protocol. For example, a corporate network could use the DNS_SD (DNS Service Discovery) mechanism to find the FDO owner.<sup>4</sup></p>
+<p>&nbsp;</p>
+<h4>Onboarding using the TO2 protocol</h4>
+<p>An installed device starts by determining the location of a prospective server using the rendezvous protocol. Then it uses the TO2 protocol to attempt to onboard to this server. If the TO2 protocol is unsuccessful, the device tries other rendezvous servers (if any), then delays and repeats the process. </p>
+<p>The TO2 protocol starts with a mutual authentication of device and server. The device is authenticated by generating an attestation based on the device key. The attestation uses the EAT and the configured device key. The server can verify the EAT message using the device’s certificate, available in the ownership voucher.</p>
+<p>The server authenticates using the ownership voucher by “walking” the ownership voucher signature chain and arriving at the public key of the server itself. (See the description of the ownership voucher earlier in this article.) The server then signs a challenge to authenticate itself and complete mutual authentication.</p>
+<p>Next, a key exchange, usually an ECDH operation, is performed to create a shared secret across the connection. The shared secret is passed through a key-definition function to obtain credentials to create an integrity-verified, encrypted tunnel. In the actual FDO protocol messages, authentication and key-exchange operations are packed together to allow the authentication message to also authorize the key exchange. </p>
+<p>Once the FDO encrypted tunnel is complete, the protocol enters the onboarding phase. Since FDO is intended for general-purpose application onboarding, the behavior of this phase is flexible. The connection transitions to allow subprotocols to run, called FSIMs (FDO Service Info Modules). Since they run only over the encrypted tunnel, the FSIM actions are exclusive to the particular server and device, and permit the server to configure credentials into the device with cryptographic privacy and security. </p>
+<p>The base set of FSIMs provide:</p>
+<ul>
+<li> <b>File download,</b> including downloading scripts for installation.</li>
+<li> <b>Command execute,</b> to invoke scripts and make changes to the device.</li>
+<li> <b>File upload,</b> to retrieve command output.</li>
+<li> <b>File download from a URL using HTTP.</b> This method is faster than file download over the FDO tunnel, but the tunnel can provision credentials for verifying such files.</li>
+<li> <b>PKI provisioning using a CSR</b> (certificate signing request).<sup>9</sup></li>
+</ul>
+<p>For devices with limited command-processing capabilities, custom FSIMs can be added to perform firmware updates or access devices such as Secure Elements or Trusted Platform Modules (TPMs). </p>
+<p>Conceptually, the server owner develops and maintains a script for each kind of device that invokes FSIMs. As FSIMs become more standardized, it is likely that classes of devices will be onboarded using a single script, perhaps based on operating system (e.g., base Linux functions).</p>
+<p>Devices with special hardware or firmware need custom commands; these can be abstracted using FSIMs that are attuned to this class of hardware. For example, the CSR FSIM handles the key-provisioning functions of both a TPM and secure element for onboarding. The evolution from specific to generic device characteristics is in the early stages for FDO.</p>
+<p>A failure during onboarding causes the device to run FDO again. Recovery from a partial onboard is left up to the server; idempotent operations within FSIMs can improve robustness after partial onboarding.</p>
+<p>When all onboarding operations have completed successfully, the server downloads replacements for critical elements of the device credentials. This invalidates previous copies of the ownership voucher. The device responds with information to create a new ownership voucher, which the onboarding server alone possesses. Then the device sets a flag indicating that onboarding has completed, completes the protocol connection, and reboots itself. When the device comes up, the flag causes it to bypass FDO processing, and the device goes into service based on the results of the FDO onboard.</p>
+<p>Since FDO ends with a new set of device credentials and matching ownership voucher, the FDO protocol can be used again as needed. For example, FDO can be used to repurpose the device some months later, using the new ownership voucher, but it has no independent function for preparing a device to be repurposed. This function must be handled by the device-management mechanisms before FDO is reenabled.</p>
+<p>&nbsp;</p>
+<h3>Comparison of Trusted and Untrusted Installer Techniques</h3>
+<p>The trusted and untrusted installer techniques exhibit different tradeoffs for installing devices. This section discusses the usefulness of each technique. Both trusted and untrusted installer techniques allow complex devices to be installed automatically, and both solve the basic problems of onboarding:</p>
+<ul>
+<li> Ensuring that the device is connected to the correct server.</li>
+<li> Establishing trust between device and server.</li>
+<li> Downloading credentials or other data items into the device.</li>
+</ul>
+<p>For both trusted and untrusted installer techniques, establishing trust in the device is done using a digital signature with a key in the device. The key, if stored securely, establishes the identity of the device within the context of a public key or certificate from the supply chain. It is the author’s experience that a device manufacturer’s key and certificate is the most accepted by users, even for a resale situation. Perhaps users assume the quality of the device is based on the reputation of the manufacturer, and that reputation extends to the certificate. </p>
+<p>In Wi-Fi Easy Connect, the public key of the device is conveyed to the server by the trusted installer. The protocol keeps onboarding information from the installer private, so the security of the onboarding is unaffected. The trust of the installer affects the accuracy of the device selection. If the environment has individuals who are less trusted but still have access to the configurator, this can affect the security of the result. For example, if friends or visitors have access to a home Wi-Fi network (and the configurator), they could impersonate the installer and bring devices into the network.</p>
+<p>As mentioned earlier, server authentication is an option for Wi-Fi Easy Connect.</p>
+<p>On the untrusted installer side (FDO), the ownership voucher has an explicit trust mechanism tied to the server that prevents the attacker from impersonating the trust of the server. In this way, FDO extends the trust of the supply chain to identify the server, at the cost of transporting a new object through the supply chain. </p>
+<p>For ease of installation, FDO requires no protocol actions on the part of the installer. The trusted installer protocols require specific installer actions, but these are efficient and simple. </p>
+<p>In a large installation, it may be hard to sequence trusted installer actions in parallel. When many devices are onboarded, the time spent by the trusted installer adds up. A trusted installer installing 1,000 devices spends a lot of time scanning QR codes. The Wi-Fi Easy Connect specification has the option to combine multiple QR codes (for example, on a package of “smart” light bulbs). However, this technique has not yet scaled to commercial installation levels. </p>
+<p>In contrast, the untrusted installer is able to onboard devices in parallel, and the devices onboard autonomously as they are powered on. The installer time overlaps the installation time.</p>
+<p>Operation in a closed network (no Internet access) is another important issue. Direct Internet access is not actually a requirement of any of the onboarding techniques presented. In Wi-Fi Easy Connect, all communications are with the Wi-Fi network. FDO can onboard when the device, server with ownership voucher, and rendezvous server are mutually accessible. Table 2 includes a summary of the key differences between trusted and untrusted installers.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3631327/assets/html/cooper-t2.png" alt="Device Onboarding using FDO and the Untrusted Installer Model" />
+<p>&nbsp;</p>
+<div style="border:1px solid #999;padding:20px;margin:20px;">
+<h3>Comparison Summary</h3>
+<ul>
+<li>Both trusted and untrusted installers provide efficient ways to onboard devices.</li>
+<li>Both add overhead to the overall process:</li>
+<ul>
+<li>The trusted installer adds a small overhead to each install.</li>
+<li>The untrusted installer adds a small overhead to each player in the supply chain.</li>
+</ul>
+<li>Both rely on specific trust relationships:</li>
+<ul>
+<li>The trusted installer can go astray if other persons with less trust can take on the installer role unexpectedly.</li>
+<li>The untrusted installer can go astray if supply-chain entities are not careful with their digital signatures.</li>
+</ul>
+<li>The trusted installer is most efficient for a small number of installs but can be a burden when many devices are installed at once.</li>
+<li>The untrusted installer is equally efficient for any number of installs but requires special handling in the entire supply chain for the ownership voucher.</li>
+</ul>
+</div>
+<p>&nbsp;</p>
+<h3>Conclusion</h3>
+<p>Automatic onboarding of devices is an important technique to handle the increasing number of “edge” and IoT devices being installed. Onboarding of devices is different from most device-management functions because the device’s trust transitions from the factory and supply chain to the target application. To speed the process with automatic onboarding, the trust relationship in the supply chain must be formalized in the device to allow the transition to be automated.</p>
+<p>The two general classes of automatic onboarding protocols are those using a trusted installer (person), represented by Wi-Fi Easy Connect, and those using an untrusted installer, such as FIDO Device Onboard.</p>
+<p>A trusted installer participates in constructing the trust relationship between the device and the server, using a configurator tool. This participation can be reliable, straightforward, and as trustworthy as the trust in the trusted installer. The onboarding guarantees can be subverted, however, if less-trusted people have network or facility access or can masquerade as trusted. Trusted installer devices require some action per install, so a large number of installs incurs a linear increase in installer overhead.</p>
+<p>In the untrusted installer case, the installer may place or attach the device, but plays no part in transitioning trust. This requires an external mechanism. In FDO, that mechanism is the ownership voucher and must be passed between supply-chain entities with authorizing digital signatures. Supply-chain partners must be chosen carefully, since the FDO trust relationship relies on their accurate processing of ownership vouchers. After the supply chain has made this additional effort, the onboarding itself has no per-device overhead, and devices may onboard in parallel.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Barker, E., et al. 2018. Recommendation for pair-wise key-establishment schemes using discrete logarithm cryptography. National Institute of Standards and Technology, Computer Security Resource Center (April); <a href="https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final</a>.</p>
+<p>2. Bormann, C., Hoffman, P. 2020. Concise Binary Object Representation (CBOR), STD 94, RFC 8949. <i>RFC Editor</i>. IETF; <a href="https://www.rfc-editor.org/info/std94">https://www.rfc-editor.org/info/std94</a>. </p>
+<p>3. Chen, L. 2022. Recommendation for key derivation using pseudorandom functions (revised). <i>NIST Technical Series Publications</i>, National Institute of Standards and Technology; <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-108r1.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-108r1.pdf</a>.</p>
+<p>4. Cheshire, S., Krochmal, M. 2013. DNS-based service discovery, RFC 6763. IETF; <a href="https://www.ietf.org/rfc/rfc6763.txt">https://www.ietf.org/rfc/rfc6763.txt</a>.</p>
+<p>5. Cooper, D., et al. 2008. X.509 Certificate and Certificate Revocation List (CRL) profile, RFC 5280. IETF; <a href="https://www.ietf.org/rfc/rfc5280.txt">https://www.ietf.org/rfc/rfc5280.txt</a>.</p>
+<p>6. Cooper, G., et al. 2022. FIDO Device Onboard Specification 1.1. FIDO Alliance; <a href="https://fidoalliance.org/specs/FDO/FIDO-Device-Onboard-PS-v1.1-20220419/FIDO-Device-Onboard-PS-v1.1-20220419.html">https://fidoalliance.org/specs/FDO/FIDO-Device-Onboard-PS-v1.1-20220419/FIDO-Device-Onboard-PS-v1.1-20220419.html</a>.</p>
+<p>7. FIDO Alliance. 2022. Home FIDO Alliance specifications overview. FIDO Alliance; <a href="https://fidoalliance.org/specifications/">https://fidoalliance.org/specifications/</a>.</p>
+<p>8. Lundblade, L., et al. 2022. The Entity Attestation Token (EAT), draft-ietf-rats-eat-15. <i>IETF Datatracker</i>. IETF; <a href="https://datatracker.ietf.org/doc/draft-ietf-rats-eat/">https://datatracker.ietf.org/doc/draft-ietf-rats-eat/</a>.</p>
+<p>9. Nystrom, M., Kaliski, B. 2000. PKCS #10: Certification Request Syntax Specification Version 1.7, RFC 2986. <i>RFC Editor</i>. IETF; <a href="https://www.rfc-editor.org/rfc/rfc2986">https://www.rfc-editor.org/rfc/rfc2986</a>.</p>
+<p>10. Schaad, J., Cellars, A. 2017. CBOR Object Signing and Encryption (COSE), RFC 8152. <i>IETF Datatracker</i>. IETF; <a href="https://datatracker.ietf.org/doc/html/rfc8152">https://datatracker.ietf.org/doc/html/rfc8152</a>.</p>
+<p>11. Sheffer, Y., et al. 2015. Summarizing known attacks on Transport Layer Security (TLS) and Datagram TLS (DTLS), RFC 7457. <i>IETF Datatracker</i>. IETF; <a href="https://www.rfc-editor.org/rfc/rfc7457.html">https://www.rfc-editor.org/rfc/rfc7457.html</a>. </p>
+<p>12. Wi-Fi Alliance. 2020. Wi-Fi Easy Connect specification. Wi-Fi Alliance; <a href="https://www.wi-fi.org/file/wi-fi-easy-connect-specification">https://www.wi-fi.org/file/wi-fi-easy-connect-specification</a>.</p>
+<p>&nbsp;</p>
+<p><b>Geoffrey H. Cooper</b> received SB and SM degrees from the Massachusetts Institute of Technology in the early 1980s. He worked in networked embedded systems development in the 1980s and 1990s. He became a principal of the security startup “Securify” in 1998. Through acquisitions, this led to work at Secure Computing, McAfee, and later Intel Corporation. He is currently a principal engineer at Intel Corporation and has worked on automatic onboarding for more than five years.</p>
+<p>Copyright &copy; 2023 held by owner/author. Publication rights licensed to ACM</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'825b2aa98ab95767',t:'MTY5OTkyMjA0NC41NDUwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;825b2aa98ab95767&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 5</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3631327">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Brian Eaton, Jeff Stewart, Jon Tedesco, N. Cihan Tas</span> - <a href="detail.cfm?id=3526967"><b>Distributed Latency Profiling through Critical Path Tracing</b></a>
+<br/>
+Low latency is an important feature for many Google applications such as Search, and latency-analysis tools play a critical role in sustaining low latency at scale. For complex distributed systems that include services that constantly evolve in functionality and data, keeping overall latency to a minimum is a challenging task. In large, real-world distributed systems, existing tools such as RPC telemetry, CPU profiling, and distributed tracing are valuable to understand the subcomponents of the overall system, but are insufficient to perform end-to-end latency analyses in practice.
+</p>
+<br/>
+<p>
+<span>David Crawshaw</span> - <a href="detail.cfm?id=3439745"><b>Everything VPN is New Again</b></a>
+<br/>
+The VPN (virtual private network) is 24 years old. The concept was created for a radically different Internet from the one we know today. As the Internet grew and changed, so did VPN users and applications. The VPN had an awkward adolescence in the Internet of the 2000s, interacting poorly with other widely popular abstractions. In the past decade the Internet has changed again, and this new Internet offers new uses for VPNs. The development of a radically new protocol, WireGuard, provides a technology on which to build these new VPNs.
+</p>
+<br/>
+<p>
+<span>Yonatan Sompolinsky, Aviv Zohar</span> - <a href="detail.cfm?id=3168362"><b>Bitcoin&#8217;s Underlying Incentives</b></a>
+<br/>
+Incentives are crucial for the Bitcoin protocol&#8217;s security and effectively drive its daily operation. Miners go to extreme lengths to maximize their revenue and often find creative ways to do so that are sometimes at odds with the protocol. Cryptocurrency protocols should be placed on stronger foundations of incentives. There are many areas left to improve, ranging from the very basics of mining rewards and how they interact with the consensus mechanism, through the rewards in mining pools, and all the way to the transaction fee market itself.
+</p>
+<br/>
+<p>
+<span>Antony Alappatt</span> - <a href="detail.cfm?id=3145628"><b>Network Applications Are Interactive</b></a>
+<br/>
+The miniaturization of devices and the prolific interconnectedness of these devices over high-speed wireless networks is completely changing how commerce is conducted. These changes (a.k.a. digital) will profoundly change how enterprises operate. Software is at the heart of this digital world, but the software toolsets and languages were conceived for the host-based era. The issues that already plague software practice (such as high defects, poor software productivity, information vulnerability, poor software project success rates, etc.) will be more profound with such an approach. It is time for software to be made simpler, secure, and reliable.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
