@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Confidential Computing: Elevating Cloud Security and Privacy - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Security" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3632533" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>September 7, 2023<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3623393">Volume 21, issue 4 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3623461">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Confidential Computing: Elevating Cloud Security and Privacy</h1>
+<h2>Working toward a more secure and innovative future</h2>
+<h3>Mark Russinovich</h3>
+<p>In the ever-evolving landscape of digital security, a new technology—confidential computing<sup>9,11</sup>—is set to redefine our expectations of data safety and privacy. The advent of cloud computing has already resulted in a security infrastructure that surpasses most traditional on-premises systems. Confidential computing (CC) is poised to elevate these guarantees even further. It is a paradigm shift that marks the next stage in the evolution of cloud security, representing a leap forward that pushes the boundaries of what is achievable.</p>
+<p>CC fundamentally improves our security posture by drastically reducing the attack surface of systems. While traditional systems encrypt data at rest and in transit, CC extends this protection to data in use. It provides a novel, clearly defined security boundary, isolating sensitive data within trusted execution environments during computation. This means services can be designed that segment data based on least-privilege access principles, i.e., services where data is accessible only to the code that needs access to perform its function, while all other code in the system sees only encrypted data. Crucially, the isolation is rooted in novel hardware primitives, effectively rendering even the cloud-hosting infrastructure and its administrators incapable of accessing the data. This approach creates more resilient systems capable of withstanding increasingly sophisticated cyber threats, thereby reinforcing data protection and sovereignty in an unprecedented manner.</p>
+<p>But CC is not just about fortifying defenses; it’s also about unlocking potential. It opens up a universe of possibilities, fostering innovation and empowering businesses and developers to build new kinds of services previously inhibited by security constraints. From privacy-enhanced personal AI services,<sup>4</sup> to encrypted databases,<sup>8 </sup>to highly confidential decentralized business processes,<sup>2</sup> to confidential data cleanrooms where multiple parties execute analytics and machine-learning workflows on combined data without revealing their data to the other parties,<sup>6</sup> to trustworthy and transparent hardware and software supply chains,<sup>1</sup> CC has the potential to revolutionize various domains.</p>
+<p>CC is more than a technological innovation; it’s a testament to our ability to collaborate and co-create solutions for the benefit of all. CC is the outcome of a confluence of expertise from leading research groups<sup>5,7,10</sup> and major players throughout industry sectors.<sup>3</sup> This includes a spectrum of hardware and software vendors, from processor and accelerator companies, such as Intel, AMD, ARM, and Nvidia, to cloud service providers, including Microsoft, Google, and Oracle, plus an array of vibrant startups, each bringing fresh perspectives and radical thinking to the table. This cross-industry group is cooperating to ensure that CC becomes the new norm for computing, notably by developing standards and practices that can ensure the interoperability of confidential-computing devices, protocols, and services. In 10 years, “confidential computing” will just be “computing.”</p>
+<p>This article serves as an introduction to a series of articles focusing on different aspects of CC. Written by leading industry experts and academic researchers, these articles aim to shed light on the technical underpinnings of CC, its practical applications, and its transformative potential. We invite you to join us on this journey through the world of CC. Together, we will explore, understand, and harness this technology to create a more secure and innovative future.</p>
+<h4>References</h4>
+<p>1. Birkholz, H., Delignat-Lavaud, A., Fournet, C., Deshpande, Y., Lasker, S. 2022. <a href="https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/">An architecture for trustworthy and transparent digital supply chains</a>. IETF SCITT Working Group; <a href="https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/">https://datatracker.ietf.org/doc/draft-ietf-scitt-architecture/</a>.</p>
+<p>2. CCF: a framework for building confidential verifiable replicated services. 2019. GitHub; <a href="https://github.com/microsoft/CCF">https://github.com/microsoft/CCF</a>.</p>
+<p>3. Confidential Computing Consortium; <a href="https://confidentialcomputing.io/">https://confidentialcomputing.io</a>.</p>
+<p>4. Delignat-Lavaud, A., Russinovich, M., Vaswani, K. 2023. Unlocking the potential of privacy-preserving AI with Azure confidential computing on NVIDIA H100. Microsoft Azure Confidential Computing Blog; <a href="https://techcommunity.microsoft.com/t5/azure-confidential-computing/unlocking-the-potential-of-privacy-preserving-ai-with-azure/ba-p/3776838">https://techcommunity.microsoft.com/t5/azure-confidential-computing/unlocking-the-potential-of-privacy-preserving-ai-with-azure/ba-p/3776838</a>.</p>
+<p>5. Lee, D., Kohlbrenner, D., Shinde, S., Asanovic, K., Song, D. 2020. <a href="https://dl.acm.org/doi/abs/10.1145/3342195.3387532">Keystone: an open framework for architecting trusted execution environments</a>. In <i>Proceedings of the 15th European Conference on Computer Systems</i>. Article no. 38, 1–16; <a href="https://dl.acm.org/doi/abs/10.1145/3342195.3387532">https://dl.acm.org/doi/abs/10.1145/3342195.3387532</a>. </p>
+<p>6. Ohrimenko, O., Schuster, F., Fournet, C., Mehta, A., Nowozin, S., Vaswani, K., Costa, M. 2016. Oblivious multi-party machine learning on trusted processors. Proceedings of the 25th Usenix Security Symposium; <a href="https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_ohrimenko.pdf">https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_ohrimenko.pdf</a>.</p>
+<p>7. Opaque. 2018. RISE Lab, UC Berkeley; <a href="https://rise.cs.berkeley.edu/projects/opaque/">https://rise.cs.berkeley.edu/projects/opaque/</a>.</p>
+<p>8. Priebe, C., Vaswani, K., Costa, M. 2018. EnclaveDB: a secure database using SGX. IEEE Symposium on Security and Privacy, 264–278; <a href="https://ieeexplore.ieee.org/document/8418608">https://ieeexplore.ieee.org/document/8418608</a>.</p>
+<p>9. Russinovich, M., Costa, M., Fournet, C., Chisnall, D., Delignat-Lavaud, A., Clebsch, S., Vaswani, K., Bhatia, V. 2021. Toward confidential cloud computing. <i>Communications of the ACM</i> 64(6), 54–61; <a href="https://dl.acm.org/doi/10.1145/3453930">https://dl.acm.org/doi/10.1145/3453930</a>.</p>
+<p>10. Sanctum Secure Processor. 2017. MIT CSAIL; <a href="https://www.csail.mit.edu/research/sanctum-secure-processor">https://www.csail.mit.edu/research/sanctum-secure-processor</a>.</p>
+<p>11. Schuster, F., Costa, M., Fournet, C., Gkantsidis, C., Peinado, M., Mainar-Ruiz, G., Russinovich, M. 2015. VC3: trustworthy data analytics in the cloud. IEEE Symposium on Security and Privacy, 38–54; <a href="https://ieeexplore.ieee.org/document/7163017">https://ieeexplore.ieee.org/document/7163017</a>. </p>
+<p>&nbsp;</p>
+<p><b>Mark Russinovich</b> is CTO of Microsoft Azure, where he leads technical strategy and architecture for Microsoft’s cloud-computing platform.</p>
+<p>Copyright &copy; 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'827c1c09795c5998',t:'MTcwMDI2NzQ3NS41OTEwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;827c1c09795c5998&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 4</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3623461">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Gobikrishna Dhanuskodi, Sudeshna Guha, Vidhya Krishnan, Aruna Manjunatha, Michael O'Connor, Rob Nertney, Phil Rogers</span> - <a href="detail.cfm?id=3623391"><b>Creating the First Confidential GPUs</b></a>
+<br/>
+Today&apos;s datacenter GPU has a long and storied 3D graphics heritage. In the 1990s, graphics chips for PCs and consoles had fixed pipelines for geometry, rasterization, and pixels using integer and fixed-point arithmetic. In 1999, NVIDIA invented the modern GPU, which put a set of programmable cores at the heart of the chip, enabling rich 3D scene generation with great efficiency.
+</p>
+<br/>
+<p>
+<span>Antoine Delignat-Lavaud, C&#233;dric Fournet, Kapil Vaswani, Sylvan Clebsch, Maik Riechert, Manuel Costa, Mark Russinovich</span> - <a href="detail.cfm?id=3623460"><b>Why Should I Trust Your Code?</b></a>
+<br/>
+For Confidential Computing to become ubiquitous in the cloud, in the same way that HTTPS became the default for networking, a different, more flexible approach is needed. Although there is no guarantee that every malicious code behavior will be caught upfront, precise auditability can be guaranteed: Anyone who suspects that trust has been broken by a confidential service should be able to audit any part of its attested code base, including all updates, dependencies, policies, and tools. To achieve this, we propose an architecture to track code provenance and to hold code providers accountable. At its core, a new Code Transparency Service (CTS) maintains a public, append-only ledger that records all code deployed for confidential services.
+</p>
+<br/>
+<p>
+<span>David Kaplan</span> - <a href="detail.cfm?id=3623392"><b>Hardware VM Isolation in the Cloud</b></a>
+<br/>
+Confidential computing is a security model that fits well with the public cloud. It enables customers to rent VMs while enjoying hardware-based isolation that ensures that a cloud provider cannot purposefully or accidentally see or corrupt their data. SEV-SNP was the first commercially available x86 technology to offer VM isolation for the cloud and is deployed in Microsoft Azure, AWS, and Google Cloud. As confidential computing technologies such as SEV-SNP develop, confidential computing is likely to simply become the default trust model for the cloud.
+</p>
+<br/>
+<p>
+<span>Samuel W. Stark, A. Theodore Markettos, Simon W. Moore</span> - <a href="detail.cfm?id=3606014"><b>How Flexible is CXL's Memory Protection?</b></a>
+<br/>
+CXL, a new interconnect standard for cache-coherent memory sharing, is becoming a reality - but its security leaves something to be desired. Decentralized capabilities are flexible and resilient against malicious actors, and should be considered while CXL is under active development.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Protecting Secrets from Computers - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Security" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3632533" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?typefilter=Drillbits&sort=publication_date&order=desc&qc_type=Drillbits&article_type=&item_topic=all&filter_type=topic&page_title=Drill%20Bits&filter=all">Drill Bits</a></h3>
+<label>September 20, 2023<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3623393">Volume 21, issue 4 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3623614">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Protecting Secrets from Computers</h1>
+<h3>Terence Kelly</h3>
+<p>Endeavors great and small hinge on secrets, which computers are apt to spill. Whether you're smuggling moonshine or mifepristone, whether you're unionizing baristas or rousing insurrectors, whether you're a tech CEO conspiring to cap coder compensation or a CIA director coordinating a clandestine cuddle in a pile of classified papers—computers privy to your counsels could betray you. This episode of Drill Bits reviews the art of keeping computers in the dark as they handle your secrets, including a few tricks that deserve more attention than they get. Grab pencil &amp; paper and use the example code only to check your practice work.</p>
+<p>&nbsp;</p>
+<h3>Computers and Security: Choose One </h3>
+<p>Ordinary people routinely store and transmit their secrets via computers, trusting the computers to keep those secrets. Such misplaced trust can have no basis other than ignorance or wishful thinking. The mere fact that computers and software are designed, implemented, and transported by large groups of total strangers, coupled with the fact that computers are too complex to be audited by users directly, is ample cause for concern. More importantly, all parties with influence over the matter—the tech industry, national police and intelligence services, and snoops equipped with modern spyware—agree that it should be impossible for ordinary people to keep secrets. </p>
+<div style="float:right;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;">
+&quot;Give me six lines written by the most honest man, and I will find therein cause to hang him.&quot;
+<br/>— Cardinal Richelieu
+<br/>
+<br/> &quot;Collect it all.&quot;
+<br/>— Keith Alexander, NSA Director 2005-2014
+</div>
+<p>The tech sector's dominant business model abhors privacy, feasting on the most intimate details of users' lives<sup>37</sup> and enticing users to place indelible records of their words, deeds, and plans beyond their own control but within reach of adversaries—folly that begs for ridicule.<sup>24</sup> Hundreds of 6th January revelers have learned the hard way that on Internet platforms, “delete” buttons don't work but subpoenas do.<sup>17</sup> The mighty as well as the masses have lost control over their secrets: CIA Director David Petraeus password-protected the online account where he slipped love notes to the mistress he'd charmed with gifts of highly sensitive documents, but passwords don't stop the FBI.<sup>12,26</sup> </p>
+<br clear="all" />
+<div style="float:right;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;">
+&quot;There's a sucker born every minute.&quot;
+<br/>— P.T. Barnum
+</div>
+<p>Computerized encryption can't protect secrets if the basic problem is not cleartext but computers, whose allegiance users cannot audit. For example, “hardened” encrypted phone networks, once fashionable in the underworld, have lately incarcerated their users en masse after European police infiltrated their data centers and effectively commandeered the networks wholesale.<sup>8</sup> Not to be outdone, American and Australian police designed the ANOM encrypted phone network from scratch to trap credulous crooks; ANOM simply forwarded users' plaintext messages to the police. Crackdowns on encrypted phones have led to thousands of arrests, but they target more than crime: The prosecutor who led ANOM candidly boasted that the sting will destroy trust in the very possibility of private telecommunications.<sup>8</sup> </p>
+<p>Compromised computers and placebo cryptography aren't just for gullible gangsters. They're for everyone, which should surprise no one. Incentives to implant or discover vulnerabilities in computer systems are enormous, and the cost to users of auditing the quality and loyalty of such systems is prohibitive. Ken Thompson devoted his Turing Award lecture to reminding us that installing backdoors is easy but finding them is nearly impossible. “The moral is obvious. You can't trust code that you did not totally create yourself.... No amount of source-level verification or scrutiny will protect you from using untrusted code”.<sup>35</sup> </p>
+<p>Whether deliberate or inadvertent, vulnerabilities abound in both hardware and software, with predictable consequences. An NSA employee claimed decades ago that “real systems are so insecure that they never need to bother” with cryptanalysis.<sup>31</sup> NSA early retiree Edward Snowden recently echoed this remark with less exaggeration.<sup>1</sup> The NSA actively maintains the convenient status quo, working with tech vendors to keep their wares penetrable and forestalling inconvenience from modern cryptography by steering crypto standards to facilitate cracking.<sup>1,16,36</sup> Meanwhile foreign spies ransack U.S. government systems that NSA expertise supposedly protects.<sup>19,29</sup> </p>
+<div style="float:right;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;">
+&quot;The only truly secure system is one that is powered off, cast in a block of concrete and sealed in a lead-lined room with armed guards—and even then I have my doubts.&quot;
+<br/>— Gene Spafford
+</div>
+<p>Looting secrets from computers isn't just for tech giants and well-heeled spy agencies. Commercial spyware such as Pegasus opens the game to ever more snoops.<sup>25</sup> No one's secrets are safe. Recent hackees include Jeff Bezos, a billionaire with legions of security experts in his employ,<sup>5</sup> and security firm Kaspersky.<sup>15</sup> Targeted attacks on the posh and Orwellian surveillance for the rest of us both begin with the same fatal mistake: trusting computers to keep secrets. </p>
+<h3>Regaining Control </h3>
+<p>The surest way to avoid harm from computers is to refrain from using them. For example, the coven of tech titans that covertly conjured an anticompetitive anti-poaching pact tried to “keep it verbal” to preclude incriminating e-mail trails.<sup>13</sup> A less radically Luddite strategy is to use computers in such a way that they cannot achieve nefarious ends, try as they might. For example, manually auditable voter-marked paper ballots allow machines to quickly tally preliminary election results without letting them pick the final winners.<sup>14,33</sup> Similarly, protecting secrets does not require renouncing computers entirely. We simply must prevent computers from seeing secrets or the cryptographic keys that conceal them. </p>
+<p>Encrypting a plaintext secret using a secure paper-and-pencil method yields ciphertext that may safely be stored or transmitted via computer—but only if no mistakes are made. As with other modes of cryptography, ignorance and carelessness with manual ciphers have filled many a grave and dungeon.<sup>3</sup> Manual cryptography is tedious and requires iron discipline. </p>
+<p>What do we get in return? Secrecy guarantees take several forms. Best is <i>perfect secrecy</i>: mathematical proof that no amount of cleverness or computational power can decrypt ciphertext without the key. Second-best is a provable exorbitant lower bound on the work required to defeat a cipher. Absent such a bound, we may settle for proof that cracking a cipher is tantamount to solving a problem widely believed (although not proven) to be difficult. Finally, sometimes we can say only that experts have scrutinized a cipher, but none have published a way to break it—whereupon we should compare the rewards of public disclosure with the price newfound weaknesses fetch on the underground market, as we do with software exploits.<sup>7</sup> Cryptography textbooks formally define secrecy and formally characterize ciphers.<sup>2,6</sup> </p>
+<p>The manual techniques we'll review below offer gold-standard perfect secrecy with venerable and intuitive proofs. They're easy to teach to ordinary people, requiring only patience and compliance with a handful of rules. Their laboriousness de-bloviates messages. Like computerless computation,<sup>11</sup> manual cryptography inspires creative resourcefulness and focuses attention on essentials. More importantly, in a world where trustworthy computers are as plentiful as horse feathers, manual cryptography is the only way to guarantee confidential long-distance communication with your bookie, priest, attorney, or mother. </p>
+<p>&nbsp;</p>
+<h3>Encrypting and Splitting </h3>
+<p>Every literate person should learn the simplest secure cipher: the one-time pad. Computer implementations typically employ bitwise XOR on bit strings, but the best variant for paper &amp; pencil operates on a larger numeric alphabet; examples below use <code>A=0</code>, <code>B=1</code>, ..., <code>Z=25</code>. Imagine these letters arranged in a circle with <code>A</code> adjacent to <code>Z</code>. We add or subtract equal-length strings character-wise <i>without</i> carry or borrow, wrapping <code>Z</code> to <code>A</code> in both directions. For example, <code>HI+YO=FW</code>, because <code>H=7</code> plus <code>Y=24</code> equals <code>31</code>, which mod 26 wraps to <code>F=5</code>, and independently <code>I=8</code> plus <code>O=14</code> equals <code>W=22</code>. </p>
+<p>To encrypt a plaintext message, subtract from it a random key string; to decrypt ciphertext, add the key. For example, to encrypt <code>HELLO,</code> generate a random key, say, <code>WUJYD</code>, and subtract: <code>HELLO−WUJYD=LKCNL</code>. Subtraction wraps backwards (e.g., <code>H=7</code> minus <code>W=22</code> equals <code>−15</code>, which wraps to <code>L=11</code>). Decryption adds key <code>WUJYD</code> to ciphertext <code>LKCNL</code>, which recovers the original plaintext. Try it by hand. The example code tarball includes a little program to check your work.</p>
+<div style="float:right;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;">
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623614/assets/html/kelly-beads.png" alt="numbered bead randomizer" width="100%" />
+</div>
+<p>The one-time pad demands rigid adherence to inflexible rules; deviation voids the perfect-secrecy warranty. A key must be as long as the message it encrypts and must be truly random. Pseudo-random keys won't do, nor keys that admit succinct description, such as ranges of digits from <code>π</code> or <code><span style="font-size:1.2em;">√</span><span style="text-decoration:overline;">2</span></code>. Flipping fair coins, rolling fair dice, and drawing lettered beads from a well-stirred bowl are reasonable ways to generate keys. Keys must never be reused, because a “two-time pad” is easy to break.<sup>6</sup> Key reuse has killed spies; read about the VENONA intercepts.<sup>3</sup> Finally, of course, keys must never fall into enemy hands. Destroy keys after use. </p>
+<p>Cryptography texts formally prove that the one-time pad guarantees perfect secrecy.<sup>2,6</sup> Intuitively, encryption independently maps each plaintext character to a ciphertext character, which may be any character of the alphabet with equal probability. The ciphertext is therefore as random as the key, so the ciphertext alone contains no information about the plaintext—except its length and its existence. These latter aspects won't enlighten eavesdroppers if all messages are padded to an uninformative standard length and dummy messages are regularly sent to foil traffic analysis. </p>
+<p>One-time pads enable memorable shenanigans. For example, a ciphertext receiver who fears that an eavesdropper will demand decryption can plan accordingly. A ciphertext arrives, <code>HYVSEOTIPYLU</code>. Following protocol, the recipient destroys the real key immediately after decryption, but then subtracts the ciphertext from an innocuous fake message to create a new fake key: <code>ILOVEPUPPIES−HYVSEOTIPYLU=BNTDABBHAKTY</code>. When the eavesdropper knocks, wanting to know the meaning of <code>HYVSEOTIPYLU</code>, our hero smiles innocently and produces the fresh-minted fake key <code>BNTDABBHAKTY</code>. The eavesdropper decrypts <code>HYVSEOTIPYLU+BNTDABBHAKTY=ILOVEPUPPIES</code>. Real spies have used this trick.<sup>31</sup> </p>
+<p>Another ruse comes from the voyages of the star ship <i>Enterprise</i>. Captain Kirk pulled the wool over Romulan eyes by transmitting misinformation encrypted with an obsolete cipher that he knew the Romulans had broken.<sup>34</sup> For the same hoax with a one-time pad, “accidentally” re-use a key—a common rookie error and a plausible act of desperation when key material runs out. Attentive eavesdroppers detect re-use and exploit it to decrypt messages,<sup>3</sup> which will be especially easy if the sender intends them to do so. </p>
+<p>An active attacker who can modify ciphertext in transit can play tricks of his own, because the one-time pad guarantees neither integrity nor authentication: Altered ciphertext will decrypt to <i>something</i>, and the intended recipient might not notice the changes. Furthermore, the one-time pad is “malleable” in the sense that attackers can sometimes predictably change messages <i>without</i> decrypting them,<sup>6</sup> particularly if attackers know or guess message formats. For example, consider a message that instructs the recipient to follow one of several prearranged plans. The sender encrypts the plaintext: <code>PLAN<b>B</b>−JCHHP=GJTGM</code>. An attacker intercepts the ciphertext and correctly guesses that the last character is the punch line. Despite not knowing which plan is indicated, the attacker can trick the recipient into following a different plan by incrementing the last character of the ciphertext: <code>GJTG<b>M</b>→GJTG<b>N</b></code>. The attacker forwards the modified ciphertext to the recipient, who decrypts to obtain misinformation: <code>GJTGN+JCHHP=PLAN<b>C</b></code>. </p>
+<p>Here's a simple integrity mechanism that does <i>not</i> work: The sender appends to plaintext a single-character <i>check digit </i><sup>10</sup> equal to the sum mod 26 of all plaintext characters. If the message is <code>PLANB</code> then the check digit is <code>(P=15)+(L=11)+(A=0)+(N=13)+(B=1)=40</code>, which wraps mod 26 to <code>O=14</code>. The sender appends the check digit and encrypts: <code>PLAN<b>BO</b>−KETNIE=FHHATK</code>. If the attacker knows that the check digit is the last character of a message, he simply increments it to match his changes to the rest of the ciphertext. In our example, <code>FHHA<b>TK</b></code> becomes <code>FHHA<b>UL</b></code>. The recipient decrypts the message: <code>FHHAUL+KETNIE=PLAN<b>CP</b></code>, whose doctored check digit <code>P</code> incorrectly indicates that the message has not been altered. This example shows that while a simple integrity mechanism might flag accidental mutilation of ciphertext in transit, a shrewd attacker might outwit it. </p>
+<p>If an active attacker somehow knows the entire plaintext message, he can recover the key from intercepted ciphertext and use the key to encrypt an arbitrary forged message. For example, on Valentine's Day the attacker expects <code>ILOVEYOU</code> and intercepts <code>GJKIAUOV</code>. He subtracts to recover the key: <code>ILOVEYOU−GJKIAUOV=CCENEEAZ</code>. Now the attacker can encrypt a forged message, <code>YOUSTINK−CCENEEAZ=WMQFPENL</code>, which he passes along to the soon-to-be-heartbroken intended recipient. </p>
+<p>The simplest active attack, of course, is simply to corrupt messages in transit, hoping that each of the communicating parties blames the glitches on the other's cryptographic incompetence. Perhaps if they become frustrated they'll fall back on cleartext. </p>
+<p>Good paper-and-pencil authentication and integrity mechanisms for the one-time pad are beyond the scope of this column. For now, infer from the foregoing examples that secrecy alone isn't a panacea if active attacks are possible (see page 151 of Barak<sup>2</sup>). Keep in mind, however, that the prospects for active attack vary with the communications medium. For example, ciphertext spoken during a videoconference, broadcast by radio,<sup>23</sup> or printed in hardcopy newspaper ads<sup>3</sup> may be harder to alter undetectably than email or postal mail. </p>
+<p>To appreciate the full versatility of the one-time pad, view it as a way to <i>split</i> a string into pieces. Rejoining all pieces recovers the string, but no proper subset of the pieces betrays information about it. Earlier we split <code>HELLO</code> into <code>WUJYD</code> and <code>LKCNL</code>. We can further split these two pieces. To split <code>WUJYD</code> we generate a random string and subtract: <code>WUJYD−TVHTU=DZCFJ</code>. Similarly, <code>LKCNL−OOFTW=XWXUP</code>. The four resulting pieces sum to the original plaintext: <code>TVHTU+DZCFJ+OOFTW+XWXUP=HELLO</code>. Splitting allows us to store pieces of a secret in multiple locations or transmit them via different routes. All is well provided the good guys can lay hands on all pieces and the bad guys miss at least one. </p>
+<p>&nbsp;</p>
+<h3>Sharing Secrets </h3>
+<p>Splitting a secret is risky because losing a single piece makes reconstruction impossible. Fortunately, Shamir devised a more forgiving way to decompose a secret into <i>shares</i>, subsets of which suffice to recover the secret.<sup>32</sup> The general intuition is that <code><i>k</i></code> points in the two-dimensional plane uniquely determine a polynomial of degree <code><i>k</i>−1</code>; furthermore, we may evaluate a polynomial at more than <code><i>k</i></code> points. For example, if we pick a handful of distinct points on a line, any two of the points determine the line. We'll walk through a special case of Shamir sharing that keeps the math simple. </p>
+<p>Like the one-time pad, sharing operates on each digit of a secret independently, so we'll explain how to share a single digit; to share a longer secret, simply apply the same procedure to each digit. Our “alphabet” for sharing is the digits <code>0</code> through <code>6</code>, because we use arithmetic modulo the prime number <code>7</code>. Two base-<code>7</code> digits can encode all of the keys on a standard keyboard. </p>
+<p>To share a plaintext secret digit <code><i>M</i></code> we'll use the function <code><i>F</i>(<i>x</i>)=(<i>M</i>+<i>R</i>&middot;<i>x</i>)<span style="font-size:50%">&nbsp;</span>%<span style="font-size:50%">&nbsp;</span>7</code> where <code><i>R</i></code> is a random digit and “<code><i>%</i></code>” is the remainder operator. Both <code><i>M</i></code> and <code><i>R</i></code> lie in the range <code>[0..6]</code>, as does <code><i>F</i></code> evaluated at any integer <code><i>x</i>&gt;0</code>. We compute shares by evaluating <code><i>F</i></code> at several distinct integer values of <code><i>x</i></code>. A single <code>(<i>x</i>,<i>F</i>(<i>x</i>))</code> pair reveals nothing about the secret digit <code><i>M</i></code>, but interpolating any two such pairs recovers <code><i>M</i></code>. </p>
+<p>Beware modulo bias<sup>20</sup> when generating <code><i>R</i></code>, which must assume one of <i>seven</i> values with equal probability. Tossing a coin three times or rolling an octahedral die yield <i>eight</i> possible outcomes, one of which must be discarded. Resist the temptation to use all eight, e.g., by taking remainders modulo 7, because that would make one <code><i>R</i></code> value more likely than the others. Modulo bias arises naturally in many contexts, and programmers must learn to spot it in lazy code such as <code>“rand()<span style="font-size:50%">&nbsp;</span>%<span style="font-size:50%">&nbsp;</span>N.”</code> This column's example code tarball includes a little program that showcases the peril of modulo bias. </p>
+<p>Table 1 evaluates <code><i>F</i></code> at <code><i>x</i></code> from <code>1</code> through <code>6</code> for all combinations of secret digit <code><i>M</i></code> and random digit <code><i>R</i></code>. For example, the table entry flagged with triple asterisks on the upper right shows that when <code><i>M</i>=4</code> and <code><i>R</i>=3</code>, evaluating the function at <code><i>x</i>=6</code> yields <code>F(6)=(4+3&middot;6)<span style="font-size:50%">&nbsp;</span>%<span style="font-size:50%">&nbsp;</span>7=1</code>. The <code><i>F</i></code> table is not a secret, and it's small enough to compute by hand if you don't trust a computer to do it.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623614/assets/html/kelly-table.png" alt="Protecting Secrets from Computers" />
+<p>By inspecting Table 1 we can confirm that a single <code>(<i>x,F</i>(<i>x</i>))</code> pair betrays no information about secret <code><i>M</i></code>. For example, say the enemy has learned <code><i>F</i>(3)=5</code>. That narrows the possibilities to the rows indicated by single asterisks, which cover all values of <code><i>M</i></code> and which are equally likely. The enemy remains clueless about <code><i>M</i></code>. </p>
+<p>Two <code>(<i>x,F</i>(<i>x</i>))</code> pairs, however, determine <code><i>M</i></code> because exactly one row is consistent with them. For example, <code><i>F</i>(1)=2</code> and <code><i>F</i>(2)=6</code> together imply <code><i>M</i>=5</code> because only the row flagged with double asterisks is consistent with these points.</p>
+<p>Shamir's general approach allows us to divide a secret into as many shares as we please and require whatever quorum we please for recovery. Like the one-time pad, secret sharing with pencil and paper is tedious, but the payoff is a strong secrecy guarantee. </p>
+<p>&nbsp;</p>
+<h3>Drilling Deeper </h3>
+<p>Bauer surveys the long history of cryptography.<sup>3</sup> Rogaway argues that because this science “rearranges power” it has political and moral dimensions;<sup>28</sup> in contrast, Lehrer sings the praises of purportedly apolitical technocracy.<sup>18</sup> Greenwald documents mass surveillance in light of Snowden's revelations.<sup>16</sup> Barak<sup>2</sup> and Boneh &amp; Shoup<sup>6</sup> mathematically formalize cryptography. Much of modern cryptography relies on computers, but several extraordinary techniques do not. Examples include an untraceable broadcast mechanism,<sup>9</sup> a stream cipher that uses playing cards,<sup>30</sup> Visual Cryptography<sup>22</sup> (see sidebar), and zero-knowledge proofs for the top search problem of the 1990s.<sup>21</sup> </p>
+<p>&nbsp;</p>
+<h4>Bits</h4>
+<p>Grab the example code tarball at <a href="https://queue.acm.org/downloads/2023/Drill_Bits_10_example_code.tar.gz">https://queue.acm.org/downloads/2023/Drill_Bits_10_example_code.tar.gz</a>. You get a mod-26 arithmetic program, a mechanical mod-26 calculator disc kit, a script that generates Table 1, a program to create random-dot stereograms, and a program that illustrates modulo bias. Keep all of this code away from your secrets! </p>
+<p>&nbsp;</p>
+<h4>Drills</h4>
+<p>1. Can your car's computers be remotely commandeered for eavesdropping or other mischief? Read the vehicle's end-user license agreement and see Berghel.<sup>4</sup> </p>
+<p>2. How quickly can you generate keys for a one-time pad? Does it help to roll a 30-sided die (avoiding modulo bias)? Is it faster to shuffle labelled cards or draw labelled beads from a bowl? How quickly can you encipher/decipher messages? </p>
+<p>3. Compare the prison terms of “encrypted” phone users<sup>8</sup> with the time it would have taken them to protect their secrets via manual encryption. Make reasonable assumptions about the volume of their communications, and include the time required to generate and securely exchange keys. What's the break-even point where taking the time for crypto by hand equals doing the time for the crime? </p>
+<p>4. Modify the mod-26 arithmetic program to handle a larger alphabet. </p>
+<p>5. Detective Fabriqu&eacute; has intercepted a message to a usual suspect: <code>DCLZZH</code>. How can the detective compute a one-time pad key to “find” on the suspect such that the message decrypts to <code>MURDER</code>? </p>
+<p>6. Are active attacks on the one-time pad more difficult if plaintext is randomly rotated (“Russian copulation”<sup>3</sup>) or randomly permuted prior to encryption? What if a check digit is stored at a secret random offset in the plaintext? </p>
+<p>7. Do we need Table 1 to recover <code><i>M</i></code> from two <code>(<i>x,F</i>(<i>x</i>))</code> pairs? Can we use the familiar interpolation formulas <code><i>R=</i>(<i>y</i><sub>2</sub>−<i>y</i><sub>1</sub>)/(<i>x</i><sub>2</sub>−<i>x</i><sub>1</sub>)</code> and <code><i>M=y</i><sub>1</sub>−<i>R&middot;x</i><sub>1</sub></code>, or does the mod-7 arithmetic in <code><i>F</i>()</code> somehow preclude their use? Prove that the formulas still work or show a case where they don't. Hint: Read about multiplicative inverses in prime fields.</p>
+<p>8. Does secret-sharing still provide perfect secrecy if we skip arithmetic modulo a prime? Create a modified version of Table 1 but without taking remainders modulo 7 and see if a single <code>(<i>x,F</i>(<i>x</i>))</code> pair can leak information. </p>
+<p>9. Send a random-dot stereogram message to your friends (see sidebar on the next page and example code). Can they read it? </p>
+<p>&nbsp;</p>
+<h3>Visual Cryptography</h3>
+<p>One-time pads with pencil and paper are tedious. Naor and Shamir devised Visual Cryptography to make computerless decryption quick and easy.<sup>22</sup> In the simplest original variant of Visual Cryptography, both key and ciphertext are two-dimensional arrays of tiny 2&times;2 checkerboards. Each checkerboard represents a bit: <img src="https://dl.acm.org/cms/attachment/html/10.1145/3623614/assets/html/kelly-bit.png" alt="bits" style="width:25%;max-width:150px" /></p>
+<p>The random key is printed on transparent plastic; ciphertext is printed on paper. Placing the key over the ciphertext renders plaintext visible: A zero checkerboard atop a one, or vice versa, makes a dark square. However, zero over zero, or one over one, makes a half-dark square. Thus, the exclusive-OR of ciphertext and key—the plaintext image—appears in the eye of the beholder. A Visual Cryptography one-time pad provides perfect secrecy in the same sense as any other one-time pad, and it requires neither a computer nor manual fuss at the receiving end. </p>
+<p>Visual Cryptography doesn't eliminate every disadvantage of the one-time pad. For example, producing the key and encrypting a message might still rely on computers. But Visual Cryptography mitigates a major pain point in a delightfully creative way. </p>
+<p>A different encoding scheme eliminates the need for transparent printouts. We generate a key of random dots and encode ciphertext by creating a random-dot stereogram<sup>27</sup> that displaces regions of the key corresponding to plaintext characters. Figure 1 shows a random-dot stereogram of the word “<code>KITTENS</code>” set vertically in an angular custom font. The left-hand pattern is the key, and the right-hand side is the ciphertext. Let your gaze converge well beyond the figure so that the halves superimpose, which should make the letters visible. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3623614/assets/html/kelly-fig1.png" alt="Random-dot stereogram" />
+<p>Compared with the original Visual Cryptography, the random-dot stereogram approach seems more profligate with key material, because the amount of information conveyed per pixel seems lower. On the positive side it doesn't require transparent plastic and it works with ciphertext displayed on a computer screen juxtaposed with a key printed on paper if the former is sized appropriately. </p>
+<p>&nbsp;</p>
+<h3>Acknowledgments</h3>
+<p>David Lehavi, Ben Reed, and Brendan Weickert reviewed an early draft of this column, and Kevin O'Malley reviewed the example code. All provided valuable feedback.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>[1] Ball, J., Borger, J., and Greenwald, G. 2013. Revealed: how US and UK spy agencies defeat internet privacy and security. <i>The Guardian</i>, <a href="https://www.theguardian.com/world/2013/sep/05/nsa-gchq-encryption-codes-security">https://www.theguardian.com/world/2013/sep/05/nsa-gchq-encryption-codes-security</a>. </p>
+<p>[2] Barak, B. 2021. An Intensive Introduction to Cryptography. https://intensecrypto.org/public/index.html and <a href="https://files.boazbarak.org/crypto/lnotes_book.pdf">https://files.boazbarak.org/crypto/lnotes_book.pdf</a>. </p>
+<p>[3] Bauer, F.L. 2000. Decrypted Secrets. Springer, second edition. ISBN 3-540-66871-3. See p. 26 regarding print newspapers. </p>
+<p>[4] Berghel, H. 2019. Vehicle telematics: The good, bad and ugly. IEEE Computer, 52(1):66–70. <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8666649">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8666649</a>. </p>
+<p>[5] Jeff Bezos phone hacking incident. 2023. <a href="https://en.wikipedia.org/wiki/Jeff_Bezos_phone_hacking_incident">https://en.wikipedia.org/wiki/Jeff_Bezos_phone_hacking_incident</a>. </p>
+<p>[6] Boneh, D. and Shoup, V. 2023. A Graduate Course in Applied Cryptography. <a href="https://toc.cryptobook.us/book.pdf">https://toc.cryptobook.us/book.pdf</a>. </p>
+<p>[7] Brandom, R. 2016. Why can't Apple spend its way out of security vulnerabilities? The Verge. <a href="https://www.theverge.com/2016/8/26/12660800/apple-ios-security-bug-bounty-payouts">https://www.theverge.com/2016/8/26/12660800/apple-ios-security-bug-bounty-payouts</a>. </p>
+<p>[8] Caesar, Ed. 2023. Crooks' Mistaken Bet on Encrypted Phones. <i>The New Yorker</i>, 32–43, April 17, 2023. <a href="https://www.newyorker.com/magazine/2023/04/24/crooks-mistaken-bet-on-encrypted-phones">https://www.newyorker.com/magazine/2023/04/24/crooks-mistaken-bet-on-encrypted-phones</a>.</p>
+<p>[9] Chaum, D. 1988. The dining cryptographers problem: Unconditional sender and recipient untraceability. <i>Journal of Cryptology</i>, 1(1):65–75. HTML version available at <a href="http://www.cs.cornell.edu/People/egs/herbivore/dcnets.html">http://www.cs.cornell.edu/People/egs/herbivore/dcnets.html</a>. </p>
+<p>[10] Check digit. 2023. <a href="https://en.wikipedia.org/wiki/Check_digit">https://en.wikipedia.org/wiki/Check_digit</a>. </p>
+<p>[11] Dewdney, A. K. 1984. On the spaghetti computer and other analog gadgets for problem solving. <i>Scientific American</i>, 250(6):19–26. The basics are explained at <a href="http://dataphys.org/list/dewdneys-analog-gadgets/">http://dataphys.org/list/dewdneys-analog-gadgets/</a>. </p>
+<p>[12] Dozier, K. and Yost, P. 2012. Petraeus shocked to hear of emails, associates say. Associated Press. <a href="https://web.archive.org/web/20121113030944/http:/m.apnews.com/ap/db_289563/contentdetail.htm?contentguid=VOlvNjF4">https://web.archive.org/web/20121113030944/http://m.apnews.com/ap/db_289563/contentdetail.htm?contentguid=VOlvNjF4</a>. </p>
+<p>[13] Edwards, J. 2014. Emails Show Apple's Steve Jobs and Google's Eric Schmidt Allegedly Conspired to Screw Over Employees. <i>Business Insider</i>. <a href="https://www.businessinsider.com/apple-google-recruitment-emails-lawsuit-2014-1">https://www.businessinsider.com/apple-google-recruitment-emails-lawsuit-2014-1</a>. </p>
+<p>[14] Brennan Center for Justice. Securing the nation's voting machines: A toolkit for advocates and election officials, June 2018. <a href="https://www.brennancenter.org/sites/default/files/2019-08/Report_Securing__Voting_Machines.pdf">https://www.brennancenter.org/sites/default/files/2019-08/Report_Securing__Voting_Machines.pdf</a>. </p>
+<p>[15] Goodin, D. 2023. The Spy Who Hacked Me: “Clickless” iOS exploits infect Kaspersky iPhones with never-before-seen malware; “Operation Triangulation” stole mic recordings, photos, geolocation, and more. <a href="https://arstechnica.com/information-technology/2023/06/clickless-ios-exploits-infect-kaspersky-iphones-with-never-before-seen-malware/">https://arstechnica.com/information-technology/2023/06/clickless-ios-exploits-infect-kaspersky-iphones-with-never-before-seen-malware/</a>. </p>
+<p>[16] Greenwald, G. 2014. No Place to Hide: Edward Snowden, the NSA, and the U.S. Surveillance State. New York, NY: Metropolitan Books. ISBN 978-1-62779-073-4. </p>
+<p>[17] Harris, M. 2023. The Panopticon v. the Capitol Rioters. IEEE <i>Spectrum</i>, 60(2):32–37, 46. <a href="https://ieeexplore.ieee.org/document/10040551/">https://ieeexplore.ieee.org/document/10040551/</a>. </p>
+<p>[18] Lehrer, T. 2000. “Werner von Braun.” Originally from <i>That Was the Year That Was</i> (1965). Also available on <i>The Remains of Tom Lehrer</i>, Warner Bros. <a href="https://genius.com/Tom-lehrer-wernher-von-braun-lyrics">https://genius.com/Tom-lehrer-wernher-von-braun-lyrics</a> and <a href="https://www.youtube.com/watch?v=QEJ9HrZq7Ro">https://www.youtube.com/watch?v=QEJ9HrZq7Ro</a>.</p>
+<p>[19] Liptak, K. 2015. U.S. government hacked; feds think China is the culprit. Cable News Network. <a href="http://www.cnn.com/2015/06/04/politics/federal-agency-hacked-personnel-management/">http://www.cnn.com/2015/06/04/politics/federal-agency-hacked-personnel-management/</a>. </p>
+<p>[20] Modulo bias. 2023. <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias">https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Modulo_bias</a>. </p>
+<p>[21] Naor, M., Naor, Y., and Reingold, O. 1999. Applied kid cryptography –or– how to convince your children you are not cheating. Paper: <a href="https://www.wisdom.weizmann.ac.il/~naor/PAPERS/waldo_abs.html">https://www.wisdom.weizmann.ac.il/~naor/PAPERS/waldo_abs.html</a>. Talk: <a href="https://www.youtube.com/watch?v=L3AmP6IQLtg">https://www.youtube.com/watch?v=L3AmP6IQLtg</a>.</p>
+<p>[22] Naor, M. and Shamir, A., 1994. Visual cryptography. In Proceedings of <i>EUROCRYPT</i>, volume 950 of <i>Lecture Notes in Computer Science</i>, 1–12. New York, NY: Springer. doi:10.1007/BFb0053419. <a href="https://www.cs.jhu.edu/~fabian/courses/CS600.624/NaorShamir-VisualCryptography.pdf">https://www.cs.jhu.edu/~fabian/courses/CS600.624/NaorShamir-VisualCryptography.pdf</a> </p>
+<p>[23] Numbers stations. 2023. <a href="https://en.wikipedia.org/wiki/Numbers_stations">https://en.wikipedia.org/wiki/Numbers_stations</a>. </p>
+<p>[24] Onion News Network. 2011. CIA's “Facebook” program dramatically cut agency's costs. <a href="https://www.theonion.com/cias-facebook-program-dramatically-cut-agencys-costs-1819594988">https://www.theonion.com/cias-facebook-program-dramatically-cut-agencys-costs-1819594988</a> and <a href="https://www.youtube.com/watch?v=ZJ380SHZvYU">https://www.youtube.com/watch?v=ZJ380SHZvYU</a>. </p>
+<p>[25] Pegasus (spyware). 2023. <a href="https://en.wikipedia.org/wiki/Pegasus_(spyware)">https://en.wikipedia.org/wiki/Pegasus_(spyware)</a>. </p>
+<p>[26] David Petraeus. 2023. <a href="https://en.wikipedia.org/wiki/David_Petraeus">https://en.wikipedia.org/wiki/David_Petraeus</a>. </p>
+<p>[27] Random dot stereogram. 2023. <a href="https://en.wikipedia.org/wiki/Random_dot_stereogram">https://en.wikipedia.org/wiki/Random_dot_stereogram</a>. </p>
+<p>[28] Rogaway, P. 2016. The moral character of cryptographic work. <a href="https://web.cs.ucdavis.edu/~rogaway/papers/moral-fn.pdf">https://web.cs.ucdavis.edu/~rogaway/papers/moral-fn.pdf</a>. Based on an Asiacrypt 2015 talk. </p>
+<p>[29] Sanders, S. 2015. Massive data breach puts 4 million federal employees' records at risk. National Public Radio. <a href="https://www.npr.org/sections/thetwo-way/2015/06/04/412086068/massive-data-breach-puts-4-million-federal-employees-records-at-risk">https://www.npr.org/sections/thetwo-way/2015/06/04/412086068/massive-data-breach-puts-4-million-federal-employees-records-at-risk</a>. </p>
+<p>[30] Schneier, B. 1999. The Solitaire Encryption Algorithm. <a href="https://www.schneier.com/academic/solitaire/">https://www.schneier.com/academic/solitaire/</a>. See also <a href="http://www.ciphergoth.org/crypto/solitaire/">http://www.ciphergoth.org/crypto/solitaire/</a>. </p>
+<p>[31] Schneier, B. 2015. <i>Applied Cryptography</i>. Hoboken, NJ: Wiley, 20th anniversary edition. ISBN 978-1-119-096726. See Afterword by Matt Blaze for NSA quote and p. 228 for cover-message trick. </p>
+<p>[32] Shamir, A. 1979. How to share a secret. <i>Communications of the ACM</i> 22(11):612–613. <a href="https://dl.acm.org/doi/10.1145/359168.359176">https://dl.acm.org/doi/10.1145/359168.359176</a>. </p>
+<p>[33] Simons, B. 2006. Statement of Barbara Simons for the Committee on House Administration Hearing on Electronic Voting Machines. <a href="https://www.acm.org/binaries/content/assets/public-policy/usacm/e-voting/testimony/simons_testimony.pdf">https://www.acm.org/binaries/content/assets/public-policy/usacm/e-voting/testimony/simons_testimony.pdf</a>. </p>
+<p>[34] The Deadly Years (Star Trek episode). 2023. <a href="https://en.wikipedia.org/wiki/The_Deadly_Years">https://en.wikipedia.org/wiki/The_Deadly_Years</a>. </p>
+<p>[35] Thompson, K. 1984. Reflections on trusting trust [Turing Award lecture]. <i>Communications of the ACM</i> 27(8). <a href="https://dl.acm.org/doi/pdf/10.1145/358198.358210">https://dl.acm.org/doi/pdf/10.1145/358198.358210</a>. </p>
+<p>[36] <i>The New York Times</i>. 2013. Secret documents reveal N.S.A. campaign against encryption. <a href="https://www.nytimes.com/interactive/2013/09/05/us/documents-reveal-nsa-campaign-against-encryption.html">https://www.nytimes.com/interactive/2013/09/05/us/documents-reveal-nsa-campaign-against-encryption.html</a>. </p>
+<p>[37] Zuboff, S. 2019. The <i>Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power</i>. New York, NY: Public Affairs. ISBN 978-1-5417-5800-1. </p>
+<p>&nbsp;</p>
+<p><b>Terence Kelly</b> (<a href="/cdn-cgi/l/email-protection#3c484c57595050457c5d5f5112534e5b"><span class="__cf_email__" data-cfemail="7c080c17191010053c1d1f1152130e1b">[email&#160;protected]</span></a>) enjoys a clandestine cuddle in a pile of classified papers.</p>
+<p>Copyright &copy; 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){var js = "window['__CF$cv$params']={r:'827c1be3ffcd1783',t:'MTcwMDI2NzQ2OS42MDYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;827c1be3ffcd1783&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 4</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3623614">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
