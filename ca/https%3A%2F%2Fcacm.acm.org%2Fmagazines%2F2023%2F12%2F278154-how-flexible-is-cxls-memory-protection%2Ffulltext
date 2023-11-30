@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>How Flexible Is CXL's Memory Protection? | December 2023 | Communications of the ACM</title>
+<meta name="title" content="How Flexible Is CXL's Memory Protection?" />
+<meta name="author" content="Samuel W Stark, A Theodore Markettos, Simon W Moore" />
+<meta name="date" content="2023-12-1" />
+<meta name="year" content="2023" />
+<meta name="subjects" content="communications / networking,computer systems,data / storage and retrieval,hardware,management,performance and reliability,security,software,theory" />
+<meta name="sections" content="Practice" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2023/12/278154-how-flexible-is-cxls-memory-protection/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2023/12/278154-how-flexible-is-cxls-memory-protection/fulltext" /><meta property="og:title" content="How Flexible Is CXL's Memory Protection?" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6659/111623_CACMpg47_How-Flexible.large.jpg?1699913937&amp;1699913937" /><meta property="og:description" content="Replacing a sledgehammer with a scalpel.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2023/12/278154-how-flexible-is-cxls-memory-protection/fulltext" /><meta property="og:title" content="How Flexible Is CXL's Memory Protection?" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6659/111623_CACMpg47_How-Flexible.large.jpg?1699913937&amp;1699913937" /><meta property="og:description" content="Replacing a sledgehammer with a scalpel.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2023/12">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2023/12">
+<img src="https://cacm.acm.org/system/assets/0004/6665/December2023.Cover.1000x1338.large.jpg?1699914061&1699914060" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: December 2023</span>
+<a href="/magazines/2023/12/278156-data-analytics-anywhere-and-everywhere">Data Analytics Anywhere and Everywhere</a>
+<a href="/magazines/2023/12/278155-when-two-cameras-are-a-crowd">When Two Cameras Are a Crowd</a>
+<a href="/magazines/2023/12/278146-thus-spake-chatgpt">Thus Spake ChatGPT</a>
+<a class="lastLink" href="/magazines/2023/12">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/11">
+November 2023 (Vol. 66, No. 11)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/10">
+October 2023 (Vol. 66, No. 10)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2023/12">December 2023 (Vol. 66, No. 12)</a><span>/</span><a href="/magazines/2023/12/278154-how-flexible-is-cxls-memory-protection">How Flexible Is CXL's Memory Protection?</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Practice</span>
+<h2>How Flexible Is CXL's Memory Protection?</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Samuel W. Stark, A. Theodore Markettos, Simon W. Moore
+<br/>
+Communications of the ACM,
+December 2023,
+Vol. 66 No. 12, Pages 46-51<br/>
+10.1145/3617580<br/>
+<a href="#comments">Comments (1)</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3633437.3617580&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2023/12/278154-how-flexible-is-cxls-memory-protection/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3617580&ftid=2298941&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46659">
+<figure>
+<img alt="the initials CXL, with X formed by crossed penknives, illustration" src="/system/assets/0004/6659/111623_CACMpg47_How-Flexible.large.jpg?1699913937&amp;1699913937" title="the initials CXL, with X formed by crossed penknives, illustration" />
+<figcaption>
+<p class="credit">Credit: Andrij Borys Associates, Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+
+<p><a name="body-1"></a></p>
+<p><a href="#top"><img alt="back to top" src="http://dl.acm.org/img/arrowu.gif" />&nbsp;</a></p>
+<p>In the beginning, there was PCIe. Well, really there was PCI and PCI-X, which were superseded by PCIe in 2003, and many others, such as ISA and VME, before them, but PCIe is a superset of them all. They are all interconnects, allowing a <em>host</em> (for example, the main system CPU) to configure and manipulate connected peripheral <em>devices</em> and map their memory into a shared address space.</p>
+<p>In time, computations became bigger and more complicated, and peripheral devices became whole systems unto themselves. Graphics processing units (GPUs) are the best example, going from hardwired graphics offload devices to full-blown general-purpose processors that cooperate and communicate with the host to solve problems. </p>
+<p>Cooperative processing between the host and device is complicated by PCIe&#39;s lack of coherent memory sharing. When CPU cores share memory, they use a <em>cache coherency</em> protocol to ensure they can have a fast local copy (a cache) while keeping a coherent view of memory&mdash;even when other cores write to it. PCIe does not support this kind of sharing; it only allows block transfers between host and device. Various companies created successor protocols&mdash;CCIX, OpenCAPI, and Gen-Z&mdash;to support this, but they have all expired or been subsumed by Intel&#39;s Compute Express Link (CXL).</p>
+<p>CXL provides new protocols on top of PCIe for accelerator devices to cache host memory (CXL.cache) and for hosts to cache device memory (CXL.mem). The industry is currently focused on CXL.mem memory expansion devices. The first CXL-compatible CPUs (released in November 2022) support &quot;CXL 1.1+ for memory expansion,&quot;<sup><a href="#R1">1</a></sup> and CXL accelerators have not been announced&mdash;only CXL.mem devices, such as Samsung&#39;s 512GB RAM expansion.<sup><a href="#R19">19</a></sup> CXL 3.0, released in August 2022, adds support for fabric topologies connecting many hosts to many shared Global Fabric Attached Memory (GFAM) devices. This facilitates <em>disaggregated memory</em>, where an arbitrary number of endpoints connected in an arbitrary topology can request, use, and coherently share arbitrary amounts of memory.</p>
+<p>If disaggregated memory is the future, our biggest question is that of protection. With so many end-points all connecting to and sharing the same memory, how can they be restricted to accessing only the memory they need? They may be running untrusted software or untrusted hardware. How can memory protection work in this threat environment? The Capability Hardware Enhanced RISC Instructions (CHERI) project has shown that <em>architectural capabilities</em> can provide flexible, fine-grained memory protection.<sup><a href="#R21">21</a></sup> How does CXL&#39;s current memory protection compare? Could a capability system work in CXL&#39;s distributed setting with malicious actors? To start, let&#39;s examine CXL&#39;s protection mechanisms and see how well they handle real-world security problems.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>Protection Systems</h3>
+<p>In most cases, software uses physical resources through multiple layers of abstraction. Each layer translates incoming requests to a format expected by the next layer down, and can also provide protection. A simple example is the memory management unit (MMU), which translates memory requests from virtual to physical memory.<sup><a href="#R13">13</a></sup> The OS gives each process a different mapping of virtual to physical addresses, and the MMU ensures processes can access only the physical memory that the OS has mapped in. To generalize, protection systems ensure <em>actors</em> can only access valid <em>resources.</em></p>
+<p>The protection a system can provide is limited by the granularity of its actors and resources; therefore, protection at multiple layers of abstraction is important. For example, the MMU only has insight at the process level. The software inside the process has tighter definitions of <em>valid</em> (for example, &quot;I will not access out-of-bounds array elements&quot;) that the MMU doesn&#39;t understand (it doesn&#39;t know or care where the array is) and thus cannot help with. Instead, another layer can be added above the MMU, such as a language runtime (JVM, .NET) or hardware-based checks (CHERI<sup><a href="#R21">21</a></sup>), which have more information and ensure validity at a finer-grained level.</p>
+<p>Different levels of abstraction can add different sets of actors and resources. For example, an operating system is responsible for ensuring its processes access files correctly&mdash;and for actually performing those accesses through the file system driver. If those files are on a networked file system, the server may have to handle multiple clients at once and check that they access files correctly. The individual OS does not know about the other clients, and the server does not know about the processes running inside the OS, so having protections and checks at both levels is necessary.</p>
+<p><strong>CXL and the flaws therein.</strong> CXL, like PCIe, uses a host-device model. Each CXL host controls a set of connected peripheral devices, and maps all the memory they expose into an host physical address space (HPA). The host may also map its own memory into the HPA, and accelerator devices like GPUs can access it over CXL.cache, but current devices just expose RAM to the host over CXL.mem. CXL 3.0 upgraded CXL.mem to allow hosts to share memory regions through both multi-headed and GFAM devices.</p>
+<p>Multi-headed CXL.mem devices connect to multiple hosts and can map the same regions of physical memory into all of their HPAs at the same time. Those hosts can all cache parts of those regions, and the device is responsible for ensuring coherency (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3617580/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=566'); return false;">Figure 1</a>). For example, if host 1 tries to write to a cache line in region A, the device realizes that hosts 2 and 3 share A and tells them to invalidate that cache line. Unfortunately, each of those hosts can only access 16 regions<sup><a href="#R8">8</a></sup> (Sec 2.5), so they will necessarily be large&mdash;on the order of gigabytes or hundreds of megabytes.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3617580/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=566'); return false;"><img alt="f1.jpg" height="230" src="https://dl.acm.org/cms/attachment/html/10.1145/3617580/assets/html/f1.jpg" width="415" /></a><br/>
+<strong>Figure 1. Coherently sharing device memory with many hosts.</strong></p>
+<p>GFAM devices take this a step further by not being attached to specific hosts. Any host can map GFAM memory into its HPA, and any endpoint (host or device) in that HPA can talk to the GFAM directly and access that memory. The GFAM is configured with separate translation tables for each endpoint, so each endpoint can access eight regions of physical memory<sup><a href="#R8">8</a></sup> (Sec 7.7.2.4). These regions may overlap, allowing memory sharing, or they may be isolated. As shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3617580/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=492,height=328'); return false;">Figure 2</a>, 10GiB of GFAM is mapped, but the host and accelerator are configured so they see only 6GiB each, with a 2GiB shared region. Again, because each endpoint has few ranges, they will be large. <em>Memory groups</em><sup><a href="#R8">8</a></sup> (Sec 7.7.2.5) can punch holes in these ranges and hide specific <em>blocks</em>, bast 64MB<sup><a href="#R8">8</a></sup> (Table 7-67, min. block size).</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3617580/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=492,height=328'); return false;"><img alt="f2.jpg" height="277" src="https://dl.acm.org/cms/attachment/html/10.1145/3617580/assets/html/f2.jpg" width="415" /></a><br/>
+<strong>Figure 2. Endpoints in the same address space (HPA) using overlapping regions of global memory (GFAM).</strong></p>
+<p>Both kinds of memory provide protection through nonexhaustive translation: Endpoints request addresses in their HPA, which get translated to local device addresses, and that translation may fail (that is, the endpoint may not have memory mapped at that address). These mechanisms, similar to an MMU, provide inflexible coarse-grained protection. At most, each endpoint can access 16 memory ranges per device. The only way to change the mappings and transfer access rights is to convince the <em>Fabric Manager</em>, which has no defined interface for this<sup><a href="#R8">8</a></sup> (Sec. 7.6.1).</p>
+<p>CXL 3.0 also introduced <em>Unordered I/O requests</em>, which allow accelerators to access other devices&#39; memory, but there is no standardized way to protect those accesses. It may be possible to prevent specific devices from interacting at all (for example, through PCIe Access Control Services) or add MMU-like protection (for example, through PCIe Address Translation Services) but these, like CXL&#39;s other protection models, are inflexible and coarse-grained.</p>
+<p>CXL&#39;s protection isn&#39;t great. End-points can be configured to access and share large memory regions, but cannot share many small ones. Endpoints can&#39;t grant each other access to memory; they have to go through an intermediary. Device-to-device access has to rely on vendor-defined protection, if any. How does that stack up against real-world threats?</p>
+<p><strong>Threats in the datacenter.</strong> First, we can understand the datacenter threat model from a whitepaper published in November 2022 by Amazon Web Services (AWS) about their Nitro platform.<sup><a href="#R2">2</a></sup> Cloud systems have to run workloads from many clients, who don&#39;t trust each other, on the same hardware. Before Nitro, AWS would run all client workloads as virtual machines (VMs) atop a <em>hypervisor</em>, which exposed isolated virtualized resources to each VM. For example, the hypervisor would implement a software model of a network card for each VM, so it could control which networks the VMs could access. The key impact of the Nitro system is moving this virtualization out of the hypervisor and into the hardware.</p>
+<p>Each Nitro system is controlled by a custom <em>Nitro Controller</em> PCIe card. This is the hardware root of trust, responsible for configuring the <em>System Main Board</em> (that is, the CPU, motherboard, and RAM) and other peripherals before running client workloads. Networks and storage are accessed through other AWS-designed Nitro PCIe cards, which the Nitro Controller can split into Virtual Functions using PCIe single-root I/O virtualization (SR-IOV)<sup><a href="#R16">16</a></sup> to provide isolated resources for each VM.</p>
+<p>When running many VMs, a minimal hypervisor is still necessary to configure the MMU and link each VM to its dedicated virtual functions. A Nitro system can also run <em>bare-metal</em> (a single client workload without a hypervisor). Even though the client workload is untrusted, the Nitro cards still virtualize access to networks and storage.</p>
+<p>AWS trusts the Nitro controller to bring up the system, the Nitro cards to virtualize networks/storage, and the hypervisor/MMU to enforce isolation between VMs. Client workloads cannot be trusted, and if they&#39;re running bare-metal, then any communication from the System Main Board cannot be trusted either. From CXL&#39;s perspective, this means a host could be malicious (running bare-metal) or be responsible for many malicious workloads (running VMs). In the latter case, CXL does not have any constructs that can help with virtualization. In fact, CXL does not consider virtualization at all&mdash;literally, <em>virtualization</em> and similar terms are not in the specification.</p>
+<p>Datacenters have further complications. Accelerator devices, such as GPUs, sometimes rely on directly sharing memory for high performance. Nvidia&#39;s Magnum I/O APIs<sup><a href="#R18">18</a></sup> allow GPUs to directly access NVMe storage devices (GPUDirect Storage), share memory with other GPUs (NVSHMEM), and expose their memory to other peripherals (GPUDirect RDMA), including InfiniBand adapters (nvidia-peermem).</p>
+<p>While some GPUs nominally support virtualization through SR-IOV, AWS does not take advantage of this&mdash;client workloads are given whole numbers of GPUs and control them directly (clients even control the GPU drivers<sup><a href="#R3">3</a></sup>). This expands the threat model. Not only are GFAMs sharing memory across HPAs, but also individual devices (including accelerators) may expose their memory to endpoints controlled by malicious clients.</p>
+<p>CXL does not handle this use case. It implicitly assumes that hosts and devices are trustworthy. Hosts may be trustworthy if they have, for example, a hypervisor keeping them in check, and devices may be carefully chosen for trust, but if any device or host is untrustworthy (for example, running bare-metal client workloads) better protection is needed.</p>
+<p><strong>Threats in the consumer space.</strong> The threat of malicious devices is not exclusive to the datacenter&mdash;in fact, it&#39;s much worse for consumers! Desktops and laptops have a plethora of external ports for connecting arbitrary hardware, including high-performance accelerators, such as external GPUs. Accelerators take advantage of high-speed Thunderbolt connections that wrap PCIe, giving external hardware access to the internal PCIe memory map. Attacks on PCIe-based systems through Thunderbolt have already been demonstrated,<sup><a href="#R15">15</a></sup> showing that malicious hardware can access sensitive memory intended for other devices, even with protections such as IOMMU enabled.</p>
+<p>Worse, direct device-to-device memory accesses are making their way to consumer systems as well. Modern game consoles depend on high-speed transfers from storage to GPU-accessible memory, and Microsoft&#39;s DirectStorage API brings this closer to reality on PCs. While at the time of writing, it still copied data through a buffer in system RAM, it seems inevitable that high-performance rendering systems (for example, games and video editing) will eventually take advantage of direct access&mdash;especially because it&#39;s already possible in the datacenter.</p>
+<p>CXL is coming to the consumer market, so it needs to handle this. In an AMD &quot;Meet the Experts&quot; webinar<sup><a href="#R4">4</a></sup> in October 2022, an AMD representative said it might come to consumer devices within five years, initially with a focus on connecting persistent storage and RAM. Loading from persistent storage is currently the big use case for device-to-device transfer, so CXL needs to consider malicious devices sooner rather than later.</p>
+<p>Today, CXL&#39;s memory protection is inflexible at best. It is capable of isolating endpoints in large memory regions, but not much more than that. It has no capacity for virtualization for workloads running on the same end-point, and cannot protect devices from each other.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>Capability-Based Protection for CXL</h3>
+<p>CHERI<sup><a href="#R21">21</a></sup> is a capability-based protection system that has proven useful both for flexible, fine-grained (tens of bytes) memory protection and for <em>compartmentalization</em>, by sandboxing programs and libraries from each other.<sup><a href="#R22">22</a></sup> This seems to address all of CXL&#39;s security issues. Could CXL adopt a capability-based system?</p>
+<p><em>Capabilities</em> are unforgeable tokens that encode the authority to access a resource. Given a capability, an actor can access the resource, derive new capabilities for that resource with reduced permissions, transfer them to other actors, and potentially revoke them if those actors no longer need access. Because access rights are encoded directly in the token, capabilities are very flexible: It&#39;s easy to derive new capabilities with extremely specific access rights for new situations. Deriving lots of capabilities does have a downside: Revoking a capability&mdash;recursively deleting all derivations&mdash;can be more difficult. Let&#39;s examine a few examples.</p>
+<p><strong>Central-trust systems.</strong> Capabilities must be unforgeable. When a capability is used, the system needs some way to verify it has not been forged. The simplest way to enforce this is to store all capabilities and perform all capability modifications in a centralized trusted base, or a <em>central-trust</em> system.</p>
+<p>One example is FreeBSD Capsicum,<sup><a href="#R20">20</a></sup> which protects files from processes by replacing Unix file descriptors with capabilities. A process can open the files it needs, limit its access with more granular permissions, and then enter <em>capability mode</em> to sandbox itself with those files. Like file descriptors, capabilities are stored in tables in OS memory. Userspace programs have to use syscalls to ask the OS to manipulate them, instead of creating or modifying them directly. The OS trusts itself to correctly modify capabilities (for example, never adding permissions, only taking them away) so capabilities cannot be forged. Although Capsicum doesn&#39;t perform revocation, in principle it would simply require searching the tables or even tracking parentage in capability metadata. This provides better security than plain Unix, but syscalls and context-switching to the OS can be slow.</p>
+<p>CHERI takes a different approach. Instead of implementing the trusted base in software, CHERI implements it in the hardware and adds machine instructions for fast capability manipulation. CHERI replaces pointers with capabilities&mdash;fat pointers that include the range of addresses the pointer may point to. This range ensures pointers stay within their original provenances<sup><a href="#R6">6</a>,<a href="#R12">12</a></sup> and can be limited further (for example, you can allocate an array, derive a capability for one element, and pass that to a function without exposing the rest of the array).</p>
+<p>Registers and memory use tag bits to mark valid capabilities, and the hardware controls the tag bits to prevent forgery. Because all pointers have this metadata, including code pointers, even the smallest software components (for example, individual functions) can be sandboxed with just the memory they need. Larger libraries, even ones compiled without CHERI support, can also be sandboxed using compartments.<sup><a href="#R22">22</a></sup> The cost of storing capabilities anywhere is that revocation must search everywhere,<sup><a href="#R23">23</a></sup> although the overheads are lower than you might expect.<sup><a href="#R10">10</a></sup> CHERI ensures logical software components can access only the virtual memory ranges to which they have been explicitly given permission.</p>
+<p>How could this help CXL? Eagle-eyed readers might notice GFAM already uses a system similar to Capsicum&mdash;each endpoint (that is, actor) has up to eight translation table entries (that is, capabilities) that grant access to memory. This demonstrates the flaws with a centralized system in this context: The number of capabilities (and implicitly their granularity) can be limited by hardware resources. This is more suitable for protecting host memory from a limited number of devices, for example,<sup><a href="#R14">14</a></sup> but GFAM tries to track all capabilities granted to <em>thousands</em> of actors. To alleviate this, one could store the capabilities in the memory exposed over CXL.mem or give each endpoint some dedicated capability memory, such as Capsicum&#39;s tables. Both cases would require trust to be distributed among the endpoints.</p>
+<hr/>
+<blockquote>
+<p><em>The threat of malicious devices is not exclusive to the datacenter&mdash;in fact, it&#39;s much worse for consumers!</em></p>
+</blockquote>
+<hr/>
+<p><strong>Distributed-trust systems.</strong> Barrelfish<sup><a href="#R5">5</a>,<a href="#R17">17</a></sup> and SemperOS<sup><a href="#R11">11</a></sup> are distributed operating systems, implemented as separate instances running on separate cores and communicating with message passing. Barrelfish uses capabilities to protect OS resources, such as message passing and threading primitives, physical memory ranges, etc. SemperOS uses capabilities for an in-memory file system.</p>
+<p>The trusted base for capability operations is distributed across the OS cores but aims to provide identical semantics to central-trust systems. Most importantly, any core can derive from a capability in any other core, and thus revocation may need to touch all cores. This requires all actors to trust each other. It is more complicated to reason about than central-trust systems, but it scales better&mdash;particularly if cross-actor operations are uncommon.</p>
+<p>For CXL, this may be suitable if all endpoints are trustworthy. If, for example, all endpoints in a datacenter use CHERI-like hardware to manipulate capabilities, this could work. At scale, however, revocation may become a bigger issue, and CXL cannot rely solely on this model anyway&mdash;the threat of malicious endpoints is too great.</p>
+<p><strong>Decentralized systems.</strong> Even if calling out to a centralized trusted base to manipulate capabilities is impossible or impractical, and the actors cannot be trusted to manipulate capabilities correctly, there is still hope. Decentralized capabilities, such as <em>macaroons</em>,<sup><a href="#R7">7</a></sup> can be passed to untrusted actors and have their validity checked when those actors try to use them.</p>
+<p>Macaroons provide access to a resource that is reduced through an append-only list of <em>caveats.</em> A macaroon begins with an identifier, such as &quot;access transaction details,&quot; and a signature, made by hashing the identifier with a secret key. When a caveat (such as &quot;for Alice&#39;s account,&quot; or &quot;until 5PM EST&quot;) is added, that caveat is hashed with the current signature to make a new signature. The old signature is thrown away and cannot be reconstructed&mdash;the hash cannot be undone. Given a macaroon with a set of caveats, it&#39;s impossible to remove a caveat and recalculate the correct signature without the secret key. Therefore, it&#39;s impossible for a hostile user to forge a macaroon with fewer caveats (that is, more permissions).</p>
+<p>Decentralized capabilities have not yet been integrated into low-level software or hardware. Macaroons were originally designed for the Web, so they have a text-based wire format and third-party authentication features, which a binary-based interconnect doesn&#39;t need. This is fine for the network layer (for example, Michael Dodson combined macaroons with CHERI for finegrained memory-mapped I/O access over an insecure network<sup><a href="#R9">9</a></sup>), but domain-optimized representations would be more space-efficient.</p>
+<p>Revocation is also interesting. Capabilities could come with timeout caveats and require refreshing, or groups of capabilities (and all their derivations) could be revoked by throwing away their secret key. This would allow CXL end-points to store and (attempt to) manipulate their capabilities themselves, and let the CXL.mem device revoke them, all without trusting them. Decentralized capabilities are robust to hostile actors, do not require centralized resources, and are ripe for further investigation.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>Conclusion</h3>
+<p>Physical memory is accessed through many layers of abstraction. Applying protection at different layers, which are aware of different actors and use resources at different granularities, is essential. CHERI and MMUs offer great protection at the software and process level, but CXL&#39;s protection model has issues. It allows memory sharing, but only of a few large ranges instead of many small ones. It doesn&#39;t give actors a way to share new memory ranges with each other, instead relying on a central, underspecified Fabric Manager. Capabilities are inherently flexible&mdash;they can protect large and small memory ranges, and can be transferred directly between actors without a centralized authority&mdash;so they should be able to address these problems.</p>
+<p>CXL initially targets the datacenter, with many endpoints sharing disaggregated memory. The protection is coarse-grained, and does not consider virtualization. VMs running on the same host have to rely on similarly coarse hypervisor- and MMU-based isolation. Fine-grained capabilities could allow individual VMs to share small memory regions directly. Capabilities for large memory regions could also enforce VM compartmentalization at the CXL layer, similarly to CHERI.</p>
+<p>In datacenter and consumer systems, device-to-device memory sharing is becoming essential for high performance. CXL does not try to protect devices from each other at all, which is especially scary considering how powerful malicious devices already can be. Capabilities would provide a consistent interface for securely exposing regions of device memory. Decentralized capabilities are robust against malicious actors and could keep the peace in the Wild West of untrustworthy hardware. In a datacenter with trusted components, distributed-trust systems could even forgo the cryptography associated with decentralized capabilities for lower overheads.</p>
+<p>Decentralized and distributed capabilities have a lot of potential, but they have not been used in this context yet and need further investigation. Even so, they could greatly benefit CXL, which is a new interconnect standard that provides the opportunity to build in better security from the start instead of retrofitting it. A domain-optimized decentralized capability system could work wonders, giving CXL fine-grained memory sharing and improving virtualization and device-to-device security. Interconnects must take security more seriously, and we believe capabilities can provide flexible and robust security for CXL and beyond.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>Acknowledgments</h3>
+<p>We thank the CHERI project team led by Robert Watson for demonstrating the potential of capabilities for memory security, without which this work could not exist. The CHERI team also provided essential feedback while developing this article, for which we are extremely thankful. This work was supported by the University of Cambridge Harding Distinguished Postgraduate Scholars Programme, and by EPSRC grant EP/V000381/1 (CAPcelerate).</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Advanced Micro Devices, Inc. Offering unmatched performance, leadership energy efficiency, and next-generation architecture, AMD brings 4<sup>th</sup> gen AMD EPYC processors to the modern data center. (2022); <a href="https://bit.ly/3KQU6OU">https://bit.ly/3KQU6OU</a>.</p>
+<p><a name="R2"></a>2. Amazon Web Services The security design of the AWS Nitro System. <em>AWS whitepaper.</em> (2023); <a href="https://go.aws/3P6UOdm">https://go.aws/3P6UOdm</a></p>
+<p><a name="R3"></a>3. Amazon Web Services; <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html</a>.</p>
+<p><a name="R4"></a>4. AMD Meet the Experts Webinars. How AM5, DDR5 memory, and PCIe 5.0 support pave the way for next-gen gaming experiences; <a href="https://bit.ly/3QKm42J">https://bit.ly/3QKm42J</a>.</p>
+<p><a name="R5"></a>5. Baumann, A. et al. The Multikernel: A new OS architecture for scalable multicore systems. In <em>Proceedings of the ACM SIGOPS 22<sup>nd</sup> Symp. Operating Systems Principles.</em> (2009), 29&ndash;44; 10.1145/1629575.1629579.</p>
+<p><a name="R6"></a>6. Beingessner, A. Rust&#39;s unsafe pointer types need an overhaul. <em>Faultlore.</em> (2022); <a href="https://faultlore.com/blah/fix-rust-pointers/">https://faultlore.com/blah/fix-rust-pointers/</a></p>
+<p><a name="R7"></a>7. Birgisson, A. et al. Macaroons: cookies with contextual caveats for decentralized authorization in the cloud. In <em>Proceeding of the 2014 Network and Distributed System Security Symp.</em>; <a href="https://bit.ly/45EKxe4">https://bit.ly/45EKxe4</a>.</p>
+<p><a name="R8"></a>8. CXL Consortium Compute Express Link (CXL) Specification, revision 3.0, version 1.0. (2022); <a href="https://www.computeexpresslink.org/download-the-specification">https://www.computeexpresslink.org/download-the-specification</a>.</p>
+<p><a name="R9"></a>9. Dodson, M.G. Capability-Based Access Control for Cyber Physical Systems. <em>Thesis.</em> University of Cambridge, Computer Laboratory. (2021).</p>
+<p><a name="R10"></a>10. Filardo, N.W. Cornucopia: Temporal safety for CHERI heaps. In <em>IEEE Symp. on Security and Privacy.</em> (2020), 608&ndash;625. <a href="https://ieeexplore.ieee.org/document/9152640">https://ieeexplore.ieee.org/document/9152640</a></p>
+<p><a name="R11"></a>11. Hille, M. et al. SemperOS: A distributed capability system. In <em>Proceedings of the 2019 Usenix Annual Technical Conf.</em> 709&ndash;722; <a href="https://www.usenix.org/conference/atc19/presentation/hille">https://www.usenix.org/conference/atc19/presentation/hille</a>.</p>
+<p><a name="R12"></a>12. Jung, R. Pointers are complicated, or: What&#39;s in a byte? Ralf&#39;s ramblings. (2018); <a href="https://www.ralfj.de/blog/2013/07/24/pointers-and-bytes.html">https://www.ralfj.de/blog/2013/07/24/pointers-and-bytes.html</a></p>
+<p><a name="R13"></a>13. Kernel Development Community. Virtual memory primer; <a href="https://bit.ly/3YSr5Z1">https://bit.ly/3YSr5Z1</a>.</p>
+<p><a name="R14"></a>14. Markettos, A.T. et al. Position paper: Defending direct memory access with CHERI capabilities. In <em>Hardware and Architectural Support for Security and Privacy 7</em>, (2020), 1&ndash;9; 10.1145/3458903.3458910</p>
+<p><a name="R15"></a>15. Markettos, A.T. et al. Thunderclap: Exploring vulnerabilities in operating system IOMMU protection via DMA from untrustworthy peripherals. In <em>Proceedings of the 2019 Network and Distributed System Security Symp.</em>; 10/gjh62d.</p>
+<p><a name="R16"></a>16. Microsoft. An introduction to single root I/O virtualization (SR-IOV). (2021); <a href="https://bit.ly/3QRxvWw">https://bit.ly/3QRxvWw</a>.</p>
+<p><a name="R17"></a>17. Nevill, M. An Evaluation of Capabilities for a Multikernel. <em>Master&#39;s thesis.</em> ETH Zurich. (2012).</p>
+<p><a name="R18"></a>18. Nvidia Magnum IO; <a href="https://www.nvidia.com/en-us/data-center/magnum-io/">https://www.nvidia.com/en-us/data-center/magnum-io/</a>.</p>
+<p><a name="R19"></a>19. Samsung Semiconductor. Samsung Electronics introduces industry&#39;s first 512GB CXL memory module. (2022); <a href="https://news.samsung.com/global/samsung-electronics-introduces-industrys-first-512gb-cxl-memory-module">https://news.samsung.com/global/samsung-electronics-introduces-industrys-first-512gb-cxl-memory-module</a>.</p>
+<p><a name="R20"></a>20. Watson, R.N.M. et al. Capsicum: Practical capabilities for Unix. <em>Commun. ACM 55</em>, 3 (Mar. 2012), 97&ndash;104; 10.1145/2093548.2093572</p>
+<p><a name="R21"></a>21. Watson, R.N.M. et al. An introduction to CHERI. University of Cambridge. (2019), 43.</p>
+<p><a name="R22"></a>22. Watson, R.N.M. et al. CHERI: A hybrid capability-system architecture for scalable software compartmentalization. In <em>Proceedings of IEEE 2015 Symp. Security and Privacy.</em> 20&ndash;37; <a href="https://ieeexplore.ieee.org/document/7163016">https://ieeexplore.ieee.org/document/7163016</a>.</p>
+<p><a name="R23"></a>23. Xia, H. et al. CHERIvoke: characterising pointer revocation using CHERI capabilities for temporal memory safety. In <em>Proceedings of the 52<sup>nd</sup> Annual IEEE/ACM Intern. Symp. on Microarchitecture.</em> (2019), 545&ndash;557; 10.1145/3352460.3358288.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Authors</h3>
+<p><strong>Samuel W. Stark</strong> is a Ph.D. student and Harding Scholar in the Department of Computer Science and Technology at the University of Cambridge, U.K., where he is studying the wider applications of capabilities for shared-memory systems with Simon Moore.</p>
+<p><strong>A. Theodore Markettos</strong> is a senior research associate in the Department of Computer Science and Technology at the University of Cambridge, U.K., where he co-leads the CAPcelerate project, which is researching the use of capabilities for securing distributed distrustful accelerators.</p>
+<p><strong>Simon W. Moore</strong> is a professor of computer engineering in the Department of Computer Science and Technology at the University of Cambridge, U.K., where he conducts research and teaching in the general area of computer architecture, with particular interests in secure and rigorously engineered processors and subsystems.</p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p>Copyright held by owner(s)/author(s).<br/>
+Request permission to (re)publish from the owner/author</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2023 ACM, Inc.</p>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<h2>Comments</h2>
+<div data-swiftype-index="false">
+<hr class="solid" />
+<h5>James Cownie</h5>
+<span class="byline">November 23, 2023 04:38</span>
+<p><p>Surely (especially with Cambridge authors!) there should be some reference to the CAP machine developed by David Walker at the computer lab in the 1970s. Maybe https://dl.acm.org/doi/abs/10.1145/1067625.806541 ? </p>
+<p></p></p>
+</div>
+<hr class="thick" />
+<p class="view-all">
+Displaying <b>1</b> comment
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-2">Protection Systems</a></li>
+<li class="miniWidgetItem"><a href="#body-3">Capability-Based Protection for CXL</a></li>
+<li class="miniWidgetItem"><a href="#body-4">Conclusion</a></li>
+<li class="miniWidgetItem"><a href="#body-5">Acknowledgments</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Authors</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/277314-wearables-track-parkinsons-better-than-human-observation-study-finds">
+Wearables Track Parkinson's Better Than Human Observation, Study Finds
+</a>
+</h5>
+<span class="dateNews">The New York Times</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/7/274039-learning-to-live-with-privacy-preserving-analytics">
+Learning to Live with Privacy-Preserving Analytics
+</a>
+</h5>
+<span class="dateNews">Alessandro Acquisti, Ryan Steed</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/274388-lessons-from-pl-i-a-most-ambitious-programming-language">
+Lessons from PL/I: A Most Ambitious Programming Language
+</a>
+</h5>
+<span class="dateNews">Doug Meil</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href=" "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2023/12/278154-how-flexible-is-cxls-memory-protection/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2023 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>

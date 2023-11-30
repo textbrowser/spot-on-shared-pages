@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Tales of Topological Qubits | December 2023 | Communications of the ACM</title>
+<meta name="title" content="Tales of Topological Qubits" />
+<meta name="author" content="Chris Edwards" />
+<meta name="date" content="2023-12-1" />
+<meta name="year" content="2023" />
+<meta name="subjects" content="communications / networking,computer systems,data / storage and retrieval,hardware,performance and reliability,security" />
+<meta name="sections" content="News" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2023/12/278144-tales-of-topological-qubits/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2023/12/278144-tales-of-topological-qubits/fulltext" /><meta property="og:title" content="Tales of Topological Qubits" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6647/111623_CACMpg8_Tales-of2.large.jpg?1699909007&amp;1699909006" /><meta property="og:description" content="Emulating the behavior of exotic quantum states may give quantum computing a better way of squeezing out troublesome noise and errors.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2023/12/278144-tales-of-topological-qubits/fulltext" /><meta property="og:title" content="Tales of Topological Qubits" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6647/111623_CACMpg8_Tales-of2.large.jpg?1699909007&amp;1699909006" /><meta property="og:description" content="Emulating the behavior of exotic quantum states may give quantum computing a better way of squeezing out troublesome noise and errors.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2023/12">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2023/12">
+<img src="https://cacm.acm.org/system/assets/0004/6665/December2023.Cover.1000x1338.large.jpg?1699914061&1699914060" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: December 2023</span>
+<a href="/magazines/2023/12/278156-data-analytics-anywhere-and-everywhere">Data Analytics Anywhere and Everywhere</a>
+<a href="/magazines/2023/12/278155-when-two-cameras-are-a-crowd">When Two Cameras Are a Crowd</a>
+<a href="/magazines/2023/12/278146-thus-spake-chatgpt">Thus Spake ChatGPT</a>
+<a class="lastLink" href="/magazines/2023/12">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/11">
+November 2023 (Vol. 66, No. 11)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/10">
+October 2023 (Vol. 66, No. 10)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2023/12">December 2023 (Vol. 66, No. 12)</a><span>/</span><a href="/magazines/2023/12/278144-tales-of-topological-qubits">Tales of Topological Qubits</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">News</span>
+<h2>Tales of Topological Qubits</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Chris Edwards
+<br/>
+Communications of the ACM,
+December 2023,
+Vol. 66 No. 12, Pages 8-10<br/>
+10.1145/3624436<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3633437.3624436&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2023/12/278144-tales-of-topological-qubits/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3624436&ftid=2298930&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46647">
+<figure>
+<img alt="chip facsimile on a 3D block, illustration" src="/system/assets/0004/6647/111623_CACMpg8_Tales-of2.large.jpg?1699909007&amp;1699909006" title="chip facsimile on a 3D block, illustration" />
+<figcaption>
+<p class="credit">Credit: PixelProphet</p>
+</figcaption>
+</figure>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>Quantum computers are scaling up quickly. Manufacturers expect to break the thousand-qubit barrier by 2024, with a plan to reach one million in the next decade. Despite these advances, the technology faces an enormous problem. To handle real-world applications, each qubit needs to be able to pass through numerous logic operations before its delicate state collapses. However, the qubits in today&#39;s technologies are too unstable for this to happen without extensive error correction.</p>
+<p>The error-correction techniques in use today forge virtual qubits from 20 or more physical qubits to provide sufficient stability. Even then, they can only perform simple operations before the errors build up too far. Though the mainstream plan is to try to find ways to better stabilize the qubits to provide more headroom for the error correction, there is another possibility. That is to use a different technology that can harness inherent quantum effects to build a much greater degree of fault tolerance into the machine. </p>
+<p>Rather than have a qubit reflect the changes in the state of individual elementary particles, these future machines would rely on manipulating quasiparticles. These appear to move and interact much like point-like elementary particles, but are formed from highly entangled combinations of those elementary particles. Some types of quasiparticle, which today exist only in theory, potentially offer significant advantages on two fronts. One is that the nature of the entanglement should act as a defense against noise.</p>
+<p>In an analogy used by Jason Alicea, associate professor of theoretical physics at the California Institute of Technology (Caltech), the entangled quantum states in the quasiparticle behave like a flock of birds&mdash;the flock appears to move as one, even though individual birds will often deviate from the overall course.</p>
+<p>The other advantage is that they could make it easier to build the hardware: with the right kind of quasiparticle, interactions between them model the actions of all the logic gates needed for a universal quantum computer. That contrasts with today&#39;s architectures that cannot directly implement the gates needed for universal computation and which use instead workarounds to emulate the behavior of some of those gates.</p>
+<p>Quasiparticles that fit the profile are anyons, which are constrained to move only in two dimensions, rather than three. That seemingly simple restriction leads to much more complex interactions between them than those that can be observed for elementary particles. In the case of non-Abelian anyons, those interactions need to be modeled as matrix multiplications similar to the gates in quantum computers that are themselves modeled as matrix operations. A series of computations can be performed by successive &quot;braiding&quot; operations. These are exchanges between different any-ons created by moving them around each other in the two-dimensional (2D) space.</p>
+<p>Unfortunately, anyons of the right kind remain theoretical, and even claims of sightings have proved controversial. In one case, a team of scientists in the Netherlands claimed in 2018 to have discovered suitable quasiparticles in superconducting wires, but withdrew their paper when it emerged the experiments did not show conclusive evidence of non-Abelian behavior. One big problem in all these experiments is determining whether subtle changes in behavior are due to the anyons appearing or because of some other physical property that mimics the desired property.</p>
+<p>Although materials that can support non-Abelian behavior have yet to be demonstrated to general satisfaction, a combination of improvements to the theories of electromagnetic fields that describe anyon behavior, coupled with the rapid increase in capacity in today&#39;s noisy quantum computers, have made it possible to explore how these states would behave.</p>
+<p>Google&#39;s quantum computing group worked with theoreticians from Cornell University to demonstrate the expected exchange behavior of one class of anyon on a superconductor-based quantum computer. This type of hardware was chosen for its ability to confine movement to a 2D lattice, though it does not directly mimic the quantum entanglement of a physical anyon. A team based at Zhejiang University and the Hefei Institute in China used a similar approach in their own simulation of the exchanges of electric and magnetic charges between anyons to apply a sequence of simple logic gates on the anyon-like combinations of qubits.</p>
+<hr/>
+<blockquote>
+<p><em>So far, experiments have not worked on types of anyon that can support a full set of quantum gates.</em></p>
+</blockquote>
+<hr/>
+<p>In one of the first experiments conducted on the company&#39;s H2 trapped-ion machine, scientists at Quantinuum, in collaboration with researchers from Harvard University and Caltech, used the ability of this kind of quantum computer to entangle any qubit with any other to go further in their realization of the physics by replicating the anyon&#39;s ground states. However, one desirable element that is missing from the realizations on quantum computing hardware is the natural energy gap that should act to suppress errors as the anyon is manipulated. &quot;Quantum error correction then becomes crucial for sufficiently high-fidelity operation that will be required for applications,&quot; says Alicea.</p>
+<p>For Ruben Verresen, postdoctoral fellow at the Harvard University Quantum Initiative, the difference between the material-based anyons and the realizations he and collaborators created on Quantinuum&#39;s hardware can be seen as analogous to comparing a naturally frozen ice cube with one formed &quot;by grabbing atoms and arranging them in just the right way.&quot; Once the fields that hold those atoms in place in the artificial version are released, the cube simply dissipates. Future experiments, he says, will point to how repeated measurements and corrections can maintain the anyonic states for periods long enough to perform more extensive computing operations.</p>
+<p>&quot;I view these engineered quantum systems as interesting systems in their own right. They are not just stepping stones to a better understanding of conventional solid-state approaches,&quot; Verresen adds.</p>
+<p>An important element of these experiments is that they make it possible to explore the many different forms of anyon that potentially could be realized in novel materials. So far, experiments have not worked on types of anyon that can support a full set of quantum gates. Work by Verresen and colleagues to date suggests Fibonacci anyons, which support universal quantum computing, require more resources to create on a machine such as Quantinuum&#39;s. And those resources scale with the size of the problem, which potentially imposes too large an overhead to be viable in even-larger quantum computers.</p>
+<p>What is not yet clear is whether the additional computational power supposedly offered by the Fibonacci anyon states is linked to greater difficulty in preparing them. &quot;I do think it is an interesting invitation for the community to conceptually explore why Fibonacci anyons are harder to prepare. It may be no coincidence that Fibonacci anyons are more computationally powerful; there is no free lunch, even in the quantum realm,&quot; Verresen says.</p>
+<p>However, researchers are beginning to investigate whether hybrid systems may provide a way of overcoming the difficulty of preparing these notionally more powerful quantum states. Simpler anyon constructions may be sufficient. &quot;There are certain kinds of topological orders that can provide a universal gate,&quot; Alicea says, by combining simpler non-Abelian anyons with the kinds of measurement used in conventional quantum error correction.</p>
+<p>Jiannis Pachos, professor of theoretical physics at the University of Leeds, U.K., says a possible role for anyon-style approaches in error correction itself should not be underestimated. &quot;Topological quantum error-correcting codes have high thresholds and a nice geometrical interpretation. They&#39;re potentially the best error-correcting codes that we could have.&quot;</p>
+<hr/>
+<blockquote>
+<p><em>Topological error-correcting codes are &quot;potentially the best error-correcting codes that we could have.&quot;</em></p>
+</blockquote>
+<hr/>
+<p>Eun-Ah Kim, a professor of physics at Cornell, says the use of anyon-like behavior on today&#39;s supercomputer hardware could provide a better way to design error-corrected qubits. The error correction tried so far on super-conducting machines requires &quot;lattice surgery,&quot; she says. The coding scheme that underpins the recent anyon experiment her team ran with Google makes it possible to encode multiple logical topological qubits without such a high degree of logical manipulation.</p>
+<p>Work is likely to continue on all the hardware platforms available to researchers working on quantum systems, whether they are based on superconductors, trapped ions, photonics, or several other technologies that can emulate aspects of anyonic behavior. &quot;They each bring their own advantages to the table,&quot; Verresen says.</p>
+<p>Kim aims to use the superconductor platform to gain a better understanding of the properties of different coding schemes that can support the logic gates needed for quantum computers. &quot;This way, we can compare our approach to lattice surgery in a meaningful way,&quot; she says.</p>
+<p>Pachos says in his group&#39;s work on spatial light modulators with a team from the University of Edinburgh, the focus has been on the way in the quantum systems evolve, rather than simulating the full anyon states. &quot;I realized we don&#39;t need to create the states to do operations,&quot; he says.</p>
+<p>Early attempts to do his experiments on a superconductor platform called for too many qubits to be practical. &quot;We connected with the linear-optics people and found they could do with higher fidelity,&quot; Pachos says.</p>
+<p>The collaboration between different groups in the physics and quantum computing domains have allowed the work to advance quickly, Pachos adds. &quot;The social aspect is very strong here.&quot;</p>
+<p>What remains unclear is how the anyon work ultimately will be applied. Alecia explains, &quot;In an ideal world, we would have sufficiently clean and controllable non-Abelian platforms realized in scalable solid-state devices that would eliminate, or at least sharply mitigate, the need for quantum error correction.&quot;</p>
+<p>Physical anyons may continue to prove elusive, but the option remains to use the theories to support better error correction in the various kinds of quantum hardware developers expect to scale past the thousand-qubit milestone. Further experiments will determine whether anyon emulation is a more efficient means of avoiding errors in noisy quantum hardware than existing techniques. However, even if anyon-like error correction does not perform as well as expected, physicists likely will continue to apply quantum computing hardware to work on these and other quasiparticles.</p>
+<p>Alicea concludes that, whichever way these non-Abelian states are realized, they &quot;offer tremendously exciting opportunities for probing novel emergent quantum phenomena.&quot;</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>Further Reading</strong></p>
+<p><em>Andersen, T.I. et al.</em><br/>
+<strong>Non-Abelian braiding of graph vertices in a superconducting processor. <em>Nature 618</em>, (2023), 264&ndash;269.</strong></p>
+<p><em>Xu, S. et al.</em><br/>
+<strong>Digital simulation of projective non-Abelian anyons with 68 superconducting qubits. <em>Chinese Physics Letters 40</em>, (2023), 060301.</strong></p>
+<p><em>Iqbal, M. et al.</em><br/>
+<strong>Creation of non-Abelian topological order and anyons on a trapped-ion processor. (2023); ArXiv: 2305.03766.</strong></p>
+<p><em>Goel, S. et al.</em><br/>
+<strong>Unveiling the non-Abelian statistics of D(S3) anyons via photonic simulation. (2023); ArXiv: 2304.05286</strong></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Author</h3>
+<p><strong>Chris Edwards</strong> is a Surrey, U.K.-based writer who reports on electronics, IT, and synthetic biology.</p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p><strong>&copy;2023 ACM&nbsp;&nbsp;0001-0782/23/12</strong></p>
+<p>Permission to make digital or hard copies of part or all of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and full citation on the first page. Copyright for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy otherwise, to republish, to post on servers, or to redistribute to lists, requires prior specific permission and/or fee. Request permission to publish from <a href="mailto:permissions@acm.org">permissions@acm.org</a> or fax (212) 869-0481.</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2023 ACM, Inc.</p>
+
+<p>&nbsp;</p>
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Article</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Author</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/275347-downfall-flaw-exposes-valuable-data-in-generations-of-intel-chips">
+'Downfall' Flaw Exposes Valuable Data in Generations of Intel Chips
+</a>
+</h5>
+<span class="dateNews">Wired</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/7/274040-fragility-in-ais-using-artificial-neural-networks">
+Fragility in AIs Using Artificial Neural Networks
+</a>
+</h5>
+<span class="dateNews">Jeff A. Johnson, Daniel H. Bullock</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/275297-federated-learning-how-private-is-it-really">
+Federated Learning: How Private Is It Really?
+</a>
+</h5>
+<span class="dateNews">Saurabh Bagchi and Arash Nourian</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href=" "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2023/12/278144-tales-of-topological-qubits/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2023 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
