@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>On Specifying for Trustworthiness | January 2024 | Communications of the ACM</title>
+<meta name="title" content="On Specifying for Trustworthiness" />
+<meta name="author" content="Dhaminda B Abeywickrama, Amel Bennaceur, Greg Chance, Yiannis Demiris, Anastasia Kordoni, Mark Levine, Luke Moffat, Luc Moreau, Mohammad Reza Mousavi, Bashar Nuseibeh, Subramanian Ramamoorthy, Jan Oliver Ringert, James Wilson, Shane Windsor, Kerstin Eder" />
+<meta name="date" content="2024-1-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="artificial intelligence,computer systems,human-computer interaction,computers and society,education,hardware,information systems,legal aspects,management,performance and reliability,personal computing,security" />
+<meta name="sections" content="Technology Reports" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/1/278895-on-specifying-for-trustworthiness/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/1/278895-on-specifying-for-trustworthiness/fulltext" /><meta property="og:title" content="On Specifying for Trustworthiness" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6833/121823_CACMpg99_On-Specifying.large.jpg?1702924254&amp;1702924254" /><meta property="og:description" content="As autonomous systems increasingly become part of our lives, it is crucial to foster trust between humans and these systems, to ensure positive outcomes and mitigate harmful ones.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/1/278895-on-specifying-for-trustworthiness/fulltext" /><meta property="og:title" content="On Specifying for Trustworthiness" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6833/121823_CACMpg99_On-Specifying.large.jpg?1702924254&amp;1702924254" /><meta property="og:description" content="As autonomous systems increasingly become part of our lives, it is crucial to foster trust between humans and these systems, to ensure positive outcomes and mitigate harmful ones.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/1">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/1">
+<img src="https://cacm.acm.org/system/assets/0004/6837/January2024_Cover_1000x1338.large.jpg?1702924361&1702924361" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: January 2024</span>
+<a href="/magazines/2024/1/278891-10-things-software-developers-should-learn-about-learning">10 Things Software Developers Should Learn about Learning</a>
+<a href="/magazines/2024/1/278895-on-specifying-for-trustworthiness">On Specifying for Trustworthiness</a>
+<a href="/magazines/2024/1/278878-data-bias-management">Data Bias Management</a>
+<a class="lastLink" href="/magazines/2024/1">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/11">
+November 2023 (Vol. 66, No. 11)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/1">January 2024 (Vol. 67, No. 1)</a><span>/</span><a href="/magazines/2024/1/278895-on-specifying-for-trustworthiness">On Specifying for Trustworthiness</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research</span>
+<h2>On Specifying for Trustworthiness</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Dhaminda B. Abeywickrama, Amel Bennaceur, Greg Chance, Yiannis Demiris, Anastasia Kordoni, Mark Levine, Luke Moffat, Luc Moreau, Mohammad Reza Mousavi, Bashar Nuseibeh, Subramanian Ramamoorthy, Jan Oliver Ringert, James Wilson, Shane Windsor, Kerstin Eder
+<br/>
+Communications of the ACM,
+January 2024,
+Vol. 67 No. 1, Pages 98-109<br/>
+10.1145/3624699<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3638509.3624699&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2024/1/278895-on-specifying-for-trustworthiness/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3624699&ftid=2304054&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46833">
+<figure>
+<img alt="a young girl looks at and leans into the face of a robot" src="/system/assets/0004/6833/121823_CACMpg99_On-Specifying.large.jpg?1702924254&amp;1702924254" title="a young girl looks at and leans into the face of a robot" />
+<figcaption>
+<p class="credit">Credit: Asharkyu / Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+<div class="videoThumb">
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/894616161?h=2823b81798" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>Autonomous Systems (AS) are systems that involve software applications, machines, and people&mdash;that is, systems that can take action with little or no human supervision.<sup><a href="#R34">34</a></sup> Soon, AS will no longer be confined to safety-controlled industrial settings. Instead, they will increasingly become part of our daily lives, having matured across various domains, such as driverless cars, healthcare robotics, and uncrewed aerial vehicles (UAVs). As such, it is crucial that these systems are trusted and trustworthy. Trust may vary, as it can be gained and lost over time. Different research disciplines define trust in different ways. This article focuses on the notion of trust that concerns the relationship between humans and AS. AS are considered <em>trustworthy</em> when the design, engineering, and operation of these systems generates positive outcomes and mitigates potentially harmful outcomes.<sup><a href="#R35">35</a></sup> The trustworthiness of AS can depend on many factors, such as explainability, accountability, and understandability to different users; robustness of AS in dynamic and uncertain environments; assurance of their design and operation through verification and validation (V&amp;V) activities; confidence in their ability to adapt functionality as required; security against attacks on the systems, users, and deployed environment; governance and regulation of their design and operation; and consideration of ethics and human values in their deployment and use.<sup><a href="#R35">35</a></sup></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>Key Insights</h3>
+<p><img alt="ins01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/ins01.gif" /></p>
+<p>There are various techniques for demonstrating the trustworthiness of systems, such as synthesis, formal verification at design time, runtime verification or monitoring, and test-based methods. However, common to all these techniques is the need to formulate <em>specifications.</em> A specification is a detailed formulation that provides &quot;a definitive description of a system for the purpose of developing or validating the system.&quot;<sup><a href="#R13">13</a></sup> According to Kress-Gazit et al.,<sup><a href="#R29">29</a></sup> writing specifications that capture trust is challenging. A human will only trust an AS to perform in a safe manner (that is, nothing bad happens) if it clearly and demonstrably acts in such a manner. This requires the AS to not only be safe, but also to be seen as safe by the human. In the same manner, it is equally important to ensure that the AS trusts the human.<sup><a href="#R29">29</a></sup> To address this, specifications must go beyond typical functionality and safety aspects.</p>
+<p>Engineering trustworthy and trusted AS involves different processes, technology, and skills than those required for traditional software solutions. Many practitioners in the AS or artificial intelligence (AI) domains have learned by accumulating experiences and failures across projects.<sup><a href="#R1">1</a></sup> Best practices have started to emerge. There is increasing evidence of the need for rigorous specification techniques for developing and deploying AI applications.<sup><a href="#R3">3</a></sup> Even when not life-critical, actions and decisions made by AS may have serious consequences. If we are to use them in our businesses, at doctor&#39;s surgeries, on our roads, or in our homes, we must build AS that precisely satisfy the requirements of their stakeholders. However, specifying requirements for AS (AI in particular) remains more a craft than a science. For example, machine-learning (ML) applications are often specified based on optimization and efficiency measures rather than well-specified quality requirements that relate to stakeholder needs,<sup><a href="#R23">23</a></sup> and further research is needed.</p>
+<p>In the U.K. Research and Innovation (UKRI) Trustworthy Autonomous Systems (TAS) program, we conduct cross-disciplinary fundamental research to ensure that AS are safe, reliable, resilient, ethical, and trusted. TAS is organized around six research projects called Nodes and a Hub; each Node focuses on the individual aspects of trust in AS, such as resilience, trust, functionality, verifiability, security, and governance and regulation.</p>
+<p>Undertaking a community approach, this roadmap article is the result of the &quot;Specifying for Trustworthiness&quot; workshop held during the September 2021 TAS All Hands Meeting, which gathered a diverse group of researchers from all parts of the TAS program. Co-authored by a representative sample of the AS community in the U.K., this article highlights the specification challenges for AS with illustrations from a representative set of domains currently being investigated within our community. This article&#39;s main contribution is to identify key open research problems, termed &#39;intellectual challenges,&#39; involved with specifying for trustworthiness in AS that cut across domains and are exacerbated by the inherent uncertainty involved with the environments in which AS need to operate. This article takes a broad view of specification, concentrating on top-level requirements including, but not limited to, functionality, safety, security, and other non-functional properties that contribute to the trustworthiness of AS. Also, a discussion on the formalization of these specifications has intentionally been left for the future, when the understanding of what is required to specify for trustworthiness will be more mature.</p>
+<p>To motivate and present the research challenges associated with specifying for trustworthiness in AS, the rest of this article is divided into three parts. The next section discusses a number of AS domains, each with its unique specification challenges. Then, the article presents key intellectual challenges currently being investigated within our community. Finally, the article summarizes our findings.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>Autonomous Systems Domains and Their Specification Challenges</h3>
+<p>In this article, we classify AS domains based on two criteria: the number of autonomous agents (single or multiple) and whether humans are interacting with the AS as part of the system or the environment, following Schneiders et al.<sup><a href="#R38">38</a></sup> Accordingly, we distinguish AS domains into four categories:</p>
+<ul>
+<li>A single autonomous agent (for example, automated driving, UAV)</li>
+<li>A group of autonomous agents (for example, swarms)</li>
+<li>An autonomous agent assisting a human (for example, AI in healthcare, human&ndash;robot interaction)</li>
+<li>A group of autonomous agents collaborating with humans (for example, emergency situations, disaster relief).</li>
+</ul>
+<p>We discuss the specification challenges involved with AS using illustrations from a representative set of domains, as being investigated within our community in TAS (see the accompanying <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/ut1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=843'); return false;">table</a>), rather than attempting to cover all possible AS domains.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/ut1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=843'); return false;"><img alt="ut1.jpg" height="343" src="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/ut1.jpg" width="415" /></a><br/>
+<strong>Table. AS domains and their specification challenges.</strong></p>
+<p><strong>Single autonomous agent: Automated driving, UAV.</strong> Automated driving (self-driving) refers to a class of AS that varies in the extent to which they independently make decisions (SAE J3016 standard taxonomy). The higher levels of autonomy, levels 3&ndash;5, refer to functionality ranging from traffic jam chauffeur to completely hands-free driving in all conditions. Despite an explosion of activity in this domain in recent years, the majority of systems being considered for deployments depend on careful delineation of the operation design domain to make the specification of appropriate behavior tractable. Even so, the specification problem remains difficult for a number of reasons. Firstly, traffic regulations are written in natural language, ready for human interpretation. Although highway code rules are intended for legal enforcement, they are not specifications that are suitable for machines. There are typically many exceptions, context-dependent conflicting rules, and guidance of an &#39;open nature,&#39; all of which require interpretation in context. Driving rules can often be vague or even conflicting, and may need a base of knowledge to interpret the rule given a specific context. The U.K. Highway Code Rule 163 states that after you have started an overtaking maneuver you should &quot;move back to the left as soon as you can but do not cut in.&quot;<sup><a href="#R6">6</a></sup> A more explicit specification of driving conduct (for example, Rule 163) to something more machine interpretable that captures the appropriate behavior presents a challenge to this research area. When people are taught to perform this activity, a significant portion of the time is spent in elaborating these special cases, and much of the testing in the licensing regime is aimed at probing for uniformity of interpretation. How best to translate these human processes into the AS domain is important not only for achieving safety but also acceptability. Secondly, driving in urban environments is an intrinsically interactive activity, involving several actors whose internal states may be opaque to the automated vehicle. As an example, the U.K. Highway Code asks drivers to not &quot;pull out into traffic so as to cause another driver to slow down.&quot; Without further constraint on what the other drivers could possibly do, specifying appropriate behavior becomes difficult, and any assumptions made in that process would call into question the safety of the overall system when those assumptions are violated. Thus, two key challenges in the area of automated driving are the lack of machine-readable specifications that formally express acceptable driving behavior and the need to specify the actions of other road users (see the accompanying table). To some extent, these issues arise in all open environments. However, in automated driving, the task is so intricately coupled with the other actors that even the default assumptions may not be entirely clear, and the relative variation in behavior due to different modeling assumptions could be qualitatively significant.</p>
+<hr/>
+<blockquote>
+<p><em>Engineering trustworthy and trusted AS involves different processes, technology, and skills than those required for traditional software solutions.</em></p>
+</blockquote>
+<hr/>
+<p>A UAV or drone is a type of aerial vehicle capable of autonomous flight without a pilot on board. UAVs are increasingly being applied in diverse applications, such as logistics services, agriculture, emergency response, and security. Specification of the operational environment of UAVs is often challenging due to the complexity and uncertainty of the environments that UAVs need to operate in. For instance, in parcel delivery using UAVs in urban environments, there can be uncertain flight conditions (for example, wind gradients) and highly dynamic and uncertain airspace (for instance, other UAVs in operation). Recent advances in ML offer the potential to increase the autonomy of UAVs in uncertain environments by allowing them to learn from experience. For example, ML can be used to enable UAVs to learn novel maneuvers to achieve perched landings in uncertain windy conditions.<sup><a href="#R12">12</a></sup> In these contexts, a key challenge is how to specify the way the system deals with situations that go beyond the limits of its training (see the accompanying table).</p>
+<p><strong>Multiple autonomous agents: Swarm robotics.</strong> Swarm robotics provides an approach to the coordination of large numbers of robots, which is inspired from the observation of social insects.<sup><a href="#R37">37</a></sup> Three desirable properties in any swarm robotics system are robustness, flexibility, and scalability. The functionality of a swarm is emergent (for example, aggregation, coherent ad hoc networks, taxis, obstacle avoidance, and object encapsulation)<sup><a href="#R45">45</a></sup> and evolves based on the capabilities and number of robots used. The overall behaviors of a swarm are not explicitly engineered in the system, as they might be in a collection of centrally controlled robots, but they are an emergent consequence of the interaction of individual agents with each other and the environment. This emergent functionality poses a challenge for specification. The properties of individual robots can be specified in a conventional manner, yet it is the emergent behaviors of the swarm that determine the performance of the system as a whole. The challenge is to develop specification approaches that specify properties at the swarm level that can be used to develop, verify, and monitor swarm-robotics systems.</p>
+<p><strong>Autonomous agent assisting a human: Human&ndash;robot interaction, AI in healthcare.</strong> Interactive robot systems aim to complete their tasks while explicitly considering the states, goals, and intentions of the human agents they collaborate with, and aiming to calibrate the trust humans have for them to an appropriate level. This form of human-in-the-loop, real-time interaction is required in several application domains, including assistive robotics for activities of daily living,<sup><a href="#R15">15</a></sup> healthcare robotics, shared control of smart mobility devices,<sup><a href="#R40">40</a></sup> and collaborative manufacturing. Most specification challenges arise from the need to provide specifications for the perceptual, reasoning, and behavioral processes of robot systems that will need to acquire models of, and deal with, the high variability exhibited in human behavior. While several human-in-the-loop systems employ mental-state inference, the necessity for interactively performing such inference (including as beliefs and intentions), typically through sparse and/or sensor data from multimodal interfaces, imposes further challenges for the principled specification of human factors and data-driven adaptation processes in robots operating in close proximity to humans, where safety and reliability are critical.</p>
+<p>Healthcare is a broad application domain which already enjoys the many benefits arising from the use of AI and AI-enabled autonomy. This has ranged from more accurate and automated diagnostics to a greater degree of autonomy in robot surgery, as well as entirely new approaches to drug discovery and design. The use of AI in medical diagnosis has advanced to an extent that in some settings, for example, mammography screening, automated interpretation seems to match human expertise in some trials. However, there remains a gap in test accuracy. It has been argued that the automated systems are not sufficiently specific to replace radiologist double reading in screening programs.<sup><a href="#R14">14</a></sup> These gaps also highlight the main specification challenges in this domain. Historically, human expertise in this domain has not been explicitly codified, so it can be hard to enumerate desired characteristics. It is clear that the specifications must include notions of invariance to instrument and operator variations, coverage of condition and severity level, and so on. Beyond that, the semantics of the biological features used to make fine determinations are subject to both ambiguity or informality, and variability across experts and systems. Moreover, the use of deep learning to automate interpretation brings with it the need for explainability. This manifests itself in the challenge of guarding against shortcuts,<sup><a href="#R4">4</a></sup> wherein the AI diagnostic system achieves high accuracy by exploiting irrelevant side variables instead of identifying the primary problem (for example, radiographic COVID-19 detection using AI).<sup><a href="#R4">4</a></sup> The specific challenge here is how to specify with respect to &#39;black box&#39; models. In this regard, we can highlight the role of explainability and faithfulness of interpretation of semantics, and the role of pre-trained models in pipelines (see the accompanying table).</p>
+<p><strong>Multiple autonomous agents collaborating with humans: Emergency situations, disaster relief.</strong> Emergency situations evolve dynamically and can differ in terms of the type of incident, its magnitude, additional hazards, and the number and location of injured people. They are also characterized by urgency; they require a response in the shortest timeframe possible and call for a coordinated response of emergency services and supporting organizations, which are increasingly making use of AS. This means that successful resolutions depend not only on effective collaboration between humans<sup><a href="#R25">25</a></sup> but also between humans and AS. Thus, there is a need to specify both functional requirements and the social, legal, ethical, empathic, and cultural (SLEEC) rules and norms that govern an emergency scenario. AS in emergency response contexts vary hugely; as such, the kinds of SLEEC issues pertaining to them must be incorporated into the design process rather than implemented afterward. This suggests a shift from a static design challenge toward the need to specify for adaptation to the diversity of emergency actors and complexity of emergency contexts, which are time-sensitive and involve states of exception not common in other open AS environments, such as autonomous vehicles. In addition, to enhance collaboration between autonomous agents and different human agents in emergencies, specifying human behavior remains one of the main challenges in emergency settings.</p>
+<p>There are also challenges for specifying security in the context of disaster relief. A large part of this comes from the vast amounts of data that needs to be collected, shared, and stored between different agencies and individuals. Securing a collaborative information management system is divided between technical forms of security, such as firewalling and encryption, and social forms of security, such as trust. To provide security to a system, both aspects must be addressed in relation to each other within a specification.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>Intellectual Challenges for the Autonomous Systems Community</h3>
+<p>The preceding section discussed specification challenges unique to a representative set of domains investigated within our community. Now we discuss 10 <em>intellectual challenges</em> involved with specifying for trustworthiness in AS that can cut across domains and are exacerbated by the inherent uncertainty involved with the environments in which AS need to operate. These challenges were identified during stimulating discussions among the speakers and participants of the breakout groups at the &quot;Specifying for Trustworthiness&quot; workshop.</p>
+<p>Intellectual challenges 1&ndash;6 are in the six <em>focus areas</em> of trust in AS (that is, resilience, trust, functionality, verifiability, security, and governance and regulation), as identified by their respective speakers. Meanwhile, the remaining four challenges have either a <em>common</em> focus (7) across the TAS program, or they are <em>evolving</em> in nature (8&ndash;10) (see the accompanying <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/uf1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=1059'); return false;">figure</a>). For each challenge, we provide an overview, identify high-priority research questions, and suggest future directions.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/uf1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=1059'); return false;"><img alt="uf1.jpg" height="284" src="https://dl.acm.org/cms/attachment/html/10.1145/3624699/assets/html/uf1.jpg" width="415" /></a><br/>
+<strong>Figure. Intellectual challenges for the AS community.</strong></p>
+<p>Many of the specification challenges to be discussed are shared by systems such as multi-agent systems, cyber-physical-social systems, or AI-based systems. Autonomy is an important characteristic of these systems and so is the need for trustworthiness. Specification challenges have also received a lot of attention in &#39;non-AS&#39;, for example, safety-critical systems. Yet, many of the challenges are exacerbated in AS because of the inherent uncertainty of their operating environments: They are long-lived, continuously running systems that interact with the environment and humans in ways that can hardly be fully anticipated at design time and continuously evolve at runtime. In other words, while those challenges are not specific to AS, AS exacerbate them.</p>
+<ol>
+<li><strong>How to specify human behavior for human&ndash;AS cooperation.</strong> How to model human behavior to enable co-operation with AS is challenging but crucial for the resilience of the system as a whole. It is the diversity in human enactment that drives uncertainty about what people do and do not do, and subsequently, the way human behavior can be specified. Knowing the mental state of others enables AS to steer a cooperation that is consistent with the needs of the AS, as well as to respond to the needs of human agents in an appropriate manner.</li>
+</ol>
+<p>Different theories of human behaviors explain diversity in human action in different ways and by detecting various determinants of human behavior. For example, a behaviorist approach suggests that every behavior is a response to a certain stimulus.<sup><a href="#R21">21</a></sup> Albeit true, this approach is restrictive in addressing the complexity of human behavior, as well as the different ways that human behavior develops during cooperation. To grasp that humans are embodied with purposes and goals that affect each other, the concept of joint-action can be introduced as &quot;a social interaction whereby two or more individuals coordinate their actions in space and time to bring about change in the environment.&quot;<sup><a href="#R39">39</a></sup> Adapting it to human&ndash;robot interaction, this approach suggests an interplay between humans and AS, such that what matters is not only how the AS understands the system but also how humans understand the way the autonomous agent behaves and is willing to cooperate.<sup><a href="#R17">17</a></sup> Thus, cooperation arises from a shared understanding between agents, which is a challenge to specify.</p>
+<p>The social identity approach<sup><a href="#R41">41</a></sup> induces this concept of a shared understanding by providing an explanation of human behavior focusing on how social structures act upon cognition. It proposes that, alongside our personal identity, our personality&mdash;who we are&mdash;we also have multiple social identities based on social categories and groups. Previous research has shown that social identities influence people&#39;s relation with technology.<sup><a href="#R30">30</a></sup> Sharing a social identity initiates pro-social behaviors, such as helping behaviors in emergency situations.<sup><a href="#R7">7</a></sup> People adapt their behavior in line with their shared identities, which in turn, enhances resilience. Specifying social identities to enable cooperation is challenging. It requires answering questions such as: How do we represent different identities and how do we reason about them? Following the social-identity approach to specify identities for human-autonomous agent cooperation requires an investigation of how to operationalize social identity, a psychological state, into software embedded within AS.</p>
+<ol>
+<li><strong>How to specify data-driven adaptation processes and human factors.</strong> Specifying, designing, implementing, and deploying interactive robot systems that are trustworthy for use in scenarios where humans and robots collaborate in close proximity is challenging, given that safety and reliability in such scenarios are of particular importance. Examples include assisting people with daily living activities, such as mobility<sup><a href="#R40">40</a></sup> and dressing;<sup><a href="#R15">15</a></sup> rehabilitation robotics; adaptive assistance in intelligent vehicles; and robot assistants in care homes and hospital environments. The intellectual challenge the AS community faces is the specification, design, and implementation of trustworthy perceptual, cognitive, and behavior-generation processes that explicitly incorporate parameterizable models of human skills, beliefs, and intentions.<sup><a href="#R5">5</a></sup> These models are necessary for interactive assistive systems since they must decide not only how but also when to assist.<sup><a href="#R16">16</a></sup> Given the large variability of human behavior, the parameters of these user models must be acquired interactively, typically from sparse and potentially noisy sensor data, a particularly challenging inverse problem. An additional challenge is introduced in the case of long-term human&ndash;robot interaction, where the assistive system must learn and take into consideration human developmental aspects, typically manifested in computational learning terms as model drift. As an example, consider an assistive mobility device for children with disabilities:<sup><a href="#R40">40</a></sup> As the child&#39;s perceptual, cognitive, emotional, and motor skills develop over time, their requirements for the type, amount, and frequency of the provided assistance must evolve. Similarly, when assisting an elderly person or someone recovering from surgery, the distributions of the human data that the robot sensors collect will vary not only according to the context but also over time. Depending on the human participant, and their underlying time-varying physiological and behavioral particularities, model drift can be sudden, gradual, or recurring, posing significant challenges to underlying modeling methods. Principled methods for incorporating long-term human factors into the specification, design, and implementation of assistive systems that adapt and personalize their behavior for the benefit of their human collaborator remain an open research challenge.</li>
+<li><strong>What standards and assurance processes are needed for AS with evolving functionality?</strong> AS with <em>evolving functionality</em>&mdash;the ability to adapt and change in function over time&mdash;pose significant challenges to current processes for specifying functionality. Most conventional processes for defining system requirements assume that these are fixed and can be defined in a complete and precise manner before the system goes into operation. Existing standards and regulations do not accommodate the adaptive nature of AS with evolving functionality. This is a key limitation<sup><a href="#R11">11</a></sup> preventing the deployment of promising applications, such as swarm robots which adapt through emergent behavior and UAVs with ML-based flight-control systems from deployment.</li>
+</ol>
+<p>For airborne systems and in particular for UAVs, several industry standards and regulations have been introduced to specify requirements for system design and safe operation&mdash;for example, DO-178C, DO-254, ED279, ARP4761, NATO STANAG 4671, and CAP 722. However, none of these standards or regulations covers the types of ML-based systems currently being developed to enable UAVs to operate autonomously in uncertain environments.</p>
+<hr/>
+<blockquote>
+<p><em>Many emerging concerns, such as fairness, are not only difficult to formalize in the sense of software specification, but also their many definitions can be conflicting.</em></p>
+</blockquote>
+<hr/>
+<p>The ability to adapt and learn from experience are important for enabling AS to operate in real-world environments. When one considers existing industry standards, they are either implicitly or explicitly based on the V&amp;V model, which moves from requirements through design into implementation, testing, and finally deployment.<sup><a href="#R26">26</a></sup> However, this model is unlikely to suit systems with the ability to adapt their functionality in operation&mdash;for example, through interaction with other agents and the environment, as is the case with swarms, or through experience-driven adaptation, as is the case with ML. AS with evolving functionality follow a different, more iterative life cycle. Thus, there is a need for new standards and assurance processes that extend beyond design time and allow continuous certification at runtime.</p>
+<ol>
+<li><strong>How to specify AS for verifiability.</strong> For a system to be <em>verifiable</em>, a person or a tool needs to be able to check its correctness<sup><a href="#R13">13</a></sup> with respect to its requirements and specification. The main challenge is in specifying and designing the system in a way that makes this process as easy and intuitive as possible. For AS in particular, specific challenges include capturing and formalizing requirements, including functionality, safety, security, performance and, beyond these, any additional non-functional requirements purely needed to demonstrate trustworthiness; handling flexibility, adaptation and learning; and managing the inherent complexity and heterogeneity of both the AS and the environment it operates in.</li>
+</ol>
+<p>Specifications must represent the different aspects of the overall system in a way that is natural to domain experts, facilitates modeling and analysis, provides transparency of how the AS works, and offers insights into the reasons that motivate its decisions. To specify for verifiability, a specification framework will need to offer a variety of domain abstractions to represent the diverse, flexible, and possibly evolving requirements AS are expected to satisfy. Furthermore, the underlying verification framework should connect all these domain abstractions to allow an analysis of their interaction. This is a key challenge in specifying for verifiability in AS.</p>
+<p>AS can be distinguished using two criteria: the degree of autonomy and adaption, and the criticality of the application (which can range from harmless to safety-critical). We can consider which techniques or their combinations are needed for V&amp;V at the different stages of the system life cycle. The need for runtime V&amp;V emerges when AS operate in uncontrolled environments, where there is a need for autonomy and learning and adaptation. There, a significant challenge is finding rigorous techniques for the specification and V&amp;V of safety-critical AS, where requirements are often vague, flexible, and may contain uncertainty and fuzziness. V&amp;V at design time can only provide a partial solution, and more research is needed to understand how best to specify and verify learning and adaptive systems by combining design-time with runtime techniques. Finally, identifying the design principles that enable V&amp;V of AS is a key pre-requisite to promote verifiability to a first-class design goal alongside functionality, safety, security, and performance.</p>
+<ol>
+<li><strong>How to specify security from a social perspective.</strong> There are technical sides to security, but there are also social dimensions that matter when considering how an AS enforces its status as secure. In this context, security overlaps with trust. One can only be assured a system is secure if one trusts that system. Public trust is a complex issue, shot through with media, emotions, politics, and competing interests. How do we go about specifying security in a social sense?</li>
+</ol>
+<p>On the technical side, there are fairly specific definitions for specification which can be grasped and measured. From the social perspective, the possibility of specification relies on a network of shared assumptions and beliefs that are difficult to unify. In fact, much of the value from engagement over social specifications derives from the diversity and difference. A predominant concern in social aspects of security is where data is shared between systems (social-material interactions)&mdash;that is, whenever an AS communicates with a human being or an aspect of the environment. Although these interactions have technical answers, finding answers that consider social-science perspectives requires collaboration and agile methods to facilitate that collaboration.</p>
+<p>The human dimension means that it is not enough to specify technical components. Specifications must also capture beliefs, desires, fears, and, at times, misinformation with respect to how those are understood, regarded, and perceived by the public. For example, in what ways can we regard pedestrians as passive users of automated vehicles? How are automated vehicles regarded by the public, and how are pedestrians involved in automated mobility?</p>
+<p>The ethical challenges that emerge for AS security also relate to the legal and social ones. The difficulty centers around how to create regulations and specifications on a technical level that are also useful socially, facilitating responsiveness to new technologies that are neither simply techno-phobic nor passively accepting. Doing so must involve both innovation and public input, so the technology developed works for everyone. The ethical, legal, and social implications (ELSI) framework<sup><a href="#R8">8</a></sup> aims to engage designers, engineers, and public bodies in answering these questions. ELSI is an inherently cross-disciplinary set of approaches for tackling AS security, as many inter-related and entangled aspects. Specifying security requires connection, collaboration, and agile ethical methods.</p>
+<ol>
+<li><strong>How to establish environmental properties and real intent behind requirements in governance frameworks.</strong> Computer scientists treat specifications as precise objects, often derived from requirements by purging features such that they are defined with respect to environment properties that can be relied on regardless of the machine&#39;s behavior. Emerging AS applications in human-centered environments can challenge this way of thinking, particularly because the environment properties may not be fully understood or because it is hard to establish if the real intent behind a requirement can be verified. These gaps should be addressed in governance frameworks to engender trust.</li>
+</ol>
+<p>For instance, in all the domains mentioned, we are increasingly seeing systems that are data-first and subject to continuous deployment. This has the interesting consequence that sometimes the task requirements cannot be explicitly stated. Instead, they are only given in terms of instances of observed human behavior,<sup><a href="#R42">42</a></sup> which represent positive examples. An example in medical diagnostics is when an AI-based AS has only a high-level label from the human radiologist, to be matched by the model, rather than detailed causal theories or justifications.<sup><a href="#R14">14</a></sup> We see this as a crucial area for future development, as existing workflows depend on human interpretation of rules in crucial ways, whereas when AS make the same decisions, there is scope for significant disruption of these workflows due to potential gaps that become exposed.</p>
+<p>Furthermore, many emerging concerns, such as fairness, are not only difficult to formalize in the sense of software specification, but also their many definitions can be conflicting, such that it is impossible to satisfy all of them in a given system.<sup><a href="#R36">36</a></sup></p>
+<p>AS of the future will need a combination of informal and formal mechanisms for governance. In domains such as automated vehicles, system trustworthiness may require a complete ecosystem approach<sup><a href="#R27">27</a></sup> involving community-defined scenario libraries, enabling the greater use of simulation in verification, and independent audits via independent third parties. This calls for developing new computational tools for performance and error characterization, systematic adversarial testing with respect to a range of different specification types, and causal explanations that address not only a single instance of a decision but better expose informational dependencies that are useful for identifying edge cases and delineating operational design domains.</p>
+<p>In addition to these technical tools, there is a need to understand the human-machine context in a more holistic manner, as this is really the target of effective governance. People&#39;s trust in an AS is not solely determined by technical reliability. Instead, the expectations of responsibility and accountability are associated with the human team involved in the system&#39;s design and deployment and the organizational design behind the system. A vast majority of system failures arise from mistakes made in this &#39;outer loop.&#39; Therefore, effective regulations must begin with a comprehensive mapping of responsibilities that must be governed, so that computational solutions can be tailored to address these needs. Furthermore, there is a need for ethnographic understanding of AS being used in context, which could help focus technical effort on the real barriers to trustworthiness.</p>
+<ol>
+<li><strong>How can explainability by design contribute to AS specifications?</strong> There are increasing calls for explainability in AS, with emerging frameworks and guidance<sup><a href="#R18">18</a></sup> pointing to the need for AI to provide explanations about decision making. A challenge with specifying such explainability is that existing frameworks and guidance are not prescriptive: What is an actual explanation and how should one be constructed? Furthermore, frameworks and guidance tend to be concerned with AI in general, not AS.</li>
+</ol>
+<p>A case study addressing regulatory requirements on explainability of automated decisions in the context of a loan application<sup><a href="#R22">22</a></sup> provided foundations for a systematic approach. Within this context, explanations can act as external detective controls, as they provide specific information to justify the decision reached and help the user take corrective actions.<sup><a href="#R43">43</a></sup> But explanations can also act as internal detective controls&mdash;that is, a mechanism for organizations to demonstrate compliance to the regulatory frameworks they must implement. The study and design of AS includes many facets; not only black-box or grey-box AI systems, but also the system&#39;s various software and hardware components, the curation and cleansing of datasets used for training and validation, the governance of such systems, their user interface, and crucially the users of such systems with a view of ensuring that they do not harm but benefit these users and society in general. There are typically a range of stakeholders involved, from the system designers to their hosts and/or owners, their users (consumers and operators), third-parties, and, increasingly, regulators. In this context, many questions related to trustworthy AS must be addressed holistically, including:</p>
+<ul>
+<li>What is an actual explanation and how should one be constructed?</li>
+<li>What is the purpose of an explanation?</li>
+<li>What is the audience of an explanation?</li>
+<li>What is the information it should contain?<sup><a href="#R22">22</a>,<a href="#R43">43</a></sup></li>
+</ul>
+<p>It no longer suffices to focus on the explainability of a black-box decision system. Its behavior must be explained, with more and less details, in the context of the overall AS. However, to adequately address these questions, explainability should not be seen as an afterthought but as an integral part of the specification and design of a system, leading to explainability requirements to be given the same level of importance as all other aspects of a system.</p>
+<p>In the context of trustworthy AS, emerging AS regulations could be used to drive the socio-technical analysis of explainability. A particular emphasis would have to be on the autonomy and the handoff between systems and humans that characterizes trustworthy AS. The audience of explanations will also be critical, from users and consumers to businesses, organizations, and regulators. Finally, considerations for post-mortem explanations, in case of crash or disaster situations involving AS, should lead to adequate architectural design for explainability.</p>
+<ol>
+<li><strong>How to evolve specifications.</strong> Every typical AS undergoes changes over its lifetime that require going beyond an initially specified spectrum of operation&mdash;despite the observation that this spectrum is typically quite large for AS in the first place. The evolution of trustworthy AS may concern changes in the requirements of their functional or non-functional properties, changes of the environment that the AS operate in, and changes in the trust of users and third parties toward the AS.</li>
+</ol>
+<p>Initial specifications of the AS may no longer reflect the system&#39;s desired properties or they may fail to accurately represent its environment. The evolution of specifications presents challenges in balancing the system&#39;s autonomy.</p>
+<p>While any non-trivial system requires evolution and maintenance,<sup><a href="#R33">33</a></sup> some challenges are exacerbated for trustworthy AS. As an example, observed changes in trust toward the AS might require changes to behavior specifications, even if the AS operations are perfectly safe. Conversely, required changes to specifications might negatively impact future trust toward the AS. New methods will be required to efficiently deal with the various dimensions of trust in the evolution of specifications.</p>
+<p>One dimension of trust relates to transparency toward developers of AS specifications. Approaches that compare evolving specifications on a syntactical level as currently done for code, or based on metrics as currently done for AI models, are unlikely to be sufficient for effective maintenance. Analysis will need to scale beyond syntactic differences to include semantic differences<sup><a href="#R31">31</a></sup> and allow for efficient analysis of the impact of changes on the level of systems rather than artifacts. New techniques to compare AS specifications are required that identify, present, and explain differences as well as their potential impact on the system&#39;s trustworthiness.</p>
+<ol>
+<li><strong>How to address incompleteness of AS specifications.</strong> Incompleteness is a common property of specifications. Only the use of suitable abstractions allows for coping with the complexity of systems.<sup><a href="#R28">28</a></sup> However, there is an important difference in the incompleteness introduced by abstractions; the process of eliminating unnecessary detail to focus, for example, on behavioral, structural, or security-related aspects of a system; and the incompleteness related to the specification&#39;s purpose&mdash;that is, the faithful representation of the system in an abstraction.</li>
+</ol>
+<p>On the one hand, if the purpose of creating and analyzing a specification is to examine an AS and learn about possible constraints, then incompleteness of the AS representation in the specification is important, as it allows for obtaining feedback with low investment in specification development<sup><a href="#R24">24</a></sup>&mdash;for example, for the reduction of ambiguities. On the other hand, if the purpose of the specification is to prove a property, then incompleteness of the AS representation may lead to incorrect analyses results manifesting in false positives or false negatives. False positives are often treated by adding the missing knowledge to the specification of AS&mdash;for example, verifying the specification of an infusion pump reported a false positive due to incompleteness.<sup><a href="#R20">20</a></sup> The specification had to be changed to a &quot;much more complex&quot;<sup><a href="#R20">20</a></sup> one to remove the false positive.</p>
+<p>One way to address incompleteness is with partial models,<sup><a href="#R9">9</a>,<a href="#R10">10</a>,<a href="#R44">44</a></sup> where models and analyses are extended with modalities qualifying their completeness. The various approaches provide analysis of either syntactic properties<sup><a href="#R9">9</a></sup> or behavior refinements.<sup><a href="#R10">10</a>,<a href="#R44">44</a></sup> Combinations and extensions to rich specification languages for AS are part of this research challenge.</p>
+<hr/>
+<blockquote>
+<p><em>In the context of trustworthy AS, emerging AS regulations could be used to drive the socio-technical analysis of explainability.</em></p>
+</blockquote>
+<hr/>
+<p>In addition to analysis tasks, specifications are also used in synthesis tasks; this is where the incompleteness of AS specifications can manifest itself in the construction of biased or incorrect systems. As an example, consider the specification of a robot operating in a warehouse.<sup><a href="#R32">32</a></sup> The specification requires that the robot never hits a wall. With no assumptions about the environment, the synthesizer would take the worst-case view&mdash;that is, walls move and hit the robot&mdash;and consequently report that the specification is not realizable and no implementation exists. Adding the assumption that walls cannot move as an environment constraint changes the outcome of the synthesis. Interestingly, when formulating requirements for humans, common sense allows us to cope with this type of incompleteness. However, the automated analysis of specifications for AS brings with it the challenge of identifying and handling (all) areas of incompleteness.</p>
+<ol>
+<li><strong>How to specify competing demands and other agents&#39; behavior.</strong> Conventional approaches to V&amp;V for AS may seek to attain coverage against a specification to demonstrate assurance of functionality and compliance with safety regulations or legal frameworks. Such properties may be derived from existing legal or regulatory frameworks, for example, the U.K. Highway Code for driving, which can then be converted into formal expressions for automatic checking.<sup><a href="#R19">19</a></sup></li>
+</ol>
+<p>But optimal safety does not imply optimal trust, and just because an AS follows rules does not mean it will be accepted as a trustworthy system in human society. Other factors of trustworthiness should be considered, such as reliability, robustness, cooperation, and performance. We can also say that strictly following safety rules may even be detrimental to other trustworthiness properties&mdash;for example, performance. Consider an automated vehicle trying to move through a busy market square full of people slowly walking across the road and uncommitted to the usual observation of road conduct. The <em>safest</em> option for the AS is to wait until the route ahead is completely clear before moving on, as by taking this option you do not endanger any other road user. However, <em>better performance</em> may be to creep forward in a bid to promote your likelihood of success. Driving then, is much more than following safety rules, which makes this a particularly hard specification challenge. In this scenario, an assertive driving style would make more progress than a risk-averse one.</p>
+<p>In reality there will be significantly more considerations than just safety and performance, but this example illustrates the principle of conflicting demands between assessment standards. Consideration of other agents, such as properties of fairness or cooperation, would lead to a more trustworthy system. Additionally, the interaction of AS with people may require insight into social norms of which there is no written standard by which these can be judged. Will the task of specification first require a codex of social-interaction norms to be drawn together to add to the standards by which trust can be measured? Specifications would need to be written with reference to these standards, regulations, and ethical principles, some of which do not currently exist, to ensure that any assessment captures the full spectrum of these trustworthiness criteria.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>Conclusion</h3>
+<p>As autonomous systems play greater roles in our daily lives and interact more closely with humans, we need to build systems worthy of trust regarding safety, security, and other non-functional properties. In this article, we have first examined AS domains of different levels of maturity and then identified their specification challenges and related research directions. One of these challenges is the formalization of knowledge easily grasped by humans so that it becomes interpretable by machines. Prominent examples include the specification of driving regulations for AVs, and the specification of human knowledge expertise in the context of AI-based medical diagnostics. How to specify and model human behavior, intent, and mental state is a further challenge common to all domains where humans interact closely with AS, such as in human-robot collaborative environments in smart manufacturing. Alternative approaches involve the specification of norms to characterize the desired behavior of AS, which regulate what the system should or should not do. An emerging research direction is the design of monitors to observe the system and check compliance with norms.<sup><a href="#R2">2</a></sup> The example of swarm robotics raises the need and challenge to specify behavior that emerges at the system level and relies on certain actions of the entities that form the system with each other and their environment.</p>
+<hr/>
+<blockquote>
+<p><em>As autonomous systems play greater roles in our daily lives and interact more closely with humans, we need to build systems worthy of trust.</em></p>
+</blockquote>
+<hr/>
+<p>Beyond the technical aspects, across the specific AS domains, are research challenges related to governance and regulation for trustworthiness, requiring a holistic and human-centered approach to specification focused on responsibility and accountability, and enabling explainability from the outset. Fundamental to specifying for trustworthiness is a sound understanding of human behavior and expectations, as well as the social and ethical norms applicable when humans directly interact with AS. As for future work, an interesting extension of this article would be to produce a classification of properties to be specified for trustworthiness under the different intellectual challenges discussed&mdash;for example, socio-technical properties of explainability are purpose, audience, content, timing, and delivery mechanism of explanations.</p>
+<p>We conclude that specifying for trustworthiness requires advances on the technical and engineering side, informed by new insights from social sciences and humanities research. Thus, tackling this specification challenge necessitates tight collaboration of engineers, roboticists, and computer scientists with experts from psychology, sociology, law, politics, economics, ethics, and philosophy. Most importantly, continuous engagement with regulators and the general public will be key to trustworthy AS.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-6"></a></p>
+<h3>Acknowledgments</h3>
+<p>This work has been supported by the U.K. EPSRC under the grants: [EP/V026518/1], [EP/V026607/1], [EP/V026747/1], [EP/V026763/1], [EP/V026682/1], [EP/V026801/2], [EP/S027238/1] and [EP/V00784X/1]. A.B. and B.N. are also supported by EPSRC [EP/R013144/1] and SFI [13/RC/2094_P2]. Y.D. is also supported by a RAEng Chair in Emerging Technologies [CiET1718\46]. M.M. is also supported by EPSRC [EP/Y005244/1].</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Amershi, S. et al. Software engineering for machine learning: A case study. In <em>Proc. of the 41<sup>st</sup> Intern. Conf. on Software Engineering: Software Engineering in Practice.</em> IEEE/ACM (2019), 291&ndash;300; 10.1109.</p>
+<p><a name="R2"></a>2. Criado, N. Resource-bounded norm monitoring in multi-agent systems. <em>J. Artificial Intelligence Res. 62</em>, 1 (May 2018), 153&ndash;192; 10.1613/jair.1.11206.</p>
+<p><a name="R3"></a>3. D&#39;Amour, A. et al. Underspecification presents challenges for credibility in modern machine learning. <em>CoRR</em> (2020); <a href="https://arxiv.org/abs/2011.03395">https://arxiv.org/abs/2011.03395</a></p>
+<p><a name="R4"></a>4. DeGrave, A.J., Janizek, J.D., and Lee, S. AI for radiographic COVID-19 detection selects shortcuts over signal. <em>Nature Machine Intelligence</em> (2021), 1&ndash;10.</p>
+<p><a name="R5"></a>5. Demiris, Y. Prediction of intent in robotics and multi-agent systems. <em>Cognitive Processing 8</em>, 3 (2007), 151&ndash;158; 10.1007/s10339-007-0168-9.</p>
+<p><a name="R6"></a>6. Department for Transport. The highway code&ndash;Using the road (159 to 203), 2022; <a href="https://bit.ly/49nAFbh">https://bit.ly/49nAFbh</a>.</p>
+<p><a name="R7"></a>7. Drury, J. The role of social identity processes in mass emergency behaviour: An integrative review. <em>European Rev. of Social Psychology 29</em>, 1 (2018), 38&ndash;81.</p>
+<p><a name="R8"></a>8. Escalante, M.A.L. et al. Is IT ethical? Board game: Playing with speculative ethics of IT innovation in disaster and risk management. In <em>Proc. of the IX Latin American Conf. on Human Computer Interaction.</em> ACM (2019), 8; 10.1145/3358961.3358962. Article 9</p>
+<p><a name="R9"></a>9. Famelis, M., Salay, R., and Chechik, M. Partial models: Towards modeling and reasoning with uncertainty. In <em>34<sup>th</sup> Intern. Conf. on Software Engineering.</em> IEEE Computer Society (2012), 573&ndash;583; 10.1109/ICSE.2012.6227159.</p>
+<p><a name="R10"></a>10. Fischbein, D. et al. Weak alphabet merging of partial behavior models. <em>ACM Trans. Software Engineering Methodology 21</em>, 2 (2012), 9:1&ndash;9:47; 10.1145/2089116.2089119.</p>
+<p><a name="R11"></a>11. Fisher, M. et al. Towards a framework for certification of reliable autonomous systems. <em>Autonomous Agents and Multi-Agent Systems 35</em>, 8 (2021), 65; 10.1007/s10458-020-09487-2.</p>
+<p><a name="R12"></a>12. Fletcher, L., Clarke, R., Richardson, T., and Hansen, M. Reinforcement learning for a perched landing in the presence of wind. In <em>AIAA SciTech 2021 Forum.</em> American Institution of Aeronautics and Astronautics (2021); 10.2514/6.2021-1282.</p>
+<p><a name="R13"></a>13. International Organization for Standardization. ISO/IEC/IEEE 24765:2017 systems and software engineering&mdash;Vocabulary; <a href="https://www.iso.org/standard/71952.html">https://www.iso.org/standard/71952.html</a></p>
+<p><a name="R14"></a>14. Freeman, K. et al. Use of artificial intelligence for image analysis in breast cancer screening programmes: Systematic review of test accuracy. <em>BMJ 374</em> (2021); 10.1136/bmj.n1872.</p>
+<p><a name="R15"></a>15. Gao, Y., Chang, H.J., and Demiris, Y. User modelling using multimodal information for personalised dressing assistance. <em>IEEE Access 8</em> (2020), 45700&ndash;45714; 10.1109/ACCESS.2020.2978207.</p>
+<p><a name="R16"></a>16. Georgiou, T. and Demiris, Y. Adaptive user modelling in car racing games using behavioural and physiological data. <em>User Modelling and User-Adapted Interaction 27</em> (2017), 267&ndash;311; 10.1007/s11257-0179192-3.</p>
+<p><a name="R17"></a>17. Grigore, E.C. et al. Joint action understanding improves robot-to-human object handover. In <em>Proc. of the 2013 IEEE/RSJ Intern. Conf. on Intelligent Robots and Systems</em> (2013), 4622&ndash;4629; 10.1109/IROS.2013.6697021.</p>
+<p><a name="R18"></a>18. Hamon, R., Junklewitz, H., and Sanchez, I. Robustness and explainability of artificial intelligence. <em>Technical Report.</em> Publications Office of the European Union (2020); 10.2760/57493.</p>
+<p><a name="R19"></a>19. Harper, C. et al. Safety validation of autonomous vehicles using assertion-based oracles. arXiv (2021); 10.48550/ARXIV.2111.04611.</p>
+<p><a name="R20"></a>20. Harrison, M.D., Masci, P., Campos, J.C., and Curzon, P. Verification of user interface software: The example of use-related safety requirements and programmable medical devices. <em>IEEE Trans. Hum. Mach. Systems 47</em>, 6 (2017), 834&ndash;846; 10.1109/THMS.2017.2717910.</p>
+<p><a name="R21"></a>21. Heimlich, J.E. and Ardoin, N.M. Understanding behavior to understand behavior change: A literature review. <em>Environmental Education Research 14</em>, 3 (2008), 215&ndash;237.</p>
+<p><a name="R22"></a>22. Huynh, T.D. et al. Addressing regulatory requirements on explanations for automated decisions with provenance: A case study. <em>Digital Government: Research and Practice 2</em>, 2 (Jan. 2021); 10.1145/3436897.</p>
+<p><a name="R23"></a>23. Ishikawa, F. and Matsuno, Y. Evidence-driven requirements engineering for uncertainty of machine learning-based Systems. In <em>Proceedings of the 28<sup>th</sup> IEEE Intern. Requirements Engineering Conf.</em> (2020), 346&ndash;351.</p>
+<p><a name="R24"></a>24. Jackson, D. Alloy: A language and tool for exploring software designs. <em>Commun. ACM 62</em>, 9 (2019), 66&ndash;76; 10.1145/3338843</p>
+<p><a name="R25"></a>25. James, K. The organizational science of disaster/terrorism prevention and response: Theory-building toward the future of the field. <em>J. of Organizational Behavior 32</em>, 7 (2011), 1013&ndash;1032.</p>
+<p><a name="R26"></a>26. Jia, Y., McDermid, J., Lawton, T., and Habli, I. The role of explainability in assuring safety of machine learning in healthcare. arXiv (2021); 10.48550/ARXIV.2109.00520.</p>
+<p><a name="R27"></a>27. Koopman, P. et al. <em>Certification of Highly Automated Vehicles for Use on UK Roads: Creating an IndustryWide Framework for Safety.</em> Five AI Ltd. (2019).</p>
+<p><a name="R28"></a>28. Kramer, J. Is abstraction the key to computing? <em>Communications of the ACM 50</em>, 4 (2007), 36&ndash;42; 10.1145/1232743.1232745.</p>
+<p><a name="R29"></a>29. Kress-Gazit, H. et al. Formalizing and guaranteeing human-robot interaction. <em>Communications of the ACM 64</em>, 9 (Aug. 2021), 78&ndash;84; 10.1145/3433637.</p>
+<p><a name="R30"></a>30. Lee, Y., Lee, J., and Lee, Z. The effect of self identity and social identity on technology acceptance. In <em>Proc. of the Intern. Conf. on Information Systems 59</em>, (2001); <a href="https://aisel.aisnet.org/icis2001/59/">https://aisel.aisnet.org/icis2001/59/</a>.</p>
+<p><a name="R31"></a>31. Maoz, S. and Ringert, J.O. A framework for relating syntactic and semantic model differences. <em>Software and Systems Modeling 17</em>, 3 (2018), 753&ndash;777; 10.1007/s10270-016-0552-y.</p>
+<p><a name="R32"></a>32. Maoz, S. and Ringert, J.O. On the software engineering challenges of applying reactive synthesis to robotics. In <em>Proc. of the 1<sup>st</sup> Intern. Workshop on Robotics Software Eng.</em>, ACM (2018), 17&ndash;22; 10.1145/3196558.3196561.</p>
+<p><a name="R33"></a>33. Mens, T. Introduction and roadmap: History and challenges of software evolution. In <em>Software Evolution</em>, T. Mens and S. Demeyer (Eds.), Springer (2008), 1&ndash;11; 10.1007/978-3-540-76440-3_1.</p>
+<p><a name="R34"></a>34. Murukannaiah, P.K., Ajmeri, N., Jonker, C.M., and Singh, M.P. New foundations of ethical multiagent systems. In <em>Proc. of the 19<sup>th</sup> Intern. Conf. on Autonomous Agents and MultiAgent Systems</em>, Intern. Found. for Autonomous Agents and Multiagent Systems (2020), 1706&ndash;1710.</p>
+<p><a name="R35"></a>35. Naiseh, M., Bentley, C.M., and Ramchurn, S. Trustworthy autonomous systems (TAS): Engaging TAS experts in curriculum design. In <em>Proc. of the 2022 IEEE Global Eng. Education Conf.</em>; 10.48550/ARXIV.2202.07447.</p>
+<p><a name="R36"></a>36. Narayanan, A. 21 fairness definitions and their politics. In <em>Proceedings of the Conf. on Fairness, Accountability, and Transparency</em>, ACM (2021).</p>
+<p><a name="R37"></a>37. Şahin, E. Swarm robotics: From sources of inspiration to domains of application. In <em>Swarm Robotics</em>, E. Şahin and W. Spears (Eds.). Springer Berlin Heidelberg, (2005), 10&ndash;20.</p>
+<p><a name="R38"></a>38. Schneiders, E. et al. Non-dyadic interaction: A literature review of 15 years of human-robot interaction conference publications. <em>J. Human-Robot Interactions 11</em>, 2, Article 13, (Feb. 2022), 32; 10.1145/3488242.</p>
+<p><a name="R39"></a>39. Sebanz, N., Bekkering, H., and Knoblich, G. Joint action: Bodies and minds moving together. <em>Trends in Cognitive Sciences 10</em>, 2 (2006), 70&ndash;76.</p>
+<p><a name="R40"></a>40. Soh, H. and Demiris, Y. Learning assistance by demonstration: Smart mobility with shared control and paired haptic controllers. <em>J. Human-Robot Interactions 4</em>, 3 (Dec. 2015), 76&ndash;100; <a href="http://10.5898/JHRI.4.3.Soh">10.5898/JHRI.4.3.Soh</a>.</p>
+<p><a name="R41"></a>41. Spears, R. Social influence and group identity. <em>Annual Rev. of Psychology 72</em> (2021), 367&ndash;390.</p>
+<p><a name="R42"></a>42. Topol, E.J. High-performance medicine: The convergence of human and artificial intelligence. <em>Nature Medicine 25</em>, 1 (2019), 44&ndash;56.</p>
+<p><a name="R43"></a>43. Tsakalakis, N. et al. The dual function of explanations: Why it is useful to compute explanations. <em>Computer Law and Security Rev. 41</em> (Mar. 18, 2021); <a href="http://10.1016/j.clsr.2020.105527">10.1016/j.clsr.2020.105527</a>.</p>
+<p><a name="R44"></a>44. Wei, O., Gurfinkel, A., and Chechik, M. On the consistency, expressiveness, and precision of partial modeling formalisms. <em>Inf. Comput. 209</em>, 1 (2011), 20&ndash;47; <a href="http://10.1016/j.ic.2010.08.001">10.1016/j.ic.2010.08.001</a>.</p>
+<p><a name="R45"></a>45. Winfield, A.F.T. and Nembrini, J. Safety in numbers: Fault-tolerance in robot swarms. <em>Intern. J. on Modelling Identification and Control 1</em>, 1 (2006), 30&ndash;37; 10.1504/IJMIC.2006.008645.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Authors</h3>
+<p><strong>Dhaminda Abeywickrama</strong> (<a href="mailto:dhaminda.abeywickrama@bristol.ac.uk">dhaminda.abeywickrama@bristol.ac.uk</a>) is a research fellow in the Department of Computer Science at the University of Bristol, U.K.</p>
+<p><strong>Amel Bennaceur</strong> is an associate professor of Computing at the Open University, U.K., and a senior research fellow at Lero Ireland.</p>
+<p><strong>Greg Chance</strong> is a research fellow in the Department of Computer Science at the University of Bristol, U.K.</p>
+<p><strong>Yiannis Demiris</strong> is a professor in Human-Centered Robotics at the Department of Electrical and Electronic Engineering, Imperial College, London, U.K.</p>
+<p><strong>Anastasia Kordoni</strong> is a senior research analyst at Trilateral Research Ltd, U.K., and a senior research associate in Psychology at Lancaster University, U.K.</p>
+<p><strong>Mark Levine</strong> is a professor of Social Psychology at Lancaster University, U.K.</p>
+<p><strong>Luke Moffat</strong> is a senior research associate in Sociology at Lancaster University, U.K.</p>
+<p><strong>Luc Moreau</strong> is a professor of Computer Science and Head of the Department of Informatics at King&#39;s College London, U.K.</p>
+<p><strong>Mohammad Reza Mousavi</strong> is a professor of Software Engineering at King&#39;s College London, U.K.</p>
+<p><strong>Bashar Nuseibeh</strong> is a professor of Computing at the Open University, U.K., and chief scientist at Lero Ireland.</p>
+<p><strong>Subramanian Ramamoorthy</strong> is a professor of Robot Learning and Autonomy, and director of the Institute of Perception, Action and Behaviour, within the School of Informatics at the University of Edinburgh, U.K.</p>
+<p><strong>Jan Oliver Ringert</strong> is a professor of Software Engineering at the Bauhaus-University Weimar, Germany.</p>
+<p><strong>James Wilson</strong> is a research associate in the Department of Engineering Mathematics at the University of Bristol, U.K.</p>
+<p><strong>Shane Windsor</strong> is an associate professor of Bio-Inspired Aerodynamics at the University of Bristol, U.K.</p>
+<p><strong>Kerstin Eder</strong> is a professor of Computer Science at the University of Bristol, U.K.</p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p>&copy; 2024 copyright held by the owner/author(s).<br/>
+Request permission to (re)publish from the owner/author</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2024 ACM, Inc.</p>
+
+<p>&nbsp;</p>
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-2">Key Insights</a></li>
+<li class="miniWidgetItem"><a href="#body-3">Autonomous Systems Domains and Their Specification Challenges</a></li>
+<li class="miniWidgetItem"><a href="#body-4">Intellectual Challenges for the Autonomous Systems Community</a></li>
+<li class="miniWidgetItem"><a href="#body-5">Conclusion</a></li>
+<li class="miniWidgetItem"><a href="#body-6">Acknowledgments</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Authors</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/278110-making-empathy-artificial">
+Making Empathy Artificial
+</a>
+</h5>
+<span class="dateNews">Samuel Greengard</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/8/274934-si-and-binary-prefixes-clearing-the-confusion">
+SI and Binary Prefixes: Clearing the Confusion
+</a>
+</h5>
+<span class="dateNews">Hakan Temiz</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/275214-automated-tests-are-the-safety-net">
+Automated Tests Are the Safety Net
+</a>
+</h5>
+<span class="dateNews">Yegor Bugayenko</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href="<iframe title=" vimeo-player" src="https://player.vimeo.com/video/894616161?h=2823b81798" width="640" height="360" frameborder="0" allowfullscreen></iframe> "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/1/278895-on-specifying-for-trustworthiness/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2023 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
