@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>What do Trains, Horses, and Home Internet Installation have in Common? - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="System Administration" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3640326" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?qc_type=operationsandlife&page_title=Operations%20and%20Life">Operations and Life</a></h3>
+<label>January 10, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3640326">Volume 21, issue 6 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3639447">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">What do Trains, Horses, and Home Internet Installation have in Common?</h1>
+<h2>Avoid changes mid-process</h2>
+<h3>Thomas A. Limoncelli</h3>
+<p>I was filled with anticipation. After a long wait, my new home ISP connection was finally being installed. The installation technician had finally arrived.</p>
+<p>But I was disappointed when he showed me the work order. One of the options I had ordered was missing.</p>
+<p>He nodded and confirmed the error. "Sorry about that, sir. They usually don't mess that up on orders. I can fix it, but..."</p>
+<p>He paused. He looked around and waved me over like he was going to tell me a secret, which I thought was a bit odd considering that we were the only two people in the room.</p>
+<p>"Look, I've been doing this job for many years. Can I give you a little tip?"</p>
+<p>"Of course!" I replied, eager to learn something new.</p>
+<p>"You see," he leaned in and in a very serious tone explained, "I could call into the office and they'll add that feature. Sure. However, our team isn't really good at making changes in the middle of an installation. Once the train has left the station, it's not easy to change the color of the train."</p>
+<p>"I see." I shook my head knowingly, pretending I knew what he meant.</p>
+<p>"But, it's OK. Let me tell you a better way." He looked around again as if he was confirming we were still alone, then leaned in a little more. "That feature can be requested post-installation. If you wait until I'm done here, and then call it in, it will be handled by the post-install team. They have a process for adding that feature. My team? We're the installation team."</p>
+<p>"And the train's already left the station?"</p>
+<p>"Exactly."</p>
+<p>At first, I thought he was just trying to shirk his responsibilities and pass the buck on to someone else. His advice, however, made a lot of sense. The installation team probably generated configurations ahead of time, planned out how and when those changes need to be activated, and so on. The entire day is planned ahead. Bureaucracies usually have a "happy path" that works well, and any deviation requires—who knows what? Managers getting involved? Error-prone manual steps? Ad hoc database queries? There's no way I could know. The point was clear, however: Don't change horses midstream—or the color of the train.</p>
+<p>I assured him I understood and would do as he suggested.</p>
+<p>The next day, I called the ISP and spoke with the post-installation team. I didn't even tell them the feature was missing from the original order. I just asked for the addition as if I'd had their service for months.</p>
+<p>The installation tech was right. The feature was added and all was well.</p>
+<p>&nbsp;</p>
+<h3>Installing and Fixing are Different Skill Sets</h3>
+<p>This experience reminded me of a wise thing my manager did back in the 1990s when I was on a system administration team at a large research facility. One of our biggest responsibilities was installing and maintaining the fleet of desktop workstations used by the researchers. </p>
+<p>Installing new machines was a common task for us. Our manager noticed that sometimes we did it in minutes, and sometimes it took hours, even days.</p>
+<p>He investigated why there was so much variation. He found one ticket in our helpdesk system that had been open for more than a week and asked the system administrator what was taking so long.</p>
+<p>The sysadmin explained that there were many reasons, starting with the machine having nonstandard hardware. It had a second Ethernet port so that it could be directly connected to both the usual network plus the researcher's lab network. Our automated configuration script didn't work in that situation, so he had to remove the extra Ethernet card, do the installation, and then reinstall the card.</p>
+<p>That added a few hours, but it didn't explain why the ticket had remained open after more than a week. The sysadmin further explained that the user also needed certain software installed. The installation was complex and required some planning and a few tries to get it right.</p>
+<p>Now that the software worked, the user realized it stored some data on the local disk, which needed to be backed up. So, he was writing a Perl script to do the backups.</p>
+<p>This simple desktop workstation installation was turning into a major project.</p>
+<p>"Anything else?" asked the manager.</p>
+<p>The sysadmin pulled out a scrap of paper where he had a list of other tasks, including other software to install and researching how to connect this machine to some specialized lab equipment.</p>
+<p>It became obvious to the manager that this was becoming <i>the project that would never end</i>.</p>
+<p>The manager put his foot down and created a new policy that defined the limits of what would be done as part of an installation. Everything else had to be on separate tickets, to be accomplished after the fact.</p>
+<p>We now had one standard process with a limited scope and a predictable time estimate.</p>
+<p>He also trained the installers on the importance of asking people to open separate helpdesk tickets for special requests. Technicians want to be helpful and feel obligated to try to do special requests right away. They need to know when the best way to help someone is by not helping them, but by asking them to open a ticket.</p>
+<p>He even suggested a script to use so that they had a verbal tool to say no without sounding disagreeable: "Gosh, that sounds great! I'd love to do that for you, but I'm on the install team. That kind of thing is done by the other side of my team. Please open a ticket and they'll take care of it right away."</p>
+<p>Customers receive much better service when there is a clear delineation between what can and can't happen as part of an installation.</p>
+<p>&nbsp;</p>
+<h3>More Examples</h3>
+<p>I've applied this philosophy in other areas of operations. There are many "setup" or "installation" tasks in IT, and many of them are susceptible to dragging on as users ask for changes and additions.</p>
+<p>A recent example in my work involved setting up CI/CD (continuous integration/continuous deployment) pipelines for developers. Usually developers can do this in a self-service manner, but frequently the initial creation requires administrative privileges. If there is no well-defined endpoint, the SRE (site reliability engineer) or DevOps engineer will be finessing and refining the pipeline forever. Instead, I recommend setting up the initial pipeline with some kind of "hello world" example to show that the pipeline works, but putting the responsibility on the developer to swap in their code and evolve the pipeline from then on.</p>
+<p>I'm sure if you think about it, you'll find more examples in your environment.</p>
+<p>&nbsp;</p>
+<h3>Unexpected Benefits</h3>
+<p>I'd like to highlight two unexpected downstream benefits of limiting installation to just installation. First, it allows the manager to be more proactive about fixing problems. Typically, a repeatable task should always take about the same amount of time to complete. Large variations are a red flag.</p>
+<p>In my earlier example, installing a new machine should take about an hour, including unboxing it. If the task takes more than an hour, something has probably gone wrong. Instead of waiting for the user to complain about delays, a manager can intervene and resolve the issue. Cool managers do this in a subtle way, like pretending to stop by for a social visit on their way to get coffee, and nobody will be the wiser when they just happen to be in the right place at the right time to debug the cause of the delay. Users will think the manager has a psychic ability to know when an employee is having difficulties. I'm OK with that.</p>
+<p>Another benefit of streamlining installation is that it simplifies the process. A high number of possible variations makes tasks more error-prone. Complexity may lead people to think that a task can't be automated. By simplifying the process, how it <i>could</i> become automated becomes more obvious.</p>
+<p>This also allows an organization to be more strategic about automation. How something is automated at installation time may be very different from how it would be done post-installation. Greenfield projects are typically easier than mutating an existing system. It may require two codebases whose changes must be coordinated to stay in sync. A strategic decision can be made instead to automate in only one place. This saves coding and code maintenance, and may avoid confusion when troubleshooting.</p>
+<p>Recently, thinking in these terms helped a project I was involved with that was facing a catch-22 dilemma. Certain customers wanted a customization that was difficult to deliver as part of the initial setup. They wanted to be able to upload their own SSL (Secure Sockets Layer) encryption keys via their customer portal—but we couldn't set up their customer portal without having their SSL encryption keys. The initial plan was to create a special "pre-service portal" for this situation. That would have required months of development and security testing. </p>
+<p>Instead, we declared that such customizations were permitted only as a post-installation change. In this way, we could leverage the existing customer control panel, saving considerable engineering effort. The customization could be done after the newly built system was made available to the customer but before the customer made the system available to employees.</p>
+<p>This installation-only approach may also lead to organizational improvements. It is often beneficial to have one team focused on new installations and another on post-installation work. Each team can become specialized. Each can optimize their processes in ways that are best for them. The management techniques required for the two teams may be different; thus, having two managers—each with different skills—may better support the organization. This would also make it easier to hire for the roles because the managers would not have to be generalists.</p>
+<p>The agile scrum methodology gives similar advice, recommending no changes to the plan once the iteration has begun. If interruptions are to be expected—for example, when applying scrum to SRE or operational work—it recommends designating one person per iteration be designated to handle interruptions. That way you have a plan for the unplanned.</p>
+<p>Having a well-defined scope of work prevents scope creep. It prevents tasks from never ending. It also looks more professional to have a fixed plan plus a well-defined process to handle special requests and changes.</p>
+<p>That installation tech gave me some pretty good advice.</p>
+<p>&nbsp;</p>
+<p><b>Thomas A. Limoncelli</b> is a technical product manager at Stack Overflow Inc. from his home in New Jersey. His books include <i>The Practice of Cloud Administration</i> (<a href="https://the-cloud-book.com/">https://the-cloud-book.com</a>), <i>The Practice of System and Network Administration</i> (<a href="https://the-sysadmin-book.com/">https://the-sysadmin-book.com</a>), and <i>Time Management for System Administrators</i> (<a href="https://tomontime.com/">https://TomOnTime.com</a>). He blogs at <a href="http://everythingsysadmin.com/">EverythingSysadmin.com</a> and posts at <a href="https://twitter.com/yesthattom">@YesThatTom</a>. He holds a B.A. in computer science from Drew University.</p>
+<p>Copyright © 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'844d26df0c6a07b0',t:'MTcwNTE0Mzc5Ny44NzAwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;844d26df0c6a07b0&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 6</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3639447">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Adam Oliner, Archana Ganapathi, Wei Xu</span> - <a href="detail.cfm?id=2082137"><b>Advances and Challenges in Log Analysis</b></a>
+<br/>
+Computer-system logs provide a glimpse into the states of a running system. Instrumentation occasionally generates short messages that are collected in a system-specific log. The content and format of logs can vary widely from one system to another and even among components within a system. A printer driver might generate messages indicating that it had trouble communicating with the printer, while a Web server might record which pages were requested and when.
+</p>
+<br/>
+<p>
+<span>Mark Burgess</span> - <a href="detail.cfm?id=1937179"><b>Testable System Administration</b></a>
+<br/>
+The methods of system administration have changed little in the past 20 years. While core IT technologies have improved in a multitude of ways, for many if not most organizations system administration is still based on production-line build logistics (aka provisioning) and reactive incident handling. As we progress into an information age, humans will need to work less like the machines they use and embrace knowledge-based approaches. That means exploiting simple (hands-free) automation that leaves us unencumbered to discover patterns and make decisions.
+</p>
+<br/>
+<p>
+<span>Christina Lear</span> - <a href="detail.cfm?id=1922541"><b>System Administration Soft Skills</b></a>
+<br/>
+System administration can be both stressful and rewarding. Stress generally comes from outside factors such as conflict between SAs (system administrators) and their colleagues, a lack of resources, a high-interrupt environment, conflicting priorities, and SAs being held responsible for failures outside their control. What can SAs and their managers do to alleviate the stress? There are some well-known interpersonal and time-management techniques that can help, but these can be forgotten in times of crisis or just through force of habit.
+</p>
+<br/>
+<p>
+<span>Thomas A. Limoncelli</span> - <a href="detail.cfm?id=1921361"><b>A Plea to Software Vendors from Sysadmins - 10 Do&#8217;s and Don&#8217;ts</b></a>
+<br/>
+A friend of mine is a grease monkey: the kind of auto enthusiast who rebuilds engines for fun on a Saturday night. He explained to me that certain brands of automobiles were designed in ways to make the mechanic&#8217;s job easier. Others, however, were designed as if the company had a pact with the aspirin industry to make sure there are plenty of mechanics with headaches. He said those car companies hate mechanics. I understood completely because, as a system administrator, I can tell when software vendors hate me. It shows in their products.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

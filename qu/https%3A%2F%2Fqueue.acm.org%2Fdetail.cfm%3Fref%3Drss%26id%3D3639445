@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>How to Design an ISA - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Computer Architecture" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3640326" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>January 11, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3640326">Volume 21, issue 6 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3639445">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">How to Design an ISA</h1>
+<h2>The popularity of RISC-V has led many to try designing instruction sets.</h2>
+<h3>David Chisnall</h3>
+<p>Over the past decade I've been involved in several projects that have designed either ISA (instruction set architecture) extensions or clean-slate ISAs for various kinds of processors (you'll even find my name in the acknowledgments for the RISC-V spec, right back to the first public version). When I started, I had very little idea about what makes a good ISA, and, as far as I can tell, this isn't formally taught anywhere. With the rise of RISC-V as an open base for custom instruction sets, however, the barrier to entry has become much lower and the number of people trying to design some or all of an instruction set has grown immeasurably.</p>
+<p>&nbsp;</p>
+<h3>What is an Instruction Set?</h3>
+<p>An instruction set is a lingua franca between compilers and microarchitecture. As such, it has a lot in common with compiler intermediate languages, a subject on which Fred Chow has written <i><a href="https://queue.acm.org/detail.cfm?id=2544374">an excellent overview</a></i>.<sup>2</sup></p>
+<p>Programmers see details of the target platform at three levels:</p>
+<p>• The <i>ABI (application binary interface)</i> is a set of conventions that define how compilers use visible hardware features. This may be private to a single compiler or shared as a convention between multiple interoperable compilers.</p>
+<p>• The <i>architecture</i> defines everything that the hardware guarantees. This is a contract between the people implementing compilers and operating systems and those implementing the hardware. The architecture includes mechanisms for enumerating devices, configuring interrupts, and so on. The ISA is the core part of the architecture that defines the encoding and behavior of instructions and the operands they consume.</p>
+<p>• The <i>microarchitecture</i> is a specific implementation of the architecture. Ideally, programmers don't care about the specific details of microarchitectures, but these details often leak. For example, cache-line sizes may be a microarchitectural detail, but they impact false sharing and so can have a large performance impact. If you care about side channels, then you may find that the microarchitecture is very important.</p>
+<p>Conventions can often live in either the ABI or ISA. There is no hard-and-fast rule for where any of these should live, but here are a couple of helpful rules of thumb:</p>
+<p>• If different languages are going to want to do something different, it should be in the ABI.</p>
+<p>• If software needs to do a specific task to take advantage of a microarchitectural feature, that belongs in the ISA and not the ABI.</p>
+<p>&nbsp;</p>
+<h3>No Such Thing as a General-purpose ISA</h3>
+<p>I've written before that <a href="https://queue.acm.org/detail.cfm?id=2687011">there's no such thing as a general-purpose processor</a>,<sup>1</sup> but there's also no such thing as a general-purpose ISA. An ISA needs to be efficient for compilers to translate a set of source languages into. It must also be efficient to implement in the kinds of microarchitecture that hardware will adopt.</p>
+<p>Designing an ISA for all possible source languages is hard. For example, consider C, CUDA (Compute Unified Device Architecture), and Erlang. Each has a very different abstract machine. C has large amounts of mutable state and a bolted-on concurrency model that relies on shared everything, locking, and, typically, fairly small numbers of threads. Erlang has a shared-nothing concurrency model and scales to very large numbers of processes. CUDA has a complex sharing model that is tightly coupled to its parallelism model.</p>
+<p>You can compile any of these languages to any Turing-complete target (by definition), but that may not be efficient. If it were easy to compile C code to GPUs (and take advantage of the parallelism), then CUDA wouldn't need to exist. Any family of languages has a set of implicit assumptions that drive decisions about the most efficient targets.</p>
+<p>Algol-family languages, including C, typically have good locality of reference (both spatial and temporal), but somewhat random access patterns. They have a single stack, and a large proportion of memory accesses will be to the current stack frame. They allocate memory in objects that are typically fairly small, and most are not shared between threads. Object-oriented languages typically do more indirect branches and more pointer chasing. Array-processing languages and shading languages typically do a lot of memory accesses with predictable access patterns.</p>
+<p>If you don't articulate the properties of the source languages you're optimizing for, then you are almost certainly baking in some implicit assumptions that may or may not actually hold.</p>
+<p>Similarly, looking down toward the microarchitecture, a good ISA for a small embedded microcontroller may be a terrible ISA for a large superscalar out-of-order processor or a massively parallel accelerator. There are good reasons why 32-bit Arm failed to compete with Intel for performance, and why x86 has failed to displace Arm in low-power markets. The things that you want to optimize for at different sizes are different.</p>
+<p>Designing an ISA that scales to both very large and very small cores is hard. Arm's decision to separate its 32- and 64-bit ISAs meant that it could assume a baseline of register renaming and speculative execution in its 64-bit A profile and in-order execution in its 32-bit M profile, and tune both, assuming a subset of possible implementations. RISC-V aims to scale from tiny microcontrollers up to massive server processors. It's an open research question whether this is possible (certainly no prior architecture has succeeded).</p>
+<p>&nbsp;</p>
+<h3>Business is not a Separable Concern</h3>
+<p>One kind of generality does matter: Is the ISA a stable contract? This is more a business question than a technical one. A stable ISA can enter a feedback cycle where people buy it because they have software that runs on it and people write software to run on it because they have it. Motorola benefited from this with its 68000 line for a long time, Intel with its x86 line for even longer. </p>
+<p>This comes with a cost: In every future product you will be stuck with any design decision you made in the current generation. When it started testing simulations of early Pentium prototypes, Intel discovered that a lot of game designers had found that they could shave one instruction off a hot loop by relying on a bug in the flag-setting behavior of Intel's 486 microprocessor. This bug had to be made part of the architecture: If the Pentium didn't run popular 486 games, customers would blame Intel, not the game authors.</p>
+<p>If you buy an NVIDIA GPU, you do not get a document explaining the instruction set. It, and many other parts of the architecture, are secret. If you want to write code for it and don't want to use NVIDIA's toolchain, you are expected to generate PTX, which is a somewhat portable intermediate language that the NVIDIA drivers can consume. This means that NVIDIA can completely change the instruction set between GPU revisions without breaking your code. In contrast, an x86 CPU is expected to run the original PC DOS (assuming it has BIOS emulation in the firmware) and every OS and every piece of user-space software released for PC platforms since 1978.</p>
+<p>This difference impacts the degree to which you can overfit your ISA to the microarchitecture. Both x86 and 32-bit Arm were heavily influenced by what was feasible to build at the time they were created. If you're designing a GPU or workload-specific accelerator, however, then the ISA may change radically between releases. Early AMD GPUs were VLIW (very long instruction word) architectures; modern ones are not but can still run shaders written for the older designs.</p>
+<p>A stable ISA also impacts how experimental you can be. If you add an instruction that might not be useful (or might be difficult to implement in future microarchitectures) to x86 or AArch64, then you will find that some popular bit of code uses it in some critical place and you will be stuck with it. If you do the same in a GPU or AI accelerator, then you can quietly remove it in the next generation.</p>
+<p>&nbsp;</p>
+<h4>Architecture matters</h4>
+<p>A belief that has gained some popularity in recent years is that the ISA doesn't matter. This belief is largely the result of an oversimplification of an observation that is obviously true: Microarchitecture makes more of a difference than architecture in performance. A simple in-order pipeline may execute around 0.7 instructions per cycle. A complex out-of-order pipeline may execute five or more per cycle (per core), giving almost an order of magnitude difference between two implementations of the same ISA. In contrast, in most of the projects that I've worked on, I've seen the difference between a mediocre ISA and a good one giving no more than a 20 percent performance difference on comparable microarchitectures.</p>
+<p>Two parts of this comparison are worth pointing out. The first is that designing a good ISA is a lot cheaper than designing a good microarchitecture. These days, if you go to a CPU vendor and say, "I have a new technique that will produce a 20 percent performance improvement," they will probably not believe you. That kind of overall speedup doesn't come from a single technique; it comes from applying a load of different bits of very careful design. Leaving that on the table is incredibly wasteful.</p>
+<p>The second key point is contained in the caveat at the end: " on comparable microarchitectures." The ISA constrains the design space of possible implementations. It's possible to add things to the architecture that either enable or prevent specific microarchitectural optimizations.</p>
+<p>For example, consider an arbitrary-length vector extension that operates with the source and destination operands in memory. If the user writes <code>a + b * c</code> (where all three operands are large vectors), then a pipelined implementation is going to want to load from all three locations, perform the add, perform the multiply, and then store the result. If you have to take an interrupt in the middle and you're only halfway down, what do you do? You might just say, "Well, add and multiply are idempotent, so we can restart and everything is fine," but that introduces additional constraints. In particular, the hardware must ensure that the destination does not alias any of the source values. If these values overlap, simply restarting is difficult. You can expose registers that report the progress through the add, but that prevents the pipelined operation because you can't report that you're partway through the add <i>and</i> the multiply. If you're building a GPU, then this is less important because typically, you aren't handling interrupts within kernels (and if you are, then waiting a few hundred cycles to flush all in-flight state is fine).</p>
+<p>The same problem applies to microcode. You must be able to take an interrupt immediately before or after a microcoded instruction. A simple microcode engine pauses the pipeline, issues a set of instructions expanded from the microcoded instruction, and then resumes. On a simple pipeline, this is fine (aside from the impact on interrupt latency) and may give you better code density. On a more complex pipeline, this prevents speculative execution across microcode and will come with a big performance penalty. If you want microcode and good performance from a high-end core, you need to use much more complicated techniques for implementing the microcode engine. This then applies pressure back on the ISA: If you have invested a lot of silicon in the microcode engine, then it makes sense to add new microcoded instructions.</p>
+<p>&nbsp;</p>
+<h3>What do Small Cores Want?</h3>
+<p>If you're designing an ISA for a simple single-issue in-order core, you have a clear set of constraints. In-order cores don't worry much about data dependencies; each instruction runs with the results of the previous one available. Only the larger ones do register renaming, so using lots of temporaries is fine.</p>
+<p>They typically do care about decoder complexity. The original RISC architectures had simple decoders because CISC (complex instruction set computer) decoders took a large fraction of total area. An in-order core may consist of a few tens of thousands of gates, whereas a complex decoder can easily double the size (and, therefore, cost and power consumption). Simple decoding is important on this scale.</p>
+<p>Small code is also important. A small microcontroller core may be as small as 10KB of SRAM (static random access memory). A small decrease in encoding efficiency can dwarf everything when considering the total area cost: If you need 20 percent more SRAM for your code, then that can be equivalent to doubling the core area. Unfortunately, this constraint almost directly contradicts the previous one. This is why Thumb-2 and RISC-V focused on a variable length encoding that is simple to decode: They save code size without significantly increasing decoder complexity.</p>
+<p>This is a complex tradeoff that is made even more complicated when considering multiple languages. For example, Arm briefly supported Jazelle DBX (direct bytecode execution) on some of its mobile cores. This involved decoding Java bytecode directly, with Java VM (virtual machine) state mapped into specific registers. A Java add instruction, implemented in a software interpreter, requires at least one load to read the instruction, a conditional branch to find the right handler, and then another to perform the add. With Jazelle, the load happens via instruction fetch, and the add would add the two registers that represented the top of the Java stack. This was far more efficient than an interpreter but did not perform as well as a JIT (just-in-time) compiler, which could do a bit more analysis between Java bytecodes.</p>
+<p>Jazelle DBX is an interesting case study because it made sense only in the context of a specific set of source languages and microarchitectures. It provided no benefits for languages that didn't run in a Java VM. By the time devices had more than about 4MB of RAM, Jazelle was outperformed by a JIT. Within that envelope, however, it was a good design choice.</p>
+<p>Jazelle DBX should serve as a reminder that optimizations for one size of core can be incredibly bad choices for other cores.</p>
+<p>&nbsp;</p>
+<h3>What Do Big Cores Want?</h3>
+<p>As cores get bigger, other factors start to dominate. We've seen the end of Dennard scaling but not of Moore's law. Each generation still gets more transistors for a fixed price, but if you try to power them all, then your chip catches fire (the so-called "dark silicon" problem). This is part of the reason that on-SoC (system-on-a-chip) accelerators have become popular in recent years. If you can add hardware that makes a particular workload faster but is powered off entirely at other times, then that can be a big win for power consumption. Components that need to be powered all of the time are the most likely to become performance-limiting factors.</p>
+<p>On a lot of high-end cores, the register rename logic is often the single biggest consumer of power. Register rename is what enables speculative and out-of-order execution. Rename registers are similar to the SSA (static single assignment) form that compilers use. When an instruction is dispatched, a new rename register is allocated to hold the result. When another instruction wants to consume that result, it is dispatched to use this rename register. Architectural registers are just names for mapping to SSA registers.</p>
+<p>A rename register consumes space from the point at which an instruction that defines it enters speculative execution until another instruction that writes to the same rename register exits speculation (i.e., definitely happens). If a temporary value is live at the end of a basic block, then it continues to consume a rename register. The branch at the end of the basic block will start speculatively issuing instructions somewhere else, but until that branch is no longer speculative and a following instruction has written to the register, the core may need to roll back everything up to that branch and restore that value. The ISA can have a big impact on the likelihood of encountering this kind of problem.</p>
+<p>Complex addressing modes often end up being useful on big cores. AArch64 and x86-64 both benefit from them, and the T-Head extensions add them to RISC-V. If you're doing address calculation in a loop (for example, iterating over an array), then folding this into the load-store pipeline provides two key benefits: First, there is no need to allocate a rename register for the intermediate value; second, this computed value is never accidentally live across loop iterations. The power consumption of an extra add is less than that of allocating a new rename register.</p>
+<p>Note that this is less the case for <i>very</i> complex addressing modes, such as the pre- and post-increment addressing modes on Arm, which update the base and thus still require a rename register. These modes still win to a degree because it's cheaper (particularly for pre-increment) to forward the result to the next stage in a load-store pipeline than to send it via the rename logic.</p>
+<p>One microarchitect building a high-end RISC-V core gave a particularly insightful critique of the RISC-V C extension, observing that it optimizes for the smallest encoding of instructions rather than for the smallest number of instructions. This is the right thing to do for small embedded cores, but large cores have a lot of fixed overheads associated with each executed instruction. Executing fewer instructions to do the same work is usually a win. This is why SIMD (single instruction, multiple data) instructions have been so popular: The fixed overheads are amortized over a larger amount of work. </p>
+<p>Even if you don't make the ALUs (arithmetic logic units) the full width of the registers and take two cycles to push each half through the execution pipeline, you still save a lot of the bookkeeping overhead. SIMD instructions are a good use of longer encodings in a variable-length instruction set: For four instructions' worth of work, a 48-bit encoding is probably still a big savings in code size, leaving the denser encodings available for more frequent operations.</p>
+<p>Complex instruction scheduling causes additional pain. Even moderately large in-order cores suffer from branch misprediction penalties. The original Berkeley RISC project analyzed the output of C compilers and found that, on average, there was one branch per seven instructions. This has proven to be a surprisingly durable heuristic for C/C++ code.</p>
+<p>With a seven-stage dual-issue pipeline, you might have 14 instructions in flight at a time. If you incorrectly predict a branch, half of these will be the wrong ones and will need to be rolled back, making your real throughput only half of your theoretical throughput. Modern high-end cores typically have around 200 in-flight instructions—that's over 28 basic blocks, so a 95 percent branch predictor accuracy rate gives less than a 24 percent probability of correctly predicting every branch being executed. Big cores <i>really</i> like anything that can reduce the cost of misprediction penalties.</p>
+<p>The 32-bit Arm ISA allowed any instruction to be <i>predicated</i> (conditionally executed depending on the value in a condition-code register). This was great for small to medium in-order cores because they could avoid branches, but the complexity of making everything predicated was high for big cores. The encoding space consumed by predication was large. For AArch64, Arm considered eliminating predicated execution entirely, but conditional move and a few other conditional instructions provided such a large performance win that Arm kept them.</p>
+<p>&nbsp;</p>
+<h3>You Don't Win Points for Purity</h3>
+<p>Bjarne Stroustrup said, "There are only two kinds of languages: the ones people complain about and the ones nobody uses." This holds for instruction sets (the lowest-level programming languages most people will encounter) just as much as for higher-level ones. Good instruction sets are always compromises.</p>
+<p>For example, consider the jump-and-link instructions in RISC-V. These let you specify an arbitrary register as a link register. RISC-V has 32 registers, so specifying one requires a full five-bit operand in a 32-bit instruction. Almost one percent of the total 32-bit encoding space is consumed by the RISC-V jump-and-link instruction. RISC-V is, as far as I am aware, unique in this decision. </p>
+<p>Arm, MIPS, and PowerPC all have a designated link register that their branch-and-link instructions use. Thus, they require one bit to differentiate between jump-and-link and plain jump. RISC-V chooses to avoid baking the ABI into the ISA but, as a result, requires 16 times as much encoding space for this instruction.</p>
+<p>This decision is even worse because the ABI leaks into the microarchitecture but not the architecture. RISC-V does not have a dedicated return instruction, but implementations will typically (and the ISA specification notes that this is a good idea) treat a jump-register instruction with the ABI-defined link register as a return. This means that using any link register other than the one defined in the ABI will likely result in branch mispredictions. The result is dealing with all of the downsides of baking the ABI into the ISA, but enjoying none of the benefits.</p>
+<p>This kind of reasoning applies even more strongly to the stack pointer. AArch64 and x86 both have special instructions for operating on the stack. In most code from C-like languages, the stack pointer is modified only in function prologs and epilogs, but there are many loads and stores relative to it. This has the potential for optimization in the encoding, which can lead to further optimization in the microarchitecture. For example, modern x86 chips accumulate the stack-pointer displacement for push and pop instructions, emitting them as offsets to the rename register that contains the stack pointer (so they're independent and can be issued in parallel) and then doing a single update to the stack pointer at the end. </p>
+<p>This kind of optimization is possible even if the stack pointer is just an ABI convention, but this again is a convention that's shared by the ABI and the microarchitecture, so why not take advantage of it to improve encoding efficiency in the ISA?</p>
+<p>Finally, big cores really care about parallel decoding. Apple's M2, for example, benefits hugely from the fixed-width ISA because it can fetch a block of instructions and start decoding them in parallel. The x86 instruction set, at the opposite extreme, needs more of a parser than a decoder. Each instruction is between one and 15 bytes, which may include a number of prefixes. High-end x86 chips cache decoded instructions (particularly in hot loops), but this consumes power and area that could be used for execution. </p>
+<p>This isn't <i>necessarily</i> a bad idea. As with small cores and instruction density, a variable-length instruction encoding may permit a smaller instruction cache, and that savings may offset the cost of the complex decoder.</p>
+<p>Although RISC-V uses variable-length encoding, it's very cheap to determine the length. This makes it possible to build an extra pipeline stage that reads a block of words and forwards a set of instructions to the real decoder. This is nowhere near as complex as decoding x86.</p>
+<p>&nbsp;</p>
+<h3>Some Source Languages are not Really Source Languages</h3>
+<p>A new ISA often takes a long time to gain widespread adoption. The simplest way of bootstrapping a software ecosystem is to be a good emulation target. Efficient emulation of x86 was an explicit design goal of both AArch64 and PowerPC for precisely this reason (although AArch64 had the advantage of a couple of decades more research in binary translation to draw on in its design). Apple's Rosetta 2 manages to translate most x86-64 instructions into one or two AArch64 ones.</p>
+<p>A few of its features make AArch64 (and, especially, Apple's slight variation on it) amenable to fast and lightweight x86-64 emulation. The first is having more registers, which allows all x86-64 state to be stored in registers. Second, Apple has an opt-in TSO (total store ordering) model, which makes the memory model the same as x86. (RISC-V has this as an option as well, although I'm not aware of an extension that allows dynamically switching between the relaxed memory model and TSO, as Apple's hardware permits.) </p>
+<p>Without this mode, you either need variants of all of your loads and stores that can provide the relevant barriers or you need to insert explicit fences around all of them. The former consumes a huge amount of encoding space (loads and stores make up the largest single consumer of encoding space on AArch64) the latter, many more instructions.</p>
+<p>After TSO, flags are the second-most annoying feature of x86 from the perspective of an emulator. Lots of x86 instructions set flags. Virtual PC for Mac (x86 on PowerPC) puts a lot of effort into dynamically avoiding setting flags if nothing has consumed them (e.g., if two flag-setting instructions were back to back). </p>
+<p>QEMU does something similar, preserving the source operands and the opcode of operations that set flags and computing the flags only when something checks the flags' value. AArch64 has a similar set of flags to x86, so flag-setting instructions can be translated into one or two instructions. Arm didn't get this right (from an emulation perspective) in the first version of the ISA. Both Microsoft and Apple (two companies that ship operating systems that run on Arm and need to run a lot of legacy x86 code) provided feedback, and ARMv8.4-CondM and ARMv8.5-CondM added extra modes and instructions for setting these flags differently. Apple goes further with an extension that sets the two flags present in x86 but not Arm in some unused bits of the flags register, where they can be extracted and moved into other flag bits when needed.</p>
+<p>RISC-V made the decision not to have condition codes. These have always been a feature that microarchitects hate—for a few reasons. In the worst case (and, somehow, the worst case is always x86), instructions can set <i>some</i> flags. In the case of x86, this is particularly painful because the carry flag and the interrupts-disabled flag are in the same word (which led to some very entertaining operating-system bugs, because the ABI states that the flags register is not preserved across calls, so calling a function to disable interrupts in the kernel was followed by the compiler helpfully reenabling them to restore the flags). </p>
+<p>Anything that updates part of a register is painful because it means allocating a new rename register and then doing the masked update from the old value. Even without that, condition codes mean that a lot of instructions update more than one register.</p>
+<p>Arm, even in AArch32 days, made this a lot less painful by having variants of instructions that set flags and not setting them for most operations. RISC-V decided to avoid this and instead folds comparisons into branches and has instructions that set a register to a value (typically one or zero) that can then be used with a compare-and-branch instruction such as branch if [not] equal (which can be used with register zero to mean branch of [not] zero).</p>
+<p>Emulating x86-64 quickly on RISC-V is likely to be much harder because of this choice.</p>
+<p>Avoiding flags also has some interesting effects on encoding density. Conditional branch on zero is <i>incredibly</i> common in C/C++ code for checking that parameters are not null. On x86-64, this is done as a <code>testq</code> (three-byte) instruction, followed by a <code>je</code> (jump if the test set the condition flags for equality), which is a two-byte instruction. This incurs all of the annoyances of allocating a new rename register for the flags mentioned previously, including the fact that the flags register remains live until the next flag-setting instruction exits speculation.</p>
+<p>The decision to avoid condition codes also makes adding other predicated operations much harder. The Arm conditional select and increment instruction looks strange at first glance, but using it provides more than a 10 percent speedup on some compression benchmarks. This is a moderately large instruction in AArch64: three registers and a four-bit field indicating the condition to test. This means that it consumes 19 bits in operand space. An equivalent RISC-V instruction would either need an additional source register and variants for the comparisons to perform or take a single-source operand but need a comparison instruction to set that register to zero or non-zero first.</p>
+<p>&nbsp;</p>
+<h3>Always Measure</h3>
+<p>In 2015, I supervised an undergraduate student extending an in-order RISC-V core with a conditional move and extending the LLVM back end to take advantage of it. His conclusion was that, for simple in-order pipelines, the conditional move instruction had a 20 percent performance increase on a number of benchmarks, no performance reduction on any of them, and a tiny area overhead. Or, examining the results in the opposite direction, achieving the same performance without a conditional move required around four times as much branch predictor state.</p>
+<p>This result, I am told, reflected the analysis that Arm conducted (although didn't publish) on larger and wider pipelines when designing AArch64. This is, apparently, one of the results that every experienced CPU designer knows but no one bothers to write down.</p>
+<p>AArch64 removed almost all of the predication but kept a few instructions that had a disproportionately high benefit relative to the microarchitectural complexity. The RISC-V decision to omit conditional move was based largely on a paper by the authors of the Alpha, who regretted adding conditional move because it required an extra read port on their register file. This is because a conditional move must write back either the argument or the original value.</p>
+<p>The interesting part of this argument is that it applies to an incredibly narrow set of microarchitectures. Anything that's small enough to not do forwarding doesn't need to read the old value; it just doesn't write back a value. Anything that's doing register renaming can fold the conditional move into the register rename logic and get it almost for free. The Alpha happened to be in the narrow gap between the two.</p>
+<p>It's very easy to gain intuition about what makes an ISA fast or slow based on implementations for a particular scale. These can rapidly go wrong (or start out wrong if you are working on a completely different scale or different problem space). New techniques, such as the way that NVIDIA Project Denver and Apple M-series chips can forward outputs from one instruction to another in the same bundle, can have a significant impact on performance and change the impact of different ISA decisions. Does your ISA encourage compilers to generate code that the new technique can accelerate?</p>
+<p>If you come back to this article in five to ten years, remember that technology advances. Any suggestions that I've made here may have been rendered untrue by newer techniques. If you have a good idea, measure it on simulations of different microarchitectures and see whether it makes a difference.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Chisnall, D. 2014. There's no such thing as a general-purpose processor. <i>acmqueue</i> 12(10); <a href="https://queue.acm.org/detail.cfm?id=2687011">https://queue.acm.org/detail.cfm?id=2687011</a>.</p>
+<p>2. Chow, F. 2013. The challenge of cross-language interoperability. <i>acmqueue</i> 11(10); <a href="https://queue.acm.org/detail.cfm?id=2544374">https://queue.acm.org/detail.cfm?id=2544374</a>.</p>
+<p>&nbsp;</p>
+<p><b>David Chisnall</b> is the director of systems architecture at SCI Semiconductor, where he leads the evolution of the CHERIoT platform across hardware and software. He is a former principal researcher at Microsoft, where he worked on a variety of ISA design projects, including clean-slate architectures and extensions to the 64-bit Arm architecture. He is also a visiting researcher at the University of Cambridge. His career has spanned operating systems and compilers, as well as hardware. He was twice elected to the FreeBSD core team and is the author of <i>The Definitive Guide to the Xen Hypervisor</i>. He has been an LLVM contributor since 2008 and taught the masters compiler course at the University of Cambridge.</p>
+<p>Copyright © 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'844d26d5b88b81b1',t:'MTcwNTE0Mzc5Ni4yNzYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;844d26d5b88b81b1&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 6</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3639445">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Gabriel Falcao, Jo&#227;o Dinis Ferreira</span> - <a href="detail.cfm?id=3580503"><b>To PiM or Not to PiM</b></a>
+<br/>
+As artificial intelligence becomes a pervasive tool for the billions of IoT (Internet of things) devices at the edge, the data movement bottleneck imposes severe limitations on the performance and autonomy of these systems. PiM (processing-in-memory) is emerging as a way of mitigating the data movement bottleneck while satisfying the stringent performance, energy efficiency, and accuracy requirements of edge imaging applications that rely on CNNs (convolutional neural networks).
+</p>
+<br/>
+<p>
+<span>Mohamed Zahran</span> - <a href="detail.cfm?id=3038873"><b>Heterogeneous Computing: Here to Stay</b></a>
+<br/>
+Mentions of the buzzword heterogeneous computing have been on the rise in the past few years and will continue to be heard for years to come, because heterogeneous computing is here to stay. What is heterogeneous computing, and why is it becoming the norm? How do we deal with it, from both the software side and the hardware side? This article provides answers to some of these questions and presents different points of view on others.
+</p>
+<br/>
+<p>
+<span>David Chisnall</span> - <a href="detail.cfm?id=2687011"><b>There&#8217;s No Such Thing as a General-purpose Processor</b></a>
+<br/>
+There is an increasing trend in computer architecture to categorize processors and accelerators as &quot;general purpose.&quot; Of the papers published at this year&#8217;s International Symposium on Computer Architecture (ISCA 2014), nine out of 45 explicitly referred to general-purpose processors; one additionally referred to general-purpose FPGAs (field-programmable gate arrays), and another referred to general-purpose MIMD (multiple instruction, multiple data) supercomputers, stretching the definition to the breaking point. This article presents the argument that there is no such thing as a truly general-purpose processor and that the belief in such a device is harmful.
+</p>
+<br/>
+<p>
+<span>Satnam Singh</span> - <a href="detail.cfm?id=2000516"><b>Computing without Processors</b></a>
+<br/>
+From the programmer&#8217;s perspective the distinction between hardware and software is being blurred. As programmers struggle to meet the performance requirements of today&#8217;s systems, they will face an ever increasing need to exploit alternative computing elements such as GPUs (graphics processing units), which are graphics cards subverted for data-parallel computing, and FPGAs (field-programmable gate arrays), or soft hardware.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

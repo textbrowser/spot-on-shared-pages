@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Multiparty Computation: To Secure Privacy, Do the Math - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Privacy and Rights" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3640326" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<p style="float:right;width:50%"><b>
+<a href="https://www.surveymonkey.com/r/QRML32B" target="_new2">
+What case study topics do you want to read about? Take a quick survey.
+</a><br/>
+</b></p>
+<h3><a href="/casestudies.cfm">Case Studies</a></h3>
+<label>January 9, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3640326">Volume 21, issue 6 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3639448">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Multiparty Computation: To Secure Privacy, Do the Math</h1>
+<h2>A discussion with Nigel Smart, Joshua W. Baron, Sanjay Saravanan, Jordan Brandt, and Atefeh Mashatan</h2>
+<p><i>MPC (multiparty computation) was introduced to the world in 1982—at about the same time the Commodore 64 was announced. So, why is it we're still talking about MPC more than 40 years later?</i></p>
+<p><i>Well, it turns out MPC is based on some extremely complex math, which is like nectar to anyone in the field of cryptography. And, over the past decade, MPC has come to be exhumed from the archives and harnessed as one of the most powerful tools available for the protection of sensitive data. MPC now serves as the basis for protocols that let a set of parties interact and compute on a pool of private inputs without revealing any of the data contained within those inputs—which is to say, in the end, only the results are revealed. The implications of this can often prove profound. To explore some of those implications, we asked Atefeh Mashatan, founder and director of the Cybersecurity Research Lab at Toronto Metropolitan University, to speak with four leading figures in the field: Nigel Smart, a professor at Katholieke Universiteit Leuven in Belgium who has been instrumental in the effort to make secure MPC practical; Joshua W. Baron, who managed the Information Innovation Office at DARPA (the U.S. Defense Advanced Research Projects Agency) at the time of this discussion and now works in the Executive Office of the President; Sanjay Saravanan, who is part of the Private Computation Group at Meta; and Jordan Brandt, who serves as an officer of the MPC Alliance, as well as CEO of Inpher.</i></p>
+<p><b>ATEFEH MASHATAN</b> What exactly is MPC, and why has it suddenly become a topic of conversation? </p>
+<p><b>NIGEL SMART</b> MPC goes back to the Dark Ages of computing, when it was created to allow a group of parties to compute a function on their private inputs in a way that reveals nothing but the output of the function. As a simple example, the Boston Women's Workforce Council has been using a secure MPC approach to measure gender and racial wage gaps in the greater Boston area. In this way, they've managed to analyze the aggregated data for wage gaps by gender, race, job category, tenure, and ethnicity without revealing anyone's actual wage.</p>
+<p>When I say this goes all the way back to the Dark Ages, I should add that it was little more than a theoretical concept back then. Over the past 10 years, it has become much more broadly deployed, owing to several factors. One is that the math behind MPC has become much better understood. People have also come up with better implementation ideas as computers have become much faster. Then there's also the fact that networks have gotten much faster. Together, these three factors have helped to transform MPC from a very theoretical thing into something that's quite practical.</p>
+<p><b>AM</b> There certainly is a lot of buzz about MPC now. How much of that is hype, and how much of it is real?</p>
+<p><b>NS</b> A lot of it is real. There's now an industry group called the MPC Alliance that includes nearly 60 organizations—three of which happen to be Meta, Google, and Salesforce. Most of these companies have deployed solutions already. And yet, as you survey the overall landscape, you'll find some combination of reality and hype. </p>
+<p><b>JOSHUA W. BARON</b> In terms of technical capacity, Nigel is spot on; but as for real-world deployments, I wouldn't say MPC has fully arrived quite yet. Still, when it comes to growth in real-world deployments year-over-year, MPC is clearly on a strong upward trajectory. Like Nigel, I'd say much faster networking technology has a lot to do with this.</p>
+<p>I also think it might be useful to contrast MPC with a similar technology, known as FHE (fully homomorphic encryption). Ten years ago, had you asked any of us at DARPA, we would have been primarily focused on FHE since it's based purely on the client-server model. Which is to say, the client has encrypted data that is uploaded—in encrypted form—to a much more powerful cloud. The cloud then computes on that and sends back the results. That was attractive then since the cloud was where the fastest computing was. But now, edge nodes are much more powerful and 5G networks offer enough bandwidth to handle DARPA-scale workloads. </p>
+<p>We focused solely on FHE until we ran a little experiment late last year where we open-sourced a technology that allowed us to use 10 different mobile phones to handle all the computation among themselves without any help from the back-end cloud. The application allowed up to 10 people on mobile phones to perform a joint computation that determines the optimal spot for all of them to meet without anyone revealing their current location. We posted the MPC implementation on GitHub.</p>
+<p>That went well enough to make us MPC believers. The breakthrough here owes in part to the increased compute power now available on mobile phones. But the even more important issue has to do with the amount of available 5G bandwidth, since MPC tends to be pretty bandwidth-hungry.</p>
+<p><b>AM</b> With those bandwidth requirements in mind, can you share examples where you were able to demonstrate that using MPC was worthwhile?</p>
+<p><b>JWB</b> We had a demonstration project showing how MPC could be used by an individual to enable information retrieval from many government agencies while maintaining the privacy of the individual making the inquiry. This was something that could be very narrowly focused—say, just on retrieving records related to that individual's military service. This was done in such a way that these agencies would have no idea which records had been retrieved. </p>
+<p><b>AM</b> Is this something that's currently in production?</p>
+<p><b>JWB</b> No. In this case, our job was just to demonstrate technical feasibility. Often, our first remit is to show that something actually <i>can</i> be done. </p>
+<p><b>AM</b> Is there anything else that distinguishes MPC from other confidential communication technologies?</p>
+<p><b>JORDAN BRANDT</b> I'm really glad you've brought up the matter of disambiguation, because—as both a board member of the MPC Alliance and a cofounder of an AI privacy company using MPC—I think this is an important matter in industry generally, and particularly with regard to this technology. For one thing, we have <i>multiparty computation</i> as a use case or a description of the problem, but then there's also <i>multi-party computation</i> as a cryptographic method. For example, the Confidential Computing Consortium, which is focused on hardware-based security, talks about <i>multiparty computation</i> as a use case, not as a cryptographic method. What's more, there's a good argument to be made for looking at FHE as a complementary cryptographic technology for multiparty computation. So, yeah, it can get confusing.</p>
+<p><b>SANJAY SARAVANAN</b> The meaningful distinction here necessarily relates to how the computation is done. If there were multiple parties but all the computation was done by only one of them, you could still call it <i>multiparty computation</i> in terms of the use case. But it's hard to see how that would qualify as MPC, since that inherently involves processing that's distributed among multiple parties.</p>
+<p><b>JB </b>Exactly! We're already seeing customer applications that require integrated cryptographic and hardware-based solutions. They're complementary, not competitive.</p>
+<p><b>NS</b> I see MPC as something where the security depends on mathematics rather than hardware. </p>
+<p><b>JWB</b> Yes, at the core, this is about the underlying encryption method. This raises the question, "What are the current barriers to adoption for secure multiparty computation?" Users don't care. Putting MPC into production, purely from a technical perspective, is often not the biggest challenge. The technology works, and it's secure. In terms of the barriers to adoption, it basically comes down to legal wrangling and the regulatory environment.</p>
+<p>The example that always comes to mind in this respect is the medical field, which has a ton of existing regulations related to the privacy of patient data. One of the problems is that many of these regulations were written quite a while ago and don't translate readily to a world that can take advantage of the sort of underlying privacy mechanisms MPC has to offer. It also doesn't help that the medical field is already wedded to its own long-standing privacy ecosystem. So, you face an uphill struggle whenever you suggest the adoption of some newer, more effective technology. The real question here is not, "Can this really be done?" or "Does this actually work?" but instead, "How can we get you to use this?"</p>
+<p><b>NS</b> Yes, and now, to that end, let's talk about what MPC can actually be used for. In particular, I'd like to say a bit about three obvious applications. The first is for threshold cryptography, where you have something you want to make more secure by distributing the responsibility for that security among multiple nodes. Since this is precisely what MPC does, the fit is obvious, and there are loads of commercial deployments in this space.</p>
+<p>The second area of interest is driven by privacy concerns. The classic example would be two hospitals that are looking to collaborate in some way but, of course, need to avoid disclosing patient information. Inevitably, regulatory compliance issues and application mismatch issues between the two hospitals end up making deployment far more difficult than it would otherwise be. This is where MPC often surfaces and is used essentially as privacy pixie dust. </p>
+<p>That brings us to the third application, which I believe will prove to be, by far, the most transformative one, and is where MPC enables collaborations that would otherwise never happen. Think of this as something like the Internet effect, where people quickly discovered new ways of doing business that no one had thought of before. MPC will have a similar impact by providing new, previously inconceivable ways of extracting value from data. That's because, up until now, organizations have been reluctant to share data for competitive reasons. With MPC, however, there's the potential for a new form of collaborative computing that doesn't require organizations to reveal their data to others but instead, unlocks the value contained in vastly expanded pools of data. This should open new business possibilities.</p>
+<p>&nbsp;</p>
+<p><i>Even as things currently stand, MPC is commonly employed in the construction of electronic voting and digital auction applications. It also has come to be seen as a natural element of any applications that involve privacy-centric data mining.</i></p>
+<p><i>Whenever any of these aspects of an application come together with the need for two or more organizations to collaborate on some particular undertaking, MPC becomes especially vital.</i></p>
+<p><b>AM</b> Having just learned from Nigel that threshold cryptography, privacy, and collaborative computing tend to be the biggest drivers of MPC deployment, I'm now curious to learn what prompted Meta to explore this space. </p>
+<p><b>SS</b> Actually, the reasons are inherently broader than anything internal to Meta because, as Nigel suggests, one of the primary benefits of MPC is what it does to facilitate collaboration with other organizations. I can certainly say we've found that to be the case. </p>
+<p>We kind of stumbled onto MPC about five years ago. My team at that point was working on a number of options for privacy-enhanced data collaboration, and we started looking at some zero-knowledge proofs. Then we came to slowly realize we could probably use MPC to collaborate with organizations we wouldn't have been able to work with previously. </p>
+<p><b>AM</b> You say you first started to look seriously at MPC about five years ago?</p>
+<p><b>SS</b> Right. It was in early 2018 that we started to explore MPC as something we probably could use to collaborate with other organizations without compromising on the security of any input data.</p>
+<p><b>AM</b> Were collaborations of this sort even feasible prior to 2018? Or were you limited at that point to fewer and more restrictive engagements with other organizations? If so, how did you manage to secure your data?</p>
+<p><b>SS</b> Many times, collaborations like this simply were not possible. But in some cases, we managed to accomplish something along similar lines within what I think of as a "clean-room environment." In fact, I think this was something that became fairly common throughout industry. </p>
+<p>One of these exercises could take as much as several hours, but, mercifully, that didn't happen all that often—perhaps every six months or so. Anyway, you can probably see why MPC proved to be such a game changer for us. It let us simply rely on the math built into MPC to ensure that private data wouldn't be inadvertently disclosed. </p>
+<p><b>AM</b> Where has this journey brought you?</p>
+<p><b>SS</b> We have three MPC-related projects underway that are at different stages of maturity. The first was focused on secure two-party computation, where both organizations came to the exercise with their own inputs. Those then were privately processed to produce a computation of interest to both organizations, even though, under other circumstances, neither party would have considered sharing its own input with the other. For example, say Facebook advertisers have expressed an interest in studying ad-conversion rates within some particular market sector so they can better understand which types of ads are most likely to succeed in that sector. </p>
+<p>Right now, we're somewhere between alpha- and beta-testing these sorts of capabilities with a handful of advertisers. We started working on this in late 2019. Initially, that work proved to be anything but straightforward since it involved thinking through different parts of the stack. Also, both parties came to it with their own datasets, so there was plenty of work to be done to fashion a way to readily identify which users belonged in which sets and thus avoid inadvertently interchanging data. Altogether, I'd say maybe a year's worth of work went into building MPC-based protocols that let us draw from two datasets to yield something that then could be used in a secure computation.</p>
+<p>Even then, there still was plenty of room for optimization. The first time we initiated a query using this initial implementation, we had something like 10,000 rows of data drawn from both parties, and the resulting computation ran for seven or eight hours. But, of course, nothing had been put into production at that point. We were just a bunch of researchers who'd patched together a few things from off-the-shelf libraries to see whether the approach would even fly—nothing had been optimized. </p>
+<p>By early 2023, we were on pace to process a million rows in less than a few minutes. Mostly, that was just a matter of having finally managed to optimize things. Still, there were some interesting engineering problems to address—for example, how to go about sharding in the right way. That is, when you shard large datasets into multiple databases, you need to take extra steps to make sure none of those shards ends up revealing the identity of someone in the database as you're doing an MPC calculation—meaning the sharding itself needs to be done in such a way to protect privacy. This, of course, is why differential privacy needs to be built in as part of the MPC stack. </p>
+<p>The interesting part of that is it means you end up effectively combining the private computing and communications of MPC with private aggregation and differential privacy. This leaves you with three high-level layers to be built, along with a bunch of optimizations required for each of those layers. It's not like you can just take your typical optimization scheme and slap it on top.</p>
+<p><b>AM</b> That does sound like quite a challenge. You also said you have two other MPC projects in the works. Can you tell us about those?</p>
+<p><b>SS</b> The second undertaking was a multi-organization effort. In fact, it involved some of the largest advertisers on the web—companies like Unilever, MasterCard, and Visa, which are all part of an industry group called the World Federation of Advertisers (WFA). This effort is something that started back in 2020 because the WFA was going to all the major web advertising platforms at the time to say, "You know, we're spending an ungodly amount of money on web advertising now, but none of you can tell us the most basic thing, which is: How many people are viewing our ads?" In that industry, this is what's known as <i>reach measurement</i>. From the perspective of these advertisers, it was difficult to do even the most basic planning without having that information. What's more, the WFA recognized that the companies in their association weren't about to share data with each other, so they really needed to be able to do their own calculations. </p>
+<p>Work on this front has progressed to the point where we're now at the incubation stage, with some of the largest advertisers already doing some prototyping. In terms of performance, we're getting there. That is, while with a two-party computation, we now can process a million rows in two minutes for about a dollar. The cross-media calculation we're working on for the WFA currently is capable of working through a million rows in four minutes at a cost of about $15. This is still pretty good since this is a calculation that's typically done daily—meaning that four minutes to run a query is totally reasonable.</p>
+<p>Our third MPC project is one that many people have already heard about, since it involves a collaboration between Meta and Mozilla that now has also drawn interest from Google Chrome. This involves performance measurement, which is to say a determination of how many sales can be attributed to particular ads—only in this case, for the whole of the Internet rather than just for a couple of parties or a group of cooperating organizations. The goal is to provide for interoperable private attribution (IPA) by enabling an industrywide solution that allows different browsers to work together to provide for this particular use case in a fully interoperable way. </p>
+<p>Currently, this is more of a demonstration project than an actual product, with the ultimate goal of simply showing how MPC can be used to deliver on this challenge in a much better way by enabling interoperability across a number of different browsers. Ideally, this will prove compelling enough for everyone to want to join the effort to fully implement something along similar lines.</p>
+<p><b>AM</b> When did you start working on this industrywide solution?</p>
+<p><b>SS </b>There have been three stages so far. We first started incubation on an initial use case back in 2019. Then we launched a second use case in 2020 and a third one in 2021. Here again, the one metric we've paid particular attention to right along is the time required to run a million rows of computation. A year ago, that took between 100 and 200 minutes. Now, we're down to something between 50 and 60 minutes. The biggest challenges here, of course, have to do with scale and security—both of which make this use case much harder to pull off than the other two. </p>
+<p><b>AM</b> What roles are the Google Chrome folks performing?</p>
+<p><b>SS</b> They're providing us with a lot of input about how to think about scale and the variety of ways in which privacy can be attacked, along with some thoughts about how to guard against that. We're also hopeful that Apple and Microsoft will now be inspired to add Safari and Bing, respectively, to the effort, with the ultimate goal of building toward a single web standard blessed by the W3C and standardized by the IETF, since that will lead to a single implementation that's fully interoperable. </p>
+<p>Scale, of course, is also a major concern. The Chrome folks, in fact, filed a GitHub issue a few months ago saying essentially, "Hey, IPA sounds like a great proposal, but our top concern is that, while it might work for a million rows or even 10 million rows, what about 10 billion rows? What about 100 billion?" We still need to demonstrate that MPC can scale to that level. If MPC can't handle that, then the question becomes: What's the simplest thing that can be achieved at that scale for multiple parties?</p>
+<p><b>AM</b> That gives us an idea of what's going on with MPC up at the hyperscale level, but what does this look like from more of an entrepreneurial perspective? Jordan, please give us a sense of that by telling us about how your company, Inpher, is using MPC.</p>
+<p><b>JB</b> MPC is a core component of our product, and we're focused on enabling privacy-preserving analytics, machine learning, and ML/AI. This covers the end-to-end workflow from simple data preprocessing to PSI [private set intersection], statistical and arithmetic operations, as well as fuzzy matching algorithms for joining distributed data, to statistical and arithmetic functions, all the way up to training, testing, and deploying a wide range of advanced ML and AI models. The underlying cryptography provides mathematical proofs for the security model, privacy, and data residency. But the real value for our customers is <i>compliant</i> access to more data, both within and across organizations. Secure collaboration delivers the ROI [return on investment] because, collectively, we're able to build more ethical and accurate models without compromising our privacy or intellectual property.</p>
+<p>Until recently, our primary focus has been on regulated industries like financial services, healthcare, and a variety of government applications requiring PII [personally identifiable information] protection, but we're now getting broader adoption in industrial applications calling for intellectual property [IP] protection. Beyond that, we invest a lot in educating and nurturing secure data collaboration ecosystems to build trust between organizations. The best motivation comes when there is mutual utility, wherein each party gets tangible value by participating. Otherwise, the incentive is often direct monetization, where one party pays another to compute on their data privately. </p>
+<p><b>AM</b> Is there an example of this you can share with us?</p>
+<p><b>JB</b> Under the heading of "mutual utility incentive," there were some interesting outcomes from some fraud detection work we did with the Bank of New York Mellon [BNY Mellon]. The basic idea was, if they could work with a counterparty bank to get additional features for a transaction that couldn't be shared in the clear—such as something having to do with private customer account information—they'd be able to improve their fraud-detection models. At the conclusion of the project, we were able to demonstrate up to a 20 percent improvement in the fraud-detection rate. Considering that BNY is one of the world's largest cross-border payment service providers, with volumes of more than $1 trillion daily, that represents an incredible ROI, as well as a great proof of the commercial value of MPC.</p>
+<p><b>AM</b> Didn't you also say you'd been promoting MPC for privacy-preserving applications?</p>
+<p><b>JB</b> Yes, thanks in part to the U.S./UK PETs [privacy enhancing technologies] Challenge, we're now seeing evidence of surging demand in both the business and regulatory communities for technologies that offer organizations ways to make greater use of their customer data without running the risk of violating the stringent privacy protections codified in the GDPR [the European Union's General Data Protection Regulation]. The regulatory bodies themselves are on board with this because of all the GDPR pushback they've encountered. So, what we find now, for example, is that the European Data Protection Board has issued a supplementary measures report recommending the use of secure MPC since it provides a mathematical guarantee that any customer data stored in the EU can be utilized without either moving the data or violating the privacy protections afforded by the GDPR.</p>
+<p>There's still much to be done, however, since many people in industry aren't entirely certain how to take advantage of this. While they can see the growing regulatory support, that hasn't yet translated into specifications written into the regulations themselves. Still, it does feel as if we're making some progress.</p>
+<p><b>AM</b> Have you seen any other signs of market progress?</p>
+<p><b>JB</b> We're also working with the Canadian Pension Plan (CPP) Investment Board, which manages a nearly $600 billion fund for Canadian public employees. The interesting challenge for them is that, while they buy aggregate anonymized market data from essentially the same sources that many other investment groups use, their goal is to generate above-market returns for their contributors and beneficiaries. </p>
+<p>How do they gain an informational edge? This inspired the "borderless data" initiative to build a collaborative network with alternative partners and data vendors to incorporate new, unique data sources into their forecasting and investment decision-making, while also managing to keep that data private and secure.</p>
+<p>And then there's the intelligence community, which also has found ways to make use of MPC. Obviously, we can't talk about any of those use cases, but it probably won't come as much of a surprise that much of the work going on in that space involves doing analytics on data without either seeing or touching the data. In many parts of the world, at least, it's absolutely vital that these types of models be built in such a way as to not compromise democratic values and civil liberties—which, among other things, means preserving the right to privacy.</p>
+<p>What I find particularly interesting is that we're starting to see growing evidence of the degree to which this technology is now helping to inform and drive policy. In fact, at a recent meeting of the International Association of Privacy Professionals in Washington, D.C., Nathaniel Fick (U.S. Ambassador at Large for Cyberspace and Digital Policy) talked about the G7 initiative for "Data Free Flow with Trust" that calls for more collaboration and openness in the sharing of data among allies. He mentioned that this would call for privacy-enhancing technologies, although he did not expressly mention MPC, which I found disappointing, since we need to make sure the technology and policy progress in lockstep since one doesn't work without the other.</p>
+<p><b>AM</b> Particularly not given what Sanjay just said about the time and effort that went into integrating MPC seamlessly into just one of their workflows. Is that the norm?</p>
+<p><b>JB</b> It isn't entirely surprising. Privacy-enhancing technologies, in general, can be challenging. And, even for that domain, MPC is particularly complex. Certainly, the cryptography is complex. Then there's the added challenge of convincing nonexperienced consumers that it works and is provably secure. And, of course, the security of the deployment itself needs to be addressed.</p>
+<p><b>AM </b>It seems you would want to abstract just as much of this away from the consumer as possible.</p>
+<p><b>JB</b> Yes: Once the cryptography disappears into the standard plumbing, we'll know we've won. We already don't need to think about secure communication through <i>https</i> or worry about encrypting our hard drives. Now the same needs to happen with MPC and encryption-in-use technologies.</p>
+<p>&nbsp;</p>
+<p><i>Another point, initially brought into sharp relief by the European Union's adoption of GDPR, is that the significance of privacy-enhancing technology is not limited solely to those use cases calling for collaboration between organizations. Indeed, with data sovereignty rules that now forbid the movement of data from one country to another, different parts of the same organization might well be faced with the challenge of coming up with innovative ways to collaborate simply to be able to use all the organization's data, regardless of where it might happen to reside.</i></p>
+<p><i>MPC is sure to play an important role in addressing this challenge, but often only as one component of layered security and privacy-enhancing environments. The problem space, after all, is extremely complex and highly nuanced. And so—no surprise—the answers for dealing with these issues will themselves almost certainly need to be every bit as sophisticated.</i> </p>
+<p><b>AM</b> So far, we've talked about where we currently are with multiparty computation and how we got here. Now, let's talk about what might be expected going forward.</p>
+<p><b>NS</b> I think it has to do with what Sanjay was talking about earlier: developing applications that enable partnerships between different organizations. This isn't to say privacy is unimportant. It's just that, in the context we're talking about, there's more to it. In fact, there's a whole other side to privacy-enhancing technologies that you can think of more as "<i>partnership</i>-enhancing technologies." Privacy is an important dimension of that—as is security—but only as an aspect of the much broader security spectrum that comes into play when the idea is to foster cross-organization collaboration. That's what we're really talking about here: new business models.</p>
+<p><b>JB</b> Right. And that gets into data sovereignty policies if you happen to be a large multinational. Let's say you want to do some HR analytics across the company, but you're precluded from moving data from one country to another. How are you going to deal with that?</p>
+<p><b>NS</b> That's exactly where I was headed. In fact, the next example I was about to cite has to do with the cross-border processing of data within the same organization. Even though it's all private, you might not be legally able to move that data from one part of your organization to another if that requires moving it from one country to another. What are you going to do? Maybe you don't want to process everything. You may want to think about including some synthetic data. Or you might just want to go ahead and handle everything with MPC. You might also look at taking advantage of some form of federated learning. My point is that all these processing options are going to come together. And we're going to see more applications as a consequence. In the short term, I think this means we'll see some quick wins. </p>
+<p><b>JWB</b> While we're still at a point where MPC solutions need to be carefully engineered, some tools are starting to emerge that can help with that. The SCALE-MAMBA framework is one of those. I should add that DARPA funded the work that led to that framework and that Nigel was one of the main proponents behind the effort. But what came about there really is something that can help developers get a leg up on building MPC apps—as Sanjay can attest, since that's how they got going on this at Meta in the first place.</p>
+<p>What we really need to get to now, though, is what I think of as "80 percent solutions", which should be achievable once we have something like a domain-specific language that MPC app developers can use to make appropriate design tradeoffs without needing to get too deep into the underlying technical details. Over the moderate term, say, the next five years, it's quite possible we'll see a sophisticated language/compiler come out that will let people with no expertise in the fundamental privacy-preserving technologies produce these "80 percent solutions." The main reason I call them that is because it's really hard to achieve optimal efficiency here without drilling down into some serious low-level engineering. It's also the case that the interplay between some of these privacy-preserving technologies tends to be pretty sensitive, so you need to be very careful once you start layering things or you might end up inadvertently violating some security and privacy properties.</p>
+<p><b>NS</b> We've already seen some of this in the FHE domain. Zama and Google both have compilers that specifically let people use their existing toolchains to produce FHE-enabled pipelines. We're already starting to see results from that. On the MPC side, there's also some work being done along these lines, although still very much in academia. There are a few compilers I know of. Microsoft has one of them. But, in the main, there's very little heavy language work going on right now in the MPC community.</p>
+<p><b>JWB</b> But there are some really <i>interesting</i> things going on, like Cybernetica's Pleak, which is being created to look at information flows with MPC so as to point out potential privacy leaks. That's based on an automated analysis of information flows, with output framed in a very basic sort of way that will be familiar to people who work in business process management. That's an app we can expect to surface within the moderate term. </p>
+<p>MPC is especially critical at this juncture when people are growing increasingly skeptical of advanced technology. It's great that we're now starting to see new cryptographic technologies that can be used to <i>enhance</i> user trust—things like zero-knowledge proofs that attest something is true without the need to reveal any information beyond that. I don't think it will be long before we start to see capabilities emerge that help people conduct audits to reveal whatever personal information organizations might have on file about them. That, of course, is sure to prove tricky since companies—and governments, for that matter—have no desire to reveal any of those details. Still, I think we're going to see AI-powered capabilities that make this possible. </p>
+<p><b>JB</b> I couldn't agree more. In fact, I think we're already seeing evidence of a major push by the responsible AI movement to accelerate the sorts of changes you're talking about. For example, there's now an AI accountability framework that applies to all U.S. federal agencies—including all the defense and intelligence branches. That comes along with an oversight committee where the charter is not only to protect data privacy and security, but also to focus on many other aspects of responsible AI, including efforts to mitigate bias. </p>
+<p>Another side to this is that if I'm training my model on only my own company's data, there's going to be an inherent bias that solely reflects the experience of my customers. That's where I see technologies like MPC coming into play, since they make it possible to draw on deeper, broader pools of data that should mitigate that bias.</p>
+<p><b>JWB</b> The real question here is: Who's going to push for this? That—and not whether any of this is technically viable—is what's going to drive things. </p>
+<p><b>NS</b> This is going to be driven by organizations that believe these capabilities will enable new business models for them. If it comes down to companies spending a bunch of money just to protect some of their customers' privacy Well, let's face it, nobody ever does that, right? It's got to be about "If we deploy this technology, we can make more money." <i>Then</i> people will deploy it.</p>
+<p><b>JB </b>Actually, the regulatory stick also factors into this, since it's the governments that build the plumbing that creates many of those new business opportunities. Also, once evidence starts to surface showing that there's a significant return on investment to be realized, that too can make a difference. Studies demonstrating how MPC enables fraud protection would probably qualify here, for example. </p>
+<p><b>AM</b> Fine, but what do you see as the chief impediments to the widespread adoption of MPC?</p>
+<p><b>NS </b>Existing regulations are the number-one problem. There's also the complexity of using MPC systems in their current stage of development. Those are the top two issues that need to be addressed.</p>
+<p><b>JWB</b> I think challenge number one has to do with building a community around MPC such that the questions people have are less about the technology than about "What is it I need to protect? And how much is it going to cost to accomplish that?" </p>
+<p><b>JB</b> Regulatory clarity, market awareness, and education are at the top of my list. I think the usability part is there already since several commercial deployments seem to suggest as much.</p>
+<p><b>SS</b> If I need to narrow it down to just one thing, I'd also go with regulatory clarity. But the bigger challenge is that a lot of companies still view privacy protection more as a cost burden than as a revenue opportunity. Dealing with this requires that we create better awareness such that organizations come to see MPC chiefly as something that can be used to unlock new revenue opportunities. If we can accomplish that, this will really take off.</p>
+<p>Copyright © 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'844d26eb9ec33b71',t:'MTcwNTE0Mzc5OS43NzcwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;844d26eb9ec33b71&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 6</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3639448">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Miguel Guevara, Damien Desfontaines, Jim Waldo, Terry Coatta</span> - <a href="detail.cfm?id=3439229"><b>Differential Privacy: The Pursuit of Protections by Default</b></a>
+<br/>
+First formalized in 2006, differential privacy is an approach based on a mathematically rigorous definition of privacy that allows formalization and proof of the guarantees against re-identification offered by a system. While differential privacy has been accepted by theorists for some time, its implementation has turned out to be subtle and tricky, with practical applications only now starting to become available. To date, differential privacy has been adopted by the U.S. Census Bureau, along with a number of technology companies, but what this means and how these organizations have implemented their systems remains a mystery to many.
+</p>
+<br/>
+<p>
+<span>David Evans, Richard McDonald, Terry Coatta</span> - <a href="detail.cfm?id=3339247"><b>Access Controls and Health Care Records: Who Owns the Data?</b></a>
+<br/>
+What if health care records were handled in more of a patient-centric manner, using systems and networks that allow data to be readily shared by all the physicians, clinics, hospitals, and pharmacies a person might choose to share them with or have occasion to visit? And, more radically, what if it was the patients who owned the data?
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

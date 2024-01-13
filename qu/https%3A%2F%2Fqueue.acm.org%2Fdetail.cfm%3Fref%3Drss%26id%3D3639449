@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Automatically Testing Database Systems - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Databases" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3640326" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?sort=publication_date&order=desc&qc_type=Researchforpractice&page_title=Research%20for%20Practice">Research for Practice</a></h3>
+<label>January 12, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3640326">Volume 21, issue 6 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3639449">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Automatically Testing Database Systems</h1>
+<h2>DBMS testing with test oracles, transaction history, and fuzzing</h2>
+<h3>Manuel Rigger with Introduction by Peter Alvaro</h3>
+<p><i>Research for Practice combines the resources of the ACM Digital Library, the largest collection of computer science research in the world, with the expertise of the ACM membership. Research for Practice columns have a common goal of sharing the joy and utility of reading computer science research between academics and their counterparts in industry.</i></p>
+<p>&nbsp;</p>
+<p>Over the last several years, there has been an explosion of new research on methodologies for testing data management systems. Some of the most exciting work has been pioneered by Manuel Rigger (now at the National University of Singapore), and we are very lucky to have him as curator for this installment of Research for Practice.</p>
+<p>After dividing the idea of automatic database testing into the problems of input generation and test oracles, Dr. Rigger presents three selections that highlight the breadth of the field. The first paper focuses on the problem of automatically synthesizing sophisticated test oracles that check whether the outputs of a database history are correct, leaving aside the problem of input generation. The last paper factors the problem in the opposite way, covering a diverse input space of SQL dialects while relying on the "built-in" test oracle of system crashes. In the middle is a paper that co-designs the input generation and test oracle in order to focus strictly on bugs in concurrency control.</p>
+<p>Whether you are new to the area or an old hat, you are sure to learn something from this selection of papers and from Dr. Rigger's expert analysis.</p>
+<p align="right" style="text-align:right"><i>—Peter Alvaro</i></p>
+<p>&nbsp;</p>
+<h3>Research for Practice:<br/>Automatically Testing Database Systems</h3>
+<p>Manuel Rigger</p>
+<p>A DBMS (database management system) is expected to produce correct results efficiently. For efficiency, query optimizers apply many semantics-preserving optimizations when translating a query written in a declarative language such as SQL to an execution plan. In addition, a DBMS supports the execution of multiple transactions concurrently, while maintaining guarantees of what effects, if any, that transactions see of each other, referred to as <i>isolation levels</i>. For correctness, along with unit tests and general-purpose fuzzers (e.g., American Fuzzy Lop, or AFL), the past few years have seen a plethora of practical works that have significantly advanced the state of the art in automatically testing DBMSes.</p>
+<p>Automatic testing techniques validate a DBMS without user interaction. They need to tackle two main challenges. First, they must generate test inputs. For a DBMS, depending on the goal, this can be a series of SQL statements that generate a database, as well as a query to test query optimizers; or it can be a series of transactions to test transaction handling. </p>
+<p>Second, a so-called <i>test oracle</i> is required, which takes a test input and the DBMS's output, and checks whether the output is expected. Perhaps the simplest test oracle is to check whether a process crashes. To design test oracles that detect logic bugs or performance issues, domain-specific insights are typically required.</p>
+<p>Each of the three works discussed here is representative of a research strand in this area. </p>
+<p>• First, various approaches find logic bugs in query optimizers using black-box test oracles (i.e., they operate on a SQL level). Often, these approaches create pairs of queries or a series of statements that are expected to compute the same result and thus focus on finding logic bugs. </p>
+<p>• Second, to test transaction handling, approaches based on lightweight formal methods techniques inspect the effects of a transaction history and infer which isolation level the DBMS supports. </p>
+<p>• Finally, various fuzzing approaches find crash bugs, which can be exploitable, to harden a DBMS against potential attackers. One challenge is to find such bugs in a variety of DBMSs while minimizing the effort to adapt the fuzzer to new systems (e.g., account for different SQL dialects). In addition, such fuzzers should generate mostly valid, diverse, and interesting inputs to exercise the DBMS. </p>
+<p>&nbsp;</p>
+<h3>Using Test Oracles </h3>
+<p> Manuel Rigger and Zhendong Su. <br/>Finding Bugs in Database Systems via Query Partitioning. <br/><i>Proceedings of the ACM on Programming Languages. OOPSLA</i>, 2020. <br/><a href="https://dl.acm.org/doi/abs/10.1145/3428279">https://dl.acm.org/doi/abs/10.1145/3428279</a>. </p>
+<p>TLP (ternary logic partitioning) tackles the test-oracle problem by generating pairs of queries that are expected to compute the same results; any discrepancy indicates a bug in the DBMS.</p>
+<p>One challenge is to generate pairs of queries that vary in complexity to stress the DBMS under test. It would be straightforward to come up with specific rules for equivalent queries. For example, for any predicate <code>p</code>, you could generate two equivalent queries <code>"SELECT * FROM orders WHERE p"</code> and <code>"SELECT * FROM orders WHERE NOT (NOT p)"</code> and check that they compute the same result. However, such rules are too specific to find a wide range of logic bugs.</p>
+<p>The TLP test oracle uses the following key insight: Given a Boolean predicate <code>p</code>, for every row in the database, <code>p</code> must evaluate to true, false, or NULL. In other words, the database or any intermediate results can be partitioned into three parts, depending on which value a predicate in a filter evaluates. Consequently, a query such as <code>"SELECT * FROM orders"</code> should compute the same result as three queries <code>"SELECT * FROM orders WHERE p"</code>, where <code>p</code> is instantiated with <code>"num_items &gt; 5", "NOT (num_items &gt; 5)"</code>, and <code>"(num_items &gt; 5) IS NULL"</code>. This insight can be generalized and enables generating test cases using a range of different SQL features, including aggregate functions. Given that the three follow-up queries are more complex, they are likely to trigger more interesting functionality of the DBMS and, thus, potential bugs. </p>
+<p>TLP has found many bugs in mature DBMSs. It is a key test oracle in SQLancer, a widely used DBMS testing tool developed by the authors of this article. Because of its simplicity, companies have also implemented the test oracle into their testing frameworks.</p>
+<p>&nbsp;</p>
+<h3>Using Transaction History</h3>
+<p> Kyle Kingsbury and Peter Alvaro. <br/>Elle: Inferring Isolation Anomalies from Experimental Observations. <br/><i>Proceedings of the VLDB Endowment</i>, 2020. <br/><a href="https://dl.acm.org/doi/10.14778/3430915.3430918">https://dl.acm.org/doi/10.14778/3430915.3430918</a>. </p>
+<p>Elle checks a transaction history and, based on that, infers whether the DBMS implements the isolation level it claims to support. In other words, it attempts to find witnesses of so-called <i>anomalies</i>, which show that the DBMS supports a lower isolation level than claimed. It is a combined approach that tackles both the test-oracle and test-case problems.</p>
+<p>A key challenge for isolation-level checkers is to reconstruct the so-called <i>version history</i> of an object stored in the database. Typically, reading from an object from a database reveals little about the past. For example, assume that transactions concurrently write the values <code>"1"</code>, <code>"2"</code>, and <code>"3"</code> to an object. By inspecting the database, you might see that the object holds the value <code>"2"</code>, but you fail to learn whether value <code>"1"</code> was written before <code>"3"</code>, whether <code>"3"</code> was written before <code>"1"</code>, or whether one or both of the writes had been lost.</p>
+<p>The key insight of Elle is to encode writes so that they retain the object's history and are unique. Essentially, each write operation appends to a list, so that the object contains a list of values such as <code>"3, 1, 2"</code>, which unambiguously captures the order of writes. The version order indicated by the lists can then be used to infer dependencies between transactions, which are used to detect potential anomalies. In the formalism that is used, checking for anomalies corresponds to checking for cycles in the dependency graph, which can be solved in linear time, making the approach efficient.</p>
+<p>Elle has found many critical bugs in mature systems and demonstrated that many DBMSs fail to support the isolation levels they claim to implement. It is part of Jepsen, a highly popular open-source project for distributed-systems testing.</p>
+<p>&nbsp;</p>
+<h3>The Fuzzing Approach</h3>
+<p> Jingzhou Fu, Jie Liang, Zhiyong Wu, Mingzhe Wang, and Yu Jiang. <br/>Griffin: Grammar-Free DBMS Fuzzing. <br/><i><a href="https://dl.acm.org/doi/proceedings/10.1145/3551349">Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering</a></i><i>, 2022</i>. <br/><a href="https://dl.acm.org/doi/abs/10.1145/3551349.3560431">https://dl.acm.org/doi/abs/10.1145/3551349.3560431</a>. </p>
+<p>Griffin tackles the test-case generation problem by aiming to generate valid and diverse test inputs for a variety of DBMSs without requiring knowledge of each DBMS's SQL dialect. It achieves this by using a mutation-based fuzzing approach, specifically by shuffling SQL statements while ensuring that they still refer to valid objects.</p>
+<p>A key challenge for generating valid SQL statements is that most DBMSs have their own SQL dialects that differ widely in terms of syntax and semantics. Tools such as SQLancer tackle this by using DBMS-specific SQL generators, implemented based on the DBMS's grammar, which requires a high level of implementation effort.</p>
+<p>The key idea of Griffin is to combine statements from existing test cases in a dialect-agnostic way. Existing test cases contain valid SQL sequences, meaning that Griffin does not require understanding the specific SQL dialect to generate valid statements. Since many statements refer to existing objects (e.g., an <code>INSERT</code> typically references an existing table), which might not exist after reshuffling SQL statements, Griffin proposes a lightweight approach to determine and fix dependencies between statements; these are accounted for when generating new test inputs.</p>
+<p>Griffin has found more than 50 bugs in a short testing campaign. </p>
+<p>&nbsp;</p>
+<h3>Conclusion</h3>
+<p>The automated testing of DBMS is an exciting, interdisciplinary effort that has seen many innovations in recent years. The examples addressed here represent different perspectives on this topic, reflecting strands of research from software engineering, (database) systems, and security angles. They give only a glimpse into these research strands, as many additional interesting and effective works have been proposed. Various approaches generate pairs of related tests to find both logic bugs and performance issues in a DBMS. Similarly, other isolation-level testing approaches have been proposed. Finally, various fuzzing approaches use different strategies to generate mostly valid and interesting test inputs that extract various kinds of feedback from the DBMS.</p>
+<p>&nbsp;</p>
+<p><b>Peter Alvaro</b> is an associate professor of computer science at the University of California Santa Cruz, where he leads the Disorderly Labs research group (<a href="http://disorderlylabs.github.io/">disorderlylabs.github.io</a>). His research focuses on using data-centric languages and analysis techniques to build and reason about data-intensive distributed systems in order to make them scalable, predictable, and robust to the failures and nondeterminism endemic to large-scale distribution. He earned his Ph.D. at UC Berkeley, where he studied with Joseph M. Hellerstein. He is a recipient of the National Science Foundation Career Award, Facebook Research Award, Usenix ATC 2020 Best Presentation Award, SIGMOD 2021 Distinguished PC Award, and UCSC Excellence in Teaching Award. </p>
+<p><b>Manuel Rigger</b> is an assistant professor in the School of Computing at the National University of Singapore, where he leads the TEST (Trustworthy Engineering of Software Technologies) lab (<a href="https://nus-test.github.io/">https://nus-test.github.io/</a>). His research focuses on making systems—in particular, data-centric ones—more reliable, efficient, and secure. Previously, he was a postdoctoral researcher at ETH Zurich, where he was mentored by Zhendong Su. He obtained his Ph.D. at the Johannes Kepler University Linz, mentored by Hanspeter M??ssenb??ck.</p>
+<p>Copyright © 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'844d26cc8eb982de',t:'MTcwNTE0Mzc5NC45MzcwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;844d26cc8eb982de&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 6</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3639449">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Pat Helland</span> - <a href="detail.cfm?id=3314115"><b>Identity by Any Other Name</b></a>
+<br/>
+New emerging systems and protocols both tighten and loosen our notions of identity, and that&#8217;s good! They make it easier to get stuff done. REST, IoT, big data, and machine learning all revolve around notions of identity that are deliberately kept flexible and sometimes ambiguous. Notions of identity underlie our basic mechanisms of distributed systems, including interchangeability, idempotence, and immutability.
+</p>
+<br/>
+<p>
+<span>Raymond Blum, Betsy Beyer</span> - <a href="detail.cfm?id=3311889"><b>Achieving Digital Permanence</b></a>
+<br/>
+Today&#8217;s Information Age is creating new uses for and new ways to steward the data that the world depends on. The world is moving away from familiar, physical artifacts to new means of representation that are closer to information in its essence. We need processes to ensure both the integrity and accessibility of knowledge in order to guarantee that history will be known and true.
+</p>
+<br/>
+<p>
+<span>Graham Cormode</span> - <a href="detail.cfm?id=3104030"><b>Data Sketching</b></a>
+<br/>
+Do you ever feel overwhelmed by an unending stream of information? It can seem like a barrage of new email and text messages demands constant attention, and there are also phone calls to pick up, articles to read, and knocks on the door to answer. Putting these pieces together to keep track of what&#8217;s important can be a real challenge. In response to this challenge, the model of streaming data processing has grown in popularity. The aim is no longer to capture, store, and index every minute event, but rather to process each observation quickly in order to create a summary of the current state.
+</p>
+<br/>
+<p>
+<span>Heinrich Hartmann</span> - <a href="detail.cfm?id=2903468"><b>Statistics for Engineers</b></a>
+<br/>
+Modern IT systems collect an increasing wealth of data from network gear, operating systems, applications, and other components. This data needs to be analyzed to derive vital information about the user experience and business performance. For instance, faults need to be detected, service quality needs to be measured and resource usage of the next days and month needs to be forecast.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
