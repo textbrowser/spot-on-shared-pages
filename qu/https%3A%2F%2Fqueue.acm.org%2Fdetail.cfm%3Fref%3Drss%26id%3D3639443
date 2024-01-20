@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>DevEx in Action - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Development" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3640326" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>January 14, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3640326">Volume 21, issue 6 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3639443">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">DevEx in Action</h1>
+<h2>A study of its tangible impacts</h2>
+<h3> Nicole Forsgren, Microsoft Research <br/>Eirini Kalliamvakou, Github Next <br/>Abi Noda, DX <br/>Michaela Greiler, DX <br/>Brian Houck, Microsoft <br/>Margaret-Anne Storey, University Of Victoria and DX </h3>
+<p>Somewhere, right now, a software developer is pulling open a ticket from the project backlog, excited by the prospect of working on something new. As the developer begins reading through the description of the task, their laptop is suddenly flooded with alerts from the team's production error-tracking system, disrupting the developer's ability to focus. Eventually, returning to the task at hand, the developer studies the requirements described in the ticket. Unfortunately, the task lacks context and clarity, so the developer asks for help, which will take days to resolve. Meanwhile, the developer checks on a previous task, which has been stuck in the queue waiting for approval for several days. The tests and builds repeatedly flake out, halting the progress of reviewers each time they attempt to verify the changes. As the developer hops from task to task, hoping finally to immerse in some deep work, they realize that today's <i>experience</i> isn't as good as it should be to allow for their best work.</p>
+<p>For many professional software developers, this anecdote is all too similar to their daily experiences. Friction is abundant, the development lifecycle is riddled with red tape, and successful delivery of code to production is a frustratingly infrequent event. Even worse, the problems keep compounding. Developers look on helplessly as upper management fails to intervene, leading to standstill velocity and the departure of top engineers.</p>
+<p>How is it that organizations end up in this predicament? </p>
+<p>Today, DevEx (developer experience) is garnering increased attention at many software organizations as leaders seek to optimize software delivery amid the backdrop of fiscal tightening and transformational technologies such as AI. Intuitively, there is acceptance among technical leaders that good developer experience enables more effective software delivery and developer happiness. Yet, at many organizations, proposed initiatives and investments to improve DevEx struggle to get buy-in as business stakeholders question the value proposition of improvements. "What is developer experience?", many of them challenge. "And why does it matter?"</p>
+<p>&nbsp;</p>
+<h3>Why DevEx Matters </h3>
+<p>DevEx encompasses how developers feel about, think about, and value their work.<sup>11</sup> Why does this matter? First of all, developers build software and use engineering systems every day, so they are perfectly positioned to give critical insights into how well systems and processes work. For example, is it easy and intuitive to write code and ship it to customers? Or is it confusing and full of manual steps, which are prone to mistakes and outages? Sure, you could argue that in both cases, developers are writing code and shipping software, but the environment and circumstances are very different, and they can be a leading indicator of the quality, reliability, maintainability, and even security of the systems. </p>
+<p>DevEx is also important because of its impacts on development. </p>
+<p>That may seem obvious because many organizations around the world, from startups to not-for-profit companies to large enterprises, employ developers to write software for customers, improve internal tools, or automate complex processes. But there is a difference between simply writing code and<i> writing code in an environment that is optimized for writing code</i>. Environments that are optimized for writing code are efficient, effective, and conducive to well-being, and rely on the right mix of tools, practices, processes, and social structures. These environments help developers:</p>
+<p>• Get into the flow and minimize interruptions so they can focus and solve complex tasks.</p>
+<p>• Foster connections and collaborations so they and their teams can be creative when it matters most.</p>
+<p>• Receive high-quality feedback so they can make progress.</p>
+<p>Considering DevEx in this light shows that development is about so much more than just writing code. It is a socio-technical process that aids developers' work while contributing to broader team performance and organizational missions and cultures. We are not aware of empirical investigations into the impacts of DevEx; there is a need to study outcomes of developer work and the work design that supports it.</p>
+<p>Thus, the goal of the research described here is to answer this question: How does DevEx impact individual developers, as well as their teams and organizations? Spoiler alert: An improved developer experience has positive outcomes – and not just on developers; it also helps improve team and organization outcomes. For example, we find that a better developer experience can improve productivity, learning, innovation, and profitability—and more. Read on for details, or head to the Analysis and Discussion if you just want to know now.</p>
+<p>&nbsp;</p>
+<h3>DevEx as Work Design</h3>
+<p>Our research is based on WDT (work design theory)<sup>22</sup> for two reasons. First, the theory considers the outcomes of work among many dimensions. Research in WDT has found that there are important outcomes and implications for individual contributors, teams, organizations, and society. Our previous research<sup>7</sup> also found that by improving the work environment and work design of developers, performance outcomes are better for individuals (e.g., reducing burnout), teams (e.g., improving software delivery), and organizations (e.g., improving customer and organizational metrics).</p>
+<p>Second, our investigation is grounded in WDT because its conceptualization of work is complex enough to account for the work practices of software developers today. WDT views work as both an assigned job—that is, a group of tasks formally assigned to an individual—as well as "emergent, social, and sometimes self-initiated activities."<sup>23</sup> Software developers' work includes assigned tasks (such as items assigned during a sprint), as well as activities that emerge (such as reactive work to fix bugs, self-initiated creative work, and social activities to collaborate and improve processes). </p>
+<p>This study uses WDT to do two things: First, it expands on our previous work to investigate broader outcomes at the individual, team, and organizational levels. Second, it explores the work design of developers—with a focus on DevEx—that positively influences those outcomes.</p>
+<p>&nbsp;</p>
+<h4>Outcomes</h4>
+<p>When considering the outcomes of development work or the developer experience, many researchers and people think about productivity.<sup>8,21</sup> In our years of experience, however, we have seen that the improvements in developers' work go far beyond personal productivity for individual contributors,<sup>16</sup> to include team and organizational outcomes.<sup>7,11</sup> This investigation considers outcomes at the developer, team, and organizational levels, which is supported by WDT.<sup>23</sup></p>
+<p>&nbsp;</p>
+<h5>Developer outcomes</h5>
+<p>Developer outcomes are those that benefit an individual developer. In particular, prior WDT research shows that improved work design positively influences job performance, creativity,<sup>22</sup> and learning<sup>5</sup>—three outcomes investigated in this study.</p>
+<p>&nbsp;</p>
+<h5>Team outcomes</h5>
+<p>Team outcomes are those that can benefit an individual developer but more likely accrue at the team level of work and are therefore operationalized and studied at this level. WDT also shows that outcomes such as quality benefit teams.<sup>22</sup> In the context of DevEx, we want to capture how work design can impact the quality of the system the team can work in, and therefore capture this as code quality and technical debt.</p>
+<p>&nbsp;</p>
+<h5>Organization outcomes</h5>
+<p>Organization outcomes benefit a worker's employer. While developer and team outcomes likely accrue to the organization, investigating the impacts of work improvements specific to the organization is still important. This is because it can demonstrate the relationship of DevEx to the organization's mission, explain the value of DevEx to the organization, and provide evidence that can help justify and advocate for investments in DevEx initiatives. Indeed, prior WDT research has shown that improvements in work design impact organizations. Many of these outcomes are top of mind for business leaders, including retention and innovation.<sup>22</sup> Prior research has also shown that improvements in developer work positively affect an organization's profitability and its ability to achieve goals.<sup>7 </sup>These measures of organization outcomes—retention, innovation, profitability, and ability to meet goals—are measured in this study.</p>
+<p>&nbsp;</p>
+<h4>Developer experience</h4>
+<p>Based on our prior work, here we present a model for understanding and measuring DevEx through three dimensions that have been found to impact developer experience: flow state, feedback loops, and cognitive load.<sup>21</sup> This section defines each of these dimensions and describes how they are supported by WDT. Hypotheses are shown as <i>Hn</i>, meaning Hypothesis 1, 2, or 3, followed by the hypothesis we are testing. </p>
+<p>&nbsp;</p>
+<h5>Flow state</h5>
+<p>Flow state, often described as "being in the zone," is a mental state where a person is fully immersed in work and has feelings of energized focus, full involvement, and enjoyment.<sup>4</sup> Achieving and supporting flow state occurs through environmental settings (e.g., quiet rooms), tooling (e.g., focus mode in tools), and personal or team practices (e.g., designating blocks of time to do deep work). Similarly, prior research in WDT found that novel work, as well as aspects of the work environment that support focus (such as discretion in scheduling and work areas that are free from noise) influence work-related outcomes.<sup>5</sup> We measure flow state in the following ways: satisfaction with the amount of time engaged in deep work, frequency of interruptions, and tasks that hold the developer's interest.</p>
+<p>Based on prior developer research and WDT, we posit that flow state will have positive outcomes in the developer context and that these outcomes will come at three levels: developer, team, and organization. Stated formally:</p>
+<p><i>H1 – Flow state positively impacts (a) developer, (b) team, and (c) organization outcomes.</i></p>
+<p>For clarity, we expand this first hypothesis statement:</p>
+<p><b><i>Hypothesis 1a:</i></b><i> <br/> Flow state positively impacts developer outcomes.</i></p>
+<p><b><i>Hypothesis 1b:</i></b><i> <br/> Flow state positively impacts team outcomes.</i></p>
+<p><b><i>Hypothesis 1c:</i></b><i> <br/> Flow state positively impacts organization outcomes.</i></p>
+<p>The remaining hypotheses use the same notation and have a similar structure. </p>
+<p>&nbsp;</p>
+<h5>Feedback loops</h5>
+<p>A feedback loop occurs when part of the system is used as input to another part of the system.<sup>6</sup> In the context of work and software development, the speed and quality of the information in the feedback loop are also important.<sup>21</sup> Prior research in WDT has found that accurate and timely feedback supports outcomes such as personal performance and catching errors.<sup>5,1</sup> In this study, we measure feedback loops as the time to get code changes approved and the frequency of getting a question answered quickly.</p>
+<p>We therefore hypothesize that feedback loops support outcomes at three levels: developer, team, and organization:</p>
+<p><i>H2 - Feedback loops positively impact (a) developer, (b) team, and (c) organization outcomes.</i></p>
+<p>&nbsp;</p>
+<h5>Cognitive load</h5>
+<p>Cognitive load is the amount of information that working memory can process at one time, and it helps with problem solving and learning.<sup>25</sup> In the context of DevEx, cognitive load is the amount of mental processing required for a developer to complete a task.<sup>21</sup> Cognitive load theory describes a framework with three types of cognitive load: <i>intrinsic</i> is the inherent amount of effort or difficulty required to do a task; <i>extraneous</i> is the way that information is presented, which can be modified to be more or less intuitive; and <i>germane</i> is related to schemas.<sup>25</sup> </p>
+<p>Prior research in WDT has tested environmental and work characteristics that are well-aligned with cognitive load and that contribute to work outcomes. For example, one previous study found that easy-to-understand tasks (intrinsic) and well-designed information flows (germane) contribute to outcomes.<sup> 5</sup> Another investigation, which was a large meta-analytic study, found that job complexity (intrinsic) and factors supporting information processing (germane) contributed to outcomes.<sup>15</sup> </p>
+<p>Our research measures cognitive load as the ease of deploying changes, how easy it is to understand code, and how intuitive it is to work with processes and developer tools.</p>
+<p>Stated formally, we hypothesize that a low cognitive load supports better outcomes for developers, development teams, and their organization:</p>
+<p> <i>H3 - Low cognitive load positively impacts (a) developer, (b) team, and (c) organization outcomes</i></p>
+<p>The proposed research model is presented in figure 1. The survey used to measure the model is described in the next section.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3639443/assets/html/forsgren1.png" alt="DevEx in Action" />
+<p>&nbsp;</p>
+<h3>Measurements and Data</h3>
+<p>A cross-sectional survey was created using items that were previously validated in the literature, or were developed and refined over time with expert input. The items that were refined over time were developed with subject matter experts and refined over three years; this included pilot data collection, subsequent item iteration and analysis, and periodic refinements following feedback from experts and statistical analysis. Sources for all survey items are noted in table 1. This table lists items for each construct. Details for items include mean and SD (standard deviation, in parentheses). Details for constructs include CR (composite reliability) and AVE (average variance extracted). Response options and sources are included at the bottom of the table.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3639443/assets/html/forsgren-t1.png" alt="DevEx in Action" />
+<br/>
+<br/>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3639443/assets/html/forsgren-t2.png" alt="DevEx in Action" />
+<br/>
+<br/>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3639443/assets/html/forsgren-t3.png" alt="DevEx in Action" />
+<p>Data collection was done via a web-based survey; this was administered by DX, a company that offers a developer experience platform. The participants were developers at companies that were DX customers. Among these customers, developers are regularly surveyed regarding their DevEx (referred to in the following as the <i>regular survey</i>). Immediately upon completing the regular survey, developers were invited to participate in our study (the <i>research survey</i>). </p>
+<p>Completing both of these surveys was optional, although only developers who had completed the regular survey were then invited to complete the research survey. No questions were duplicated between the two surveys. Across DX's portfolio, the completion rate for the regular survey is greater than 90 percent, and takes a median time of 10 minutes to complete. </p>
+<p>During the five weeks of data collection, 2,213 participants were invited to take the research survey and 219 completed it, a response rate of 9.9 percent. The completion rate for participants who viewed the research survey was 87 percent. The median time to complete the research survey was 2.5 minutes. Because the research survey followed the regular survey and was voluntary, the low response rate could be a result of time constraints, which is often true of developers in enterprise settings.<sup>20</sup> Of those who completed the survey, 170 (77.6 percent) were from a company whose primary business is in technology, and 200 (91.3 percent) worked for a company with more than 500 employees (our cutoff for a medium or large company). Because of privacy concerns, the research team did not collect participant demographics such as gender, age, or years of experience.</p>
+<p>&nbsp;</p>
+<h3>Analysis and Model Results</h3>
+<p>The proposed research model was tested using PLS (partial least squares) analysis, chosen for three reasons:<sup>2,3</sup> (1) It is well suited for exploratory analysis and theory building; (2) PLS does not require assumptions of multivariate normality; and (3) PLS works well with small-to-medium sample sizes. When considering CBSEM (covariance-based structural equation modeling) vs. PLS, CBSEM is more concerned with model fit while PLS is particularly well suited for predictive models,<sup>3</sup> which is an ideal application when considering real-world outcomes. In addition, our proposed model contains nine independent variables and nine dependent variables, with two control variables (explained later in this section), making it a fairly complex model; in comparison, CBSEM may show poor model fit simply because of the complexity of the model.<sup>3</sup> </p>
+<p>A rule of thumb for determining adequate sample size when conducting PLS analysis is 10 times the largest structural equation model.<sup>9</sup> In this study, the largest structural equations are the developer experience constructs, where each has three paths to the outcomes. Our sample size of 219 is far larger than the minimum sample size of 30.</p>
+<p>We conducted our analysis using SmartPLS 4.<sup>24</sup> Consistent with prior research using PLS techniques, model analysis includes two stages:<sup>3</sup> assessment of the (1) measurement model and (2) structural model. </p>
+<p>In the assessment of the measurement model, convergent validity was established with three criteria:<sup>10</sup> (1) each item loaded on its respective construct and none below the cutoff value of 0.50 (appropriate for exploratory research);<sup>12</sup> (2) composite reliability of all constructs below 0.70, confirming reliability;<sup>2</sup> (3) AVE (average variance extracted) of all constructs greater than 0.50. Discriminant validity was confirmed by the heterotrait-monotrait ratio of correlations.<sup>13</sup> Thus, our measures exhibit good psychometric properties; the items and descriptive statistics are shown in table 1.</p>
+<p>Similar to linear regression, PLS assesses the significance of relationships between constructs and provides R<sup>2</sup> values. These values indicate the proportion of variance in the dependent variable that can be explained by the independent variables. Furthermore, path coefficients and their significance can be used to assess the strength and importance of the proposed relationships between constructs. Together, the R<sup>2</sup> values and path coefficients provide insights into how well the data supports the hypothesized model.</p>
+<p>When testing the model, we included two control variables: organization size and industry. Based on the types of companies in the sample, these were reduced to two binary values and included as dummy variables. Organization size was coded as small (fewer than 500 employees) or not-small (500 or more employees); industry was coded as primarily tech or not primarily tech. The analysis showed that the control variables were not significant. The results of the hypothesis testing are presented in figure 2 and summarized here:</p>
+<p>• <i>H1</i> states that flow state positively impacts developer, team, and organization outcomes. This hypothesis is fully supported. </p>
+<p>• <i>H2</i> states that feedback loops positively impact developer, team, and organization outcomes. This hypothesis is partially supported; feedback loops influence team outcomes but not developer or organization outcomes. This finding is discussed in more detail later in this article.</p>
+<p>• <i>H3</i> states that cognitive load positively impacts developer, team, and organization outcomes. This hypothesis is fully supported. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3639443/assets/html/forsgren2.png" alt="DevEx in Action" />
+<h4>IPMA: Making an impact</h4>
+<p>Because of its focus on maximizing prediction of dependent variables, PLS provides additional insight into items that may have outsized impact. We conducted an IPMA (importance-performance map analysis) on the research model to identify items that could give teams and organizations additional insight. In summary, this analysis identifies items that have a high impact and performance relative to the dependent variable under consideration. To improve developer outcomes, deep work and engaging work have the biggest potential impact. To improve organizational outcomes, several items have the potential for big impact: deep work, engaging work, intuitive processes, and intuitive developer tools. We could not run the analysis for team outcomes based on the emergent model.</p>
+<p>Note that these results are based on our research context, but they provide clues that can offer actionable insights for teams and organizations. For example, if you are hoping to improve developer outcomes such as productivity, learning, and creativity, think about ways that you can provide opportunities for deep work; these can include strategies such as encouraging both focus time for individual developers and coordinated focus time among teams, like days with few or no meetings. You can also look for opportunities to create engaging work and for learning, such as hack days. </p>
+<p>The analysis shows that deep and engaging work provides outsized support for organizational outcomes such as innovation, retention, profitability, and broader organizational goals. Intuitive processes and tools also support these goals. Organizations can look for ways to streamline and clarify their processes, which has been found to be impactful in other research, or provide access to intuitive, easy-to-use developer tools. Previous research has found that inefficient work processes are a top challenge for developers,<sup>14</sup> and improvements in process and tools present a driver for outcomes.<sup>7</sup></p>
+<p>&nbsp;</p>
+<h4>Alternative models</h4>
+<p>We also considered an alternative model supported by WDT. One reading of the theory allows for the items in team outcomes—technical debt and code quality—to be reframed as environmental factors that moderate developer and organization outcomes.<sup>22</sup> That is, they could either attenuate (reduce) or amplify (increase) the impact of DevEx factors on outcomes. A test of this model found that "team outcomes as environmental moderators"—specifically, our operationalization of technical debt and code quality—were not significant. Therefore, we do not include details of the results. Other environmental factors could be relevant. Also note that the control variables were not significant in this analysis.</p>
+<p>&nbsp;</p>
+<h4>Another view of impact: Likelihood analysis</h4>
+<p>To put these results in perspective, we consider which outcomes might be expected when specific DevEx interventions are put in place. Following are the statistical results observed in this likelihood analysis, broken down by the three dimensions of DevEx: flow state, cognitive load, and feedback loops.</p>
+<p>&nbsp;</p>
+<h5>Flow state</h5>
+<p>• Developers who have a significant amount of time carved out for deep work feel 50 percent more productive compared with those lacking in dedicated time. Granted, it's not always easy for developers to reserve blocks of time on their calendars, especially if they work on teams distributed across time zones. But dedicating time to deep work is a practice that pays high dividends in terms of allowing developers to be truly productive. Encouraging developers and teams to carve out time to focus is important, and their environment needs to support this practice by minimizing interruptions.</p>
+<p>• Developers who find their work engaging feel they are 30 percent more productive, compared with those who find their work boring. Rethinking the distribution of tasks among individuals in a team, or teams within an organization, can help here. Are the same developers continually working on less desirable projects and tasks, which could lead to burnout? Are certain teams tasked regularly with activities they find boring or divorced from the company's mission and customers? </p>
+<p>&nbsp;</p>
+<h5>Cognitive load</h5>
+<p>• Developers who report a high degree of understanding the code they work with feel 42 percent more productive than those who report low to no understanding. It's an all too familiar pattern when teams need to move fast and overlook making their code clear, simple, or well documented. While that is sometimes necessary, it can really hinder the team's long-term productivity. Tooling and conventions that help code be understandable within and across teams can futureproof productivity. </p>
+<p>• Developers who find their tools and work processes intuitive and easy to use feel they are 50 percent more innovative compared with those with opaque or hard-to-understand processes. Unintuitive tools and processes can be both a time sink and a source of frustration—in either case, a severe hindrance to individuals' and teams' creativity. </p>
+<p>&nbsp;</p>
+<h5>Feedback loops</h5>
+<p>• Developers who report fast code-review turnaround times feel 20 percent more innovative compared with developers who report slow turnaround times. Code reviews that are completed quickly allow developers and teams to move to their next idea quickly, setting the stage for coming up with the next great thing. </p>
+<p>• Tight feedback loops have another positive outcome. Teams that provide fast responses to developers' questions report 50 percent less technical debt than teams whose responses are slow. It pays to document repeated developer questions and/or put tooling in place so developers can easily and quickly navigate to the response they need and integrate good coding practices and solutions as they write their code, which creates less technical debt.</p>
+<p>&nbsp;</p>
+<h3>Discussion</h3>
+<p>The most important contribution of this study is the evidence it provides that improving DevEx creates positive outcomes for individuals, teams, and organizations.</p>
+<p>This is the first study we're aware of that analyzes the statistical relationships between DevEx factors and outcomes at the individual, team, and organization levels. Although prior studies have suggested these relationships, they have not been quantified. The results reported here provide concrete evidence that can empower development teams and leaders to advocate for investment in DevEx.</p>
+<p>&nbsp;</p>
+<h4>How to advocate for investment in DevEx</h4>
+<p>Most developers know they need good DevEx to do their best work. Furthermore, because so many companies today are software-driven, their ability to be profitable depends on their developers' ability to be productive and creative, and write and maintain high-quality software, with low technical debt. Even a company's ability to innovate and be profitable depends on DevEx—because if it's too hard to do daily work, it's definitely too hard to innovate. </p>
+<p>Knowing intuitively the importance of DevEx, however, is not always enough to make a compelling case to upper management. When management rightfully asks if DevEx has an impact on business, this study can provide an answer, showing that DevEx affects the performance of individual developers, teams, and organizations. Further, our analysis clearly indicates which factors should be given priority for teams to achieve positive outcomes. This evidence can justify a DevEx initiative, as well as provide actionable insights to guide a DevEx intervention. </p>
+<p>Now that you are sold on improving DevEx, how can you convince your organization to buy in? First, have them read this article. Then, joke aside, here are five important steps that can help you advocate for continuous improvements by keeping your arguments grounded in data.</p>
+<h5>1. Get data on the current developer experience.</h5>
+<p>Understand what DevEx is like at your organization. For organizations that are just beginning their DevEx journey, this means collecting new data to reveal their biggest pain points, as well as knowing their current abilities to make changes. (You can use or adapt the survey used in this study, included in table 1, or a dedicated solution such as DX.) If this is your first time collecting data about DevEx, this becomes your baseline. If you have already been doing some DevEx work, you can integrate this data and update your metrics. </p>
+<p>&nbsp;</p>
+<h5>2. Set goals based on your DevEx data.</h5>
+<p>Use your DevEx data to inform your goals and investments. These can be based on current business priorities, DevEx data, and what you learned from this article. For example, let's say your organization just collected DevEx data last month. It was an exploratory study, so it asked two questions: One was an NPS for internal dev tools (a 1-10 scale if the respondents would recommend the tool to others), and the other an open text question for feedback about dev tools. Using this data, you see that key challenges (opportunities!) are build times, test flakiness, and gaps in monitoring. When reviewing business priorities, your organization has been making ongoing investments in monitoring, build times, and improving PR processes. Reviewing this research, you see there are three categories of DevEx that are impactful, with deep work and engaging work having a large impact. </p>
+<p>This would put you in a good position to set goals. Any of the items listed in the previous paragraph would be areas in which to start making investments. To get a bit more strategic, you could identify overlaps. One strategic overlap is build times (identified in both your DevEx data and existing business priorities), which could align with feedback loops (supported by this study). Another possible strategic overlap is with monitoring (seen in both your DevEx data and existing business priorities), which could also support feedback loops for teams (a concept supported here).</p>
+<p>&nbsp;</p>
+<h5>3. Set your team up for success. </h5>
+<p>Once you've reviewed your data and set your goals, be sure to leverage mechanisms your company has in place to set you and your team up for success. This can mean setting a team OKR (objectives and key results)—or setting a shared OKR with another team to establish shared accountability. Communicate your goal with your team and organization. Revisit and check progress periodically. </p>
+<p>&nbsp;</p>
+<h5>4. Share progress and validate investments.</h5>
+<p>Share results with developers, as well as DevEx and business leaders, to evaluate and discuss the value of your investments. Reflect on which investments delivered impact, as well as what was surprising and what you learned. (Sharing surprises can be especially useful because it highlights the value of having data and acting on it, and the ability to course-correct quickly.) By periodically reassessing the state of DevEx and highlighting improvements, you can increase confidence that your investments are making an impact.</p>
+<p>&nbsp;</p>
+<h5>5. Repeat the process.</h5>
+<p>Go back to step 1 and collect more data. As you do this, reflect on your last experience to update and refine your data collection and interventions. (Remember that except when correcting for errors, adjustments in data collection should usually remain small to allow for comparisons over time.) In general, you should repeat this process of data collection and setting goals (or checking progress on large goals) every three to six months. </p>
+<p>&nbsp;</p>
+<h4>Limitations and opportunities for research</h4>
+<p>While the results of this research are promising, there are some limitations, which is true of all research. First, this study was conducted among developers working at companies that were already engaging with a DevEx company (DX). This could indicate that these companies have a commitment to improving DevEx, which could bias the results when compared with organizations that do not have a similar commitment or culture. We also invited developers who participated in a DevEx survey, meaning we likely reached a population that cares about developer experience. We see this as a benefit, however, since these developers are likely more reflective about their experience.</p>
+<p>Second, our measures were operationalized based on a model of DevEx that focuses on flow, feedback loops, and cognitive load. There may be other dimensions or definitions of DevEx that can warrant additional research. In addition, our operationalization of feedback loops focused on only a small subset of developers' work: answers to questions and code reviews. These are key aspects of how a developer works on a team, which may explain why this only influenced team outcomes; we highlight the need to explore additional aspects of DevEx, such as feedback loops that come solely from people (conversations or discussions), purely from systems (automated builds or tests), and from people but mediated through systems (code review). </p>
+<p>Third, this study was cross-sectional. DevEx is a complex process that happens over time and with processes that are mutually reinforcing. Future work should investigate longitudinal relationships between and among DevEx constructs and their outcomes. Our research strongly suggests that improving DevEx is worth the effort, and the impact of doing so can be measured. We invite you to share how improving and measuring DevEx factors impact outcomes in your organization.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Campion, M. A., McClelland, C. L. 1991. Interdisciplinary examination of the costs and benefits of enlarged jobs: a job design quasi-experiment. <i>Journal of Applied Psychology</i> 76(2), 186-198. <a href="https://psycnet.apa.org/record/1991-25985-001">https://psycnet.apa.org/record/1991-25985-001</a>.</p>
+<p>2. Chin, W. W., Marcolin, B. L., Newsted, P. R. 2003. A partial least squares latent variable modeling approach for measuring interaction effects: results from a Monte Carlo simulation study and an electronic-mail emotion/adoption study. <i>Information Systems Research</i> 14(2), 189-217; <a href="https://pubsonline.informs.org/doi/10.1287/isre.14.2.189.16018">https://pubsonline.informs.org/doi/10.1287/isre.14.2.189.16018</a>.</p>
+<p>3. Chin, W. W. 2010. How to write up and report PLS analyses. In <i>Handbook of Partial Least Squares</i>, eds. V. Esposito Vinzi, W. W. Chin, J. Henseler, H. Wang, 655–690. Berlin, Heidelberg: Springer; <a href="https://link.springer.com/chapter/10.1007/978-3-540-32827-8_29">https://link.springer.com/chapter/10.1007/978-3-540-32827-8_29</a>.</p>
+<p>4. Csikszentmihalyi, M. 2008. <i>Flow: The Psychology of Optimal Experience</i>. Harper Perennial Modern Classics.</p>
+<p>5. Edwards, J. R., Scully, J. A., Brtek, M. D. 1999. The measurement of work: hierarchical representation of the Multimethod Job Design Questionnaire. <i>Personnel Psychology</i> 52(2), 305–334; <a href="https://psycnet.apa.org/record/1999-05792-002">https://psycnet.apa.org/record/1999-05792-002</a>.</p>
+<p>6. Ford, F. A. 1999. <i>Modeling the Environment: An Introduction to System Dynamics Models of Environmental Systems</i>. Island Press.</p>
+<p>7. Forsgren, N., Smith, D., Humble, J., Frazelle, J. 2019. Accelerate State of DevOps Report; <a href="https://services.google.com/fh/files/misc/state-of-devops-2019.pdf">https://services.google.com/fh/files/misc/state-of-devops-2019.pdf</a>.</p>
+<p>8. Forsgren, N., Storey, M. A., Maddila, C., Zimmermann, T., Houck, B., Butler, J. 2021. The SPACE of developer productivity: There's more to it than you think. <i>acmqueue</i> 19(1), 20–48; <a href="https://queue.acm.org/detail.cfm?id=3454124">https://queue.acm.org/detail.cfm?id=3454124</a>.</p>
+<p>9. Gefen, D., Straub, D., Boudreau, M. 2000. Structural equation modeling and regression: guidelines for research practice. <i>Communications of the Association for Information Systems</i> 4; <a href="https://aisel.aisnet.org/cais/vol4/iss1/7/">https://aisel.aisnet.org/cais/vol4/iss1/7/</a>. </p>
+<p>10. Gefen, D., Straub, D. 2005. A practical guide to factorial validity using PLS-Graph: tutorial and annotated example. <i>Communications of the Association for Information Systems</i> 16(5); <a href="https://aisel.aisnet.org/cais/vol16/iss1/5/">https://aisel.aisnet.org/cais/vol16/iss1/5/</a>.</p>
+<p>11. Greiler, M., Storey, M. A., Noda, A. 2022. An actionable framework for understanding and improving developer experience. <i>IEEE Transactions on Software Engineering</i> 49(4), 1411–1425; <a href="https://ieeexplore.ieee.org/document/9785882">https://ieeexplore.ieee.org/document/9785882</a>.</p>
+<p>12. Hair Jr., J., Hult, G. T. M., Ringle, C. M., Sarstedt, M. 2021. <i>A Primer on Partial Least Squares Structural Equation Modeling (PLS-SEM)</i>. Sage Publications. </p>
+<p>13. Henseler, J., Ringle, C.M. Sarstedt, M. 2015. A new criterion for assessing discriminant validity in variance-based structural equation modeling. <i>Journal of the Academy of Marketing Science</i> 43, 115–135; <a href="https://link.springer.com/article/10.1007/s11747-014-0403-8">https://link.springer.com/article/10.1007/s11747-014-0403-8</a>. </p>
+<p>14. Houck, B., Yelin, H., Butler, J., Forsgren, N., McMartin, A. 2023. The best of both worlds: unlocking the potential of hybrid work for software engineers. Microsoft and Vista Equity Partners whitepaper; <a href="https://www.microsoft.com/en-us/research/publication/the-best-of-both-worlds-unlocking-the-potential-of-hybrid-work-for-software-engineers/">https://www.microsoft.com/en-us/research/publication/the-best-of-both-worlds-unlocking-the-potential-of-hybrid-work-for-software-engineers/</a>.</p>
+<p>15. Humphrey, S. E., Nahrgang, J. D., Morgeson, F. P. 2007. Integrating motivational, social, and contextual work design features: a meta-analytic summary and theoretical extension of the work design literature. <i>Journal of Applied Psychology</i> 92(5), 1332–1356; <a href="https://psycnet.apa.org/doiLanding?doi=10.1037%2F0021-9010.92.5.1332">https://psycnet.apa.org/doiLanding?doi=10.1037%2F0021-9010.92.5.1332</a>.</p>
+<p>16. Kalliamvakou, E., Forsgren, N., Redford, L., Stephenson, S. 2021. Octoverse Spotlight 2021: Good Day Project – Personal analytics to make your work days better. GitHub Blog; <a href="https://github.blog/2021-05-25-octoverse-spotlight-good-day-project/">https://github.blog/2021-05-25-octoverse-spotlight-good-day-project/</a>.</p>
+<p>17. Magyaródi, T., Nagy, H., Soltész, P., Mózes, T., Oláh, A. 2013. Psychometric properties of a newly established flow state questionnaire. <i>Journal of Happiness &amp; Well-Being</i> 1(2), 89–100; <a href="https://jhwbjournal.com/uploads/files/acef39a197aeafb1b70cd2400037f869.pdf">https://jhwbjournal.com/uploads/files/acef39a197aeafb1b70cd2400037f869.pdf</a>.</p>
+<p>18. Meijer, A. 2019. Public innovation capacity: developing and testing a self-assessment survey instrument. <i>International Journal of Public Administration</i> 42(8), 617–627; <a href="https://www.tandfonline.com/doi/full/10.1080/01900692.2018.1498102">https://www.tandfonline.com/doi/full/10.1080/01900692.2018.1498102</a>.</p>
+<p>19. Morrison, B. B., Dorn, B., Guzdial, M. 2014. Measuring cognitive load in introductory CS: adaptation of an instrument. In <i>Proceedings of the 10th Annual Conference on International Computing Education Research</i>, 131–138; <a href="https://dl.acm.org/doi/10.1145/2632320.2632348">https://dl.acm.org/doi/10.1145/2632320.2632348</a>.</p>
+<p>20. Murphy-Hill, E., Jaspan, C., Sadowski, C., Shepherd, D., Phillips, M., Winter, C., Knight, A., Smith, E., Jorde, M. 2019. What predicts software developers' productivity? <i>IEEE Transactions on Software Engineering</i> 47(3), 582–594; <a href="https://ieeexplore.ieee.org/abstract/document/8643844">https://ieeexplore.ieee.org/abstract/document/8643844</a>.</p>
+<p>21. Noda, A., Storey, M. A., Forsgren, N., Greiler, M. 2023. DevEX: what actually drives productivity? <i>acmqueue</i> 21(2); <a href="https://queue.acm.org/detail.cfm?id=3595878">https://queue.acm.org/detail.cfm?id=3595878</a>.</p>
+<p>22. Parker, S. K., Wall, T. D., Cordery, J. L. 2001. Future work design research and practice: towards an elaborated model of work design. <i>Journal of Occupational and Organizational Psychology</i> 74(4), 413–440; <a href="https://bpspsychub.onlinelibrary.wiley.com/doi/abs/10.1348/096317901167460">https://bpspsychub.onlinelibrary.wiley.com/doi/abs/10.1348/096317901167460</a>.</p>
+<p>23. Parker, S. K., Morgeson, F. P., Johns, G. 2017. One hundred years of work design research: Looking back and looking forward. <i>Journal of Applied Psychology</i> 102(3), 403–420; <a href="https://psycnet.apa.org/record/2017-06118-001">https://psycnet.apa.org/record/2017-06118-001</a>.</p>
+<p>24. Ringle, C. M., Wende, S., Becker, J.-M. 2022. SmartPLS 4. Oststeinbek: SmartPLS. Retrieved from <a href="https://www.smartpls.com/">https://www.smartpls.com</a>.</p>
+<p>25. Sweller, J. 1988. Cognitive load during problem solving: effects on learning. <i>Cognitive Science </i>12(2), 257–285; <a href="https://onlinelibrary.wiley.com/doi/abs/10.1207/s15516709cog1202_4">https://onlinelibrary.wiley.com/doi/abs/10.1207/s15516709cog1202_4</a>.</p>
+<p>26. Theriou, N., Maditinos, D. I., Theriou, G. 2017. Management control systems and strategy: a resource-based perspective. Evidence from Greece. <i>International Journal of Business and Economic Sciences Applied Research</i> 10(2), 35–47; <a href="http://ijbesar.teiemt.gr/docs/volume10_issue2/management_control_systems_strategy.pdf">http://ijbesar.teiemt.gr/docs/volume10_issue2/management_control_systems_strategy.pdf</a>.</p>
+<p>&nbsp;</p>
+<p><b>Nicole Forsgren</b> is a partner at Microsoft Research, where she leads the <a href="https://techcommunity.microsoft.com/t5/azure-developer-community-blog/introducing-developer-velocity-lab-a-research-initiative-to/ba-p/2333140">Developer Experience Lab</a>. She is an expert in DevEx, DevOps, and decision making, and is the lead author of the Shingo Publication Award-winning book <i>Accelerate: The Science of Lean Software and DevOps</i>. Her work on technical practices and development has been published in industry and academic journals and is used to guide organizational transformations around the world. For more information, visit her website at <a href="http://nicolefv.com/">nicolefv.com</a>.</p>
+<p><b>Eirini Kalliamvakou</b> is a staff researcher at <a href="https://githubnext.com/">GitHub Next</a>, where she guides the team's strategic prototyping efforts, grounding them in user-centric research. Eirini is looking at AI's transformational impact on how developers create software. Previously at GitHub, Eirini led the <a href="https://github.blog/2021-05-25-octoverse-spotlight-good-day-project/">Good Day Project</a> and the <a href="https://octoverse.github.com/2021/">2021 State of the Octoverse Report</a>, and has spoken extensively about developer productivity and happiness.</p>
+<p><b>Abi Noda</b> is the founder and CEO at <a href="https://getdx.com/">DX</a>, where he leads the company's strategic direction and R&amp;D efforts. His work focuses on developing measurement methods to help organizations improve developer experience and productivity. Before joining DX, Noda held engineering leadership roles at various companies and founded Pull Panda, which was acquired by GitHub in 2019. For more information, visit his website at <a href="https://abinoda.com/">abinoda.com</a>.</p>
+<p><b>Michaela Greiler</b> is the head of research at DX, focusing on developer productivity and experience. Previously, she was at the University of Zurich and Microsoft Research to help boost developer productivity using engineering data. She also runs a training and consulting company that specializes in improving software engineering processes and practices for teams. For more information, visit her website at <a href="http://michaelagreiler.com/">michaelagreiler.com</a>. </p>
+<p><b>Brian Houck</b> is a principal productivity engineer at Microsoft focused on improving the well-being and productivity of Microsoft's internal developers. His work explores not only the technical factors that impact developer productivity, but also cultural, environmental, and organizational factors that impact the daily experiences of engineers. Over the past three years, much of his research has centered on how the shift to remote/hybrid work has impacted developers.</p>
+<p><b>Margaret-Anne Storey</b> is a professor of computer science at the University of Victoria and holds a Canada Research Chair in human and social aspects of software engineering. Her research focuses on improving processes, tools, communication, and collaboration in software engineering. She serves as chief scientist at DX and consults with Microsoft to improve developer productivity.</p>
+<p>Copyright © 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'84870efa5df20617',t:'MTcwNTc1MDk5My4xODAwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;84870efa5df20617&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2024.1.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 6</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3639443">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Jo&#227;o Varaj&#227;o, Ant&#243;nio Trigo, Miguel Almeida</span> - <a href="detail.cfm?id=3631183"><b>Low-code Development Productivity</b></a>
+<br/>
+This article aims to provide new insights on the subject by presenting the results of laboratory experiments carried out with code-based, low-code, and extreme low-code technologies to study differences in productivity. Low-code technologies have clearly shown higher levels of productivity, providing strong arguments for low-code to dominate the software development mainstream in the short/medium term. The article reports the procedure and protocols, results, limitations, and opportunities for future research.
+</p>
+<br/>
+<p>
+<span>Ivar Jacobson, Alistair Cockburn</span> - <a href="detail.cfm?id=3631182"><b>Use Cases are Essential</b></a>
+<br/>
+While the software industry is a fast-paced and exciting world in which new tools, technologies, and techniques are constantly being developed to serve business and society, it is also forgetful. In its haste for fast-forward motion, it is subject to the whims of fashion and can forget or ignore proven solutions to some of the eternal problems that it faces. Use cases, first introduced in 1986 and popularized later, are one of those proven solutions.
+</p>
+<br/>
+<p>
+<span>Jorge A. Navas, Ashish Gehani</span> - <a href="detail.cfm?id=3570922"><b>OCCAM-v2: Combining Static and Dynamic Analysis for Effective and Efficient Whole-program Specialization</b></a>
+<br/>
+OCCAM-v2 leverages scalable pointer analysis, value analysis, and dynamic analysis to create an effective and efficient tool for specializing LLVM bitcode. The extent of the code-size reduction achieved depends on the specific deployment configuration. Each application that is to be specialized is accompanied by a manifest that specifies concrete arguments that are known a priori, as well as a count of residual arguments that will be provided at runtime. The best case for partial evaluation occurs when the arguments are completely concretely specified. OCCAM-v2 uses a pointer analysis to devirtualize calls, allowing it to eliminate the entire body of functions that are not reachable by any direct calls.
+</p>
+<br/>
+<p>
+<span>James P. Hughes, Whitfield Diffie</span> - <a href="detail.cfm?id=3546933"><b>The Challenges of IoT, TLS, and Random Number Generators in the Real World</b></a>
+<br/>
+Many in the cryptographic community scoff at the mistakes made in implementing RNGs. Many cryptographers and members of the IETF resist the call to make TLS more resilient to this class of failures. This article discusses the history, current state, and fragility of the TLS protocol, and it closes with an example of how to improve the protocol. The goal is not to suggest a solution but to start a dialog to make TLS more resilient by proving that the security of TLS without the assumption of perfect random numbers is possible.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

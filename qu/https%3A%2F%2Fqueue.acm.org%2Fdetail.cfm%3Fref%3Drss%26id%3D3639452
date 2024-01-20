@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Resolving the Human-subjects Status of Machine Learning's Crowdworkers - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="AI" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+	max-width: 800px;
+	position: relative;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3640326" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>January 14, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3640326">Volume 21, issue 6 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3639452">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Resolving the Human-subjects Status of Machine Learning's Crowdworkers</h1>
+<h2>What ethical framework should govern the interaction of ML researchers and crowdworkers?</h2>
+<h3>Divyansh Kaushik, Zachary C. Lipton, Alex John London</h3>
+<p>As the focus of ML (machine learning) has shifted toward settings characterized by massive datasets, researchers have become reliant on crowdsourcing platforms.<sup>13,25</sup> Just for the NLP (natural language processing) task of passage-based QA (question answering), more than 15 new datasets containing at least 50k annotations have been introduced since 2016. Prior to 2016, available QA datasets contained orders of magnitude fewer examples. </p>
+<p>The ability to construct such enormous resources derives, largely, from the liquid market for temporary labor on crowdsourcing platforms such as Amazon Mechanical Turk. These practices, however, have raised ethical concerns, including (1) low wages;<sup>5,26</sup> (2) disparate access, benefits, and harms of developed applications;<sup>1,20</sup> (3) reproducibility of proposed methods;<sup>4,21</sup> and (4) potential for unfairness and discrimination in the resulting technologies.<sup>9,14</sup> </p>
+<p>This article looks at what ethical framework should govern the interaction of ML researchers and crowdworkers, and the unique challenges in regulating ML research. Researchers typically lack expertise in human-subjects research and require guidance on how to classify the role crowdworkers play to comply with relevant ethical and regulatory requirements. Unfortunately, clear guidance is lacking: Some institutions and a 2021 paper by Shmueli, et al. suggest that all ML crowdworkers constitute human subjects;<sup> 23</sup> others suggest that ML crowdworkers rarely constitute human subjects.<sup>10</sup> Confusion surrounding ML crowdworkers is grounded in the following factors.</p>
+<p>&nbsp;</p>
+<p>• <b><i>Novel relationships.</i></b> The U.S. Common Rule was developed in the wake of abuses in biomedical and behavioral research and reflects the need to distinguish clinical research from medical practice.<sup>15</sup> Because the distinction between employees on a research team and study participants is less ambiguous in medical contexts, little attention has been paid to criteria for distinguishing <i>research staff</i> from <i>study participants</i>.</p>
+<p>• <b><i>Novel methods.</i></b> In biomedical or social sciences, data is collected to answer questions that have been specified in advance, while ML often involves a dynamic workflow in which data is collected in an open-ended fashion and research questions are articulated in light of its analysis. Additionally, ML researchers often release rich data resources, where much of the data is not analyzed. </p>
+<p>• <b><i>Ambiguity under the Common Rule.</i></b> Whether an individual is a human subject hinges on whether the data collected, and later analyzed, is about that individual. As Shmueli, et al. have noted, crowdworkers can fill such diverse roles in ML research that it becomes difficult to draw a line between collected data <i>about</i> the crowdworkers versus merely <i>from</i> them (but about something else).<sup>23</sup> </p>
+<p>• <b><i>Scale.</i></b> NLP research produces hundreds of crowdsourcing papers per year, with 703 appearing at the top venues alone from 2015-2020.<sup>23</sup> </p>
+<p>• <b><i>Inexperience.</i></b> Crowdsourcing-intensive ML/NLP papers seldom discuss ethical considerations that would otherwise be central to human-subjects research, and they rarely discuss whether IRB (institutional review board) approval or exemption was sought—only 14 (about 2 percent) of the aforementioned 703 papers described IRB review or exemption.<sup>23</sup></p>
+<p>&nbsp;</p>
+<h3>Current Regulatory Framework</h3>
+<p>In the United States, the regulations governing the treatment of humans in scientific research, detailed in the CFR (Code of Federal Regulations), are known as the Common Rule. Falling under the auspices of OHRP (Office of Human Research Protections) of the U.S. Department of Health and Human Services, these regulations apply only to institutions that accept federal funds or have agreed to abide by these rules. Two important criteria determine whether a person constitutes a research participant: those that define <i>research</i> and those that define a <i>human subject</i>. </p>
+<p>Research is defined, in part, as "a systematic investigation, including research development, testing, and evaluation, designed to develop or contribute to generalizable knowledge." </p>
+<p>A human subject is defined as "a living individual about whom an investigator (whether professional or student) conducting research: (i) obtains information or biospecimens through intervention or interaction with the individual, and uses, studies, or analyzes the information or biospecimens; or (ii) obtains, uses, studies, analyzes, or generates identifiable private information or identifiable biospecimens" (45 CFR 46.102 (e)(1)).</p>
+<p>For simplicity, this discussion is limited to the production of information, rather than to a discussion of specimens. </p>
+<p>Two points of clarification: First, to satisfy the definition of a human subject in the CFR, researchers must retrieve data about an individual. This doesn't imply that the study focuses on the individual but aims to generate generalizable knowledge. For example, in biomedicine, individual measurements are used to produce knowledge about a wider population. Defining what information is <i>about</i> an individual can be challenging for ML researchers dealing with crowdworkers.</p>
+<p>Second, conditions (i) and (ii) in the CFR lump together a range of cases that vary in substantive ways. Condition (i) is a combination of two conjuncts. The first concerns the way that information is produced: from either <i>intervention</i> or <i>interaction</i>. These terms are defined as:</p>
+<p>• Intervention includes both physical procedures by which information or biospecimens are gathered (e.g., venipuncture) and manipulations of the subject or the subject's environment that are performed for research purposes.</p>
+<p>• Interaction includes communication or interpersonal contact between investigator and subject.</p>
+<p>Of these, interaction is the weaker condition. Interventions can be understood as the subset of interactions that produce a change in either the individual (e.g., administering a drug or drawing blood) or their environment (e.g., placing an individual in an imaging device). In contrast, interactions include communication or interpersonal contact that generates information without necessarily bringing about a change to the individual or their environment. For example, a study might divide participants into two groups: one to test an intervention alongside usual care; one to receive just the usual care. The group receiving only usual care is still part of the study's social interaction that generates data to control for confounding, thus aiding in creating generalizable knowledge.</p>
+<p>The second conjunct in condition (i) requires that information arising in one of these two ways—intervention or interaction—is then used, studied, or analyzed. Of these, <i>use</i> is the broadest category, as there may be myriad ways that information from a social interaction is used in research. In contrast, study and analysis constitute a stricter subset of uses in which data are analyzed or evaluated, presumably to generate the generalizable knowledge that defines the study in question. </p>
+<p>Table 1 lists combinations from these categories forming different research paradigms. Among these, the <i>intervention analysis</i> condition is narrowest, which implies that a person becomes a study subject through targeted interventions and subsequent analysis. In contrast, the <i>interaction use</i> criteria are broader, holding that a person is a human subject if, in the course of research, researchers interact with them in a way that produces information used to further the goals of the research.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3639452/assets/html/lipton-t1.png" alt="Resolving the Human-subjects Status of Machine Learning Crowdworkers" />
+<p>Condition (ii) of the CFR's definition of human subject applies when researchers obtain, use, study, analyze, or generate private information about a living individual, even if direct interaction is absent. It covers research involving datasets containing personal information or studies generating such information from noninclusive datasets.</p>
+<p>These definitions demarcate which set of ethical and regulatory requirements applies to an activity. Activities not involving human subjects are not governed by regulations for human subject research, making IRB review unnecessary. Research involving human participants, however, necessitates adherence to specific moral and regulatory responsibilities, including mandatory IRB review.</p>
+<p>This last claim might come as a surprise to some familiar with the Common Rule, since a significant portion of ML research, and NLP research in particular, is likely to be classified as <i>exempt</i>. Per 46.104.(3)(i) of the Common Rule, research involving benign behavioral interventions in conjunction with the collection of information from an adult subject through verbal or written responses or audiovisual recording can qualify for exempt status if the subject prospectively agrees to the intervention and information collection and at least one of the following criteria is met: </p>
+<p>• The information obtained is recorded by the investigator in such a manner that the identity of the human subjects cannot readily be ascertained, directly or through identifiers linked to the subjects.</p>
+<p>• Any disclosure of the human subjects' responses outside the research would not reasonably place the subjects at risk of criminal or civil liability or be damaging to the subjects' financial standing, employability, educational advancement, or reputation.</p>
+<p>However, a researcher cannot unilaterally declare their research to be exempt from IRB review.</p>
+<p>Rather, <i>exempt</i> is a regulatory status that must be determined by an IRB (?46.109.(a)). This may seem paradoxical, as for a study to qualify for exempt status, researchers are obligated to offer comprehensive details regarding their project to the IRB. The board assesses this information to ensure all applicable Common Rule standards are met. This is common in administrative rulemaking, as well as judicial review; courts may determine whether something is in their jurisdiction, but a plaintiff has to provide information to enable a court to make that determination. Exempt status usually entails less effort and receives faster approval than a full IRB review. A researcher at an institution governed by the Common Rule would violate regulatory obligations by commencing human subject research without prior IRB review, even if the research would have been exempt.</p>
+<p>&nbsp;</p>
+<h3>Common Rule and ML Research</h3>
+<p>Based on the preceding analysis, there is a large subset of ML research in which crowdworkers are clearly human subjects. These cases fit squarely into the paradigm of research, familiar in biomedicine and social science, where researchers interact with crowdworkers to produce data <i>about</i> those individuals, and then analyze that data to produce generalized knowledge about a population from which those individuals are considered representative samples. </p>
+<p>In some studies, researchers assign crowdworkers at random to interventions to produce data that can be analyzed to generate generalizable knowledge about best practices for using crowdworkers. Here, crowdworkers are clearly human subjects. They are the target of an intervention designed specifically to capture data about them and their performance. </p>
+<p>For example, Khashabi, et al. engaged crowdworkers to investigate which workflows result in higher-quality QA datasets.<sup>12</sup> They recruited one set of crowdworkers to write questions given a passage, while another group of crowdworkers were shown a passage along with a suggested question and were tasked with minimally editing this question to generate new questions. In these settings, the data was about the workers themselves, as was the analysis. </p>
+<p>Similarly, Kaushik, et al. also examined different workflows to create QA datasets.<sup>11</sup> They asked one set of crowdworkers to write five questions after reading a passage, and another to write questions that elicit incorrect predictions from a pretrained QA model. Through this study, they derived insights about how each setup influenced crowdworker behavior, and then trained various QA models on these datasets.</p>
+<p>Human-subjects research in NLP is not limited to studies aimed at dataset quality. Hayati, et al. paired two crowdworkers in a conversational setting and asked one to recommend a movie to the other.<sup>7</sup> They analyzed the outputs to identify what communication strategies led to successful recommendations, and used these insights to train automated dialog systems. </p>
+<p>Perez-Rosas, et al. asked crowdworkers to each write seven truths and seven plausible lies on topics of their own choosing, and collected demographic attributes (such as age and gender) for each crowdworker.<sup>22</sup> They analyzed how attributes of deceptive behavior relate to gender and age, and then trained classifiers to predict deception, gender, and age. In these cases, the researchers interacted with crowdworkers to produce data about the crowdworkers that was then analyzed to answer research hypotheses, which created generalizable knowledge. </p>
+<p>&nbsp;</p>
+<h4>Cases where the human-subjects designation is problematic</h4>
+<p>Many ML crowdsourcing studies do not fit neatly in the paradigm of research common elsewhere. For example, crowdworkers are often recruited not as objects of study but to perform tasks that could have been—and sometimes are—performed by the researchers. In these cases, the researchers interact with crowdworkers and produce data that is then used to produce generalizable knowledge. Moreover, some of the collected data is <i>about</i> the worker (e.g., to facilitate payment). In these cases, however, data analyzed to produce generalizable knowledge is not about the crowdworkers in any meaningful sense.</p>
+<p>In the most common use of crowdsourcing in ML research (e.g., Hovy, et al.<sup>8</sup>) workers are hired to label datasets used for model training. While such research might seemingly satisfy the interaction and use criteria from the Common Rule, it meets these through information not directly about the worker. Crowdworkers perform tasks that would typically be performed by the research team when dealing with smaller datasets. For example, Kovashka, et al. described computer vision papers where researchers provided their own labels.<sup>13</sup> Addressing the same task, DeYoung, et al. recruited crowdworkers to provide annotation,<sup>3</sup> while Zaidan, et al. did the annotations themselves.<sup>30</sup> All these tasks involved interacting with crowdworkers and using the generated data.</p>
+<p>On a strict reading of the claim that a human subject is a living individual "about whom" researchers obtain information that is used or analyzed to produce generalizable knowledge, crowdworkers in these cases would not be classified as human subjects. This reading is consistent with the practice of some IRBs. </p>
+<p style="margin-bottom:6.0pt">For example, Whittier College states:</p>
+<blockquote>
+Information-gathering interviews with questions that focus on things, products, or policies rather than people or their thoughts about themselves may not meet the definition of human-subjects research. Example: interviewing students about campus cafeteria menus or managers about travel reimbursement policy.<sup>27</sup>
+</blockquote>
+<p>In contrast, other IRBs adopt a far more expansive reading of the Common Rule. Loyola University says:</p>
+<blockquote>
+In making a determination about whether an activity constitutes research involving human subjects, ask yourself the following questions:
+<br/>
+<br/>1) Will the data collected be publicly presented or published?
+<br/>
+<br/>AND
+<br/>
+<br/>2) Do my research methods involve a) direct and/or indirect interaction with participants via interviews, assessments, surveys, or observations, or b) access to identifiable private information about individuals, e.g., information that is not in the public domain?
+<br/>
+<br/>If the answer to both these questions is "yes," a project is considered research with human subjects and is subject to federal regulations.<sup>18</sup>
+</blockquote>
+<p>Note that this interpretation does not distinguish whether the information is about an individual or just obtained via a direct and/or indirect interaction. This view appears to be shared by other IRBs as well.<sup>2</sup> </p>
+<p>How does information <i>about</i> versus merely <i>from</i> impact human-subjects determination? Traditionally, research ethics has not had to worry about who is a member of the research team and who is a research participant. This ambiguity arises in cases of self-experimentation, but such cases are rare and fit into the intervention + analysis category from the Common Rule. The scope of the effort required to produce data that can be used in ML research has engendered new forms of interaction between researchers and the public. Without explicit guidance from federal authorities, individual IRBs have to grapple with this issue on their own.</p>
+<p>Our contention is that in the problematic cases referred to in this section, crowdworkers are best understood as augmenting the labor capacity of researchers rather than participating as human subjects in that research. This argument has two parts.</p>
+<p>The first part of the argument is based on symmetry. Within a division of labor, if a task can be performed by more than one person, the categorization of that task should depend on its substantive features, not the identity of the individual performing it. (The potential counterargument citing unionized and nonunionized workers or independent contractors and employees shows that individual identity and related features may influence workplace protections, even for the same type of work. Pre-existing agreements modifying agent entitlements, however, do not change the nature of the activity—be it work or research.)</p>
+<p>Therefore, if the same task is performed by a researcher and then by crowdworkers, the categorization should be consistent across both instances. Consequently, symmetry implies that either both the crowdworker and the researcher are part of the research team or both are human subjects.</p>
+<p>The second part of the argument offers additional factors encouraging the categorization of both as part of the research team. First, when conducting tasks pertinent to the study, researchers do not self-experiment; they are not study subjects. </p>
+<p>Second, this position reflects the understanding that these interactions generate useful information contributing to the development of universally applicable knowledge. This information, however, should be seen as originating from, not being about, them. </p>
+<p>Third, researchers interact as a team to generate tools, materials, and metrics used in research. But this interaction and use creates the means of generating new knowledge; it does not constitute the data whose study or analysis produces new knowledge. </p>
+<p>Finally, ignoring the distinction between data about a person versus from them and considering both researchers and crowdworkers as human subjects would excessively broaden the regulatory category. This would categorize every research team member, even in biomedical and social science, as human subjects since they regularly interact with their teams to generate information for general knowledge. </p>
+<p>&nbsp;</p>
+<h4>Loopholes in research oversight</h4>
+<p>Previous analysis has underscored an ethical quandary in ML research. Ethical oversight in studies involving human participants safeguards their interests, which can be at risk because of interactions, interventions, or subsequent data usage. The concept of an oversight loophole—where a researcher can evade oversight requirements without affecting the applied research procedures<sup>17</sup>—constitutes an ethical concern. It infringes on the principle of equal treatment: If data is collected from individuals for research to produce generalized knowledge, their interests should receive the same level of oversight and concern regardless of how labor is distributed during the process. Nevertheless, two aspects of ML research render it susceptible to oversight loopholes: (1) the way data collection and analysis workload is partitioned; and (2) how research questions often surface post-data collection.</p>
+<p>&nbsp;</p>
+<h5>Scenario 1</h5>
+<p>The Common Rule envisions several divisions of labor in research. In traditional biomedical or social science research, it is common for the same researchers to both collect and analyze data. This approach is affirmed by 45 CFR 46.102 (e)(1)(i), which states that a researcher who "[o]btains information or biospecimens through intervention or interaction with the individual, and uses, studies, or analyzes the information or biospecimens," is engaging in human-subjects research. Here, the ethical review assesses whether (a) interactions respect participant autonomy and welfare, and (b) information obtained from these interactions is used in ways that respect individuals' rights and welfare.</p>
+<p>Data or biospecimens are often collected during medical care or other health services. Such interactions are governed by medical ethics and professional norms rather than requirements of research. Hence, research ethics review assesses if identifiable private information is contained in the data or specimens and whether its use respects individuals' rights and welfare.</p>
+<p>It is not clear whether the Common Rule accounts for cases where researchers collect data for research goals but don't analyze it themselves. This differs from secondary use of research data, where initial data collection already considers participants' welfare and rights, ensuring adequate oversight. Subsequent oversight would thus evaluate additional use of that data.</p>
+<p>In contrast, many ML researchers gather large datasets for research purposes, without defined hypotheses, often to support future research in broad fields.<sup>28,31</sup> For example, Williams, et al. compiled a dataset for textual entailment recognition and released it (along with anonymized crowdworker identifiers) for future research.<sup>28</sup> Similarly, Mihaylov, et al. and Talmor, et al. created and released QA datasets with anonymized identifiers for further research.<sup>19,24</sup> These studies, involving only interaction with and using or analyzing data <i>from</i> crowdworkers, may not necessitate IRB review. </p>
+<p>In a subsequent study, Geva, et al. analyzed information about crowdworkers using these anonymized sets.<sup>6</sup> They assessed how ML models trained on data from one group of crowdworkers generalizes to data from another group, and trained models to predict the authoring crowdworkers for respective documents. Given that they studied only existing anonymous datasets and didn't directly interact with the workers, it's questionable whether their work would require IRB oversight. If the researchers who collected the initial data had also conducted this analysis, however, IRB review would have been compulsory to ensure proper protections of participants' welfare.</p>
+<p>While much of ML research poses minimal risk to participants, cases do exist where interventions or interactions are less benign. For example, Xu, et al. asked crowdworkers to prompt <i>unsafe</i> responses from a chatbot, using this data to create <i>safer</i> response models.<sup>29</sup> These individuals may not inherently be considered human subjects, as their input doesn't pertain directly to them. In this study, however, the researchers also established an offensive language taxonomy for classifying human utterances, paving the way for its application in future research. Thus, inferences could potentially be drawn about the proclivities or proficiency of particular crowdworkers to use offensive language of particular types.</p>
+<p>In each of these cases, datasets were collected that contain information from crowdworkers for the purposes of producing generalizable knowledge that can include information about the crowdworkers. A research oversight loophole is created as 45 CFR 46.102 (e)(1)(i) considers individuals as human subjects only if their information is obtained and used in the same study. To be clear, releasing such a dataset with identifiable private information for research purposes would fall under clause (ii) from 45 CFR 46.102(e)(1) (discussed earlier in the section on the current regulatory framework). Subsequent research on this dataset is also subject to this clause, as long as the identifiable information remains.</p>
+<p>The method where researchers collect data from individuals to create generalizable knowledge, anonymize it, and pass it to another team for analysis could be viewed as a loophole. This process, unlike when the researchers themselves analyze the data, would not be subject to oversight aimed at respecting individual autonomy and welfare.<sup>15</sup> Even though anonymization lessens harm from exposure of sensitive details, it doesn't assure respect for individual autonomy and well-being in the data collection, due to absence of oversight.</p>
+<p>One way to address loopholes of this type would be to amend 45 CFR 46.102 (e)(1)(i) to explicitly include the release of data alongside its use, study, or analysis.</p>
+<p>&nbsp;</p>
+<h5>Scenario 2 </h5>
+<p>Revision of 45 CFR 46.102 (e)(1)(i) to include data release might not prevent loopholes. For example, a research team collecting data directly from crowdworkers and about them—an approach fitting standard research—might divide the process into two protocols to avoid IRB approval requirements. In the first protocol, they collect data but analyze only that <i>from</i> the crowdworkers and not <i>about</i> them. They then anonymize all collected data and in a second protocol analyze data <i>about</i> crowdworkers. This avoids the need for IRB approval as it doesn't involve personal interaction or identifiable private information use.</p>
+<p>In this scenario, a single study that would require IRB approval could avoid research ethics oversight by being decomposed into separate studies. As a result, the determination of whether an ML project constitutes research with human participants might need to be made at a higher level than the individual study protocol. </p>
+<p>In the context of drug development, for example, a trial <i>portfolio</i> has been defined as a "series of trials that are interrelated by a common set of objectives."<sup>16</sup> It might be beneficial to apply this portfolio-level approach in ML research—that is, considering the data generated and questions investigated across interlinked studies' relevance to crowdworkers. Successful portfolio-level reviews need researchers to predetermine the kind, scope, and nature of data they are collecting and possible inquiries across various studies. As new research questions often arise after data collection because of the dynamic nature of ML research, researchers may need to consult with IRBs to clarify when a proposed portfolio of studies should be classified as human research.</p>
+<p>&nbsp;</p>
+<h3>Discussion</h3>
+<p>There is considerable confusion about when ML's crowdworkers constitute human subjects for ethical and regulatory purposes. While some sources suggest treating all crowdworkers as human subjects,<sup>23</sup> our analysis makes a more nuanced proposal, identifying: (1) clear-cut cases of human-subjects research, which require IRB consultation, even if only to confirm that they belong to an exempt category; (2) crowdsourcing studies that do not constitute human-subjects research because the analyses do not involve data about the workers; (3) difficult cases, where the distinctive features of ML's crowdworking studies combine with ambiguities in the Common Rule to create uncertainty about how to apply existing requirements; and (4) loopholes, whereby researchers might elude the human-subjects designation without making substantive changes to the research performed. </p>
+<p>The spirit of research oversight is to safeguard the rights and interests of individuals involved in research. Individuals who are not research participants can still be exposed to risks to their well-being and threats to their autonomy. This is particularly true of employment interactions, as employers often have access to sensitive, private, identifiable information (such as Social Security Number and background-check reports) about their employees. </p>
+<p>The solution is not necessarily to redefine all crowdworkers as human subjects, but rather to clarify the parameters for their classification as such, ensuring due oversight when applicable. In other instances, their rights should be upheld via ethical and regulatory frameworks guiding labor practices and workplace safety.</p>
+<p>&nbsp;</p>
+<h4>Our recommendations</h4>
+<p>• ML researchers must work proactively with IRBs to determine which, if any, information they will generate is <i>about</i> versus merely <i>from</i> crowdworkers. They must discern whether their intended portfolio of studies involving this data constitutes human-subjects research. They should also recognize that as the questions they investigate change, the status of the research they are conducting may change. Consequently, researchers must consult IRBs to understand when a new submission or a protocol modification is necessary for the ongoing research.</p>
+<p>• IRBs should not reflexively classify all ML research involving crowdworkers as human-subjects research. Rather, IRBs should establish clear procedures for evaluating portfolios of research to address the possibility of loopholes in research oversight. They should communicate with ML researchers about the conditions under which the classifications might change and the conditions under which a revised protocol would be required.</p>
+<p>• OHRP should offer precise guidance about what it means for information or analysis to be "about" a set of individuals. We also recommend that OHRP revise the Common Rule so that 45 CFR 46.102(e)(1) condition (i) reads: "Obtains information or biospecimens through intervention or interaction with the individual, and uses, studies, analyzes, or releases the information or biospecimens." This modification would require that an original investigator who collects data through interaction with humans and plans to release a dataset (even if anonymized) that could be used to ask questions <i>about</i> those individuals must secure IRB approval for the research in which that data is gathered. Subsequent studies using the anonymized data would not be counted as human-subjects research unless they aim to re-identify individuals. This change resolves one loophole identified here. OHRP also has a role to play in offering guidance to ML researchers. This could be achieved by issuing an agency Dear Colleague letter or an FAQ document. </p>
+<p>&nbsp;</p>
+<h4>Acknowledgments</h4>
+<p>The authors thank Sina Fazelpour, Holly Fernandez Lynch, and I. Glenn Cohen for their constructive feedback. They also thank Mozilla, the Carnegie Mellon University Block Center, the Carnegie Mellon University PwC Center, University of Pittsburgh Medical Center, Abridge, Meta Research, and Amazon Research for the grants and fellowships that made this work possible.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Adelani, D. F., Abbott, J., Neubig, G., D'souza, D., Kreutzer, J., Lignos, C., Palen-Michel, C., Buzaaba, H., Rijhwani, S., Ruder, S., et al. 2021. MasakhaNER: named entity recognition for African languages. <i>Transactions of the Association for Computational Linguistics 9</i>, 1,116-1,131; <a href="https://aclanthology.org/2021.tacl-1.66.pdf">https://aclanthology.org/2021.tacl-1.66.pdf</a>. </p>
+<p>2. Birmingham-Southern College. Do I need IRB approval? <a href="https://www.bsc.edu/academics/irb/documents/BSC%20IRB%20Decision%20Tree.pdf">https://www.bsc.edu/academics/irb/documents/BSC%20IRB%20Decision%20Tree.pdf</a>. </p>
+<p>3. DeYoung, J., Jain, S., Rajani, N. F., Lehman, E., Xiong, C., Socher, R., Wallace, B. C. 2020. ERASER: a benchmark to evaluate rationalized NLP models. In <i>Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics,</i> 4,443–4,458; <a href="https://aclanthology.org/2020.acl-main.408/">https://aclanthology.org/2020.acl-main.408/</a>. </p>
+<p>4. Dodge, J., Gururangan, S., Card, D., Schwartz, R., Smith, N. A. 2019. Show your work: improved reporting of experimental results. In <i>Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the Ninth International Joint Conference on Natural Language Processing (EMNLPIJCNLP),</i> 2,185–2,194; <a href="https://aclanthology.org/D19-1224/">https://aclanthology.org/D19-1224/</a>. </p>
+<p>5. Fort, K., Adda, G., Cohen, K. B. 2011. Amazon Mechanical Turk: gold mine or coal mine? <i>Computational Linguistics</i> <i>37</i> (2), 413–420; <a href="https://aclanthology.org/J11-2010.pdf">https://aclanthology.org/J11-2010.pdf</a>. </p>
+<p>6. Geva, M., Goldberg, Y., Berant, J. 2019. Are we modeling the task or the annotator? An investigation of annotator bias in natural language understanding datasets. In <i>Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the Ninth International Joint Conference on Natural Language Processing (EMNLP-IJCNLP),</i> 1,161–1,166; <a href="https://aclanthology.org/D19-1107.pdf">https://aclanthology.org/D19-1107.pdf</a>. </p>
+<p>7. Hayati, S. A., Kang, D., Zhu, Q., Shi, W., Yu, Z. 2020. INSPIRED: toward sociable recommendation dialog systems. In <i>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP),</i> 8,142–8,152; <a href="https://aclanthology.org/2020.emnlp-main.654/">https://aclanthology.org/2020.emnlp-main.654/</a>. </p>
+<p>8. Hovy, D., Plank, B., Søgaard, A. 2014. Experiments with crowdsourced re-annotation of a POS tagging data set. In <i>Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers),</i> 377–382; <a href="https://aclanthology.org/P14-2062.pdf">https://aclanthology.org/P14-2062.pdf</a>. </p>
+<p>9. Hovy, D., Spruit, S. L. 2016. The social impact of natural language processing. In <i>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers),</i> 591–598; <a href="https://aclanthology.org/P16-2096/">https://aclanthology.org/P16-2096/</a>. </p>
+<p>10. Ipeirotis, P. 2009. Mechanical Turk, human subjects, and IRBs; <a href="https://www.behind-the-enemy-lines.com/2009/01/mechanical-turk-human-subjects-and-irbs.html">https://www.behind-the-enemy-lines.com/2009/01/mechanical-turk-human-subjects-and-irbs.html</a>.</p>
+<p>11. Kaushik, D., Kiela, D., Lipton, Z. C., Yih, W.-T. 2021. On the efficacy of adversarial data collection for question answering results from a large-scale randomized study. In <i>Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (ACL-IJCNLP), </i>6,618–6,633; <a href="https://aclanthology.org/2021.acl-long.517.pdf">https://aclanthology.org/2021.acl-long.517.pdf</a>.</p>
+<p>12. Khashabi, D., Khot, T., Sabharwal, A. 2020. More bang for your buck: natural perturbation for robust question answering. In <i>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP),</i> 163–170; <a href="https://aclanthology.org/2020.emnlp-main.12.pdf">https://aclanthology.org/2020.emnlp-main.12.pdf</a>. </p>
+<p>13. Kovashka, A., Russakovsky, O., Fei-Fei, L., Grauman, K. 2016. Crowdsourcing in computer vision. <i>Foundations and Trends in Computer Graphics and Vision</i> <i>10</i> (3), 177–243; <a href="https://www.nowpublishers.com/article/Details/CGV-071">https://www.nowpublishers.com/article/Details/CGV-071</a>1. </p>
+<p>14. Leidner, J. L., Plachouras, V. 2017. Ethical by design: ethics best practices for natural language processing. In <i>Proceedings of the First ACL Workshop on Ethics in Natural Language Processing,</i> 30–40; <a href="https://aclanthology.org/W17-1604.pdf">https://aclanthology.org/W17-1604.pdf</a>. </p>
+<p>15. London, A. J.. 2021. <i>For the Common Good: Philosophical Foundations of Research Ethics</i>. Oxford University Press. </p>
+<p>16. London, A. J., Kimmelman, J. 2019. Clinical trial portfolios: a critical oversight in human research ethics, drug regulation, and policy. <i>Hastings Center Report 49</i> (4), 31–41; <a href="https://pubmed.ncbi.nlm.nih.gov/31429954/">https://pubmed.ncbi.nlm.nih.gov/31429954/</a>. </p>
+<p>17. London, A. J., Taljaard, M., Weijer, C. 2020. Loopholes in the research ethics system? Informed consent waivers in cluster randomized trials with individual-level intervention. <i>Ethics &amp; Human Research 42 </i>(6), 21–28; <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/eahr.500071">https://onlinelibrary.wiley.com/doi/abs/10.1002/eahr.500071</a>. </p>
+<p>18. Loyola University. Do I need IRB review? <a href="https://www.luc.edu/irb/gettingstarted/isirbreviewrequired/" target="_blank">https://www.luc.edu/irb/gettingstarted/isirbreviewrequired/</a>.</p>
+<p>19. Mihaylov, T., Clark, P., Khot, T., Sabharwal, A. 2018. Can a suit of armor conduct electricity? A new dataset for open book question answering. In <i>Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing</i>, 2,381–2,391; <a href="https://aclanthology.org/D18-1260/" target="_blank">https://aclanthology.org/D18-1260/</a>. </p>
+<p>20. Nekoto, W., Marivate, V., Matsila, T., Fasubaa, T., Fagbohungbe, T., Akinola, S. O., Muhammad, S., Kabenamualu, S. K., Osei, S., Sackey, F., et al. 2020. Participatory research for low-resourced machine translation: a case study in African languages. In <i>Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: Findings,</i> 2,144–2,160; <a href="https://aclanthology.org/2020.findings-emnlp.195.pdf">https://aclanthology.org/2020.findings-emnlp.195.pdf</a>. </p>
+<p>21. Ning, Q., Wu, H., Dasigi, P., Dua, D., Gardner, M., Logan IV, R. L., Marasovic, A., Nie, Z. 2020. Easy, reproducible, and quality-controlled data collection with CROWDAQ. In <i>Proceedings of the 2020 Empirical Methods in Natural Language Processing (EMNLP), Systems Demonstrations</i>, 127–134; <a href="https://aclanthology.org/2020.emnlp-demos.17.pdf">https://aclanthology.org/2020.emnlp-demos.17.pdf</a>. </p>
+<p>22. Pérez-Rosas, V., Mihalcea, R. 2015. Experiments in open domain deception detection. In <i>Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing,</i> 1,120–1,125; <a href="https://aclanthology.org/D15-1133.pdf">https://aclanthology.org/D15-1133.pdf</a>. </p>
+<p>23. Shmueli, B., Fell, J., Ray, S., Ku, L.-K. 2021. Beyond fair pay: ethical Implications of NLP crowdsourcing. In <i>Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies,</i> 3,758–3,769; <a href="https://aclanthology.org/2021.naacl-main.295.pdf">https://aclanthology.org/2021.naacl-main.295.pdf</a>. </p>
+<p>24. Talmor, A., Herzig, J., Lourie, N., Berant, J. 2019. CommonsenseQA: a question answering challenge targeting commonsense knowledge. In <i>Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers),</i> 4,149–4,158; <a href="https://aclanthology.org/N19-1421.pdf">https://aclanthology.org/N19-1421.pdf</a>. </p>
+<p>25. Vaughan, J. W. 2017. Making better use of the crowd: how crowdsourcing can advance machine learning research. <i>Journal of Machine Learning Research</i> 18 (1), 7,026–7,071; <a href="https://dl.acm.org/doi/10.5555/3122009.3242050">https://dl.acm.org/doi/10.5555/3122009.3242050</a>. </p>
+<p>26. Whiting, M. E., Hugh, G., Bernstein, M. S. 2019. Fair work: crowd work minimum wage with one line of code. In <i>Proceedings of the AAAI Conference on Human Computation and Crowdsourcing</i> 7, 197–206; <a href="https://ojs.aaai.org/index.php/HCOMP/article/view/5283">https://ojs.aaai.org/index.php/HCOMP/article/view/5283</a>. </p>
+<p>27. Whittier College. Do I need IRB Review? <a href="https://www.whittier.edu/academics/researchethics/irb/need">https://www.whittier.edu/academics/researchethics/irb/need</a>.</p>
+<p>28. Williams, A., Nangia, N., Bowman, S. 2018. A broad-coverage challenge corpus for sentence understanding through inference. In <i>Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies 1 (Long Papers).</i> 1,112–1,122; <a href="https://aclanthology.org/N18-1101.pdf">https://aclanthology.org/N18-1101.pdf</a>. </p>
+<p>29. Xu, J., Ju, D., Li, M., Boureau, Y.-L., Weston, J., Dinan, E. 2020. Recipes for safety in open-domain chatbots. arXiv preprint arXiv:2010.07079; <a href="https://arxiv.org/abs/2010.07079">https://arxiv.org/abs/2010.07079</a>. </p>
+<p>30. Zaidan, O., Eisner, J., Piatko, C. 2007. Using "Annotator Rationales" to improve machine learning for text categorization. In <i>Human Language Technologies 2007: The Conference of the North American Chapter of the Association for Computational Linguistics; Proceedings of the Main Conference</i>, 260–267; <a href="https://aclanthology.org/N07-1033">https://aclanthology.org/N07-1033</a>. </p>
+<p>31. Zhang, D., Zhang, M., Zhang, H., Yang, L., Lin, H. 2021. MultiMET: A multimodal dataset for metaphor understanding. In <i>Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing 1: Long Papers</i>, 3,214–3,225; <a href="https://aclanthology.org/2021.acl-long.249.pdf">https://aclanthology.org/2021.acl-long.249.pdf</a>.</p>
+<p>&nbsp;</p>
+<p><b>Divyansh Kaushik</b> is the associate director for emerging technologies and national security at the Federation of American Scientists, where his work focuses on AI policy and U.S.-China strategic competition. He holds a Ph.D. from Carnegie Mellon University, where he focused on designing reliable artificial intelligence systems that align with human values.</p>
+<p><b>Zachary C. Lipton</b> is an assistant professor of machine learning at Carnegie Mellon University (CMU) and the chief technology officer and chief scientist at the healthcare startup Abridge. At CMU, he directs the Approximately Correct Machine Intelligence (ACMI) lab, whose research focuses include the theoretical and engineering foundations of robust and adaptive machine learning algorithms, applications to both prediction and decision-making problems in clinical medicine, natural language processing, and the impact of machine learning systems on society. A key theme in his current work is to take advantage of causal structure underlying the observed data while producing algorithms that are compatible with the modern deep learning power tools that dominate practical applications. He is the founder of the Approximately Correct blog and a co-author of <i>Dive into Deep Learning</i>, an interactive open-source book drafted entirely through Jupyter notebooks that has reached millions of readers. He can be found on Twitter (@zacharylipton), GitHub (@zackchase), or his lab's website (<a href="http://acmilab.org/">acmilab.org</a>).</p>
+<p><b>Alex John London</b> is the K&amp;L Gates Professor of Ethics and Computational Technologies, co-lead of the <a href="https://www.cmu.edu/ethics-ai/index.html">K&amp;L Gates Initiative in Ethics and Computational Technologies</a> at Carnegie Mellon University, director of the <a href="http://centerforethicsandpolicy.com/">Center for Ethics and Policy</a> at Carnegie Mellon University, and chief ethicist at the <a href="https://www.cmu.edu/block-center/index.html">Block Center for Technology and Society</a> at Carnegie Mellon University. An elected Fellow of the Hastings Center, Professor London's work focuses on ethical and policy issues surrounding the development and deployment of novel technologies in medicine, biotechnology, and artificial intelligence. His book, <i><a href="https://global.oup.com/academic/product/for-the-common-good-9780197534830?subjectcode1=1804195%7CSCI00010&amp;type=listing&amp;facet_narrowbyprice_facet=50to100&amp;facet_narrowbytype_facet=Academic%20Research&amp;facet_narrowbypubdate_facet=Next%203%20months&amp;facet_narrowbyproducttype_facet=Print&amp;facet_narrowbybinding_facet=Ebook&amp;lang=en&amp;cc=us">For the Common Good: Philosophical Foundations of Research Ethics</a>,</i> is available in <a href="https://global.oup.com/academic/product/for-the-common-good-9780197534830?subjectcode1=1804195%7CSCI00010&amp;type=listing&amp;facet_narrowbyprice_facet=50to100&amp;facet_narrowbytype_facet=Academic%20Research&amp;facet_narrowbypubdate_facet=Next%203%20months&amp;facet_narrowbyproducttype_facet=Print&amp;facet_narrowbybinding_facet=Ebook&amp;lang=en&amp;cc=us">hard copy</a> from Oxford University Press and as an open access title.</p>
+<p>Copyright © 2023 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'84870f03a8b43968',t:'MTcwNTc1MDk5NC42ODQwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;84870f03a8b43968&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2024.1.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 21, no. 6</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3639452">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Harsh Deokuliar, Raghvinder S. Sangwan, Youakim Badr, Satish M. Srinivasan</span> - <a href="detail.cfm?id=3631340"><b>Improving Testing of Deep-learning Systems</b></a>
+<br/>
+We used differential testing to generate test data to improve diversity of data points in the test dataset and then used mutation testing to check the quality of the test data in terms of diversity. Combining differential and mutation testing in this fashion improves mutation score, a test data quality metric, indicating overall improvement in testing effectiveness and quality of the test data when testing deep learning systems.
+</p>
+<br/>
+<p>
+<span>Alvaro Videla</span> - <a href="detail.cfm?id=3606011"><b>Echoes of Intelligence</b></a>
+<br/>
+We are now in the presence of a new medium disguised as good old text, but that text has been generated by an LLM, without authorial intention&#8212;an aspect that, if known beforehand, completely changes the expectations and response a human should have from a piece of text. Should our interpretation capabilities be engaged? If yes, under what conditions? The rules of the language game should be spelled out; they should not be passed over in silence.
+</p>
+<br/>
+<p>
+<span>Edlyn V. Levine</span> - <a href="detail.cfm?id=3595860"><b>Cargo Cult AI</b></a>
+<br/>
+Evidence abounds that the human brain does not innately think scientifically; however, it can be taught to do so. The same species that forms cargo cults around widespread and unfounded beliefs in UFOs, ESP, and anything read on social media also produces scientific luminaries such as Sagan and Feynman. Today's cutting-edge LLMs are also not innately scientific. But unlike the human brain, there is good reason to believe they never will be unless new algorithmic paradigms are developed.
+</p>
+<br/>
+<p>
+<span>Zachary Tellman</span> - <a href="detail.cfm?id=3587715"><b>Designing a Framework for Conversational Interfaces</b></a>
+<br/>
+Wherever possible, business logic should be described by code rather than training data. This keeps our system's behavior principled, predictable, and easy to change. Our approach to conversational interfaces allows them to be built much like any other application, using familiar tools, conventions, and processes, while still taking advantage of cutting-edge machine-learning techniques.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
