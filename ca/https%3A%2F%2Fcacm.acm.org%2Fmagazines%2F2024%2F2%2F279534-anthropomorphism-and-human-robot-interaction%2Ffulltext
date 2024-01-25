@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Anthropomorphism and Human-Robot Interaction | February 2024 | Communications of the ACM</title>
+<meta name="title" content="Anthropomorphism and Human-Robot Interaction" />
+<meta name="author" content="Rae Yule Kim" />
+<meta name="date" content="2024-2-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="artificial intelligence,computer systems,human-computer interaction,hardware,performance and reliability,personal computing" />
+<meta name="sections" content="Technology Reports" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/2/279534-anthropomorphism-and-human-robot-interaction/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279534-anthropomorphism-and-human-robot-interaction/fulltext" /><meta property="og:title" content="Anthropomorphism and Human-Robot Interaction" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6960/011924_CACMpg81_Anthropomorphism.large.jpg?1705689836&amp;1705689835" /><meta property="og:description" content="Exploring how human apppreciation for and interactions with robots are influenced by anthropomorphic features.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279534-anthropomorphism-and-human-robot-interaction/fulltext" /><meta property="og:title" content="Anthropomorphism and Human-Robot Interaction" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6960/011924_CACMpg81_Anthropomorphism.large.jpg?1705689836&amp;1705689835" /><meta property="og:description" content="Exploring how human apppreciation for and interactions with robots are influenced by anthropomorphic features.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/2">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/2">
+<img src="https://cacm.acm.org/system/assets/0004/6967/February2024.Cover.1000x1338.large.jpg?1705690152&1705690151" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: February 2024</span>
+<a href="/magazines/2024/2/279527-gaining-benefit-from-artificial-intelligence-and-data-science-a-three-part-framework">Gaining Benefit from Artificial Intelligence and Data Science: A Three-Part Framework</a>
+<a href="/magazines/2024/2/279537-computing-education-in-the-era-of-generative-ai">Computing Education in the Era of Generative AI</a>
+<a href="/magazines/2024/2/279536-inherent-limitations-of-ai-fairness">Inherent Limitations of AI Fairness</a>
+<a class="lastLink" href="/magazines/2024/2">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/2">
+February 2024 (Vol. 67, No. 2)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/2">February 2024 (Vol. 67, No. 2)</a><span>/</span><a href="/magazines/2024/2/279534-anthropomorphism-and-human-robot-interaction">Anthropomorphism and Human-Robot Interaction</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research</span>
+<h2>Anthropomorphism and Human-Robot Interaction</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Rae Yule Kim
+<br/>
+Communications of the ACM,
+February 2024,
+Vol. 67 No. 2, Pages 80-85<br/>
+10.1145/3624716<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3641526.3624716&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2024/2/279534-anthropomorphism-and-human-robot-interaction/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3624716&ftid=2307265&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46960">
+<figure>
+<img alt="humanoid robot leans forward and peers at the viewer" src="/system/assets/0004/6960/011924_CACMpg81_Anthropomorphism.large.jpg?1705689836&amp;1705689835" title="humanoid robot leans forward and peers at the viewer" />
+<figcaption>
+<p class="credit">Credit: Antonello Marangi / Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>Robots are fast becoming a part of everyday life. Indeed, robots are now deployed in retail stores (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=721'); return false;">Figure 1</a>), warehouses, hospitals, factories, and so on to perform tasks conventionally done by humans. Nestl&eacute; uses a humanoid robot &quot;Pepper&quot; to sell coffee makers in department stores in Japan; people buy ice cream from a fully automated ice cream franchise, RoboFusion; Cobalt&#39;s KnightScope security robots patrol streets in New York City. Such encounters will only increase as the global market for service robots has grown exponentially, from $36.2 billion in 2022 to $103.3 billion by 2026.<sup><a href="#R26">26</a></sup></p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=721'); return false;"><img alt="f1.jpg" height="293" src="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f1.jpg" width="415" /></a><br/>
+<strong>Figure 1. Humanoid &#39;Pepper&#39; has been deployed in many retail stores throughout Japan.<sup><a href="#R20">20</a></sup></strong></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>Key Insights</h3>
+<p><img alt="ins01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/ins01.gif" /></p>
+<p>According to a survey from McKinsey Global Institute, 15% of the global workforce, or 400 million workers, will be displaced by 2030.<sup><a href="#R14">14</a></sup> Approximately 45% of the workforce in manufacturing, 37% in retail, 25% in hospitality, 23% in social work, and 10% in education might be replaced by artificial intelligence (AI) in six years.<sup><a href="#R34">34</a></sup> By 2020, automation was expected to displace 75 million jobs while creating 133 million jobs.<sup><a href="#R7">7</a></sup> Automation in general can help grow business and often generate more jobs. For example, Wing Enterprises, a ladder manufacturer in Utah, built a new automated facility that increased its productivity by 30%, which subsequently helped the company expand from 20 to 400 employees.<sup><a href="#R14">14</a></sup></p>
+<p>Creating robots that perform jobs traditionally done by humans is the goal of many robotics engineers.<sup><a href="#R11">11</a></sup> This aspiration to replicate human cognition and behavior has led to some success in developing robots capable of performing human tasks such as sales and teaching.<sup><a href="#R16">16</a></sup> The growing trend of designing robots to resemble humans was initially viewed with excitement. However, when robots started to look and behave human &#39;enough&#39; to threaten the human identity, people&#39;s opinion of robots shifted, and this phenomenon is referred to as the &#39;uncanny valley effect.&#39;<sup><a href="#R24">24</a></sup></p>
+<p>Public sentiment about humanoids has been largely divided. Some people treat anthropomorphic robots like they are human acquaintances.<sup><a href="#R19">19</a></sup> Others feel stressed and anxious about anthropomorphic robots and see them as a threat to job security and human identity.<sup><a href="#R19">19</a>,<a href="#R27">27</a></sup> Overall public sentiment about robots has been negative. One of the main concerns is that robots make us less human.<sup><a href="#R27">27</a></sup> Ironically, previous research suggests the opposite may be true. Robots can help humans grow socially and emotionally if they resemble us <em>more.</em><sup><a href="#R13">13</a>,<a href="#R31">31</a></sup></p>
+<p>Some people think anthropomorphic robots are more competent, trustworthy, and fun to interact with.<sup><a href="#R13">13</a>,<a href="#R31">31</a></sup> People evaluate their human-robot interaction (HRI) experience more positively and are more tolerant of errors if robots are humanlike.<sup><a href="#R31">31</a></sup> Robots have been more effective in helping children with autism spectrum disorder (ASD) improve their social skills.<sup><a href="#R32">32</a></sup> Anthropomorphizing a robot might influence HRI positively or negatively depending on moderating factors such as different types of anthropomorphism, congruence in user expectations, HRI contexts, human features, and moral agency.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>The Role of Anthropomorphism</h3>
+<p>Robotics design involves multifaceted areas of robotics where the design flexibility is subjugated to the functional aspects of a robot.<sup><a href="#R32">32</a></sup> In the context of HRI for commercially available devices, robots are finite projects that have little room for meaningful physical alterations.<sup><a href="#R12">12</a></sup> Robotics design is often susceptible to a tight set of requirements and conditions that must be fulfilled.</p>
+<p>Complex machinery products, such as automobiles, are also often limited in their design flexibility. Anthropomorphic design is one common strategy for car makers to draw consumers to their products. Car fronts are often designed to resemble a human face, and this anthropomorphic design is linked to improved product evaluation, such as better ratings for functionality or stronger product attachment.<sup><a href="#R1">1</a></sup> Inronically, when slot machines are designed to look more anthropomorphic, people tend to bet <em>less</em> compared to a typical slot machine.<sup><a href="#R23">23</a></sup> Previous research suggests the positive effect of product anthropomorphism on the user experience can be translated into the HRI context.</p>
+<p>Previous research has studied customer reviews of interacting with a concierge robot in a fully automated hotel in Tokyo, Japan, and found two main reasons why a human agent was preferred: People found it more difficult to interact with a robotic concierge and they found/felt it less competent.<sup><a href="#R2">2</a></sup> Anthropomorphic design of a robot can improve HRI in terms of these two most common reasons why some people might be averse to robots. Anthropomorphic robots can improve HRI by encouraging a favorable evaluation of the robot in terms of its efficacy and motivation to interact with it (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=660'); return false;">Figure 2</a>).</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=660'); return false;"><img alt="f2.jpg" height="268" src="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f2.jpg" width="415" /></a><br/>
+<strong>Figure 2. Anthropomorphic design can positively influence perception about robots, social motivation to interact with the robot, and cognitive responses to the robot such as trust level.</strong></p>
+<p><strong>Perception.</strong> People believe only humans strive to prove their competence, and this intrinsic notion is referred to as <em>effectance motivation&mdash;</em>that is, the belief in the superior competence of humans over non-human creatures or objects.<sup><a href="#R15">15</a></sup> People are susceptible to confirmation bias and seek evidence partial to our beliefs and expectations.<sup><a href="#R21">21</a></sup> Thus, product anthropomorphism often improves user evaluation because people assign effectance motivation to anthropomorphic objects and believe that anthropomorphic products should function better.<sup><a href="#R15">15</a></sup> Research shows that when computers or even slot machines are anthropomorphized in appearance, people assume the machines have effectance motivation that is partial to humans and subsequently expect them to function better.<sup><a href="#R15">15</a>,<a href="#R23">23</a></sup> People likely find anthropomorphic robots more competent compared to robots that do not resemble humans. However, when people see robots as a threat, anthropomorphism might make robots appear more foreboding and subsequently exacerbate HRI.</p>
+<p><strong>Sociability.</strong> Anthropomorphic design might improve the perceived sociability of the robot. Research suggests that people tend to treat anthropomorphized objects as if they are human acquaintances and initiate social interactions with them.<sup><a href="#R19">19</a></sup> People tend to apply the same social norms when they interact with anthropomorphic objects.<sup><a href="#R40">40</a></sup> In this aspect, SoftBank&#39;s humanoid NAO is deployed in hospitals to help children with ASD learn social skills, and the results are promising.<sup><a href="#R13">13</a></sup> Children who interacted with humanoids picked up social cues effectively and applied them when they interacted with peers.<sup><a href="#R13">13</a></sup></p>
+<p>Furthermore, people prefer anthropomorphic robots more when they are lonely,<sup><a href="#R37">37</a></sup> indicating such robots can better address people&#39;s social needs.<sup><a href="#R37">37</a></sup> In fact, spending time with anthropomorphic objects was shown to lower the sense of loneliness.<sup><a href="#R30">30</a></sup> Neurophysiological measures suggest the segment of the brain that guides compassion becomes more active not only around other humans but also around anthropomorphic robots.<sup><a href="#R19">19</a></sup> These findings provide important insights into HRI because anthropomorphic design might improve people&#39;s motivation to interact with the robot, learn about the robot, and more willingly overcome the barrier to interacting with the robot.</p>
+<p><strong>Response.</strong> Another reason why some people dislike anthropomorphic robots is they find it difficult to &#39;trust&#39; robots.<sup><a href="#R39">39</a></sup> The confounding factor behind this trust issue is effectance motivation.<sup><a href="#R15">15</a>,<a href="#R39">39</a></sup> People prefer humans over robots because they believe that humans are competent to fix their mistakes and deliver the requested out-come.<sup><a href="#R15">15</a></sup></p>
+<p>However, previous research suggests that people assign human characteristics, including effectance motivation, to objects if they are anthropomorphized.<sup><a href="#R15">15</a></sup> Research shows that humanizing a computer not only improves people&#39;s evaluation of its efficacy but also the level of trust people have in the computer because they expected effectance motivation.<sup><a href="#R40">40</a></sup> People were more likely to trust a broken computer to repair itself if the computer was anthropomorphized.<sup><a href="#R40">40</a></sup> Similarly, people were more tolerant of errors made by anthropomorphic robots because it was expected that robots would fix their errors.<sup><a href="#R10">10</a></sup></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>Future Directions</h3>
+<p>Robot anthropomorphism might contribute to positive HRI, however, the effect is not likely to be straightforward. Humanlike robots might provoke increased levels of anxiety and stress.<sup><a href="#R27">27</a></sup> Anthropomorphic design of a robot, while it can be an external stimulant to make user experiences more amusing for some,<sup><a href="#R33">33</a></sup> can also be a source of anxiety for others.<sup><a href="#R27">27</a></sup> Thus, robot anthropomorphism is a double-edged sword. Future research might investigate conditions that moderate the effect of robot anthropomorphism on HRI. The Anthropomorphic roBot (ABOT) database&mdash;a collection of real-world anthropomorphic robots created for research or commercial purposes&mdash;can be a great resource for not only appearance but also the robot&#39;s name and locomotion can influence the degree of robot-human features.<sup><a href="#R32">32</a></sup> ABOT classifies robots based on the degree of anthropomorphism of varying types. Future research can utilize this database for stimuli with specified types and salience of robot anthropomorphism to study their effect on HRI.</p>
+<p>Previous research suggests that humans inadvertently utilize the heuristics from human-human interactions to make HRI judgments.<sup><a href="#R9">9</a></sup> People develop varied expectations and beliefs about a robot depending on its voice and/or facial schema. People expect congruence in a robot&#39;s appearance and other characteristics such as voice.<sup><a href="#R28">28</a></sup></p>
+<p>Also, people might have varied expectations of how robots should behave depending on the situation. People might expect emotional expressions from a robot in a restaurant but not quite in a computer repair shop. Thus, the effect of robot anthropomorphism on HRI should be subject to the situational context. Congruence in user expectation and robot anthropomorphism can vary by types such as facial schema, voice, verbal/nonverbal communication, and user expectation based on robot characteristics and situations (as illustrated in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=778'); return false;">Figure 3</a>).</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=778'); return false;"><img alt="f3.jpg" height="316" src="https://dl.acm.org/cms/attachment/html/10.1145/3624716/assets/html/f3.jpg" width="415" /></a><br/>
+<strong>Figure 3. User reaction to different dimensions of robot anthropomorphism including robots&#39; emotional expression, functionality, facial schema, and uncanny valley salience.</strong></p>
+<p><strong>Facial schema.</strong> Research also suggests a robot&#39;s facial schema can influence user engagement.<sup><a href="#R8">8</a></sup> A cute-looking facial schema, such as a baby face, can make people more attached to the product and tolerant of product failures.<sup><a href="#R8">8</a></sup> The baby-face schema indicates a set of infantile facial traits that normally elicit positive attitudes and caretaking behavior.<sup><a href="#R4">4</a></sup> Since anthropomorphic robots can activate heuristics and motivations partial to human-human interactions, a baby-like robot might encourage people to view the robot more positively and be tolerant of its errors.</p>
+<p>Conversely, there can be potential downsides to using the baby-face schema on a robot. One heuristic knowledge associated with babies is they are incompetent. People might think that robots are incompetent if they look like a baby.<sup><a href="#R25">25</a></sup> Thus, a robot&#39;s facial schema can have varied impacts on HRI depending on the context. Robot&#39;s facial schema might influence HRI positively if it is congruent with the purpose of the robot. For example, the baby schema facial trait of a caretaking robot might improve HRI, while it can be a negative factor for a sanitization robot.</p>
+<p><strong>Emotional expression.</strong> People are more emotionally engaged with a robot if it is anthropomorphic.<sup><a href="#R6">6</a></sup> Moreover, people also expect anthropomorphic robots to be more emotionally expressive, alive, and sociable compared to relatively less anthropomorphic robots.<sup><a href="#R10">10</a></sup> Emotional expressions of a robot might be seen as a positive trait that can improve HRI.</p>
+<p>However, findings on the effect of robots&#39; emotional expressions on HRI are rather mixed. Emotional expressions of a robot might make people feel uncomfortable about interacting with it.<sup><a href="#R27">27</a></sup> The congruence between user expectations and the robot&#39;s emotional expressions can be a factor that can explain, consciously or unconsciously, how underlying beliefs are influenced.<sup><a href="#R3">3</a></sup> Many of the heuristics and expectations people develop in human-to-human interactions can inadvertently affect how they evaluate anthropomorphic robots.<sup><a href="#R40">40</a></sup> Interacting with humanoids is still new to most people, and subsequently, incongruence in robot behavior and people&#39;s expectations can trigger an adverse reaction. For example, a robot&#39;s emotional expressions in a high-contact service situation such as an upscale restaurant are expected and tolerated,<sup><a href="#R36">36</a></sup> while such expressions in a low-contact service situation, such as in a grocery store, might come off as odd and eerie.<sup><a href="#R27">27</a></sup></p>
+<hr/>
+<blockquote>
+<p><em>Neurophysiological measures suggest the segment of the brain that guides compassion becomes more active not only around other humans but also around anthropomorphic robots.</em></p>
+</blockquote>
+<hr/>
+<p><strong>User expectation.</strong> Some people can be averse to robots because they are inherently more adverse to change and new things.<sup><a href="#R35">35</a></sup> People who are referred to as laggards according to innovation diffusion theory are intrinsically unfavorable of change.<sup><a href="#R35">35</a></sup> Subsequently, these people might experience a stronger uncanny valley effect when interacting with humanoids.<sup><a href="#R24">24</a></sup></p>
+<p>Additionally, previous research suggests that people might have varying <em>cultural</em> expectations of robots. Japanese people are more open to the idea of robots performing interactive tasks such as giving a massage while Europeans expect robots to perform assistive tasks such as snow lowing.<sup><a href="#R17">17</a></sup> To prevent biased results, future research should survey the degree of robotic acceptance and robotic expectations before evaluating human responses toward anthropomorphic robots.</p>
+<p><strong>Uncanny valley</strong> was first theorized by robotics professor Masahiro Mori in the 1970s, where he and his team at the Tokyo Institute of Technology observed an abrupt shift in human attitudes toward robots as anthropomorphism efforts increased.<sup><a href="#R29">29</a></sup> People behaved favorable toward anthropomorphic robots at the outset, but as more human-like features were added, the response shifted from excitement to revulsion.<sup><a href="#R29">29</a></sup> Indeed, such robots were viewed as a threat to humanity.</p>
+<p>The uncanny valley theory has been supported empirically, however, people might experience varied degrees of &#39;uncanniness&#39; depending on the situational context and the inherent personality. The same emotional expression of a robot can make some people more willing to interact with the robot or exacerbate the sense of uncanniness about interacting.<sup><a href="#R23">23</a>,<a href="#R40">40</a></sup> It is interesting to note that age is a substantial moderating factor for a sense of uncanniness from interacting with humanoids.<sup><a href="#R35">35</a></sup> Children older than nine, as the adults did, evaluated the anthropomorphic robot to be creepier than the machine-like robot, but children younger than nine did not.<sup><a href="#R5">5</a></sup> Furthermore, a recent study discovers empirical evidence that supports the existence of an additional uncanny valley,<sup><a href="#R22">22</a></sup> which suggests the psychological mechanism of why people feel uncanny about anthropomorphic robots is complex. Since the uncanny valley effect is not observed among children younger than nine, there must be confounding factors that cause people to feel strange about humanoids. Insights into potential mediating factors can help us better understand the uncanny valley effect.</p>
+<p><strong>Moral agency.</strong> Humanoids are not moral agents. They are objects and human moral values do not apply to them.<sup><a href="#R38">38</a></sup> However, people tend to assign human characteristics to anthropomorphic objects, and subsequently, humanoids are likely to be seen as moral agents.<sup><a href="#R40">40</a></sup> More anthropomorphism invokes stronger empathy toward objects.<sup><a href="#R18">18</a></sup> Humanoids that almost feel like humans should elicit a comparable level of empathy people have for fellow humans. Uncanny valley research shows that people&#39;s attitudes shift again to the positive end once the robot is anthropomorphic almost comparable to humans.<sup><a href="#R36">36</a></sup></p>
+<p>Because people see highly anthropomorphic robots as moral agents and feel empathy toward these machines, the use of humanoids can also be a moderating factor for people&#39;s evaluation. For example, humanoids that work in a profession that risks life and limb for the public good, such as a counterterrorism unit and a firefighter, should be viewed positively while humanoids in professions that are not considered dignified, such as sex robots, might be seen negatively. In addition, there is no agreement on whether people are ready to have humanoids that elicit such a level of empathy.<sup><a href="#R27">27</a></sup></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>Conclusion</h3>
+<p>This article discussed the effect of robot anthropomorphism on HRI and potential moderators that might alter the effect. Robot anthropomorphism can improve HRI in terms of people&#39;s cognitive and motivational responses. Conversely, robot anthropomorphism might trigger a sense of uncanniness. To address this duality in previous findings, future research might further investigate factors that might moderate the effect of robot anthropomorphism on HRI.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Aggarwal, P. and McGill, A.L. Is that car smiling at me? Schema congruity as a basis for evaluating anthropomorphized products. <em>J. Consumer Research 34</em>, 4 (2007), 468&ndash;479.</p>
+<p><a name="R2"></a>2. Bhimasta, R.A. and Kuo, P. What causes the adoption failure of service robots? A case of Henn-na Hotel in Japan. In <em>Proceedings of the 2019 ACM Intern. Joint Conf. Pervasive and Ubiquitous Computing and Proceedings of the 2019 ACM Intern. Symp. Wearable, (London, U.K., 2019)</em> 1107&ndash;1112.</p>
+<p><a name="R3"></a>3. Blut, M., Wang, C., W&uuml;nderlich, N.V. and Brock, C. Understanding anthropomorphism in service provision: a meta-analysis of physical robots, chatbots, and other AI. <em>J. Academy of Marketing Science 49</em>, (2021), 632&ndash;658.</p>
+<p><a name="R4"></a>4. Borgi, M., Coliati-Dezza, I., Brelsford, V., Meints, K. and Cirulli, F. Baby schema in human and animal faces induces cuteness perception and gaze allocation in children. <em>Frontiers in Psychology 5</em>, (2014), 411.</p>
+<p><a name="R5"></a>5. Brink, K.A., Gray, K. and Wellman, H.M. Creepiness creeps in: Uncanny valley feelings are acquired in childhood. <em>Child Development 90</em>, 4 (2017), 1202&ndash;1214.</p>
+<p><a name="R6"></a>6. Broadbent, E. et al. Robots with display screens: A robot with a more humanlike face display is perceived to have more mind and a better personality. <em>PLOS One 8</em>, 8 (2013), e72589.</p>
+<p><a name="R7"></a>7. Cann, O. Machines will do more tasks than humans by 2025 but robot revolution will still create 58 million net new jobs in next five years, 2018; <a href="https://bit.ly/45CWfW8">https://bit.ly/45CWfW8</a></p>
+<p><a name="R8"></a>8. Cheng, Y., Qiu, L., and Pang, J. Effects of avatar cuteness on users&#39; perceptions of system errors in anthropomorphic interfaces. In <em>Proceedings of the 2020 Intern. Conf. Human-Computer Interaction, (Copenhagen, Denmark, 2020)</em>, 322&ndash;330.</p>
+<p><a name="R9"></a>9. Chita-Tegmark, M., Lohani, M. and Scheutz, M. Gender effects in perceptions of robots and humans with varying emotional intelligence. In <em>Proceedings of the 14<sup>th</sup> ACM/IEEE Intern. Conf. Human-Robot Interaction. (Daegu, South Korea, 2019)</em>, 230&ndash;238.</p>
+<p><a name="R10"></a>10. Choi, S., Mattila, A.S. and Bolton, L.E. To err is human(-oid): How do consumers react to robot service failure and recovery? <em>J. Service Research 24</em>, 3 (2021), 354&ndash;371.</p>
+<p><a name="R11"></a>11. Chun, B. and Knight, H. The robot makers: An ethnography of anthropomorphism at a robotics company. <em>ACM Trans. Human-Robot Interaction 9</em>, 3 (2020), 1&ndash;36.</p>
+<p><a name="R12"></a>12. Colle, A. The role of aesthetics in robotics and the rise of polymorphic robots. <em>Companion of the Proceedings 2020 ACM/IEEE Intern. Conf. Human-Robot Interaction, (New York, N.Y., USA, 2020)</em> 623&ndash;624.</p>
+<p><a name="R13"></a>13. Diehl, J., Schmitt, L.M., Villano, M. and Crowell, C. The clinical use of robots for individuals with autism spectrum disorders: A critical review. <em>Res Autism Spectr Disord 6</em>, 1 (2012), 249&ndash;262.</p>
+<p><a name="R14"></a>14. Ellingrud, K. The upside of automation: New jobs, increased productivity and changing roles for workers, 2018; <a href="https://bit.ly/45Hw7JQ">https://bit.ly/45Hw7JQ</a></p>
+<p><a name="R15"></a>15. Epley, N., Waytz, A., Akalis, S. and Cacioppo, J.T. When we need a human: Motivational determinants of anthropomorphism. <em>Social Cognition 26</em>, (2008), 143&ndash;155.</p>
+<p><a name="R16"></a>16. Hanson, D. Why we should build humanlike robots. <em>IEEE Spectrum</em> (2011).</p>
+<p><a name="R17"></a>17. Harling, K.S., Mougenot, C., Ono, F., and Watanebe, K. Cultural differences in perception and attitude towards robots. <em>Intern. J. Affective Engineering 13</em>, 3 (2014), 149&ndash;157.</p>
+<p><a name="R18"></a>18. Harrison, M. and Hall, A. Anthropomorphism, empathy, and perceived communicative ability vary with phylogenetic relatedness to humans. <em>J. Social, Evolutionary, and Cultural, Psychology 4</em>, 1 (2010), 34&ndash;48.</p>
+<p><a name="R19"></a>19. Hoenen, M., L&uuml;bke, K.T. and Pause, B.M. Non-anthropomorphic robots as social entities on a neurophysiological level. <em>Computers in Human Behavior 57</em>, (2016), 182&ndash;186.</p>
+<p><a name="R20"></a>20. Ito, M. Softbank&#39;s Pepper robot debuts as coffee machine salesman at Bic Camera, 2014; <a href="https://bit.ly/40c1T0b">https://bit.ly/40c1T0b</a>.</p>
+<p><a name="R21"></a>21. Kappes, A., Harvey, A.H., Lohrenz, T., Montague, P.R. and Sharot, T. Confirmation bias in the utilization of others&#39; opinion strength. <em>Nature Neuroscience I</em>, (2020), 130&ndash;137.</p>
+<p><a name="R22"></a>22. Kim, B., Bruce, M., Brown, L., Visser, E. and Phillips, E. A Comprehensive approach to validating the uncanny valley using the anthropomorphic RoBOT (ABOT) database. In <em>Proceedings of the 2020 Systems and Information Engineering Design Symp. (Charlottesville, VA, USA, 2020)</em>, 1&ndash;6.</p>
+<p><a name="R23"></a>23. Kim, S. and McGill, A.L. Gaming with Mr. Slot or gaming the slot machine? Power, anthropomorphism, and risk perception. <em>J. Consumer Research 38</em>, 1 (2011), 94&ndash;107.</p>
+<p><a name="R24"></a>24. Kim, S.Y., Schmitt, B.H. and Thalmann, N.M. Eliza in the uncanny valley: Anthropomorphizing consumer robots increases their perceived warmth but decreases liking. <em>Marketing Letters 30</em>, (2019), 1&ndash;12.</p>
+<p><a name="R25"></a>25. Maeng, A. and Aggarwal, P. Facing dominance: Anthropomorphism and the effect of product face ratio on consumer preference. <em>J. Consumer Research 44</em>, 5 (2018), 1104&ndash;1122.</p>
+<p><a name="R26"></a>26. Markets and Markets Analysts. <em>Service Robots Market</em> (2021); <a href="https://bit.ly/3MfpwPL">https://bit.ly/3MfpwPL</a>.</p>
+<p><a name="R27"></a>27. Mende, M., Scott, L., van Doorn, J., Grewal, D. and Shanks, I. Service robots rising: How humanoid robots influence service experiences and consumer responses. <em>J. Marketing Research 56</em>, 4 (2019), 535&ndash;556.</p>
+<p><a name="R28"></a>28. Mitchell, W., Szerszen, K., Lu, A., Schermerhorn, P., Scheutz, M. and MacDorman, K. A mismatch in the human realism of face and voice produces an uncanny valley. <em>I-Perception 2</em>, (2011), 10&ndash;12.</p>
+<p><a name="R29"></a>29. Mori, M. The uncanny valley. <em>IEEE Spectrum</em> (2012).</p>
+<p><a name="R30"></a>30. Mourey, J.A., Olson, J.G., and Yoon, C. Products as pals: Engaging with anthropomorphic products mitigates the effects of social exclusion. <em>J. Consumer Research 44</em>, 2 (2017), 414&ndash;431.</p>
+<p><a name="R31"></a>31. Natarajan, M. and Gombolay, M. Effects of anthropomorphism and accountability on trust in human-robot interaction. In <em>Proceedings of the 2020 ACM/IEEE Intern. Con. Human-Robot Interaction, (Cambridge, U.K., 2020)</em>, 33&ndash;42.</p>
+<p><a name="R32"></a>32. Phillips, E., Zhao, X., Ullman, D. and Malle, B.F. What is human-like? Decomposing robots&#39; human-like appearance using the anthropomorphic roBOT (ABOT) database. In <em>Proceedings of the 2018 ACM/IEEE Intern. Conf. Human-Robot Interaction.</em> ACM, New York, N.Y., USA, 105&ndash;113.</p>
+<p><a name="R33"></a>33. Pixteren, M. et al. Trust in humanoid robots: Implications for services marketing. <em>J. Service Marketing 33</em>, 4 (2019), 507&ndash;518.</p>
+<p><a name="R34"></a>34. PwC. Will robots really steal our jobs? An international analysis of the potential long-term impact of automation, 2018.</p>
+<p><a name="R35"></a>35. Rangaswami, A. and Gupta, S. Innovation Adoption and Diffusion in the Digital Environments: Some Research Opportunities. <em>New Product Diffusion Models.</em> Springer, New York, NY, USA, 2020.</p>
+<p><a name="R36"></a>36. Roesler, E., Naendrup-Poell, L., Manzey, D. and Onnasch, L. Why context matters: The influence of application domain on preferred degree of anthropomorphism and gender attribution in human&ndash; robot interaction. <em>Intern. J. Social Robotics 14</em>, (2022), 1155&ndash;1166.</p>
+<p><a name="R37"></a>37. Sheehan, B., Jin, H.S. and Gottlieb, U. Customer service chatbots: Anthropomorphism and adoption. <em>J. Business Research 115</em>, (2016), 14&ndash;24.</p>
+<p><a name="R38"></a>38. Torrance, S. Ethics and consciousness in artificial agents. <em>AI &amp; Soc 22</em>, (2008), 495&ndash;521.</p>
+<p><a name="R39"></a>39. Ullman, D. and Malle, B.F. What does it mean to trust a robot? Steps toward a multidimensional measure of trust. <em>Companion of the Proceedings 2018 ACM/IEEE Intern. Conf. Human-Robot Interaction, (New York, N.Y., USA, 2018)</em>, 263&ndash;264.</p>
+<p><a name="R40"></a>40. Visser, E.J. et al. Almost human: Anthropomorphism increases trust resilience in cognitive agents. <em>J. Experimental Psychology: Applied 22</em>, 3 (2016), 331&ndash;349.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Author</h3>
+<p><strong>Rae Yule Kim</strong> is an assistant professor at Monclair State University, Monclair, NJ, USA.</p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p>&copy; 2024 Copyright held by the owner/author(s).<br/>
+Request permission to (re)publish from the owner/author</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2024 ACM, Inc.</p>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-2">Key Insights</a></li>
+<li class="miniWidgetItem"><a href="#body-3">The Role of Anthropomorphism</a></li>
+<li class="miniWidgetItem"><a href="#body-4">Future Directions</a></li>
+<li class="miniWidgetItem"><a href="#body-5">Conclusion</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Author</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/278395-robot-can-tidy-up-clothes-in-a-messy-bedroom">
+Robot Can Tidy Up Clothes in a Messy Bedroom
+</a>
+</h5>
+<span class="dateNews">New Scientist</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2024/1/278884-achievement-in-microarchitecture">
+Achievement in Microarchitecture
+</a>
+</h5>
+<span class="dateNews">Leah Hoffmann</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/277141-jost-brgi-and-the-discovery-of-logarithms">
+Jost Bürgi and the Discovery of Logarithms
+</a>
+</h5>
+<span class="dateNews">Herbert Bruderer</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href=" "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/2/279534-anthropomorphism-and-human-robot-interaction/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2024 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Energy and Emissions of Machine Learning on Smartphones vs. the Cloud | February 2024 | Communications of the ACM</title>
+<meta name="title" content="Energy and Emissions of Machine Learning on Smartphones vs. the Cloud" />
+<meta name="author" content="David Patterson, Jeffrey M Gilbert, Marco Gruteser, Efren Robles, Krishna Sekar, Yong Wei, Tenghui Zhu" />
+<meta name="date" content="2024-2-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="artificial intelligence,communications / networking,computer applications,computer systems,computers and society,data / storage and retrieval,education,entertainment,hardware,information systems,legal aspects,management,performance and reliability,personal computing,security" />
+<meta name="sections" content="Technology Reports" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/2/279535-energy-and-emissions-of-machine-learning-on-smartphones-vs-the-cloud/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279535-energy-and-emissions-of-machine-learning-on-smartphones-vs-the-cloud/fulltext" /><meta property="og:title" content="Energy and Emissions of Machine Learning on Smartphones vs. the Cloud" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6961/011924_CACMpg87_Energy-and-Emissions1.large.jpg?1705689966&amp;1705689966" /><meta property="og:description" content="A Google case study finds ML training in the cloud can reduce CO2e emissions up to 100&amp;times;.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279535-energy-and-emissions-of-machine-learning-on-smartphones-vs-the-cloud/fulltext" /><meta property="og:title" content="Energy and Emissions of Machine Learning on Smartphones vs. the Cloud" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6961/011924_CACMpg87_Energy-and-Emissions1.large.jpg?1705689966&amp;1705689966" /><meta property="og:description" content="A Google case study finds ML training in the cloud can reduce CO2e emissions up to 100&amp;times;.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/2">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/2">
+<img src="https://cacm.acm.org/system/assets/0004/6967/February2024.Cover.1000x1338.large.jpg?1705690152&1705690151" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: February 2024</span>
+<a href="/magazines/2024/2/279527-gaining-benefit-from-artificial-intelligence-and-data-science-a-three-part-framework">Gaining Benefit from Artificial Intelligence and Data Science: A Three-Part Framework</a>
+<a href="/magazines/2024/2/279537-computing-education-in-the-era-of-generative-ai">Computing Education in the Era of Generative AI</a>
+<a href="/magazines/2024/2/279536-inherent-limitations-of-ai-fairness">Inherent Limitations of AI Fairness</a>
+<a class="lastLink" href="/magazines/2024/2">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/2">
+February 2024 (Vol. 67, No. 2)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/2">February 2024 (Vol. 67, No. 2)</a><span>/</span><a href="/magazines/2024/2/279535-energy-and-emissions-of-machine-learning-on-smartphones-vs-the-cloud">Energy and Emissions of Machine Learning on Smartphones...</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research</span>
+<h2>Energy and Emissions of Machine Learning on Smartphones vs. the Cloud</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By David Patterson, Jeffrey M. Gilbert, Marco Gruteser, Efren Robles, Krishna Sekar, Yong Wei, Tenghui Zhu
+<br/>
+Communications of the ACM,
+February 2024,
+Vol. 67 No. 2, Pages 86-97<br/>
+10.1145/3624719<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3641526.3624719&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2024/2/279535-energy-and-emissions-of-machine-learning-on-smartphones-vs-the-cloud/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3624719&ftid=2307266&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46961">
+<figure>
+<img alt="multiple electrical adapters crammed together and plugged into a two-outlet receptacle" src="/system/assets/0004/6961/011924_CACMpg87_Energy-and-Emissions1.large.jpg?1705689966&amp;1705689966" title="multiple electrical adapters crammed together and plugged into a two-outlet receptacle" />
+<figcaption>
+<p class="credit">Credit: Alicia Kubista / Andrij Borys Associates</p>
+</figcaption>
+</figure>
+</div>
+<div class="videoThumb">
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/905214244?h=93cd07a723" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>Global climate change is a huge challenge facing society today. The rapid growth of computing overall and of machine learning (ML) in particular rightfully raises concerns about their carbon footprints. As an early and enthusiastic adopter of ML, a manufacturer of millions of smartphones annually, and a significant cloud provider, Google is in a nearly unique position to compare the impact and efficiency of ML on the two ends of the information technology (IT) computing spectrum.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>Key Insights</h3>
+<p><img alt="ins01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ins01.gif" /></p>
+<p>This article makes four main observations:</p>
+<ol>
+<li>Most energy studies of smart-phones ignore chargers, but they surprisingly use ~3&times; as much energy as the smartphones themselves, with the main culprits being the use of multiple chargers per phone and the inefficiency and increasing popularity of wireless chargers. Compared to cloud datacenters, this energy overhead <em>(charger power usage effectiveness)</em> is ~2.9&times; worse.</li>
+<li>Smartphones can charge at off-peak hours, and many ML workloads can also shift to run at off-peak times. However, the cloud also lets ML experts shift to remote sites with much greener energy, while phones predominantly must use whatever the local utility provides. Given the 2.9&times; higher energy overhead, ML training on devices can have up to ~25&times; the carbon emissions as doing it in the cloud even if the computation energy was the same.</li>
+<li>One example suggests ML training on smartphones uses up to 12&times; the computation energy of datacenter training. There are privacy and other advantages for training on devices, but combining 12&times; with the previous observation means <em>carbon dioxide equivalent emissions</em> (<em>CO</em><sub>2</sub><em>e</em>, including greenhouse gasses) can be two orders of magnitude higher.</li>
+<li>From 2019 to 2021, ML represented between 10% and 15% of the total annual operational energy use in the Google cloud (with <sup>2</sup>/<sub>5</sub> of that for training) and less than 3% of the total annual operational energy use on smart-phones (with 1/100 of that for training) in 2021. The major climate change challenge for IT is elsewhere, likely the <em>embodied</em> CO<sub>2</sub>e from manufacturing computers.</li>
+</ol>
+<p>Keep in mind this article is <em>not</em> a comparison of <em>all</em> computation done on phones and the cloud, but solely on the impact of ML on energy use and operational CO<sub>2</sub>e. We provide the data to support these insights. While primarily focused on <em>operational</em> CO<sub>2</sub>e generated from computer use, we also address the relative impact of embodied CO<sub>2</sub>e.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>How Significant Is Charger Energy Use Compared to Smartphones Themselves?</h3>
+<p>Computers in datacenters draw electricity from the grid continuously. Because smartphones operate from a battery, they only draw electricity from the grid when connected to a charger. To account for smartphone ML energy accurately, we must include the energy overhead of their chargers. Smart-phones are charged two ways:</p>
+<ul>
+<li><em>Wired charging</em> via a cable and an AC/DC adapter, and</li>
+<li><em>Wireless charging</em> via inductive coils in addition to the AC/DC adapter.</li>
+</ul>
+<p>Wireless charging is increasingly popular due to its convenience and the reduction in smartphone wear and tear by avoiding the repeated insertion of a cable.</p>
+<p>For wired charging, energy is lost from the AC/DC power adapter in the charger and in the power management integrated circuit (PMIC) battery charger in the phone. Wireless charging loses additional energy through the inductive coils. The percentage of energy going to the smartphone is then:</p>
+<p><img alt="ueq01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq01.gif" /></p>
+<p><img alt="ueq02.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq02.gif" /></p>
+<p>For conventional designs, the efficiencies are 80% for the adapter, 80% for the inductive coils, and 90% for the battery charging circuitry. The 2018 USB Power Delivery 3.0 standard offers a <em>programmable power supply</em> (PPS) that improves efficiency: 90% for the adapter, 83% for the inductor coils, and 97% for the battery charging circuitry.</p>
+<p>Using the formulas here, the overall charger efficiencies are 58% (80% &times; 80% &times; 90%) for non-PPS wireless chargers, 72% (90% &times; 83% &times; 97%) for PPS wireless chargers, 72% (80% &times; 90%) for non-PPS wired chargers, and 87% (90% &times; 97%) for PPS wired chargers. Thus, wireless chargers are ~1.25&times; less efficient while charging phones.</p>
+<p>The charger uses sensors to detect when even an uncharged phone is connected to it. In addition to the smart-phone charger efficiency when it is in use, we also need to account for <em>vampire power usage.</em> Also called <em>standby power</em>, it is the power wasted by the charger when not connected to a smartphone. Vampire power adds up and can be a significant amount of energy consumed.</p>
+<p>A final factor is <em>maintenance mode power</em>, the power consumed when the phone is fully charged but it is still connected to the charger. Depending on the charger, it can still draw significant energy even when the smartphone does not need any more energy.</p>
+<p>The total energy consumption of a smartphone and charger is then:</p>
+<p><img alt="ueq03.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq03.gif" /></p>
+<p>A further complexity is that many smartphone users have multiple plugged-in chargers. One survey found that 23% of users had only one charger, but 39% had four or more.<sup><a href="#R38">38</a></sup> If we assume the 39% had exactly four chargers, the average of that survey is 2.7 chargers per smartphone.</p>
+<p>Datacenters use the industry standard metric of <em>power usage effectiveness</em> (<em>PUE</em>), which accounts for the energy &quot;wasted&quot; that goes into the datacenter but is used for power distribution and cooling instead of powering the computers in the datacenter. If the energy overhead was 50%, the PUE would be 1.50. The global average datacenter PUE<sup><a href="#R28">28</a></sup> is ~1.60, while cloud datacenter PUEs are typically ~1.10.</p>
+<p>We propose a new metric to quantify the efficiency of a smartphone with its chargers analogously to the data-center PUE, where the goal is to try to get as close to 1.00 as possible. We define <em>charger PUE</em> (<em>CPUE</em>) as</p>
+<p><img alt="ueq04.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq04.gif" /></p>
+<p>where <em>vampire energy chargers</em> is the energy consumed by chargers plugged in but unused.</p>
+<p>Google measurements supply some of the parameters needed to calculate CPUE:</p>
+<ul>
+<li>The average wireless charger use was 42% and 58% for wired chargers, with the wireless percentage higher for newer phones and lower for older phones.</li>
+<li>Average time to fully charge was 107 minutes (1.8 hours), like EPA&#39;s 2-hour estimate.<sup><a href="#R12">12</a></sup></li>
+<li>Average hours in maintenance mode were 302 minutes (5.0 hours), close to a 2011 study that reported 4.6 hours.<sup><a href="#R30">30</a></sup></li>
+</ul>
+<p>We also purchased and measured five wired and five wireless chargers both from smartphone manufacturers (Apple, Google, Samsung) and from third-party suppliers (Anker, Belkin). To test maintenance mode, we used the average of a fully charged Pixel Pro 6 and a fully charged Pixel 5. They were turned off, so that no applications could run during maintenance mode. If apps were left on&mdash;which might be the more typical case&mdash;maintenance mode power would be even higher, so these numbers might be conservative. All chargers were measured using a Poniie PN1500 portable power meter, which is accurate to &plusmn;10 milliwatts and has a range down to 20 milliwatts.<sup><a href="#FNA">a</a></sup></p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=1069'); return false;">Figure 1</a> plots the individual measurements versus their price. Our findings:</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=1069'); return false;"><img alt="f1.jpg" height="435" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f1.jpg" width="415" /></a><br/>
+<strong>Figure 1. Average measured maintenance mode power (diamonds) and vampire power (circles) for the average of a Pixel 5 and a Pixel 6 Pro versus price for five wired chargers (blue on the left) and five wireless chargers (red on the right). Gold stars tag the most efficient chargers over a full day.</strong></p>
+<ul>
+<li>Wireless chargers are more expensive and use more power than wired chargers; their overall average energy use over 24 hours is 2.4&times; higher.</li>
+<li>Surprisingly, money doesn&#39;t buy efficiency. The most power efficient wired charger is Google&#39;s and Apple sold the wireless charger winner. They use 40%&ndash;60% less energy but are 20%&ndash;70% cheaper than the high-priced ones.</li>
+<li>Average vampire mode power for wired chargers is 34&plusmn;25 milliwatts and 363&plusmn;45 for wireless chargers (~11&times; more than wired).</li>
+<li>Average maintenance mode power for wired chargers is 361&plusmn;86 and 2454&plusmn;942 for wireless (~7&times;). Thus, the average <em>wireless vampire</em> power matches the average <em>wired maintenance</em> power.</li>
+</ul>
+<p>Using these values for the parameters in the equations here, <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1017,height=679'); return false;">Table 1</a> calculates the smartphone CPUE by charger and phone type and then summarizes aggregate information for a mix of 2.7 chargers per phone, 42% wireless, and 50% PPS. The higher vampire power usage of wireless chargers is tenfold that of wired chargers. Given these assumptions on the portion that are PPS, the portions that are wireless, and number of chargers, CPUE is ~3.1. That is, charger overhead energy is ~2.1 times what a smartphone uses.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1017,height=679'); return false;"><img alt="t1.jpg" height="277" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t1.jpg" width="415" /></a><br/>
+<strong>Table 1. Daily smartphone energy use and charger PUE for each charger option and charger PUE assuming 2.7 chargers with 42% being wireless and 50% using PPS.</strong></p>
+<p>To test the sensitivity to these values, we calculated CPUE by varying each assumption individually either by subtracting or adding the standard deviation to the average or halving or by doubling a parameter while keeping the other parameters constant. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1018,height=598'); return false;">Table 2</a> shows the results. CPUE is most sensitive to the percent of wireless chargers (2.41&ndash;4.60) followed by the number of chargers per smartphone (2.54&ndash;4.34) and wireless maintenance mode power level (2.92&ndash;3.35). For this wider range of parameters, CPUE is at least ~2&times; to as much as ~5&times; the energy consumption of smartphones by themselves.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1018,height=598'); return false;"><img alt="t2.jpg" height="244" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t2.jpg" width="415" /></a><br/>
+<strong>Table 2. Charger PUE sensitivity as parameter values vary (halving/doubling or &plusmn; standard deviation). The average and standard deviation were calculated across 20 measurements of Pixel 5 and Pixel 6 Pro phones.</strong></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>How Do Cloud Energy Use and Carbon Emissions Compare to Those for On Device?</h3>
+<p>The 4Ms determine the carbon footprint of training in the datacenter:<sup><a href="#R28">28</a></sup> Model, machine, mechanization (datacenter PUE), and map (input energy carbon intensity per geographic location). Presuming we train the same model on the datacenter and on device, the efficiency of the three other Ms determines their relative carbon footprint. The CPUE of 3.1 for smart-phone chargers is 2.9&times; the typical 1.10 PUE of cloud datacenters. The global average energy carbon intensity is appropriate for the 6.6B smartphones. However, the cloud allows training to be moved to datacenters with a high percentage of <em>carbon free energy (CFE)</em>, which means using renewable energy (for example, solar or wind) or nuclear energy. In 2021, the average CFE portion was ~40% for U.S. and Europe and ~30% for Asia.</p>
+<hr/>
+<blockquote>
+<p><em>Even if the energy consumption for the computation was the same in the cloud and on device, the carbon emissions could be ~25 times higher on device.</em></p>
+</blockquote>
+<hr/>
+<p>The global average conversion factor from electricity to CO<sub>2</sub>e is 0.475kg/kWh. Patterson et al. found that training in Oklahoma reduced carbon emissions by &gt;6&times; (to 0.074) versus the global average due to its 93% CFE, as Google acquired renewable energy in Oklahoma matched on an hourly basis with its energy consumption.<sup><a href="#R28">28</a></sup> Thus, even if the energy consumption for the computation was the same in the cloud and on device, the carbon emissions could be ~25 times higher on device.<sup><a href="#FNB">b</a></sup></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>How Does Energy Consumed for ML Training in Cloud Datacenters Compare to Training on Smartphones?</h3>
+<p>Comparing <em>federated learning</em> to data-center training is challenging because the inherently more limited resources on a phone typically lead to different model designs and training approaches, which together with differences in the training data distribution and accessibility lead to quality differences.</p>
+<p>Despite these challenges, we thought it would be interesting to get a ballpark estimate of differences between training on the datacenter and on device. As a case study, we compare the energy consumed for training an identical model per 10M training examples processed in the datacenter and in a federated setting. We identified a prototype ~10,000 parameter multi-layer perceptron model used for semantic location inference, which is the process of inferring a device&#39;s location in terms of a place as defined in the Android Places SDK (for example, local business or point of interest) instead of in coordinate space. We ran it on TPUv4 lite, and the average energy of three runs was 59 kilojoules.</p>
+<p>The TPUv4 lite chip<sup><a href="#R23">23</a></sup> trains this workload in under two minutes. This experiment has its limitations:</p>
+<ul>
+<li>The smartphone workload was not tuned to the TPU. It is currently I/O bound, so the TPUv4 lite chip is nearly idle at under 1% utilization.</li>
+<li>Moreover, despite trying to compute on only one host CPU, the dual CPU host server of TPUv4 lite uses 86% of the 47 kilojoules for the workload. This server is overkill for this application.</li>
+<li>However, this energy calculation omits the energy to process the raw data in the datacenter. We also assumed 10M examples are sufficient to train for batch size 64, but we didn&#39;t check for convergence.</li>
+</ul>
+<p>We suspect that tuning the workload to reduce I/O bottlenecks and properly configure the host hardware would reduce datacenter energy consumption significantly.</p>
+<p>For federated learning, the average user holds 16 training examples with typically 10 local epochs, so 160 examples are processed per device session. This ratio yields 62,500 device training sessions per 10 million training examples processed. Assuming typical energy consumption figures, <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=702'); return false;">Table 3</a> shows an energy use of 186 kilojoules on the smartphone and 381 kilojoules in the communication and serving infrastructure for a total of 567 kilojoules.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=702'); return false;"><img alt="t3.jpg" height="285" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t3.jpg" width="415" /></a><br/>
+<strong>Table 3. Federated learning energy usage for the case study semantic location model.</strong></p>
+<p>This estimate for on device energy is also limited:</p>
+<ul>
+<li>The model uses a relatively low number of training examples per user device, which results in an even larger number of device training sessions. With more training data per device, per session costs would be better amortized and we would expect federated learning overhead to decrease significantly.</li>
+<li>The five seconds for processing reported through our telemetry includes additional waiting time and other lower energy states.</li>
+<li>The federated learning server figure of 6J/device session represents an average over all models and is likely an overestimate for this small model.</li>
+<li>It doesn&#39;t account for the difference in data transfer to the datacenter of all the raw data versus federated learning only needing to access the portion of the data needed for the calculation.</li>
+<li>However, it omits the relatively large fixed-energy cost of the broadband infrastructure (and wireless access point), since it typically remains on regardless of whether federated learning or other communications are active. Including amortized fixed costs increases federated learning energy use ~4&times; to 2.3 megajoules.</li>
+</ul>
+<p>Although it is difficult to make a fair and detailed comparison between a training task done on smartphones and in the datacenter, the estimated ~567 kilojoules for federated learning represents ~12&times; of the estimated ~47 kilojoules for datacenter training. For the reasons given here, this observation is only a ballpark estimate.</p>
+<p>In addition to the ~12&times; energy increase over the datacenter, the ~25&times; overhead in emissions due to the higher PUE and higher carbon content energy of on-device computation suggests the datacenter is the much lower emissions option for applications where the data processing location is flexible.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-6"></a></p>
+<h3>How Does ML Energy Use in Cloud Datacenters Compare to Its Use on Devices?</h3>
+<p>Patterson et al. showed that between 10% and 15% of Google&#39;s overall energy usage in datacenters was for ML for 2019&ndash;2021.<sup><a href="#R28">28</a></sup> The next step to answer this section&#39;s question is to see where the energy goes in smartphones.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=317'); return false;">Table 4</a> shows the energy breakdown of four smartphones between their major components: the System on a Chip (plus DRAM energy), wireless, display, and the rest (including audio and camera). A rule of thumb from <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=317'); return false;">Table 4</a> is that little more than <sup>1</sup>/<sub>2</sub> of the energy is for wireless and the display, a little more than <sup>1</sup>/<sub>3</sub> is for the SOC, and the rest use about <sup>1</sup>/<sub>10</sub>.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=317'); return false;"><img alt="t4.jpg" height="129" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t4.jpg" width="415" /></a><br/>
+<strong>Table 4. Energy consumption of four smartphones. The first three columns were published earlier.<sup><a href="#R1">1</a>,<a href="#R9">9</a>,<a href="#R22">22</a></sup></strong></p>
+<p>The main SoC is the biggest integrated circuit in a smartphone and contains CPUs, memory interfaces, and domain specific processors such as GPUs and ML accelerators. The Edge Tensor Processing Unit (TPU) is Google&#39;s ML accelerator, similar in spirit to the Apple Neural Engine and the Samsung NPU.<sup><a href="#R4">4</a>,<a href="#R21">21</a></sup></p>
+<p>Understanding the energy for ML requires examining the SoC energy. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=509'); return false;">Figure 2a</a> breaks down its energy consumption to the primary power using components for the Pixel 6 SoC for the average of many workloads. This data was collected running workloads in our labs, which are consistent with measurements of smart-phones in the field.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=509'); return false;"><img alt="f2.jpg" height="136" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f2.jpg" width="415" /></a><br/>
+<strong>Figure 2. Energy consumption of the main Pixel 6 SoC for (a) an average of many workloads; (b) a workload that blurs out-of-focus parts of video images (Bokeh effect); and (c) an average use if there was no GPU or TPU so their computation must be done on the CPU (assuming a 12.5x difference in performance/Joule). This GPU/TPU replacement also increases SOC energy consumption by 2.6x. DRAM energy is distributed between the CPU, GPU, and TPU. AOC is the Always On Compute controller.</strong></p>
+<p>One might wonder if the GPU and TPU are important since the CPU uses more than three times as much energy. The average use belies their value for three reasons.</p>
+<p>First, smartphone applications can be limited either by long-term average energy use (which drains the battery), instantaneous energy use (to prevent overheating), or by latency (impacting user experience); the GPU and TPU help with all three. Even if on average they don&#39;t use as much energy, they enable applications that would otherwise be infeasible on a smartphone CPU. For example, Google Camera ambient recognition of visual entities (QR codes, text, objects, among others) allows rapid detection and proactively highlights so the user may act on them. The Edge TPU keeps latency low, so the system remains interactive and energy consumption low to avoid thermal problems. The performance/Joule improvement of the Edge TPU over the CPU for this application is 12.5&times;.</p>
+<p>Second, given billions of phones and users, smartphone engineers design for many workloads, not just one. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=509'); return false;">Figure 2b</a> shows the GPU and TPU are <sup>1</sup>/<sub>3</sub> of one video workload.</p>
+<p>Finally, <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=509'); return false;">Figure 2a</a> shows energy use <em>after</em> the application was accelerated; it doesn&#39;t show what the energy use would be if it was all done on the CPU. Assuming the TPU and GPU provided 12.5&times; performance/Joule over the CPU, SOC energy would increase 2.6&times; and their portion would now be <sup>2</sup>/<sub>3</sub> of the energy, as <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=509'); return false;">Figure 2c</a> shows.</p>
+<p>To answer our question about the energy use, 36% is for SOCs (<a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=317'); return false;">Table 4</a>). Although most ML uses accelerators and the GPUs, some still use CPUs. Most CPU workloads are for the popular non-ML use cases such as social media, video streaming, browsing, messaging, and so on. An exact CPU percentage for ML is difficult to determine, but an upper bound is easier to estimate. We assume ~10% of CPU energy and ~25% of the GPU and TPU energy is for ML inference, which are generous upper bounds. Our upper bound estimate for ML is:</p>
+<p><img alt="ueq05.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq05.gif" /></p>
+<p>The answer to the question at the outset of this section is that ML represents &lt;3% of smartphone energy use and 10%&ndash;15% of datacenter energy use.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-7"></a></p>
+<h3>What Portion of Energy Is for ML Training versus Inference?</h3>
+<p>Patterson et al.<sup><a href="#R28">28</a></sup> found the ML energy use in Google datacenters was 40% for training and 60% for inference. We now calculate the split for smart-phones.</p>
+<p>Google uses a new federated learning system that trains ML models on devices. One advantage of federated learning is that it doesn&#39;t require shipping data to the datacenter, which preserves privacy.</p>
+<p>To account for real-world conditions, we estimate the energy consumption of an average device session using telemetry from Google&#39;s federated learning system while this model is training on a fleet of Android devices. A federated learning training session involves four steps:</p>
+<ol>
+<li>Connecting with and waiting for the server to signal the start of a training round;</li>
+<li>Downloading model parameters;</li>
+<li>Setting up and executing training computations; and,</li>
+<li>Uploading the model update.</li>
+</ol>
+<p>We therefore expect the dominant factors on the smartphone are communication, computation, and to some extent the wakelock drain while waiting for the server to start a training round. Hence, we model training session energy consumption as follows:</p>
+<p><img alt="ueq06.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq06.gif" /></p>
+<p>Communication energy consumption varies widely based on the amount of ML model parameters that must be transferred and the quality of WiFi link. We use an energy/bit model to account for the varying data transfer sizes and choose an average energy/bit figure of 130nJ/bit based on reported measurements.<sup><a href="#R35">35</a></sup> Note that from high to low link quality, WiFi energy/bit can change by about two orders of magnitude.</p>
+<p>To estimate the total energy consumed in federated learning, we studied the daily energy consumption of three models that we believe to be representative of models currently being trained in Google&#39;s production federated learning system. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=597'); return false;">Table 5</a> summarizes the results. To put individual smartphone energy usage for ML training into perspective, the range observed here generally requires a few seconds of additional phone charging time.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=597'); return false;"><img alt="t5.jpg" height="243" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t5.jpg" width="415" /></a><br/>
+<strong>Table 5. Daily federated learning energy usage on smartphones for representative models.</strong></p>
+<p>Using the highest smartphone energy estimate of the three sample models (75.5J per device session) and the count of device sessions per day from our telemetry, this yields an upper bound of 11.3GJ or 3.1MWh per day, which represents less than 0.01% of the worldwide smartphone-only operational energy usage (not including chargers). We believe that even this estimate is a generous upper bound for federated learning since a significant fraction of these device sessions represent analytics (non-ML) workloads.</p>
+<hr/>
+<blockquote>
+<p><em>Since 2021, Google has been reducing CO<sub>2</sub>e using the flexibility of the cloud to shift computation in both location and time, which is even more effective at reducing emissions.</em></p>
+</blockquote>
+<hr/>
+<p>The answer to the question of this section is that training represents ~40% of ML energy use in datacenters but on smartphones it is only ~0.3%, a factor of ~133x less.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-8"></a></p>
+<h3>Discussion</h3>
+<p>We now discuss a few insights from our investigation.</p>
+<p><strong>Does shifting the time of charging make smartphone-charging energy use clean?</strong> Some might think that shifting the time of charging made smartphone charging &quot;clean.&quot; This perspective may have been influenced by a new feature of the iOS 16.1 called &quot;clean energy charging.&quot;<sup><a href="#R4">4</a></sup> The iPhone uses forecasts of the CO<sub>2</sub>e in the local grid to charge an iPhone during times of cleaner energy production. Although limited to the US, it likely reduces CO<sub>2</sub> a bit there. However, even within the U.S. there are many grids where the energy is 10X dirtier than others, no matter the time of day. Since 2021 Google has been reducing CO<sub>2</sub>e using the flexibility of the cloud to shift computation in both location <em>and</em> time,<sup><a href="#R24">24</a></sup> which is even more effective. Shifted examples are cloud training and offline inference. Finally, <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/t2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1018,height=598'); return false;">Table 2</a> points out the major use of energy when there is no phone on the charger&mdash;due to redundant chargers and due to vampire mode&mdash;which is unaffected by when a phone is charged.</p>
+<p><strong>What is the cost of making the cloud as privacy preserving for ML as smartphones?</strong> Some might wonder if we should burden the cost of the cloud to be as privacy preserving as keeping data local to smartphones? Security experts<sup><a href="#R14">14</a>,<a href="#R30">30</a></sup> commented that:</p>
+<ul>
+<li>Today it would be many orders of magnitude more expensive;<sup><a href="#FNC">c</a></sup></li>
+<li>Sharing data is a matter of trust no matter the promises made;</li>
+<li>Distributed training still sends information learned to a centralized server in the cloud; and</li>
+<li>Sending the ML model to thousands of smartphones would expose the model and its weights (trained on private phone data) if any phones were compromised.</li>
+</ul>
+<p>Trusted execution environments such as enclaves, which are already being deployed, may offer a path forward.</p>
+<p><strong>Reducing the energy of wireless chargers.</strong> A primary consideration in designing the wireless charging systems is the feedback loop notifying the user that the device is charging. To search for a smartphone, a digital ping is sent periodically. There is an inverse relationship between the ping frequency and the idle power consumption of the charging system. Therefore, system trade-offs are made to stay within a power budget (250&ndash;500mW) and provide the least amount of latency (&lt;1 second). Another major design consideration is the overall bill of material cost for the wireless charger. In the consumer electronics industry, the competition is high and there is a concerted effort to drive down the overall cost, pressuring the design team to remove as many extra components as possible. This competition makes it more challenging to include features as a bonus that optimize energy efficiency.</p>
+<p>Nevertheless, we were surprised how much higher the CPUE was for wireless than wired chargers. The wireless charger consumes large vampire power on average 17 hours a day even when the charger is empty.</p>
+<p>A simplistic alternative would simply be to add an on/off button or a weight sensor that detects a smart-phone to a wireless charger that controls power to the inductive coils. One estimate is one billion wireless powered smartphones in 2021.<sup><a href="#R7">7</a></sup> If hitting the button or sensing that there is no phone dropped vampire power usage to match wired chargers on all wireless chargers, turning off the coils could save ~5.6 terawatt-hours and ~2.7M t CO<sub>2</sub>e annually. Our upper-bound estimate for ML on smartphones at 3.1 terawatt-hours is ~<sup>1</sup>/<sub>2</sub> of these potential wireless charger energy savings.</p>
+<hr/>
+<blockquote>
+<p><em>The U.S. Environmental Protection Agency and the European Union set requirements for wired chargers that limit maximum vampire power. Perhaps they should investigate standards that reduce vampire power for wireless chargers as well?</em></p>
+</blockquote>
+<hr/>
+<p>The U.S. Environmental Protection Agency and the European Union set requirements for wired chargers that limit maximum vampire power. Perhaps they should investigate standards that reduce vampire power for wireless chargers as well?</p>
+<p><strong>Energy use and CO</strong><sub>2</sub><strong>e emissions from smartphones.</strong> The 24-hour energy consumed by a typical smartphone is 9.28 watt-hours.<sup><a href="#R10">10</a></sup> One recent estimate is 6,648M smartphones.<sup><a href="#R5">5</a></sup> The total annual energy use by smartphones is then:</p>
+<p><img alt="ueq07.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/ueq07.gif" /></p>
+<p>Google&#39;s electricity usage in 2021 was 18.3TWh or ~80% of worldwide smartphone energy use.<sup><a href="#R3">3</a></sup></p>
+<p>Using the conversion factor of 4.75&times;10<sup>&minus;4</sup> metric tons of CO<sub>2</sub> equivalent emissions (CO<sub>2</sub>e) per kilowatt-hour,<sup><a href="#R20">20</a></sup> the total annual emissions of smartphones is then ~10.7 megatons of CO<sub>2</sub>e. Adding our CPUE estimate of 3.1, the total is ~33.6 mt CO<sub>2</sub>e.</p>
+<p>To put that total into perspective, it is the equivalent to ~7.5M gasoline-powered passenger vehicles driven for one year. There are ~1500M cars in the world today, so cars produce ~200&times; the CO<sub>2</sub>e of smartphones.</p>
+<p>The ML portion is &lt;3%, so it is &lt;1.0mt of CO<sub>2</sub>e. Google&#39;s overall operational CO<sub>2</sub>e (location-based Scope 2) in 2021 was 6.6mt,<sup><a href="#R15">15</a></sup> and &lt;15% is &lt;0.97mt CO<sub>2</sub>e for ML</p>
+<p><strong>Comparing operational to embedded CO</strong><sub>2</sub><strong>e.</strong> If the operational CO<sub>2</sub>e from ML is a modest contributor to global climate change, then what is the biggest climate change issue for IT? Our suspicion was that it is the embodied cost of IT.</p>
+<p>The following computers were shipped in 2021:</p>
+<ul>
+<li>Smartphones: ~1,350,000,000,</li>
+<li>PCs: ~340,000,000,</li>
+<li>Servers: ~12,000,000.</li>
+</ul>
+<p>Note that the numerous smart-phones have the shortest lifetimes at only 2&ndash;3 years.</p>
+<p>While embodied CO<sub>2</sub>e costs are not yet routinely published for all computers, we use the following approximations based on studies of smartphones and PCs and the limited data available for servers:</p>
+<ul>
+<li>Smartphones: ~50kg CO<sub>2</sub>e,<sup><a href="#R25">25</a></sup></li>
+<li>PCs: ~200kg,<sup><a href="#R25">25</a></sup></li>
+<li>Servers: From ~1000kg to ~4000<sup><a href="#R19">19</a>,<a href="#R26">26</a>,<a href="#R33">33</a></sup></li>
+</ul>
+<p>To put embodied CO<sub>2</sub>e into perspective, a typical smartphone weighs 0.2kg, so the CO<sub>2</sub>e from manufacturing is ~250&times; larger. The ratio for PCs is ~75&times; and it is ~150&times; for servers.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a> shows our ballpark estimate for the operational CO<sub>2</sub>e from ML in Google datacenters and all smartphones in 2021 compared to our estimate of the embodied CO<sub>2</sub>e for smartphones, PCs, and servers manufactured in 2021. Embodied CO<sub>2</sub>e for information technology may be two orders of magnitude larger than the operational CO<sub>2</sub>e from ML.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;"><img alt="f3.jpg" height="236" src="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" width="415" /></a><br/>
+<strong>Figure 3. Embodied CO<sub>2</sub>e from IT equipment versus operational CO<sub>2</sub>e for ML in 2021. (It does not evaluate CO<sub>2</sub>e from all computations, only ML). For smartphones, embodied CO<sub>2</sub>e is ~70x larger than operational CO<sub>2</sub>e for ML in 2021. Embodied server CO<sub>2</sub>e was ~115x larger than ML operational CO<sub>2</sub>e in Google datacenters in 2021.</strong></p>
+<p>Note that <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a> is a snapshot of what happened in a single year. The conventional approach to comparing embodied and operational CO<sub>2</sub>e is to predict the operational CO<sub>2</sub>e for the equipment of a given year over the lifetimes of each computer, from 2&ndash;3 years for smartphones and 6&ndash;8 years for servers. We use the single year snapshot since we are trying to capture only the ML operational CO<sub>2</sub>e, which we can more easily estimate what it was for 2021 rather than predicting what the ML portion will be for the next 3&ndash;8 years.</p>
+<p>While we account for all smart-phones, we don&#39;t for all datacenters. Google is one of the top three cloud providers, and it was an early adopter of ML, so its ML use might be larger than most. If we were to multiply the datacenter CO<sub>2</sub> portion in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a> by 10&times; to try to account for all datacenters, ML would still only be ~7%.</p>
+<p>Taiwan, South Korea, and Japan, with their low CFE, manufactured most of the chips in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a>. Changing the location of manufacture could potentially reduce CO<sub>2</sub>e, as half is from electricity use.<sup><a href="#R36">36</a></sup> Berger et al. predict decarbonizing the manufacturing supply chain of computers will take decades and cost hundreds of billions of dollars.<sup><a href="#R6">6</a></sup> Nevertheless, the imbalance between embodied CO<sub>2</sub>e and ML operational CO<sub>2</sub>e in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a> is so large that even if we could go back in time and use much higher CFE to reduce embodied CO<sub>2</sub>e in 2021 by 5&times;, it would still be ~15&times; higher than operational CO<sub>2</sub>e from ML.</p>
+<p><strong>Is operational CO</strong><sub>2</sub><strong>e from ML one of the largest climate change challenges in information technology?</strong> The success and popularity of ML rightfully raised concerns about its environmental impact. Some estimates of CO<sub>2</sub>e from ML were so alarming&mdash;for example, training a model in 2024 could cost $100B and produce as much CO<sub>2</sub>e as New York City does in one month<sup><a href="#R37">37</a></sup>&mdash;that we wanted to investigate to see what could be done to help. That inquiry led to this article and the work explored in Patterson et al.<sup><a href="#R28">28</a></sup></p>
+<p>To our surprise, we found some ML papers overestimated CO<sub>2</sub>e by &gt;100,000&times;.<sup><a href="#R28">28</a></sup> Despite considerable attention paid to the environmental impact of the operational cost of ML training, <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a> illustrates that embodied costs of manufacturing IT equipment might have been a ~70&times; larger climate change problem in 2021 than the real operational CO<sub>2</sub>e from ML. If some prior claims about ML training were accurate, then it would have been reversed.</p>
+<p>It&#39;s critical to use accurate estimates of CO<sub>2</sub>e to ensure we focus on big problems. The flawed estimates on operational CO<sub>2</sub>e from ML training that were off by &gt;100,000&times; led many interested in climate change to focus on ML rather than on more prominent challenges. This article&#39;s data highlights that the embodied costs of manufacturing IT equipment may have been &gt;70&times; larger than operational ML emissions in 2021, so even modest gains on embodied hardware CO<sub>2</sub>e could easily eclipse large gains on operational ML CO<sub>2</sub>e. The short-lived smartphones are particularly glaring, as despite having an embodied carbon footprint nearly 3&times; that of servers in 2021, we have discarded 7.5 billion of them in the past five or so years.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-9"></a></p>
+<h3>Related Work</h3>
+<p>A flurry of papers evaluated the energy use of smartphones a few years after the iPhone was announced. Carroll and Heiser<sup><a href="#R9">9</a></sup> ran microbenchmarks to determine the energy use of hardware components as the SoC clock rates varied. They found that most of the power consumption was for the wireless radio module (GAM) and the display while the RAM, audio, and flash memory subsystems used the least. Ferreira et al.<sup><a href="#R13">13</a></sup> did a detailed energy measurement per smartphone function and found that the top six biggest energy users were downloading data using 3G, downloading data using WiFi, sending an SMS text, making a voice call, playing an MP3 file, and the display backlight. Later papers did similar calculations for other phones.<sup><a href="#R1">1</a></sup> Perrucci et al.<sup><a href="#R29">29</a></sup> analyzed users&#39; battery charging behavior to assess how often users demonstrate less than optimal charging behavior.</p>
+<p>Since 2011, an abundance of papers have been published on smartphone energy issues, many simply surveying all the related literature. For example, Hoque et al.<sup><a href="#R18">18</a></sup> reviews energy profilers for mobile devices stating their limitations and challenges. Javed et al.<sup><a href="#R22">22</a></sup> survey different factors that consume energy in a smartphone. Zaman and Almusalli summarize 17 hardware and software enhancements that reduce energy consumption and the size of their benefits according to published research. These three papers survey 84, 96, and 41 publications, respectively. The most recent survey<sup><a href="#R31">31</a></sup> tops its predecessors by citing 418 papers!</p>
+<p>In 2022, a Lawrence Berkeley Laboratory website listed measurements of charger energy. We contacted the website&#39;s author, who said those numbers reflect the situation as of 10&ndash;20 years ago.<sup><a href="#R27">27</a></sup> He recommended not relying on this data, but to instead collect the data ourselves (<a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=1069'); return false;">Figure 1</a>).</p>
+<p>In terms of ML on smartphones, Almeida et al.<sup><a href="#R2">2</a></sup> study the prevalence of ML models and their inference efficiency in Android apps and found the number of models doubled within 12 months with the vast majority being vision-related models. The methodology cannot measure how frequently these models are invoked, but the authors predict that vision model energy consumption has the potential to be significant.</p>
+<p>Cai et al.<sup><a href="#R8">8</a></sup> focus on measuring the efficiency of on-device training processes by benchmarking training time, memory use, and energy consumption with on-device models of varying size across different phones and ML libraries. They find that tuning training performance remains complex due to device heterogeneity, asymmetric multiprocessing, and variable batch size. They also report that current on-device ML libraries are optimized primarily for inference, resulting in a significantly larger gap between inference and training efficiency than in the datacenter.</p>
+<hr/>
+<blockquote>
+<p><em>The success and popularity of ML rightfully raised concerns about its environmental impact. Some estimates of CO<sub>2</sub>e from ML were so alarming &hellip; we wanted to investigate to see what could be done to help. &hellip;To our surprise, we found some ML papers overestimated CO<sub>2</sub>e by &gt;100,000&times;</em></p>
+</blockquote>
+<hr/>
+<p>Qui et al.<sup><a href="#R32">32</a></sup> report on a controlled experiment on IoT hardware (NVIDIA Tegra X2 and Xavier NX) that compares energy consumption and estimated carbon emissions in centralized and different federated training settings in the Flower framework. They show a wide range of emissions from federated learning from slightly less than 1 (better than centralized) to ~100 times worse in carbon emissions. These experiments do not appear to include charging efficiency for mobile devices. While they show the variance in average carbon intensity between China, France, and the U.S., they ignore the gains of training at the greenest locations within a country, which can reduce emissions by factors of 5 to 10.<sup><a href="#R28">28</a></sup></p>
+<p>Given the numerous publications it&#39;s diffuclt to be certain, but we believe this is the first article to look holistically at the energy consumption and carbon footprint of ML in smart-phones. While other work shows how to calculate power for one charger,<sup><a href="#R12">12</a></sup> this article may also be the first to include the impact of chargers to assess overall smartphone energy use and carbon emissions.</p>
+<p>We are certainly not the first to suggest that embodied CO<sub>2</sub>e swamps operational CO<sub>2</sub>e in information technology.<sup><a href="#R16">16</a>,<a href="#R17">17</a></sup> It is difficult to calculate the collective impact of new computers accurately. Ideally, embodied CO<sub>2</sub>e would be routinely published&mdash;like clock rate and thermal design power&mdash;for new computing equipment, particularly for servers whose configurations vary more widely than smartphones and PCs.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-10"></a></p>
+<h3>Conclusion</h3>
+<p>As Google is a major player in ML, the cloud, <em>and</em> smartphones, it is an ideal case study to judge CO<sub>2</sub>e from ML. We found that ML energy consumption for cloud datacenters is 10%&ndash;15% for 2019&ndash;2021<sup><a href="#R28">28</a></sup> and below 3% for smartphones in 2021. Part of the reason for this low level is that modern servers and smart-phones include custom hardware to accelerate ML, which also reduces the energy consumption of ML. Indeed, our estimate for ML in datacenters is they consume 70%&ndash;80% of the floating-point computation but only 10%&ndash;15% of the energy.<sup><a href="#R28">28</a></sup> Presumably, without accelerators, ML could consume 70%-80% of the energy as well.</p>
+<p>We uncovered some surprises related to smartphones. First, most phones have multiple chargers. Our estimates of the mix of wireless and wired chargers and the number of chargers per smartphone suggest that two-thirds of the overall energy smart-phones are responsible for is due to their chargers rather than the phones themselves. If end users cut back on the number of chargers or unplug the ones they are not using, we could reduce CO<sub>2</sub>e related to smartphones. Second, wireless chargers are much less energy efficient (higher CPUE) than wired chargers. As wireless chargers are growing in popularity, we encourage techniques and policies to mitigate their energy impact. Third, charger prices are not correlated with energy efficiency. Apple and Google show that one can build power efficient chargers at reasonable prices; their chargers cost 20%&ndash;70% less than the high-priced ones yet consume 40%&ndash;60% less energy.</p>
+<p>Another surprise is that on-device computation including training has a built-in disadvantage of up to 25&times; versus the datacenter. This gap is in part due to its worse PUE and because the cloud allows customers to pick remote datacenters with the cleanest energy nearly anywhere while smartphones must rely on local energy wherever they happen to be. While smartphones can shift charging to non-peak houses, in the cloud we can shift when and where many workloads run. Moreover, one case study suggests training on devices also uses ~12 more energy than in the datacenter. Relying on the cloud and on device for inference and on the cloud for training while following best practices<sup><a href="#R28">28</a></sup> may be the best path to delivering on the amazing potential of ML sustainably.</p>
+<p>The high cost of on-device ML training raises an interesting policy issue about the environment and privacy. It&#39;s clearly easier to preserve privacy when computation is limited to the edge, but energy consumption and carbon emissions can be two orders of magnitude higher than in the cloud. We believe researchers, society, and policymakers should start a conversation about the relative importance of privacy versus climate change and whether one can dramatically reduce CO<sub>2</sub>e on the edge with its inherent privacy protection or to try to improve privacy in the cloud with its inherent environmental advantage to match that of on device computation.</p>
+<p>Finally, it&#39;s important to get the CO<sub>2</sub>e numbers right to ensure we work on the most significant environmental problems in IT (<a href="https://dl.acm.org/cms/attachment/html/10.1145/3624719/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1016,height=577'); return false;">Figure 3</a>). For colleagues interested in global climate change, a prominent target is the embodied costs of computers.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-11"></a></p>
+<h3>Acknowledgments</h3>
+<p>Thanks to Jeff Dean, Urs H&ouml;lzle, Raj Singh, Brock Taute, and Dennis Yee for feedback. Yun Liu, Stefan Dierauf, and Brett McLarnon helped with federated learning data, and Luis-Miquel Munguia ported it to TPUs and measured its energy. Dave Cassano helped with the power measurements of the chargers. Finally, we thank Tammo Spalink for suggesting we tackle ML on smartphones. We would also like to thank the anonymous reviewers for the remarkable time spent reviewing this article.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Ahmad, R. et al. A survey on energy estimation and power modeling schemes for smartphone applications. <em>Int. J. Commun. Syst. 30</em>, 11 (2017).</p>
+<p><a name="R2"></a>2. Almeida, M. et al. Smart at what cost? Characterising mobile deep neural networks in the wild. In <em>Proceedings of the 21<sup>st</sup> ACM Internet Measurement Conf.</em>, 2021, 658&ndash;672.</p>
+<p><a name="R3"></a>3. Alphabet. <em>CDP Climate Change Response</em>, Aug. 2022.</p>
+<p><a name="R4"></a>4. Apple. <em>Use Clean Energy Charging on your iPhone</em>, June 2023.</p>
+<p><a name="R5"></a>5. Bankmycell. <em>How Many Smartphones Are In The World?</em> 2022.</p>
+<p><a name="R6"></a>6. Berger, D. et al. Reducing embodied carbon is important. <em>Computer Architecture Today</em>, 2023.</p>
+<p><a name="R7"></a>7. BusinessWire. <em>One Billion Smartphones Worldwide Have Wireless Charging.</em> 2021.</p>
+<p><a name="R8"></a>8. Cai, D. et al. Towards ubiquitous learning: A first measurement of on-device training performance. In <em>Proceedings of the 5<sup>th</sup> Intern. Workshop on Embedded and Mobile Deep Learning</em>, 2021, 31&ndash;36.</p>
+<p><a name="R9"></a>9. Carroll, A. and Heiser, G. An analysis of power consumption in a smartphone. <em>USENIX Annual Tech. Conf.</em>, 2010, 1&ndash;14.</p>
+<p><a name="R10"></a>10. Department of Energy. <em>Compliance Certification Database. Energy Efficiency and Renewable Energy Appliance and Equipment Standards Program.</em> 2020.</p>
+<p><a name="R11"></a>11. Department of Energy. <em>Code of Federal Regulations, Title 10, 430, Subpart B, Appendix Y: Uniform Test Method for Measuring the Energy Consumption of Battery Chargers.</em> 2022.</p>
+<p><a name="R12"></a>12. EPA. <em>Greenhouse Gases Equivalencies Calculator - Calculations and References.</em> 2022.</p>
+<p><a name="R13"></a>13. Ferreira, D., Dey, A.K. and Kostakos, V. Understanding human-smartphone concerns: A study of battery life. In <em>Proceedings of the 2011 Intern. Conf. Pervasive Computing</em>, 19&ndash;33.</p>
+<p><a name="R14"></a>14. Fletcher, C. <em>Private Communication</em>, May 2023.</p>
+<p><a name="R15"></a>15. Google Environmental Report 2022; <a href="https://bit.ly/3QAVDMs">https://bit.ly/3QAVDMs</a></p>
+<p><a name="R16"></a>16. Gupta, U. et al. Chasing carbon: The elusive environmental footprint of computing. <em>IEEE Micro 42</em>, 4 (2022), 37&ndash;47.</p>
+<p><a name="R17"></a>17. Gupta, U. et al. ACT: Designing sustainable computer systems with an architectural carbon modeling tool. In <em>Proceedings of the 49<sup>th</sup> Annual Intern. Symp. Computer Architecture.</em> June 2022, 784&ndash;799.</p>
+<p><a name="R18"></a>18. Hoque, M.A. et al. Modeling, profiling, and debugging the energy consumption of mobile devices. <em>ACM Computing Surveys 48</em>, 3 (2015), 1&ndash;40.</p>
+<p><a name="R19"></a>19. HPE product carbon footprint&mdash;HPE ProLiant DL345 Gen10 Plus server data sheet; <a href="https://bit.ly/3QCyM31">https://bit.ly/3QCyM31</a>.</p>
+<p><a name="R20"></a>20. International Energy Agency. <em>Global Energy &amp; CO2 Status Report 2019, Report Extract Emissions.</em></p>
+<p><a name="R21"></a>21. Jang, J.W. et al. Sparsity-aware and re-configurable NPU architecture for Samsung flagship mobile SOC. In <em>Proceedings of the ACM/IEEE 48<sup>th</sup> Annual Intern. Symp. Computer Architecture.</em> IEEE, 2021, 15&ndash;28.</p>
+<p><a name="R22"></a>22. Javed, A., Shahid, M.A., Sharif, M. and Yasmin, M. Energy consumption in mobile phones. <em>Intern. J. Computer Network &amp; Info. Security 9</em>, 12 (2017), 18&ndash;28.</p>
+<p><a name="R23"></a>23. Jouppi, N.P. et al. Ten lessons from three generations shaped Google&#39;s TPUv4i. In <em>Proceedings of the ACM/IEEE 48<sup>th</sup> Annual Intern. Symp. Computer Architecture.</em> IEEE, 2021, 1&ndash;14.</p>
+<p><a name="R24"></a>24. Koningstein, R. <em>We Now Do More Computing Where There&#39;s Cleaner Energy</em>, May 2021.</p>
+<p><a name="R25"></a>25. L&ouml;vehagen, N., Malmodin, J., Bergmark, P. and Matinfar, S. Assessing embodied carbon emissions of communication user devices by combining approaches. <em>Renewable and Sustainable Energy Reviews 183</em> (2023), 113422.</p>
+<p><a name="R26"></a>26. Moen, O.M. et al. Screening life cycle assessment of a new datacenter in Trondheim. <em>SINTEF Report</em>, 2022.</p>
+<p><a name="R27"></a>27. Meier, A. <em>Personal Communication</em>, June 25, 2022.</p>
+<p><a name="R28"></a>28. Patterson, D. et al. The carbon footprint of machine learning training will plateau, then shrink. <em>IEEE Computer 55</em>, 7 (2022).</p>
+<p><a name="R29"></a>29. Perrucci, G.P., Fitzek, F.H. and Widmer, J. Survey on energy consumption entities on the smartphone platform. In <em>Proceedings of the 2011 IEEE 73<sup>rd</sup> Vehicular Technology Conf.</em>, 1&ndash;6.</p>
+<p><a name="R30"></a>30. Popa, R. <em>Private Communication</em>, May 2023.</p>
+<p><a name="R31"></a>31. Pramanik, P.K.D. et al. Power consumption analysis, measurement, management, and issues: A state-of-the-art review of smartphone battery and energy usage. <em>IEEE Access 7</em> (2019), 182113&ndash;182172.</p>
+<p><a name="R32"></a>32. Qiu, X. et al. <em>A First Look Into the Carbon Footprint of Federated Learning.</em> 2021; arXiv:2102.07627</p>
+<p><a name="R33"></a>33. Saraev, A., Gama, M., Piontek, F. and Negi, P. <em>LCA of Dell Servers R6515, R7515, R6525, R7525.</em> 2021.</p>
+<p><a name="R34"></a>34. Schwartz, R., Dodge, J., Smith, N.A. and Etzioni, O. Green AI. <em>Commun. ACM 63</em>, 12 (Dec. 2020), 54&ndash;63.</p>
+<p><a name="R35"></a>35. Sun, L., Sheshadri, R., Zheng, W. and Koutsonikolas, D. Modeling WiFi active power/energy consumption in smartphones. In <em>Proceedings of the IEEE 34<sup>th</sup> Intern. Conf. Distributed Computing Systems</em>, 2014, 41&ndash;51; 10.1109/ICDCS.2014.13.</p>
+<p><a name="R36"></a>36. Taiwan Semiconductor Manufacturing Company. <em>TSMC 2022 Sustainability Report.</em> 2022</p>
+<p><a name="R37"></a>37. Thompson, N.C., Greenewald, K., Lee, K. and Manso, G.F. Deep learning&#39;s diminishing returns: The cost of improvement is becoming unsustainable. <em>IEEE Spectrum 58</em>, 10 (2021), 50&ndash;55.</p>
+<p><a name="R38"></a>38. Walker, A. <em>We Asked, You Told Us: Most Readers Own Plenty of Smartphone Chargers.</em> 2020.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Authors</h3>
+<p><strong>David Patterson</strong> is a Distinguished Engineer at Google in Mountain View, CA, USA, and a Professor Emeritus at the University of California, Berkeley, CA, USA.</p>
+<p><strong>Jeffrey M. Gilbert</strong> is Director and principal software engineer at Google in Cambridge, MA, USA.</p>
+<p><strong>Marco Gruteser</strong> is a research scientist at Google in Mountain View, CA, USA.</p>
+<p><strong>Efren Robles</strong> is Manager, Technical Program Management - AI/ML HW at Google in Mountain View, CA, USA.</p>
+<p><strong>Krishna Sekar</strong> is a systems architect at Google in Mountain View, CA, USA.</p>
+<p><strong>Yong Wei</strong> is a data scientist at Google in Mountain View, CA, USA.</p>
+<p><strong>Tenghui Zhu</strong> is a software engineer at Google in Mountain View, CA, USA.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-footnotes"><a name="footnotes"></a>
+<h3>Footnotes</h3>
+<p><a name="FNA"></a>a. To ensure accuracy, we bought three copies of each charger, but they varied only by power-meter accuracy. Maintenance power was measured after several hours to ensure the device reached steady state and the battery was fully charged, consistent with the U.S. DOE Uniform Test Method.<sup><a href="#R11">11</a></sup> We double-checked the wireless chargers&#39; measurements using a Ketotek (KTEM02) power meter, which averaged within 3%.</p>
+<p><a name="FNB"></a>b. In case CFE is unclear, Google offsets its CO<sub>2</sub>e by buying an equal amount of carbon reduction at other locations later, usually in renewable energy companies. We <em>ignore</em> those offsets in this article for CFE. If we instead made that assumption, then ML in the cloud would have zero operational CO<sub>2</sub>e while smart-phones would remain as is, since no organization offset their CO<sub>2</sub>e in 2021.</p>
+<p><a name="FNC"></a>c. Not sharing your data with the cloud is equivalent to having a trusted computing base of size &quot;Zero&quot; in the cloud, that is, one must count on exactly Zero cloud components for security to hold. The only way to achieve this level of robustness while using the cloud is fully homomorphic encryption (for privacy) plus additional cryptographic mechanisms (for example, succinct non-interactive argument of knowledge) to detect tampering. This approach would be extraordinarily expensive.</p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p>&copy; 2024 Copyright held by the owner/author(s).<br/>
+Request permission to (re)publish from the owner/author</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2024 ACM, Inc.</p>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-2">Key Insights</a></li>
+<li class="miniWidgetItem"><a href="#body-3">How Significant Is Charger Energy Use Compared to Smartphones Themselves?</a></li>
+<li class="miniWidgetItem"><a href="#body-4">How Do Cloud Energy Use and Carbon Emissions Compare to Those for On Device?</a></li>
+<li class="miniWidgetItem"><a href="#body-5">How Does Energy Consumed for ML Training in Cloud Datacenters Compare to Training on Smartphones?</a></li>
+<li class="miniWidgetItem"><a href="#body-6">How Does ML Energy Use in Cloud Datacenters Compare to Its Use on Devices?</a></li>
+<li class="miniWidgetItem"><a href="#body-7">What Portion of Energy Is for ML Training versus Inference?</a></li>
+<li class="miniWidgetItem"><a href="#body-8">Discussion</a></li>
+<li class="miniWidgetItem"><a href="#body-9">Related Work</a></li>
+<li class="miniWidgetItem"><a href="#body-10">Conclusion</a></li>
+<li class="miniWidgetItem"><a href="#body-11">Acknowledgments</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Authors</a></li>
+<li class="miniWidgetItem"><a href="#footnotes">Footnotes</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/magazines/2023/10/276620-biomedical-digital-twins">
+Biomedical Digital Twins
+</a>
+</h5>
+<span class="dateNews">Gregory Mone</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/11/277427-the-infrapolitics-of-algorithmic-resistance">
+The Infrapolitics of Algorithmic Resistance
+</a>
+</h5>
+<span class="dateNews">Ricardo Fabrino Mendonça, Fernando Filgueiras, Virgilio Almeida</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/278338-what-does-digitization-mean-and-when-did-it-begin">
+What Does Digitization Mean, and When Did It Begin?
+</a>
+</h5>
+<span class="dateNews">Herbert Bruderer</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href="<iframe title=" vimeo-player" src="https://player.vimeo.com/video/905214244?h=93cd07a723" width="640" height="360" frameborder="0" allowfullscreen></iframe> "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/2/279535-energy-and-emissions-of-machine-learning-on-smartphones-vs-the-cloud/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2024 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>

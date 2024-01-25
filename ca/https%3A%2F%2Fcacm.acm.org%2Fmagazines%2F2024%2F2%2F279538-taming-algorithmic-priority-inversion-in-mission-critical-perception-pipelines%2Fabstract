@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines | February 2024 | Communications of the ACM</title>
+<meta name="title" content="Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines" />
+<meta name="author" content="Shengzhong Liu, Shuochao Yao, Xinzhe Fu, Rohan Tabish, Simon Yu, Ayoosh Bansal, Heechul Yun, Lui Sha, Tarek Abdelzaher" />
+<meta name="date" content="2024-2-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="artificial intelligence,communications / networking,computer systems,hardware,management,performance and reliability,security,theory" />
+<meta name="sections" content="Technology Reports" />
+<meta name="robots" content="noindex" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/abstract" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/abstract" /><meta property="og:title" content="Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6965/011924_Shutter_RH-Taming-Algorithmic.large.jpg?1705690066&amp;1705690065" /><meta property="og:description" content="This paper discusses algorithmic priority inversion in mission-critical machine inference pipelines used in modern neural-network-based perception subsystems and describes a solution to mitigate its effect.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/abstract" /><meta property="og:title" content="Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6965/011924_Shutter_RH-Taming-Algorithmic.large.jpg?1705690066&amp;1705690065" /><meta property="og:description" content="This paper discusses algorithmic priority inversion in mission-critical machine inference pipelines used in modern neural-network-based perception subsystems and describes a solution to mitigate its effect.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/2">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/2">
+<img src="https://cacm.acm.org/system/assets/0004/6967/February2024.Cover.1000x1338.large.jpg?1705690152&1705690151" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: February 2024</span>
+<a href="/magazines/2024/2/279527-gaining-benefit-from-artificial-intelligence-and-data-science-a-three-part-framework">Gaining Benefit from Artificial Intelligence and Data Science: A Three-Part Framework</a>
+<a href="/magazines/2024/2/279537-computing-education-in-the-era-of-generative-ai">Computing Education in the Era of Generative AI</a>
+<a href="/magazines/2024/2/279536-inherent-limitations-of-ai-fairness">Inherent Limitations of AI Fairness</a>
+<a class="lastLink" href="/magazines/2024/2">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/2">
+February 2024 (Vol. 67, No. 2)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/2">February 2024 (Vol. 67, No. 2)</a><span>/</span><a href="/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines">Taming Algorithmic Priority Inversion in Mission-Critical...</a><span>/</span>Abstract
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research Highlights</span>
+<h2>Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Shengzhong Liu, Shuochao Yao, Xinzhe Fu, Rohan Tabish, Simon Yu, Ayoosh Bansal, Heechul Yun, Lui Sha, Tarek Abdelzaher
+<br/>
+Communications of the ACM,
+February 2024,
+Vol. 67 No. 2, Pages 110-117<br/>
+10.1145/3610801<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3641526.3610801&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3610801&ftid=2307270&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46965">
+<figure>
+<img alt="steel framework" src="/system/assets/0004/6965/011924_Shutter_RH-Taming-Algorithmic.large.jpg?1705690066&amp;1705690065" title="steel framework" />
+<figcaption>
+<p class="credit">Credit: Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+
+
+<p><a name="body-1"></a></p>
+<p>The paper discusses <em>algorithmic priority inversion</em> in mission-critical machine inference pipelines used in modern neural-network-based perception subsystems and describes a solution to mitigate its effect. In general, <em>priority inversion</em> occurs in computing systems when computations that are &quot;less important&quot; are performed together with or ahead of those that are &quot;more important.&quot; Significant priority inversion occurs in existing machine inference pipelines when they do not differentiate between critical and less critical data. We describe a framework to resolve this problem and demonstrate that it improves a perception system&#39;s ability to react to critical inputs, while at the same time reducing platform cost.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>1. Introduction</h3>
+<p><em>Algorithmic priority inversion</em> plagues modern <em>mission-critical</em> machine inference pipelines such as those implementing perception modules in autonomous drones and self-driving cars. We describe an initial solution for removing such priority inversion from neural-network-based perception systems. This research was originally published in RTSS 2020.<sup><a href="#R17">17</a></sup> While it is evaluated in the context of autonomous driving only, the design principles described below are expected to remain applicable in other contexts.</p>
+<p>The application of artificial intelligence (AI) has revolutionized cyber-physical systems but has posed novel challenges in aligning computational resource consumption with mission-specific priority. Perception is one of the key components that enable system autonomy. It is also a major efficiency bottleneck that accounts for a considerable fraction of resource consumption.<sup><a href="#R3">3</a>,<a href="#R12">12</a></sup> In general, priority inversion occurs in computing systems when computations that are less critical (or that have longer deadlines) are performed together with or ahead of those that are more critical (or that have shorter deadlines). Current neural-network-based machine intelligence software suffers from a significant form of priority inversion on the path from perception to decision-making, because it processes input data sequentially in arrival order as opposed to processing important parts of a scene first. By resolving this problem, we significantly improve the system&#39;s responsiveness to critical inputs at a lower platform cost. The work applies to intelligent systems that perceive their environment in realtime (using neural networks), such as self-driving vehicles,<sup><a href="#R1">1</a></sup> autonomous delivery drones,<sup><a href="#R5">5</a></sup> military defense systems,<sup><a href="#R2">2</a></sup> and socially-assistive robotics.<sup><a href="#R8">8</a></sup>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+<h2>Log in to Read the Full Article</h2>
+<div class="col2 floatLeft widgetCols">
+<h3>Sign In</h3>
+<span class="instructional">Sign in using your ACM Web Account username and password to access premium content if you are an ACM member, Communications subscriber or Digital Library subscriber.</span>
+<form action="https://cacm.acm.org/login" class="session_login_form" id="session_login_form" method="post">
+<label class="withError" style="margin:0px"></label>
+<label for="userNameInPage" class="userNameInPageLabel">Username</label>
+<input id="userNameInPage" name="current_member[user]" type="text" />
+<label for="passwordInPage" class="passwordInPageLabel">Password</label>
+<input id="passwordInPage" name="current_member[passwd]" type="password" value />
+<span class="instructional signUpInPage"><a href="/accounts/forgot-password">Forgot Password?</a></span>
+<button class="normalButton">Sign In</button>
+</form>
+</div>
+<div class="col2 floatLeft widgetCols lastCol special1">
+<h3>Need Access?</h3>
+<span class="instructional">Please select one of the options below for access to premium content and features.</span>
+<br/>
+<h3>Create a Web Account</h3>
+<span class="instructional">If you are already an ACM member, <cite>Communications</cite> subscriber, or Digital Library subscriber, please set up a web account to access premium content on this site.</span>
+<form action="/accounts/new" method="GET"><button class="normalButton">Create a Web Account</button></form>
+<hr class="solid" />
+<h3>Join the ACM</h3>
+<span class="instructional">Become a member to take full advantage of ACM's outstanding computing information resources, networking opportunities, and other benefits.</span>
+<form action="http://campus.acm.org/public/quickjoin/interim.cfm" method="GET"><button class="normalButton">Become a Member</button>&nbsp;&nbsp;</form>
+<hr class="solid" />
+<h3>Subscribe to Communications of the ACM Magazine</h3>
+<span class="instructional">Get full access to 50+ years of CACM content and receive the print version of the magazine monthly.</span>
+<form action="https://campus.acm.org/public/qj/brandingqj/cacm.cfm" method="GET"><button class="normalButton">Get a Subscription</button></form>
+<hr class="solid" />
+<h3>Purchase the Article</h3>
+<span class="instructional">Non-members can purchase this article or a copy of the magazine in which it appears. </span>
+<form action="https://dl.acm.org/purchase.cfm" method="GET">
+<input type="hidden" name="id" value="3610801">
+<button class="normalButton">Purchase This Article</button>
+</form>
+</div>
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/275044-small-business-owners-embrace-the-future-majority-say-they-will-adopt-generative-ai">
+Small Business Owners Embrace the Future – Majority Say They Will Adopt Generative AI
+</a>
+</h5>
+<span class="dateNews">FreshBooks</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/11/277427-the-infrapolitics-of-algorithmic-resistance">
+The Infrapolitics of Algorithmic Resistance
+</a>
+</h5>
+<span class="dateNews">Ricardo Fabrino Mendonça, Fernando Filgueiras, Virgilio Almeida</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/276277-the-life-or-death-importance-of-medical-device-security">
+The Life-or-Death Importance of Medical Device Security
+</a>
+</h5>
+<span class="dateNews">Alex Vakulov</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href=" "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/abstract?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2024 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
