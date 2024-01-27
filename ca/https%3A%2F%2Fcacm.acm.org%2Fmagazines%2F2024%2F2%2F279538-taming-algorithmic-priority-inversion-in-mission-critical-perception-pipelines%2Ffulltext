@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines | February 2024 | Communications of the ACM</title>
+<meta name="title" content="Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines" />
+<meta name="author" content="Shengzhong Liu, Shuochao Yao, Xinzhe Fu, Rohan Tabish, Simon Yu, Ayoosh Bansal, Heechul Yun, Lui Sha, Tarek Abdelzaher" />
+<meta name="date" content="2024-2-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="artificial intelligence,communications / networking,computer systems,hardware,management,performance and reliability,security,theory" />
+<meta name="sections" content="Technology Reports" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/fulltext" /><meta property="og:title" content="Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6965/011924_Shutter_RH-Taming-Algorithmic.large.jpg?1705690066&amp;1705690065" /><meta property="og:description" content="This paper discusses algorithmic priority inversion in mission-critical machine inference pipelines used in modern neural-network-based perception subsystems and describes a solution to mitigate its effect.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/fulltext" /><meta property="og:title" content="Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/6965/011924_Shutter_RH-Taming-Algorithmic.large.jpg?1705690066&amp;1705690065" /><meta property="og:description" content="This paper discusses algorithmic priority inversion in mission-critical machine inference pipelines used in modern neural-network-based perception subsystems and describes a solution to mitigate its effect.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/2">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/2">
+<img src="https://cacm.acm.org/system/assets/0004/6967/February2024.Cover.1000x1338.large.jpg?1705690152&1705690151" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: February 2024</span>
+<a href="/magazines/2024/2/279527-gaining-benefit-from-artificial-intelligence-and-data-science-a-three-part-framework">Gaining Benefit from Artificial Intelligence and Data Science: A Three-Part Framework</a>
+<a href="/magazines/2024/2/279537-computing-education-in-the-era-of-generative-ai">Computing Education in the Era of Generative AI</a>
+<a href="/magazines/2024/2/279536-inherent-limitations-of-ai-fairness">Inherent Limitations of AI Fairness</a>
+<a class="lastLink" href="/magazines/2024/2">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/2">
+February 2024 (Vol. 67, No. 2)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2023/12">
+December 2023 (Vol. 66, No. 12)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/2">February 2024 (Vol. 67, No. 2)</a><span>/</span><a href="/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines">Taming Algorithmic Priority Inversion in Mission-Critical...</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research Highlights</span>
+<h2>Taming Algorithmic Priority Inversion in Mission-Critical Perception Pipelines</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Shengzhong Liu, Shuochao Yao, Xinzhe Fu, Rohan Tabish, Simon Yu, Ayoosh Bansal, Heechul Yun, Lui Sha, Tarek Abdelzaher
+<br/>
+Communications of the ACM,
+February 2024,
+Vol. 67 No. 2, Pages 110-117<br/>
+10.1145/3610801<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3641526.3610801&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3610801&ftid=2307270&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-46965">
+<figure>
+<img alt="steel framework" src="/system/assets/0004/6965/011924_Shutter_RH-Taming-Algorithmic.large.jpg?1705690066&amp;1705690065" title="steel framework" />
+<figcaption>
+<p class="credit">Credit: Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>The paper discusses <em>algorithmic priority inversion</em> in mission-critical machine inference pipelines used in modern neural-network-based perception subsystems and describes a solution to mitigate its effect. In general, <em>priority inversion</em> occurs in computing systems when computations that are &quot;less important&quot; are performed together with or ahead of those that are &quot;more important.&quot; Significant priority inversion occurs in existing machine inference pipelines when they do not differentiate between critical and less critical data. We describe a framework to resolve this problem and demonstrate that it improves a perception system&#39;s ability to react to critical inputs, while at the same time reducing platform cost.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>1. Introduction</h3>
+<p><em>Algorithmic priority inversion</em> plagues modern <em>mission-critical</em> machine inference pipelines such as those implementing perception modules in autonomous drones and self-driving cars. We describe an initial solution for removing such priority inversion from neural-network-based perception systems. This research was originally published in RTSS 2020.<sup><a href="#R17">17</a></sup> While it is evaluated in the context of autonomous driving only, the design principles described below are expected to remain applicable in other contexts.</p>
+<p>The application of artificial intelligence (AI) has revolutionized cyber-physical systems but has posed novel challenges in aligning computational resource consumption with mission-specific priority. Perception is one of the key components that enable system autonomy. It is also a major efficiency bottleneck that accounts for a considerable fraction of resource consumption.<sup><a href="#R3">3</a>,<a href="#R12">12</a></sup> In general, priority inversion occurs in computing systems when computations that are less critical (or that have longer deadlines) are performed together with or ahead of those that are more critical (or that have shorter deadlines). Current neural-network-based machine intelligence software suffers from a significant form of priority inversion on the path from perception to decision-making, because it processes input data sequentially in arrival order as opposed to processing important parts of a scene first. By resolving this problem, we significantly improve the system&#39;s responsiveness to critical inputs at a lower platform cost. The work applies to intelligent systems that perceive their environment in realtime (using neural networks), such as self-driving vehicles,<sup><a href="#R1">1</a></sup> autonomous delivery drones,<sup><a href="#R5">5</a></sup> military defense systems,<sup><a href="#R2">2</a></sup> and socially-assistive robotics.<sup><a href="#R8">8</a></sup></p>
+<p>To understand the present gap, observe that current deep perception networks perform many layers of manipulation of large multidimensional matrices (called <em>tensors</em>). The underlying neural network libraries (e.g., <em>TensorFlow</em>) are reminiscent of what used to be called the <em>cyclic executive</em><sup><a href="#R4">4</a></sup> in early operating system literature. Cyclic executives, in contrast to priority-based scheduling,<sup><a href="#R11">11</a></sup> processed all pieces of incoming data at the same <em>priority</em> and <em>fidelity</em> (e.g., as nested loops). Given incoming data frames (e.g., multicolor images or 3D LiDAR point clouds), modern neural network algorithms process all data rows and columns at the same priority and fidelity. Importance cues drive attention weights in AI computations, but not actual computational resource assignments.</p>
+<p>This flat processing is in sharp contrast to the way <em>humans</em> process information. Human cognitive perception systems are good at partitioning the perceived scene into semantically meaningful partial regions in real-time, before allocating different degrees of attention (i.e., processing fidelity) and prioritizing the processing of important parts, to better utilize the limited cognitive resources. Given a complex scene, such as a freeway with multiple nearby vehicles, human drivers are good at understanding what to focus on to plan a valid path forward. In fact, human cognitive capacity is not sufficient to simultaneously absorb everything in their field of view. For example, if faced with an iMax screen partitioned into a dozen subdivisions, each playing an independent movie, humans would be fundamentally incapable of giving all such simultaneously playing movies sufficient attention. This suggests that GPUs that can, in fact, keep up with processing all pixels of the input scene are fundamentally and needlessly over-provisioned. They could be substantially smaller if endowed with a human-like capacity to focus on part of the scene only. The lack of prioritized allocation of processing resources to different parts of an input data stream (e.g., from a camera) is an instance of <em>algorithmic priority inversion.</em> As exemplified above, it results in significant resource waste, processing less important stimuli together with more important ones. To avoid wasting resources, the architecture described in this paper allows machine perception pipelines to partition the scene into regions of different criticality, prioritize the processing of important parts ahead of others, and provide higher processing fidelity on critical regions.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>2. System Architecture</h3>
+<p>Consider a simple pipeline composed of a camera that observes its physical environment, a neural network that processes the sampled frames, and a control unit that must react in real-time. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1307,height=452'); return false;">Figure 1</a> contrasts the traditional design of such a machine inference pipeline to the proposed architecture. In the traditional design, the captured input data frames are processed sequentially by the neural network without preemption in execution.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1307,height=452'); return false;"><img alt="f1.jpg" height="144" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f1.jpg" width="415" /></a><br/>
+<strong>Figure 1. Real-time machine inference pipeline architecture.</strong></p>
+<p>Unfortunately, the multi-dimensional data frames captured by modern sensors (e.g., colored camera images and 3D LiDAR point clouds) carry information of different degrees of criticality in every frame.<sup><a href="#FNA">a</a></sup> Data of different criticality may require a different processing latency. For example, processing parts of the image that represent faraway objects does not need to happen every frame, whereas processing nearby objects, such as a vehicle in front, needs to be done immediately because of their impact on immediate path planning. To accommodate these differences in input data criticality, our machine perception pipeline breaks the input frame processing into four steps:</p>
+<ul>
+<li>Data slicing and priority allocation: This module breaks up newly arriving frames into smaller regions of different degrees of criticality based on simple heuristics (i.e., distance-based criticality).</li>
+<li>Deduplication: This module drops redundant regions (i.e., ones that refer to the same physical objects) across successive arriving frames.</li>
+<li>&quot;Anytime&quot; neural network: This neural network implements an imprecise computation model that allows execution to be preempted while yielding partial utility from the partially completed computation. The approach allows newly arriving critical data to preempt the processing of less critical data from older frames.</li>
+<li>Batching and utility maximization: This module sits between the data slicing and deduplication modules on one end and the neural network on the other. With data regions broken by priority, it decides which regions to pass to the neural network for processing. Since multiple regions may be queued for processing, it also decides how best to benefit from batching (that improves processing efficiency).</li>
+</ul>
+<p>We refer to the subsystem shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1307,height=452'); return false;">Figure 1</a> as the <em>observer.</em> The goal is to allow the observer to respond to more urgent stimuli ahead of less urgent ones. To make the observer concrete, we consider a video processing pipeline, where the input video frames get broken into regions of different criticality according to the distance information obtained from a ranging sensor (i.e., LiDAR). Different deadline-driven priorities are then assigned to the processing of these regions. We adopt an imprecise computation model for neural networks<sup><a href="#R21">21</a></sup> to achieve a hierarchy of different processing fidelities. We further introduce a utility-optimizing scheduling algorithm for the resulting real-time workload to meet deadlines while maximizing a notion of global utility (to the mission). We implement the architecture on an NVIDIA Jetson Xavier platform and do a performance evaluation on the platform using real video traces collected from autonomous vehicles. The results show that the new algorithms significantly improve the average quality of machine inference, while nearly eliminating deadline misses, compared to a set of state-of-the-art baselines executed on the same hardware under the same frame rate.</p>
+<p>For completeness, below we first describe all components of the observer, respectively. We then detail the batching and utility maximization algorithm used.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>2.1. Data slicing and priority allocation</strong></p>
+<p>This module breaks up input data frames into regions that require different degrees of attention. Objects with a smaller <em>time-to-collision</em><sup><a href="#R18">18</a></sup> should receive attention more urgently and be processed at a higher fidelity. We further assume that the observer is equipped with a <em>ranging</em> sensor. For example, in autonomous driving systems, a LiDAR sensor measures distances between the vehicle and other objects. LiDAR point cloud-based object localization techniques have been proposed<sup><a href="#R6">6</a></sup> that provide a fast (i.e., over 200Hz) and accurate ranging and object localization capability. The computed object locations can then be projected onto the image obtained from the camera, allowing the extraction of regions (subareas of the image) that represent these localized objects, sorted by distance from the observer. For simplicity, we restrict those subareas to rectangular regions or <em>bounding boxes.</em> We define the priority (of bounding boxes) by time-to-collision, given the trajectory of the observer and the location of the object. Computing the time-to-collision is a well-studied topic and is not our contribution.<sup><a href="#R18">18</a></sup></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>2.2. Deduplication</strong></p>
+<p>The deduplication module eliminates redundant bounding boxes. Since the same objects generally persist across many frames, the same bounding boxes will be identified in multiple frames. The set of bounding boxes pertaining to the same object in different frames is called a <em>tubelet.</em> Since the best information is usually the most recent, only the most recent bounding box in a tubelet needs to be acted on. The deduplication module identifies boxes with large overlaps as redundant and stores the most recent box only. For efficiency reasons described later, we quantize the used bounding box sizes. The deduplication module uses the same box size for the same object throughout the entire tubelet. Note that, in a traditional neural network processing pipeline, each frame is processed in its entirety before the next one arrives. Thus, no deduplication module is used. The option to add this time-saving module to our architecture arises because our pipeline can postpone the processing of some objects until a later time. By that time, updated images of the same object may arrive. This enables savings by looking at the latest image only when the neural network eventually gets around to processing the object.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>2.3. The anytime neural network</strong></p>
+<p>A perfect <em>anytime</em> algorithm is one that can be terminated at any point, yielding utility that monotonically increases with the amount of processing performed. We approximate the optimal model with an imprecise computation model,<sup><a href="#R14">14</a>,<a href="#R15">15</a>,<a href="#R16">16</a></sup> where the processing consists of two parts: a <em>mandatory part</em> and multiple <em>optional parts.</em> The optional parts, or a portion thereof, can be skipped to conserve resources. When at least one optional part is skipped, the task is said to produce an <em>imprecise</em> result. Deep neural networks (e.g., image recognition models<sup><a href="#R10">10</a></sup>) are a concatenation of a large number of layers that can be divided into several stages, as we show in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1496,height=303'); return false;">Figure 2</a>. Ordinarily, an output layer is used at the end to convert features computed by earlier layers into the output value (e.g., an object classification). Prior work has shown, however, that other output layers can be forked off of intermediate stages producing meaningful albeit imprecise outputs based on features computed up to that point.<sup><a href="#R20">20</a></sup> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=719,height=229'); return false;">Figure 3</a> shows the accuracy of ResNet-based classification applied to the ImageNet<sup><a href="#R7">7</a></sup> dataset at the intermediate stages of neural network processing. The quality of outputs increases when the network executes more optional parts. We set the utility proportionally to <em>predictive confidence in result</em>; a low confidence output is less useful than a high confidence output. The proportionality factor itself can be set depending on task criticality, such that uncertainty in the output of more critical tasks is penalized more.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1496,height=303'); return false;"><img alt="f2.jpg" height="84" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f2.jpg" width="415" /></a><br/>
+<strong>Figure 2. ResNet<sup><a href="#R10">10</a></sup> architecture with multiple exits. On the left, we show the design of the basic bottleneck block of ResNet. <em>c</em> is the feature dimension. The classifier has a pooling layer and a fully connected layer.</strong></p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=719,height=229'); return false;"><img alt="f3.jpg" height="132" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f3.jpg" width="415" /></a><br/>
+<strong>Figure 3. ResNet stage accuracy change on ImageNet<sup><a href="#R7">7</a></sup> dataset.</strong></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>2.4. Batching and utility maximization</strong></p>
+<p>This module decides the schedule of processing of all regions identified by the data slicing and prioritization module and that passes de-duplication. The data slicing module computes <em>bounding boxes</em> for objects detected, which constitute regions that require attention, each assigned a degree of criticality. The deduplication module groups boxes related to the same object into a tubelet. Only the latest box in the tubelet is kept. Each physical object gives rise to a separate neural network task to be scheduled. The input of that task is the bounding box for the corresponding object (cropped from the full scene).</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>3. The Scheduling Problem</h3>
+<p>In this section, we describe our task execution model, formulate the studied scheduling problem, and derive a near-optimal solution.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>3.1. The execution model</strong></p>
+<p>As alluded to earlier, the scheduled tasks in our system constitute the execution of multi-layer deep neural networks (e.g., ResNet,<sup><a href="#R10">10</a></sup> as shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1496,height=303'); return false;">Figure 2</a>), each processing a different input data region (i.e., a bounding box). As shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1496,height=303'); return false;">Figure 2</a>, tasks are broken into stages, where each stage includes multiple neural network layers. The unit of scheduling is a single stage, whose execution is non-preemptive, but tasks can be preempted on stage boundaries. A task arrives when a new object is detected by the ranging sensor (e.g., LiDAR) giving rise to a corresponding new bounding box in the camera scene. Let the arrival time of task <em><em>T</em><sub>i</sub></em> be denoted by <em>a<sub>i</sub>.</em> A deadline <em>d<sub>i</sub></em> &gt; <em>a<sub>i</sub></em>, is assigned by the data slicing and priority assignment module denoting the time by which the task must be processed (e.g., the corresponding object classified). The data slicing and priority assignment module are invoked at frame arrival time. Therefore, both <em>a<sub>i</sub></em> and <em>d<sub>i</sub></em> are a multiple of frame inter-arrival time, <em>H.</em> No task can be executed after its deadline. Future object sizes, arrival times, and deadlines are unknown, which makes the scheduling problem an <em>online decision problem.</em> A combination of two aspects makes this real-time scheduling problem interesting: <em>batching</em> and <em>imprecise computations.</em> We describe these aspects below.</p>
+<p><strong>Batching.</strong> Stages of the neural network, in our architecture, are executed on a low-end embedded GPU. While such GPUs feature parallel execution, most require that the same kernel be executed on all GPU cores. This means that we can process different images concurrently on the GPU as long as we run the <em>same kernel</em> on all GPU cores. We call such concurrent execution, <em>batching.</em> Running the same kernel on all GPU cores means that we can only batch image processing tasks if both of the following apply: (i) they are executing <em>the same neural network stage</em>, and (ii) they <em>run on the same size inputs.</em> The latter condition is because the processing of different bounding box sizes requires instantiating different GPU kernels. Batching is advantageous because it allows us to better utilize the parallel processing capacity of GPU. To increase batching opportunities, we limit the size of possible bounding boxes to a finite set of options. For a given bounding box size <em>k</em>, at most <em>B</em><sup>(<em>k</em>)</sup> tasks (processing inputs) can be batched together before overloading the GPU capacity. We call it the <em>batching limit</em> for the corresponding input size.</p>
+<p><strong>Imprecise computations.</strong> Let the number of neural network stages for task <em>T</em><sub><em>i</em></sub> be <em>L<sub>i</sub></em> (different input sizes may have different numbers of stages). We call the first stage <em>mandatory</em> and call the remaining stages <em>optional.</em> Following a recently developed imprecise computation model for deep neural networks (DNN),<sup><a href="#R21">21</a></sup> tasks are written such that they can return an object classification result once the mandatory stage is executed. This result then improves with the execution of each optional stage. Earlier work presented an approach to estimate the expected confidence in the correctness of the results of future stages, ahead of executing these stages.<sup><a href="#R22">22</a></sup> This estimation offers a basis for assessing the utility of future task stage execution. We denote the utility of task <em>T</em><sub><em>i</em></sub> after executing <em>j</em> &le; <em>L<sub>i</sub></em> stages by <em>R<sub>i,j</sub></em>, where <em>R<sub>i,j</sub></em> is set proportionately to the predicted confidence in correctness at the conclusion of stage <em>j.</em> Note that, the expected utility can be different among tasks (depending in part on input size), but it is computable, non-decreasing, and concave with respect to the network stage.<sup><a href="#R22">22</a></sup></p>
+<p>We denote by <em>T</em>(<em>t)</em> the set of <em>current tasks</em> at time <em>t.</em> A task, <em>T</em><sub><em>i</em></sub>, is called <em>current</em> at time <em>t</em>, if <em>a<sub>i</sub> &le; t &lt; d<sub>i</sub></em>, and the task has not yet completed its last stage, <em>L.</em> For task <em><em>T</em><sub>i</sub></em> of input size, <em>k</em>, the execution time of the <em>j</em>-th stage is denoted by <img alt="cacm6702_aq.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_aq.gif" />, where <em>b</em> is the number of batched tasks during the stage execution.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>3.2. Problem formulation</strong></p>
+<p>We next formulate a new scheduling problem, called <em>BAtched Scheduling with Imprecise Computations (BASIC)</em>. The problem is simply to decide on the number of stages <em>l<sub>i</sub></em> &le; <em>L<sub>i</sub></em> to execute for each task <em><em>T</em><sub>i</sub></em> and to schedule the batched execution of those task stages on the GPU such that the total utility, &Sigma;<sub><em>i</em></sub> R<sub><em>i</em>, <em>l</em><sub><em>i</em></sub></sub>, of executed tasks is maximized, and batching constraints are met (i.e., all used GPU cores execute the same kernel at any given time, and that the batching limit is not exceeded). In summary:</p>
+<p><strong>The BASIC problem.</strong> <em>With online task arrivals, the objective of the BASIC problem is to derive a schedule x to maximize the aggregate system utility. The schedule decides three outputs: task stage execution order on the GPU, number of stages to execute for each task, and task batching decisions. For each scheduling period t, we use x<sub>t</sub>(i, j)</em> &isin; {0, 1} <em>to denote whether the j-th stage of task</em> <em>T</em><sub><em>i</em></sub> <em>is executed. Besides, we use P to denote a batch of tasks, where ‖P‖ denotes the number of tasks being batched. The mathematical formulation of the optimization problem is</em>:</p>
+<p><em>BASIC</em>: <img alt="cacm6702_ar.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_ar.gif" /></p>
+<p><img alt="eq01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/eq01.gif" /></p>
+<p><img alt="eq02.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/eq02.gif" /></p>
+<p><img alt="eq03.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/eq03.gif" /></p>
+<p><img alt="eq04.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/eq04.gif" /></p>
+<p><em>The following constraints should be satisfied: (1) Each neural network stage can only be executed once; (2) No task can be executed after its deadline; (3) The execution of different stages of the same task must satisfy their precedence constraints; and (4) Only tasks with the same (image size, network stage) can be batched, and the number of batched tasks can not exceed the batching constraint of their image size.</em></p>
+<p>Only one batch (kernel) can be executed on the GPU at any time. However, multiple batches can be executed sequentially in one scheduling period, as long as the sum of their execution times does not exceed the period length, <em>H.</em></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>3.3. An online scheduling framework</strong></p>
+<p>We derive an optimal dynamic programming-based solution for the BASIC scheduling problem and express its competitive ratio relative to a clairvoyant scheduler (that has full knowledge of all future task arrivals). We then derive a more efficient greedy algorithm that approximates the dynamic programming schedule. We define the clairvoyant scheduling problem as follows:</p>
+<p>DEFINITION 1 (CLAIRVOYANT SCHEDULING PROBLEM). <em>Given information about all future tasks, the clairvoyant scheduling problem seeks to maximize the aggregate utility obtained from (stages of) tasks that are completed before their deadlines. The maximum aggregate utility is OPT.</em></p>
+<p>With no future information, an online scheduling algorithm that achieves a competitive ratio of <em>c</em> (i.e., a utility <img alt="cacm6702_as.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_as.gif" />) is called <em>c</em>-competitive. A lower bound on the competitive ratio for online scheduling algorithms was shown to be 1.618.<sup><a href="#R9">9</a></sup></p>
+<p>Our scheduler is invoked upon frame arrivals, which is once every <em>H</em> unit of time. We thus call <em>H</em> the <em>scheduling period.</em> We assume that all task stage execution times are multiples of some basic time unit &delta;, thereby allowing us to express <em>H</em> by an integer value. We further call the problem of scheduling current tasks within the period between successive frame arrivals, the <em>local scheduling problem</em>:</p>
+<p>DEFINITION 2 (LOCAL BASIC PROBLEM). <em>Given the set of current tasks, T(t), within the scheduling period, t, the local BASIC problem seeks to maximize the total utility gained within this scheduling period only.</em></p>
+<p>We proceed to show that an online scheduling algorithm that optimally solves the local scheduling problem within each period will have a good competitive ratio. Let <em>L</em> be the maximum number of stages in any task, and let <em>B</em> be the maximum batching size:</p>
+<p>THEOREM 1. <em>If during each scheduling period, the local BASIC problem for that period is solved optimally, then the resulting online scheduling algorithm is</em> min{2 <em>+ L</em>, 2<em>B</em> + 1}-<em>competitive with respect to a clairvoyant algorithm.</em></p>
+<p>When no imprecise computation is considered, the competitive ratio is further reduced to:</p>
+<p>COROLLARY 1. <em>If each task is only one stage long, and if the online scheduling algorithm solved the local BASIC problem in each scheduling period optimally, then the online scheduling algorithm is 3-competitive with respect to a clairvoyant algorithm.</em></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>3.4. Local scheduling algorithms</strong></p>
+<p>In this section, we propose two algorithms to solve the local BASIC problem. The first is a dynamic programming-based algorithm that optimally solves it but may have a higher computational overhead. The second is a greedy algorithm that is computationally efficient but may not optimally solve the problem.</p>
+<p><strong>Local dynamic programming scheduling.</strong> Since we only consider batching together on the GPU tasks that execute the same kernel (i.e., same stage on the same size input), we need to partition the scheduling interval, <em>H</em>, into sub-intervals where the above constraint is met. The challenge is to find optimal partitioning. This question is broken into three steps:</p>
+<ul>
+<li>Step 1: Given an amount of time, <em>T<sub>j,k</sub></em> &le; <em>H</em>, what is the maximum utility attainable by scheduling the same stage, <em>j</em>, of tasks that process an input of size <em>k</em>? The answer here simply depends on the maximum number of tasks that we can batch during <em>T<sub>j,k</sub></em> without violating the batching limit. If the time allows for more than one batch, dynamic programming is used to optimally size the batches. Let the maximum attainable utility thus found be denoted by <img alt="cacm6702_at.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_at.gif" />.</li>
+<li>Step 2: Given an amount of time, <em>T<sub>k</sub></em> &le; <em>H</em>, what is the maximum utility attainable by scheduling (any number of stages of) tasks that process an input of size <em>k</em>? Let us call this maximum utility <img alt="cacm6702_au.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_au.gif" />. Dynamic programming is used to find the best way to break interval <em>T<sub>k</sub></em> into non-overlapping intervals <em>T<sub>j,k</sub></em>, for which the total sum of utilities, <img alt="cacm6702_at.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_at.gif" />, is maximum.</li>
+<li>Step 3: Given the scheduling interval, <em>H</em>, what is the maximum utility attainable by scheduling tasks of different input sizes? Let us call this maximum utility <em>U*.</em> Dynamic programming is used to find the best way to break interval <em>H</em> into non-overlapping intervals <em>T<sub>k</sub></em>, for which the total sum of utilities, <img alt="cacm6702_au.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_au.gif" />, is maximum.</li>
+</ul>
+<p>The resulting utility, <em>U*</em>, as well as the corresponding breakdown of the scheduling interval constitute the optimal solution. In essence, the solution breaks down the overall utility maximization problem into a utility maximization problem over time sub-intervals, where tasks process only a given input size. These sub-intervals are in turn broken into sub-intervals that process the same stage (and input size). The intuition is that the sub-intervals in question do not overlap. We pose an <em>order preserving</em> assumption on task marginal utilities with the same image size.</p>
+<p>ASSUMPTION 1 (ORDER PRESERVING ASSUMPTION). <em>For two tasks</em> <em><em>T</em></em><sub><em>i</em><sub>1</sub></sub> <em>and</em> <em><em>T</em></em><sub><em>i</em><sub>2</sub></sub> <em>with the same size, if for one neural network stage j, we have</em> <em>R</em><sub><em>i</em><sub>1</sub>,<em>j</em></sub> - <em>R</em><sub><em>i</em><sub>1</sub>,<em>j</em>-1</sub> &ge; <em>R</em><sub><em>i</em><sub>2</sub>,<em>j</em></sub> - <em>R</em><sub><em>i</em><sub>2</sub>,<em>j</em>-1</sub>, <em>then it also holds</em> <em>R</em><sub><em>i</em><sub>1</sub>,<em>j</em>+1</sub> - <em>R</em><sub><em>i</em><sub>1</sub>,<em>j</em></sub> &ge; <em>R</em><sub><em>i</em><sub>2</sub>,<em>j</em>+1</sub> - <em>R</em><sub><em>i</em><sub>2</sub>,<em>j</em></sub>.</p>
+<p>Thus, the choice of the best subset of tasks to execute remains the same regardless of which stage is considered. Below, we describe the algorithm in more detail.</p>
+<p>Step 1: For each object size <em>k</em> and stage <em>j</em>, we can use a dynamic programming algorithm to decide the maximum number of tasks <em>M</em> that can execute stage <em>j</em> in time 0 &lt; <em>T<sub>j,k</sub></em> &le; <em>H.</em> Observe that this computation can be done offline. The details are shown in Algorithm 1. With the optimal number, <em>M</em>, computed for each, <em>T<sub>j,k</sub></em>, <img alt="cacm6702_at.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_at.gif" /> is simply the sum of utilities of the <em>M</em> highest-utility tasks that are ready to execute stage <em>j</em> on an input of size <em>k.</em></p>
+<p>Step 2: We solve this problem by two-dimensional dynamic programming, considering the considered network stages and the time, respectively. The recursive (induction) step takes the output of Step 1 as input to calculate the optimal utility from assigning some fraction of <em>T<sub>k</sub></em> to the first <em>j</em> &ndash; 1 stage and the remainder to stage <em>j</em>, and computes the best possible sum of the two, for each <em>T<sub>k</sub>.</em> Once all stages are considered, the result is the optimal utility, <img alt="cacm6702_au.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/cacm6702_au.gif" />, from running tasks of input size <em>k</em> for a period <em>T<sub>k</sub>.</em> The details are explained in Algorithm 2.</p>
+<p><img alt="ins01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/ins01.gif" /></p>
+<p><img alt="ins02.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/ins02.gif" /></p>
+<p><img alt="ins03.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/ins03.gif" /></p>
+<p><img alt="ins04.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/ins04.gif" /></p>
+<p>Step 3: Similar to Step 2, we perform a standard dynamic programming procedure to decide the optimal time partitioning among tasks processing different input sizes. The details of this procedure, along with the integrated local dynamic programming scheduling algorithm are presented in Algorithm 3.</p>
+<p>The optimality of Algorithm 3 follows from the optimality of dynamic programming. Hence, the overall competitive ratio is 3 for single-stage task scheduling and min{<em>L</em>+2, 2<em>B</em>+1} for multi-stage task scheduling, according to Corollary 1 and Theorem 1, respectively. However, this algorithm may have a high computational overhead since Algorithms 2 and 3 which need to be executed each scheduling period, are <em>O</em>(<em>KLH</em><sup><a href="#R3">3</a></sup>). Next, we present a simpler local greedy algorithm, which has better time efficiency.</p>
+<p><strong>Local Greedy scheduling.</strong> The greedy online scheduling algorithm solves the local BASIC scheduling problem following a simple greedy selection rule: Execute the (eligible) batch with the maximum utility next. The pseudo-code of the greedy scheduling algorithm is shown in Algorithm 4. The greedy scheduling algorithm is simple to implement and has a very low computational overhead. We show that it achieves a comparable performance to the optimal algorithm in practice.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>4. Evaluation</h3>
+<p>In this section, we verify the effectiveness and efficiency of our proposed scheduling framework by comparing it with several state-of-the-art baselines on a large-scale self-driving dataset, Waymo Open Dataset.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.1. Experimental setup</strong></p>
+<p><strong>Hardware platform.</strong> All experiments are conducted on an NVIDIA Jetson AGX Xavier SoC, which is specifically designed for automotive platforms. It&#39;s equipped with an 8-core Carmel Arm v8.2 64-bit CPU, a 512-core Volta GPU, and 32GB memory. Its mode is set as MAXN with maximum CPU/GPU/memory frequency budget, and all CPU cores are online.</p>
+<p><strong>Dataset.</strong> Our experiment is performed on the Waymo Open Dataset,<sup><a href="#R19">19</a></sup> which is a large-scale autonomous driving dataset collected by Waymo self-driving cars in diverse geographies and conditions. It includes driving video segments of the 20s each, collected by LiDARs and cameras at 10Hz. Only the front camera data is used in our experiment.</p>
+<p><strong>Neural network training.</strong> We use ResNet proposed by He <em>et al.</em><sup><a href="#R10">10</a></sup> for object classification. The network is trained on a general-purpose object detection dataset, COCO.<sup><a href="#R13">13</a></sup> It contains 80 object classes that cover Waymo classes.</p>
+<p><strong>Scheduling load and evaluation metrics.</strong> We extract the distance between objects and the autonomous vehicle (AV) from the projected LiDAR point cloud. The deadlines of object classification tasks are set as the time to collision (TTC) with the AV. To simulate different loads for the scheduling algorithms, we manually change the sampling period (i.e., frame rate) from 40ms to 160ms. We consider a task to miss its deadline if the scheduler fails to run the mandatory part of the task by the deadline. In the following evaluation, we present both the <em>normalized accuracy</em> and <em>deadline miss rate</em> for different algorithms. The normalized accuracy is defined as the ratio between achieved accuracy and the maximum accuracy when all neural network stages are finished for every object.</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.2. Compared scheduling algorithms</strong></p>
+<p>The following scheduling algorithms are compared.</p>
+<ul>
+<li>OnlineDP: the online scheduling algorithm we proposed in Section 3. The local scheduling is conducted by the hierarchical dynamic programming algorithm.</li>
+<li>Greedy: the online scheduling algorithm we proposed, with the local scheduling conducted by the greedy batching algorithm.</li>
+<li>Greedy-NoBatch: It always executes the object with maximal marginal utility without batching.</li>
+<li>EDF: It always chooses the task stage with the earliest deadline (without considering task utility).</li>
+<li>Non-Preemptive EDF (NP-EDF): This algorithm does not allow preemption. It is included to understand the impact of allowing preemption on stage boundaries compared to not allowing it.</li>
+<li>FIFO: It runs the task with the earliest arrival time first. All stages are performed as long as the deadline is not violated.</li>
+<li>RR: Round-robin scheduling algorithm. Runs one stage of each task in a round-robin fashion.</li>
+</ul>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.3. Slicing and batching</strong></p>
+<p>We compare the inference time for <em>full frames</em> and <em>batched partial frames with/out deduplication.</em> In full-frame processing, we directly run the neural network on image-captured full images, whose size is 1920 &times; 1280. In <em>batched partial frames</em>, we do the slicing into bounding boxes within one frame first, then perform the deduplication (if applicable), and finally, batch execution of objects with the same size. Each frame is evaluated independently. No imprecise computation is considered. Our results show that the average latency for full frames is 350ms, while the average latency for (the sum of) batched partial frames is 105ms without deduplication, and 83ms with deduplication. Besides, the cumulative distributions of frame latencies for the three methods are shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=681,height=267'); return false;">Figure 4</a>. Data slicing, batching, and deduplication steps, although induce extra processing delays, can effectively reduce the end-to-end latency. However, neither approach is fast enough compared to 100ms sampling period, so that the imprecise computation model and prioritization are needed.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f4.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=681,height=267'); return false;"><img alt="f4.jpg" height="163" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f4.jpg" width="415" /></a><br/>
+<strong>Figure 4. Cumulative distribution comparison of end-to-end latency. The execution time for frame slicing, deduplication (if applicable), batching, and neural network inference are all counted.</strong></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>4.4. Scheduling policy comparisons</strong></p>
+<p>Next, we evaluate the scheduling algorithms in terms of achieved classification accuracy and deadline miss rate. The scheduling results are presented in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=721,height=293'); return false;">Figure 5</a>. The two proposed algorithms, OnlineDP and Greedy, clearly outperform all the baselines with a large margin in all metrics. The improvement comes for two reasons: First, the integration of the imprecise computation model into neural networks makes the scheduler more flexible. It makes the neural network partially preemptive at the stage level, and gives the scheduler an extra degree of freedom (namely, deciding how much of each task to execute). Second, the involvement of batching simultaneously improves the model performance and alleviates deadline misses. The batching mechanism enables the GPU to be utilized at its highest parallel capacity. The deadline miss rates of both OnlineDP and Greedy are pretty close to 0 under any task load. We find Greedy shows similar performance as OnlineDP, though they possess different theoretical results. One practical reason is that the utility prediction function can not perfectly predict the utility for all future stages, where the OnlineDP scheduling can be negatively impacted.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f5.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=721,height=293'); return false;"><img alt="f5.jpg" height="169" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f5.jpg" width="415" /></a><br/>
+<strong>Figure 5. Accuracy and deadline miss rate comparisons on all objects.</strong></p>
+<p>To evaluate scheduling performance in driving scenarios involving the aforementioned important subcases, we compare the metrics of different algorithms for the subset of &quot;critical objects.&quot; Critical objects are defined as objects whose time-to-collision (and hence processing deadline) fall within 1s from when they first appear in the scene. Results are shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f6.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=731,height=328'); return false;">Figure 6</a>. We notice that the accuracy and deadline miss rates of FIFO and RR are much worse in this case (because severe priority inversion occurs in these two algorithms). The deadline-driven algorithms (NP-EDF and EDF) can effectively resolve this issue because objects with earlier deadlines are always executed first. However, their general performance is limited for a lack of utility optimization. The utility-based scheduling algorithms (Greedy, Greedy-NoBatch, and OnlineDP) are also effective in removing priority inversion, while at the same time achieving better confidence in results. These algorithms multiply a weight factor &alpha; &gt; 1 to increase the utility of handling critical objects so that they are preferred by the algorithm over non-critical ones.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f6.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=731,height=328'); return false;"><img alt="f6.jpg" height="186" src="https://dl.acm.org/cms/attachment/html/10.1145/3610801/assets/html/f6.jpg" width="415" /></a><br/>
+<strong>Figure 6. Accuracy and deadline miss rate comparisons on critical objects. Critical objects are defined as objects that have a deadline less than 1s.</strong></p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>5. Conclusion</strong></p>
+<p>We presented a novel perception pipeline architecture and scheduling algorithm that resolve algorithmic priority inversion in mission-critical machine inference pipelines, prevalent in conventional FIFO-based AI workflows. To mitigate the impact of priority inversion, the proposed online scheduling architecture rests on two key ideas: (1) Prioritize parts of the incoming sensor data over others to enable a more timely response to more critical stimuli, and (2) Explore the maximum parallel capacity of the GPU by a novel task batching algorithm that improves both response speed and quality. An extensive evaluation, performed on a real-world driving dataset, validates the effectiveness of our framework.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-6"></a></p>
+<h3>Acknowledgments</h3>
+<p>Research reported in this paper was sponsored in part by the Army Research Laboratory under Cooperative Agreement W911NF-17-20196, NSF CNS 18-15891, NSF CNS 18-15959, NSF CNS 19-32529, NSF CNS 20-38817, Navy N00014-17-1-2783, and the Boeing Company.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Driverless guru. <a href="https://www.driverlessguru.com/self-driving-cars-facts-and-figures">https://www.driverlessguru.com/self-driving-cars-facts-and-figures</a>. 2020.</p>
+<p><a name="R2"></a>2. Abdelzaher, T., Ayanian, N., Basar, T., Diggavi, S., Diesner, J., Ganesan, D., et al. Toward an internet of battlefield things: A resilience perspective. <em>Comput. 51</em>, 11 (2018), 24&ndash;36.</p>
+<p><a name="R3"></a>3. Alcon, M., Tabani, H., Kosmidis, L., Mezzetti, E., Abella, J., Cazorla, F.J. Timing of autonomous driving software: Problem analysis and prospects for future solutions. In <em>2020 IEEE RealTime and Embedded Technology and Applications Symposium (RTAS)</em> (2020), IEEE, NY, 267&ndash;280.</p>
+<p><a name="R4"></a>4. Baker, T.P., Shaw, A. The cyclic executive model and ada. <em>Real-Time Syst. 1</em>, 1 (1989), 7&ndash;25.</p>
+<p><a name="R5"></a>5. Bamburry, D. Drones: Designed for product delivery. <em>Des. Manage. Rev. 26</em>, 1 (2015), 40&ndash;48.</p>
+<p><a name="R6"></a>6. Bogoslavskyi, I., Stachniss, C. Fast range image-based segmentation of sparse 3D laser scans for online operation. In <em>2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em> (2016), IEEE, NY, 163&ndash;169.</p>
+<p><a name="R7"></a>7. Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., Fei-Fei, L. Imagenet: A large-scale hierarchical image database. In <em>2009 IEEE Conference on Computer Vision and Pattern Recognition</em> (2009), IEEE, NY, 248&ndash;255.</p>
+<p><a name="R8"></a>8. Feil-Seifer, D., Matari&#263;, M.J. Socially assistive robotics. <em>IEEE Rob. Autom. Mag. 18</em>, 1 (2011), 24&ndash;31.</p>
+<p><a name="R9"></a>9. Hajek, B. On the competitiveness of online scheduling of unit-length packets with hard deadlines in slotted time. In <em>Proceedings of the 2001 Conference on Information Sciences and Systems</em> (2001).</p>
+<p><a name="R10"></a>10. He, K., Zhang, X., Ren, S., Sun, J. Deep residual learning for image recognition. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em> (2016), 770&ndash;778.</p>
+<p><a name="R11"></a>11. Lehoczky, J., Sha, L., Ding, Y. The rate monotonic scheduling algorithm: Exact characterization and average case behavior. <em>RTSS 89</em> (1989), 166&ndash;171.</p>
+<p><a name="R12"></a>12. Lin, S.-C., Zhang, Y., Hsu, C.-H., Skach, M., Haque, M.E., Tang, L., et al. The architectural implications of autonomous driving: Constraints and acceleration. In <em>Proceedings of the Twenty-Third International Conference on Architectural Support for Programming Languages and Operating Systems</em> (2018), 751&ndash;766.</p>
+<p><a name="R13"></a>13. Lin, T.-Y., Maire, M., Belongie, S., Hays, J., Perona, P., Ramanan, D., et al. Microsoft coco: Common objects in context. In <em>European Conference on Computer Vision</em> (2014), Springer, 740&ndash;755.</p>
+<p><a name="R14"></a>14. Liu, J.W., Lin, K.-J., Natarajan, S. Scheduling real-time, periodic jobs using imprecise results. 1987.</p>
+<p><a name="R15"></a>15. Liu, J.W., Shih, W.-K., Lin, K.-J., Bettati, R., Chung, J.-Y. Imprecise computations. <em>Proc. IEEE 82</em>, 1 (1994), 83&ndash;94.</p>
+<p><a name="R16"></a>16. Liu, J.W.-S., Lin, K.-J., Shih, W.K., Yu, A.C.-S., Chung, J.-Y., Zhao, W. Algorithms for scheduling imprecise computations. In <em>Foundations of Real-Time Computing: Scheduling and Resource Management</em> (1991), Springer, 203&ndash;249.</p>
+<p><a name="R17"></a>17. Liu, S., Yao, S., Fu, X., Tabish, R., Yu, S., Bansal, A., et al. On removing algorithmic priority inversion from mission-critical machine inference pipelines. In <em>2020 IEEE Real-Time Systems Symposium (RTSS)</em> (2020), IEEE, NY, 319&ndash;332.</p>
+<p><a name="R18"></a>18. Minderhoud, M.M., Bovy, P.H. Extended time-to-collision measures for road traffic safety assessment. <em>Accid. Anal. Prev. 33</em>, 1 (2001), 89&ndash;97.</p>
+<p><a name="R19"></a>19. Sun, P., Kretzschmar, H., Dotiwalla, X., Chouard, A., Patnaik, V., Tsui, P., et al. Scalability in perception for autonomous driving: Waymo open dataset. In <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (2020), 2446&ndash;2454.</p>
+<p><a name="R20"></a>20. Yao, S., Hao, Y., Zhao, Y., Piao, A., Shao, H., Liu, D., et al. Eugene: Towards deep intelligence as a service. In <em>2019 IEEE 39th International Conference on Distributed Computing Systems (ICDCS)</em> (2019), IEEE, NY, 1630&ndash;1640.</p>
+<p><a name="R21"></a>21. Yao, S., Hao, Y., Zhao, Y., Shao, H., Liu, D., Liu, S., et al. Scheduling real-time deep learning services as imprecise computations. In <em>In Proceedings of the IEEE International Conference on Embedded and Real-time Computing Systems and Applications (RTCSA)</em> (August 2020).</p>
+<p><a name="R22"></a>22. Yao, S., Zhao, Y., Shao, H., Zhang, A., Zhang, C., Li, S., et al. Rdeepsense: Reliable deep mobile computing models with uncertainty estimations. <em>Proc. ACM Interact. Mobile Wearable Ubiquitous Technol 1</em>, 4 (2018), 1&ndash;26.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Authors</h3>
+<p><strong>Shengzhong Liu</strong> (<a href="mailto:sl29@illinois.edu">sl29@illinois.edu</a>), University of Illinois at Urbana-Champaign, Urbana, IL, USA.</p>
+<p><strong>Shuochao Yao</strong> (<a href="mailto:shuochao@gmu.edu">shuochao@gmu.edu</a>), George Mason University, Fairfax, VA, USA.</p>
+<p><strong>Xinzhe Fu</strong> (<a href="mailto:xinzhe@mit.edu">xinzhe@mit.edu</a>), Massachusetts Institute of Technology, Cambridge, MA, USA.</p>
+<p><strong>Rohan Tabish</strong> (<a href="mailto:rtabish@illinois.edu">rtabish@illinois.edu</a>), University of Illinois at Urbana-Champaign, Urbana, IL, USA.</p>
+<p><strong>Simon Yu</strong> (<a href="mailto:jundayu2@illinois.edu">jundayu2@illinois.edu</a>), University of Illinois at Urbana-Champaign, Urbana, IL, USA.</p>
+<p><strong>Ayoosh Bansal</strong> (<a href="mailto:ayooshb2@illinois.edu">ayooshb2@illinois.edu</a>), University of Illinois at Urbana-Champaign, Urbana, IL, USA.</p>
+<p><strong>Heechul Yun</strong> (<a href="mailto:heechul.yun@ku.edu">heechul.yun@ku.edu</a>), University of Kansas, Lawrence, KS, USA.</p>
+<p><strong>Lui Sha</strong> (<a href="mailto:lrs@illinois.edu">lrs@illinois.edu</a>), University of Illinois at Urbana-Champaign, Urbana, IL, USA.</p>
+<p><strong>Tarek Abdelzaher</strong> (<a href="mailto:zaher@illinois.edu">zaher@illinois.edu</a>), University of Illinois at Urbana-Champaign, Urbana, IL, USA.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-footnotes"><a name="footnotes"></a>
+<h3>Footnotes</h3>
+<p><a name="FNA"></a>a. By different degrees of <em>criticality</em>, we are referring to different levels of importance within the <em>mission-critical</em> sub-system. For example, faraway objects are less relevant to path planning than nearby objects.</p>
+<p>To view the accompanying Technical Perspective, visit <a href="http://doi.acm.org/10.1145/3631339/html">doi.acm.org/10.1145/3631339</a></p>
+<p>The original version of the article, &quot;On Removing Priority Inversion from Mission-Critical Machine Inference Pipelines&quot; was published in the <em>Proceedings of the IEEE 2020 Real-Time Systems Symposium.</em></p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p>&copy; 2024 Copyright held by the owner/author(s). Publication rights licensed to ACM.<br/>
+Request permission to publish from <a href="mailto:permissions@acm.org">permissions@acm.org</a></p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2024 ACM, Inc.</p>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Abstract</a></li>
+<li class="miniWidgetItem"><a href="#body-2">1. Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-3">2. System Architecture</a></li>
+<li class="miniWidgetItem"><a href="#body-4">3. The Scheduling Problem</a></li>
+<li class="miniWidgetItem"><a href="#body-5">4. Evaluation</a></li>
+<li class="miniWidgetItem"><a href="#body-6">Acknowledgments</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Authors</a></li>
+<li class="miniWidgetItem"><a href="#footnotes">Footnotes</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/careers/277850-as-baby-boomers-retire-german-businesses-turn-to-robots">
+As Baby Boomers Retire, German Businesses Turn to Robots
+</a>
+</h5>
+<span class="dateNews">Reuters</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/9/275688-closing-our-digital-divides">
+Closing Our Digital Divides
+</a>
+</h5>
+<span class="dateNews">Tejas N. Narechania</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/275076-stop-judging-ai-using-human-exams">
+Stop Judging AI Using Human Exams
+</a>
+</h5>
+<span class="dateNews">Jeremy Roschelle</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href=" "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/2/279538-taming-algorithmic-priority-inversion-in-mission-critical-perception-pipelines/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2024 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
