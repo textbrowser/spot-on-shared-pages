@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>Service Robots Roll Forward | March 2024 | Communications of the ACM</title>
+<meta name="title" content="Service Robots Roll Forward" />
+<meta name="author" content="Samuel Greengard" />
+<meta name="date" content="2024-3-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="artificial intelligence,computer systems,hardware,performance and reliability" />
+<meta name="sections" content="News" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/3/280091-service-robots-roll-forward/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/3/280091-service-robots-roll-forward/fulltext" /><meta property="og:title" content="Service Robots Roll Forward" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/7095/021624_Shutter_Service-Robots.large.jpg?1708108286&amp;1708108286" /><meta property="og:description" content="Transitioning from classic &amp;#39;programmed automation&amp;#39; to modern &amp;#39;AI-powered autonomy.&amp;#39;
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/3/280091-service-robots-roll-forward/fulltext" /><meta property="og:title" content="Service Robots Roll Forward" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/7095/021624_Shutter_Service-Robots.large.jpg?1708108286&amp;1708108286" /><meta property="og:description" content="Transitioning from classic &amp;#39;programmed automation&amp;#39; to modern &amp;#39;AI-powered autonomy.&amp;#39;
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/3">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/3">
+<img src="https://cacm.acm.org/system/assets/0004/7114/March2024.Cover.1000x1338.large.jpg?1708108957&1708108956" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: March 2024</span>
+<a href="/magazines/2024/3/280076-measuring-github-copilots-impact-on-productivity">Measuring GitHub Copilot's Impact on Productivity</a>
+<a href="/magazines/2024/3/280089-generative-ai-degrades-online-communities">Generative AI Degrades Online Communities</a>
+<a href="/magazines/2024/3/280092-innovation-is-overrated-a-provocation">Innovation Is Overrated: A Provocation</a>
+<a class="lastLink" href="/magazines/2024/3">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/3">
+March 2024 (Vol. 67, No. 3)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/2">
+February 2024 (Vol. 67, No. 2)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/3">March 2024 (Vol. 67, No. 3)</a><span>/</span><a href="/magazines/2024/3/280091-service-robots-roll-forward">Service Robots Roll Forward</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">News</span>
+<h2>Service Robots Roll Forward</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Samuel Greengard
+<br/>
+Communications of the ACM,
+March 2024,
+Vol. 67 No. 3, Pages 11-13<br/>
+10.1145/3637863<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3649417.3637863&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2024/3/280091-service-robots-roll-forward/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3637863&ftid=2309103&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-47095">
+<figure>
+<img alt="waiter robot in Rapallo, Italy" src="/system/assets/0004/7095/021624_Shutter_Service-Robots.large.jpg?1708108286&amp;1708108286" title="waiter robot in Rapallo, Italy" />
+<figcaption>
+<p class="credit">Credit: Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>History is filled with examples of robotic devices designed to reduce, eliminate, or improve upon human labor. From washing machines to roaming vacuum cleaners, various machines have transformed the way we work and live.</p>
+<p>Today, far more sophisticated service robots are wheeling into the picture, aiming to take humans out of the labor loop and, in the process, improve the speed and efficiency of interactions. They can carry plates between a restaurant kitchen and diners&#39; tables, deliver a toothbrush to someone on the 28<sup>th</sup> floor of a hotel, and ensure a hospital patient receives her medications on time. They also are adept at stocking shelves, taking orders at a fast food restaurant, and serving as emotional companions.</p>
+<p>&quot;The field of robotics is rapidly transitioning from classic &#39;programmed automation&#39; to modern &#39;AI-powered autonomy&#39;,&quot; says Christine Boles, vice president in the Network and Edge Group and general manager of Federal and Industrial Solutions at Intel Corporation, which designs hardware and software components used for robot systems. &quot;Artificial intelligence (AI), sensors, vision, location, and wireless technologies are fueling this transition.&quot;</p>
+<p>Service robots, no strangers to Japan and other parts of Asia, where they already are employed as hotel receptionists, housekeeping attendants, window washers and more,<sup><a href="#FNA">a</a></sup> are taking on new roles. Robots are stocking shelves at convenience stores,<sup><a href="#FNB">b</a></sup> and companion robots keep people company.<sup><a href="#FNC">c</a></sup> These devices are moving into the main-stream in restaurants, hotels, hospitals, and homes in the U.S. and Europe.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3637863/assets/html/uf1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1022,height=626'); return false;"><img alt="uf1.jpg" height="254" src="https://dl.acm.org/cms/attachment/html/10.1145/3637863/assets/html/uf1.jpg" width="415" /></a><br/>
+<strong>Figure. The Moxi robot helps the clinical staff of a hospital by assuming non-patient-facing tasks.</strong></p>
+<p>There also are growing concerns about these machines eliminating jobs, reducing social interactions, misbehaving, and collecting highly personal data about human health and habits. While there is growing consensus that service robots are here to stay&mdash;and they will change the workplace and our homes in significant ways&mdash;questions remain about what their exact role will be.</p>
+<p>&quot;The technology is advancing rapidly. Service robots may soon become part of everyday life,&quot; says Zackory Erickson, an assistant professor in the Robotics Institute at Carnegie Mellon University.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>At Your Service</h3>
+<p>Service robots&mdash;typically defined as autonomous and adaptable systems that interact, communicate, and handle various tasks for humans&mdash;have existed for more than two decades. Sony&#39;s robotic dog Aibo, for instance, appeared in the late 1990s, and Roombas began sweeping carpets in 2002.</p>
+<p>But these devices are advancing rapidly. In the U.S., Hilton Hotels, Marriott Corporation, Denny&#39;s, and Buffalo Wild Wings are just a few of the companies experimenting with robots&mdash;and integrating them into regular operations.<sup><a href="#FND">d</a></sup> A group of researchers from Chongqing University in China reported in 2022 that robot applications in hotels, tourism, catering, and other service areas are &quot;gradually emerging.&quot; Areas such as express delivery, housekeeping, and security are prime candidates for the technology.<sup><a href="#FNE">e</a></sup></p>
+<p>One company at the forefront of the trend is Bear Robotics, a Redwood City, CA manufacturer of systems used in restaurants, hotels, and hospitals that already has sold more than 10,000 service robots. Its Servi+ model carries food to tables in restaurants and hauls dirty dishes to the dishwasher. &quot;A robot can deliver food to a table as soon as it&#39;s ready and eliminate the need for staff to carry as much as 30 or 40 pounds of dishes back to the kitchen,&quot; says co-founder and chief operating officer Juan Higueros. The Servi+ robot costs end users about $1,000 per month, which equates to a wage of about $2.75 per hour.<sup><a href="#FNF">f</a></sup></p>
+<p>By reducing mundane and physically taxing work like carrying dishes to and from the kitchen, wait staff have more time to engage with customers. This translates into a qualitatively better experience&mdash;and possibly higher tips, Higueros argues. Bear&#39;s robots function within an interconnected software platform that coordinates and orchestrates their activities. They incorporate cameras, LiDAR, and other sensors that allow them to avoid running into objects, people, and other obstructions.<sup><a href="#FNG">g</a></sup> &quot;The algorithm maps an area and detects humans and objects&mdash;people, wheelchairs, diaper bags, whatever&mdash;and navigates around everything,&quot; he explains.</p>
+<p>Bear Robotics is not alone. United Robotics Group of Germany offers the 23-inch-tall <em>NAO6</em> mobile humanoid robot that answers questions and interacts with people. The $13,000 system incorporates directional microphones, speech recognition, cameras, touch sensors, and 25 degrees of freedom.<sup><a href="#FNH">h</a>,<a href="#FNI">i</a></sup> United Robotics also sells a 4-foot-tall, 60-pound humanoid-like <em>Pepper</em> robot, designed to work as a receptionist or mobile tour guide at hotels, banks, medical offices, or museums. It costs between about $32,000 and $38,000.<sup><a href="#FNJ">j</a></sup></p>
+<p>Meanwhile, Austin, TX-based Diligent Robotics has developed a mobile robot that supports patient care teams in medical facilities. The <em>Moxi</em> robot delivers supplies, lab samples, medications, and more within a facility. Moxi incorporates a robotic arm that allows it to operate elevators and doors, offers LED eye expressions that make it appear more human, and uses AI to help it learn the layout of a hospital.<sup><a href="#FNK">k</a></sup> Still another autonomous service robot named <em>Akjara</em>, developed by an Irish startup, cleans and sanitizes patient rooms.<sup><a href="#FNL">l</a></sup></p>
+<p>&quot;It isn&#39;t so much a question of whether we can develop the technology to build sophisticated service robots,&quot; Erickson says. &quot;It&#39;s whether we can design them in acceptable ways&mdash;and use them in a wide array of situations and environments that are less structured and sometimes random. If companies develop affordable robots that solve common tasks, we are going to see them rapidly become part of everyday life.&quot;</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>Making It All Compute</h3>
+<p>Designing robots that can think, act, and operate like humans is no simple task, however. Service robots require &quot;unique design and engineering considerations,&quot; Intel&#39;s Boles says. Part of the challenge is rooted in the autonomous nature of these machines. Aside from the need for built-in navigation and programming, service robots must frequently offload compute tasks to the cloud or edge&mdash;without incurring a performance hit. At the same time, there is a need for them to interact with lay people.</p>
+<p>Building a complete control loop is all about a <em>sense-act-think</em> cycle, Boles says. This includes situational awareness and sensing powered by CPUs, GPUs, and VPUs. Yet, it also is essential to focus on less-obvious factors, such as mechanical noise, charging breaks, and the need for specialized materials, such as germ-resistant surfaces for restaurants or home kitchens. What&#39;s more, &quot;Shape, size, and even the color of the robot must match the environment and the roles of people that interact with it,&quot; she says.</p>
+<p>The factors that go into designing a highly functional service robot extend beyond technology. &quot;One of the biggest obstacles is engineering service robots to work in existing spaces&mdash;restaurants, hospitals and hotels&mdash;that weren&#39;t designed for robots,&quot; Erickson says. There are also practical considerations, such as <em>when, how,</em> and <em>why</em> to use a robot. &quot;If you work in a hotel, you probably don&#39;t want to bother delivering a toothbrush that doesn&#39;t lead to a significant tip. But you do want to deliver the $100 bottle of champagne.&quot;</p>
+<p>The goal, Higueros says, is to assist and complement humans, rather than replace them. Of course, reality most likely lies somewhere between aiding workers and replacing them with machines. A 2023 research study found that while human-robot collaboration can create new jobs and increase productivity, it can also lead to increased job insecurity, burnout, and workplace incivility.<sup><a href="#FNM">m</a></sup> &quot;Job displacement will occur. But, as work becomes more complex, more jobs typically appear,&quot; says Joshua Conrad Jackson, an assistant professor in the Booth School of Business at the University of Chicago.</p>
+<p>A bigger question revolves around the role robots should play in the everyday lives of humans. This includes concerns about whether a robot can be fully trusted to handle a task and whether it could cause some type of harm, Jackson says. Research shows people are especially afraid of robots making moral decisions. As the stakes increase&mdash;from delivering packages to modern high-rise apartment to serving as companions in rehab facilities or performing life-or-death surgical operations, concerns pile up. &quot;People aren&#39;t comfortable with robots in charge of things. The higher the stakes, the greater the level of fear,&quot; Jackson says.</p>
+<p>High levels of mistrust have led researchers and engineers down the path of <em>anthropomorphism.</em> Indeed, getting human-robot interactions right requires more than state-of-the-art guidance technology and AI. &quot;It&#39;s all about understanding how to make these machines more relatable,&quot; Jackson explains. &quot;Do you design a robot with a nervous laugh? Do you imbue it with human qualities such as embarrassment or shame? Do you program it to make intentional errors and then apologize? If so, what errors are appropriate? The historical goal of computers and robotics is to avoid errors.&quot;</p>
+<p>The specific characteristics of a robot also matter. For example, female names, voices, and other expectations associated with empathy resonate with users more than male characteristics. In addition, a wider range of emotions is generally viewed more favorably and when the machines display feelings, they are more readily accepted.<sup><a href="#FNN">n</a></sup> Jackson suspects researchers eventually will learn how to perfect robot behavior, and even make the devices adaptable to the peculiarities of different cultures and groups. &quot;The <em>Uncanny Valley</em> effect may become irrelevant,&quot; he says.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>Values Matter</h3>
+<p>Just as robotic devices have changed the face of factories, warehouses, and even surgical units, service robots will alter business models and consumer behavior in the years ahead, says Carolina Salge, an assistant professor of Management Information Systems at the University of Georgia&#39;s Terry College of Business. &quot;They are here to stay, and they will span many industries and functions. We&#39;re just at the beginning of learning about their potential impact.&quot;</p>
+<hr/>
+<blockquote>
+<p><em>There are concerns about behavioral biases service robots can pick up during AI training, along with how these machines alter interactions among people.</em></p>
+</blockquote>
+<hr/>
+<p>Service robots introduce an array of ethical questions and concerns. These include their role in society, potential hacking (many lack adequate security controls), and deliberate program modifications that could lead to failures. Not surprisingly, these concerns escalate when robotic systems handle highly sensitive data, such as in homes and hospitals.</p>
+<p>In addition, there are concerns about behavioral biases service robots can pick up during AI training, along with how these machines alter interactions among people. &quot;One of the things that tends to get overlooked is how robotic devices&mdash;as they evolve from Roombas to sophisticated companions&mdash;have the potential to decrease human contact and social interaction. This could lead to negative outcomes,&quot; Salge says.</p>
+<p>Some businesses have discovered that service robots introduce more problems than they solve. These highly mechanical systems sometimes break down or underperform, and managing and servicing a fleet of robots can lead to higher costs than employing humans. In Japan, for instance, the Henn na Hotel laid off half its robot staff in 2019 due to an array of practical problems and high costs associated with repairs.<sup><a href="#FNO">o</a></sup></p>
+<p>Nevertheless, service robots continue to roll forward at a rapid pace. More advanced electromechanical components, better sensors and actuators, persistent connectivity, longer-lasting batteries, and more advanced algorithms, along with advances in large language models and generative AI, are delivering the technical underpinnings for more advanced and even human-like systems. At the same time, engineers and designers are learning how to create spaces with commentary devices and systems that allow robots to work next to people.</p>
+<p>Fears over robots replacing humans are greatly exaggerated, argues Gerald C. Kane, professor and the C. Herman and Mary Virginia Terry Chair in Business Administration at the Terry College of Business at the University of Georgia. &quot;Humans have a long history of turning to new forms of media&mdash;books, television, social media, and more&mdash;as surrogates for human relationships. In all likelihood, physical robots and online bots will interact with humans in new ways&mdash;and lead to new ways to interact. They will become more intertwined with human work &hellip; and our daily lives.&quot;</p>
+<p><img alt="*" src="http://dl.acm.org/images/bullet.gif" />&nbsp;<strong>Further Reading</strong></p>
+<p><em>Yam, K.C., Tang, P.M., Jackson, J.C., Su, R., and Gray, K.</em><br/>
+<strong>The rise of robots increases job insecurity and maladaptive workplace behaviors: multimethod evidence. <em>Journal of Applied Psychology</em>, 108(5), 850&ndash;870. <a href="https://doi.org/10.1037/apl0001045">https://doi.org/10.1037/apl0001045</a></strong></p>
+<p><em>Yam, K.C., Bigman, Y.E., Tang, P.M., Ilies, R., De Cremer, D., Soh, H., and Gray, K.</em><br/>
+<strong>Robots at work: people prefer&mdash;and forgive&mdash;service robots with perceived feelings. <em>Journal of Applied Psychology</em>, 106(10), (2021). 1557&ndash;1572. <a href="https://doi.org/10.1037/apl0000834">https://doi.org/10.1037/apl0000834</a></strong></p>
+<p><em>Chang, C., Shao, B., Li, Y., and Zhang, Y.</em><br/>
+<strong>Factors influencing consumers&#39; willingness to accept service robots: Based on online reviews of Chinese hotels. <em>Frontiers in Psychology</em>, October 11, 2022, Volume 13. <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2022.1016579/full">https://www.frontiersin.org/articles/10.3389/fpsyg.2022.1016579/full</a></strong></p>
+<p><strong>What are service robots? <em>Intel Corporation.</em> <a href="https://www.intel.com/content/www/us/en/robotics/service-robot.html">https://www.intel.com/content/www/us/en/robotics/service-robot.html</a></strong></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Author</h3>
+<p><strong>Samuel Greengard</strong> is an author and journalist based in West Linn, OR, USA.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-footnotes"><a name="footnotes"></a>
+<h3>Footnotes</h3>
+<p><a name="FNA"></a>a. <a href="https://www.hennnahotel.com/ginza/en/">https://www.hennnahotel.com/ginza/en/</a></p>
+<p><a name="FNB"></a>b. <a href="https://www.bloomberg.com/news/articles/2022-08-10/robot-arms-are-replacing-shelf-stockers-in-japan-s-stores?embedded-checkout=true">https://www.bloomberg.com/news/articles/2022-08-10/robot-arms-are-replacing-shelf-stockers-in-japan-s-stores?embedded-checkout=true</a></p>
+<p><a name="FNC"></a>c. <a href="https://japantoday.com/category/tech/the-rise-of-companion-robots-in-japan">https://japantoday.com/category/tech/the-rise-of-companion-robots-in-japan</a></p>
+<p><a name="FND"></a>d. <a href="https://www.bearrobotics.ai/">https://www.bearrobotics.ai/</a></p>
+<p><a name="FNE"></a>e. <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2022.1016579/full">https://www.frontiersin.org/articles/10.3389/fpsyg.2022.1016579/full</a></p>
+<p><a name="FNF"></a>f. <a href="https://www.reuters.com/world/asia-pacific/softbank-backed-bear-robotics-raises-81-mln-waitering-robot-rollout-2022-03-15/">https://www.reuters.com/world/asia-pacific/softbank-backed-bear-robotics-raises-81-mln-waitering-robot-rollout-2022-03-15/</a></p>
+<p><a name="FNG"></a>g. <a href="https://www.bearrobotics.ai/">https://www.bearrobotics.ai/</a></p>
+<p><a name="FNH"></a>h. <a href="https://www.aldebaran.com/en/nao">https://www.aldebaran.com/en/nao</a></p>
+<p><a name="FNI"></a>i. <a href="https://www.robotlab.com/store/nao-power-v6-educator-pack">https://www.robotlab.com/store/nao-power-v6-educator-pack</a></p>
+<p><a name="FNJ"></a>j. <a href="https://www.robotlab.com/higher-ed-robots/store/pepper-robot-for-research-and-coding">https://www.robotlab.com/higher-ed-robots/store/pepper-robot-for-research-and-coding</a></p>
+<p><a name="FNK"></a>k. <a href="https://www.diligentrobots.com/moxi">https://www.diligentrobots.com/moxi</a></p>
+<p><a name="FNL"></a>l. <a href="https://www.akara.ai">https://www.akara.ai</a></p>
+<p><a name="FNM"></a>m. <a href="https://psycnet.apa.org/doiLanding?doi=10.1037%2Fapl0001045">https://psycnet.apa.org/doiLanding?doi=10.1037%2Fapl0001045</a></p>
+<p><a name="FNN"></a>n. <a href="https://psycnet.apa.org/doiLanding?doi=10.1037%2Fapl0000834">https://psycnet.apa.org/doiLanding?doi=10.1037%2Fapl0000834</a></p>
+<p><a name="FNO"></a>o. <a href="https://www.theverge.com/2019/1/15/18184198/japans-robot-hotel-lay-off-work-for-humans">https://www.theverge.com/2019/1/15/18184198/japans-robot-hotel-lay-off-work-for-humans</a></p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p><strong>&copy;2024 ACM&nbsp;&nbsp;0001-0782/24/03</strong></p>
+<p>Permission to make digital or hard copies of part or all of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and full citation on the first page. Copyright for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy otherwise, to republish, to post on servers, or to redistribute to lists, requires prior specific permission and/or fee. Request permission to publish from <a href="mailto:permissions@acm.org">permissions@acm.org</a> or fax (212) 869-0481.</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2024 ACM, Inc.</p>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-2">At Your Service</a></li>
+<li class="miniWidgetItem"><a href="#body-3">Making It All Compute</a></li>
+<li class="miniWidgetItem"><a href="#body-4">Values Matter</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Author</a></li>
+<li class="miniWidgetItem"><a href="#footnotes">Footnotes</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/279865-tech-giants-turn-ukraine-into-ai-war-lab">
+Tech Giants Turn Ukraine into AI War Lab
+</a>
+</h5>
+<span class="dateNews">Time</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2024/2/279525-how-the-ai-boom-went-bust">
+How the AI Boom Went Bust
+</a>
+</h5>
+<span class="dateNews">Thomas Haigh</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/279493-unlocking-the-potential-of-zero-knowledge-proofs-in-blockchain">
+Unlocking the Potential of Zero-Knowledge Proofs in Blockchain
+</a>
+</h5>
+<span class="dateNews">Alex Williams</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href=" "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/3/280091-service-robots-roll-forward/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2024 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
