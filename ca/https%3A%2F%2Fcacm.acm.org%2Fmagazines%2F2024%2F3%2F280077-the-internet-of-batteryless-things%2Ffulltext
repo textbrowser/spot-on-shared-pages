@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<title>The Internet of Batteryless Things | March 2024 | Communications of the ACM</title>
+<meta name="title" content="The Internet of Batteryless Things" />
+<meta name="author" content="Saad Ahmed, Bashima Islam, Kasim Sinan Yildirim, Marco Zimmerling, Przemys&amp;#322;aw Pawe&amp;#322;czak, Muhammad Hamad Alizai, Brandon Lucia, Luca Mottola, Jacob Sorber, Josiah Hester" />
+<meta name="date" content="2024-3-1" />
+<meta name="year" content="2024" />
+<meta name="subjects" content="communications / networking,computer systems,human-computer interaction,hardware,performance and reliability,personal computing" />
+<meta name="sections" content="Technology Reports" />
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><link rel="alternate" type="application/rss+xml" href="/magazine.rss" title="Communications of the ACM: Current Issue [RSS 2.0]" />
+<link rel="canonical" href="https://cacm.acm.org/magazines/2024/3/280077-the-internet-of-batteryless-things/fulltext" />
+<link href="/stylesheets/all.css" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<link href="/stylesheets/jplayer.pink.flag.css" rel="stylesheet" />
+<link href="/stylesheets/sections/videos.css" rel="stylesheet" />
+<link href="/stylesheets/tipsy.css" rel="stylesheet" />
+<link href="/stylesheets/colorbox.css" rel="stylesheet" />
+<script src="/javascripts/cookie.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+<style>
+      html{overflow: auto !important;}
+    </style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/3/280077-the-internet-of-batteryless-things/fulltext" /><meta property="og:title" content="The Internet of Batteryless Things" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/7108/021624_CACMpg65_Internet-Batteryless.large.jpg?1708108576&amp;1708108576" /><meta property="og:description" content="Batteryless, energy-harvesting systems could reshape the Internet of Things into a more sustainable societal infrastructure.
+" />
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<script>
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','F_pTME7mydky5kHVQaaa','2.0.0');
+</script>
+<script>
+  window.onload = function() {
+    $("a[href*='dlsearch']").click(function(event) {
+      if (location.hash) {
+        event.preventDefault();
+
+        var initialHref = $(event.target).attr('href').replace('query=&', "").replace('query=', "");
+
+        var query = location.hash.substring(1).split("&")
+
+        if (query) {
+          query = query.find(function(e) { return e.indexOf("stq=") !== -1 })
+
+          if (query) {
+            query = query.substring(4);
+          }
+        }
+
+        query = initialHref + "&query=" + query;
+
+        window.location.href = query;
+      }
+    });
+  }
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XYTVD2CXR4');
+</script>
+<style>
+iframe body { overflow: hidden;  }
+iframe { border: none; margin: 0; }
+    .fav_hacker_news {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #FFF;
+      background-size: 21.5px;
+    }
+    .fav_hacker_news:hover {
+      background:url('https://img.icons8.com/color/48/000000/hacker-news.png') no-repeat center #e6e9ea;
+      background-size: 21.5px;
+    }
+    .fav_bar a.fav_reddit {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/reddit.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_reddit:hover {
+      background-color: #e6e9ea;
+    }
+    .fav_bar a.fav_facebook {
+      background-size: 22px;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #FFF;
+    }
+    .fav_bar a.fav_facebook:hover {
+      background-color: #e6e9ea;
+      background:url('https://cacm.acm.org/images/icons/facebook.gif') no-repeat center #e6e9ea;
+    }
+
+    body { margin: 0 }
+    #acmWidget.resourcesWidget .dateNews { margin-left: 10px; }
+</style>
+<meta property="og:type" content="article" /><meta property="og:url" content="https://cacm.acm.org/magazines/2024/3/280077-the-internet-of-batteryless-things/fulltext" /><meta property="og:title" content="The Internet of Batteryless Things" /><meta property="og:image" content="https://cacm.acm.org/system/assets/0004/7108/021624_CACMpg65_Internet-Batteryless.large.jpg?1708108576&amp;1708108576" /><meta property="og:description" content="Batteryless, energy-harvesting systems could reshape the Internet of Things into a more sustainable societal infrastructure.
+" />
+</head>
+<body id="body-main" itemscope itemtype="http://schema.org/Article">
+<div id="domain-info" data-domain="cacm.acm.org"></div>
+<div class="JumpLink" id="PageTop"></div>
+<div id="container">
+<div id="layout">
+<header class="topHeader">
+<a href="/" title="ACM" id="topLogo">ACM</a>
+<div id="instName"><img src="/images/icons/acm_header.png" height="40" width="40" class="logo-mini" alt="acm-header" /></div>
+<a href="/login" title="Login" id="topSignIn">Sign In</a>
+<div id="topForm">
+<form action="/search" method="get">
+<div class="portaInput">
+<label for="searchInput" id="labelSearchInput" class="inField"></label>
+<input type="text" id="searchInput" class="st-default-search-input" placeholder="Search" name="q" aria-label="Search" />
+</div>
+<button name="search submit" type="submit" id="searchSubmit">Go</button>
+</form>
+</div>
+<div id="topBar">
+<ul>
+<li><a href="http://www.acm.org/" title="ACM.org">ACM.org</a></li>
+<li><a href="https://services.acm.org/public/qj/brandingqj/cacm.cfm" target="_blank" title="Join ACM">Join ACM</a></li>
+<li><a href="/about-communications" title="About Communications">About Communications</a></li>
+<li><a href="/acm-resources" title="ACM Resources">ACM Resources</a></li>
+<li class="last-child"><a href="/alerts-and-feeds" title="Alerts &#38; Feeds">Alerts &#38; Feeds</a></li>
+<li class="last-child">
+<a href="https://www.facebook.com/Communications-of-the-ACM-521319564596131/" style="margin: 0;padding: 0;margin-right: 1px;margin-top: -2px;"><img src="/images/icons/facebook.png" alt="facebook" style="height: 18px;width: 18px;"></a>
+<a href="https://twitter.com/cacmmag" style="margin: 0;padding: 0;margin-top: -1px;margin-right: 4px;"><img src="/images/icons/twitter.png" alt="twitter" style="width: 16px;height: 16px;"></a>
+<a href="/alerts-and-feeds/rss-feeds" style="margin: 0;padding: 0;"><img src="/images/icons/rss.png" alt="rss" style="width: 14px;height: 14px;"></a>
+</li>
+</ul>
+</div>
+<hgroup>
+<h1><a href="/" title="Communications of the ACM">Communications of the ACM</a></h1>
+</hgroup>
+<nav>
+<ul>
+<li class="first-child"><a href="/" class="menuText itemHome">Home</a></li>
+<li>
+<div class="portaDropdown">
+<a class="withMenu menuText itemCurrent" href="/magazines/2024/3">Current Issue</a>
+<div class="menuLinks currenIssueDropdown">
+<a class="menuCover" href="/magazines/2024/3">
+<img src="https://cacm.acm.org/system/assets/0004/7114/March2024.Cover.1000x1338.large.jpg?1708108957&1708108956" width="145" height="192" alt="Latest issue" />
+</a>
+<span class="dropDownIssueTitle">Current Issue: March 2024</span>
+<a href="/magazines/2024/3/280076-measuring-github-copilots-impact-on-productivity">Measuring GitHub Copilot's Impact on Productivity</a>
+<a href="/magazines/2024/3/280089-generative-ai-degrades-online-communities">Generative AI Degrades Online Communities</a>
+<a href="/magazines/2024/3/280092-innovation-is-overrated-a-provocation">Innovation Is Overrated: A Provocation</a>
+<a class="lastLink" href="/magazines/2024/3">VIEW TABLE OF CONTENTS</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/news" class="withMenu menuText itemNews">News</a>
+<div class="menuLinks newsDropdown">
+<a href="/news" class="lastLink">Latest News</a>
+<a href="/news/archive" class="lastLink">News Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/blogs/about-the-blogs" class="withMenu menuText itemBlogs">Blogs</a>
+<div class="menuLinks blogsDropdown">
+<a href="/blogs/about-the-blogs">About the Blogs</a>
+<a href="/blogs/blog-cacm">BLOG@CACM</a>
+<a href="/blogs/blogroll">Blogroll</a>
+<a href="/blogs/archive" class="lastLink">Blogs Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/opinion" class="withMenu menuText itemOpinion">Opinion</a>
+<div class="menuLinks opinionDropdown">
+<a href="/opinion/articles">Articles</a>
+<a href="/opinion/interviews">Interviews</a>
+<a href="/opinion/archive" class="lastLink">Opinion Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/research" class="withMenu menuText itemResearch">Research</a>
+<div class="menuLinks researchDropdown">
+<a href="/research">Latest Research</a>
+<a href="/research/archive" class="lastLink">Research Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/practice" class="withMenu menuText itemPractice">Practice</a>
+<div class="menuLinks practiceDropdown">
+<a href="/practice">Latest Practice</a>
+<a href="/practice/archive" class="lastLink">Practice Archive</a>
+</div>
+</div>
+</li>
+<li>
+<div id="careersNav" class="portaDropdown">
+<a href="/careers" class="withMenu menuText itemOpinion">Careers</a>
+<div class="menuLinks opinionDropdown">
+<ul>
+<li><a href="http://jobs.acm.org/jobs/search/results?rows=15&radius=0&view=List_Detail&sort=score+desc" target="_blank">Search for Jobs</a></li>
+<li><a href="http://jobs.acm.org/jobs/resumes/create" target="_blank">Post a Resume</a></li>
+<li><a href="http://jobs.acm.org/jobs/products" target="_blank">Post A Job</a></li>
+<li><a href="http://www.acm.org/publications/advertising" target="_blank">Advertise with Us</a></li>
+<li class="lastLink"><a href="mailto:careers@acm.org">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</li>
+<li>
+<div class="portaDropdown">
+<a href="/magazines" class="withMenu menuText itemPrevious on">Archive</a>
+<div class="menuLinks previousDropdown">
+<span class="previousIssueTitle">The magazine archive includes every article published in <i>Communications of the ACM</i> for over the past 50 years.</span>
+<div class="issue">
+<a href="/magazines/2024/3">
+March 2024 (Vol. 67, No. 3)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/2">
+February 2024 (Vol. 67, No. 2)
+</a>
+</div>
+<div class="issue">
+<a href="/magazines/2024/1">
+January 2024 (Vol. 67, No. 1)
+</a>
+</div>
+<a href="/magazines" class="lastLink">VIEW MORE ISSUES</a>
+</div>
+</div>
+</li>
+<li>
+<a href="/videos" class="menuText itemVideos">Videos</a>
+</li>
+</ul>
+</nav>
+</header>
+<section>
+<script src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dcbeff2515fc93c"></script>
+<div class="breadcrum">
+<a href="/">Home</a><span>/</span><a href="/magazines/decade">Magazine Archive</a><span>/</span><a href="/magazines/2024/3">March 2024 (Vol. 67, No. 3)</a><span>/</span><a href="/magazines/2024/3/280077-the-internet-of-batteryless-things">The Internet of Batteryless Things</a><span>/</span>Full Text
+</div>
+<div class="col0 floatLeft firstCol">
+<span class="label">Research</span>
+<h2>The Internet of Batteryless Things</h2>
+<h6 class="subheader"></h6>
+</div>
+<hr class="dotted" />
+<div id="articleFullText" class="col1 floatLeft firstCol">
+<span class="byline">
+By Saad Ahmed, Bashima Islam, Kasim Sinan Yildirim, Marco Zimmerling, Przemys&#322;aw Pawe&#322;czak, Muhammad Hamad Alizai, Brandon Lucia, Luca Mottola, Jacob Sorber, Josiah Hester
+<br/>
+Communications of the ACM,
+March 2024,
+Vol. 67 No. 3, Pages 64-73<br/>
+10.1145/3624718<br/>
+<a href="#comments">Comments</a>
+</span>
+<style>
+
+.fav_bar { float:left; border:1px solid #a7b1b5; margin-top:10px; margin-bottom:20px; }
+.fav_bar span.fav_bar-label { text-align:center; padding:8px 0px 0px 0px; float:left; margin-left:-1px; border-right:1px dotted #a7b1b5; border-left:1px solid #a7b1b5; display:block; width:69px; height:24px; color:#6e7476; font-weight:bold; font-size:12px; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; }
+.fav_bar a, #plus-one { float:left; border-right:1px dotted #a7b1b5; display:block; width:36px; height:32px; text-indent:-9999px; }
+.fav_bar a.fav_print { background:url('/images/icons/print.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_print:hover { background:url('/images/icons/print.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.mobile-apps { background:url('/images/icons/generic.gif') no-repeat 13px 7px #FFF; background-size: 10px; }
+.fav_bar a.mobile-apps:hover { background:url('/images/icons/generic.gif') no-repeat 13px 7px #e6e9ea; background-size: 10px}
+.fav_bar a.fav_de { background: url(/images/icons/de.gif) no-repeat 0 0 #fff }
+.fav_bar a.fav_de:hover { background: url(/images/icons/de.gif) no-repeat 0 0 #e6e9ea }
+.fav_bar a.fav_acm_digital { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_acm_digital:hover { background:url('/images/icons/acm_digital_library.gif') no-repeat 0px 0px #e6e9ea; }
+.fav_bar a.fav_pdf { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #FFF; }
+.fav_bar a.fav_pdf:hover { background:url('/images/icons/pdf.gif') no-repeat 0px 0px #e6e9ea; }
+
+.fav_bar a.fav_more .at-icon-wrapper{
+  height: 33px !important ;
+  width: 35px !important;
+  padding: 0 !important;
+  border-right: none !important;
+}
+
+.a2a_kit {
+  line-height: 24px !important;
+  width: unset !important;
+  height: unset !important;
+  padding: 0 !important;
+  border-right: unset !important;
+  border-left: unset !important;
+}
+
+.fav_bar .a2a_kit a .a2a_svg {
+  margin-left: 7px;
+  margin-top: 4px;
+  padding: unset !important;
+}
+</style>
+
+<div class="fav_bar">
+<span class="fav_bar-label">View as:</span>
+<a href="#" onclick="javascript:window.print();" class="fav_print" title="Print">Print</a>
+<a href="/about-communications/mobile-apps/" class="mobile-apps" title="MOBILE APPS">Mobile App</a>
+<a href="https://dl.acm.org/citation.cfm?id=3649417.3624718&amp;coll=portal&amp;dl=ACM" class="fav_acm_digital" target="_blank" title="View in ACM Digital Library">ACM Digital Library</a>
+<a href="/magazines/2024/3/280077-the-internet-of-batteryless-things/pdf" class="fav_pdf" rel="nofollow" target="_blank" title="View as PDF">Full Text (PDF)</a>
+<a href="https://dl.acm.org/ft_gateway.cfm?id=3624718&ftid=2309116&dwn=1" class="fav_de" target="_blank" title="View in Digital Edition">In the Digital Edition</a>
+<span class="fav_bar-label">Share:</span>
+
+<span class="a2a_kit a2a_kit_size_24 a2a_default_style">
+<a class="a2a_button_email"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_hacker_news"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+</span>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+
+</div>
+
+<div class="clearer"></div>
+<div class="imageWithCaptionLeft" id="asset-47108">
+<figure>
+<img alt="green sapling inside a cylinder battery, illustration" src="/system/assets/0004/7108/021624_CACMpg65_Internet-Batteryless.large.jpg?1708108576&amp;1708108576" title="green sapling inside a cylinder battery, illustration" />
+<figcaption>
+<p class="credit">Credit: Andrij Borys Associates, Shutterstock</p>
+</figcaption>
+</figure>
+</div>
+<div class="videoThumb">
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/905772290?h=0ab6348a69" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p><a name="body-1"></a></p>
+<p>Imagine using a health bracelet that tracks your blood pressure and glucose level that you do not have to charge for the next 20 years. Imagine sensors attached to honeybees helping us understand how they interact with their environment or bio-absorbable pacemakers controlling heart rate for 6&ndash;8 months after surgery.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-2"></a></p>
+<h3>Key Insights</h3>
+<p><img alt="ins01.gif" src="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/ins01.gif" /></p>
+<p>Whether submillimeter-scale &quot;smart dust,&quot;<sup><a href="#R25">25</a></sup> forgettable wearables, or tiny chip-scale satellites, the devices at the heart of the future of the Internet of Things (IoT) will be invisible, intelligent, long-lived, and maintenance-free. Despite significant progress over the last two decades, one obstacle stands in the way of realizing next-generation IoT devices: <em>the battery.</em></p>
+<p>Batteries provide the convenience of a reliable energy supply but create a host of problems. Batteries limit device lifetime and yield high maintenance costs. As device size continues to scale down, battery density scaling has not kept pace. As IoT device applications demand more computational capabilities, energy limits lifetime to weeks or months. Even rechargeable batteries have a limited lifetime, wearing out after 300&ndash;500 charge cycles.</p>
+<p>As we move toward a future with trillions of IoT devices,<sup><a href="#FNA">a</a></sup> replacing trillions of dead batteries and devices will be both prohibitively expensive and irresponsible. A future IoT with trillions of new battery-powered devices would create an environmental catastrophe.</p>
+<p>Most discarded batteries end up in landfills&mdash;only 5% are recycled. Discarded batteries release toxic fumes into the air and disperse chemicals in the soil as they break down. When batteries are recycled, the process releases contaminants into waterways.<sup><a href="#R7">7</a></sup></p>
+<p><strong>Batteryless devices and intermittent executions.</strong> During the last decade, and building on work from the decades prior, research pushed toward a new kind of system that is pervasively deployed, but also free from batteries. Like traditional sensing systems, compute batteryless IoT devices feature sensing, computing, and communication modules, as shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=983'); return false;">Figure 1a</a>. Instead of batteries that store chemical potential energy, batteryless IoT devices use small capacitors as energy buffers.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f1.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=983'); return false;"><img alt="f1.jpg" height="400" src="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f1.jpg" width="415" /></a><br/>
+<strong>Figure 1. (a) Key components, and (b) Charge-recharge cycle.</strong></p>
+<p>As harvested energy is highly variable and unpredictable, and capacitors are small, energy failures are frequent. As energy scarcity is pushed to an extreme, energy failures become so frequent that the usual computation model is no longer attainable. Batteryless IoT devices thus operate intermittently, as energy is available. Intermittent operation may prevent computation to advance as usual because energy failures impede progress.</p>
+<p>As applications often run on bare hardware without proper operating system support, in the absence of dedicated solutions for intermittent execution, a programmer is often blissfully unaware of the problems lurking in their code that may only surface after deployment. Programs written without considering intermittent behavior potentially suffer from a multitude of issues.</p>
+<p><em>Restartability and progress.</em> A power failure clears the device&#39;s volatile state (main memory, register file), compromising progress not preserved in nonvolatile memory. A batteryless device must resume execution instead of restarting when energy is back.<sup><a href="#R32">32</a></sup></p>
+<p>Resuming often depends on restoring volatile working states, and a system must decide which volatile state to preserve before an energy failure. Higher memory preservation overhead than available energy risks the forward progress of the program.<sup><a href="#R30">30</a></sup></p>
+<p><em>Memory consistency.</em> Systems that incorporate non-volatile memories in their architecture risk memory consistency during intermittent execution as operations, especially with write-after-read (WAR) dependencies, might re-execute due to power failures.<sup><a href="#R28">28</a>,<a href="#R38">38</a></sup> As non-volatile memory manipulation is non-idempotent, meaning that when operations including WAR dependencies re-execute, they might leave a different result in nonvolatile memory, producing erroneous and inconsistent outputs.</p>
+<p><em>Timeliness.</em> The time between consecutive power failures in an intermittent execution can range from hundreds of microseconds to seconds, to minutes or days, which often cannot be measured by batteryless systems.<sup><a href="#R12">12</a></sup> Without the notion of time, cyber-physical systems sense redundant data,<sup><a href="#R34">34</a></sup> process stale samples,<sup><a href="#R23">23</a></sup> and provide unusable results.<sup><a href="#R24">24</a></sup></p>
+<p><em>Peripherals</em> interact with the outside world and can lead to a variety of errors in intermittent execution. A power failure can leave a peripheral device in an unrecoverable state, requiring peripheral recovery actions that depend on what part of a program was executing when power failed.<sup><a href="#R6">6</a></sup></p>
+<p><strong>State of the art.</strong> Over the past decade, researchers have addressed these challenges with advances that help developers design more sophisticated and robust applications on batteryless sensing devices. We have come a long way with these advances. In recent years, batteryless devices have been launched into space,<sup><a href="#R15">15</a></sup> have emulated a Nintendo Game Boy to play Super Mario Bros,<sup><a href="#R13">13</a></sup> have secured and monitored ancient monuments,<sup><a href="#R1">1</a></sup> and have performed image processing using machine learning.<sup><a href="#R21">21</a></sup> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=464'); return false;">Figure 2</a> illustrates some of these achievements.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=464'); return false;"><img alt="f2.jpg" height="124" src="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f2.jpg" width="415" /></a><br/>
+<strong>Figure 2. Left to right: Game Boy;<sup><a href="#R13">13</a></sup> Mithraeum of the Circus Maximum;<sup><a href="#R1">1</a></sup> nanosatellites;<sup><a href="#R15">15</a></sup> and FaceBit<sup><a href="#R11">11</a></sup> as example applications employing the intermittent computing paradigm.</strong></p>
+<p>Aided by low-cost microcontrollers, more efficient solar panels, and new energy harvesters, the emerging community around intermittent computing has developed new architectures and hardware platforms, as well as software systems and tools that allow developers to design, debug, and deploy intermittently powered sensing devices in new and exciting applications that operate despite frequent energy failures.</p>
+<p>In this article, we review the research threads that gave birth to intermittent computing and articulate the field&#39;s critical future directions. Specifically, we provide a guide to the journey taken in the last decade to lay the foundation for intermittent computing. Moreover, we discuss open challenges and future research directions, particularly as they pertain to the IoT becoming a sustainable, inclusive, and accessible instrument for societal benefit.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-3"></a></p>
+<h3>Enabling Batteryless Systems</h3>
+<p>Batteryless devices enable a unique set of applications (as shown in <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=464'); return false;">Figure 2</a>). However, to develop such applications, system support is required to ensure intermittence-safe execution that allows the programmer to build systems that maintain memory consistency, provide timely and accurate output, and behave as the programmer expects while making the best use of available energy. Toward this end, the intermittent computing research community has developed new energy-efficient programming languages, compilers, runtime software systems, and architectural mechanisms that eliminate challenges arising due to frequent interruptions, allowing them to focus on application development.</p>
+<p>Here, we provide a whirlwind tour of the last decade of work on intermittent computing to address the challenges.</p>
+<p><strong>Programming languages</strong> designed for intermittent computing provide abstractions that simplify the programmer&#39;s task of addressing progress, consistency, timeliness, and peripherals.</p>
+<p>A <em>task-based</em> programming model allows a programmer to divide applications into semantically meaningful execution units, such as sampling a sensor or sending a packet.<sup><a href="#R28">28</a></sup> A task either runs to completion or, if interrupted by a power failure, re-executes after the power failure. These programming models and their implementations ensure once program execution crosses a task boundary, non-volatile memory contains a consistent set of values resulting from the task&#39;s completion. Tasks have transactional semantics: the program&#39;s state at a task boundary is guaranteed to be consistent with the completed execution of the previous task. Task-based systems have continuously evolved over the years to resolve their multiple shortcomings; may it be to reduce their data-reload overhead at the time of system restoration<sup><a href="#R8">8</a></sup> or enable them to handle asynchronous events.<sup><a href="#R40">40</a></sup></p>
+<p>Programming languages for intermittent systems cannot ignore time and how it relates to data. Without custom language support, the application code must timestamp data and perform validity checks before each access, which complicates program logic. To this end, task-based systems have been augmented with timing constraints on the data generated by each task.<sup><a href="#R23">23</a></sup> A program becomes a directed data-flow graph, where nodes are tasks and edges define the flow of data and temporal constraints. Representing a program as a task graph allows developers to directly express data movement structure and timing without having to reason about intermittent behavior. Formal frameworks and language support for data freshness and temporal consistency further empower developers to express timing properties in intermittent systems.<sup><a href="#R34">34</a></sup></p>
+<p><strong>Compilers and software systems.</strong> To support intermittent executions using existing embedded languages, such as C and Rust, extensive compiler and software support is needed to provide a way to checkpoint and restore the application&#39;s state after each power failure and to safeguard the execution from data and peripheral inconsistencies.</p>
+<p>A <em>reactive</em> approach to checkpointing relies on hardware support: an interrupt is fired to save a single checkpoint just before the power runs out. It is critical for correctness that this interrupt occurs when the remaining energy is sufficient to checkpoint every bit of work and that there is no work done afterward.<sup><a href="#R4">4</a></sup> A <em>proactive</em> approach, instead, allows programmers to reason about remaining energy and dynamically capture a checkpoint. Taking a checkpoint too early wastes energy after the checkpoint that could be used to perform meaningful work. Existing literature in this area focuses on striking a trade-off between postponing the checkpoint as long as possible; for example, in the hope the environment provisions new energy, and anticipating the checkpoint to ensure sufficient energy is available to complete it.<sup><a href="#R32">32</a></sup> Checkpoint operations impose a modest time and energy overhead and minimizing this overhead save energy for useful application work. Code instrumentation techniques have often been employed to reduce the size of checkpoint data and dynamically disable them to adapt to energy conditions.<sup><a href="#R30">30</a></sup></p>
+<p>Intermittent executions on systems with mixed volatility or completely non-volatile RAMs pose additional memory consistency threats due to the re-execution of non-idem-potent code sections. These data inconsistencies only manifest when a power failure occurs between instructions involved in WAR dependency. A compile-time analysis can be used to break such WAR-dependencies in the program by decomposing code into idempotent sections and connecting them with checkpoints of volatile state.<sup><a href="#R38">38</a></sup> Although WAR-enforced checkpoints effectively rid the program from idempotence violations, the overhead of such lazy approach linearly increases with the number of WAR dependencies in the code. A more energy-aware approach, however, can dynamically disable needless checkpoints based on direct observations of the program progress and remaining energy.<sup><a href="#R30">30</a></sup></p>
+<p>Embedded sensing workloads are most often peripheral bound. Peripherals execute asynchronously with respect to the computing unit. Their functioning is characterized by their own states, which are frequently updated due to the execution of I/O instructions or the occurrence of external events, such as the reception of a packet. Information on peripheral states is not automatically reflected in main memory, neither it may be simply queried or restored as it is often the result of non-trivial sequences of commands issued to peripherals and their answers. If peripheral states are not restored when resuming executions after a power failure, or this happens without ensuring consistency with respect to the state of the computing unit, applications may fail, or forward progress be compromised. Such peripheral inconsistency issues are often modeled as safety violations (executions reach a fail state that is unreachable in a continuous execution) and liveness violations (executions fail to reach valid states that would eventually be attained in a continuous execution).<sup><a href="#R6">6</a></sup> Solutions to these may include representing peripherals states using state machines to be replayed after reboot to synchronize the peripheral state with compute unit and recover the state before the last checkpoint.<sup><a href="#R6">6</a></sup></p>
+<p><strong>Wireless networking.</strong> To enable batteryless communication, prior work mainly focused on extremely low-power solutions based on the principle of backscatter. Backscatter works by transmitting data as modulated reflections of an incoming radio signal. Backscatter works well for batteryless devices because it consumes very little energy. Backscatter shifts the energy-hungry parts of a radio transmitter (for example, power amplifier) to an external source that generates signals for backscattering. As a result, backscatter transmitters may consume only picojoules per bit, substantially outperforming the nanojoules-per-bit active radios transmitting via the same protocol.<sup><a href="#R16">16</a></sup> While appealing, backscatter has several drawbacks, including reliance on a costly external source and limited communication range and throughput. Therefore, network protocol design for batteryless systems using active radios is a promising research direction. <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=557'); return false;">Figure 3</a> illustrates one of the fundamental problems, which also applies to backscatter: Two devices that intend to communicate may require many charging cycles (up to hundreds or thousands<sup><a href="#R17">17</a></sup>) until they are active within the same time window (encounter). This is because harvested energy to charge the individual energy storage capacitor depends on each devices&#39; location. As a result, two devices also lose synchronization immediately after an encounter, having to wait again for a long time until the next communication opportunity.</p>
+<p><a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=557'); return false;"><img alt="f3.jpg" height="226" src="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f3.jpg" width="415" /></a><br/>
+<strong>Figure 3. Example evolution of capacitor voltage and active state of two batteryless devices (top and bottom plot) when attempting to communicate (taken from Geissdoefer et al.<sup><a href="#R18">18</a></sup> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f2.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1550,height=464'); return false;">Figure 2a</a>.). Both devices need to wait for a long time until they are active within the same short time window to exchange data. After their encounter, both devices immediately desynchronize again because harvested energy to charge individual storage capacitors depends on each device&#39;s location.</strong></p>
+<p>Solutions to achieve efficient and reliable batteryless communication despite the problem noted here include batteryless nodes encoding their current storage capacitor voltage into bursts of different frequencies and lengths to inform their neighbors about their energy levels and adapt their rendezvous times.<sup><a href="#R36">36</a></sup> Another approach learns capacitor charge patterns of neighboring devices to maintain long-running connections across many consecutive encounters.<sup><a href="#R18">18</a></sup> To break interleaved charging patterns (see <a href="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/f3.jpg" onclick="window.open(this.href, '', 'resizable=yes,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no,width=1021,height=557'); return false;">Figure 3</a>), randomly delaying the wake-up times of batteryless devices and synchronizing to a common clock signal, such as powerline flicker, has been shown to be effective.<sup><a href="#R17">17</a></sup> A key challenge for these approaches is operating over long periods of time at a large scale.</p>
+<p>The intermittent communications stack also requires support for network protocol state retention and connection-oriented communication, which is a nascent research area. Devices running standard protocols may be in any state, such as connection request or connection establishment. However, power failures may lead a device to lose its protocol state, disrupting communication. Thus, systems require support for retaining protocol state across power failures without a high penalty for re-establishing a connection. Recent work has demonstrated network state retention for intermittent Bluetooth communication,<sup><a href="#R14">14</a></sup> saving and restoring the Bluetooth state machine state using non-volatile memory.</p>
+<p>Today&#39;s network protocol specifications are not a good match for intermittent operation. For instance, the Bluetooth specification forces a connection reset after 32 seconds of inactivity. This is a poor match for intermittent operation as the time needed to recharge the energy storage capacitor may be longer than the reset period. Our call to action for batteryless networking is that popular network protocols, including Wi-Fi, should be modified to support intermittent operation (with a minimum of modifications to the protocol itself). An answer to this call will make intermittent devices compatible with existing network protocols and infrastructure.</p>
+<p><strong>Power systems and computer architecture.</strong> The performance of intermittent systems (for example, throughput) largely depends on the energy storage capacity, processor and sensor power consumption, and other architectural characteristics. To illustrate, though using a larger capacitor seems like a solution to address high response time due to increased power consumption, large capacitors have longer charging time, which increases response time and energy leakage. Checkpointing overheads heavily depend on the choice of hardware and architecture, for example, cache size and volatile memory size.</p>
+<p>To provide support for high-power consumption while maintaining low response time, several energy storage architectures have been proposed over time. A single large capacitor requires tasks with low energy demand to wait to execute until the capacitor is fully charged despite having sufficient energy for the task.<sup><a href="#R22">22</a></sup> To address this, re-configurable capacitor banks<sup><a href="#R9">9</a></sup> have been proposed to dynamically select the active energy storage size based on the demand of the tasks. Supporting the diverse energy requirements of the peripherals demands dedicated energy storage for each peripheral providing energy isolation and reducing unnecessary energy consumption.<sup><a href="#R22">22</a></sup></p>
+<p>Non-volatile processors (NVP) have non-volatile flip-flops and gates which reduce checkpointing overhead and leakage power by shutting down idle systems with fast backup and retention operations. However, they increase the power (and area) requirements and increase processing time.<sup><a href="#R29">29</a></sup> More highly optimized von Neumann processors (for example, with out-of-order execution) are unlikely to provide a benefit to intermittent systems because they trade higher power for higher performance and demand more sophisticated backup policies.</p>
+<p>Recent studies presented the intermittent inference on batteryless edge,<sup><a href="#R21">21</a>,<a href="#R24">24</a></sup> which creates a demand for parallel intermittent execution support for data-intensive tasks.</p>
+<p>Intermittent systems must adapt to frequently changing environmental energy conditions to exploit the available energy more efficiently. Maximizing forward progress,<sup><a href="#R2">2</a></sup> increasing output performance,<sup><a href="#R24">24</a></sup> and adaptive heterogeneous architecture (composed of cores with different energy consumption) are some of the proposed adaptive architectures to increase efficiency. Timely intermittent execution<sup><a href="#R23">23</a>,<a href="#R40">40</a></sup> requires low-power time-keeping<sup><a href="#R12">12</a></sup> and accurate voltage measurement circuits.<sup><a href="#R39">39</a></sup></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-4"></a></p>
+<h3>Directions For the Future</h3>
+<p>The previous work laid a foundation for the next phase of power failure-resilient, energy-harvesting computing. The field is arguably at a stage where a much bigger leap is needed for this technology to gain widespread adoption. We discuss six fundamental directions we maintain to be most crucial for the field to thrive.</p>
+<p><strong>Deployment matters.</strong> IoT systems are designed and deployed to harvest accurate and abundant data. How this is concretely achieved in the absence of traditional batteries&mdash;whether using a programming system or low-power hardware&mdash;is ultimately immaterial. What matters is the system&#39;s ability to act as an efficient interface between the physical and the digital world. The field of intermittent computing is in desperate need of making this a top priority or the existing body of work runs the concrete risk of being relegated to an academic exercise.</p>
+<p>Understanding the real-world performance of an intermittently computing IoT system requires measuring its performance in realistic deployments. Existing experiences are extremely limited and mostly the result of intense one-off efforts. Large-scale long-term deployments of intermittent computing technology are rare,<sup><a href="#R1">1</a></sup> and yet provide invaluable insights and directions for future work that are not attainable elsewhere.</p>
+<p>First, the few existing efforts reveal that no single technique among those we surveyed earlier suffices to build a fully functional system. The overhead of combining and integrating disparate techniques from the state of the art often defeats the efficient performance of each of these techniques when deployed in a lab or used in isolation. Second, lessons learned from real deployments point to an acute tradeoff between generality and energy efficiency once in operation. In a setting characterized by extreme resource scarcity, there is not much to waste at runtime in a quest to support multiple different application scenarios or diverse requirements.</p>
+<p>The natural conclusion is that efforts should focus on complete development environments that coherently integrate the necessary techniques; for example, by combining techniques ensuring forward progress with peripheral correctness. Enabling this on a larger scale requires gaining further experiences from realistic scenarios, and possibly exploring new application domains.<sup><a href="#R11">11</a>,<a href="#R15">15</a></sup></p>
+<p>By the same token, crucial for researchers to be motivated and invest efforts in this direction is to gain the proper recognition from academic conferences, journals, and funding bodies alike. This is arguably and unfortunately not the case right now. We understand this issue is likely to cross the boundaries of the specific area at stake, and impact system research at large. We also maintain, however, those deeply embedded systems akin to the ones we discuss here impose even greater efforts in debugging and deploying at the current prototyping stage.</p>
+<p><strong>Correctness.</strong> Battery-free systems must operate correctly and yet, unfortunately, intermittent systems lack a formal foundation to reason on their correctness. Correctness guarantees make new applications possible: medical applications built around intermittent devices remain infeasible in the absence of correctness guarantees. They will produce wrong results or fail to produce results at all unless an intermittent hardware/software system can be proven correct.</p>
+<p>Correctness guarantees may also make existing applications more efficient or enable better resource usage: pervasive infrastructure monitoring sensors and tiny chip-scale satellites may require more redundantly deployed devices for reliable operation if each device comes with no correctness guarantee. But redundancy drives up costs. The solution is to build up the formal foundations of intermittent computing to provide formal definitions of correctness. A good starting point is to use the machinery of programming language research to provide correctness guarantees for intermittently computing software runtime systems and applications.<sup><a href="#R5">5</a>,<a href="#R35">35</a></sup></p>
+<p>Further questions, however, do require an answer. For example, should formal correctness models of intermittent operation include models of physics-based power and energy, arbitrary peripheral devices, or user behavior and the operating environment?</p>
+<p>Further, what are the formalisms and semantics models best suited to express the correctness requirements developers are interested in, and how do these possibly enable automated verification of such requirements? Each of these variations on the modeling problem presents its own challenges and benefits.</p>
+<p>One example modeling challenge that is particularly valuable, yet unsolved in general, is building a model of energy consumption for an arbitrary region of code. A solution to this problem allows a programmer to directly reason about the location or likelihood of a power failure at a particular program point. Such a solution also strengthens the link between supplied power behavior and program behavior, supporting new program analyses that help programmers understand how energy consumption varies across executions of their program. Finally, although power and energy are physical quantities and vary for reasons outside of the closed world of software, probabilistic programming languages research may play an important role in modeling such physically influenced, distributional behavior.<sup><a href="#R10">10</a></sup></p>
+<p><strong>Security.</strong> Provided the battery-free system is proven correct, data inside and around the system is useless in the absence of security. Because of their deeply embedded nature and relation with the surrounding physical environment, IoT systems are at risk of security attacks, and intermittently computing ones are no exceptions. Rather, extreme resource constraints and peculiar execution patterns increase the attack surface and enable new attacks.</p>
+<p>The problem is indeed difficult: batteryless IoT cannot run mainstream security techniques and protocols without incurring in huge performance penalties.<sup><a href="#R3">3</a></sup> Dedicated hardware support, such as ARM TrustZone, provides a steppingstone to address the security challenge, yet intermittent executions likely require ad-hoc specialized solutions. A few works<sup><a href="#R37">37</a></sup> demonstrate hardware support, porting the guarantees of fully homomorphically encrypted computing to low-end embedded devices, possibly including intermittent ones. How to blend these solutions with existing intermittent computing techniques is an open question: the non-continuous execution flow, which possibly includes re-executions of non-idempotent code, creates new problems for security researchers.</p>
+<p>Recent work<sup><a href="#R31">31</a></sup> studies how ambient energy harvesting may be used as an attack vector in intermittent computing. The authors demonstrate that by exerting limited control on the ambient supply of energy to the system, one can create situations of live lock, denial of service, and priority inversion, without requiring physical access to a device. Using machine learning and concepts of approximate computing, they design an attack detection technique with 92%+ accuracy and limited run-time overhead. Much greater efforts are required, however, to investigate to what extent energy provisioning may be used to maliciously drive intermittent executions and what detection and mitigation techniques are to be put in place to counteract these occurrences.</p>
+<p><strong>Energy-minimal computer architectures.</strong> In designing a computer architecture for a batteryless system, energy efficiency is the most important design concern. Harvesting energy rate limits device operation if the harvestable input power is substantially lower than computational operating power. A batteryless system in this operating regime should maximize the amount of computational work that it does with its energy, optimizing primarily for efficiency, rather than focusing on improving performance or reducing operating power (both of which sometimes may impose a cost in efficiency. Many battery-free devices use simple microcontrollers to compute, (for example, the Texas Instruments MSP430), which offer appealingly low power consumption, simple ISAs with widespread compiler support, and a typical von Neumann execution model. Unfortunately, these simple von Neumann architectures do not offer high-energy efficiency, making them increasingly the wrong choice as batteryless systems perform steadily more computation.</p>
+<p>Existing architectures are inefficient for two main reasons that both stem from the von Neumann execution model: instruction supply and data movement. The instruction&#39;s fetch and decode consume a large amount of energy, often entailing memory accesses.</p>
+<p>To execute an operation, a von Neumann core must configure internal control signals on a per-instruction basis and move input operands from and store outputs to a register file or memory. These overheads of instruction and data supply consume around 55% of total compute energy.<sup><a href="#R20">20</a></sup> When efficiency matters, this overhead is unacceptable.</p>
+<p>The future of computing in batteryless devices lies in new computer architectures that eliminate the overheads of von Neumann computing. For the last decade, computer architects have improved efficiency through hardware specialization, for example, for some machine-learning computations. Specialized accelerators forfeit general-purpose programmability but achieve high efficiency by eliminating most control overheads. Accelerators are not likely to be the solution for most long-lived deployments, due to their inability to adapt to changing application requirements. Additionally, accelerator-based architectures are not sustainable because they require new silicon for each application and the bulk of a chip&#39;s carbon footprint is in its manufacturing. Low-power FPGAs offer reconfigurability but are difficult to program and do not meet the efficiency of specialized accelerators.</p>
+<p>Recently, work on energy-minimal computer architecture<sup><a href="#R19">19</a>,<a href="#R20">20</a></sup> has developed new reconfigurable dataflow architectures implemented in coarsegrained reconfigurable arrays (CGRAs). These CGRAs achieve high efficiency while remaining fully programmable from high-level languages like C and Rust. Energy-minimal CGRA architectures implementing ordered data-flow<sup><a href="#R19">19</a>,<a href="#R20">20</a></sup> consume a few hundred microwatts of power and perform hundreds of billions of operations per second per watt. The key to the efficiency of these architectures is that they eliminate virtually all instruction control overheads and streamline data movement via efficient on-chip dataflow networks.</p>
+<p>The concrete benefits show the promise of CGRAs to batteryless system designers. The SNAFU<sup><a href="#R19">19</a></sup> architecture reports efficiency running linear algebra in software that is within a factor of 2&ndash;3&times; of a fixed purpose accelerator implementing the same computation. The RipTide<sup><a href="#R20">20</a></sup> compiler fully automatically compiles complex DNN inference code with sparse data and irregular control flow to a dataflow fabric that runs that code using 1900&times; less energy and 146&times; less time than a TI MSP430. As software programming support improves and embedded non-volatile memories become available, reconfigurable dataflow architectures are a highly appealing option for batteryless devices.</p>
+<p>Another promising direction is to exploit in-memory processing on emerging non-volatile memory technologies to process part or entire data in situ in memory to accelerate data-intensive computing tasks in intermittent systems, for example, machine learning and signal processing. Data backup happens atomically and immediately in these systems since they exploit non-volatile memory technology. For instance, Resch et al.<sup><a href="#R33">33</a></sup> presented intermittent computing on a magnetic tunnel junction-based computational RAM, a highly energy-efficient processing element. Despite its advantages, CRAM programming is significantly more difficult than programming our general-purpose batteryless platforms. Filling the programming gap for in-memory processing will bring significant benefits to intermittent computing.</p>
+<p><strong>Foundation experimental infrastructure.</strong> For intermittent computing to thrive, we argue it is essential to develop a foundational set of infrastructure: (that is, tools, testbeds, hardware platforms, benchmarks, and datasets) enabling a sound scientific investigation. Unlike other fields of computing and communications, intermittent computing is plagued by one major issue: the absence of a well-defined, agreed-upon yardstick to compare the performance of systems, namely, a set of benchmarks and the mechanisms to run them repeatably and at scale. Despite the performance claims in several papers, even in the many cases where these claims are substantiated by rigorous evaluations, the extent to which the results for one system hold in the setup of another is unclear at best. This situation is not just methodologically flawed from a scientific standpoint; it also may also have distorting effects on the industrial adoption of research artifacts.</p>
+<hr/>
+<blockquote>
+<p><em>The future of computing in batteryless devices lies in new computing architectures that eliminate the overheads of von Neumann computing.</em></p>
+</blockquote>
+<hr/>
+<p>This is a typical hurdle for any field as it emerges into the mainstream. First, we need a common, agreed-upon benchmark against which the performance of systems can be measured. This approach is widespread among many fields of science, for instance, applied in testing machine learning systems for image classification. A benchmark typically defines input parameters representative of several application cases, output metrics quantifying the performance of the benchmarked systems, and the required experimental setup.</p>
+<p>In our case, a benchmark might include harvested energy traces as well as common computational tasks. Batteryless system would then produce output based on the input data, such as the number of packets in a unit of time. The harvested energy traces have a special purpose for testing intermittent computing systems as energy represents a program input for intermittent computing systems. The specific energy patterns the system is exposed to, for example, determine how many interruptions the program experiences. It is therefore crucial to collect energy traces that are both diverse as not to bias the results towards specific techniques and be able to exercise the various program paths. Although in other fields, the availability of benchmarks may result in over-fitting system designs, benchmarks for batteryless intermittent computing systems must be varied, broad, and frequently updated.</p>
+<p>Second, one needs definitive platforms, tools, datasets, and testbeds, to enable benchmarks at scale. Benchmarks without a well-defined (and easy-to-acquire) hardware platform are much less useful. Benchmarks need standard tools and programs to be able to run, that are both energy harvesting and power failure aware. To scale up benchmarking and replicable science, to enable access to the broader community, and to ease testing and comparisons, foundational infrastructure is necessary.</p>
+<p><strong>What about the users?</strong> No matter how sophisticated the technology is, chances are that any system may stop operating. In an AC power socket-powered system, this is a rare occurrence and is generally considered as a failure. In a regular battery-powered system, operation failure is more probable. Nonetheless, users are conscious of this potential operation stop, they know how to handle it, and they consider it a part of the system&#39;s lifetime. In a battery-free IoT system&mdash;and especially an intermittently executing one&mdash;the relationship between the end user and a device that stops and resumes the execution (even on sub-second time scales) is all to be explored.</p>
+<p>Development environments like Arduino are now considered major milestones in the development of the IoT. They enable nontrained programmers to quickly prototype fully functional IoT systems and are fundamental tools for communities that extend well beyond the borders of traditional computer science and engineering. These movements are, often and interestingly, a cradle of innovation that builds on the skills and expertise of people with diverse backgrounds.</p>
+<p>Unfortunately, intermittent computing is very far from such a situation. A few recent works represent timid attempts at lowering the barrier to entry for non-trained people outside of computer science and engineering.<sup><a href="#R26">26</a>,<a href="#R27">27</a></sup> Instead, using the vast majority of systems and techniques discussed earlier requires expertise and skills that not even every computer engineer is necessarily equipped with&mdash;let alone researchers and practitioners outside of this discipline.</p>
+<p>The key question is whether (or how) to mask the distinctive features of intermittent computing. The battery-free Game Boy,<sup><a href="#R13">13</a></sup> for example, takes a specific stand: users are required to contribute to energy provisioning to tame the intermittent executions. Alternative designs are also possible where, for example, intermittence is made explicitly visible to programmers and users rather than hidden from them. Striking an effective tradeoff is anything but trivial and likely requires researchers in intermittent computing and closely related fields to let their efforts be influenced by other disciplines. Major publication venues, on the other hand, should increasingly reward multidisciplinary efforts, creating the incentive required to make progress in this direction.</p>
+<hr/>
+<blockquote>
+<p><em>Efforts should be invested in understanding&mdash;from a technical but also psychological perspective&mdash;how to develop the unfolding relationship between users and intermittently computing devices.</em></p>
+</blockquote>
+<hr/>
+<p>Notwithstanding, lowering the barrier to entry for non-trained developers is thus just half of the story&mdash;the other half is the proper setting of the user interaction with an intermittently computing device. Therefore, efforts should be invested in understanding&mdash;from a technical but also psychological perspective&mdash;how to develop the unfolding relationship between users and intermittently computing devices. One option, for example, is to let users merely accept the idea they cannot continuously rely on a system. Although simple to realize, this may likely limit the applicability of intermittent computing (battery-free) technology. A different option is rather to engage the user in energy provisioning,<sup><a href="#R13">13</a></sup> explicitly or implicitly; for example, through some form of reward or &quot;gamification&quot; of the energy provisioning tasks that creates an incentive for the user to look for the right conditions to make the system continue the work.</p>
+<p>Reasoning on this matter cannot be oblivious to the specific application at hand. For example, listening to music on a device that powers off a couple of times per minute is unacceptable, yet playing puzzle games on such devices should be doable and enjoyable.</p>
+<p>These devices can go beyond entertainment, to actuating within the physical environment&mdash;for example, harvesting the action from mechanical motions like door openings and closing to power sensing and occupancy readings. They could be integrated into a user&#39;s shoe, clothing, or even prosthetic, where the action of walking compressed a spring that captured energy to power strain sensing and health monitoring for the limb. In summary, understanding the human-interaction angle of intermittent computing and a batteryless IoT is crucial, programmer facing tools for easing development, interfaces, and designs that mask or work with power failures, and novel applications and integration points for energy harvesting, are all part of the next phase of research.</p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<p><a name="body-5"></a></p>
+<h3>Conclusion</h3>
+<p>Bell&#39;s Law of Computing Classes states that a lower-priced, and more numerous, computer class emerges approximately every decade that requires entirely new methods of programming networking, and interfacing resulting in wholly new applications. After cellphones, IoT appears to be this new class&mdash;the results of the research discussed in this article point to a way to scale responsibly with this new class. The first lights of interesting, enabled applications have already emerged, and further research will explore where long-term, low-cost, massive-scale sensing is essential including healthcare (wearable and body sensor networks), ecology, horticulture, agriculture, infrastructure, and public utilities monitoring. This Internet of Batteryless Things is a step toward the sustainable future of computing. While it is flourishing, its progress is hampered by major challenges in terms of testbeds, tools, security, and applications. There is a need to grow the community around the vision of intermittent computing and more strongly advocate its need for the future. <strong>B</strong></p>
+<p><img alt="uf1.jpg" src="https://dl.acm.org/cms/attachment/html/10.1145/3624718/assets/html/uf1.jpg" /><br/>
+<strong>Figure. Watch the authors discuss this work in the exclusive <em>Communications</em> video. <a href="https://cacm.acm.org/videos/batteryless-things">https://cacm.acm.org/videos/batteryless-things</a></strong></p>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-references"><a name="references"></a>
+<h3>References</h3>
+<p><a name="R1"></a>1. Afanasov, M. et al. Battery-less zero-maintenance embedded sensing at the mithr&aelig;um of circus maximus. In <em>Proceedings of SenSys (Virtual event, Nov. 16&ndash;19, 2020)</em>. ACM, 368&ndash;381; 10.1145/3384419.3430722.</p>
+<p><a name="R2"></a>2. Ahmed, S. et al. Intermittent computing with dynamic voltage and frequency scaling. In <em>Proceedings of EWSN (Lyon, France, Feb. 17&ndash;19, 2020)</em>. ACM, 97&ndash;107; <a href="https://dl.acm.org/doi/10.5555/3400306.3400319">https://dl.acm.org/doi/10.5555/3400306.3400319</a>.</p>
+<p><a name="R3"></a>3. Asad, H.A. et al. On securing persistent state in intermittent computing. In <em>Proceedings of ENSsys (Virtual event, Nov. 6, 2020)</em>. ACM, 8&ndash;14; 10.1145/3417308.3430267.</p>
+<p><a name="R4"></a>4. Balsamo, D. et al. Hibernus: Sustaining computation during intermittent supply for energy-harvesting systems. <em>IEEE Embedded Sys Lett. 7</em>, 1, (Ma.2015), 15&ndash;18; 10.1109/les.2014.2371494</p>
+<p><a name="R5"></a>5. Bohrer, R. and Islam, B. Cyber-physical verification of intermittently powered embedded systems. <em>IEEE Trans. Comput. Aided Des. Integr. Circuits Syst. 41</em>, 11 (Nov. 2022), 4361&ndash;4372; 10.1109/TCAD.2022.3197541</p>
+<p><a name="R6"></a>6. Branco, A., Mottola, L., Alizai, M.H. and Siddiqui, J.H. Intermittent asynchronous peripheral operations. In <em>Proceedings of SenSys (Virtual event, Nov. 10&ndash;13, 2019)</em>. ACM, NY, USA, 55&ndash;67; 10.1145/3356250.3360033.</p>
+<p><a name="R7"></a>7. Church, C. and Wuennenberg, L. <em>Sustainability and second life: the case for cobalt and lithium recycling</em>, 2019; <a href="https://www.iisd.org/publications/sustainability-and-second-lifecase-cobalt-and-lithium-recycling">https://www.iisd.org/publications/sustainability-and-second-lifecase-cobalt-and-lithium-recycling</a></p>
+<p><a name="R8"></a>8. Colin, A. and Lucia, B. Chain: Tasks and channels for reliable intermittent programs. In <em>Proceedings of OOPSLA (Amsterdam, The Netherlands, Oct. 30&ndash;Nov. 4, 2016)</em>. ACM, 514&ndash;530; 10.1145/2983990.2983995.</p>
+<p><a name="R9"></a>9. Colin, A., Ruppel, E. and Lucia, B. A reconfigurable energy storage architecture for energy-harvesting devices. In <em>Proceedings of ASPLOS (Williamsburg, VA, USA, Mar. 24&ndash;28, 2018)</em>. ACM, 767&ndash;781; 10.1145/3296957.3173210.</p>
+<p><a name="R10"></a>10. Collin, A. and Lucia, B. Termination checking and task decomposition for task-based intermittent programs. In <em>Proceedings of CC (Vienna, Austria, Feb. 24&ndash;25, 2018)</em>. ACM, 183:1&ndash;183:31; 10.1145/3178372.3179525.</p>
+<p><a name="R11"></a>11. Curtiss, A. et al. Facebit: Smart face masks platform. <em>ACM Interact. Mob. Wearable Ubiquitous Technol. 5</em>, 4 (Dec. 2021), 151:1&ndash;151:44; 10.1145/3494991.</p>
+<p><a name="R12"></a>12. de Winkel, J. et al. Reliable timekeeping for intermittent computing. In <em>Proceedings of ASPLOS (Lausanne, Switzerland, Mar. 16&ndash;20, 2020)</em>. ACM, 53&ndash;67; 10.1145/3373376.3378464.</p>
+<p><a name="R13"></a>13. de Winkel, J. et al. Battery-free game boy. <em>ACM Interact. Mob. Wearable Ubiquitous Technol. 4</em>, 3 (Sept. 2020), 111:1&ndash;111:34; 10.1145/3411839.</p>
+<p><a name="R14"></a>14. de Winkel, J. et al. Intermittently-powered bluetooth that works. In <em>Proceedings of MobiSys (Portland, OR, USA, Jun. 25&ndash;Jul. 1, 2022)</em>. ACM, 287&ndash;301; 10.1145/3498361.3538934.</p>
+<p><a name="R15"></a>15. Denby, B. and Lucia, B. Orbital edge computing: Nanosatellite constellations as a new class of computer system. In <em>Proceedings of ASPLOS (Lausanne, Switzerland, Mar. 16&ndash;20, 2020)</em>. ACM, 939&ndash;954; 10.1145/3373376.3378473.</p>
+<p><a name="R16"></a>16. Ensworth, J.F. and Reynolds, M.S. Every smart phone is a backscatter reader: Modulated backscatter compatibility with bluetooth 4.0 low energy devices. In <em>Proceedings of RFID (San Diego, CA, USA, Apr. 15&ndash;17, 2015)</em>. IEEE, 78&ndash;85; 10.1109/rfid.2015.7113076.</p>
+<p><a name="R17"></a>17. Geissdoerfer, K. and Zimmerling, M. Bootstrapping battery-free wireless networks: Efficient neighbor discovery and synchronization in the face of intermittency. In <em>Proceedings of NSDI (Renton, WA, USA Apr. 12&ndash;14, 2021)</em>. USENIX, 439&ndash;455; <a href="https://www.usenix.org/system/files/nsdi21-geissdoerfer.pdf">https://www.usenix.org/system/files/nsdi21-geissdoerfer.pdf</a>.</p>
+<p><a name="R18"></a>18. Geissdoerfer, K. and Zimmerling, M. Learning to communicate effectively between batt ery-free devices. In <em>Proceedings of NSDI (Renton, WA, USA, Apr. 4&ndash;6, 2022)</em>. USENIX, 419&ndash;435; <a href="https://www.usenix.org/system/files/nsdi22-papergeissdoerfer.pdf">https://www.usenix.org/system/files/nsdi22-papergeissdoerfer.pdf</a>.</p>
+<p><a name="R19"></a>19. Gobieski, G. et al. Snafu: An ultra-low-power, energy-minimal cgra generation framework and architecture. In <em>Proceedings of ISCA (Valencia, Spain, Jun. 14&ndash;18, 2021)</em>. ACM/IEEE, 1027&ndash;1040; 10.1109/ISCA52012.2021.00084.</p>
+<p><a name="R20"></a>20. Gobieski, G. et al. Riptide: A programmable energy-minimal dataflow compiler and architecture. In <em>Proceedings of MICRO (Chicago, IL, USA, Oct. 1&ndash;5, 2022)</em>, ACM; 10.1109/MICRO56248.2022.00046.</p>
+<p><a name="R21"></a>21. Gobieski, G., Lucia, B. and Beckmann, N. Intelligence beyond the edge: Inference on intermittent embedded systems. In <em>Proceedings of ASPLOS. (Providence, RI, USA, 2019)</em>. ACM, 199&ndash;213; 10.1145/3297858.3304011.</p>
+<p><a name="R22"></a>22. Hester, J., Sitanayah, L. and Sorber, J. Tragedy of the coulombs: Federating energy storage for tiny, intermittently-powered sensors. In <em>Proceedings of SenSys (Seoul, South Korea, Nov. 1&ndash;4, 2015)</em>. ACM, 5&ndash;16; 10.1145/2809695.2809707.</p>
+<p><a name="R23"></a>23. Hester, J., Storer, K. and Sorber, J. Timely execution on intermittently powered batteryless sensors. In <em>Proceedings of SenSys (Delft, The Netherlands, Nov. 6&ndash;8, 2017)</em>. ACM, 17:1&ndash;17:13; 10.1145/3131672.3131673.</p>
+<p><a name="R24"></a>24. Islam, B. and Zygarde, N.S. Time-sensitive on-device deep inference and adaptation on intermittently-powered systems. <em>ACM Interact, Mob, Wearable Ubiquitous Technol. 4</em>, 3 (Sept. 2020), 82:1&ndash;82:29; 10.1145/3411808.</p>
+<p><a name="R25"></a>25. Kahn, J.M., Katz, R.H. and Pister, K.S.J. Next century challenges: Mobile networking for &quot;smart dust.&quot; In <em>Proceedings of MobiCom (Seattle, WA, USA, 1999)</em>. ACM, 271&ndash;278; 10.1145/313451.313558.</p>
+<p><a name="R26"></a>26. Kortbeek, V. et al. Bfree: Enabling battery-free sensor prototyping with python. <em>ACM Interact. Mob. Wearable Ubiquitous Technol. 4</em>, 4 (Dec. 2020), 135:1&ndash;111:39; 10.1145/3432191.</p>
+<p><a name="R27"></a>27. Kraemer, C., Guo, A., Ahmed, S. and Hester, J. Batteryfree makecode: Accessible programming for intermittent computing. <em>ACM Interact. Mob. Wearable Ubiquitous Technol. 6</em>, 1 (Mar. 2022), 18:1&ndash;18:35; 10.1145/3517236.</p>
+<p><a name="R28"></a>28. Lucia, B. and Ransford, B. A simpler, safer programming and execution model for intermittent systems. In <em>Proceedings of PLDI (Portland, OR, USA, June 13&ndash;17, 2015)</em>. ACM, 575&ndash;585; 10.1145/2813885.2737978.</p>
+<p><a name="R29"></a>29. Ma, K. et al. Architecture exploration for ambient energy harvesting nonvolatile processors. In <em>Proceedings of HPCA (Burlingame, CA, USA, Feb. 7&ndash;11, 2015)</em>. IEEE, 526&ndash;537; 10.1109/HPCA.2015.7056060.</p>
+<p><a name="R30"></a>30. Maeng, K., Colin, A. and Lucia, B. Adaptive dynamic checkpointing for safe efficient intermittent computing. In <em>Proceedings of OSDI (Carlsbad, CA, USA, Oct. 8&ndash;10, 2018)</em>. USENIX, 129&ndash;144; <a href="https://www.usenix.org/system/files/osdi18-maeng.pdf">https://www.usenix.org/system/files/osdi18-maeng.pdf</a>.</p>
+<p><a name="R31"></a>31. Mottola, L., Hameed, A. and Voigt, T. <em>Energy Attacks in the Battery-Less Internet of Things</em>, 2023; <a href="https://arxiv.org/abs/2304.08224">https://arxiv.org/abs/2304.08224</a>.</p>
+<p><a name="R32"></a>32. Ransford, B., Sorber, J. and Fu, K. Mementos: System support for long-running computation on rfid-scale devices. In <em>Proceedings of ASPLOS (Newport Beach, CA, USA, Mar. 5&ndash;11, 2011)</em>. ACM, 159&ndash;170; 10.1145/1950365.1950386.</p>
+<p><a name="R33"></a>33. Resch, S. et al. MOUSE: Inference in non-volatile memory for energy harvesting applications. In <em>Proceedings of MICRO (Athens, Greece, Oct. 17&ndash;21, 2020)</em>. ACM/IEEE, 400&ndash;414; 10.1109/MICRO50266.2020.00042.</p>
+<p><a name="R34"></a>34. Surbatovich, M., Jia, L. and Lucia, B. Automatically enforcing fresh and consistent inputs in intermittent systems. In <em>Proceedings of PLDI (Virtual event, June 20&ndash;25, 2021)</em>. ACM, 851&ndash;866; 10.1145/3453483.3454081.</p>
+<p><a name="R35"></a>35. Surbatovich, M., Lia, L. and Lucia, B. Towards a formal foundation of intermittent computing. In <em>Proceedings of ACM OOSPLA 4</em>, (Nov. 2020), 163:1&ndash;163:31; 10.1145/3428231.</p>
+<p><a name="R36"></a>36. Torrisi, A., Yıldırım, K.S. and Brunelli, D. Reliable transiently-powered communication. <em>IEEE Sens. J. 22</em>, 9 (May 2022), 9124&ndash;9134; 10.1109/jsen.2022.3158736.</p>
+<p><a name="R37"></a>37. van der Hagen, M. and Lucia, B. Client-optimized algorithms and acceleration for encrypted compute offloading. In <em>Proceedings of ASPLOS (Lausanne, Switzerland, Feb. 28&ndash;Mar. 4, 2022)</em>. ACM, 683&ndash;696; 10.1145/3503222.3507737.</p>
+<p><a name="R38"></a>38. van der Woude, J. and Hicks, M. Intermittent computation without hardware support or programmer intervention. In <em>Proceedings of OSDI (Savannah, GA, USA Nov. 2&ndash;4, 2016)</em>. ACM, 17&ndash;32; <a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-van-der-woude.pdf">https://www.usenix.org/system/files/conference/osdi16/osdi16-van-der-woude.pdf</a>.</p>
+<p><a name="R39"></a>39. Williams, H., Moukarzel, M. and Hicks, M. Failure sentinels: Ubiquitous just-in-time intermittent computation via low-cost hardware support for voltage monitoring. In <em>Proceedings of ACM/IEEE ISCA (Valencia, Spain, June 14&ndash;18, 2021)</em>, 665&ndash;678; 10.1109/ISCA52012.2021.00058.</p>
+<p><a name="R40"></a>40. Yıldırım, K.S. et al. Ink: Reactive kernel for tiny batteryless sensors. In <em>Proceedings of SenSys (Shenzhen, China, Nov. 4&ndash;7, 2018)</em>. ACM, 41&ndash;53; 10.1145/3274783.3274837.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-authorinfo"><a name="authorinfo"></a>
+<h3>Authors</h3>
+<p><strong>Saad Ahmed</strong>, Georgia Institute of Technology, Atlanta, GA, USA.</p>
+<p><strong>Bashima Islam</strong>, Worcester Polytechnic Institute, Worcester, MA.</p>
+<p><strong>Kasim Sinan Yildirim</strong>, University of Trento, Trentino-Alto Adige, Italy.</p>
+<p><strong>Marco Zimmerling</strong>, TU Darmstadt, Hesse, Germany</p>
+<p><strong>Przemyslaw Pawelczak</strong>, Delft University of Technology, Delft, The Netherlands.</p>
+<p><strong>Muhammad Hamad Alizai</strong>, Lahore University of Management Sciences, Lahore, Pakistan.</p>
+<p><strong>Brandon Lucia</strong>, Carnegie Mellon University, Pittsburgh, PA, USA.</p>
+<p><strong>Luca Mottola</strong>, Politecnico di Milano, Italy.</p>
+<p><strong>Jacob Sorber</strong>, Clemson University, Clemson, SC, USA.</p>
+<p><strong>Josiah Hester</strong>, Georgia Institute of Technology, Atlanta, GA, USA.</p>
+</div>
+
+<p><a href="#PageTop">Back to Top</a></p>
+
+<div id="article-footnotes"><a name="footnotes"></a>
+<h3>Footnotes</h3>
+<p><a name="FNA"></a>a. <a href="https://bit.ly/491LSNE">https://bit.ly/491LSNE</a></p>
+</div>
+
+<div id="article-permission">
+<hr/><a name="permission"></a>
+<p>&copy; 2024 Copyright held by the owner/author(s).<br/>
+Request permission to (re)publish from the owner/author</p>
+</div>
+
+<p>The Digital Library is published by the Association for Computing Machinery. Copyright&nbsp;&copy;&nbsp;2024 ACM, Inc.</p>
+
+<div class="clearer"></div>
+<hr class="thick" />
+<a name="comments"></a>
+<div id="ArticleComments">
+<span id="CommentHeader">&nbsp;</span>
+</div>
+<p class="view-all">
+No entries found
+</p>
+
+</div>
+<div class="col3 floatLeft lastCol">
+<div class="signInWidget widget">
+<span class="signInTitle">Sign In <span class="noTransform">for Full Access</span></span>
+<form action="https://cacm.acm.org/login" method="post">
+<div class="portaInputSignIn">
+<label for="inputUser" class="inField">User Name</label>
+<input name="current_member[user]" type="text" id="inputUser" />
+</div>
+<div class="portaInputSignIn">
+<label for="inputPassword" class="inField">Password</label>
+<input type="password" name="current_member[passwd]" id="inputPassword" />
+</div>
+<a href="/accounts/forgot-password" class="subText">&raquo; Forgot Password?</a>
+<a href="/accounts/new" class="subText"><strong>&raquo; Create an ACM Web Account</strong></a>
+<button type="submit" class="submitSignIn">Sign In</button>
+</form>
+</div>
+<div id="article-contents-widget" class="widget contentsWidget">
+<h6 class="loud">Article Contents:</h6>
+<ul>
+<li class="miniWidgetItem"><a href="#body-1">Introduction</a></li>
+<li class="miniWidgetItem"><a href="#body-2">Key Insights</a></li>
+<li class="miniWidgetItem"><a href="#body-3">Enabling Batteryless Systems</a></li>
+<li class="miniWidgetItem"><a href="#body-4">Directions For the Future</a></li>
+<li class="miniWidgetItem"><a href="#body-5">Conclusion</a></li>
+<li class="miniWidgetItem"><a href="#references">References</a></li>
+<li class="miniWidgetItem"><a href="#authorinfo">Authors</a></li>
+<li class="miniWidgetItem"><a href="#footnotes">Footnotes</a></li>
+</ul>
+</div>
+<div id="SideColumn">
+
+<div id="related-news-opinion-widget" class="blueWidget widget noBottom" data-swiftype-index="false">
+<span class="widgetName">More News &amp; opinions</span>
+<div class="singleNews firstNews">
+<h5>
+<a href="/news/277231-optical-chip-self-configures-to-perform-various-functions">
+Optical Chip Self-Configures to Perform Various Functions
+</a>
+</h5>
+<span class="dateNews">Optica</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/magazines/2023/12/278152-there-was-no-first-ai-winter">
+There Was No 'First AI Winter'
+</a>
+</h5>
+<span class="dateNews">Thomas Haigh</span>
+</div>
+<div class="singleNews">
+<h5>
+<a href="/blogs/blog-cacm/277392-how-to-ace-it-product-localization-the-101-guide">
+How to Ace IT Product Localization: The 101 Guide
+</a>
+</h5>
+<span class="dateNews">Alex Tray</span>
+</div>
+</div>
+
+</div>
+</div>
+<a class=" hidden video-link" href="<iframe title=" vimeo-player" src="https://player.vimeo.com/video/905772290?h=0ab6348a69" width="640" height="360" frameborder="0" allowfullscreen></iframe> "></a>
+</section>
+<button class="to-top"></button>
+<footer>
+<nav>
+<ul>
+<li class="first-child"><a href="/about-communications/author-center" title="For Authors">For Authors</a></li>
+<li><a href="https://www.acm.org/publications/advertising" title="For Advertisers" target="_blank">For Advertisers <img src="/images/icons/new_page.png" alt="For Advertisers" /></a></li>
+<li><a href="/privacy" title="Privacy Policy">Privacy Policy</a></li>
+<li><a href="/help" title="Help">Help</a></li>
+<li><a href="/about-communications/contact-us" title="Contact Us">Contact Us</a></li>
+<li><a class="toggle-mobile" href="https://m-cacm.acm.org/magazines/2024/3/280077-the-internet-of-batteryless-things/fulltext?mobile=true" data-domain="cacm.acm.org">Mobile Site</a></li>
+</ul>
+</nav>
+<span id="footerText">Copyright &#169; 2024 by the ACM. All rights reserved.</span>
+</footer>
+</div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/javascripts/lib/jquery.jplayer.js"></script>
+<!--[if lte IE 6]><script  src="/javascripts/iepngfix_tilebg.js"></script><![endif]-->
+<script>!window.jQuery && document.write('<script src="/javascripts/jquery/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/jquery.infieldlabel.min.js"></script>
+<script src="/javascripts/cufon.js"></script>
+<script src="/javascripts/proxima_400.font.js"></script>
+<script src="/javascripts/behaviors/jquery.tipsy.js"></script>
+<script src="/javascripts/behaviors/jquery.colorbox-min.js"></script>
+<script src="/javascripts/application.js"></script>
+</body>
+</html>
