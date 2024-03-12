@@ -134,6 +134,105 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Spring Member Drive:</strong>
+            Protect journalism that gets results.
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
 
 
     <!-- Load SiteHeader variant based on variable -->
@@ -303,7 +402,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <line x1="5" y1="12" x2="19" y2="12"></line>
     <polyline points="12 5 19 12 12 19"></polyline>
 </svg>
-                <input id="newsletter-signup-body-897183" class="form__submit-btn form__submit-btn--arrow-transparent g-recaptcha" value="Sign Up" type="submit">
+                <input id="newsletter-signup-body-29484" class="form__submit-btn form__submit-btn--arrow-transparent g-recaptcha" value="Sign Up" type="submit">
             </div>
             <input type="hidden" name="origin_location" value="https://v3-www.propublica.org/article/massachusetts-affordable-housing-vacancies">
                 <input type="hidden" name="source" value="https://www.propublica.org/" />
@@ -342,8 +441,8 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <div class="promo-donate-2__bg">
             <svg width="265" height="157" viewBox="0 0 265 157" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M133.852 0L0 79.344 133.852 157 265 79.344 133.852 0z"/></svg>
         </div>
-        <p class="promo-donate-2__text">Defend the facts. Support independent journalism by donating to ProPublica. </p>
-        <a class="promo-donate-2__btn | btn" style="--button-color: var(--red-50)" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=InL">Donate</a>
+        <p class="promo-donate-2__text">Spring Member Drive: Protect journalism that gets results.</p>
+        <a class="promo-donate-2__btn | btn" style="--button-color: var(--red-50)" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=InL">Donate Now</a>
     </div>
 </aside>
 
@@ -663,7 +762,25 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <footer class="article-footer" data-pp-location="article footer">
         
     
-                <div class="rich-byline-group">
+        
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect Independent Journalism</h2>
+
+    <div class="module-content">
+
+        <p>This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change.</strong></p>
+
+        <p>ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life.</strong> Over 15 years (and six Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions.</p>
+
+        <p>Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 50,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.</p>
+
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
+
+        <div class="rich-byline-group">
 
 
 
@@ -704,11 +821,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/seattle-boeing-field-ice-deportation-flights">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/after-walmart-bought-finance-app-one-complaints-soared">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240116-Tamayo-SeattleICEFlights-055-PDedit_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=5249f5603d13958a6cfccee821b93965 400w, https://img.assets-d.propublica.org/v5/images/20240116-Tamayo-SeattleICEFlights-055-PDedit_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=7984d17f3d29e6a201083b4fa7742dac 800w, https://img.assets-d.propublica.org/v5/images/20240116-Tamayo-SeattleICEFlights-055-PDedit_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=40a65d84558465a609d86d33242d33ac 1200w, https://img.assets-d.propublica.org/v5/images/20240116-Tamayo-SeattleICEFlights-055-PDedit_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2777fc12c5c68f5dbaa66b03490e8e79 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/WALMART_BANK_FRAUD_COL_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.3184&amp;h=267&amp;q=75&amp;w=400&amp;s=da9d7215db91c4373234fb3ab1ebba63 400w, https://img.assets-d.propublica.org/v5/images/WALMART_BANK_FRAUD_COL_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.3184&amp;h=533&amp;q=75&amp;w=800&amp;s=99db0fd8c2f551ad2c4a90bafa5b36fc 800w, https://img.assets-d.propublica.org/v5/images/WALMART_BANK_FRAUD_COL_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.3184&amp;h=800&amp;q=75&amp;w=1200&amp;s=c5731e5701018cdd0ad453f9a7ae306b 1200w, https://img.assets-d.propublica.org/v5/images/WALMART_BANK_FRAUD_COL_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.3184&amp;h=1067&amp;q=75&amp;w=1600&amp;s=ab08d13319138c6cc3d6a15d68147b82 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -720,17 +837,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/seattle-boeing-field-ice-deportation-flights">
-                                    A Seattle Airfield Offers a Rare View of ICE Deportation Flights
+            <a href="https://www.propublica.org/article/after-walmart-bought-finance-app-one-complaints-soared">
+                                    Walmart Bought a Finance App and Reduced Fraud Protections. Guess What Happened Next?
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Key details about what happens inside ICE Air would still be hidden if not for a group of Washington activists and researchers, who are now using a live video feed from the tarmac to document the flights.
+                            The retail giant has long sought to become a financial powerhouse. But after it acquired a neobank called One in 2022, fraud complaints multiplied and customer reviews cratered.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/mac-funk">McKenzie Funk</a>,             <time class="timestamp" datetime="2024-03-08EST05:00">March 8, 5 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/craig-silverman">Craig Silverman</a> and <a class="name" href="https://www.propublica.org/people/peter-elkind">Peter Elkind</a>,             <time class="timestamp" datetime="2024-03-11EDT05:00">March 11, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -750,11 +867,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/how-one-woman-endured-decade-neglect-new-york-guardianship">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/michigan-state-health-plans-cancer-treatments">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Guardian-Lead-Final_DBodden-1-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=a4582850939225dc160919ebb889fd46 400w, https://img.assets-d.propublica.org/v5/images/Guardian-Lead-Final_DBodden-1-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=5eb64528fecb05c207774b8038b9c97c 800w, https://img.assets-d.propublica.org/v5/images/Guardian-Lead-Final_DBodden-1-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=0a32253ee13478bf092df23f8a123afa 1200w, https://img.assets-d.propublica.org/v5/images/Guardian-Lead-Final_DBodden-1-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=bce5bb244eca4d227fe0c847ffaf3b51 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20231001-Norman-Denials-Van-Patten-26-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=6fa25f8f710a425bac68553dc190d39d 400w, https://img.assets-d.propublica.org/v5/images/20231001-Norman-Denials-Van-Patten-26-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=e167535b09ac5c5b7bf60d1cd139b20b 800w, https://img.assets-d.propublica.org/v5/images/20231001-Norman-Denials-Van-Patten-26-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=f96feddc13c725daa0861fa0bae1adda 1200w, https://img.assets-d.propublica.org/v5/images/20231001-Norman-Denials-Van-Patten-26-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=fde8efdd32a432aaefdf3d10462b24d2 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -764,19 +881,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/uncovered">Uncovered</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/how-one-woman-endured-decade-neglect-new-york-guardianship">
-                                    How One Woman Endured a Decade of Neglect in New York’s Guardianship System
+            <a href="https://www.propublica.org/article/michigan-state-health-plans-cancer-treatments">
+                                    Michigan Lawmaker Introduces Bill Requiring State Health Plans to Cover Cutting-Edge Cancer Treatments
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Judith Zbiegniewicz lived in squalor, yet every month, her legally appointed guardian was paid $450 from her bank account. She is one of the thousands of vulnerable New Yorkers left stranded by a system meant to protect them.
+                            After ProPublica reported on a Michigan insurer that wouldn’t cover a cancer patient’s last-chance treatment, a state lawmaker introduced a measure compelling health plans to cover a new generation of advanced cancer therapies.
                     </p>
 
         <p class="story-card__byline">
-            by <span class="name">Jake Pearson</span>, illustrations by <span class="name">Dominic Bodden</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-03-07EST06:00">March 7, 6 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/robin-fields">Robin Fields</a> and <a class="name" href="https://www.propublica.org/people/maya-miller">Maya Miller</a>,             <time class="timestamp" datetime="2024-03-05EST10:00">March 5, 10 a.m. EST</time>
         </p>
 
             </div>
@@ -839,11 +957,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/utah-cleft-palate-team-says-approach-is-innovative-others-disagree">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/we-dont-talk-about-leonard-leo-supreme-court-supermajority">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20230801-Yoon-Cleft-Palate-Failures-28_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=b42e64a4fb2b6042b993a174493ff2ee 105w, https://img.assets-d.propublica.org/v5/images/20230801-Yoon-Cleft-Palate-Failures-28_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=e21a2487ea790e118f7088c495c5e822 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20230925-Sweitzer-SCOTUS-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=3e3857636a8dcc2bcd6fa17de8083e09 105w, https://img.assets-d.propublica.org/v5/images/20230925-Sweitzer-SCOTUS-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=34050ac7421c2c2c4f0438791c4cfdf4 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -853,19 +971,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/supreme-court-scotus">Friends of the Court</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/utah-cleft-palate-team-says-approach-is-innovative-others-disagree">
-                                    A Utah Cleft Palate Team Says Its Approach Is Innovative. Others See a Pattern of Unnecessary Surgeries on Children.
+            <a href="https://www.propublica.org/article/we-dont-talk-about-leonard-leo-supreme-court-supermajority">
+                                    We Don’t Talk About Leonard: The Man Behind the Right’s Supreme Court Supermajority
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            At Primary Children’s Hospital in Utah, pediatric surgeons are taking controversial risks with how they care for kids with cleft lip and palate. Outside doctors found that some parents weren’t told their child’s care was different from the norm.
+                            The inside story of how Leonard Leo built a machine that remade the American legal system — and what he plans to do next.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/megan-rose">Megan Rose</a>,             <time class="timestamp" datetime="2024-03-06EST05:00">March 6, 5 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>, <a class="name" href="https://www.propublica.org/people/andrea-bernstein">Andrea Bernstein</a> and <a class="name" href="https://www.propublica.org/people/ilya-marritz">Ilya Marritz</a>, illustrations by <span class="name">Nate Sweitzer</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2023-10-11EDT05:00">Oct. 11, 2023, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -881,15 +1000,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
     
 
-                    
+
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/liberty-university-fined-sexual-assault-safety">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/how-one-woman-endured-decade-neglect-new-york-guardianship">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-1208731140_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=68d01f899e57477fad96cd46b2a5c4c9 105w, https://img.assets-d.propublica.org/v5/images/GettyImages-1208731140_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=34dd82dae2d5630428331bb94b828678 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Guardian-Lead-Final_DBodden-1-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=3ea630b307c7af2993af12e774182e55 105w, https://img.assets-d.propublica.org/v5/images/Guardian-Lead-Final_DBodden-1-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=8bf867c70a095cf89804318fe0bf5774 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -901,17 +1020,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/liberty-university-fined-sexual-assault-safety">
-                                    Liberty University Hit With Record Fines for Failing to Handle Complaints of Sexual Assault, Other Crimes
+            <a href="https://www.propublica.org/article/how-one-woman-endured-decade-neglect-new-york-guardianship">
+                                    How One Woman Endured a Decade of Neglect in New York’s Guardianship System
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Spurred by a ProPublica investigation, the federal Department of Education found the evangelical school in Virginia had discouraged students from reporting rape and other crimes.
+                            Judith Zbiegniewicz lived in squalor, yet every month, her legally appointed guardian was paid $450 from her bank account. She is one of the thousands of vulnerable New Yorkers left stranded by a system meant to protect them.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/eric-umansky">Eric Umansky</a>,             <time class="timestamp" datetime="2024-03-06EST12:35">March 6, 12:35 p.m. EST</time>
+            by <span class="name">Jake Pearson</span>, illustrations by <span class="name">Dominic Bodden</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-03-07EST06:00">March 7, 6 a.m. EST</time>
         </p>
 
             </div>
@@ -1040,13 +1159,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#08656d6c61697a616f607c7b48787a67787d6a64616b6926677a6f"><span class="__cf_email__" data-cfemail="95f8f0f1fcf4e7fcf2fde1e6d5e5e7fae5e0f7f9fcf6f4bbfae7f2">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#ef828a8b868e9d8688879b9caf9f9d809f9a8d83868c8ec1809d88"><span class="__cf_email__" data-cfemail="f29f97969b93809b959a8681b282809d8287909e9b9193dc9d8095">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#137f7a70767d607a7d745363617c6366717f7a70723d7c6174"><span class="__cf_email__" data-cfemail="2844414b4d465b41464f68585a47585d4a44414b4906475a4f">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#aec2c7cdcbc0ddc7c0c9eededcc1dedbccc2c7cdcf80c1dcc9"><span class="__cf_email__" data-cfemail="610d0802040f12080f062111130e1114030d0802004f0e1306">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
