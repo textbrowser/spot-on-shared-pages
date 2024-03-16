@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Challenges in Adopting and Sustaining Microservice-based Software Development - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Development" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3650211" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>March 11, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3650211">Volume 22, issue 1 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3649402">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Challenges in Adopting and Sustaining Microservice-based Software Development</h1>
+<h2>Organizational challenges can be more difficult than technical ones.</h2>
+<h3>Padmal Vitharana and Shahir A. Daya</h3>
+<p>MS (microservice) has become the latest buzzword in software development,<sup>1,6,17</sup> and the popularity of MS-based development is gaining momentum. The MS approach to software development offers an alternative to the conventional monolith style. While benefits of MS-based development over monolith style are clear, industry experts agree that neither style provides an absolute advantage in all situations. Proponents contend that an MS approach to software development more readily facilitates mapping organizational changes manifesting from a more dynamic business environment to corresponding IT/IS (information technology/information systems) changes. </p>
+<p>MS represents an architectural style where large, complex applications are composed of a suite of smaller MSs. MSs have been advocated to overcome some of the perils of existing approaches to software development.<sup>1,7,30</sup> Each MS corresponds to a single function around a business capability. Each encompasses its own data resources and is quickly deployable. Examples range from online bill payment on a banking website to an alternate-flights service on an airline website.</p>
+<p>Other benefits of MSs include ease of requirements changes and testing, greater scalability, enhanced technology innovation and heterogeneity (e.g., support for different programing languages and platforms), ease of monitoring performance such as service reliability, and support for more process variations.<sup>4,7,18,29</sup> In a previous article in <i>acmqueue,</i> Tom Killalea highlighted eight dividends of microservices beyond the benefits already accepted by industry experts.<sup>15</sup> Extensive adoption by notable companies such as Netflix and Uber has given further credence to MS-based software development.<sup>13,16,19</sup></p>
+<p>Thanks to the favorable reviews of MSs, many organizations are now considering adopting them. While benefits are clear, there are significant challenges to adopting and sustaining MS-based software development. Many of these challenges stem from the novelty of the approach and the lack of understanding in both technical and organizational parameters affecting MS-based development. Unless these challenges are well understood, companies are unlikely to reap the full benefits of MSs and be even worse off than before the modernization. </p>
+<p>This article identifies key challenges from the initial decision to adopt MSs to the ongoing task of sustaining the new paradigm over the long haul. It aims to provide insights to those considering MS-based software development. This work is supplemented by sections throughout the article labeled "Field Report," which are based on first-hand experiences of one of the authors, Shahir A. Daya, who has been leading significant MS-based development projects for the past two years at several Fortune 100 companies. (He is responsible for helping the IBM Global Business Services organization adopt the skills necessary to deliver MS-based modernization projects. As such, he teaches several classes on the subject and has coauthored an IBM Redbook as well as IBM’s <i>Microservices Decision Guide</i>.)</p>
+<p>&nbsp;</p>
+<h3>The Initial Decision to Adopt MS Architecture</h3>
+<p>For many, the decision to adopt MS architecture generally emanates from out-of-control codebases in large and complex monoliths.<sup>23</sup> While many applications start small and are expected to fulfill a specific business need, over time they become larger and more complex as new requirements are added and bugs are fixed. Code refactoring to counter the effects of mounting complexity is often pursued, but barriers to refactoring in a monolith setting are well known.<sup>1,25</sup> Ultimately, the decision to adopt MS architecture rests on the profile of the organization’s application suite.</p>
+<p>Although extreme cases of spiraling codebases and escalating complexities are likely to be self-evident, other situations complicate the decision to adopt MSs. In practice, the decision should not be based on transforming all monolithic applications all at once to MSs; rather, the first step should be identifying specific business functionalities and associated code segments as initial candidates for modernizing to MSs. Monolithic applications create enormous bottlenecks when frequent code changes warrant the need to deploy them often. </p>
+<p>When applications are already subjected to significant enhancements in a relatively short period of time or are expected to be in the future, management should consider adopting MSs. The case for modernizing to MSs should also be made when monoliths take up greater testing resources than the development effort. When an application is identified as a differentiator in the industry and significant investment has been made for its success, the case ought to be made for refactoring it under MSs. When monolithic applications continue to struggle to meet NFRs (nonfunctional requirements) and user expectations, there are more opportunities to reap the benefits of modernizing to MSs. When a higher value is placed on software scalability, refactoring to MSs allows each MS to be scaled independently of the others that make up the application (vis-à-vis a monolith). While scalability in general is desirable, predicting future scalability requirements is not trivial.</p>
+<p>Nonetheless, the biggest challenge for MS proponents is to make the value proposition to upper management. The key to making the case for adoption lies in quantifying the benefits of MS and comparing them with costs of implementing an MS infrastructure, including recruiting and retraining personnel. The decision to modernize to MSs has to take into account all parameters in a holistic, rather than a piecemeal, fashion. Intangibles such as changes to the organizational culture, where a team of individuals is responsible for each MS from development to operation, need to be considered as well. </p>
+<p>While the MS model offers greater resiliency in terms of the overall system’s ability to continue to function even when a noncritical MS fails,<sup>7</sup> it still needs to be programmed into the code.<sup>12</sup> Unlike a single monolith, MSs allow for setting more finely granular SLAs (service-level agreements). When SLAs for an individual MS are considered for the system as a whole, however, they become multiplicative instead of additive from an end-user point of view. Hence, quantifying SLAs for an application made up of a suite of MSs depending on each other can be quite challenging.</p>
+<p>As companies look for ways to cope effectively with organizational changes that manifest from a demand such as new product development and the corresponding IT/IS changes, MSs offer a novel approach to align organizational and IT/IS changes more seamlessly.<sup>7,18,29</sup> For many, however, the decision to adopt the MS architecture is not a trivial one, and not all applications are candidates for this modernization. </p>
+<p>In comparing monolith and MS approaches to software development, Thomas Hunter, author of <i>Advanced Microservices,</i><sup>14</sup> asserts that "there are various reasons to choose one approach instead of the other, and neither approach is absolutely better or worse than the other." When a company has a large suite of applications that historically have had one or two deployments a year, there is little reason to make the leap to MSs. In making this important decision to adopt the new paradigm, companies need to examine their application portfolio and consider all aforementioned criteria. Over time, the experience will help organizations navigate the decision-making landscape to either adopt MSs or retain the conventional monolith-based development. </p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<h4>Field Report</h4>
+<p>In conversations with organizations, it is apparent that they understand that the MS architectural style is complex compared with that of a monolith, and that the decision to modernize an application leveraging MSs should not be taken lightly. They also understand that there is nothing wrong with a well-modularized monolithic application. Only when they start to see issues in their ability to deliver business capabilities in a timely manner in comparison with their competitors, or when they start to experience nonfunctional issues such as scalability, do they start talking about the possibility of modernizing the application architecture.</p>
+<p>Organizations are also starting slowly down this MS path. Many will look at the pain points of a monolithic application and address only those pain points using MSs. For example, a performance hot spot in a monolithic application can be pulled into an MS and scaled independently without needing to scale the rest of the monolith. </p>
+<p>Organizations have started to understand that not all their applications need to be modernized to the MS style and that an entire single application doesn’t have to be modernized. An application can consist of both a monolithic portion delivering some of the functionality as well as a modern MS suite delivering other functionality (i.e., coexistence of the old and the new). For instance, a large North American bank is modernizing selected parts of its online banking application to an MS style. This opportunistic and incremental approach is also being used by a large U.S.-based airline to modernize its website, mobile apps, and self-service kiosks. This approach is called the strangler fig pattern.<sup>10</sup></p>
+</div>
+<p>&nbsp;</p>
+<h3>Converting Existing Monoliths to Microservices</h3>
+<p>To realize the benefits of the MS paradigm, companies look for ways to break up their existing monoliths. Practically, it makes sense to identify larger MSs that could later be broken into smaller ones. Our experience is that breaking a larger MS into smaller ones is easier than combining two smaller MSs to create a larger one. Others have made similar observations, that most organizations tend to start with bigger MSs and then split them up into smaller ones.<sup>26</sup> The challenge is to develop guidelines for systematically carving MSs out of the monolith. </p>
+<p>Segmenting code into units where each represents a single function or business capability is referred to as <i>bounded context</i>, a term that has roots in domain-driven design.<sup>3,9</sup> Isolating frequently changing code segments within a monolith serves as the starting point in identifying bounded context for segmenting part of the monolith to create MSs. As alluded to earlier, the code segments that (a) are most used, (b) take up significant testing resources, (c) serve as differentiators, and (d) struggle to meet NFRs and user expectations also provide clues about how to segment a monolith to build MSs. </p>
+<p>This transformation exercise requires adherence to conventional principles in strong cohesion and loose coupling. Nonetheless, the goal should never be to convert the entire monolith into MSs. Instead, in an iterative fashion, suitable code segments should be identified and refactored into MSs. </p>
+<p>Implementing stopping rules for the monolith-to-MS transformation plays a crucial role in reaching desired objectives without getting carried away by MS mania. Moreover, this should not be an exercise in simply copying a codebase from a monolith and pasting it to an MS. It needs to be looked upon as an opportunity (albeit with certain challenges) to improve that code segment in the form of an MS that provides a specific business function with a well-defined interface. </p>
+<p>In most instances, not all of the original monolith is converted to MSs. The overhauled monolith now has to coexist with newly created MSs. Calls that initially went to the monolith may now have to be rerouted to the corresponding MS. The new ecosystem creates an added challenge that is not present in a solely monolithic environment: The user interface of the existing monolith needs to be updated to point modernized/new functions to the MS-based application delivering that business function. This coexistence of the monolithic application and the MS-based modernized parts requires sharing context between them, including authentication/authorization information, thereby further exacerbating complexities in software development and operation.</p>
+<p>Breaking up a monolith invariably involves segmenting data elements in the enterprise repository to individual MSs. While designers are generally well versed in principles of distributed database design, the new ecosystem consisting of monoliths and MSs requires training in data segmentation that transcends our extant knowledge. In this exercise, the challenge is to avoid data duplication and possibly learn to disregard conventional principles such as data normalization. Once data is partitioned, the monolith has to be tested to make sure that it does not break. While each MS containing its own data resources has it benefits, practitioners face significant challenges in partitioning the enterprise database.</p>
+<p>MS-based development requires additional levels of testing. First, <i>contract</i> testing refers to testing APIs. When a consumer links to an MS, a contract is formed. This contract defines the inputs, outputs, and performance parameters that need to be thoroughly tested. </p>
+<p>Second, <i>chaos</i> testing refers to testing for "chaos" inherent in the natural world. Generally, this exercise involves defining what is "normal" and testing the system under those conditions before introducing chaotic conditions. More chaotic conditions manifest in the new paradigm because unlike a monolith, which has only two states of availability, some of the MSs in the application might be up and running while the others may not. </p>
+<p>To mimic this reality in chaos testing, each MS is brought down deliberately to test its implications on the overall system. This testing also involves intentional introduction of network latency to assess its impact on performance. MSs communicate with each other over the network as opposed to the in-process function calls made in a monolith. Testing circuit breakers<sup>11</sup>—put in place to decide whether to continue operating under normal conditions or resort to operating under limited capacity—places added complexities on the emerging paradigm.</p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<h4>Field Report</h4>
+<p> We do not recommend creating a new green-field application using an MS architectural style. It is too complicated to start that way. A monolith-first approach should be used for creating an MVP (minimum viable product) and getting it into the hands of your users. Once the monolith becomes large enough, it can be decomposed into MSs. Most organizations are modernizing existing business-critical monolithic applications using an MS architectural style. These legacy applications have gathered significant technical debt over the many years of code changes that has resulted in loss of agility, impacting time to market of new business capabilities. </p>
+<p>Almost all of the organizations we work with are using the strangler fig pattern<sup>5</sup> to "strangle" the monolith and pull out one MS at a time. This approach requires thinking through how the monolith portion and the MS portion coexist. This is not simple, but the advantage of being able to quickly modernize one function of a large application and get it into the hands of the users outweighs the complexity of coexistence. The U.S.-based airline mentioned previously is using this strangler fig approach. The entire transformation may take three-plus years to complete; however, end users start to see transformed business capabilities as soon as the individual products (functions/features) go live, and they continue to see transformed capabilities incrementally during the course of the project.</p>
+</div>
+<p>&nbsp;</p>
+<h3>Building New Microservices and Modifying Existing Ones for New Requirements</h3>
+<p>As new requirements emerge, developers have to decide whether to build a new microservice or modify an existing one. When modifying an existing MS, the challenge is to preserve the bounded context of that MS (i.e., high cohesion of what is included in the MS). Unless developers are trained in the new paradigm, they could resort to what is technically expedient rather than maintaining core principles of MS-based development by focusing on business aspects. For example, adding new code to satisfy a requirement might break the tenet that each MS should support a single function around a business capability. Or lack of due diligence in adding code might result in unintentional dependencies (i.e., coupling between the modified MS, other MSs, or even the refactored monolith), thereby stymying the ability to independently and quickly change, test, and deploy it. </p>
+<p>The key is to educate developers to handle business requirements in the new paradigm and instill discipline to maintain its fundamental tenets. The technical lead in each development team needs to verify that creating new MSs and modifying existing ones does not break key assumptions of the emerging paradigm. Conventional techniques such as code reviews need to be expanded to ensure that the new configuration does not violate the bounded context. Failure to do so would result in the breakdown of the MS architecture and thwart the realization of its much-touted benefits. </p>
+<p>The new paradigm operates at the application level rather than at an enterprise level, as is the case with SOA (service-oriented architecture) and web services. Hence, there could be some duplication of effort. Although one application team might have created an MS that could be used by a second application team, in the absence of an enterprise-wide repository of MSs, the latter might create an identical MS. </p>
+<p>These application-based teams tend to move at a fast pace and tend to do little sharing of codebases among them. The modest sharing that does occur manifests by word of mouth or through personal contacts among developers and project teams. In case one team finds an MS already created by another team useful, the former team tends to create its own "copy" of the existing MS to avoid being dependent on the MS created by the latter team. The team essentially forks the codebase and is now responsible for maintaining its own fork of the MS. The best way to promote sharing, however, is to catalog all MSs.</p>
+<p>The addition of new MSs creates new challenges in monitoring them. Developers have to define metrics for monitoring performance of MSs. One key question is to define what it means to say that an MS is in "good" standing. Monitoring MSs for their availability, reliability, ability to fulfill SLAs, robustness, and resiliency requires metrics and benchmarking. It might require creating synthetic transactions to test the health of each MS periodically. Performance logs of MSs need to be continually monitored to assess their performance and take corrective action when needed.</p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<h4>Field Report</h4>
+<p> The first delivery of MSs tends to be good. The team has just started on the MS journey, and everyone involved understands the tenets of MSs and why they are necessary. The developers religiously follow the rules and ensure that the granularity of the MSs is appropriate and that they have a bounded business context. </p>
+<p>Once the excitement and glamour of an MS-based architecture is gone, however, some developers start to take shortcuts and violate some of the core tenets of the MS style, such as having a bounded business context and not being coupled to another MS via a database. This is already evident at certain organizations and will become a bigger problem as the MS style is more widely adopted. </p>
+<p>Discipline is required, and measures such as architecture and code reviews are necessary to avoid taking on unnecessary technical debt. Keeping track of technical debt during an MS-based transformation project is a good idea. Different technical and business constraints may force teams to take shortcuts that result in more technical debt. The U.S.-based airline mentioned earlier is doing a great job of keeping track of technical debt and is creating user stories in the team’s backlog to pay the debt.</p>
+</div>
+<p>&nbsp;</p>
+<h3>Operating Microservices and the Architecture</h3>
+<p>The MS paradigm creates greater operational complexity because of the numerous moving parts that need to be tracked (vis-à-vis conventional monoliths). Each MS provides a specific business functionality and a suite of MSs have to work in concert to provide a more overarching business function. While MS-based development relies on developing autonomous services offering some business functionality, designing decoupled application systems is no easy task. It involves messaging and data exchange among corresponding MSs that need to be monitored and managed. Unlike maintaining enterprise databases commonly used with monolith systems, maintaining the availability and consistency of data partitioned into MSs creates additional demands. </p>
+<p>Versioning brings significant challenges in the new paradigm. Instead of having to deal with a few versions of a monolith, now developers and analysts have to deal with multiple build and interface versions of many MSs.<sup>20</sup> As developers create new versions, they have to provide support for both prior and new versions. Users need to be informed of differences with older versions in terms of functionality and interface. Some developers choose to list a new MS as experimental, beta, or general.<sup>7</sup> There must be clear guidelines for informing users in case of discontinued support for older MSs. When the service registry contains multiple versions of an MS, locating the right one for a given application creates additional complications. Versioning strategies and guidelines need to be in place.</p>
+<p>The network has a greater effect on an application with many MSs as opposed to a single monolith where function calls are in the same running process.<sup>8</sup> Networks inherently introduce latency issues that could adversely impact the performance of an MS-based application. MSs manifest in the form of distributed systems with calls among them managed via the network. Unlike monoliths, an application consisting of a suite of smaller MSs with messaging among them could amplify network latency. </p>
+<p>Running performance tests to identify the biggest sources of latency could hold the key to addressing this challenge. Choosing a platform that helps identify potential bottlenecks could ease network latency. While network latency is unavoidable when dealing with applications composed of MSs, greater insights into the inner workings of MSs would aid in identifying markers on acceptable latency levels.</p>
+<p>In addition to technical challenges, companies face obstacles to changing the prevailing culture surrounding monoliths when they begin to develop MSs, where incentives and accountability differ considerably. The new paradigm promotes principles of DevOps teams that are charged with both developing and operating each MS. DevOps correspond to a set of practices that strive to unify software development (Dev) and software operation (Ops).<sup>2</sup> </p>
+<p>Unlike conventional teams based on disciplines such as marketing, DevOps teams are organized by business capabilities. They are responsible from inception to the entire operational life of a product, whether it is small or an end-to-end vertical slice through the product implementing a feature of a larger product that includes all of the MSs that are part of it. </p>
+<p>Instead of seeking technology-focused solutions in monoliths, these DevOps teams seek business service-focused solutions. Before an MS is implemented, a clear business service (i.e., function) that the MS is expected to represent has to be delineated. The cultural changes, such as willingness to work with cross-functional teams and to take on expanded roles demanded by the emerging paradigm, are likely to face resistance from some quarters. Moving to a new culture based on the principle "if you build it, you run it and support it" could prove challenging. Unless the incentives are aligned to promote cross-functional collaboration and accept expanded roles as in DevOps teams, some may be reluctant to embrace the organizational changes necessary to facilitate MS-based development.<sup>7,28</sup></p>
+<p>&nbsp;</p>
+<h4>Field Report</h4>
+<p>While working at different organizations to deliver MS-based projects, we have found that the organizational challenges are much more difficult than the technical challenges. Putting together a cross-functional team/squad that can handle a vertical slice right from the UI to the back end across all of the channels (web, mobile, etc.) is not an easy task. These individuals are likely to be in different parts of the organization and may need to be moved to overcome some of the barriers. Moving all of the individuals who make up a team so they report to the same HR manager certainly helps. Although they have the same HR manager, team members will take technical directions from different leads based on their given roles in the cross-functional team.</p>
+<p>Developers also need to get up to speed with the Ops part of DevOps. The team has to accept the fact that they maintain and support the code they write. If the MS they write fails, they will get paged in the middle of the night. They need to implement the necessary monitoring, dashboarding, alerting, and runbook automation to avert such emergency interruptions. We are starting to do this with our clients and are seeing positive results. Developers are taking ownership, and code quality is improving, but developers don’t want to maintain their code forever. It is critical to keep them engaged, so it is important to let individuals move from one team/squad to another, one at a time.</p>
+<p>Having strong executive sponsorship at the organization for your MS initiatives is absolutely necessary for success. All of our clients experiencing positive forward movement in the cultural transformation have strong executive sponsorship.</p>
+<p>&nbsp;</p>
+<h3>Sustaining a MicroserviceS Approach in the Long Haul</h3>
+<p>As with any new paradigm, the use of MSs for software development and operation warrants justification on a periodic basis. Top management is likely to insist on evidence of performance gains in order to furnish ongoing investment in people and MS-related technology. This requires initial benchmarking and continuous performance assessment. </p>
+<p>While conventional metrics have relevance, new performance metrics need to be developed and instituted. For example, SLAs for an MS-based application as well as SLAs for each MS must be tracked for compliance. In addition to these traditional nonfunctional requirements, other baselining and tracking metrics include an increase in deployments with the modernized application, reduction in the amount of downtime during deployments, reduction in the number of defects/bugs being reported, decrease in the cost of making updates to add new features, etc.</p>
+<p>Moreover, processes need to be in place to review and refine applications and MSs within each application. Fundamentally, each MS is expected to represent a single business functionality. Checks and balances are needed to confirm that each MS conforms to this core principle. Generally, companies have not instituted such processes, although there is tremendous value in doing so in order to attest that the company stays true to itself in embracing the new paradigm. Often when existing MSs are modified, some may contain meta functionality and dependencies (i.e., tight coupling) with other MSs—two characteristics that are contrary to guiding principles of MS-based development. </p>
+<p>On a periodic basis, each MS should be inspected by a different party from the one that developed it to make sure it complies with key tenets of MS-based development. The same holds true for data embedded in MSs. Without clear focus and discipline, revising existing MSs to add a new requirement or fix a defect might result in unwanted data dependencies between MSs and enterprise databases. </p>
+<p>With ongoing pressure to move software products out the door, some developers might be tempted to cut corners and abandon the founding tenets of MSs in the process. The developer pool needs continuous training in maintaining core principles of MS-based development. </p>
+<p>Moreover, companies need to continue building talent to develop the next generation of MSs that correspond to a single function around a business capability, encompass their own data resources, and are quickly deployable. However, few college graduates receive training in MS-based software development. These are some of the challenges organizations face in sustaining MS-based development over the long run. </p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<h4>Field Report</h4>
+<p>Full-stack developers are not easy to find. Most organizations today have specialists in a particular area—for example, front-end development, back-end development, or native iOS development. It is rare to find individuals who can do it all. Some have breadth but are deep (i.e., specialists) in one area ("T"-shaped). To grow toward more inverted triangle-shaped individuals (i.e., varying depth in a number of specialties), practices such as pair programming and frequent rotation of pairs helps to develop the necessary skills. This takes time and cannot be rushed. The Spotify method is being used by some of our clients and is proving to be a good model for MS-based development.</p>
+<p>Large organizations such as IBM are starting to influence academic curricula to include education on cloud-native and MS-based application development in an attempt to close the skills gap in the industry.</p>
+</div>
+<p>&nbsp;</p>
+<h3>Conclusion</h3>
+<p>Increasing globalization and hypercompetition have resulted in dynamic business environments that require companies to adapt quickly to rapid and frequent changes. These environmental forces necessitate changes to business strategy that manifest in internal organizational changes. Software systems are intimately intertwined with all aspects of a company and, therefore, organizational changes warrant system changes.<sup>4,7,21,24</sup> </p>
+<p>Companies continue to struggle, however, with effectively mapping organizational changes with IT/IS changes.<sup>7,29</sup> This has been attributed to a company’s inability to deploy software applications independently and quickly.<sup>7</sup> The software industry is enamored with MS-based development’s ability to overcome these perils. </p>
+<p>Each MS contains its own data and represents a single function that corresponds to a business capability. This allows for seamless alignment of business services with software services (i.e., microservices). While the new paradigm has considerable advantages, it can impose substantial costs as well.<sup>1,7,22,27</sup> Hence, the challenges highlighted in this article have to be considered to improve a company’s chances of success in adopting and sustaining MS-based software development.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Abgaz, Y., McCarren, A., Elger, P., Solan, D., Lapuz, N., Bivol, M., Jackson, G., Yilmaz, M., Buckley, J., Clarke, P. 2023. Decomposition of monolith applications into microservices architectures: a systematic review. <i>IEEE Transactions on Software Engineering 49(8), </i>4213–4242;<i> </i><a href="https://dl.acm.org/doi/10.1109/TSE.2023.3287297">https://dl.acm.org/doi/10.1109/TSE.2023.3287297</a>.</p>
+<p>2. Balalaie, A., Heydarnoori, A., Jamshidi, P. 2016. Microservices architecture enables DevOps: migration to a cloud-native architecture. <i>IEEE Software 33(3),</i> 42–52; <a href="https://dl.acm.org/doi/10.1109/MS.2016.64">https://dl.acm.org/doi/10.1109/MS.2016.64</a>.</p>
+<p>3. Bogner, J., Zimmermann, A. 2016. Towards integrating microservices with adaptable enterprise architecture. IEEE 20th International Enterprise Distributed Object Computing Workshop, 158–163; <a href="https://ieeexplore.ieee.org/document/7584392">https://ieeexplore.ieee.org/document/7584392</a>.</p>
+<p>4. Bozan, K., Lyytinen, K., Rose, G. 2021. How to transition incrementally to microservice architecture. <i>Communications of the ACM</i> <i>64(1),</i> 79-85; <a href="https://dl.acm.org/doi/10.1145/3378064">https://dl.acm.org/doi/10.1145/3378064</a>.</p>
+<p>5. Brown, K. 2017. Apply the Strangler Fig application pattern to microservices applications. IBM; <a href="https://developer.ibm.com/articles/cl-strangler-application-pattern-microservices-apps-trs/">https://developer.ibm.com/articles/cl-strangler-application-pattern-microservices-apps-trs/</a>.</p>
+<p>6. Cortellessa, V., Di Pompeo, D., Eramo, R., Tucci, M. 2022. A model-driven approach for continuous performance engineering in microservice-based systems. <i>Journal of Systems and Software 183;</i> <a href="https://www.sciencedirect.com/science/article/pii/S0164121221001813">https://www.sciencedirect.com/science/article/pii/S0164121221001813</a>.</p>
+<p>7. Daya, S., van Duy, N., et al. 2016. <i>Microservices from Theory to Practice: Creating Applications in IBM Bluemix Using the Microservices Approach</i>. IBM Redbooks; <a href="https://www.redbooks.ibm.com/abstracts/sg248275.html">https://www.redbooks.ibm.com/abstracts/sg248275.html</a>.</p>
+<p>8. Dragoni, N., Saverio, G., Lafuente, A.L., Mazzara, M., Montesi, F., Mustafin, R., Safina, L. 2017. Microservices: yesterday, today, and tomorrow. In <i>Present and Ulterior Software Engineering</i>. Springer, 195–216; <a href="https://link.springer.com/chapter/10.1007/978-3-319-67425-4_12">https://link.springer.com/chapter/10.1007/978-3-319-67425-4_12</a>.</p>
+<p>9. Evans, E. 2004. <i>Domain-Driven Design: Tackling Complexity in the Heart of Software.</i> Addison-Wesley Professional.</p>
+<p>10. Fowler, M. 2004. Strangler Fig application; <a href="https://martinfowler.com/bliki/StranglerFigApplication.html">https://martinfowler.com/bliki/StranglerFigApplication.html</a>.</p>
+<p>11. Fowler, M. 2014. Circuit breaker; <a href="https://martinfowler.com/bliki/CircuitBreaker.html">https://martinfowler.com/bliki/CircuitBreaker.html</a>.</p>
+<p>12. Hasselbring, W. 2016. Microservices for scalability: keynote talk abstract. <i>Proceedings of the Seventh ACM/SPEC on International Conference on Performance Engineering</i>, 133–134; <a href="https://dl.acm.org/doi/10.1145/2851553.2858659">https://dl.acm.org/doi/10.1145/2851553.2858659</a>.</p>
+<p>13. Hoff, T. 2016. Lessons learned from scaling Uber to 2000 engineers, 1000 services, and 8000 git repositories. High Scalability; <a href="https://goo.gl/1MRvoT">https://goo.gl/1MRvoT</a>.</p>
+<p>14. Hunter, T. 2017 <i>Advanced Microservices: A Hands-on Approach to Microservice Infrastructure and Tooling, </i>page 1<i>.</i> APress.</p>
+<p>15. Killalea, T. 2016. The hidden dividends of microservices. <i>acmqueue 14(3)</i>; <a href="https://queue.acm.org/detail.cfm?id=2956643">https://queue.acm.org/detail.cfm?id=2956643</a>.</p>
+<p>16. Mauro, T. 2015. Adopting microservices at Netflix: lessons for architectural design. NGINX; <a href="https://goo.gl/DyrtvI">https://goo.gl/DyrtvI</a>.</p>
+<p>17. Mendonça, N., Jamshidi, P., Garlan, D., Pahl, C. 2021. Developing self-adaptive microservice systems: challenges and directions. <i>IEEE Software 38(2)</i>, 70–79; <a href="https://dl.acm.org/doi/10.1109/MS.2019.2955937">https://dl.acm.org/doi/10.1109/MS.2019.2955937</a>.</p>
+<p>18. Newman, S. 2020. <i>Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith.</i> O’Reilly Media.</p>
+<p>19. Panda, A., Mooly, S., Shenker, S. 2017. Verification in the age of microservices. <i>Proceedings of the 16th Workshop on Hot Topics in Operating Systems</i>, 30–36; <a href="https://dl.acm.org/doi/10.1145/3102980.3102986">https://dl.acm.org/doi/10.1145/3102980.3102986</a>.</p>
+<p>20. Pautasso, C., Zimmermann, O., Amundsen, M., Lewis, J., Josuttis, N. 2017. Microservices in practice, part 2: service integration and sustainability. <i>IEEE Software 34(2)</i>, 97–104; <a href="https://dl.acm.org/doi/10.1109/MS.2017.56">https://dl.acm.org/doi/10.1109/MS.2017.56</a>.</p>
+<p>21. Rolland, K., Lyytinen, K. 2021. Managing tensions between management of architectural debt and digital innovation: the case of a financial organization. <i>Proceedings of the 54th Hawaii International Conference on System Sciences</i>, 6722–6732; <a href="https://scholarspace.manoa.hawaii.edu/server/api/core/bitstreams/5b283564-2e92-4c36-abf3-519e72d0fd0b/content">https://scholarspace.manoa.hawaii.edu/server/api/core/bitstreams/5b283564-2e92-4c36-abf3-519e72d0fd0b/content</a>.</p>
+<p>22. Singleton, A. 2016. The economics of microservices. <i>IEEE Cloud Computing 3(5)</i>, 16–20; <a href="https://ieeexplore.ieee.org/document/7742218">https://ieeexplore.ieee.org/document/7742218</a>.</p>
+<p>23. Taibi, D., Lenarduzzi, V., Pahl, C. 2017. Processes, motivations, and issues for migrating to microservices architectures: an empirical investigation. <i>IEEE Cloud Computing 4(5)</i>, 22–32; <a href="https://ieeexplore.ieee.org/document/8125558">https://ieeexplore.ieee.org/document/8125558</a>.</p>
+<p>24. Tallon, P. P., Queiroz, M., Coltman, T., Sharma, R. 2016. Business process and information technology alignment: construct conceptualization, empirical illustration, and directions for future research. <i>Journal of the Association for Information Systems 17(9), 563–589</i>; <a href="https://aisel.aisnet.org/jais/vol17/iss9/3/">https://aisel.aisnet.org/jais/vol17/iss9/3/</a>.</p>
+<p>25. Tempero, E., Gorschek, T., Lefteris, A. 2017. Barriers to refactoring. <i>Communications of the ACM 60(10)</i>, 54–61; <a href="https://dl.acm.org/doi/10.1145/3131873">https://dl.acm.org/doi/10.1145/3131873</a>.</p>
+<p>26. Thönes, J. 2015. Microservices. <i>IEEE Software</i> 32(1), 116; <a href="https://dl.acm.org/doi/10.1109/MS.2015.11">https://dl.acm.org/doi/10.1109/MS.2015.11</a>.</p>
+<p>27. Waseem, M., Liang, P., Shahin, M. 2020. A systematic mapping study on microservices architecture in DevOps. <i>Journal of Systems and Software 170; </i><a href="https://www.sciencedirect.com/science/article/abs/pii/S0164121220302053">https://www.sciencedirect.com/science/article/abs/pii/S0164121220302053</a>.</p>
+<p>28. Waxer, C. 2015. Microservices mania. <i>Computerworld 2(4)</i>, 22–27; <a href="https://www.computerworld.com/article/2998269/read-cw-s-november-monthly-digital-magazine.html">https://www.computerworld.com/article/2998269/read-cw-s-november-monthly-digital-magazine.html</a>.</p>
+<p>29. Wolff, E. 2017. <i>Microservices: Flexible Software Architecture</i>. New York: Addison-Wesley.</p>
+<p>30. Zhou, X., Li, S., Cao, L., Zhang, H., Jia, Z., Zhong, C., Shan, Z. Babar, M. A. 2023. Revisiting the practices and pains of microservice architecture in reality: an industrial inquiry. <i>Journal of Systems and Software 195(C);</i> <a href="https://dl.acm.org/doi/10.1016/j.jss.2022.111521">https://dl.acm.org/doi/10.1016/j.jss.2022.111521</a>.</p>
+<p>&nbsp;</p>
+<h4>Acknowledgments</h4>
+<p>This research was funded by grants from the Robert H. Brethen Operations Management Institute and the Earl V. Snyder Innovation Management Center at the Whitman School of Management, Syracuse University.</p>
+<p>&nbsp;</p>
+<p><b>Padmal Vitharana</b> is a professor of information systems in the Martin J. Whitman School of Management at Syracuse University. He received his Ph.D. from the University of Wisconsin-Milwaukee. His research expertise lies in system analysis and design in general and microservices, software components, and services in particular. His research has been published in leading journals, and he has served on the editorial boards of IEEE Transactions on Services Computing and Communications of the AIS.</p>
+<p><b>Shahir A. Daya</b> is an IBM Distinguished Engineer and chief architect for Business Transformation Services at IBM Canada. He is an IBM senior certified architect and an Open Group distinguished chief/lead IT architect with more than 25 years at IBM. He has received the prestigious IBM Corporate Award for exceptional technical accomplishments. His industry experience includes banking, financial services, and travel and transportation. He focuses on cloud-native architecture and modern software engineering practices for high-performing development teams.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'8654151d88253adc',t:'MTcxMDU4NTE3OS45MDcwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;8654151d88253adc&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2024.2.4&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 1</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3649402">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>A "Perspectival" Mirror of the Elephant - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Privacy and Rights" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3650211" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>March 12, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3650211">Volume 22, issue 1 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3649303">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">A "Perspectival" Mirror of the Elephant</h1>
+<h2>Investigating language bias on Google, ChatGPT, YouTube, and Wikipedia</h2>
+<h3>Queenie Luo, Michael J. Puett, and Michael D. Smith</h3>
+<p>Many people turn to Internet-based, software platforms such as Google, YouTube, Wikipedia, and more recently ChatGPT to find the answers to their questions. Most people tend to trust Google Search when it states that its mission is to deliver information from "many angles so you can form your own understanding of the world."<sup>3</sup> Yet, our work finds that queries involving complex topics—for example, Buddhism, liberalism, colonization, Iran, and America—yield results focused on a narrow set of culturally dominant views, and these views are correlated with the language used in the search phrase. We call this phenomenon <i>language bias</i>, and this article shows how it occurs using the example of two complex topics: Buddhism and liberalism. Language bias sets a strong yet invisible cultural barrier online with serious socio-political implications for how these platforms hinder efforts to reach across societal divides.&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Seeing Only a Portion of the Whole</h3>
+<p>Buddhism means different things to different cultures. To Westerners, Buddhism is generally associated with spirituality, meditation, and philosophy, while many Vietnamese associate it with the lunar calendar, holidays, mother god worship, and a lifestyle capable of bringing good luck. In Thai culture, many regard Buddhism as a canopy against demons. In Nepal, people typically see Buddhism as a protector that destroys bad karma.</p>
+<p>To move beyond these local views and attempt to find a global picture, you might type "Buddhism" in Google's search bar. Instead of helping, however, the top 50 results skew strongly toward these distinct cultural impressions depending on the language you use for your query. While you might assume search engines rank websites worldwide, it seems the <i>language of a query</i> is a distinctive feature in filtering information. Language is used as an <i>instrument to communicate</i> with platforms such as Google, but these platforms treat language as a <i>navigator to orient</i> what the searcher should be shown.&nbsp;</p>
+<p>The Hindu fable of the blind men and the elephant poignantly points out the pitfall of limited perception: Six blind men encounter an elephant, and after interacting with small portions of it, they each arrive at vastly different conclusions about the global whole. Even though the blind men speak truthfully based on their individual experiences, none gains a complete understanding of the elephant. Together, their understanding of the elephant is what Nietzsche would call <i>perspectival</i>.&nbsp;</p>
+<p>If the elephant represents the sum of the global knowledge of a complex topic, we are each like the fable's blind men when we draw our conclusions from the top results of a search tool. Rather than showing a concise view of the entire elephant, Google appears to use the language of the search query to direct the searcher to an ethnocentric part. Even worse, the language used can end up as a cultural filter to perpetuate ethnocentric views, in which a person evaluates other people or ideas based on their own cultural norms.</p>
+<p>This phenomenon is not unique to search engines like Google. It also appears in other information acquisition platforms like YouTube and Wikipedia, which are featured prominently in Google's search results. Each varies the information presented when different languages are used to access their corpus. With the recent and more versatile platform ChatGPT (February 13, 2023, version), the effect is even more narrowing. This version was primarily trained on English-language data, and it presents the Anglo-American perspective as the normative view, reducing the complexity of a multifaceted issue to the single Anglo-American standard. Without critical examination, non-English perspectives are silently dismissed, leading one to think that they are unimportant, irrelevant, or wrong.</p>
+<p>Figure 1 uses the imagery of the elephant fable to summarize the impact of the four platforms investigated for this article. Each user icon represents a distinct language community, and the colored halos represent the ethnocentric view of the whole that they receive through the platform. </p>
+<img src="https://dl.acm.org/luo1.png" alt="Investigating language bias on Google, ChatGPT, YouTube, and Wikipedia" />
+<p>The Google experience aligns closely with the fable. With ChatGPT acting like an available expert, the predominance of English training data colors every community's results. YouTube's videos can create a deep ethnocentric experience for its viewers because of their rich audiovisual information, vividly amplifying a thin slice of topics and views from the user's own group. In that respect, YouTube videos zoom into the texture of the elephant, which stands for emotions and personal experiences. In contrast, Wikipedia's corpus is confined to a scholarly perspective, where belief-oriented materials such as songs, dreams, and diaries are contextualized as religious or cultural phenomena. In that respect, Wikipedia presents a rough sketch of the elephant, eliding some of its details. </p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<p>Numerous scholars have highlighted the biases found in search engines. Closest to our work is Segev (2010), which points out that the culture and knowledge of the dominant communities monopolize Google's search results,<sup>10</sup> and Rovira, et al. (2021), which finds that articles written in languages other than English were virtually invisible.<sup>8</sup> For LLMs (large language models), Hämmerl, et al (2023) demonstrate that multilingual language models trained on imbalanced multilingual datasets encode different moral biases, but these differences do not always map well onto human values.<sup>1</sup> Lutz, et al (2021) reveal a systemic tendency by YouTube's video recommendation system to favor a tiny fraction of videos.<sup>6</sup> Wolniewicz-Slomka (2016) discovers that differences do exist between Wikipedia's Holocaust articles in English, Hebrew, and Polish, particularly in the language and attention given to specific issues, indicating that Wikipedia editors are influenced by their cultural and social backgrounds.<sup>12</sup> Beyond these studies, those that have touched on issues involving language bias typically focus on tasks such as detecting different cultural perspectives in multilingual datasets using NLP (natural language processing) methods or identifying cultural-language correlation, rather than seeing them as a type of algorithmic bias tied to the language of the prompt or search phrase.</p>
+</div>
+<p>&nbsp;</p>
+<h3>Investigating Language Bias</h3>
+<p>We investigated language bias on Google, ChatGPT, YouTube, and Wikipedia to examine whether the language of a query or prompt yields culturally distinct information about a complex topic. While these investigations looked at numerous complex topics, the discussion here is limited to Buddhism and liberalism.</p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<p>Our investigations did find some search terms that did not exhibit language bias; these were typically technical or mathematical in nature. For example, the terms <i>automatic differentiation</i>, <i>Jacobian matrix</i>, and <i>hidden Markov chain</i> did not exhibit a perceptible language bias in the four platforms tested. These terms seem to have three characteristics that help avoid language bias: (1) They have a precise definition that isn't influenced by the culture from which they originated; (2) they appear in the writings or videos of specialists; and (3) their history in the global lexicon is relatively short. Scientific terms that have a longer history (<i>Newton's first law</i>, for example) are often entangled with historical and cultural discussions.&nbsp;</p>
+</div>
+<p>&nbsp;</p>
+<p>Buddhism has deep roots in many language communities around the world, and two of our authors have the academic training necessary to assess whether the results returned by a platform provide a relatively comprehensive overview. A longer report of our study<sup>5</sup> shows that language bias across the platforms is not limited to Buddhism, but applies to a wide range of terms where culture matters, such as political ideologies, historical events, and geographical names. </p>
+<p>To illustrate this, we also include brief results from our investigations with terms related to liberalism, a political ideology that became prominent because of the significant contributions of British and American thinkers but underwent various transformations as it was exported to the rest of the world.</p>
+<p>A platform exhibits language bias if the language of a query or prompt leads to a systematic deviation in sampling that prevents the platform from accurately representing the true coverage of topics and views available in the global corpus. The term <i>bias</i> has diverse meanings across academic fields; its use here is analogous to <i>statistical sampling bias</i>. </p>
+<p>&nbsp;</p>
+<div style="border: 1px solid black;margin:10px;padding:10px;">
+<p>As an illustration of language bias, consider the results of a Google Image search with the English search term <i>wedding clothes</i>. As of this writing, the results overwhelmingly include images of Western-style wedding dresses rather than a diverse global spectrum of culturally specific bridal wear, such as a Japanese kimono-style or an Indian sari-like draped bridal garment.</p>
+</div>
+<p>&nbsp;</p>
+<p>The goal here is not to <i>quantify</i> the statistical discrepancy between the results and the global corpus, but to <i>identify</i> when discrepancies exist and begin to characterize the types of biases in these discrepancies. Only then can we begin to search for ways to address the undesirable aspects of language bias.</p>
+<p>In these investigations of Google, YouTube, and Wikipedia, we fed each search phrase into the platform's search bar; then analyzed the top 50 websites for Google, top 35 videos for YouTube, and full article for Wikipedia. In addition to an analysis of the results returned using the primary search terms (i.e., <i>Buddhism</i> and <i>liberalism</i>), we analyzed the results from the perspective of closely related English phrases that appeared under the headings "People also ask" and "Related searches."</p>
+<p>With help from language experts, we translated the English search phrases into 12 languages from Asia and Europe: English, German, French, Italian, Spanish, Russian, Japanese, Korean, Chinese, Vietnamese, Thai, and Nepali.</p>
+<p>For ChatGPT's prompts, we added "What is" or "Who is" to the front of the English search phrases to create simple questions. These were repeated five times under a new chat window before analyzing the results. Again, these English questions were translated into the other languages.</p>
+<p>&nbsp;</p>
+<h3>Buddhism Searches on Google</h3>
+<p>Over the course of 2,500 years, Buddhism has taken root in virtually every country in Asia and has recently spread to Western countries. Thus, we expect to see a <i>diverse</i> set of results when typing <i>Buddhism</i> into Google Search, the starting point for most web users as of March 2023.<sup>2</sup></p>
+<p>Across all languages, the search results cover the history and basic beliefs of Buddhism, but beyond this core, different language search phrases produce very different views.</p>
+<p>With European languages, the results list many websites about philosophy, therapy, meditation, and life wisdom. French and German phrases produce results focused on websites that are encyclopedic in nature or deal with world history. English phrases lead to several sites related to retreat centers and education channels. The Chinese search phrase returns several official government websites, which state the Communist Party's policies about how Buddhist monasteries should operate. The Vietnamese phrase returns websites describing life as a Buddhist mendicant and the meditation and ritual activities practiced by Buddhists in Vietnam. The Thai phrase leads to a Facebook page explaining the difference between Buddhism and ghost religion.</p>
+<p>While quite different, these language-specific results are consistent in how Buddhism is portrayed in each language's community. They show a strong preference toward the dominant cultural phenomena of a language community, which can be influenced by many factors, including the majority's interests, powerful institutions, and major social events.</p>
+<p>Buddhism in the West has been heavily commodified, scientized, and institutionalized. A Buddha statue is more often used as a decoration rather than a relic to be worshiped. "Mindfulness meditation" is taught in hospitals and studied in neurology laboratories. Buddhism has been branded as spirituality and self-healing in a secular form.</p>
+<p>On the other side of the globe, China's Communist Party follows the traditional Marxist view that religion is counterproductive to social change. The party does not outlaw religion, but requires each religion to abide by its regulations, which are distributed through government-produced websites, articles, and news.</p>
+<p>Vietnamese Buddhism is well known for its grassroots Buddhist organizations advocating nonviolence and engagement in social actions, as seen in the search results that endorse a positive image of Buddhism. Many results also attempt to correct "misconceptions" of Buddhism and push the position that Buddhism is as practical as science. In the intellectual milieu of Buddhism, this is a hotly debated question, but the returned websites are largely positioned on one side of the argument.</p>
+<p>In Thai culture, spirits, ghosts, and otherworldly beings are important elements. Thai people have a tradition of building miniature spirit houses outside homes or on the street to appease or build relationships with spirits, and it is unsurprising to see elements of spirits or ghosts appear in Thai search results.</p>
+<p>In no single search do the results present a globally pluralistic picture of Buddhism. Instead, each shows a strong preference toward the dominant cultural phenomena for that language community. </p>
+<p>&nbsp;</p>
+<h3>Buddhism-related Searches on Google</h3>
+<p>Search results for the phrase <i>Karma in Buddhism</i> in European languages center on definitions and theories that assume the speakers of these languages might be unfamiliar with the concept. In contrast, results from the same search phrase in an Asian language treat it as a religious practice (e.g., explaining how to resolve bad karma).</p>
+<p>Similar patterns are evident with the search phrase <i>Gautama Buddha</i>. Results for European language phrases explain who the Buddha is and the life of the Buddha. Results from the Chinese phrase dive into the difference between Gautama Buddha and Amitabha Buddha, who is a popular icon in Chinese Buddhism.<i> </i>Both Vietnamese and Thai search phrases produce results that touch on the legendary birth of the Gautama Buddha, because his humanness is emphasized in the Theravada school of Buddhism, practiced widely in this part of Asia. </p>
+<p>Searching topics within Buddhism, Google's top results become more ethnocentric and have fewer common themes when compared across languages. Search language appears to influence Google's ranking algorithm. European-language searchers are expected to be asking "what the topic is" and approaching the question with emotional detachment. Asian-language searchers, on the other hand, are thought to be asking how Buddhism can solve a problem in their life, imposing a firm conviction in one's beliefs and emphasizing its worldly implications and moral consequences.</p>
+<p>We also examined the results when searching for controversial public figures. Chögyam Trungpa, a Tibetan Buddhist meditation master, attracted many Western students during the 1970s but had a reputation for alcoholism and promiscuity. English search results tend to downplay his promiscuous lifestyle and focus primarily on his teachings and meditation centers, whereas Chinese search results include lengthy articles detailing his notorious lifestyle. Similarly, in the search results for the current Dalai Lama, the English, French, and German results focus on his advocacy of peace and nonviolence as a Nobel Peace Prize laureate, while the Chinese search results examine his political controversies. Such polarized views can be dangerous to both language communities.</p>
+<p>As illustrated in figure 2, the dominant topics about Buddhism are represented with the letters A–G. Language bias in Google highlights the topic set {A, B, C, D} for those using English search phrases; {A, C, E, G} for Chinese; and {A, B, E, F} for Vietnamese. No user sees the entire diversity of perspectives. Even for the jointly seen topic A, the results are significantly shaped by the prevailing cultural phenomena in each language community, resulting in varied narratives and interpretations.</p>
+<img src="https://dl.acm.org/luo2.png" alt="Investigating language bias on Google, ChatGPT, YouTube, and Wikipedia" />
+<p>Dominant cultural phenomena can reflect many factors. In some cases, they reflect the majority's interests (e.g., Europeans are more likely to be interested in Buddhist philosophy than ritual practices). Or the dominant cultural phenomena could reflect policies or objectives of powerful agencies or institutions (e.g., those skilled in search engine optimization). Their primary goal might not be to follow the majority or maintain the status quo. </p>
+<p>&nbsp;</p>
+<h3>Buddhism and Buddhism-related Queries on ChatGPT</h3>
+<p>ChatGPT is a new wave of AI technology that could replace traditional search engines like Google. We ran tests on both the OpenAI and Bing versions of ChatGPT, referring to them as ChatGPT-OpenAI (February 13, 2023 version) and ChatGPT-Bing (accessed on March 1, 2023). Recall that we posed Buddhism-related queries as simple interrogative sentences (i.e., "What/Who is X?") in 12 target languages. </p>
+<p>ChatGPT-OpenAI was found to "think" in English despite taking prompts in many languages. For example, its responses to the question "Who is Amitabha Buddha?" are almost identical in various input languages and similar to Google's top search results in English. The prominent features in the Google-returned Chinese and Vietnamese websites are absent.</p>
+<p>ChatGPT-Bing's responses are created from websites written in the language of the prompt. Its responses follow the same structure among languages and tend to differ in just a few important words, which end up conveying very different perspectives. For example, ChatGPT-Bing's responses to "What is Buddhism?" open in English and Thai with the same sentence structure; however, it defines Buddhism as "a religion and philosophy" in English but as "an atheist religion" in Thai.</p>
+<p>Unlike the other platforms investigated for this research, the two ChatGPT versions provide the potential to break the linkage between the language of the prompt and that of the corpus. For example, in one experiment we asked ChatGPT in English to retrieve information from Chinese-language sources. Throughout our experiments, the success rate of prompt engineering varied greatly, and we were unable to find a feature of our prompts that ensured success. The success we did achieve involved quite a bit of trial and error, as well as significant cognitive effort. Prompt engineering holds great potential, but sustained success with it doesn't appear straightforward in the current generation of generative AI tools.</p>
+<p>With the interface of ChatGPT, the direct connection between the user and the "elephant" is lost. ChatGPT intervenes and describes what the elephant looks like. The one hosted on OpenAI.com, trained from an imbalanced dataset, presents the Anglo-American perspective as truth—as if other cultural perspectives do not exist. The one integrated into Bing operates similarly to Google Search, delving into the corpus of the input language by default and providing distinct information in different languages. The conceptual pitfall is that English users think they have been presented with objective information, but in fact are caged inside their own ethnocentric realms, rarely breaking boundaries to encounter diverse or counter opinions. Non-English perspectives are rarely unearthed.</p>
+<p>&nbsp;</p>
+<h3>Buddhism and Buddhism-related Videos on YouTube</h3>
+<p>Among Buddhist practitioners, YouTube is a popular site for sharing meditation music and tutorials. YouTube's top-ranked videos on Buddhism are highly diverse in general, with nearly no common topics. Despite this general diversity, videos found using search phrases in European languages tend to focus on spirituality and philosophy. Searches using English phrases lead to videos of Indian, Tibetan, and American monks teaching how to calm the mind; French results have French monks teaching how to deal with life adversity; and German results include life lessons from the Buddha. </p>
+<p>Comparatively, Japanese search results include a video of a Japanese monk performing Buddhist music, and Vietnamese videos feature several recordings of grassroots volunteer activities organized by nonprofit organizations. Videos found through Tibetan phrases are uniformly Tibetan lamas preaching Buddhist doctrine. Chinese search results include a video produced by a popular Chinese talk show host, Yuan Tengfei, who happens to have episodes on Buddhism. Similar patterns held for searches with Buddhism-related phrases.<sup>10</sup></p>
+<p>Compared with Google and ChatGPT, language bias on YouTube is amplified. The top-ranked YouTube videos tend to be from the dominant ethnic group in the language community and focus on small aspects of the larger concept in the search phrase. A video's ranking seems largely determined by its freshness and popularity; those that align with more people's interests receive more likes and views.</p>
+<p>In contrast to Google and ChatGPT's textual presentation, YouTube videos evoke a deeper ethnocentric experience because of the visual and auditory presentation of the video subject's face, voice, and emotion. A music performance of a blind Tibetan girl chanting a Buddhist mantra transports the suffering and sorrow in her life, as well as the courage and strength given by her faith. The smile and serenity expressed on a Buddhist practitioner's face show the power of Buddhist teachings. In that respect, YouTube videos zoom in to the "texture" of the elephant, but the texture that the user sees or feels varies based on the search language.</p>
+<p>&nbsp;</p>
+<h3>Buddhism and Buddhism-related Articles on Wikipedia</h3>
+<p>Wikipedia articles related to Buddhism are highly ranked in all search languages on Google. What a reader learns from a language-specific Wikipedia article varies greatly, however.</p>
+<p>For the search term <i>Buddhism</i>, the French-language Wikipedia article begins by defining Buddhism as "a religion and a philosophy." It includes a long section describing the major debates about whether Buddhism is a religion, a philosophy, or both, quoting a few influential scholars in the field. This debate does not consume equivalent space in the English or Asian-language articles.</p>
+<p>This difference in focus can largely be attributed to the differences in the intellectual traditions surrounding the ideas of religion and philosophy in America and France. The Catholic Church has a significant presence in France, and rituals and religious education remain important issues today. French scholars might naturally approach Buddhism through their existing framework of religion. France also has a rich philosophical tradition, with figures like Foucault, Derrida, and Lacan, who used to give philosophical talks on TV. The concentration on quoting a few influential scholars in the French article can be seen as a reflection of this tradition. </p>
+<p>In contrast, religion is a more dispersed idea in America, where it could refer to a diverse set of spiritual beliefs and practices. The large number of popular books focusing on mindfulness and self-healing cited in the English article mirrors the popularity of spiritual practices in America.</p>
+<p>The Chinese-language Wikipedia entry on Buddhism addresses topics such as "cloth" and "hairstyle," likely reflecting the influence of ancient texts—for example, <i>Lankavatara Sutra</i> and <i>Vinaya Piṭaka</i>—that have been widely circulated in China since the medieval period. Likewise, the Vietnamese-language page contains detailed accounts of Buddhism in many South Asian countries, such as Myanmar (Burma), Sri Lanka, and Laos, because these countries are geographically closer to Vietnam and follow primarily the same Buddhist tradition.</p>
+<p>For the search phrase <i>Buddhist philosophy</i>, the German-language article compares Buddhist philosophy to Western philosophy, citing 19th-century German scholars such as Schopenhauer, Heidegger, and Nietzsche, who brought Buddhism into Western philosophy. Schopenhauer's central philosophical argument was influenced by Indian thought, particularly the ideas found in the Upanishads, Buddhism, and Vedanta philosophy. Heidegger's writings have many parallels with Zen Buddhism philosophy. Nietzsche saw Buddhism as a nihilistic religion, and his view became influential in the West.</p>
+<p>The French-language article also contains a section on Western philosophy, but compares Buddhist philosophy with ancient Greek and modern European philosophy—an intellectual tradition that began in France in the late 19th century.</p>
+<p>The Chinese, Japanese, and Vietnamese articles do not touch on Western philosophy.</p>
+<p>In summary, Wikipedia articles tend to reflect the dominant intellectual traditions in different language communities, which might be an outcome of Wikipedia contributors rarely citing sources across languages. These articles are written in an objective, descriptive tone, with belief-oriented materials such as songs, personal testimonies, dreams, and diaries contextualized as religious or cultural phenomena. As suggested in its five pillars,<sup>11</sup> Wikipedia is an encyclopedia that provides summaries of knowledge and is written from a neutral point of view. Its fundamental principles filter language bias, making it reflective of intellectual and academic traditions. Unlike Google's language bias, which is filtered by both topic coverage and cultural-political views, Wikipedia articles mainly differ in topic coverage but not much in views. While Google results contain first- and third-person content, Wikipedia articles contextualize first-person narratives as third-person observations. In that sense, Wikipedia presents a silhouette of the elephant with its texture missing.</p>
+<p>&nbsp;</p>
+<h3>What We Learn When Asking About Liberalism</h3>
+<p>Liberalism, like Buddhism, has a complex history. It emerged as a prominent political ideology largely owing to the contributions of British and American thinkers, and underwent various transformations as it was exported to the rest of the world. In the four online platforms, each language community is presented with its culturally dominant views regarding liberalism. Language bias affects search results for liberalism, just as it did with Buddhism. </p>
+<p>Google's English-language search results contain little criticism about liberalism and no references to neoliberalism, while French, German, Italian, and Spanish results all contain a few articles discussing the limits or downsides of neoliberalism. On the other end of the spectrum, virtually all Asian languages return one or more websites with pejorative references to neoliberalism.</p>
+<p>Top English sites describe liberalism as protecting individual rights, liberty, freedom, and equality, enabling private companies to thrive with minimal government interference. In contrast, a Vietnamese article defines it as "an ideology that doubts and challenges the use of political power."<sup>9</sup></p>
+<p>These results fit the dominant views of liberalism in each language community. The U.S. and U.K. embrace liberalism because it defines the founding principles of their political systems. French, German, Italian, and Spanish societies are deeply influenced by liberalism, but the dominant liberal theorists are British thinkers such as Thomas Hobbes, John Locke, and John Trenchard. In many Asian countries, liberalism's emphasis on freedom is seen as introducing a set of moral norms and behaviors that discount the Asian culture's well-established social and cultural values, such as the importance of family responsibility and national unity.</p>
+<p>When asked "What is liberalism?" in English, Chinese, and Vietnamese, ChatGPT-Bing's responses closely align with Google's top search results. It defines liberalism as "a political and moral philosophy" when asked in English; "an ideology and philosophy that limits government power" when asked in Chinese; "a political and philosophical ideology that opposes state intervention in personal and economic life" when asked in Vietnamese. As was the case with Buddhism, ChatGPT-OpenAI's definition of liberalism (i.e., the definition returned with an English-language prompt) is the same regardless of the prompt language.</p>
+<p>On YouTube, Russian videos associate liberalism with democracy and discuss whether it led to the dissolution of the Soviet Union. English-language videos, mainly produced by big channels such as CrashCourse and PragerU, focus on the debates between liberals and conservatives in the American political system and do not discuss the (probably natural to them) connection between liberalism and democracy. The fact that Russian videos focus on whether liberalism led to the collapse of the Soviet Union can be seen as a response to economic turmoil following the introduction of neoliberal economic policies advocated by American economists.</p>
+<p>On Wikipedia, the French-language article has an expansive section about the historical roots and development of liberalism, tracing its origins from antiquity to the Renaissance. The English article traces various themes of liberalism, including long discussions about Keynesian economics and economic liberalism, which provide two opposing views. The Italian article examines liberalism in relation to religion, Christianity, and secularism in depth.</p>
+<p>A possible conceptual understanding that results from these differently emphasized descriptions could be that liberalism is: a complex philosophical and political movement associated with the rule of law (French); also a philosophy but with deep economic influences that guide political policies (English); or a secular form of government based on individual rights (Italian). </p>
+<p>&nbsp;</p>
+<h3>Why Language Bias Matters</h3>
+<p>Referring again to the Hindu fable of the blind men and the elephant, we can get an idea of what comes next. In hearing the others' perspectives, do the blind men suspect each other of dishonesty and fall into violent conflicts? Or does an interlocutor, who sees the entire elephant, intervene and explain to the blind men that their individual experiences are true but incomplete? Our world seems stuck in the former outcome because today's technology platforms are not the kind of interlocutor we need.</p>
+<p>Most of us treat search and generative AI platforms as sighted and wise interlocutors that show us the world beyond our physical limits. With each day that passes, however, we learn of the many ways these technologies present us with biased information. Too many computer scientists still assume that capturing the "common case,"<sup>7</sup> aligning with a culture's majority view, or prioritizing profits are sufficient justifications for the impact of technology on society. What results is a tyranny of opinion or a tyranny of the majority that discounts the rights of the minority, fosters intolerance among different cultural-linguistic groups, and poses an alarming threat to democratic ideals. </p>
+<p>Individuals' exposure to "diverse and antagonistic views,"<sup>1</sup> as phrased by the U.S. Supreme Court, is essential in cultivating well-informed and self-reflective citizens in a democratic society, where debate isn't dominated by corporations, politicians, or privileged groups.</p>
+<p>Search engines and AI bots are becoming increasingly important interlocutors for shaping individual understanding of complex concepts, and therefore they directly affect how people construct their understanding of the world and its societies. For example, how do English-speaking people in the U.S. understand modern China? Most probably turn to search or generative AI. Because of language bias, they would exclusively see the rise of China through an ethnocentric frame—one that emphasizes aspects Americans value while overlooking facets that in fact play a significant role in Chinese society. Language bias becomes a barrier to understanding other cultures and ways of life.</p>
+<p>The issue of how a search engine should rank websites or generative AI incorporates information has historically been considered a technical problem. With complex topics such as Buddhism and liberalism, however, the question of what should be ranked highly or deemed relevant is a deeply complex issue without an easy solution. Solving it demands a collective effort involving experts from diverse fields. While much has been said about the potential existential threat posed by AI, what's pertinent today is the force of algorithms and AI models shaping the information around us.</p>
+<p>The study presented in this article shows how Google, ChatGPT, YouTube, and even Wikipedia reflect the dominant views in a language corpus. We hope it alerts the users of these platforms to how the information they consume is biased. We also hope it inspires scholars, regulators, and lawmakers to investigate and propose solutions mitigating the socio-political impact of new technologies.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. <i>Associated Press v. United States.</i> (1945). 20 (Web Search p12).</p>
+<p>2. Bianchi, T. 2023. Global market share of leading desktop search engines 2015–2023. Statista; <a href="https://www.statista.com/statistics/216573/worldwide-market-share-of-search-engines/">https://www.statista.com/statistics/216573/worldwide-market-share-of-search-engines/</a>.</p>
+<p>3. Google. Our approach to search; <a href="https://www.google.com/search/howsearchworks/our-approach/">https://www.google.com/search/howsearchworks/our-approach/</a>.</p>
+<p>4. Hämmerl, K., Deiseroth, B., Schramowski, P., Libovický, J., Rothkopf, C. A., Fraser, A., and Kersting, K. 2023. Speaking multiple languages affects the moral bias of language models. <i>Findings of the Association for Computational Linguistics: ACL 2023</i>, 2137–2156, Toronto, Canada. Association for Computational Linguistics; <a href="https://aclanthology.org/2023.findings-acl.134/">https://aclanthology.org/2023.findings-acl.134/</a>. </p>
+<p>5. Luo, Q., Puett, M. J., and Smith, M. D. 2023. A perspectival mirror of the elephant: investigating language bias on Google, ChatGPT, Wikipedia, and YouTube. arXiv preprint arXiv:2303.16281; <a href="https://arxiv.org/abs/2303.16281">https://arxiv.org/abs/2303.16281</a>.</p>
+<p>6. Lutz, M., Gadaginmath, S., Vairavan, N., and Mui, P. 2021. Examining political bias within YouTube search and recommendation algorithms. IEEE Symposium Series on Computational Intelligence (SSCI); <a href="https://ieeexplore.ieee.org/document/9660012">https://ieeexplore.ieee.org/document/9660012</a>. </p>
+<p>7. Page, L., Brin, S., Motwani, R., and Winograd, T. 1999. The PageRank citation ranking: bringing order to the web. The Web Conference; <a href="https://www.semanticscholar.org/paper/The-PageRank-Citation-Ranking-%3A-Bringing-Order-to-Page-Brin/eb82d3035849cd23578096462ba419b53198a556">https://www.semanticscholar.org/paper/The-PageRank-Citation-Ranking-%3A-Bringing-Order-to-Page-Brin/eb82d3035849cd23578096462ba419b53198a556</a>.</p>
+<p>8. Rovira, C., Codina, L., and Lopezosa, C. 2021. Language bias in the Google scholar ranking algorithm. <i>Future Internet</i> 13(2), 31; <a href="https://www.mdpi.com/1999-5903/13/2/31">https://www.mdpi.com/1999-5903/13/2/31</a>. </p>
+<p>9. Ruper, C. Why liberty. Ch<span style="font-family:&quot;Cambria Math&quot;,serif;letter-spacing:-.2pt">ủ Ngh<span lang="AR-YE" dir="RTL" style="letter-spacing:-.2pt">ĩa T<span style="font-family:&quot;Cambria Math&quot;,serif;letter-spacing:-.2pt">Ự do Cá Nhân Nh<span lang="AR-YE" dir="RTL" style="font-family:&quot;Cambria Math&quot;,serif;letter-spacing:-.2pt">ư là m<span style="font-family:&quot;Cambria Math&quot;,serif;letter-spacing:-.2pt">ột ch<span style="font-family:&quot;Cambria Math&quot;,serif; letter-spacing:-.2pt">ủ ngh<span lang="AR-YE" dir="RTL" style="letter-spacing:-.2pt">ĩa trung dung tri<span style="font-family: &quot;Cambria Math&quot;,serif;letter-spacing:-.2pt">ệt <span lang="AR-YE" dir="RTL" style="letter-spacing:-.2pt">đ<span lang="AR-YE" dir="RTL" style="font-family:&quot;Cambria Math&quot;,serif;letter-spacing:-.2pt">ể. TTTD Academy; <a href="http://www.thitruongtudo.vn/chi-tiet/chu-nghia-tu-do-ca-nhan-nhu-la-mot-chu-nghia-trung-dung-triet-de.html">http://www.thitruongtudo.vn/chi-tiet/chu-nghia-tu-do-ca-nhan-nhu-la-mot-chu-nghia-trung-dung-triet-de.html</a>.</span></span></span></span></span></span></span></span></span></span></p>
+<p>10. Segev, E. 2010. <i>Google and the Digital Divide: The Bias of Online Knowledge</i>. Chandos Publishing. </p>
+<p>11. Wikimedia Foundation. 2023. Wikipedia: five pillars; <a href="https://en.wikipedia.org/wiki/Wikipedia:Five_pillars">https://en.wikipedia.org/wiki/Wikipedia:Five_pillars</a>.</p>
+<p>12. Wolniewicz-Slomka, D. 2016. Framing the Holocaust in popular knowledge: 3 articles about the Holocaust in English, Hebrew and Polish Wikipedia. <i>Adeptus</i> 8, 29–49; <a href="https://journals.ispan.edu.pl/index.php/adeptus/article/view/a.2016.012">https://journals.ispan.edu.pl/index.php/adeptus/article/view/a.2016.012</a>. </p>
+<p>&nbsp;</p>
+<h4>Acknowledgments</h4>
+<p><i>This article originated from a course, "AC221: Critical Thinking in Data Science," taught by Michael D. Smith in spring 2022 at Harvard University. We extend our sincere appreciation to Xiaohan Yang, Xingyu Liu, Wenqi Chen, Peter Bol, David Atherton, Hoa Le, Hanrui Wang, Wenfei Wang, Changzai Pan, and anonymous reviewers for their valuable input.</i></p>
+<p>&nbsp;</p>
+<p><b>Queenie Luo</b> is a Ph.D. candidate at Harvard University. Her research attempts to understand AI in a broader social, political, and historical framework.</p>
+<p><b>Michael J. Puett</b> is the Walter C. Klein Professor of Chinese History and Anthropology at Harvard University. His interests focus on the interrelations between religion, history, ethics, and philosophy.</p>
+<p><b>Michael D. Smith</b> is the John H. Finley, Jr., Professor of Engineering and Applied Sciences at Harvard University. His current research interests are in education, educational technology, and the interplay of technology with other fields.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'865415028a2281f9',t:'MTcxMDU4NTE3NS44NjAwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;865415028a2281f9&quot;,&quot;b&quot;:1,&quot;version&quot;:&quot;2024.2.4&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 1</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3649303">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Yifei Wang</span> - <a href="detail.cfm?id=3649305"><b>From Open Access to Guarded Trust</b></a>
+<br/>
+The last decade witnessed the emergence and strengthening of data protection regulations. For software engineers, this new era poses a unique challenge: How do you maintain the precision and efficacy of your platforms when complete data access, one of your most potent tools, is gradually being taken off the table? The mission is clear: Reinvent the toolkit. The way we perceive, handle, and experiment with data needs a drastic overhaul to navigate this brave new world.
+</p>
+<br/>
+<p>
+<span>Nigel Smart, Joshua W. Baron, Sanjay Saravanan, Jordan Brandt, Atefeh Mashatan</span> - <a href="detail.cfm?id=3639448"><b>Multiparty Computation: To Secure Privacy, Do the Math</b></a>
+<br/>
+Multiparty Computation is based on complex math, and over the past decade, MPC has been harnessed as one of the most powerful tools available for the protection of sensitive data. MPC now serves as the basis for protocols that let a set of parties interact and compute on a pool of private inputs without revealing any of the data contained within those inputs. In the end, only the results are revealed. The implications of this can often prove profound.
+</p>
+<br/>
+<p>
+<span>Miguel Guevara, Damien Desfontaines, Jim Waldo, Terry Coatta</span> - <a href="detail.cfm?id=3439229"><b>Differential Privacy: The Pursuit of Protections by Default</b></a>
+<br/>
+First formalized in 2006, differential privacy is an approach based on a mathematically rigorous definition of privacy that allows formalization and proof of the guarantees against re-identification offered by a system. While differential privacy has been accepted by theorists for some time, its implementation has turned out to be subtle and tricky, with practical applications only now starting to become available. To date, differential privacy has been adopted by the U.S. Census Bureau, along with a number of technology companies, but what this means and how these organizations have implemented their systems remains a mystery to many.
+</p>
+<br/>
+<p>
+<span>David Evans, Richard McDonald, Terry Coatta</span> - <a href="detail.cfm?id=3339247"><b>Access Controls and Health Care Records: Who Owns the Data?</b></a>
+<br/>
+What if health care records were handled in more of a patient-centric manner, using systems and networks that allow data to be readily shared by all the physicians, clinics, hospitals, and pharmacies a person might choose to share them with or have occasion to visit? And, more radically, what if it was the patients who owned the data?
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

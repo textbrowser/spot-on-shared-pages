@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Free and Open Source Software - and Other Market Failures - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Open Source" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3650211" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?typefilter=Thebikeshed&sort=publication_date&order=desc&qc_type=Thebikeshed&article_type=&item_topic=all&filter_type=topic&page_title=The%20Bikeshed&filter=all">The Bike Shed</a></h3>
+<label>March 11, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3650211">Volume 22, issue 1 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3649298">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Free and Open Source Software—and Other Market Failures</h1>
+<h2>Open source is not a goal as much as a means to an end.</h2>
+<h3>Poul-Henning Kamp</h3>
+<p>Economists and others focused on money—like my bank—have had a lot of trouble figuring out the FOSS (Free and Open Source Software) phenomenon, and eventually they seem to have reached the conclusion that it just makes no sense. So, they go with the flow.</p>
+<p>Recently, Very Serious People in the FOSS movement have started to write <a href="https://www.theregister.com/2024/01/08/open_sources_new_mission/">long and thoughtful opinion pieces</a> about how it has all come apart and will end in tears and regret—unless!</p>
+<p>Allow me to disagree.</p>
+<p>&nbsp;</p>
+<h3>1991 and All That</h3>
+<p>Computing has scientific roots, and if it is not open source, it is not science. The only way to win a Nobel Prize for a box welded shut is if you teleport the cat out before Schrödinger's infernal device kills it.</p>
+<p>Computing started out as open source, and as everybody knows from computer-science paper citations, almost all fundamental algorithms and a lot of other good stuff was published in <i>CACM</i> for all to read and use.</p>
+<p>Commercial exploitation of scientific results is almost never open source. With few and rare exceptions, the difference between a scientist and an inventor is that the latter is not going to reveal anything unless society grants them a monopoly on the invention.</p>
+<p>So, it was no surprise and perfectly normal that commercial exploitation of computing would also go closed source—patents and all—and for politicians to expect "the market" to sort it all out. </p>
+<p>If and when the abstract concept economists call "the market" works, it seems to be the least awful of possibilities, but there are several kinds of market failures.</p>
+<p>One mode of failure is that one player corners the entire market and—having eliminated all the competition—gets to decide what is good for everybody and what it should cost. The schoolbook example is Standard Oil. Only governments can fix that kind of market failure, and they are invariably too slow and too reluctant to do so.</p>
+<p>Another subtler kind of market failure is lack of imagination and attention to customers' needs, where even though there may be competition—and even cutthroat competition—the products are just not what the customers actually want to buy.</p>
+<p>These market failures are invariably corrected by outsiders who can see what the insiders do not. The U.S. car industry is a great example and has needed three solid whacks over the head in my lifetime: </p>
+<p>• The first was Volvo with its "safety belts" and "crush-zones," which not only totally lacked style, but also might have given consumers the idea that cars are dangerous rather than fun. </p>
+<p>• Next it was Toyota selling cars that just worked and kept on just working; no market survey had ever reported this as being important for potential car buyers. </p>
+<p>• Most recently, it was Tesla with its ridiculous electric car, a technology everybody in the U.S. car industry knew to be a total dead end when what people really wanted was an affordable and street-legal M1 Abrams tank.</p>
+<p>And that brings me to where FOSS fits in.</p>
+<p>Some of you will remember commercial computing in the 1980s, and if so, you will remember how it utterly sucked.</p>
+<p>IBM, the unimaginably huge monopoly, was so big that "nobody got fired for buying IBM," and it was IBM's way or no way. Then there was everybody else, sometimes referred to as "the seven dwarves," and they all wanted to be IBM instead of IBM. None of them realized that when customers asked for "anything but IBM," it was not about the letters on the nameplate but about the abuse of power.</p>
+<p>When the Unix revolution arrived in the mid- to late-1980s, everybody would try to sell you their "open Unix computer," but everything from their product catalog to the sales force's behavior screamed "vendor lock-in." And that was on top of their products being pretty crappy and overpriced in the first place, and everybody actively and deliberately trying to be incompatible with everybody else.</p>
+<p>Ideally, some smart company should have cashed in on that market failure, and Commodore nearly did: The CBM900 was supposed to be a good, cheap Unix computer to be sold over the counter, but for reasons of production capacity, CBM picked the Amiga instead.</p>
+<p>The Unix market failure festered to the point where the company I worked for in 1988 plunked down money for the largest Unix computer one could buy that was not an Amdahl mainframe, only to be told by the supplier, "If you compile C programs on this computer, we cannot support you!"</p>
+<p>Out of that utter market failure came Minix, (Net/Free/Open)BSD, and Linux, at a median year of approximately 1991. I can absolutely guarantee that if we had been able to buy a reasonably priced and solid Unix for our 32-bit PCs—no strings attached—nobody would be running FreeBSD or Linux today, except possibly as an obscure hobby.</p>
+<p>Bill Gates would also have had a lot less of our money.</p>
+<p>But instead of seeing the light and selling what customers wanted, the Unix vendors doubled down on their delusion of becoming IBM instead of IBM, even interpreting IBM's waning market share as proof that the winds were finally in their sails. In reality, IBM mainframe customers discovered to their dismay that their expensive 3745 front end was not so much a masterpiece of communication as a carefully engineered bottleneck, which any cheap PC could run circles around. Not long after, they also discovered that the even more expensive CPU was not good for "modern workloads" such as web pages.</p>
+<p>Then that dot-com thing happened, fueled by the availability of FOSS operating systems, which did a much better job than <i>any</i> operating system you could buy, not just for the price, but in absolute terms of performance on any given piece of hardware.</p>
+<p>Thus, out of utter market failure, was the FOSS movement born.</p>
+<p>&nbsp;</p>
+<h3>Sic Transit Gloria LUG</h3>
+<p>A lot of us FOSS people pay our cost of living with money we get from companies that—one way or another—make a business out of FOSS or derivatives thereof.</p>
+<p>This is what makes some people sad, particularly those who thought they saw a glorious revolution happening and hurried up to the cathedral to nail some manifesto or other to the door. They are not at fault for thinking there was a revolution going on, because there was—just not the one they thought.</p>
+<p>The largest Linux user group in the world was the Skåne Sjælland Linux User Group (aka SSLUG), which boasted tens of thousands of members. They held major conferences, and they influenced public policy because no politician can afford to piss off potential voters when they come in well-organized batches of thousands.</p>
+<p>The one single thing all members of SSLUG had in common was being pissed at IT vendors who made their jobs and lives miserable. Imagine being employed as an IT person in some company that rolls out Windows Vista. Not because they needed to. Not because they wanted to. Because Microsoft forced them to.</p>
+<p>I won't remind you how badly Windows Vista sucked; I will let author Neil Gaiman do that, by quoting what he wrote in his blog on March 31, 2008:</p>
+<p>"Sitting in an airport, getting really sick of Windows Vista on a laptop. It doesn't work—I'm tired of waiting seconds for things to appear on the screen, of taking half a minute or more for something that ought to happen instantly to occur. The poor computer obviously can't run Vista, and shouldn't have been Vista certified, and the author isn't impressed with the way that a number of things that were easy in XP have got harder, nor with the fact it took most of a day for Vista to run a search on the hard disk to find a mislaid introduction I was working on, nor with its refusal to read or copy a bunch of files on a DVD Dave McKean burned for me (I wound up dragging them from the DVD to one of Dave's MacBooks, from there to my iPod, and from my iPod to the computer)."</p>
+<p>Imagine being the IT person to inflict that user experience on colleagues because Microsoft forced you to. One could forge horseshoes from cold iron with that anger.</p>
+<p>But that anger was all there was, really, as there was not much else the FOSS movement could or would agree on, and there was plenty to disagree about, which is why there are three BSDs and who knows how many Linux distros.</p>
+<p>Now that the smoke has finally cleared, none of the old Unix vendors exist anymore, and IBM, as a sad shadow of former glory, has sought commercial asylum for its venerable trademark by buying Red Hat and handing over the steering wheel.</p>
+<p>There is also no more SSLUG, not even a homepage: The last person to leave must have turned off the web server.</p>
+<p>&nbsp;</p>
+<h3>I Come Not to Praise FOSS </h3>
+<p>The F in FOSS was never silent.</p>
+<p>In retrospect, it seems clear that open source was not so much the goal itself as a means to an end, which is freedom: freedom to fix broken things, freedom from people who thought they could clutch the source code tightly and wield our ignorance of it as a weapon to force us all to pay for and run Windows Vista.</p>
+<p>But the FOSS movement has won what it wanted, and no matter how much oldsters dream about their glorious days as young revolutionaries, it is not coming back, because the frustrations and anger of IT in 2024 are entirely different from those of 1991.</p>
+<p>One very big difference is that more and more people have realized that source code is a liability rather than an asset. For some, that realization came creeping along the path from young teenage FOSS activists in the late 1990s to CIOs of BigCorp today. For most of us, I expect, it was the increasingly crushing workload of maintaining legacy code bases. But the thing that will convince anyone is that one single server still runs OS version N-4, because we have not yet found out why it stops working when we attempt to upgrade it.</p>
+<p>But we can figure it out.</p>
+<p>And we will figure it out.</p>
+<p>Because we have the source code.</p>
+<p>We have all 562,227 lines of perl5 source code for it.</p>
+<p>&nbsp;</p>
+<p><b>Poul-Henning Kamp</b> has haunted the Unix world for 40 years and written a lot of widely used open source software, including bits of FreeBSD and the Varnish HTTP Cache. Living in Denmark with his wife, two cats, and three lawn-mower robots, he remains unconvinced that an older-wiser correlation exists.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){var js = "window['__CF$cv$params']={r:'865415272bd06ff2',t:'MTcxMDU4NTE4MS40NDgwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 1</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3649298">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Amanda Casari, Julia Ferraioli, Juniper Lovato</span> - <a href="detail.cfm?id=3595879"><b>Beyond the Repository</b></a>
+<br/>
+Much of the existing research about open source elects to study software repositories instead of ecosystems. An open source repository most often refers to the artifacts recorded in a version control system and occasionally includes interactions around the repository itself. An open source ecosystem refers to a collection of repositories, the community, their interactions, incentives, behavioral norms, and culture. The decentralized nature of open source makes holistic analysis of the ecosystem an arduous task, with communities and identities intersecting in organic and evolving ways. Despite these complexities, the increased scrutiny on software security and supply chains makes it of the utmost importance to take an ecosystem-based approach when performing research about open source.
+</p>
+<br/>
+<p>
+<span>Guenever Aldrich, Danny Tsang, Jason McKenney</span> - <a href="detail.cfm?id=3576027"><b>Three-part Harmony for Program Managers Who Just Don't Get It, Yet</b></a>
+<br/>
+This article examines three tools in the system acquisitions toolbox that can work to expedite development and procurement while mitigating programmatic risk: OSS, open standards, and the Agile/Scrum software development processes are all powerful additions to the DoD acquisition program management toolbox.
+</p>
+<br/>
+<p>
+<span>Jessie Frazelle</span> - <a href="detail.cfm?id=3349301"><b>Open-source Firmware</b></a>
+<br/>
+Open-source firmware can help bring computing to a more secure place by making the actions of firmware more visible and less likely to do harm. This article&#8217;s goal is to make readers feel empowered to demand more from vendors who can help drive this change.
+</p>
+<br/>
+<p>
+<span>Marshall Kirk McKusick, George V. Neville-Neil</span> - <a href="detail.cfm?id=1035622"><b>Thread Scheduling in FreeBSD 5.2</b></a>
+<br/>
+A busy system makes thousands of scheduling decisions per second, so the speed with which scheduling decisions are made is critical to the performance of the system as a whole. This article - excerpted from the forthcoming book, &#8220;The Design and Implementation of the FreeBSD Operating System&#8220; - uses the example of the open source FreeBSD system to help us understand thread scheduling. The original FreeBSD scheduler was designed in the 1980s for large uniprocessor systems. Although it continues to work well in that environment today, the new ULE scheduler was designed specifically to optimize multiprocessor and multithread environments. This article first studies the original FreeBSD scheduler, then describes the new ULE scheduler.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
