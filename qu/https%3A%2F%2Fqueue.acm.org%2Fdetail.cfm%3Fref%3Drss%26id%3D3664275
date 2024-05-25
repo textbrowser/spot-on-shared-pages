@@ -1,0 +1,496 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Make Two Trips - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Development" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3665607" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?qc_type=operationsandlife&page_title=Operations%20and%20Life">Operations and Life</a></h3>
+<label>May 20, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3665607">Volume 22, issue 2 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3664275">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Make Two Trips</h1>
+<h2>Larry David's New Year's resolution works for IT too.</h2>
+<h3>Thomas A. Limoncelli</h3>
+<p>During an interview on <i>The Late Show with Stephen Colbert</i>, comedian Larry David explained that his New Year's Resolution was "make two trips" (<a href="https://www.youtube.com/watch?v=EJ6UvCkInRk">episode 857, January 8, 2020</a>).</p>
+<p>For example, when carrying groceries into the house, it is tempting to carry everything at once, but then you drop the cantaloupe, and now you have to clean up that mess. While it seemed like one trip would have been faster, if you include the time it takes to clean up the mess, it would have been faster to simply make two trips.</p>
+<p>This experience led Larry to operationalize it as a New Year's Resolution. When in doubt, make two trips!</p>
+<p>This "make two trips" strategy isn't an earth-shattering breakthrough. It won't cure cancer, end world hunger, or fix the climate crisis. However, I have adopted this philosophy, and it has had many benefits.</p>
+<p>The immediate benefit is that I am now more likely to have a free hand to open my house door. Pulling keys out of my pocket no longer involves smashing a grocery bag between my chest and the house.</p>
+<p>The larger benefit has come from adopting this philosophy in both coding and operations.</p>
+<p>&nbsp;</p>
+<h3>Make Two Loops</h3>
+<p>The other day, I was adding a feature to some old code. The code reported results of an earlier calculation with various formatting options that could be enabled or disabled.</p>
+<p>The code was quite complex because certain options affected the format in ways that had downstream implications for other options. The code was able to satisfy all the various options and controls in one pass over the data, printing a report along the way.</p>
+<p>Since the code was so complex, however, it was difficult to maintain. Updating one feature would cause bugs in another feature, which would then be fixed and cause line counts to change. Those line counts were needed for an earlier feature, which had already printed its section based on now-outdated assumptions.</p>
+<p>All in all, the code was just one big mess. For example, it maintained parallel sets of counters and stats along the way until the actual need was determined—analogous to buying both cat food and preparing for a pet funeral until Schrödinger's box is finally opened.</p>
+<p>The code was difficult to read. It was classic spaghetti code—and as someone of Italian heritage, I don't use that phrase lightly.</p>
+<p>I struggled in earnest to add my new feature to this ever-growing complicated loop.</p>
+<p>Then I remembered Larry's advice: Make two trips.</p>
+<p>The code would be significantly simpler if it made two passes over the data. One pass would collect data, count things that needed to be counted, sum subtotals, and so on. The second pass would take all this information and output the report, and would be much easier because it had all the information it needed from the start. No Schrödinger's cat.</p>
+<p>Should I make this change? It seemed like two trips would be less efficient. The original version allocated no new memory because it was outputting the report as it iterated over the data. The new version would need to allocate data structures to store the intermediate result.</p>
+<p>It was a classic complexity vs. memory engineering decision: Suffer from complexity or suffer from potential memory exhaustion.</p>
+<p>My first computer was very slow and had only 5K of RAM. This taught me to be stingy with my use of memory. Sometimes I fall back to my old habit of counting every byte of memory even when it doesn't matter. As Knuth taught us, premature optimization is the root of all evil.</p>
+<p>I soon realized I was being silly. The quantity of data being reported on was rarely more than a screenful—typically only zero, one, or two items, and might rarely be in the thousands. Moreover, the output was typically sent to the terminal (stdout), which would be a bigger consumer of time than any minor coding efficiency I might lose in the rewrite.</p>
+<p>I refactored the code to take two passes. It turns out the new code didn't even perform many allocations. My biggest fear was for naught.</p>
+<p>Now, with much simplified code, I could add new features easily. It was cleaner and easier to test. This gave me the confidence to clean up some minor nits and make the entire report much more readable.</p>
+<p>Not to brag, but the new format is pretty slick. Don't thank me. Thank Larry!</p>
+<p>&nbsp;</p>
+<h3>Pre-walk, then Walk</h3>
+<p>Rather than making multiple trips with fewer bags each trip, sometimes it can be useful to carry no bags at all on the first trip. This is the <i>pre-walk</i>—just exploring the path to scout for problems.</p>
+<p>A pre-walk finds problems early. When moving large furniture, the pre-walk can clear the path, alert you to troublesome narrow hallway turns, and move the pet who is sitting where the new couch will be placed. Any of those tasks are easier to do with two free hands.</p>
+<p>Sometimes I use a pre-walk to open the wine-rack door before I return with new bottles.</p>
+<p>Who hasn't checked into a hotel room only to find the room is a mess, occupied, or otherwise unusable? Then you have to take all your bags back down to the reception desk and back up to your new room. Now I pre-walk to the room to check it out first.</p>
+<p>&nbsp;</p>
+<h3>Canary Deployments </h3>
+<p>A canary deployment is the distributed computing version of the pre-walk. Rolling out new software to thousands of instances is risky. It can take a long time if done serially. Doing it in parallel, however, might push a bad release and recreate a large outage very quickly.</p>
+<p>The canary strategy says to roll out new software to a single replica to validate a release prior to rolling it out to the <i>n-1</i> remaining instances. The first trip is slow because it waits for the software to initialize and start reporting a heartbeat or other health check. If that succeeds, the second trip upgrades all other replicas in parallel, confident that they will start, too.</p>
+<p>How could a well-tested software package possibly fail to run? It is not just the functionality of the software that is being tested here. It is also the deployment system itself.</p>
+<p>For example, I remember a time when a canary died, preventing what could have been a major outage. The host orchestrating the rollout had run out of disk space. Instead of copying the installation package to all machines, it was copying a zero-length file. Because the software divided the work into two trips, the only outage was the canary, not the entire application. Since there were hundreds of replicas, one being down would hardly be noticed.</p>
+<p>In another instance, the software had rolled out successfully to the QA (quality assurance) environment, yet the canary died when the exact same bits were deployed in the production environment. How could that be? It turned out the release required a new entry in the configuration file. That field had been added to the configuration file used in the QA environment but not the one used in production. This error was caught early in the canary stage. Another major outage prevented.</p>
+<p>Kubernetes's canary deployment upgrades replicas using this strategy. Typically, a small percentage of replicas is upgraded first. The remainder are upgraded only if no errors are detected.</p>
+<p>The strategy is also used in mass software deployments. For example, web browsers such as Chrome have a canary release, allowing some users to opt in to receive the newest release earlier than most customers. Even when rolling out new releases to the remaining users, those users are often upgraded to a random sample first. This is also done at the feature level. Risky new features are sometimes shipped in a disabled state, then enabled for a random sample of canary users before enabling them to all.</p>
+<p>Drug research trials contain a canary-like phase. Phase 1 trials measure safety by risking only a small number of lives. Later phases test efficacy on larger and larger groups.</p>
+<p>&nbsp;</p>
+<h3>Make Two Projects</h3>
+<p>The most brilliant "make two trips" example I experienced involved migrating a legacy application to the cloud. I can't take credit for this; it was a co-worker's idea.</p>
+<p>The project involved moving an application from a legacy datacenter to a cloud provider. We could not simply "lift and shift" the entire system to the cloud. The application was tightly coupled to another application that was staying behind.</p>
+<p>Therefore, the project involved decoupling the two applications. The project required modifications to both systems, splitting a database between the two, and other complexities too numerous to mention. Oh, and it had to be done with limited downtime.</p>
+<p>The first two attempts at this project failed. The first failed because of a lack of resources. A year later, the second attempt was better resourced but still failed. It was unclear exactly why. Conventional wisdom held that the people involved just ran out of time or didn't have enough support.</p>
+<p>If that was true, the third attempt simply required more resources and more time. Right? Wrong.</p>
+<p>After studying the architecture, the code, and the past failures, an engineer made an important discovery: The project was impossible! The reason for the failure was that the previous team had tried to do something that couldn't succeed.</p>
+<p>The migration had many steps. Some could be rolled back in the event of failure, but the riskiest could not. There was no undo button. For the steps without an undo, there wasn't even a way to test ahead of time to ensure that an undo wouldn't be needed.</p>
+<p>In a sufficiently complex system, the only way to know which problems might happen is to try the process, let it fail, roll back, and try again. If there is no way to roll back, and you know the process can't possibly work on the first try, it is essentially impossible.</p>
+<p>Could you just risk it and hope it works on the first try? No. Hope is not a strategy.</p>
+<p>My co-worker then had a brilliant idea: Make two trips.</p>
+<p>If the current architecture makes the project impossible, she concluded that first we must create a project that changes the architecture. Then the migration project would be possible.</p>
+<p>Both projects (trips) were complex, but neither was impossible.</p>
+<p>The second project still had the largest risk. While all steps now had the ability to roll back, one step had a point of no return at which changes to a database would be made that were impossible to undo. Before this step, however, was an opportunity to do extensive testing that would ensure it was safe to commit to the new database.</p>
+<p>Three time windows were announced for this downtime. During the first window, problems were found that would take days to fix. Rollback was performed, as the point-of-no-return step hadn't yet been executed.</p>
+<p>The team had two more chances. The next window found some new failures. Most were fixed in realtime, although some were deemed minor enough that they could be fixed later. The third window was not needed, much to the relief of everyone on the project, as well as the customers.</p>
+<p>The two projects took a year to complete. It wouldn't have been possible as one trip; as two trips, it was a success.</p>
+<p>Dividing the project had the side benefit of providing a better experience for customers. This was unexpected but welcome. The original plan required customers to make changes on their side on a specific day, during a specific window of downtime. Expecting hundreds of customers to make a change at the same time was unrealistic. The fact that there was no way for the customers to test their changes until after the downtime event, which was after the point of no return, made this plan even more precarious.</p>
+<p>The two-phase approach eliminated this problem. All customer-visible changes naturally fell during the first project and all user-visible downtime fell during the second project. The changes could now be made and tested any time during a much longer time span. That made it easier for the customers and greatly reduced the complexity of coordinating such changes.</p>
+<p>Conveying all of this to the customers became easier, too. Explaining a complex change combined with downtime is difficult. Now the change could be explained in isolation. The downtime would happen months later and was easy to explain using the standard downtime announcement process that customers are used to. Explaining two isolated (as far as the customers are concerned) events is easier than explaining a combined, complex mega-event.</p>
+<p>The full story of this project can be found on the Stack Overflow blog:</p>
+<p><b>Part 1:</b> <a href="https://stackoverflow.blog/2023/08/30/journey-to-the-cloud-part-i-migrating-stack-overflow-teams-to-azure/">https://stackoverflow.blog/2023/08/30/journey-to-the-cloud-part-i-migrating-stack-overflow-teams-to-azure/</a></p>
+<p><b>Part 2:</b> <a href="https://stackoverflow.blog/2023/09/05/journey-to-the-cloud-part-ii-migrating-stack-overflow-for-teams-to-azure/">https://stackoverflow.blog/2023/09/05/journey-to-the-cloud-part-ii-migrating-stack-overflow-for-teams-to-azure/</a></p>
+<p>&nbsp;</p>
+<h3>Conclusion</h3>
+<p>Spread the good word of making two trips. It will not only enhance the productivity of your team, but will reduce the amount of explaining required when you leverage the technique. The other day my partner gave me a frustrated look and asked why I left the car door open. I replied, "I'm making two trips" as I walked by. She relaxed. It was all the explanation needed. </p>
+<p>While you shouldn't take all your life lessons from Larry David, the "make two trips" strategy is a great tool to have in your toolbox.</p>
+<p>Whether your project is as simple as carrying groceries into the house or as complex as a multiyear engineering project, "make two trips" can simplify the project, reduce the chance of error, improve the probability of success, and lead to easier explanations.</p>
+<p>Thanks, Larry!</p>
+<p>&nbsp;</p>
+<h4>Acknowledgments</h4>
+<p>Thanks to Benjamin Dumke-von der Ehe, Jessica Hilt, Jeremy Peirce, George V. Reilly, Tom Reingold, Mandy Riso, Margret Treiber, and many others for feedback on early drafts.</p>
+<p><b>Thomas A. Limoncelli</b> is a technical product manager at Stack Overflow Inc. who works from his home in New Jersey. His books include <i>The Practice of Cloud Administration</i> (<a href="https://the-cloud-book.com/">https://the-cloud-book.com</a>), <i>The Practice of System and Network Administration</i> (<a href="https://the-sysadmin-book.com/">https://the-sysadmin-book.com</a>), and <i>Time Management for System Administrators</i> (<a href="https://tomontime.com/">https://TomOnTime.com</a>). He blogs at <a href="http://everythingsysadmin.com/">EverythingSysadmin.com</a> and posts at <a href="https://twitter.com/yesthattom">@YesThatTom</a>. He holds a B.A. in computer science from Drew University.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){if (!document.body) return;var js = "window['__CF$cv$params']={r:'889499418f221fd6',t:'MTcxNjYzMDM5MC4xMTkwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 2</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3664275">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Nicole Forsgren, Eirini Kalliamvakou, Abi Noda, Michaela Greiler, Brian Houck, Margaret-Anne Storey</span> - <a href="detail.cfm?id=3639443"><b>DevEx in Action</b></a>
+<br/>
+DevEx (developer experience) is garnering increased attention at many software organizations as leaders seek to optimize software delivery amid the backdrop of fiscal tightening and transformational technologies such as AI. Intuitively, there is acceptance among technical leaders that good developer experience enables more effective software delivery and developer happiness. Yet, at many organizations, proposed initiatives and investments to improve DevEx struggle to get buy-in as business stakeholders question the value proposition of improvements.
+</p>
+<br/>
+<p>
+<span>Jo&#227;o Varaj&#227;o, Ant&#243;nio Trigo, Miguel Almeida</span> - <a href="detail.cfm?id=3631183"><b>Low-code Development Productivity</b></a>
+<br/>
+This article aims to provide new insights on the subject by presenting the results of laboratory experiments carried out with code-based, low-code, and extreme low-code technologies to study differences in productivity. Low-code technologies have clearly shown higher levels of productivity, providing strong arguments for low-code to dominate the software development mainstream in the short/medium term. The article reports the procedure and protocols, results, limitations, and opportunities for future research.
+</p>
+<br/>
+<p>
+<span>Ivar Jacobson, Alistair Cockburn</span> - <a href="detail.cfm?id=3631182"><b>Use Cases are Essential</b></a>
+<br/>
+While the software industry is a fast-paced and exciting world in which new tools, technologies, and techniques are constantly being developed to serve business and society, it is also forgetful. In its haste for fast-forward motion, it is subject to the whims of fashion and can forget or ignore proven solutions to some of the eternal problems that it faces. Use cases, first introduced in 1986 and popularized later, are one of those proven solutions.
+</p>
+<br/>
+<p>
+<span>Jorge A. Navas, Ashish Gehani</span> - <a href="detail.cfm?id=3570922"><b>OCCAM-v2: Combining Static and Dynamic Analysis for Effective and Efficient Whole-program Specialization</b></a>
+<br/>
+OCCAM-v2 leverages scalable pointer analysis, value analysis, and dynamic analysis to create an effective and efficient tool for specializing LLVM bitcode. The extent of the code-size reduction achieved depends on the specific deployment configuration. Each application that is to be specialized is accompanied by a manifest that specifies concrete arguments that are known a priori, as well as a count of residual arguments that will be provided at runtime. The best case for partial evaluation occurs when the arguments are completely concretely specified. OCCAM-v2 uses a pointer analysis to devirtualize calls, allowing it to eliminate the entire body of functions that are not reachable by any direct calls.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Confidential Computing or Cryptographic Computing? - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Security" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3665607" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>May 23, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3665607">Volume 22, issue 2 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3664295">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Confidential Computing or Cryptographic Computing?</h1>
+<h2>Tradeoffs between cryptography and hardware enclaves</h2>
+<h3>Raluca Ada Popa</h3>
+<p>Increasingly stringent privacy regulations—for example, GDPR (General Data Protection Regulation) in the European Union; and CCPA (California Consumer Privacy Act)—and sophisticated attacks leading to massive breaches have increased the demand for protecting data in use, or <i>encryption in use</i>. The encryption-in-use paradigm is important for security because <i>encryption at rest</i> protects that data only when it is in storage and <i>encryption in transit</i> protects the data only when it is being communicated over the network. In both cases, however, the data is exposed during computation—namely, while it is being <i>used/processed</i> at the servers. That processing window is the time when many data breaches happen, either at the hands of hackers or insider attackers.</p>
+<p>Another advantage of encryption in use is that it allows different parties to collaborate by putting their data together for the purpose of learning insights from their aggregate data, without actually sharing their data with each other. This is because the parties share <i>encrypted</i> data with each other, so no party can see the data of any other party in decrypted form. The parties can still run useful functions on the data and release only the computation results. For example, medical organizations can train a disease treatment model over their aggregate patient data without seeing each other's data. Another example is within a financial institution such as a bank: Data analysts can build models across different branches or teams that would otherwise not be allowed to share data with each other.</p>
+<p>Today there are two prominent approaches to secure computation:</p>
+<p>• A purely cryptographic approach (using homomorphic encryption and/or secure multiparty computation).</p>
+<p>• A hardware security approach (using hardware enclaves sometimes combined with cryptographic mechanisms), also known as <i>confidential computing</i>.</p>
+<p>There is a complex tradeoff between these two approaches in terms of security guarantees, performance, and deployment. Comparisons between the two for ease of use, security, and performance are shown in tables 1,2, and 3. For simple computations, both approaches tend to be efficient, so the choice between these two would likely be based on security and deployment considerations. For complex workloads such as machine-learning training and rich SQL analytics, however, the purely cryptographic approach is too inefficient for many real-world deployments; in these cases, the hardware security approach is the only practical approach.</p>
+<p>&nbsp;</p>
+<h3>Cryptographic Computation</h3>
+<p>There are two main ways to compute on encrypted data using cryptographic mechanisms: homomorphic encryption and secure multi-party computation.</p>
+<p>Homomorphic encryption permits evaluating a function on encrypted input. For example, with <a href="https://crypto.stanford.edu/craig/craig-thesis.pdf">fully homomorphic encryption</a>,<sup>9</sup> a user can send to a cloud <code>Encrypt(x)</code>, and a cloud can compute <code>Encrypt(f(x))</code> using a public evaluation key for any function <code>f</code>. </p>
+<p><a href="https://ieeexplore.ieee.org/document/4568207">Secure multi-party computation</a><sup>23</sup> is often more efficient than homomorphic encryption and can provide protection against a malicious attacker, but it has a different setup, shown in figure 1. In secure MPC (multi-party computation), <code>N</code> parties having private inputs <code>x_1, , x_n</code>, compute a function <code>f(x_1, , x_n)</code> without sharing their inputs with each other. This is a cryptographic protocol at the end of which the parties learn the function result, but in the process no party learns the input of the other party beyond what can be inferred from the function result.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664295/assets/html/popa1.png" alt="Confidential Computing or Cryptographic Computing?" />
+<p>&nbsp;</p>
+<p>There are many different threat models for computation in MPC, resulting in different performance overheads. A natural threat model is to assume that all but one of the participating parties are malicious, so each party need only trust itself. This natural threat model, however, comes with implementations that have high overheads because the attacker is quite powerful. To improve performance, people often compromise in the threat model by assuming that a majority of the parties act honestly (and only a minority are malicious). </p>
+<p>Also, since the performance overheads often increase with the number of parties, another compromise in some MPC models is to outsource the computation to <code>m &lt; n </code>servers in different trust domains. (For example, some works propose outsourcing the secure computation to two mutually distrustful servers.) This latter model tends to be weaker than threat models where a party needs to trust only itself. Therefore, in the rest of this article, we only consider maliciously secure n-party MPC. This also makes the comparison to secure computation via hardware enclaves more consistent, because this second approach, which is discussed next, aims to protect against all parties being malicious.</p>
+<p>&nbsp;</p>
+<h3>Hardware Enclaves </h3>
+<p>Figure 2 shows a simplified view of one processor. The blue area denotes the inside of the enclave and the brown area is the outside of the enclave. The MEE (Memory Encryption Engine) contains cryptographic keys and by using them, it encrypts the data leaving the processor, so the memory bus and memory receive encrypted data. Inside the processor, the MEE decrypts the data so the core can compute on data at regular processor speeds.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664295/assets/html/popa2.png" alt="Confidential Computing or Cryptographic Computing?" />
+<p>&nbsp;</p>
+<p>Trusted execution environments such as hardware enclaves aim to protect an application's code and data from all other software in the system. Via a special hardware unit called MEE (memory encryption engine), hardware enclaves encrypt the data that leaves the processor for main memory, ensuring that even an administrator of a machine with full privileges examining the data in memory sees encrypted data, shown in figure 2. When encrypted data returns from main memory into the processor, the MEE decrypts the data and the CPU computes on decrypted data. This is what enables the high performance of enclaves compared with the purely cryptographic computation: The CPU performs computation on raw data as in regular processing. </p>
+<p>At the same time, from the perspective of any software or user accessing the machine, the data looks encrypted at any point in time: The data going into the processor and coming out is always encrypted, giving the illusion that the processor is computing on the encrypted data. Hardware enclaves also provide a useful feature called <a href="https://queue.acm.org/detail.cfm?id=3623460">remote attestation</a>,<sup>5</sup> with which remote clients can verify code and data loaded in an enclave and establish a secure connection with the enclave, which they can use to exchange keys.</p>
+<p>A number of enclave services are available today on public clouds such as Intel SGX (Software Guard Extensions) in Azure, Amazon Nitro Enclaves in Amazon Web Services (although this enclave is mostly software-based and does not provide memory encryption), <a href="https://queue.acm.org/detail.cfm?id=3623392">SEV (Secure Encrypted Virtualization) from AMD</a><sup>12</sup> in Google Cloud, and others. Recently Nvidia has added <a href="https://queue.acm.org/detail.cfm?id=3623391">enclave support in its H100 GPU</a>.<sup>6</sup></p>
+<p>&nbsp;</p>
+<h4>Ease-of-use comparison</h4>
+<p>With a purely cryptographic approach, there is no need for specialized hardware and special hardware assumptions. At the same time, in a setting like MPC, the parties must be deployed in different trust domains for the security guarantees of MPC to hold. In the threat models discussed earlier, participating organizations have to run the cryptographic protocol on site or in their private clouds, which is often a setup, management, and/or cost burden compared with running the whole computation on a cloud. This can be a deal-breaker for some organizations. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664295/assets/html/popa-t1.png" alt="Confidential Computing or Cryptographic Computing? Ease-of-use comparison" />
+<p>&nbsp;</p>
+<p>With homomorphic encryption, in principle, the whole computation can be run in the cloud, but homomorphic encryption does not protect against malicious attackers as MPC and hardware enclaves do. For such protection, you would also have to use heavy cryptographic tools such as zero-knowledge proofs.</p>
+<p>In contrast, hardware enclaves are now available on major cloud providers such as Azure, AWS, and Google Cloud. Running an enclave collaborative computation is as easy as using one of these cloud services. This also means that to use enclaves, you do not need to purchase specialized hardware, because the major clouds already provide services based on these machines. Of course, if the participating organizations want, they could each deploy enclaves on their premises or in private clouds and perform the collaborative computation across the organizations in a distributed manner similar to MPC. The rest of this article assumes a cloud-based deployment for hardware enclaves, unless otherwise specified.</p>
+<p>With cryptographic computing, cryptographic expertise is often required to run a certain task. Since the cryptographic overhead is high, tailoring the MPC design for a certain task can bring significant savings. At the same time, this requires expertise and time that many users do not have. Hiring cryptography experts for this task is burdensome and expensive. For example, a user cannot simply run a data-analytics or machine-learning pipeline in MPC. Instead, the user has to identify some key algorithms in those libraries to support, employ tailored cryptographic protocols for those, and implement the resulting cryptographic protocols in a system that likely requires significant code changes as compared with an existing analytics/ML pipeline. </p>
+<p>In contrast, modern enclaves provide a VM interface, resulting in a <a href="https://cloud.google.com/confidential-computing/confidential-vm/docs/confidential-vm-overview">Confidential Virtual Machine</a>.<sup>10</sup> This means that the user can install proprietary software in these enclaves without modifying this software. Complex codebases are supported in this manner: For example, <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/confidential-gke-nodes">Confidential Google Kubernetes engine nodes</a><sup>11</sup> enable Kubernetes to run in confidential VMs. The first iteration of the enclave, Intel SGX, did not have this flexibility and required modifying and porting a program to run it in the enclave. Since then, it has been recognized that to use this technology for confidential data pipelines, users must remove the friction of porting to the enclave interface. This is how the confidential VM model was born. </p>
+<p>&nbsp;</p>
+<h4>Security comparison</h4>
+<p>The <i>homomorphic encryption</i> referred to here can compute more complex functions, meaning either <i>fully</i> or <i>leveled</i> homomorphic encryption. Some homomorphic encryption schemes can perform simple functions efficiently (such as addition or low-degree polynomials). As soon as the function becomes more complex, performance degrades significantly.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664295/assets/html/popa-t2.png" alt="Confidential Computing or Cryptographic Computing? Security comparison" />
+<p>&nbsp;</p>
+<p>Homomorphic encryption is a special form of secure computation, where a cloud can compute a function over encrypted data without interacting with the owner of the encrypted data. It is a cryptographic tool that can be used as part of an MPC protocol. MPC is more generic and encompasses more cryptographic tools; parties running an MPC protocol often interact with each other over multiple rounds, which affords better performance than being restricted to a noninteractive setting.</p>
+<p>For general functions, homomorphic encryption is slower than MPC. Also, as discussed, it does not provide malicious security without employing an additional cryptographic tool such as zero-knowledge proofs, which can be computationally expensive.</p>
+<p>When an MPC protocol protects against some malicious parties, it protects against any side-channel attacks at the servers of those parties as well. In this sense, the threat model for the malicious parties is cleaner than for hardware enclaves' threat model because it does not matter what attack adversaries mount at their servers; MPC considers any sort of compromise for these parties. For the honest parties, MPC does not protect against side-channel attacks.</p>
+<p>In the case of enclaves, attackers can attempt to perform side-channel attacks. A common class of side-channel attack (which encompasses many different types) are those in which an attacker observes which memory locations are accessed as well as the order and frequency of these accesses. Even though the data at those memory locations is encrypted, seeing the pattern of access can provide confidential information to the attacker. These attacks are called memory-based access-patterns attacks, or simply access-patterns attacks.</p>
+<p>There has been significant research on protecting against these access-patterns side-channel attacks using a cryptographic technique called <i>data-oblivious computation</i>. Oblivious computation ensures that the accesses to memory do not reveal any information about the sensitive data being accessed. Intuitively, it transforms the code into a side-channel-free version of the code, similar to how the OpenSSL cryptographic libraries have been hardened.</p>
+<p>Oblivious computation protects against a large class of side-channel attacks based on cache-timing-exploiting memory accesses, page faults, branch predictor, memory bus leakage, dirty bit, and others.</p>
+<p>Hardware enclaves such as Intel SGX are also prone to other side-channel attacks besides access patterns (e.g., speculative-execution-based attacks, attacks to remote attestation), which are not prevented by oblivious computation. Fortunately, when such attacks are discovered, they are typically patched in a short amount of time by cloud providers such as Azure confidential computing and others. Even if the hardware enclaves would be vulnerable for the time period before the patch, the traditional cloud security layer is designed to prevent attackers from breaking in to mount such a side-channel attack. (This additional level of security would not exist on a client-side usage of enclaves.) </p>
+<p>Subverting this layer as well as being able to set up a side-channel attack in a real system with such protection is typically much harder to do for an attacker because it requires the attacker to succeed at mounting two different and difficult types of attacks. It is not sufficient for the attacker to succeed in attacking only one. At the time of writing this article, there is no evidence of any such dual attack having occurred on state-of-the-art public clouds such as Azure confidential computing. This is why, when using hardware enclaves, you can assume that the cloud provider is a well-intended organization and its security practices are state of the art, as would be expected from major cloud providers today. </p>
+<p>Another aspect pertaining to security is the size of the TCB (trusted computing base). The larger the TCB, the larger the attack surface and the more difficult it is to harden the code against exploits. Considering the typical use of enclaves these days—namely, the confidential VM abstraction—the enclave contains an entire virtual machine. This means that the TCB for enclaves is large—many times larger than the one for cryptographic computation. For cryptographic computation, the TCB is typically the client software that encrypts the data, but there might be some extra assumptions on the server system, depending on the threat model.</p>
+<p>&nbsp;</p>
+<h4>Performance comparison</h4>
+<p>Cryptographic computation is efficient enough for running simple computations such as summations, counts, or low-degree polynomials. As of the date of this article, cryptographic computation remains too slow to run complex functions such as machine-learning training or rich data analytics. Take, for example, training a neural network model. Recent state-of-the-art work on Microsoft Falcon (2021) estimates that training a moderate-size neural network such as VGG-16 on datasets such as CIFAR-10 could range into years. This work also assumed a threat model with three parties that have an honest majority, so a weaker threat model than the n organizations where n-1 can be malicious. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664295/assets/html/popa-t3.png" alt="Confidential Computing or Cryptographic Computing? Performance comparison" />
+<p>&nbsp;</p>
+<p>Now let us take an example with the stronger threat model: our state-of-the-art work on Senate,<sup>18</sup> which enables rich SQL data analytics with maliciously secure MPC. Senate improved the performance of existing MPC protocols by up to 145 times. Even with this improvement, Senate can perform analytics only on small databases of tens of thousands of rows and cannot scale to hundreds of thousands or to millions of rows because the MPC computation runs out of memory and becomes very slow. We have been making a lot of progress on reducing the memory overheads in our recent work on MAGE<sup>13</sup> and in another work Piranha on employing GPUs for secure computation learning,<sup>22</sup> but the overheads of MPC remain too high for training advanced machine-learning models and for rich SQL data analytics. It could still take years until MPC becomes efficient for these workloads.</p>
+<p>Some companies claim to run MPC efficiently for rich SQL queries and machine-learning training. How is that possible? An investigation of a few of them showed that they decrypt a part of the data or keep a part of the query processing in unencrypted form, which exposes that data and the computation to an attacker. This compromise reduces the privacy guarantee.</p>
+<p>Hardware enclaves are far more efficient than cryptographic computation because, as explained earlier, deep down in the processor the CPU computes on unencrypted data. At the same time, data coming in and out of the processor is in encrypted form, and any software or entity outside of the enclave that examines the data sees it in encrypted form; this has the effect of computing on encrypted data without the large overheads of MPC or homomorphic encryption. The overheads of such computation depend a lot on the workload, but, for example, there have been overheads of 20 percent—twice for many workloads. </p>
+<p>Adding side-channel protection such as oblivious computation can increase the overhead, but overall the performance of secure computation using enclaves still is much better than MPC/homomorphic encryption for many realistic SQL analytics and machine-learning workloads. The amount of overhead from side-channel protection via oblivious computation varies based on the workload—from adding almost no overhead for workloads that are close to being oblivious to 10 times the overhead for some workloads.</p>
+<p>The <a href="https://www.nvidia.com/en-us/data-center/solutions/confidential-computing/">Nvidia GPU enclaves</a><sup>16</sup> in the H100 architecture offer significant speed-ups for machine-learning workloads, especially for generative AI. Indeed, there are significant industry efforts around using GPU enclaves to protect prompts during generative AI inference, data during generative AI fine-tuning, and even model weights during training of the foundational model. At the time of writing this article, Azure has a preview available of its GPU Confidential Computing service, and other major clouds have similar efforts under way. Confidential computing promises to bring the benefits of generative AI to confidential data, such as the proprietary data of businesses to increase their productivity and the private data of users to assist them in various tasks. </p>
+<p>&nbsp;</p>
+<h3>Real-world Use Cases</h3>
+<p>Because of the need for data protection in use, there has been an increase in use cases of secure computation, whether it is cryptographic or hardware enclave based. This section looks at use cases for both types.</p>
+<p>&nbsp;</p>
+<h3>Cryptographic Computation </h3>
+<p>One of the main resources to track major use cases for secure multiparty computation is the <a href="https://mpc.cs.berkeley.edu/">MPC Deployments dashboard</a><sup>15</sup> hosted by UC Berkeley. The community can contribute use cases to this tracker if they have users. Here you can find a variety of deployed use cases for applications such as privacy-preserving advertising, cryptocurrency wallets (Coinbase, Fireblocks, Dfns), private inventory matching (J.P.Morgan), privacy-preserving Covid exposure notifications (Google, Apple), and others. </p>
+<p>Notice that most of these use cases are centered around a specific, typically simple computation and use specialized cryptography to achieve efficiency. This is in contrast to supporting a more generic system on top of which you can build many applications such as a database, data-analytics framework, or machine-learning pipeline—these use cases are more efficiently served by confidential computing. </p>
+<p>One prominent use case was collecting Covid exposure notification information from users' devices in a private way. The organizations involved were ISRG (Internet Security Research Group) and NIH (National Institutes of Health). Apple and Google served as injection servers obtaining encrypted user data, and the ISRG and NIH ran servers that computed aggregates with help from MITRE. The results were shared with public health authorities. The computation in this case checked that the data uploaded from users satisfied some expected format and bounds, and then performed simple aggregates such as summation. </p>
+<p>Heading toward a more general system based on MPC, <a href="https://galois.com/project/jana-private-data-as-a-service/">Jana</a><sup>8</sup> is an MPC-secured database developed by Galois Inc. using funding from DARPA over 4½ years and providing PDaaS (privacy-preserving data as a service). Jana's goal is to protect the privacy of data subjects while allowing parties to query this data. The database is encrypted, and parties perform queries using MPC. Jana additionally combines differential privacy and searchable encryption with MPC. </p>
+<p>The Jana developers detail the <a href="https://galois.com/blog/2020/10/galois-team-wraps-up-the-jana-project/">challenges</a><sup>7 </sup>they encountered, such as "Performance of queries evaluated in our linear secret-sharing protocols remained disappointing, with JOIN-intensive and nested queries on realistic data running up to 10,000 times slower than the same queries without privacy protection." Nevertheless, Jana was used in real-world prototype applications, such as inter-agency data sharing for public policy development, and in a secure computation class at Columbia University.</p>
+<p>&nbsp;</p>
+<h3>Confidential Computing Use Cases</h3>
+<p>Because of its efficiency, confidential computing has been more widely adopted than cryptographic computation. The major clouds such as Azure, AWS, and Google Cloud offer confidential computing solutions. They provide CPU-based confidential computing, and some are in the process of offering GPU-based confidential computing (for example, Azure has a preview offering for the H100 enclave). A significant number of companies have emerged enabling various types of workloads in confidential computing in these clouds. Among them are Opaque, Fortanix, Anjuna, Husmesh, Antimatter, Edgeless, and Enclaive. </p>
+<p>For example, <a href="http://opaque.co/">Opaque</a><sup>17</sup> enables data analytics and machine learning to run in confidential computing. Using the hardware enclave in a cloud requires significant security expertise. Consider, for example, that a user wants to run a certain data-analytics pipeline—say, from Databricks—in confidential VMs in the cloud. Simply running in confidential VMs is not sufficient for security: The user has to be concerned with correctly setting up the enclaves' remote attestation process, key distribution and management, a cluster of enclaves that offer scaling out, as well as defining and enforcing end-to-end policies on who can see what part of the data or the computation. </p>
+<p>To avoid this work for the user, Opaque provides a software stack running on top of the enclave hardware infrastructure that allows the user to run the workflow frictionlessly without security expertise. Opaque's software stack takes care of all these technical aspects. This is the result of years of research at UC Berkeley, followed by product development. Specifically, the technology behind Opaque was initially developed in the RISELab (Realtime Intelligent Secure Explainable Systems) at UC Berkeley,<sup>19</sup> and it has evolved to support machine-learning workloads and a variety of data-analytics pipelines. </p>
+<p>Opaque can scale to an arbitrary cluster size and big data, essentially creating one "large cluster enclave" out of individual enclaves. It enables collaboration between organizations or teams in the same organization that cannot share data with each other: These organizations can share encrypted data with each other in Opaque's workspace and perform data analytics or machine learning without seeing each other's data set. Use cases include financial services (such as cross-team collaboration for identity resolution or cross-organization collaboration for crime detection); high-tech (such as fine-tuning machine learning from encrypted data sets); a privacy-preserving LLM (large language model) gateway that offers logging, control, and accountability; and generating a verifiable audit report for compliance. </p>
+<p>A number of companies have created the <a href="https://confidentialcomputing.io/">Confidential Computing Consortium</a>,<sup>2</sup> an organization meant to catalyze the adoption of confidential computing through a community-led consortium and open collaboration. The consortium lists more than 30 companies that offer confidential computing technology. </p>
+<p>Following are a few examples of end use cases. Signal, a popular end-to-end encrypted messaging application, uses hardware enclaves to secure its <a href="https://signal.org/blog/building-faster-oram/">private contact discovery service</a>.<sup>21</sup> Signal built this service using techniques from the research projects <a href="https://people.eecs.berkeley.edu/~raluca/oblix.pdf">Oblix</a><sup>14</sup> and <a href="https://eprint.iacr.org/2021/1280">Snoopy</a>.<sup>4 </sup>In this use case, each user has a private list of contacts on their device, and Signal wants to discover which of these contacts are Signal users as well. At the same time, Signal does not want to reveal the list of its users to any user, nor does it want to learn the private contact list of each user. Essentially, this computation is a private set intersection. Signal investigated various cryptographic computation options and concluded that these would not perform fast enough and cheaply enough for its large-scale use case. As a result, it chose to use hardware enclaves in combination with oblivious computation to reduce a large number of side channels, as discussed earlier. Our work on Oblix and Snoopy developed efficient oblivious algorithms for use inside enclaves. </p>
+<p>Other adopters include the cryptocurrency MobileCoin, the <a href="https://www.anjuna.io/press/israels-ministry-of-defense-selects-anjuna-security-software-to-lockdown-sensitive-data-in-public-clouds">Israeli Ministry of Defense</a>,<sup>1</sup> Meta, ByteDance (to increase user privacy in TikTok), and many others.</p>
+<p>&nbsp;</p>
+<h3>Combining the Two Approaches</h3>
+<p>Given the tradeoff between confidential computing via enclaves and secure computation via cryptography, a natural question is whether a solution can be designed that benefits from the best of both worlds. A few solutions have been proposed, but they still inherit the slowdown from MPC. </p>
+<p>For example, my students and I have collaborated with Signal with its <a href="https://github.com/signalapp/SecureValueRecovery2">SecureValueRecovery</a>2<sup>20</sup> system to develop a mechanism for Signal users to recover secret keys based on a combination of different hardware enclaves on three clouds and secure multiparty computation. The purpose of this combination is to provide a strong security guarantee, stacking the power of the two technologies as defense in depth. </p>
+<p>A similar approach is taken by Meta and Fireblocks, a popular cryptocurrency wallet; they both combine hardware enclaves with cryptographic computation for increased security. The resulting system will be at least as slow as the underlying MPC, but these examples are for specialized tasks for which there are efficient MPC techniques.</p>
+<p>&nbsp;</p>
+<h3>Conclusions and How to Learn More</h3>
+<p>Secure computation via MPC/homomorphic encryption versus hardware enclaves presents tradeoffs involving deployment, security, and performance. Regarding performance, it matters a lot which workload you have in mind. For simple workloads such as simple summations, low-degree polynomials, or simple machine-learning tasks, both approaches can be ready to use in practice, but for rich computations such as complex SQL analytics or training large machine-learning models, only the hardware enclave approach is at this moment practical enough for many real-world deployment scenarios.</p>
+<p>Confidential computing is a relatively young subarea in computer science—but one that is evolving rapidly. To learn more about confidential computing, attend or watch the content from the <a href="http://confidentialcomputingsummit.com/">Confidential Computing Summit</a>,<sup>3</sup> scheduled this year for June 5-6 in San Francisco. This is the premier in-person event for confidential computing. The conference has attracted the top technology players in the space, from hardware manufacturers (Intel, ARM, Nvidia, etc.) to hyperscalers (Azure, AWS, Google), solution providers (Opaque, Fortanix), and use-case providers (Signal, Anthropic). The conference is hosted by Opaque and co-organized by the Confidential Computing Consortium. </p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Anjuna. 2022. Confidential computing pioneer Anjuna makes cloud safe enough for even government and defense agencies; <a href="https://www.anjuna.io/press/israels-ministry-of-defense-selects-anjuna-security-software-to-lockdown-sensitive-data-in-public-clouds">https://www.anjuna.io/press/israels-ministry-of-defense-selects-anjuna-security-software-to-lockdown-sensitive-data-in-public-clouds</a>.</p>
+<p>2. Confidential Computing Consortium; <a href="https://confidentialcomputing.io/">https://confidentialcomputing.io</a>.</p>
+<p>3. Confidential Computing Summit 2024; <a href="https://www.confidentialcomputingsummit.com/">https://www.confidentialcomputingsummit.com</a>.</p>
+<p>4. Dauterman, E., Fang, V., Demertzis, I., Crooks, N., Popa, R. A. 2021. Snoopy: surpassing the scalability bottleneck of oblivious storage. <i>Proceedings of the ACM SIGOPS 28th Symposium on Operating Systems Principles;</i> <a href="https://dl.acm.org/doi/10.1145/3477132.3483562">https://dl.acm.org/doi/10.1145/3477132.3483562</a>.</p>
+<p>5. Delignat-Lavaud, A., Fournet, C., Vaswani, K., Clebsch, S., Riechert, M., Costa, M., Russinovich, M. 2023. Why should I trust your code? <i>acmqueue</i> 21(4); <a href="https://queue.acm.org/detail.cfm?id=3623460">https://queue.acm.org/detail.cfm?id=3623460</a>.</p>
+<p>6. Dhanuskodi, G., Guha, S., Krishnan, V., Manjunatha, A., Nertney, R., O'Connor, M., Rogers, P. 2023. Creating the first confidential GPUs. <i>acmqueue</i> 21(4); <a href="https://queue.acm.org/detail.cfm?id=3623391">https://queue.acm.org/detail.cfm?id=3623391</a>.</p>
+<p>7. Galois. 2020. Galois team wraps up the Jana project; <a href="https://galois.com/blog/2020/10/galois-team-wraps-up-the-jana-project/">https://galois.com/blog/2020/10/galois-team-wraps-up-the-jana-project/</a>.</p>
+<p>8. Galois. 2024. Jana: private data as a service; <a href="https://galois.com/project/jana-private-data-as-a-service/">https://galois.com/project/jana-private-data-as-a-service/</a>.</p>
+<p>9. Gentry, C. 2009. A fully homomorphic encryption scheme. Ph.D. dissertation, Stanford University; <a href="https://crypto.stanford.edu/craig/craig-thesis.pdf">https://crypto.stanford.edu/craig/craig-thesis.pdf</a>.</p>
+<p>10. Google Cloud. Confidential VM overview; <a href="https://cloud.google.com/confidential-computing/confidential-vm/docs/confidential-vm-overview">https://cloud.google.com/confidential-computing/confidential-vm/docs/confidential-vm-overview</a>.</p>
+<p>11. Google Cloud. Encrypt workload data in-use with confidential Google Kubernetes engine nodes; <a href="https://galois.com/project/jana-private-data-as-a-service/">https://cloud.google.com/kubernetes-engine/docs/how-to/confidential-gke-nodes</a>.</p>
+<p>12. Kaplan, D. 2023. Hardware VM isolation in the cloud. <i>acmqueue</i> 21(4); <a href="https://queue.acm.org/detail.cfm?id=3623392">https://queue.acm.org/detail.cfm?id=3623392</a>.</p>
+<p>13. Kumar, S., Culler, D. E., Popa, R. A. 2021. MAGE: nearly zero-cost virtual memory for secure computation. Usenix Symposium on Operating Systems Design and Implementation; <a href="https://www.usenix.org/conference/osdi21/presentation/kumar">https://www.usenix.org/conference/osdi21/presentation/kumar</a>.</p>
+<p>14. Mishra, P., Poddar, R., Chen, J., Chiesa, A., Popa, R. A. 2018. Oblix: an efficient oblivious search index. IEEE Symposium on Security and Privacy, 279-297; <a href="https://people.eecs.berkeley.edu/~raluca/oblix.pdf">https://people.eecs.berkeley.edu/~raluca/oblix.pdf</a>.</p>
+<p>15. MPC Deployments; <a href="https://mpc.cs.berkeley.edu/">https://mpc.cs.berkeley.edu</a>.</p>
+<p>16. Nvidia Confidential Computing; <a href="https://www.nvidia.com/en-us/data-center/solutions/confidential-computing/">https://www.nvidia.com/en-us/data-center/solutions/confidential-computing/</a>.</p>
+<p>17. Opaque; <a href="https://opaque.co/">https://opaque.co</a>.</p>
+<p>18. Poddar, R., Kalra, S.,&nbsp; Yanai,&nbsp;A., Deng, R., Popa, R. A., Hellerstein, J.&nbsp;2021. Senate: a maliciously secure MPC platform for collaborative analytics. 30<sup>th</sup> Usenix Security Symposium; <a href="https://www.usenix.org/conference/usenixsecurity21/presentation/poddar">https://www.usenix.org/conference/usenixsecurity21/presentation/poddar</a>.</p>
+<p>19. RISELab; <a href="https://rise.cs.berkeley.edu/">https://rise.cs.berkeley.edu</a>.</p>
+<p>20. SecureValueRecovery2. Github; <a href="https://github.com/signalapp/SecureValueRecovery2">https://github.com/signalapp/SecureValueRecovery2</a>.</p>
+<p>21. Signal; <a href="https://signal.org/blog/building-faster-oram/">https://signal.org/blog/building-faster-oram/</a>.</p>
+<p>22. Watson, J.-L., Wagh, S., Popa, R. A. 2022. Piranha: a GPU platform for secure computation. Proceedings of the 31st Usenix Security Symposium; <a href="https://www.usenix.org/system/files/sec22-watson.pdf">https://www.usenix.org/system/files/sec22-watson.pdf</a>.</p>
+<p>23. Yao, A. C.-C. 1986. How to generate and exchange secrets. 27th Annual Symposium on Foundations of Computer Science, 162-167; <a href="https://ieeexplore.ieee.org/document/4568207">https://ieeexplore.ieee.org/document/4568207</a>.</p>
+<p>&nbsp;</p>
+<p><b>Raluca Ada Popa</b> is the Robert E. and Beverly A. Brooks associate professor of computer science at UC Berkeley working in computer security, systems, and applied cryptography. She is a co-founder and co-director of the RISELab and SkyLab at UC Berkeley, as well as a co-founder of Opaque Systems and PreVeil, two cybersecurity startups. Raluca received her PhD in computer science and her Masters and two BS degrees in computer science and in mathematics from MIT. She is the recipient of the 2021 ACM Grace Murray Hopper Award, a Sloan Foundation Fellowship award, Jay Lepreau Best Paper Award at OSDI 2021, Distinguished Paper Award at IEEE Euro S&amp;P 2022, Jim and Donna Gray Excellence in Undergraduate Teaching Award, NSF Career Award, Technology Review 35 Innovators under 35, Microsoft Faculty Fellowship, and a George M. Sprowls Award for best MIT CS doctoral thesis.</p>
+<p>&nbsp;</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){if (!document.body) return;var js = "window['__CF$cv$params']={r:'8894992efb7a05f9',t:'MTcxNjYzMDM4Ny4xODYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 2</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3664295">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Jinnan Guo, Peter Pietzuch, Andrew Paverd, Kapil Vaswani</span> - <a href="detail.cfm?id=3665220"><b>Trustworthy AI using Confidential Federated Learning</b></a>
+<br/>
+The principles of security, privacy, accountability, transparency, and fairness are the cornerstones of modern AI regulations. Classic FL was designed with a strong emphasis on security and privacy, at the cost of transparency and accountability. CFL addresses this gap with a careful combination of FL with TEEs and commitments. In addition, CFL brings other desirable security properties, such as code-based access control, model confidentiality, and protection of models during inference. Recent advances in confidential computing such as confidential containers and confidential GPUs mean that existing FL frameworks can be extended seamlessly to support CFL with low overheads.
+</p>
+<br/>
+<p>
+<span>Matthew A. Johnson, Stavros Volos, Ken Gordon, Sean T. Allen, Christoph M. Wintersteiger, Sylvan Clebsch, John Starks, Manuel Costa</span> - <a href="detail.cfm?id=3664293"><b>Confidential Container Groups</b></a>
+<br/>
+The experiments presented here demonstrate that Parma, the architecture that drives confidential containers on Azure container instances, adds less than one percent additional performance overhead beyond that added by the underlying TEE. Importantly, Parma ensures a security invariant over all reachable states of the container group rooted in the attestation report. This allows external third parties to communicate securely with containers, enabling a wide range of containerized workflows that require confidential access to secure data. Companies obtain the advantages of running their most confidential workflows in the cloud without having to compromise on their security requirements.
+</p>
+<br/>
+<p>
+<span>Charles Garcia-Tobin, Mark Knight</span> - <a href="detail.cfm?id=3664291"><b>Elevating Security with Arm CCA</b></a>
+<br/>
+Confidential computing has great potential to improve the security of general-purpose computing platforms by taking supervisory systems out of the TCB, thereby reducing the size of the TCB, the attack surface, and the attack vectors that security architects must consider. Confidential computing requires innovations in platform hardware and software, but these have the potential to enable greater trust in computing, especially on devices that are owned or controlled by third parties. Early consumers of confidential computing will need to make their own decisions about the platforms they choose to trust.
+</p>
+<br/>
+<p>
+<span>Gobikrishna Dhanuskodi, Sudeshna Guha, Vidhya Krishnan, Aruna Manjunatha, Michael O'Connor, Rob Nertney, Phil Rogers</span> - <a href="detail.cfm?id=3623391"><b>Creating the First Confidential GPUs</b></a>
+<br/>
+Today&apos;s datacenter GPU has a long and storied 3D graphics heritage. In the 1990s, graphics chips for PCs and consoles had fixed pipelines for geometry, rasterization, and pixels using integer and fixed-point arithmetic. In 1999, NVIDIA invented the modern GPU, which put a set of programmable cores at the heart of the chip, enabling rich 3D scene generation with great efficiency.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

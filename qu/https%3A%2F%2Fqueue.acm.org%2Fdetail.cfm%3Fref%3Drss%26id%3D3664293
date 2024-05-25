@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Confidential Container Groups - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Security" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3665607" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<label>May 22, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3665607">Volume 22, issue 2 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3664293">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Confidential Container Groups</h1>
+<h2>Implementing confidential computing on Azure container instances</h2>
+<h3>Matthew A. Johnson, Stavros Volos, Ken Gordon, Sean T. Allen, Christoph M. Wintersteiger, Sylvan Clebsch, John Starks, Manuel Costa</h3>
+<p>Since the launch of large-scale IaaS (infrastructure as a service) offerings from Amazon (Amazon Web Services in 2006), Microsoft (Azure in 2008), and Google (Google Cloud Platform in 2008), there has been a continuous trend toward cloud computing, which allows customers to leverage capability and cost advantages through economies of scale. This was made possible through virtualization,<sup>3</sup> where VMs (virtual machines) allow the efficient use of large bare-metal compute architectures (hosts) by using a hypervisor to coordinate sharing between multiple tenants according to their expressed usage requirements. While VMs provide a way for users to obtain additional compute capacity quickly and maximize the utilization of existing hardware (and/or avoid the cost of maintaining peak capacity by using a public cloud), it is still necessary to configure, deploy, manage, and maintain them.</p>
+<p>In recent years, container-based technologies such as Docker and Kubernetes have arisen to make it easier to manage software application lifecycles. They provide a lightweight solution for creating a set of machine configurations, called <i>containers</i>, which can be deployed onto hardware (virtualized or physical) as a group via an automated process. Container technology provides multiple separate user-space instances that are isolated from one another via kernel software. Unlike VMs, containers run directly on the host system (sharing its kernel) and as such, do not need to emulate devices or maintain large disk files. Further, container definitions adhering to the OCI (Open Containers Initiative) Distribution Specification<sup>13 </sup>specify dependencies as <i>layers</i> that can be shared between different containers, making them amenable to caching and thus speeding up deployment while reducing storage costs for multiple containers. </p>
+<p>The success of containerization technology for on-premises systems has led to major cloud providers developing their own CaaS (containers as a service) offerings, which provide customers with the ability to maintain and deploy containers in the public cloud. In CaaS offerings, containers run in a per-group UVM (utility virtual machine), which provides hypervisor-level isolation between containers running from different tenants on the same host. While the container manager and container shim running on the host are responsible for pulling images from the container registry, bringing up the UVM, and orchestrating container execution, an agent running in the UVM (the guest agent) coordinates the container workflow as directed by the host-side container shim.</p>
+<p>Cloud computing poses challenges for systems that require confidentiality,<sup>7</sup> because the three groups involved have competing needs:</p>
+<p>• <b><i>CSP (cloud service provider)</i></b> – The owner and operator of a public cloud.</p>
+<p>• <b><i>Tenant</i></b> – A customer of the CSP, who uses the cloud to host applications.</p>
+<p>• <b><i>User</i></b> – A customer or employee of the tenant, who uses the tenant's cloud applications.</p>
+<p>Although VMs and VM-isolated container groups provide strong isolation between tenants, they are deployed by the CSP and coordinated by the CSP's hypervisor. As such, in existing cloud offerings, the host operating system (including the container manager and container shim) and the hypervisor lie in the tenant's TCB (trusted computing base) and consist of all the hardware and software a tenant is required to trust. As a rule, the TCB should be as small as possible. Therefore, research into confidential computing<sup>22</sup> proposed reducing the size of the TCB by leveraging hardware-enforced TEEs (trusted execution environments).<sup>2,4,5,6,8,10,11,16,17</sup> </p>
+<p>TEEs isolate the code and data of an application from the rest of the system, including privileged components. They protect the integrity and confidentiality of user workloads, even if the host's software is compromised or controlled by a malicious entity. TEEs available from major CPU vendors can be either <i>process-based</i>, such as Intel SGX;<sup>19</sup> or <i>VM-based</i>, such as AMD SEV-SNP,<sup>9</sup> Intel TDX,<sup>20</sup> and ARM CCA.<sup>21</sup> VM-based TEEs offer hardware-level isolation of the VM, preventing the host operating system and the hypervisor from having access to the VM's memory and registers. </p>
+<p>With CaaS, container execution is orchestrated by a host-side shim that communicates with the guest agent, which coordinates the activity of the container group in the UVM. The UVM can be hardware-isolated in a TEE enclave, but the container images are still controlled by the host, as are the order in which they are mounted, the container environment variables, the commands that are sent to the containers via the bridge between the container shim and the guest agent, and so forth. This means that a compromised host can overcome the hardware isolation of the VM by injecting malicious containers. This risk of attack—be it from malicious or compromised employees of the CSP, or external threats—limits the extent to which containerization can be used in the cloud for sensitive workloads in industries such as finance and healthcare.</p>
+<p>The naïve solution to this problem is to run the guest agent and container shim in the same VM-based TEE. This removes the CSP from the tenant's TCB, but it also takes away the CSP's ability to orchestrate and automate the container workflow. It also leaves the tenant in the user's TCB. This is because the container images are controlled by the tenant, as is the order in which they are mounted, the container environment variables, and the commands that are sent to the containers. The user of the confidential container (e.g., a bank customer or a patient providing data to a doctor) must then trust that the tenant has and will run only the expected commands. Finally, this leaves image integrity and data confidentiality/integrity unsolved.</p>
+<p>To provide image and data integrity while keeping both the CSP and the tenant out of the user's TCB, we built Parma, which powers confidential containers on Azure container instances. It implements the confidential containers abstraction on a state-of-the-art container stack running on processors with VM-based TEE support (i.e., AMD SEV-SNP processors). Parma provides a lift-and-shift experience and the ability to run unmodified containers pulled from (unmodified) container registries, while providing the following strong security guarantees:</p>
+<p>• <b><i>Container attestation and integrity.</i></b> Only customer-specified containers can run in the TCB, and any means of container tampering is detected by the TCB and will either cause deployment of the container group to fail (if the execution policy is intact) or remote attestation to be invalid (because the attested policy is different).</p>
+<p>• <b><i>User data confidentiality and integrity.</i></b> Only the TCB has access to the user's data, and any means of data tampering is detected by the TCB via evidence made available to the user.</p>
+<p>Figure 1 shows how Parma uses <i>execution policies</i> to enforce user constraints and provide security to a container group. An execution policy is a component of a confidential VM that is attested at initialization time, and describes all the actions the tenant has explicitly allowed the guest agent (operated by the CSP) to take in the container group that runs on that VM. Figure 1(a) shows how Parma limits the user TCB to the container group itself, isolating it from the host operating system and hypervisor. Figure 1(b) shows an unsuccessful mount action (requested by the host and denied by the guest), in which a layer of a container image does not have a <code>dm-verity</code> (device-manager's "verity" target) root hash that matches a hash enumerated in the policy.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson1.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<p>Parma provides strong protection from the CSP for the container's root file system (consisting of the container image layers and writable scratch space) and the user's data. For container image layers (pulled in plaintext by the untrusted container manager and stored in a host-side block device), Parma mounts the device as an integrity-protected read-only file system and relies on the file-system driver to enforce integrity checking on an access to the file system. For confidentiality and integrity of privacy-sensitive data stored in a block device (e.g., writable scratch space of the container's root file system) or blob storage (e.g., remote blobs holding user data), Parma relies on block-level encryption and integrity to decrypt memory-mapped blocks, guaranteeing that data appears in plaintext only in the VM's hardware-protected memory.</p>
+<p>Finally, Parma provides container attestation rooted in security hardware by enforcing tenant-specified execution policies. The guest agent has been augmented to enforce the execution policy such that it executes only those commands (submitted by the untrusted container shim) that are explicitly allowed by the tenant, as seen in figure&nbsp;1. The policy is attested by encoding its measurement in the attestation report as an immutable field at UVM initialization. </p>
+<p>As a result of including the execution policy, the hardware-issued attestation describes the initial state of the container group and all its allowed state transitions. The attestation can then be used downstream by users for operations that require it to establish security guarantees. For example, remote verifiers may release keys (governing the user's encrypted data) to only those container groups that can present an attestation report encoding the expected execution policy and measurement of the UVM.</p>
+<p>&nbsp;</p>
+<h3>Architecture</h3>
+<p>This section describes the Parma architecture that implements this new confidential containers abstraction, which uses attested execution policies. First the container platform, which forms the basis of the Parma design and implementation, is described, followed by a detailed description of the threat model. This section also presents the security guarantees under the threat model and describes how Parma provides these guarantees via a collection of design principles. </p>
+<p>The guiding principle of Parma is to provide an inductive proof over the state of a container group, rooted in the attestation report produced by the PSP (platform security processor). The standard components and lifecycle for the CPLAT (container platform) are largely unchanged, except for the guest agent, whose actions become circumscribed by the execution policy. Thus constrained, the future state of the system can be rooted in the measurement performed during guest initialization.</p>
+<p>&nbsp;</p>
+<h4>Container platform</h4>
+<p>Figure 2 illustrates container flow. The sequence diagram at the top shows the process that results in a VM-isolated container. The pentagons correspond to the following steps: (i) Pull the image; (ii) launch a pod; (iii) create a container; (iv) start a container. The circles in this figure outline multiple points of attack in the workflow: The container shim may pass a compromised (1) UVM image or (2) guest agent during UVM creation. The container manager can (3) alter or fabricate malicious layer VHDs (virtual hard disks) and/or (4) mount any combination of layers onto the UVM. The container shim can pass (5) any set of layers to use for creating a container file system, as well as (6) any combination of environment variables or commands. A compromised host operating system can (7) tamper with local storage; (8) attack the memory of the UVM; or (9) manipulate remote communications. This list is not comprehensive.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson2.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<p>CPLAT is a group of components built around the capabilities of <code>containerd</code>, a daemon that manages the complete container lifecycle as seen in figure 2, from image pull and storage to container execution and supervision to low-level storage and network attachments. <code>containerd</code> supports the OCI image and runtime specifications,<sup>13</sup> and provides the substrate for multiple container offerings such as Docker, Kubernetes, and various public cloud offerings. Clients interact with <code>containerd</code> via a client interface. <code>containerd</code> supports running bare-metal containers (i.e., those that run directly on the host) as well as those that run in a UVM.</p>
+<p>VM-isolated containers are the focus here. CPLAT interfaces with a custom container shim running in the host operating system. The container shim interacts with (i) host services to bring up a UVM required for launching a new pod, and (ii) the guest agent running in the UVM. The guest agent is responsible for creating containers and spawning a process for starting the container. In essence, the container shim to guest-agent path allows the CPLAT components running in the host operating system to execute containers in isolated guest VMs. The execution of a VM-isolated container on Linux using CPLAT involves four high-level steps (as seen in figure 2), equivalent to the four commands in figure 3.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson3.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<h4>Threat model</h4>
+<p>Parma is designed to address the case of a strong adversary who controls the entire host system, including the hypervisor and the host operating system, along with all services running in it. That said, we trust the CPU package, including the PSP and the AMD SEV-SNP implementation, which provides hardware-based isolation of the guest's address space from the system software. We also trust the firmware running on the PSP and its measurements of the guest VM, including the guest agent.</p>
+<p>Such an adversary can:</p>
+<p>• Tamper with the container's OCI runtime specification.</p>
+<p>• Tamper with block devices storing the read-only container image layers and the writable scratch layer.</p>
+<p>• Tamper with container definitions, including the overlay file system (i.e., changing the order or injecting rogue layers); add, alter, or remove environment variables; alter the tenant command, and the mount sources and destinations from the UVM.</p>
+<p>• Add, delete, and make arbitrary modifications to network messages (i.e., fully control the network).</p>
+<p>• Request execution of arbitrary commands in the UVM and in individual containers.</p>
+<p>• Request debugging information from the UVM and running containers such as access to I/O, the stack, or container properties.</p>
+<p>These capabilities would allow an adversary to gain access to the address space of the guest operating system without the protection of Parma.</p>
+<p>&nbsp;</p>
+<h4>Security architecture</h4>
+<p>Under this threat model, the goal is to provide strong confidentiality and integrity guarantees for the container and customer data. We have used the following principles to design a security architecture that provides those guarantees.</p>
+<p>&nbsp;</p>
+<p><b>Hardware-based isolation of the UVM</b></p>
+<p>The memory address space and disks of the VM must be protected from the CSP and other VMs by hardware-level isolation. Parma relies on the SEV-SNP hardware guarantee that the memory address space of the UVM cannot be accessed by host system software.</p>
+<p>&nbsp;</p>
+<p><b>UVM measurement</b></p>
+<p>The UVM, its operating system, and the guest agent are cryptographically measured during initialization by the TEE, and this measurement can be requested over a secure channel at any time by tenant containers. The AMD SEV-SNP hardware performs the measurement and encodes it in the signed attestation report.<sup>1</sup></p>
+<p>&nbsp;</p>
+<p><b>Verifiable execution policy</b></p>
+<p>The tenant must be provided with a mechanism to verify that the active execution policy (see later in the section on Execution Policy) in a container group is what it is expected to be. The execution policy is defined and measured independently by the tenant and is then provided to the CaaS deployment system. The host measures the policy (e.g., using SHA-512) and places this measurement in the immutable <i>host data</i> of the report.<sup>1</sup> The policy itself is passed to the UVM by the container shim, where it is measured again by the tenant and the user to ensure that its measurement matches the one encoded as <i>host data</i> in the report.</p>
+<p>&nbsp;</p>
+<p><b>Integrity-protected read-only file systems</b></p>
+<p>Any block device or blob storage is mounted in the UVM as an integrity-protected file system. The file-system driver enforces integrity checking on access to the file system, ensuring that the host-system software cannot tamper with the data and container images. In Parma, a container file system is expressed as an ordered sequence of layers, where each layer is mounted as a separate device and then assembled into an overlay file system. First, Parma verifies as each layer is mounted that the <code>dm-verity</code> root hash for the device matches a layer that is enumerated in the policy. Second, when the container shim requests the mounting of an overlay file system that assembles multiple layer devices, Parma verifies that the specific ordering of layers is explicitly laid out in the execution policy for one or more containers.</p>
+<p>&nbsp;</p>
+<p><b>Encrypted and integrity-protected read/write file systems</b></p>
+<p>Any block device or blob storage that holds privacy-sensitive data is mounted as an encrypted file system. The file-system driver decrypts the memory-mapped block upon access to the file system. The decrypted block is stored in hardware-isolated memory space, ensuring that host-system software cannot access the plaintext data. The writable scratch space of the container is mounted with <code>dm-crypt</code> and <code>dm-integrity</code>, and this is enforced by the execution policy. The encryption key for the writable scratch space is ephemeral and is provisioned initially in hardware-protected memory, and erased once the device is mounted.</p>
+<p>&nbsp;</p>
+<p><b>Remote attestation</b></p>
+<p>Remote verifiers (e.g., tenants, users, external services, attestation services) need to verify an attestation report so that they can establish trust in a secure communication channel with the container group running in the UVM. They also need to verify that the UVM has booted the expected operating system, the correct guest agent, and further that the guest agent is configured with the expected execution policy.</p>
+<p>In Parma, the UVM (including privileged containers) can request an attestation report using the secure channel established between the PSP and the UVM.<sup>1</sup> The requester generates an ephemeral token—for example,<i> </i>TLS (Transport Layer Security) public-key pair or a sealing/wrapping public key—which is presented as a runtime claim in the report. The token's cryptographic digest is encoded as <i>report data</i>. A remote verifier can then verify that:</p>
+<p>• The report has been signed by a genuine AMD processor using a key rooted to AMD's root certificate authority.</p>
+<p>• The <i>guest launch measurement</i> and <i>host data</i> match the expected VM measurement and the digest of the expected execution policy.</p>
+<p>• The <i>report data</i> matches the hash digest of the runtime claim presented as additional evidence.</p>
+<p>Once the verification is complete, the remote verifier that trusts the UVM (including the guest operating system, guest agent, and execution policy) then trusts that the UVM and the container group within it will not reveal the private keys from which the public tokens have been generated (e.g.,<i> </i>TLS private key, sealing/wrapping private key). The remote verifier can use the runtime claim accordingly. For example:</p>
+<p>• A TLS public key can be used for establishing a TLS connection with the attested container group. As such, the remote verifier can trust there is no replay or man-in-the-middle attack.</p>
+<p>• A sealing public key can be used to seal (via encryption) a request or response intended only for the attested containers.</p>
+<p>• A wrapping public key can be used by a key-management service to wrap and release encryption keys required by the VM's container group for decrypting remote blob storage. As such, the remote verifier can hold that only trustworthy and attested container groups can unwrap the encryption keys. Figure 4 illustrates this process, a typical attestation workflow.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson4.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<p>In the figure, a container (key in circle) attempts to obtain and decrypt the user's data for use by other containers in the group. The key has been previously provisioned into a key-management service with a defined key-release policy. It follows these steps: (1) The container in the UVM requests that the PSP issue an attestation report, including an RSA (Rivest-Shamir-Adleman) public key as a runtime claim. (2) The report and additional attestation evidence are provided to the attestation service, which verifies that the report is valid and then provides an attestation token that represents platform, initialization, and runtime claims. (3) Finally, the attestation token is provided to the key-management service, which returns the user's key to the container wrapped using the provided RSA public key only if the token's claims satisfy the key-release policy statement.</p>
+<p>&nbsp;</p>
+<h4>Execution policy</h4>
+<p>As discussed earlier in this article, we do not trust the container shim, as it could be under the control of an attacker. This implies that any action that the container shim requests the guest agent undertake inside the UVM is suspect (see the Threat Model section for a list of malicious host actions). Even if the current state of the container group is valid, the host may choose to compromise it in the future, and thus the attestation report cannot be used as a gate for access to secure user data. The attestation report on its own simply records the UVM operating system, guest agent, and the container runtime versions in use. It makes no claims about the container group the host will subsequently orchestrate.</p>
+<p>For example, the host can start the user container group in a manner expected by an attestation service until it acquires some desired secure information. It can then load a series of containers that open the container group to a remote code execution attack. The attestation report, obtained during initialization, cannot protect against this. Even updating it by providing additional runtime data to the PSP<sup>1</sup> does not help, because the vulnerability is added by the host after the attestation report has been consumed by the external service.</p>
+<p>The concept of an execution policy addresses this vulnerability. Written by the tenant, the execution policy describes which actions the guest agent is allowed to take throughout the lifecycle of the container group. The guest agent is altered to consult this before taking any of the actions in table 1 and provides information to the policy that is used to make decisions. Each of these actions has a corresponding <i>enforcement point</i> in the execution policy, which will either allow or deny the action. In our implementation of Parma for Confidential ACI, the policy is defined using the Rego policy language.<sup>14</sup> A sample enforcement point implemented in Rego can be seen in figure 5.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson-t1.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson5.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<p>The policy actions shown in table 1 are those that need to be enforced by the execution policy. Each action is provided with the listed properties of the command as part of the enforcement query. The list is specific to our implementation but given standardization around <code>containerd</code>, it should be applicable to most scenarios. First, some actions pertain to the creation of containers. By ensuring that any device mounted by the guest has a <code>dm-verity</code> root hash that is listed in the policy, and that they are combined into overlay file systems in layer orders that coincide with specific containers, we first establish that the container file systems are correct. The container can then be started, further ensuring that the environment variables and start command comply with policy and that mounts from the UVM to the container are as expected (along with other container-specific properties). Other actions proceed in a similar manner, constraining the control that the container shim has over the guest agent.</p>
+<p>A novel feature of our implementation is the ability for a policy to manipulate its own metadata state (maintained by the guest agent). This provides an attested mechanism for the execution policy to build a representation of the state of the container group, which allows for more complex interactions. For example, in the rule shown in figure 5, the enforcement point for mounting a device creates a metadata entry for the device, which will be used to prevent other devices from being mounted to the same target path.</p>
+<p>The result of making this small change to the guest agent is that the state space of the container group is bounded by a state machine, in which transitions between states correspond to the actions described earlier. Each transition is executed atomically and comes with an enforcement point.</p>
+<p align="center" style="text-align:center">&nbsp;</p>
+<p><b>Security invariant</b></p>
+<p>The state machine starts as a system that is fully measured and attested, including the execution policy with all its enforcement points, with the root of trust being the PSP hardware (<i>n</i> = 1). The set of enforced commands in table&nbsp;1 are designed to govern all state transitions in the container group. Since this policy is part of the attestation, the security properties of that initial state are preserved with each transition. </p>
+<p>This security comes with some caveats. First, Parma cannot protect the user against compromised containers that the tenant has measured and included in its policies. It protects the tenant against malicious actions on the part of the CSP and forces the tenant to take only those actions that are explicitly listed in the execution policy made available to the user for measurement. Parma cannot protect the tenant from itself. Second, the security provided is worthwhile only to the degree that the tenant and its users make use of the attestation report. That is, the user must verify that the attestation report received from Parma is bound to a UVM and an execution policy that uses the data in an acceptable manner.</p>
+<p>&nbsp;</p>
+<h3>Evaluation</h3>
+<p>Figure 6 displays latency histograms from the Nginx benchmark. The results in table 2 are from redis, SPEC2017, and Triton benchmarks. The redis values are geometric means in units of thousands of requests per second—higher is better. The SPEC2017 values reported here are the base ratio from reportable benchmark runs—higher is better. The reported values for Nvidia Triton are inferences per second—higher is better. In all cases, introducing Parma has a negligible effect when compared to SEV-SNP on its own.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson6.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664293/assets/html/johnson-t2.png" alt="Confidential Container Groups: Implementing confidential computing on Azure container instances" />
+<p>&nbsp;</p>
+<p>Benchmarking tools were used to evaluate several typical containerized workloads for reductions in computation throughput, network throughput, and database transaction rates to ensure that Parma does not introduce significant computational overhead. In all cases Parma provided confidentiality for containerized workloads with minimal costs to performance (typically less than one percent additional overhead versus running in an enclave).</p>
+<p>Experiments were performed using three configurations, shown in table 2:</p>
+<p>• <b><i>Base</i></b> – a baseline benchmark container running outside the SEV-SNP enclave.</p>
+<p>• <b><i>SEV-SNP</i></b> – the same container running in the SEV-SNP enclave.</p>
+<p>• <b><i>Parma</i></b> – the same container again in the enclave and with an attested execution policy.</p>
+<p>Each benchmarking experiment used two machines:</p>
+<p>• Dell PowerEdge R7515 with an AMD EPYC 7543P 32-core processor and 128 GB of memory for hosting the container runtime. This machine ran Windows Server 2022 Datacenter (22H2) and an offline version of the Azure Container Instances CPLAT (i.e., <code>containerd</code>, <code>cri</code>, and <code>hcsshim</code>). The UVM ran a patched version of 5.15 Linux, which includes AMD and Microsoft patches to provide AMD SEV-SNP enlightenment.</p>
+<p>• A benchmarking client (to avoid impact of any benchmarking software on the evaluation) with the same configuration, connected to the Dell PowerEdge on the same subnet via 10-Gbit Ethernet. This machine ran Ubuntu 20.04 with Linux kernel 5.15.</p>
+<p>&nbsp;</p>
+<h4>nginx</h4>
+<p>Web services are a common use case for containerization, so we benchmarked the popular Nginx webserver using the wrk2<sup>18</sup> benchmarking tool. Each test ran for 60 seconds on 10 threads, simulating 100 concurrent users making 200 requests per second (for a total of 12,000 requests per test). The tests were repeated 20 times for each of the three configurations and measured the latency. The results are shown in figure 6. The histograms were composed of all latency samples gathered. There was an increase in latency by the introduction of SEV-SNP, as expected, as well as a minor increase in latency when the execution policy was added.</p>
+<p>&nbsp;</p>
+<h4>redis</h4>
+<p>The in-memory key/value database redis provides another useful benchmark for containerized computation. It supports a diverse set of data structures, such as hashtables, sets, and lists. The benchmarking used the provided <code>redis-benchmark</code> with 25 parallel clients and a subset of tests, the results of which can be seen in table 2. Looking at the geometric mean over all actions, we see a performance overhead of 18 percent added by operating in the AMD SEV-SNP enclave, and a further one percent when using Parma. The performance overhead can be attributed to increased TLB pressure arising from large working sets, which exhibit poor temporal reuse in TLBs and trigger page-table walks. In SEV-SNP-enabled systems, page-table walks incur additional metadata checks (in the reverse page table) to ensure that the page is indeed owned by the VM.</p>
+<p>&nbsp;</p>
+<h4>SPEC2017</h4>
+<p>Parma was also evaluated by measuring the computation performance overhead using the SPEC2017 <code>intspeed</code> benchmarks.<sup>15</sup> These benchmark programs were compiled and run on the bare-metal hardware. When containerized, they were provided with 32 cores and 32 GB of memory. As can be seen in table 2, AMD SEV-SNP adds a performance overhead of 13 percent on average, and Parma adds less than one percent on top of this. </p>
+<p>&nbsp;</p>
+<h4>Nvidia Triton Inference Server</h4>
+<p>Finally, Parma was evaluated by running a ML (machine learning) inference workload based on Nvidia's Triton Inference Server.<sup>12 </sup>Models (trained offline) and their parameters were used to serve requests via a REST API.</p>
+<p>The confidential ML inference server was deployed in a container group comprising two containers: an (unmodified) Triton inference container and a sidecar container that mounted an encrypted remote blob (holding the ML model) using <code>dm-crypt</code> and <code>dm-integrity</code>. (The sidecar container also implemented the attestation workflow described in figure 4 to release the encryption key.) The file system (and the precomputed ML model) were made available to the Triton inference container.</p>
+<p>Nvidia's <code>perf-analyzer</code> system was used to evaluate the inference servers. This allowed measurement of the overhead introduced by SEV-SNP and Parma, as shown in table 2. For each of the three configurations (Base, SNP, and Parma), four experiments were run with one to four concurrent clients making continuous inference requests. As before, the additional overhead from Parma is approximately one percent. The overheads share the same root cause in the increased TLB pressure as previously described in the section on redis.</p>
+<p>&nbsp;</p>
+<h3>Conclusion</h3>
+<p>The experiments presented here demonstrate that Parma, the architecture that drives confidential containers on Azure container instances, adds less than one percent additional performance overhead beyond that added by the underlying TEE (i.e., AMD SEV-SNP). Importantly, Parma ensures a security invariant over all reachable states of the container group rooted in the attestation report. This allows external third parties to communicate securely (via remote attestation) with containers, enabling a wide range of containerized workflows that require confidential access to secure data. Companies obtain the advantages of running their most confidential workflows in the cloud without having to compromise on their security requirements. Tenants gain flexibility, efficiency, and reliability; CSPs get more business; and users can trust that their data is private, confidential, and secure.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Advanced Micro Devices. 2020. AMD SEV-SNP: strengthening VM isolation with integrity protection and more; <a href="https://www.amd.com/system/files/TechDocs/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more.pdf">https://www.amd.com/system/files/TechDocs/SEV-SNP-strengthening-vm-isolation-with-integrity-protection-and-more.pdf</a>.</p>
+<p>2. Bahmani, R., Brasser, F., Dessouky, G., Jauernig, P., Klimmek, M., Sadeghi, A.-R., Stapf, E. 2021. CURE: a security architecture with CUstomizable and Resilient Enclaves. In 30th Usenix Security Symposium; <a href="https://www.usenix.org/system/files/sec21summer_bahmani.pdf">https://www.usenix.org/system/files/sec21summer_bahmani.pdf</a>.</p>
+<p>3. Barham, P., Dragovic, B., Fraser, K., Hand, S., Harris, T., Ho, A., Neugebauer, R., Pratt. I., Warfield, A. 2003. Xen and the art of virtualization. In <i>Proceedings of the 19th ACM Symposium on Operating Systems Principles</i>, 164-177; <a href="https://dl.acm.org/doi/10.1145/945445.945462">https://dl.acm.org/doi/10.1145/945445.945462</a>.</p>
+<p>4. Brasser, F., Gens, D., Jauernig, P., Sadeghi, A.-R., Stapf, E. 2019. SANCTUARY: ARMing TrustZone with user-space enclaves. In <i>Proceedings of Network and Distributed System Security Symposium;</i> <a href="https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_01A-1_Brasser_paper.pdf">https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_01A-1_Brasser_paper.pdf</a>.</p>
+<p>5. Champagne, D., Lee, R. B. 2010. Scalable architectural support for trusted software. In the 16th International Symposium on High-Performance Computer Architecture; <a href="https://ieeexplore.ieee.org/document/5416657">https://ieeexplore.ieee.org/document/5416657</a>.</p>
+<p>6. Costan, V., Lebedev, I., Devadas, S. 2016. Sanctum: minimal hardware extensions for strong software isolation. In <i>Proceedings of the 25th Usenix Conference on Security Symposium</i>, 857-874; <a href="https://dl.acm.org/doi/10.5555/3241094.3241161">https://dl.acm.org/doi/10.5555/3241094.3241161</a>.</p>
+<p>7. Delignat-Lavaud, A., Fournet, C., Vaswani, K., Clebsch, S., Riechert, M., Costa, M., Russinovich, M. 2023. Why should I trust your code? <i>acmqueue</i> 21(4); <a href="https://queue.acm.org/detail.cfm?id=3623460">https://queue.acm.org/detail.cfm?id=3623460</a>.</p>
+<p>8. Evtyushkin, D., Elwell, J., Ozsoy, M., Ponomarev, D., Ghazaleh, N. A., Riley, R. 2014. Iso-X: a flexible architecture for hardware-managed isolated execution. In <i>Proceedings of the 47th Annual IEEE/ACM International Symposium on Microarchitecture</i>, 190-202; <a href="https://dl.acm.org/doi/10.1109/MICRO.2014.25">https://dl.acm.org/doi/10.1109/MICRO.2014.25</a>. </p>
+<p>9. Kaplan, D. 2023. Hardware VM isolation in the cloud. <i>acmqueue</i> 21(4); <a href="https://queue.acm.org/detail.cfm?id=3623392">https://queue.acm.org/detail.cfm?id=3623392</a>.</p>
+<p>10. Lee, D., Kohlbrenner, D., Shinde, S., Asanović, K., Song, D. 2020. Keystone: an open framework for architecting trusted execution environments. In <i>Proceedings of the 15th European Conference on Computer Systems</i>, 1–16; <a href="https://dl.acm.org/doi/abs/10.1145/3342195.3387532">https://dl.acm.org/doi/abs/10.1145/3342195.3387532</a>.</p>
+<p>11. McCune, J. M., Parno, B. J., Perrig, A., Reiter, M. K., Isozaki, H. 2008. Flicker: an execution infrastructure for TCB minimization. 2008. <i>ACM SIGOPS Operating Systems Review</i> 42(4), 315-328; <a href="https://dl.acm.org/doi/10.1145/1357010.1352625">https://dl.acm.org/doi/10.1145/1357010.1352625</a>.</p>
+<p>12. Nvidia Triton Inference Server. Nvidia Developer; <a href="https://developer.nvidia.com/nvidia-triton-inference-server">https://developer.nvidia.com/nvidia-triton-inference-server</a>.</p>
+<p>13. Open Containers Initiative Technical Oversight Board. 2021. Open Container Initiative Distribution Specification; <a href="https://specs.opencontainers.org/distribution-spec/?v=v1.0.0">https://specs.opencontainers.org/distribution-spec/?v=v1.0.0</a>.</p>
+<p>14. Open Policy Agent. Policy language; <a href="https://www.openpolicyagent.org/docs/latest/policy-language/">https://www.openpolicyagent.org/docs/latest/policy-language/</a>.</p>
+<p>15. SPEC 2017. <a href="https://www.spec.org/cpu2017/">https://www.spec.org/cpu2017/</a>.</p>
+<p>16. Suh, G. E., Clarke, D., Gassend, B., van Dijk, M., Devadas, S. 2003. AEGIS: architecture for tamper-evident and tamper-resistant processing. In <i>Proceedings of the 17th annual ACM International Conference on Supercomputing</i>, 160–171; <a href="https://dl.acm.org/doi/10.1145/782814.782838">https://dl.acm.org/doi/10.1145/782814.782838</a>.</p>
+<p>17. Sun, H., Sun, K., Wang, Y., Jing, J., Wang, H. 2015. TrustICE: hardware-assisted isolated computing environments on mobile devices. In <i>Proceedings of the 45th Annual IEEE/IFIP International Conference on Dependable Systems and Networks</i>, 367-378; <a href="https://dl.acm.org/doi/abs/10.1109/dsn.2015.11">https://dl.acm.org/doi/abs/10.1109/dsn.2015.11</a>.</p>
+<p>18. Tene, G. wrk2. Github; <a href="https://github.com/giltene/wrk2">https://github.com/giltene/wrk2</a>.</p>
+<p>19. Intel. SGX. Software Guard Extensions. <a href="https://software.intel.com/en-us/sgx">https://software.intel.com/en-us/sgx</a> (Accessed on 12/13/2019).</p>
+<p>20. Cheng, P-C, Ozga, W., Valdez, E., Ahmed, S., Gu, Z., Jamjoom, H., Franke, H, and Bottomley, J.. Intel TDX Demystified: A Top-Down Approach. 2023. arXiv:2303.15540</p>
+<p>21. Li, X., Li, X., Dall, C., Gu, R., Nieh, J., Sait, Y., and Stockwell, G.. Design and Verification of the Arm Confidential Compute Architecture. In <i>16th USENIX Symposium on Operating Systems Design and Implementation</i> (OSDI 22). Carlsbad, CA.</p>
+<p>22. Schuster, F., Costa, M., Fournet, C., Gkantsidis, C., Peinado, M., Mainar-Ruiz, G., Russinovich, M. VC3: Trustworthy Data Analytics in the Cloud using SGX. <i>IEEE Symposium on Security and Privacy</i> 2015. San Jose, CA.</p>
+<p>&nbsp;</p>
+<p><b>Matthew A. Johnson</b> is a principal research engineer in Azure Research at Microsoft, Cambridge UK with a background in machine learning and a recent focus on security, confidentiality, and privacy for AI. His work includes Parma and rego-cpp, an implementation of the Rego policy language in C++.</p>
+<p><b>Stavros Volos </b>is a principal researcher in Azure Research at Microsoft, Cambridge, UK, where he works on new forms of trusted execution and hardware/software co-design for side-channel protection. His general research interests are in the area of computer systems with a focus on computer architecture and security.</p>
+<p><b>Ken Gordon </b>is a principal research engineer with Azure Confidential Computing at Microsoft, Cambridge, UK. He is responsible for the Confidential aspects of Azure Container Instances. Other work includes the port of Google's Privacy Sandbox to Confidential ACI.</p>
+<p><b>Sean T. Allen</b> was a principal research engineer in Azure Research at time of writing, where he was a core member of the Parma team. He is now a principal engineer at Movable Ink.</p>
+<p><b>Christoph M. Wintersteiger</b> was a researcher at Microsoft Research Cambridge, UK, at time of writing, where his work included the Z3 theorem prover, the Confidential Consortium Framework, and Parma. He is now a senior computer scientist at Imandra, Inc., where he develops new formal software verification techniques and decision procedures.</p>
+<p><b>Sylvan Clebsch</b> is a senior principal research engineer in Azure Research at Microsoft, Austin, TX, USA. His work includes the Confidential Consortium Framework, Verona, and the Pony programming language.</p>
+<p><b>John Starks</b> is a software architect in the Core OS group at Microsoft. He primarily works on hardware virtualization and its applications to security, resource isolation, and software compatibility.</p>
+<p><b>Manuel Costa</b> is a vice-president and distinguished engineer at Microsoft, where he leads Azure Research in Security and Privacy. He is interested in advancing the state of the art in security and privacy, operating systems, networking, and programming languages.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){if (!document.body) return;var js = "window['__CF$cv$params']={r:'889499379d4f0637',t:'MTcxNjYzMDM4OC41NDYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 2</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3664293">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Jinnan Guo, Peter Pietzuch, Andrew Paverd, Kapil Vaswani</span> - <a href="detail.cfm?id=3665220"><b>Trustworthy AI using Confidential Federated Learning</b></a>
+<br/>
+The principles of security, privacy, accountability, transparency, and fairness are the cornerstones of modern AI regulations. Classic FL was designed with a strong emphasis on security and privacy, at the cost of transparency and accountability. CFL addresses this gap with a careful combination of FL with TEEs and commitments. In addition, CFL brings other desirable security properties, such as code-based access control, model confidentiality, and protection of models during inference. Recent advances in confidential computing such as confidential containers and confidential GPUs mean that existing FL frameworks can be extended seamlessly to support CFL with low overheads.
+</p>
+<br/>
+<p>
+<span>Raluca Ada Popa</span> - <a href="detail.cfm?id=3664295"><b>Confidential Computing or Cryptographic Computing?</b></a>
+<br/>
+Secure computation via MPC/homomorphic encryption versus hardware enclaves presents tradeoffs involving deployment, security, and performance. Regarding performance, it matters a lot which workload you have in mind. For simple workloads such as simple summations, low-degree polynomials, or simple machine-learning tasks, both approaches can be ready to use in practice, but for rich computations such as complex SQL analytics or training large machine-learning models, only the hardware enclave approach is at this moment practical enough for many real-world deployment scenarios.
+</p>
+<br/>
+<p>
+<span>Charles Garcia-Tobin, Mark Knight</span> - <a href="detail.cfm?id=3664291"><b>Elevating Security with Arm CCA</b></a>
+<br/>
+Confidential computing has great potential to improve the security of general-purpose computing platforms by taking supervisory systems out of the TCB, thereby reducing the size of the TCB, the attack surface, and the attack vectors that security architects must consider. Confidential computing requires innovations in platform hardware and software, but these have the potential to enable greater trust in computing, especially on devices that are owned or controlled by third parties. Early consumers of confidential computing will need to make their own decisions about the platforms they choose to trust.
+</p>
+<br/>
+<p>
+<span>Gobikrishna Dhanuskodi, Sudeshna Guha, Vidhya Krishnan, Aruna Manjunatha, Michael O'Connor, Rob Nertney, Phil Rogers</span> - <a href="detail.cfm?id=3623391"><b>Creating the First Confidential GPUs</b></a>
+<br/>
+Today&apos;s datacenter GPU has a long and storied 3D graphics heritage. In the 1990s, graphics chips for PCs and consoles had fixed pipelines for geometry, rasterization, and pixels using integer and fixed-point arithmetic. In 1999, NVIDIA invented the modern GPU, which put a set of programmable cores at the heart of the chip, enabling rich 3D scene generation with great efficiency.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
