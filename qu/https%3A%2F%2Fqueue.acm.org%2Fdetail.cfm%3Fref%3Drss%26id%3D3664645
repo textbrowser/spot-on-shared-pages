@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script src="/cdn-cgi/apps/head/nLYIPopMPWKseIlIthEH-UJkbT0.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Zero Tolerance for Bias - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Development" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3665607" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?typefilter=Drillbits&sort=publication_date&order=desc&qc_type=Drillbits&article_type=&item_topic=all&filter_type=topic&page_title=Drill%20Bits&filter=all">Drill Bits</a></h3>
+<label>May 29, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3665607">Volume 22, issue 2 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3664645">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<style> code, i { white-space: nowrap; } </style>
+<h1 class="hidetitle">Zero Tolerance for Bias</h1>
+<h3>Terence Kelly</h3>
+<p>Evenhanded random selection is fiendishly tricky. The combinatorics of fairness is especially vexing, and the consequences exceptionally weighty, in <i>shuffling</i>. Shuffling a set means randomly choosing an ordered sequence of its elements. For example, shuffling&nbsp;{A,B,C} means choosing with equal probability one of <nobr>3! = 3 × 2 × 1 = 6</nobr> permutations: ABC, ACB, BAC, BCA, CAB, or CBA. If that sounds easy, read on.</p>
+<p>&nbsp;</p>
+<h3>High Stakes</h3>
+<p>Shuffling is crucial to a wide range of important applications. Shuffling amino acid sequences is a major and essential use of randomization in bioinformatics.<sup>[12]</sup> Shuffling default web-browser options can resolve an antitrust crackdown.<sup>[32]</sup> Online poker sites shuffle virtual decks of playing cards, hauling in $60 billion annually.<sup>[9]</sup> The stakes are highest when American draft lotteries shuffle birthdays to muster citizens for military duty: 16 million U.S. conscripts served in 20th-century wars that killed more than 600,000 Americans.</p>
+<div style="float:left;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;">
+"We would like to have a drawing this year that appears impartial, both to those professionally curious and to those whose lives are involved."
+<br/>– Curtis W. Tarr, Director of Selective Service, June 1970<sup>[25]</sup>
+</div>
+<p>Where shirts and lives can be lost, fairness is paramount. After lackadaisical shuffling awarded too many tropical vacations to December birthdays in the 1969 draft lottery, public outrage compelled reform.<sup>[26,29]</sup> The resulting tandem-shuffle protocol draws pairs of labeled marbles from separate mixing machines, one for birthdays and another for draft-sequence numbers<sup>[25,28]</sup> Nowadays shuffling is often computerized, but that's no excuse for bias. Gambling regulations, for example, require that mathematical probabilities in virtual games match those in their physical counterparts.<sup>[21]</sup> Fairness isn't just a good idea—it's the law.</p>
+<p>Despite the conceptual simplicity of shuffling and the importance of fairness, bad advice and buggy code abound. Seemingly respectable authorities have botched shuffling for decades at a stretch. The nasty thing about broken shuffle code is that it usually appears to work correctly in conventional tests. Truly getting it right requires reasoning carefully about the combinatorics of random selection.</p>
+<p>So that's what we'll learn to do. We'll start by dissecting a meticulously curated, museum-quality compendium of ways to bungle a shuffle—from a venerable programming textbook. Then we'll develop a correct shuffling program that scales far beyond toy-sized problems while avoiding bias. Finally we'll consider how to obtain the random numbers required by all random-selection algorithms. The mental checklist that we accumulate along the way will enable us to audit off-the-shelf solutions. Ultimately we'll see that unbiased shuffling is so easy that there's little excuse to do it any other way.</p>
+<p>&nbsp;</p>
+<h3>See How Not to Program</h3>
+<p>The terse C program in figure&nbsp;1 summarizes widespread shuffling errors. It contains at least three distinct biases and several other dubious features. Seldom will you encounter code with higher defect density.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664645/assets/html/kelly1.png" alt="Zero Tolerance for Bias" />
+<br/>
+<p style="font-size:0.8em;">Figure 1: Error-ridden shuffle</p>
+<p>&nbsp;</p>
+<div style="float:left;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;">
+Sucker approaching poker table:
+<br/>"Is this a game of chance?"
+<br/>Card shark: "Not the way I play it."
+<br/>– W.C. Fields, My Little Chickadee
+</div>
+<p>Line&nbsp;6 of figure&nbsp;1 is prone to <i>modulo bias</i>. The programmer wants a random number uniformly distributed between zero and <i>N</i>−1, but <code>rand() % N</code> does not guarantee uniformity. Figure&nbsp;2 demonstrates the spectacular unfairness of modulo bias. The programmer naïvely expects <code>rand() % N &lt; N/2</code> on line&nbsp;4 of figure&nbsp;2 to evaluate true as often as false, but thanks to modulo bias it evaluates true <i>twice</i> as often as false. Odds so slanted would spark a gunfight in an Old West casino and a lawsuit in a modern one.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664645/assets/html/kelly2.png" alt="Zero Tolerance for Bias" />
+<br/>
+<p style="font-size:0.8em;">Figure 2: Modulo bias delivers extreme non-uniformity</p>
+<p>&nbsp;</p>
+<p>Another problem with figure&nbsp;1 is the use of the standard C pseudorandom number generator (PRNG), which is a bug unto itself because <code>rand()</code> has so often been implemented so badly.<sup>[23]</sup> Nothing prevents this tradition from persisting; the latest C standard explicitly condones an obsolete implementation.<sup>[14]</sup> To make matters worse, the classic defects of <code>rand()</code> interact badly with the <code>rand() % N</code> anti-pattern: If <code>N</code> is a small power of two such as 2, 4, or 8, <code>rand() % N</code> yields the low-order bits of <code>rand()</code>'s return value. Unfortunately, many bad implementations offer especially poor randomness in the low bits.<sup>[23]</sup> On some commercial Unix systems of yesteryear, for example, consecutive calls to <code>rand() % 2</code> would return 0,1,0,1,0,1,... ad infinitum. Poor low-bit randomness would bite several iterations of line&nbsp;6 in figure&nbsp;1.</p>
+<p>In addition to generic bugs involving PRNG misuse, the program of figure&nbsp;1 contains two further severe biases specific to shuffling.</p>
+<p>The first is <i>shuffle bias</i>. Lines&nbsp;6&nbsp;and&nbsp;7 visit every element in <code>A[]</code> and swap it with an element chosen at random <i>from the entire array</i>. Figure&nbsp;3 explains shuffle bias by working through the tree of consequences for shuffling {A,B,C} in this way. Branches represent fair random swaps and leaves on the right represent outcomes, all of which are equally likely. Note that some permutations result more often than others. For example, <span style="color:#0019CB">BAC</span> appears five times but <span style="color:#CB0000">CAB</span> only four. Eight outcomes have C in the first position, nine begin with A, and ten start with B. The fundamental problem is a mismatch between shuffle outcomes and permutations. Applied to <i>N</i> items, the biased shuffle of figure&nbsp;1 yields <i>N<sup>N</sup></i> outcomes, each of which is one of <i>N</i>! permutations. But <i>N</i>! does not evenly divide <i>N<sup>N</sup></i> for any <i>N</i> <nobr>greater than 2,</nobr> so some permutations must occur more often than others. </p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664645/assets/html/kelly3.png" alt="Zero Tolerance for Bias" />
+<br/>
+<p style="font-size:0.8em;">Figure 3: Tree of outcomes from biased shuffle of <i>N</i> = 3 items</p>
+<p>&nbsp;</p>
+<div style="float:left;width:33%;border:1px solid black;margin:0px 20px 20px 20px;padding:20px;"> <b>Tip:</b> The "bc" utility offers convenient big-int arithmetic.
+</div>
+<p>The second shuffle-specific bias in figure&nbsp;1, <i>seed bias </i>on line&nbsp;4, has a similar flavor but more dire consequences. The number of PRNG seeds, 2<i><sup>B</sup></i> for a <nobr><i>B</i>-bit</nobr> seed, doesn't match the number of permutations, <i>N</i>! for shuffling <i>N</i> items. If <i>N</i>! doesn't evenly divide 2<i><sup>B</sup></i>, bias is inevitable. Worse yet, <i>N</i>! is usually far larger than 2<i><sup>B</sup></i>, so the vast majority of permutations cannot possibly be generated by any seed. For example, the 32-bit <code>srand()</code> seed on many of today's Unix-like systems can generate fewer than 13! outcomes. It's hopeless for poker because 52! &gt; 2<sup>225</sup>. Even a 128-bit seed would be inadequate for poker: The fraction of permutations that could be generated is less than 2<sup>128 </sup><i>/ </i>2<sup>225</sup> = 1 <i>/ </i>2<sup>97</sup>, which is 1 in 158,456,325,028,528,675,187,087,900,672. Unbiased shuffling means that all permutations are equally likely until the choice of one permutation is determined by exogenous true-random entropy alone (i.e., the seed, if we're using a PRNG-based shuffler). A shuffler that uses a PRNG with a small seed, however, arbitrarily renders nearly all permutations <i>impossible</i> and does so <i>before</i> seed entropy is supplied.</p>
+<p>For applications such as poker where security is a concern, figure&nbsp;1 contains at least two vulnerabilities beyond the use of a non-cryptographically-secure PRNG. First, the Unix epoch time is a rather predictable PRNG seed (line&nbsp;4), which may allow a cheater to guess the seed and compute the resulting shuffled deck. Second, the small 32-bit seed space enables anyone to precompute a lookup table of all possible decks, which in turn allows a cheater to infer much about the state of the deck in a game from his own hand. Similar vulnerabilities plagued a popular backgammon program<sup>[24]</sup> and allowed successful attacks on commercial poker software.<sup>[31] </sup></p>
+<p>Remarkably, all of the ills of figure&nbsp;1 afflict the shuffling code in a prominent textbook series. With a reputable publisher, proudly Ivy-educated authors, and nine pricey editions spanning three decades, this series shows no obvious red flags. The second edition from the mid-1990s, however, recommends <code>rand() % N</code> for scaling random numbers to a desired range and presents shuffling code with modulo bias, shuffle bias, seed bias, and the other problems noted previously. The recent ninth edition partly addresses some but not all of these defects. Its shuffling code is similar to that of the second edition, but it points out the shuffle bias and invites readers to investigate unbiased shuffles on their own. It also mentions the poor quality of standard C <code>rand()</code> and recommends better PRNGs for serious uses. However the latest edition does not mention seed bias, it continues to recommend <code>rand() % N</code> with no mention of modulo bias, and it doesn't mention the predictability of <code>srand(time(NULL))</code>.</p>
+<p>Sadly, nobody has a monopoly on bad code or bad advice. Confusion is widespread, even among well-heeled players facing high stakes. Microsoft botched the shuffle that was supposed to be its ticket out of antitrust trouble.<sup>[32]</sup> The official Java documentation conflates the period of a PRNG—the number of calls before the output stream repeats—with the cause or remedy of seed bias:</p>
+<p>&nbsp;</p>
+<p style="margin-left:24.0pt">For applications that generate large permutations, consider a generator whose period is much larger than the total number of possible permutations; otherwise, it will be impossible to generate some of the intended permutations. For example, if the goal is to shuffle a deck of 52 cards, the number of possible permutations is 52! (52 factorial), which is approximately 2<sup>225.58</sup>, so it may be best to use a generator whose period is roughly 2<sup>256</sup> or larger....<sup>[4]</sup></p>
+<p>&nbsp;</p>
+<p>This is misleading and irrelevant. A long period does not preclude bias, and shuffling more than once without re-seeding increases the size of the required seed. Some variants of the "Mersenne Twister" PRNG, for example, have periods far larger than 2<sup>256</sup>, but they accept 64-bit seeds. Therefore, shufflers that employ these PRNGs yield one of at most 2<sup>64</sup> different outcomes in the first shuffle after seeding, which is less than 21!. For problems beyond toy size, severe bias is inevitable despite the long period. Some of today's off-the-shelf PRNGs can accept seeds roughly 20,000 bits long, but 2<sup>20000</sup> is less than 2087!. A single unbiased shuffle of one million items involves more than 18 million bits of entropy. Furthermore, repeated shuffling increases the entropy requirements: A series of <i>J </i> independent unbiased shuffles of <i>N</i> items can have (<i>N</i>!)<i><sup>J</sup></i> possible outcomes, all of which must be equiprobable. The series therefore requires at least log<sub>2</sub>((<i>N</i>!)<i><sup>J</sup></i>) bits of input entropy, which is <i>J </i> times more than required for a single shuffle. </p>
+<p>&nbsp;</p>
+<h3>The Right Shuff</h3>
+<p>Shuffle bias became obsolete in 1964—thirty years before the buggy textbook series discussed earlier—when Durstenfeld published an unbiased algorithm to shuffle an array in place.<sup>[8]</sup> The basic idea is simple and intuitive, mirroring the definition of factorial: Repeatedly append to the output sequence an item chosen with uniform probability from the dwindling pool of unselected items. Draw the tree of outcomes for Durstenfeld's algorithm, as for the bogus shuffle in figure&nbsp;3, and you'll get exactly <i>N</i>! distinct leaves.</p>
+<p>To be equiprobable, the item choices in Durstenfeld's algorithm must avoid modulo bias. The key to banishing modulo bias is <i>rejection</i>: discarding random numbers that would lead to bias if mapped onto a desired range. For example, to choose fairly among four alternatives using a six-sided die, roll until the outcome is in the range [1..4]. Discard 5 or 6 because deterministically mapping these bad values into the acceptable range would introduce bias. Rejecting bad values ensures fairness at the cost of discarding random numbers. The simple rejection methods used below may at most double the expected number of random numbers consumed; in practice the cost is usually far lower. </p>
+<p>Figure&nbsp;4 shows a complete shuffle program built around a variant of Durstenfeld's algorithm. The shuffle loop of lines&nbsp;16–18 fills array <code>A[]</code> from left to right by swapping into each position a random <i>unselected</i> entry. The loop invariant is that array entries less than <code>i</code> contain an equiprobably selected and equiprobably permuted subset of <code>A[]</code>. An unselected entry is chosen at random on line&nbsp;17 by function <code>U()</code>, a replacement for <code>random_number&nbsp;% range</code> that uses rejection to avoid bias.</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664645/assets/html/kelly4.png" alt="Zero Tolerance for Bias" />
+<br/>
+<p style="font-size:0.8em;">Figure 4: Unbiased shuffle program</p>
+<p>&nbsp;</p>
+<p>The body of <code>U()</code> on lines&nbsp;4&nbsp;through&nbsp;11 merits close study. <code>U()</code> takes a 64-bit argument <code>K</code> that must lie in [1..2<sup>32</sup>], a restriction enforced on line&nbsp;6. The long argument allows callers to freely express the full range of reasonable ways to scale a 32-bit random number: <code>U(1)</code> returns zero; <code>U(2<sup>32</sup>)</code> returns a raw (unscaled) random number; and any other value of the <code>K</code> argument returns a random number uniformly distributed on <nobr>[0..<i>K</i>−1].</nobr> The endpoints of the scaling range require no special treatment. If the <code>K </code>argument were a 32-bit number, requesting a raw random number would be impossible.</p>
+<p>Line&nbsp;7 slurps raw 32-bit random numbers from <code>stdin</code>. Sometimes performance or other considerations recommend hard-wiring a particular random-number source or a fixed menu of sources. Postponing the choice until runtime, however, is more flexible and future-proof. That's why the GNU command-line shuffle utility <code>"shuf"</code> offers the option of reading random numbers from a file or pipe. Users may supply whatever random bits they please.</p>
+<p>The rejection threshold on line&nbsp;9 of figure&nbsp;4 accepts as many random numbers as possible while ensuring that the modulus operation on line&nbsp;10 yields an unbiased return value. A random number <code>R</code> is acceptable if it is drawn with uniform probability from a range that <code>K</code> divides evenly (without remainder), because then <code>R % K</code> is unbiased. Variable <code>M</code> equals 2<sup>32</sup> (line&nbsp;5). Because integer division truncates, <code>M / K</code> on line&nbsp;9 is the number of complete <nobr><i>K</i>-long</nobr> segments that fit on the integer number line between zero and 2<sup>32 </sup>−1 inclusive. The range of integers less than <code>K * (M / K)</code> divides evenly by&nbsp;<code>K</code>; any <code>R</code> outside this range must be rejected.</p>
+<p>The approach of figure&nbsp;4 isn't the only way to shuffle without bias. We can implement a one-to-one correspondence between integers in the range <nobr>[0..<i>N</i>!−1]</nobr> and permutations of <i>N</i> items. Then we simply draw from this range a <i>single</i> random number with uniform probability and map the random number to a random permutation. This alternate approach can be more frugal with entropy than the code in figure&nbsp;4; it is implemented in the "<code>unpack</code>" program in the example code tarball. Finally, don't overlook the option of physical shuffling in situations where computerization is not a hard requirement. Casinos and lotteries continue to use physical random selection for good reasons.</p>
+<p>&nbsp;</p>
+<h3>Whence Randomness?</h3>
+<p>Random selection algorithms such as the shuffler of figure&nbsp;4 require random numbers. How can we obtain suitable random numbers?</p>
+<p>Pseudo-random number generators are useful for many purposes, but unbiased shuffling isn't one of them. The purpose of a PRNG is to "stretch" a small amount of true-random entropy into a larger quantity of ersatz random bits, which is reasonable if genuine entropy is expensive and the stretching does no harm. But as we've seen, PRNG-based shufflers are prone to bias caused by mismatches between the number of PRNG seeds and the number of permutations. These and other fundamental problems with PRNG-based shuffling are reviewed at greater length in a note included with this column's example code. If we don't use a PRNG, then we need not worry about the dizzying combinatorics of seed bias and the checkered history of PRNGs.<sup>[15,20,23]</sup></p>
+<p>An unbiased shuffler can consume true-random bits directly, and the required quantity of random numbers is easy to calculate. For example, the program of figure&nbsp;4 consumes, in expectation, at most 64 random bits per item when shuffling up to 2<sup>32</sup> items. The alternative approach of directly mapping a single large random number to a permutation requires, in expectation, 2 × ⌈log<sub>2</sub>(<i>N</i>!)⌉ bits of entropy to shuffle <i>N</i> items. Is it difficult to obtain this much genuine entropy nowadays?</p>
+<p>True-random numbers are cheap and plentiful on many computers today. Many CPUs support the unprivileged <code>RDSEED</code> instruction, which extracts entropy from an on-silicon, crypto-grade, NIST-compliant, <i>non-</i>deterministic <nobr>thermal noise source.<sup>[11]</sup></nobr> On Linux, check <code>/proc/cpuinfo</code> to see if your CPU supports it. <code>RDSEED</code> delivers tens of millions of random bits per second on middle-aged Intel servers. At that rate, a future draft lottery that shuffles individual citizens instead of birthdays could randomly permute the entire U.S. population without bias in minutes; parents of twins and triplets might prefer this to shuffling birthdays. True-random number generators are no longer high-end CPU features. Popular, cheap, and rugged Raspberry Pi single-board computers have featured true RNGs for at least a decade.<sup>[33]</sup></p>
+<p>Caveat: The history of true-random number generators is as troubled as that of pseudorandom generators. RAND Corporation's landmark 1940s true-RNG was a balky contraption.<sup>[3]</sup> In the 1990s three commercial true-RNG gizmos all failed Marsaglia's statistical randomness tests.<sup>[19]</sup> Recently the AMD implementation of <code>RDSEED</code>'s partner <code>RDRAND</code> was utterly broken.<sup>[27]</sup> And whenever security is a concern we must ponder Ken Thompson's timeless advice about trusting anything designed and built by strangers: "Don't."<sup>[30]</sup> </p>
+<p style="margin-bottom:4.0pt">Fortunately, we can mitigate the risks of dubious entropy sources by combining sources, in the spirit of the tandem-shuffle draft-lottery protocol noted earlier. Sometimes it's safe and helpful to simply bitwise-XOR independent random bit streams together; for the fine print, and for more sophisticated approaches, read about <i>randomness mergers</i>. The sidebar presents another technique for coping with imperfect entropy sources.</p>
+<p>&nbsp;</p>
+<div style="margin:20px;padding:20px;border:1px, black, solid">
+<h4>Entropy Alchemy</h4>
+<p>Real-world entropy sources seldom obey the idealized rules of probability theory. Bias is pervasive. Fortunately, von Neumann conjured a trick to transmute a dull leaden biased coin into a brilliant golden fair coin: Flip twice. If the outcomes are heads-heads or tails-tails, emit no output and start over. Otherwise emit the second outcome of the pair: for H-T emit T and for T-H emit H. If flips are independent, then the output stream is that of a fair coin, regardless of the actual coin's bias.</p>
+</div>
+<p>&nbsp;</p>
+<p>Zero tolerance for bias is a hard requirement in the most important practical applications of random selection. Zero tolerance is both feasible and prudent in many other applications. Of course, as a programmer you're sometimes free to adopt a different policy. The important thing is to make conscious and well-informed decisions about bias; quantify and characterize all biases present in your software; and clearly explain to all stakeholders your rationale for permitting bias.</p>
+<p>&nbsp;</p>
+<h3>Drilling Deeper</h3>
+<p>O'Connor reviews the history of shuffling algorithms.<sup>[22]</sup> Knuth and Yao<sup>[16]</sup> and Lumbroso<sup>[18]</sup> develop frugal rejection methods for unbiased selection in situations where random numbers are expensive. Press et al. describe <nobr>scientific-grade PRNGs,<sup>[23]</sup></nobr> and Boneh and Shoup describe cryptographically secure PRNGs.<sup>[2]</sup> Diaconis and Fulman mathematically analyze physical card shuffling.<sup>[7]</sup></p>
+<p>&nbsp;</p>
+<h3>Bits</h3>
+<p>The example code tarball at <a href="https://queue.acm.org/downloads/2024/Drill_Bits_12_example_code.tar.gz">https://queue.acm.org/downloads/2024/Drill_Bits_12_example_code.tar.gz</a> contains the shufflers of figures&nbsp;1&nbsp;and&nbsp;4; a shuffler that maps a single large random number to a permutation; a program that generates true-random numbers with <code>RDSEED</code>; a quick-and-dirty little program to harvest entropy from keystroke timings; a script to estimate the entropy needs of large shuffles; and a note on PRNG-based shuffling.</p>
+<p>&nbsp;</p>
+<h3>Drills</h3>
+<p>1. Is the expression <code>"random_number % N"</code> ever <i>not</i> biased? Quantify its bias as a function of <code>N</code>, assuming that the random number is uniform on [0..2<sup>32</sup>−1]. Define bias for each particular <i>N</i> value as the ratio of most / least likely outcome probabilities.</p>
+<p>2. Audit the purportedly bias-free replacements for <code>"random_number % N"</code> provided in some programming and scripting languages.</p>
+<p>3. Modify the program in figure&nbsp;4 into a poker-dealing program with a "stop when done"<sup>[13]</sup> shuffle (i.e., shuffle only the top of the deck as needed for the current game). Bentley considers a related sampling problem.<sup>[1]</sup></p>
+<p>4. Compare function <code>U()</code> in figure&nbsp;4 with algorithm 3 and appendix A of Lemire.<sup>[17]</sup> Consider behavior at the endpoints of the <i>s</i> argument. Does algorithm 3 handle <code><i>s</i> = 0</code>? Can the caller express <code><i>s</i> = 2<sup>L</sup></code>?</p>
+<p>5. Modify <code>U()</code> to consume fewer random bits when possible. For example, <code>U(8)</code> requires only three random bits.</p>
+<p>6. Wikipedia sketches two proofs that <i>N</i>! does not evenly divide <i>N</i><sup><i>N</i></sup> for <i>N</i> <code>&gt;</code> 2, but (to my mind) both proofs contain gaps.<sup>[10]</sup> Fill in the gaps.</p>
+<p>7. Do physicists think true randomness exists in nature?</p>
+<p>8. Compare the performance of the example program in figure&nbsp;4 when reading random numbers from my <code>RDSEED</code> program versus <code>/dev/urandom</code> or a hardwired PRNG.</p>
+<p>9. "<code>ps -AF | sha512sum</code>" is a quick trick for harvesting entropy. How many bits of entropy does it yield?</p>
+<p>10. Are keystroke, storage, or network timings reliable sources of entropy inside a virtual machine running under a hypervisor? Check out VirtIO-RNG and <code>/dev/hwrng</code>.</p>
+<p>11. Is seed bias really a problem? Consider shuffling a standard 52-card deck of playing cards. If all 52! permutations are equally likely, what is the probability that the top five cards make a royal flush? Now compute that probability for a PRNG-based shuffle with a <i>B</i>-bit seed for several reasonable values of <i>B</i>. More generally, <i>characterize</i> the bias introduced by a small seed in terms of changes to the probabilities that players face. Does a <i>large</i> seed ever introduce bias?</p>
+<p>12. PRNGs make it easy to reproduce runs of a randomized program by reusing saved seeds. Is reproduction possible for programs such as figure&nbsp;4 that read random numbers from <code>stdin</code>? See the documentation for GNU <code>shuf</code>.</p>
+<p>13. Study the Linux <code>/dev/random</code> and <code>/dev/urandom </code>PRNGs and <code>/proc/sys/kernel/random/</code>. How have these evolved since they were first introduced?</p>
+<p>14. Durstenfeld's algorithm is still going strong after 60 years. What's the life expectancy of a PRNG? Are any PRNGs from the 1960s still used today? Are today's PRNGs expected to be usable until 2084?</p>
+<p>15. If PRNG output "passes statistical tests of randomness," should we instead conclude that the tests have failed (i.e., failed to detect data that aren't truly random)?</p>
+<p>&nbsp;</p>
+<h4>Acknowledgments</h4>
+<p>I thank Jon Bentley and John Dilley for helpful conversations and for reviewing an outline, an early draft, and the example code; Kevin O'Malley for reviewing the example code; Skaff Elias for insights and pointers related to online gambling; and Suyash Mahar and Haris Volos for measuring the speed of the <code>RDSEED</code> instruction.</p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Bentley, J. 2000. <i>Programming Pearls</i>, 2nd edition. Chapter 12: A Sample Problem. ACM Press.</p>
+<p>2. Boneh, D., Shoup, V. 2023. <i>A Graduate Course in Applied Cryptography</i>; <a href="https://toc.cryptobook.us/book.pdf">https://toc.cryptobook.us/book.pdf</a>.</p>
+<p>3. Brown, G. W. 1949. History of RAND's random digits — summary. Technical Report P-113, RAND Corporation. <a href="https://www.rand.org/pubs/papers/2008/P113.pdf">https://www.rand.org/pubs/papers/2008/P113.pdf</a>.</p>
+<p>4. Oracle Corporation. 2024. Choosing a PRNG algorithm; <a href="https://docs.oracle.com/en/java/javase/21/core/choosing-prng-algorithm.html">https://docs.oracle.com/en/java/javase/21/core/choosing-prng-algorithm.html</a>.</p>
+<p>5. Deitel, H. M., Deitel, P. J. 1994. <i>C: How to Program, </i>second edition. Prentice Hall. Modulo bias: pp. 160-163, 183, 215, 289, and 403; shuffle bias: pp. 402-404; seed bias: pp. 289 and 403.</p>
+<p>6. Deitel, H. M., Deitel, P. J. 2023. <i>C: How to Program</i>, ninth edition (Global Edition). Pearson. Modulo bias: pp. 250-254, 396, and 545; shuffle bias: pp. 545-546 and 574; seed bias: p. 544; secure PRNGs: p. 275.</p>
+<p>7. Diaconis, P. Fulman, J. 2023. <i>The Mathematics of Shuffling Cards</i>. American Mathematical Society.</p>
+<p>8. Durstenfeld, R. 1964. Algorithm 235: random permutation. <i>Communications of the ACM</i> <i>7(7)</i>. The entire article occupies the lower-right corner of page 420. <a href="https://dl.acm.org/doi/pdf/10.1145/364520.364540">https://dl.acm.org/doi/pdf/10.1145/364520.364540</a>.</p>
+<p>9. Yahoo! Finance. 2024. Online poker industry review and forecast to 2030; <a href="https://finance.yahoo.com/news/online-poker-industry-review-forecast-130200589.html">https://finance.yahoo.com/news/online-poker-industry-review-forecast-130200589.html</a>.</p>
+<p>10. Fisher-Yates shuffle. 2024. Wikipedia;<a href="https://en.wikipedia.org/wiki/Fisher–Yates_shuffle"> https://en.wikipedia.org/wiki/Fisher–Yates_shuffle</a>.</p>
+<p>11. Intel digital random number generator: software implementation guide. 2018. <a href="https://www.intel.com/content/www/us/en/developer/articles/guide/intel-digital-random-number-generator-drng-software-implementation-guide.html">https://www.intel.com/content/www/us/en/developer/articles/guide/intel-digital-random-number-generator-drng-software-implementation-guide.html</a>.</p>
+<p>12. Jones, D. 2010. Good practice in (pseudo) random number generation for bioinformatics applications; <a href="http://www0.cs.ucl.ac.uk/staff/D.Jones/GoodPracticeRNG.pdf">http://www0.cs.ucl.ac.uk/staff/D.Jones/GoodPracticeRNG.pdf</a>.</p>
+<p>13. Kelly, T. 2020. Efficient graph search: stop when done. <i>acmqueue 18(4)</i>; <a href="https://queue.acm.org/detail.cfm?id=3424304">https://queue.acm.org/detail.cfm?id=3424304</a>.</p>
+<p>14. Kelly, T. 2023. Catch-23: the new C standard sets the world on fire. <i>acmqueue 21(1)</i>, 12-29; <a href="https://dl.acm.org/doi/pdf/10.1145/3588242">https://dl.acm.org/doi/pdf/10.1145/3588242</a>.</p>
+<p>15. Kleptographically insecure PRNGs. 2024. Wikipedia; <a href="https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator#NSA_kleptographic_backdoor_in_the_Dual_EC_DRBG_PRNG">https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number<br/>_generator#NSA_kleptographic_backdoor_in_the_Dual_EC_DRBG_PRNG</a>.</p>
+<p>16. Knuth, D. E., Yao, A. C. 2000. <i>Selected Papers on Analysis of Algorithms</i>, chapter 34: The Complexity of Nonuniform Random Number Generation, 545–603. Stanford Center for the Study of Language and Information. Updated version of 1976 paper.</p>
+<p>17. Lemire, D. 2018. Fast random integer generation in an interval. <a href="https://arxiv.org/abs/1805.10941">https://arxiv.org/abs/1805.10941</a>.</p>
+<p>18. Lumbroso, J. 2013. Optimal discrete uniform generation from coin flips, and applications. arXiv 1304-1916; <a href="https://arxiv.org/abs/1304.1916">https://arxiv.org/abs/1304.1916</a>.</p>
+<p>19. Marsaglia, G. 1996. The Marsaglia random number CDROM. <a href="https://web.archive.org/web/20100612204426/http:/www.stat.fsu.edu/pub/diehard/cdrom/pscript/cdmake.ps">https://web.archive.org/web/20100612204426/ http://stat.fsu.edu/pub/diehard/cdrom/pscript/cdmake.ps</a>. </p>
+<p>20. Menn, J. 2013. Secret contract tied NSA and security industry pioneer. Reuters. A tale of bribery, backdoors, and a "cryptographically secure" PRNG that wasn't; <a href="https://www.reuters.com/article/uk-usa-security-rsa-idUKBRE9BJ1CJ20131220/">https://www.reuters.com/article/uk-usa-security-rsa-idUKBRE9BJ1CJ20131220/</a>.</p>
+<p>21. Minimum standards for gaming devices. 2023. Regulation 14, Section 14.040, paragraph 5. Nevada Gaming Commission and the Nevada Gaming Control Board; <a href="https://gaming.nv.gov/regs/statutes-regs/">https://gaming.nv.gov/regs/statutes-regs/</a>.</p>
+<p>22. O'Connor, D. 2014. A historical note on shuffle algorithms. Academia; <a href="https://www.academia.edu/1205620/OConnor_A_Historical_Note_on_Shuffle_Algorithms">https://www.academia.edu/1205620/OConnor_A_Historical_Note_on_Shuffle_Algorithms</a>.</p>
+<p>23. Press, W. H., Teukolsky, S. A., Vetterling, W. T., Flannery, B. P. 2007. <i>Numerical Recipes: The Art of Scientific Computing, </i>third edition. Cambridge University Press. Chapter 7 covers PRNGs; pages 341–342 offer baseline advice. Not all of this book's advice is good; page 343 recommends <code>PRNG() % N</code>. PDF available at <a href="https://numerical.recipes/book.html">https://numerical.recipes/book.html</a>.</p>
+<p>24. Rigged backgammon [USENET news thread]. Google Groups; <a href="https://groups.google.com/g/rec.games.backgammon/c/Dh33pOhN-dE/m/0THUPU49AAAJ">https://groups.google.com/g/rec.games.backgammon/c/Dh33pOhN-dE/m/0THUPU49AAAJ</a>.</p>
+<p>25. Rosenbaum, D. E. 1970. Draft officials redesign lottery procedures to make the system more random. <i>The New York Times </i>(June 25), 17; <a href="https://timesmachine.nytimes.com/timesmachine/1970/06/25/issue.html">https://timesmachine.nytimes.com/timesmachine/1970/06/25/issue.html</a>.</p>
+<p>26. Rosenbaum, D. E. 1970. Statisticians charge draft lottery was not random. <i>The New York Times</i> (January&nbsp;4), 66. A classic case study on how to botch a <i>physical</i> shuffle. Second column contains typesetting bug (vertical rotation); <a href="https://timesmachine.nytimes.com/timesmachine/1970/01/04/issue.html">https://timesmachine.nytimes.com/timesmachine/1970/01/04/issue.html</a>.</p>
+<p>27. Salter, J. 2010. How a months-old AMD microcode bug destroyed my weekend. arsTechnica; <a href="https://arstechnica.com/gadgets/2019/10/how-a-months-old-amd-microcode-bug-destroyed-my-weekend/">https://arstechnica.com/gadgets/2019/10/how-a-months-old-amd-microcode-bug-destroyed-my-weekend/</a>.</p>
+<p>28. Selective service system lottery. <a href="https://www.sss.gov/about/return-to-draft/lottery/">https://www.sss.gov/about/return-to-draft/lottery/</a>. </p>
+<p>29. Starr, N. 1997. Nonrandom risk: the 1970 draft lottery. <i>Journal of Statistics Education 5(2)</i>; <a href="https://jse.amstat.org/v5n2/datasets.starr.html">https://jse.amstat.org/v5n2/datasets.starr.html</a>.</p>
+<p>30. Thompson, K. 1984. Reflections on trusting trust. Turing Award lecture. <i>Communications of the ACM 27(8)</i>; <a href="https://dl.acm.org/doi/pdf/10.1145/358198.358210">https://dl.acm.org/doi/pdf/10.1145/358198.358210</a>.</p>
+<p>31. Viega, J., McGraw, G. 2002. <i>Building Secure Software</i>. Addison-Wesley. See pages 238–241 for attacks on poker.</p>
+<p>32. Weir, R. 2010. Doing the Microsoft shuffle: algorithm fail in browser ballot; <a href="https://www.robweir.com/blog/2010/02/microsoft-random-browser-ballot.html">https://www.robweir.com/blog/2010/02/microsoft-random-browser-ballot.html</a>. Noteworthy for the innovative use of an intransitive comparison function.</p>
+<p>33. True Random Number Generator. MagPi magazine, issue 40 (December 2015). <a href="https://magpi.raspberrypi.com/issues/40">https://magpi.raspberrypi.com/issues/40</a> </p>
+<p>&nbsp;</p>
+<p><b>Terence Kelly</b> (<a href="/cdn-cgi/l/email-protection#d5a1a5beb0b9b9ac95b4b6b8fbbaa7b2"><span class="__cf_email__" data-cfemail="3541455e5059594c755456581b5a4752">[email&#160;protected]</span></a>) never leaves randomness to chance.</p>
+<p>&nbsp;</p>
+<img src="https://dl.acm.org/cms/attachment/html/10.1145/3664645/assets/html/kelly5.png" alt="https://xkcd.com/221/" />
+<br/><span><a href="https://xkcd.com/221/">https://xkcd.com/221/</a></span>
+<p>&nbsp;</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){if (!document.body) return;var js = "window['__CF$cv$params']={r:'88ce5f629b801741',t:'MTcxNzIzNjE5NC4wOTEwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);";var _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi = _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj = _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if (document.readyState !== 'loading') {handler();} else if (window.addEventListener) {document.addEventListener('DOMContentLoaded', handler);} else {var prev = document.onreadystatechange || function () {};document.onreadystatechange = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange = prev;handler();}};}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 2</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3664645">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
