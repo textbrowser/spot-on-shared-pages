@@ -130,6 +130,105 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Summer Member Drive</strong>
+            Protect journalism that holds power to account.
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -405,9 +504,9 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <line x1="5" y1="12" x2="19" y2="12"></line>
     <polyline points="12 5 19 12 12 19"></polyline>
 </svg>
-                <input id="newsletter-signup-body-652092" class="form__submit-btn form__submit-btn--arrow-transparent g-recaptcha" value="Sign Up" type="submit">
+                <input id="newsletter-signup-body-286757" class="form__submit-btn form__submit-btn--arrow-transparent g-recaptcha" value="Sign Up" type="submit">
             </div>
-            <input type="hidden" name="origin_location" value="https://v3-www.propublica.org/article/thomasville-alabama-segregation-academies">
+            <input type="hidden" name="origin_location" value="https://www.propublica.org/article/thomasville-alabama-segregation-academies?utm_campaign=majorinvestigations&amp;utm_content=river&amp;utm_medium=email&amp;utm_source=sailthru">
                 <input type="hidden" name="source" value="https://www.propublica.org/" />
                 <input type="hidden" name="placement" value="in-body" />
                 <input type="hidden" name="region" value="local" />
@@ -444,7 +543,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <div class="promo-donate-2__bg">
             <svg width="265" height="157" viewBox="0 0 265 157" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M133.852 0L0 79.344 133.852 157 265 79.344 133.852 0z"/></svg>
         </div>
-        <p class="promo-donate-1__text">Defend the facts. Support independent journalism by donating to ProPublica.</p>
+        <p class="promo-donate-1__text">Summer Member Drive: Protect journalism that holds power to account.</p>
         <a class="promo-donate-2__btn | btn" style="--button-color: var(--red-50)" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=InL">Donate Now</a>
     </div>
 </aside>
@@ -699,6 +798,22 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect Independent Journalism</h2>
+
+    <div class="module-content">
+
+        <p>This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change.</strong></p>
+
+        <p>ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life.</strong> Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions.</p>
+
+        <p>Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 50,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.</p>
+
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
         <div class="rich-byline-group">
 
 
@@ -714,7 +829,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#b9d3dcd7d7d0dfdccb97d1d8cedccaf9c9cbd6c9ccdbd5d0dad897d6cbde">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#056f606b6b6c6360772b6d647260764575776a757067696c66642b6a7762">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -722,7 +837,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="214b444f4f484744530f49405644526151534e5154434d4842400f4e5346">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="ff959a919196999a8dd1979e889a8cbf8f8d908f8a9d93969c9ed1908d98">[email&#160;protected]</span>
                         </a>
                     </li>
                                                             <li class="rich-byline__contact-item">
@@ -1092,13 +1207,101 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/3m-forever-chemicals-pfas-pfos-inside-story">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/donald-trump-criminal-cases-witnesses-financial-benefits">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240403-Sakaguchi-Inside3M-6_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.434&amp;fp-y=0.483&amp;h=267&amp;q=75&amp;w=400&amp;s=a2720aada7c6dbd6edb61bcd46489474 400w, https://img.assets-d.propublica.org/v5/images/20240403-Sakaguchi-Inside3M-6_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.434&amp;fp-y=0.483&amp;h=533&amp;q=75&amp;w=800&amp;s=9d06590c1d2bd1e17c4e73a0965cdf38 800w, https://img.assets-d.propublica.org/v5/images/20240403-Sakaguchi-Inside3M-6_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.434&amp;fp-y=0.483&amp;h=800&amp;q=75&amp;w=1200&amp;s=a56876f71a4a0175e0dd78747d651091 1200w, https://img.assets-d.propublica.org/v5/images/20240403-Sakaguchi-Inside3M-6_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.434&amp;fp-y=0.483&amp;h=1067&amp;q=75&amp;w=1600&amp;s=b852a317ad3c03360ac1bbd8eb9564c6 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Witnesses-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=78eba7ce2b6cb8d26ed7bdf088e11c29 400w, https://img.assets-d.propublica.org/v5/images/Trump-Witnesses-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=c6e8b8a25eaec6407cfa6214170c9798 800w, https://img.assets-d.propublica.org/v5/images/Trump-Witnesses-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=29d62e8a5f09210426137da1063ef00e 1200w, https://img.assets-d.propublica.org/v5/images/Trump-Witnesses-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=040b61bc59a1f4e32bbc5fb5d85ed57b 1600w"
                     width="400"
                     height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/donald-trump-criminal-cases-witnesses-financial-benefits">
+                                    Multiple Trump Witnesses Have Received Significant Financial Benefits From His Businesses, Campaign
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Witnesses in the various criminal cases against the former president have gotten pay raises, new jobs and more. If any benefits were intended to influence testimony, that could be a crime.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/robert-faturechi">Robert Faturechi</a>, <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-06-03EDT06:00">June 3, 6 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+                <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/ivanka-donald-trump-jr-close-to-being-charged-felony-fraud">
+                <img
+                    alt=""
+                    src="https://assets-c3.propublica.org/images/articles/_threeTwo400w/20171004-trump-soho-3x2.jpg"
+                    width="400"
+                    height="267"
+                    srcset="https://assets-c3.propublica.org/images/articles/_threeTwo400w/20171004-trump-soho-3x2.jpg 400w, https://assets-c3.propublica.org/images/articles/_threeTwo800w/20171004-trump-soho-3x2.jpg 800w, https://assets-c3.propublica.org/images/articles/_threeTwo1200w/20171004-trump-soho-3x2.jpg 1200w, https://assets-c3.propublica.org/images/articles/_threeTwo1600w/20171004-trump-soho-3x2.jpg 1600w "
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/ivanka-donald-trump-jr-close-to-being-charged-felony-fraud">
+                                    Ivanka and Donald Trump Jr. Were Close to Being Charged With Felony Fraud
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            New York prosecutors were preparing a case. Then the D.A. overruled his staff after a visit from a top donor: Trump attorney Marc Kasowitz. 
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/jesse-eisinger">Jesse Eisinger</a> and <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a>, ProPublica, and <span class="name">Andrea Bernstein</span> and <span class="name">Ilya Marritz</span>, <a href="http://www.wnyc.org/">WNYC</a>,             <time class="timestamp" datetime="2017-10-04EDT04:00">Oct. 4, 2017, 4 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/3m-forever-chemicals-pfas-pfos-inside-story">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20240403-Sakaguchi-Inside3M-6_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.434&amp;fp-y=0.483&amp;h=105&amp;q=75&amp;w=105&amp;s=f556fdab8103c56df6a9ae7037fec79d 105w, https://img.assets-d.propublica.org/v5/images/20240403-Sakaguchi-Inside3M-6_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.434&amp;fp-y=0.483&amp;h=210&amp;q=75&amp;w=210&amp;s=ac48f8e9d873cb8956f3004b5efbfbd5 210w"
+                    width="105"
+                    height="105"
                     loading="lazy"
                     js-autosizes
                 />
@@ -1133,18 +1336,14 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 <div class="story-card story-card--standard">
     
     
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/ken-paxton-consumer-protection-laws-political-targets">
+                        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/national-debt-trump">
                 <img
                     alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/202405xx_paxton_consumer_protection_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.9994&amp;fp-y=0.2697&amp;h=267&amp;q=75&amp;w=400&amp;s=bdc95d2c092ecb87fd377003f384a6ed 400w, https://img.assets-d.propublica.org/v5/images/202405xx_paxton_consumer_protection_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.9994&amp;fp-y=0.2697&amp;h=533&amp;q=75&amp;w=800&amp;s=ee36f9398f47b76d0a62219d593adcb2 800w, https://img.assets-d.propublica.org/v5/images/202405xx_paxton_consumer_protection_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.9994&amp;fp-y=0.2697&amp;h=800&amp;q=75&amp;w=1200&amp;s=7686523189e195c69b39d0b3d4f5b494 1200w, https://img.assets-d.propublica.org/v5/images/202405xx_paxton_consumer_protection_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.9994&amp;fp-y=0.2697&amp;h=1067&amp;q=75&amp;w=1600&amp;s=11b9b8c14dcc6225f8fcadb54da721eb 1600w"
-                    width="400"
-                    height="267"
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-c3.propublica.org/images/articles/20210114-trump-deficit-1x1.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=0e60d90543df8b4989af5ec5cc733ca4 105w, https://img.assets-c3.propublica.org/images/articles/20210114-trump-deficit-1x1.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=e4aa97b6956735686d5f910733a916cb 210w"
+                    width="105"
+                    height="105"
                     loading="lazy"
                     js-autosizes
                 />
@@ -1152,19 +1351,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/a-closer-look">A Closer Look</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/ken-paxton-consumer-protection-laws-political-targets">
-                                    Texas’ Attorney General Is Increasingly Using Consumer Protection Laws to Pursue Political Targets
+            <a href="https://www.propublica.org/article/national-debt-trump">
+                                    Trump Built a National Debt So Big That It’ll Weigh Down the Economy for Years
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Ken Paxton has repeatedly used laws that are supposed to protect people from fraudulent or deceptive practices to pursue entities he disagrees with politically, including hospitals, pharmaceutical companies and LGBTQ+ groups.
+                            The “King of Debt” promised to reduce the national debt — then his tax cuts made it surge. Add in the pandemic, and he oversaw the third-biggest deficit increase of any president.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>,             <time class="timestamp" datetime="2024-05-30EDT06:00">May 30, 5 a.m. CDT</time>
+            by <a class="name" href="https://www.propublica.org/people/allan-sloan">Allan Sloan</a>, ProPublica, and <span class="name">Cezary Podkul</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2021-01-14EST05:00">Jan. 14, 2021, 5 a.m. EST</time>
         </p>
 
             </div>
@@ -1211,98 +1411,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
         <p class="story-card__byline">
             by <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>,             <time class="timestamp" datetime="2024-05-22EDT05:00">May 22, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/trump-campaign-harassment-bullying-lawsuits">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240517-Jaramillo-Trump-Legal-Fees-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=7fee023c66a5757eacc62bcf41a271d3 105w, https://img.assets-d.propublica.org/v5/images/20240517-Jaramillo-Trump-Legal-Fees-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=81170ac139ea42e3d8142459876e9108 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/trump-campaign-harassment-bullying-lawsuits">
-                                    For the Women Who Accused the Trump Campaign of Harassment, It’s Been More Harassment
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Trump is well known for publicly bullying his political rivals, but the former president’s campaign has also used similar tactics to launch private, relentless attacks against some of its own workers.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/marilyn-thompson">Marilyn W. Thompson</a>,             <time class="timestamp" datetime="2024-05-23EDT07:00">May 23, 7 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/texas-ken-paxton-consumer-protection-law-investigations">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/202405xx_paxton_consumer_protection_sidebar_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=7164d3eaea1070b78d459e3c052ae221 105w, https://img.assets-d.propublica.org/v5/images/202405xx_paxton_consumer_protection_sidebar_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=5ae0bf823417bd0d9c150f5b85808b3c 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/texas-ken-paxton-consumer-protection-law-investigations">
-                                    Ken Paxton Has Used Consumer Protection Law to Target These Organizations
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Attorneys general have increasingly used their power to pursue investigations targeting organizations whose work conflicts with their political views. Texas’ Paxton is among the most aggressive.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>,             <time class="timestamp" datetime="2024-05-30EDT06:05">May 30, 5:05 a.m. CDT</time>
         </p>
 
             </div>
@@ -1432,13 +1540,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#cba6aeafa2aab9a2aca3bfb88bbbb9a4bbbea9a7a2a8aae5a4b9ac"><span class="__cf_email__" data-cfemail="ea878f8e838b98838d829e99aa9a98859a9f888683898bc485988d">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#dfb2babbb6beadb6b8b7abac9fafadb0afaabdb3b6bcbef1b0adb8"><span class="__cf_email__" data-cfemail="fb969e9f929a89929c938f88bb8b89948b8e999792989ad594899c">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#ee82878d8b809d878089ae9e9c819e9b8c82878d8fc0819c89"><span class="__cf_email__" data-cfemail="9ef2f7fdfbf0edf7f0f9deeeecf1eeebfcf2f7fdffb0f1ecf9">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#3955505a5c574a50575e79494b56494c5b55505a5817564b5e"><span class="__cf_email__" data-cfemail="630f0a00060d100a0d042313110c1316010f0a00024d0c1104">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
