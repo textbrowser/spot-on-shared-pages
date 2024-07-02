@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <title>3 million iOS and macOS apps were exposed to potent supply-chain attacks | Ars Technica</title>
+<script type="text/javascript">
+  ars = {"ASSETS":"https:\/\/cdn.arstechnica.net\/wp-content\/themes\/ars\/assets","HOME_URL":"https:\/\/arstechnica.com","CIVIS":"\/civis","THEME":"light","VIEW":"grid","MOBILE":false,"SUBSCRIBER":false,"PLUS_PLUS":false,"LOGGED":false,"USER_ID":null,"ENV":"production","AD":{"tags":["apps","cocoapods","ios-2","macos","open-source"],"channel":"security","slug":"3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks","template_type":"article","queue":[],"server":"production"},"TOTAL":113263,"UNREAD":0,"RECENT":[2034632,2034866,2034780,2034817,2034726,2034680,2034715,2034747,2034710,2034642,2034624,2034603,2034045,2034236,2034182,2034429,2034421,2033083,2034436,2034420,2033944,2034431,2034503,2034465,2034470],"LOGINS":true,"CROSS":false,"PARSELY":"arstechnica.com","COMMENTS":false,"HOMEPAGE":false,"SITE":1,"READY":[],"SHOW_ADS":true,"IMG_PROXY":"https:\/\/cdn.arstechnica.net\/i\/","CATEGORY":"security","PAGETITLE":"","ZEN_MODE":false,"MEMO_PID":"62012a7a19351c07620394e0"};
+</script>
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.arstechnica.net/wp-content/themes/ars/assets/css/main-b0320f54e6.css" />
+    <link rel="alternate" type="application/rss+xml" href="http://feeds.arstechnica.com/arstechnica/index" />
+  <link rel="shortcut icon" href="https://cdn.arstechnica.net/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="https://cdn.arstechnica.net/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.arstechnica.net/wp-content/themes/ars/assets/img/ars-ios-icon-d9a45f558c.png" />
+  <link rel="mask-icon" href="https://cdn.arstechnica.net/wp-content/themes/ars/assets/img/ars-macos-safari-8997f76b21.svg" color="#ff4e00">
+  <link rel="icon" sizes="192x192" href="https://cdn.arstechnica.net/wp-content/themes/ars/assets/img/material-ars-db41652381.png" />
+  <link rel="me" href="https://mastodon.social/@arstechnica" />
+
+    <meta name="application-name" content="Ars Technica"/>
+  <meta name="msapplication-starturl" content="http://arstechnica.com/"/>
+  <meta name="msapplication-tooltip" content="Ars Technica: Serving the technologist for 1.2 decades"/>
+  <meta name="msapplication-task" content="name=News;action-uri=http://arstechnica.com/;icon-uri=https://cdn.arstechnica.net/favicon.ico"/>
+  <meta name="msapplication-task" content="name=Features;action-uri=http://arstechnica.com/features/;icon-uri=https://cdn.arstechnica.net/ie-jump-menu/jump-features.ico"/>
+  <meta name="msapplication-task" content="name=OpenForum;action-uri=http://arstechnica.com/civis/;icon-uri=https://cdn.arstechnica.net/ie-jump-menu/jump-forum.ico"/>
+  <meta name="msapplication-task" content="name=Subscribe;action-uri=http://arstechnica.com/subscriptions/;icon-uri=https://cdn.arstechnica.net/ie-jump-menu/jump-subscribe.ico"/>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="advertising" content="ask" />
+  <meta property="fb:admins" content="592156917" />
+  <meta property="fb:admins" content="108943" />
+  <meta property="fb:pages" content="19374573752" />
+
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#000000" />
+
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- cache hit 68:single/meta:8aa528eeb288b1a122d1823f766fb3cb -->
+<meta name='parsely-page' content='{"title":"3 million iOS and macOS apps were exposed to potent supply-chain attacks","link":"https:\/\/arstechnica.com\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/","type":"post","author":"Dan Goodin","post_id":2034866,"pub_date":"2024-07-01T23:43:41Z","section":"Security","tags":["apps","cocoapods","ios-2","macos","open-source","type: report"],"image_url":"https:\/\/cdn.arstechnica.net\/wp-content\/uploads\/2024\/07\/apple-security-150x150.jpg"}'>
+<meta name='parsely-metadata' content='{"type":"report","title":"3 million iOS and macOS apps were exposed to potent supply-chain attacks","post_id":2034866,"lower_deck":"Apps that used code libraries hosted on CocoaPods were vulnerable for about 10 years.","image_url":"https:\/\/cdn.arstechnica.net\/wp-content\/uploads\/2024\/07\/apple-security-150x150.jpg","listing_image_url":"https:\/\/cdn.arstechnica.net\/wp-content\/uploads\/2024\/07\/apple-security-360x200.jpg"}'>
+
+  <link rel="canonical" href="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/" />
+
+<link rel="shorturl" href="https://arstechnica.com/?p=2034866" />
+
+<meta name="description" content="Apps that used code libraries hosted on CocoaPods were vulnerable for about 10 years." />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/">
+<meta name="twitter:title" content="3 million iOS and macOS apps were exposed to potent supply-chain attacks">
+<meta name="twitter:description" content="Apps that used code libraries hosted on CocoaPods were vulnerable for about 10 years.">
+
+<meta name="twitter:site" content="@arstechnica">
+<meta name="twitter:domain" content="arstechnica.com">
+
+<meta property="og:site_name" content="Ars Technica" />
+
+<meta name="twitter:image:src" content="https://cdn.arstechnica.net/wp-content/uploads/2024/07/apple-security-760x380.jpg">
+  <meta name="twitter:image:width" content="760">
+  <meta name="twitter:image:height" content="380">
+
+
+<meta property="og:url" content="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/" />
+<meta property="og:title" content="3 million iOS and macOS apps were exposed to potent supply-chain attacks" />
+<meta property="og:image" content="https://cdn.arstechnica.net/wp-content/uploads/2024/07/apple-security-760x380.jpg" />
+<meta property="og:description" content="Apps that used code libraries hosted on CocoaPods were vulnerable for about 10 years." />
+<meta property="og:type" content="article" />
+  <!-- cache hit 68:single/header:8aa528eeb288b1a122d1823f766fb3cb -->
+        
+
+<!-- OneTrust Cookies Consent Notice start -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-domain-script="b10882a1-8446-4e7d-bfb2-ce2c770ad910">
+</script>
+<script id="oneTrustScripts">
+    window.OptanonWrapper = function() {
+        var CCPAButton = document.getElementById('ot-sdk-btn');
+        CCPAButton && CCPAButton.classList.add('ot-sdk-btn--visible');
+        window.dataLayer && window.dataLayer.push({
+            event: 'OneTrustGroupsUpdated'
+        });
+        window.cnBus && window.cnBus.emit('onetrust.OneTrustGroupsUpdated');
+    };
+</script>
+<script src="https://cdn.cookielaw.org/opt-out/otCCPAiab.js" ccpa-opt-out-ids="C0002,C0003,C0004,C0005" ccpa-opt-out-geo="ca" ccpa-opt-out-lspa="true">
+</script>
+<!-- OneTrust Cookies Consent Notice end -->
+<!-- Google Tag Manager DataLayer -->
+<script>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({"event":"data-layer-loaded","user":{"ars_userId":undefined,"amg_userId":undefined,"uID":undefined,"sID":undefined,"loginStatus":false,"subscriberStatus":"none","infinityId":undefined,"registrationSource":undefined,"mdw_cnd_id":undefined,"monthlyVisits":undefined,"accessPaywall":undefined,"view":"grid","theme":"light","show_comments":false},"content":{"pageTemplate":"single","pageType":"article|report","contentCategory":"security","section":"security","subsection":undefined,"contributor":"Dan Goodin","contentID":2034866,"contentLength":1406,"display":"3 million iOS and macOS apps were exposed to potent supply-chain attacks","contentSource":"web","pageAssets":undefined,"uniqueContentCount":undefined,"monthlyContentCount":undefined,"publishDate":"2024-07-01T23:43:41-04:00","modifiedDate":"2024-07-01T23:44:32-04:00","keywords":"apps|cocoapods|iOS|MacOS|open source","dataSource":undefined},"marketing":{"campaignName":undefined,"circCampaignId":undefined,"internalCampaignId":undefined,"brand":"Ars Technica","certified_mrc_data":undefined,"condeNastId":undefined},"page":{"pID":undefined,"syndicatorUrl":undefined,"pageURL":"https:\/\/arstechnica.com\/?p=2034866","canonical":"https:\/\/arstechnica.com\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/","canonicalPathName":"\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/"},"search":{"facets":undefined,"searchTerms":undefined},"site":{"appVersion":"1.0.0"}});
+</script>
+<!-- End Google Tag Manager DataLayer -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NLXNPCQ');</script>
+<!-- End Google Tag Manager -->
+<!-- Start Headline A/B -->
+<script type="text/javascript">
+  class ABTest {
+    constructor(post_id, init_method) {
+      this.post_id = post_id;
+      this.ajaxurl = '/services/ars-ajax-handler.php';
+      this.expireDays = 1 / 48; // 30 min
+      this.group = this.getGroup();
+      this.uid = this.getUid();
+      this.init_method = init_method;
+      this.setTitle();
+
+      if (this.init_method === 'click') {
+        this.click();
+      } else {
+        this.impression();
+      }
+    }
+
+    setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    // Retrieves a unique id for determining whether the event should be recorded
+    getUid() {
+      var uid = this.getCookie('ars_ab_' + this.post_id + '_uid');
+      if (!uid) {
+        uid = (Math.random() + 1).toString(36).substring(2, 7);
+        this.setCookie('ars_ab_' + this.post_id + '_uid', uid, this.expireDays);
+      }
+      return uid;
+    };
+
+    // Places the user in either A or B for this post id
+    getGroup() {
+      var group = this.getCookie('ars_ab_' + this.post_id + '_group');
+      if (!group) {
+        group = String.fromCharCode(Math.floor(Math.random() * 2) + 65).toLowerCase();
+        this.setCookie('ars_ab_' + this.post_id + '_group', group, this.expireDays);
+      }
+      return group;
+    };
+
+    // Records a headline impression (from homepage or other listing)
+    impression() {
+      // Send fake ajax
+      var params = {
+        nonce: '215e0a099a',
+        action: 'ars_ab_impression',
+        id: this.post_id,
+        group: this.group,
+        uid: this.uid,
+        ts: (new Date()).getTime()
+      };
+      var url = this.ajaxurl + '?' + this.encodeParams(params);
+      document.write('\x3Cscript type="text/javascript" src="' + url + '">\x3C/script>');
+    };
+
+    // Records a headline click from the actual post page
+    click() {
+      // Send fake ajax
+      var params = {
+        nonce: '0673a2c106',
+        action: 'ars_ab_click',
+        id: this.post_id,
+        group: this.group,
+        uid: this.uid,
+        ts: (new Date()).getTime()
+      };
+      var url = this.ajaxurl + '?' + this.encodeParams(params);
+      document.write('\x3Cscript type="text/javascript" src="' + url + '">\x3C/script>');
+    };
+
+    // If user is in B group, dynamically set title
+    setTitle() {
+      if (this.group == 'b') {
+        var span = document.getElementById('ars_ab_' + this.post_id);
+        var title = span.parentNode;
+        title.innerHTML = span.getAttribute('data-title-b');
+      }
+    };
+
+    encodeParams(data) {
+      var ret = [];
+      for (var d in data)
+        ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+      return ret.join("&");
+    };
+
+  };
+</script>
+<!-- End Headline A/B -->
+<script>
+  window.permutiveCohorts = {"cached_until":{"date":"2024-07-02 03:43:42.247140","timezone_type":3,"timezone":"UTC"},"cohorts":["bxyo","bjfa"],"gam":["bxyo","bjfa"],"xandr":[]};
+  window.permutiveContextInfo = {"pageProperties":{"client":{"url":"https:\/\/arstechnica.com\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/","referrer":"","type":"web","user_agent":"Mozilla\/5.0 (Windows NT 6.1; WOW64) SkypeUriPreview Preview\/0.5 skype-url-preview@microsoft.com","domain":"arstechnica.com","title":"3 million iOS and macOS apps were exposed to potent supply-chain attacks &#8211; Ars Technica"},"type":"article","article":{"id":"2034866","category":"security","subcategory":"","title":"3 million iOS and macOS apps were exposed to potent supply-chain attacks","tags":["apps","cocoapods","ios-2","macos","open-source"]}},"url":"https:\/\/arstechnica.com\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/"};
+</script>
+<script src="https://www.googletagservices.com/tag/js/gpt.js" id="gpt-script" async></script>
+<script>
+  window.googletag = window.googletag || {};
+  window.googletag.cmd = window.googletag.cmd || [];
+  window.cns = window.cns || {};
+  window.cns.queue = [];
+  window.cns.async = function(s, c) {
+    cns.queue.push({
+      service: s,
+      callback: c
+    })
+  };
+</script>
+<script>
+  window.cns.pageContext = {"contentType":"article","templateType":"article","channel":"security","subChannel":"","slug":"3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks","server":"production","keywords":{"tags":["apps","cocoapods","ios-2","macos","open-source"],"cm":[],"platform":["wordpress"],"copilotid":""}};
+</script>
+<script src="https://ads-static.conde.digital/production/cns/builds/ars-technica/ars-technica.min.js" async></script>
+<script type="text/javascript" src="https://cdn.arstechnica.net/wp-content/themes/ars/assets/js/ars-dc1d08cbd8.ads.us.js"></script>
+  <script type="text/javascript">!(function(o,_name){function n(){(n.q=n.q||[]).push(arguments)}n.v=1,o[_name]=o[_name]||n;!(function(o,t,n,c){function e(n){(function(){try{return(localStorage.getItem("v4ac1eiZr0")||"").split(",")[4]>0}catch(o){}return!1})()&&(n=o[t].pubads())&&n.setTargeting("admiral-engaged","true")}(c=o[t]=o[t]||{}).cmd=c.cmd||[],typeof c.pubads===n?e():typeof c.cmd.unshift===n?c.cmd.unshift(e):c.cmd.push(e)})(window,"googletag","function");})(window,String.fromCharCode(97,100,109,105,114,97,108));!(function(t,c,i){i=t.createElement(c),t=t.getElementsByTagName(c)[0],i.async=1,i.src="https://shiverscissors.com/v2fumwIJOo-LsCB0dlG18VSTW43CpWhUEPJuKeRTzrEQdSPPlMr5GymU",t.parentNode.insertBefore(i,t)})(document,"script");</script>
+
+  <!-- Taboola -->
+  <script type="text/javascript">
+    window._taboola = window._taboola || [];
+    _taboola.push({
+      article: 'auto'
+    });
+    ! function(e, f, u, i) {
+      if (!document.getElementById(i)) {
+        e.async = 1;
+        e.src = u;
+        e.id = i;
+        f.parentNode.insertBefore(e, f);
+      }
+    }(document.createElement('script'),
+      document.getElementsByTagName('script')[0],
+      '//cdn.taboola.com/libtrc/condenast1-network/loader.js',
+      'tb_loader_script');
+    if (window.performance && typeof window.performance.mark == 'function') {
+      window.performance.mark('tbl_ic');
+    }
+  </script>
+  <meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//cdn.arstechnica.net' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//arstechnica-apps.s3.amazonaws.com' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://cdn.arstechnica.net/wp/wp-includes/css/dist/block-library/style.min.css?ver=6.0.3' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='article_forum_connect_comments-css'  href='https://cdn.arstechnica.net/wp-content/plugins/article-forum-connect/public/css/comments.css?ver=1.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='article_forum_connect_paywall-css'  href='https://cdn.arstechnica.net/wp-content/plugins/article-forum-connect/public/css/paywall.css?ver=1.2.2' type='text/css' media='all' />
+<meta property="article:published_time" content="2024-07-01T23:43:41+00:00">
+<meta property="article:modified_time" content="2024-07-01T23:44:32+00:00">
+<meta name="twitter:partner" content="tfwp" />
+<!--
+	generated 79 seconds ago
+	generated in 0.264 seconds
+	served from batcache in 0.003 seconds
+	expires in 221 seconds
+	billboard: forced 
+	view: grid 
+	theme: light 
+ -->
+</head>
+
+<body class="post-template-default single single-post postid-2034866 single-format-standard grid-view light blog-us">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLXNPCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+      	<aside class="ad ad_crown" aria-label="Top of page advertisement"></aside>
+  
+  <div class="site-wrapper">
+    <a class="screen-reader-text skip-link" href="#main" aria-label="Skip to main content">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-left">
+        <a href="https://arstechnica.com" id="header-logo" title="Ars Technica Homepage">
+      <span class="icon icon-logo-ars-us"></span>
+  </a>
+      </div>
+
+      <div class="header-right">
+        <nav id="header-nav-primary">
+          <ul>
+            
+  <li><a class="nav-link section-information-technology active" href="/information-technology/">Biz &amp; IT</a></li>
+  <li><a class="nav-link section-gadgets " href="/gadgets/">Tech</a></li>
+  <li><a class="nav-link section-science " href="/science/">Science</a></li>
+  <li><a class="nav-link section-tech-policy " href="/tech-policy/">Policy</a></li>
+  <li><a class="nav-link section-cars " href="/cars/">Cars</a></li>
+  <li><a class="nav-link section-gaming " href="/gaming/">Gaming &amp; Culture</a></li>
+  <li><a class="nav-link store" href="/store/">Store</a></li>
+  <li><a class="nav-link forums" href="/civis/">Forums</a></li>
+          </ul>
+        </nav>
+
+                              <a href="/store/product/subscriptions/" class="header-highlight-link">Subscribe</a>
+                                  <div class="dropdown" id="header-search">
+          <a href="/search/" class="dropdown-toggle search-toggle" aria-label="Search" aria-expanded="false">
+            <span class="icon icon-search-mag-glass"></span>
+          </a>
+          <div class="dropdown-content">
+            <form action="/search/" method="GET" id="search_form">
+  <input type="hidden" name="ie" value="UTF-8">
+  <input type="text" name="q" id="hdr_search_input" value="" aria-label="Search..." placeholder="Search...">
+</form>
+<a class="nav-search-close">Close</a>
+          </div>
+        </div>
+        <div class="dropdown dropdown-mega" id="header-burger">
+          <a href="#site-menu" class="dropdown-toggle" aria-label="Menu" aria-expanded="false">
+            <span></span>
+          </a>
+          <div id="site-menu" class="dropdown-content">
+            <section class="burger-navigate">
+  <h3>
+    <span class="icon icon-half-target"></span>
+    Navigate
+  </h3>
+  <ul>
+          <li><a class="nav-link store" href="/store/">Store</a></li>
+      <li><a class="nav-link subscribe" href="/store/product/subscriptions/">Subscribe</a></li>
+        <li><a class="nav-link videos" href="http://arstechnica.com/video/">Videos</a></li>
+    <li><a class="nav-link section-features" href="/features/">Features</a></li>
+    <li><a class="nav-link section-reviews" href="/reviews/">Reviews</a></li>
+  </ul>
+
+  <ul>
+    <li><a class="nav-link page-rss-feeds" href="/rss-feeds/">RSS Feeds</a></li>
+    <li><a class="nav-link mobile" href="/?view=mobile">Mobile Site</a></li>
+  </ul>
+
+  <ul>
+    <li><a class="nav-link page-about-us" href="/about-us/">About Ars</a></li>
+    <li><a class="nav-link page-staff-directory" href="/staff-directory/">Staff Directory</a></li>
+    <li><a class="nav-link page-contact-us" href="/contact-us/">Contact Us</a></li>
+  </ul>
+
+  <ul>
+    <li><a class="nav-link page-advertise-with-us" href="https://advertising.condenast.com/brands/ars-technica">Advertise with Ars</a></li>
+    <li><a class="nav-link page-reprints" href="/reprints/">Reprints</a></li>
+  </ul>
+</section>
+
+<section class="burger-filter">
+  <h3>
+    <span class="icon icon-half-mag"></span>
+    Filter by topic
+  </h3>
+  <ul id="burger-nav-primary">
+    
+  <li><a class="nav-link section-information-technology active" href="/information-technology/">Biz &amp; IT</a></li>
+  <li><a class="nav-link section-gadgets " href="/gadgets/">Tech</a></li>
+  <li><a class="nav-link section-science " href="/science/">Science</a></li>
+  <li><a class="nav-link section-tech-policy " href="/tech-policy/">Policy</a></li>
+  <li><a class="nav-link section-cars " href="/cars/">Cars</a></li>
+  <li><a class="nav-link section-gaming " href="/gaming/">Gaming &amp; Culture</a></li>
+  <li><a class="nav-link store" href="/store/">Store</a></li>
+  <li><a class="nav-link forums" href="/civis/">Forums</a></li>
+  </ul>
+</section>
+
+<section class="burger-settings">
+  <h3>
+    <span class="icon icon-half-gear"></span>
+    Settings
+  </h3>
+  <div>
+    <div class="burger-layout">
+      
+<p>Front page layout</p>
+<div class="burger-layout-grid">
+  <a rel="nofollow" href="/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?view=grid">
+    <span class="icon icon-grid"></span><br>
+    Grid
+    <div class="faux-radio active"></div>
+  </a>
+</div>
+
+<div class="burger-layout-list">
+  <a rel="nofollow" href="/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?view=archive">
+    <span class="icon icon-list"></span><br>
+    List
+    <div class="faux-radio "></div>
+  </a>
+</div>
+
+    </div>
+    <div class="burger-theme">
+      <p>Site theme</p>
+  <div class="burger-theme-light">
+    <a rel="nofollow" href="/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?theme=light">
+      <span><span>light</span></span>
+      <div class="faux-radio active"></div>
+    </a>
+  </div>
+  <div class="burger-theme-dark">
+    <a rel="nofollow" href="/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?theme=dark">
+      <span><span>dark</span></span>
+      <div class="faux-radio "></div>
+    </a>
+  </div>
+    </div>
+  </div>
+</section>
+          </div>
+        </div>
+              <a class="navlink login-link" href="https://arstechnica.com/civis/login?_xfRedirect=%2Fsecurity%2F2024%2F07%2F3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks%2F">
+      Sign in
+    </a>
+  
+        </div>
+    </header>
+
+              
+    <main id="main" class="content-wrapper">
+
+<script type="text/javascript">
+  ars.ARTICLE = {"url":"https:\/\/arstechnica.com\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/","short_url":"https:\/\/arstechnica.com\/?p=2034866","title":"3 million iOS and macOS apps were exposed to potent supply-chain attacks","author":329388,"authorName":"Dan Goodin","pubDate":"2024-07-01T23:43:41Z","id":2034866,"topic":1501571,"pages":2,"current_page":1,"superscroll":true,"promoted":[],"single_page":false,"comments":14,"fullwidth":false,"slug":"3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks","arsStaff":{"104481":{"name":"Aaron Zimmerman","title":"Copy Chief","staff":true},"332715":{"name":"Andrew Cunningham","title":"Senior Technology Reporter","staff":true},"855306":{"name":"Ashley Belanger","title":"Senior Policy Reporter","staff":true},"1002":{"name":"Aurich Lawson","title":"Creative Director","staff":true},"857898":{"name":"Benj Edwards","title":"Senior AI Reporter","staff":true},"509873":{"name":"Beth Mole","title":"Senior Health Reporter","staff":true},"453791":{"name":"Cathleen O'Grady","title":"Contributing science reporter","staff":false},"102179":{"name":"Chris Lee","title":"Associate writer","staff":true},"329388":{"name":"Dan Goodin","title":"Security Editor","staff":true},"254631":{"name":"Diana Gitig","title":"Associate Writer","staff":false},"25862":{"name":"Eric Bangeman","title":"Managing Editor","staff":true},"512413":{"name":"Eric Berger","title":"Senior Space Editor","staff":true},"46707":{"name":"Iljitsch van Beijnum","title":"Associate Writer","staff":false},"316010":{"name":"Jason Marlin","title":"Technical Director","staff":true},"746799":{"name":"Jennifer Ouellette","title":"Senior Writer","staff":true},"15365":{"name":"Jeremy Reimer","title":"Senior Niche Technology Historian","staff":false},"52979":{"name":"John Timmer","title":"Senior Science Editor","staff":true},"312082":{"name":"Jon Brodkin","title":"Senior IT Reporter","staff":true},"14317":{"name":"Jonathan M. Gitlin","title":"Automotive Editor","staff":true},"998":{"name":"Ken Fisher","title":"Editor in Chief","staff":true},"440179":{"name":"Kerry Staurseth","title":"Associate Copyeditor","staff":true},"856780":{"name":"Kevin Purdy","title":"Senior Technology Reporter","staff":true},"328283":{"name":"Kyle Orland","title":"Senior Gaming Editor","staff":true},"10243":{"name":"Lee Hutchinson","title":"Senior Technology Editor","staff":true},"173191":{"name":"Matthew Lasar","title":"Associate writer","staff":true},"182268":{"name":"Nate Anderson","title":"Deputy Editor","staff":true},"1991":{"name":"Ohrmazd","title":"","staff":false},"588289":{"name":"Samuel Axon","title":"Senior Editor","staff":true},"294205":{"name":"Scott K. Johnson","title":"Associate Writer","staff":true},"173910":{"name":"Timothy B. Lee","title":"Senior tech policy reporter","staff":false}},"tags":["apps","cocoapods","ios-2","macos","open-source"],"zen_mode":false};
+</script>
+
+<article itemscope itemtype="http://schema.org/NewsArticle" class="article-single standalone intro-standard " id="">
+      <div class="column-wrapper">
+    <div class="left-column">
+        <header class="article-header">
+            <h4 class="post-upperdek">
+      TRUNK SERVER WOES    &mdash;
+</h4>
+            <h1 itemprop="headline">3 million iOS and macOS apps were exposed to potent supply-chain attacks</h1>
+            <h2 itemprop="description">Apps that used code libraries hosted on CocoaPods were vulnerable for about 10 years.</h2>
+            <section class="post-meta">
+
+  
+<p class="byline" itemprop="author creator" itemscope itemtype="http://schema.org/Person">
+      <a itemprop="url" href="https://arstechnica.com/author/dan-goodin/"  rel="author" ><span itemprop="name">Dan Goodin</span></a>
+    -    <time class="date" data-time="1719877421" datetime="2024-07-01T23:43:41+00:00">Jul 1, 2024 11:43 pm UTC</time>
+</p>
+
+  
+</section>        </header>
+        <section class="article-guts">
+            <div itemprop="articleBody" class="article-content post-page">
+                                    
+<figure class="intro-image intro-left">
+  <img src="https://cdn.arstechnica.net/wp-content/uploads/2024/07/apple-security.jpg" alt="3 million iOS and macOS apps were exposed to potent supply-chain attacks">
+      <figcaption class="caption"><div class="caption-text"><a href="https://cdn.arstechnica.net/wp-content/uploads/2024/07/apple-security.jpg" class="enlarge-link" data-height="450" data-width="800">Enlarge</a></div><div class="caption-credit">Aurich Lawson</div></figcaption>  </figure>
+
+  <aside id="social-left" class="social-left" aria-label="Read the comments or share this article">
+          <a class="comment-count icon-comment-bubble-down" href="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?comments=1">
+      <h4 class="comment-count-before">reader comments</h4>
+  
+  <span class="comment-count-number">14</span>
+  </a>
+        </aside>
+
+
+
+
+<!-- cache hit 68:single/related:8aa528eeb288b1a122d1823f766fb3cb --><!-- empty -->
+<p>Vulnerabilities that went undetected for a decade left thousands of macOS and iOS apps susceptible to supply-chain attacks. Hackers could have added malicious code compromising the security of millions or billions of people who installed them, researchers said Monday.</p>
+<p>The vulnerabilities, which were fixed last October, resided in a “trunk” server used to manage <a href="https://cocoapods.org/">CocoaPods</a>, a repository for open source Swift and Objective-C projects that roughly 3 million macOS and iOS apps depend on. When developers make changes to one of their “pods”—CocoaPods lingo for individual code packages—dependent apps typically incorporate them automatically through app updates, typically with no interaction required by end users.</p>
+<h2>Code injection vulnerabilities</h2>
+<p>“Many applications can access a user’s most sensitive information: credit card details, medical records, private materials, and more,” <a href="https://www.evasec.io/blog/eva-discovered-supply-chain-vulnerabities-in-cocoapods">wrote</a> researchers from EVA Information Security, the firm that discovered the vulnerability. “Injecting code into these applications could enable attackers to access this information for almost any malicious purpose imaginable—ransomware, fraud, blackmail, corporate espionage… In the process, it could expose companies to major legal liabilities and reputational risk.”</p>
+<p>The three vulnerabilities EVA discovered stem from an insecure verification email mechanism used to authenticate developers of individual pods. The developer entered the email address associated with their pod. The trunk server responded by sending a link to the address. When a person clicked on the link, they gained access to the account.</p>
+<p>In one case, an attacker could manipulate the URL in the link to make it point to a server under the attacker’s control. The server accepted a spoofed <a href="https://http.dev/x-forwarded-host">XFH</a>, an HTTP header for identifying the target host specified in an HTTP request. The EVA researchers found that they could use a forged XFH to construct URLs of their choice.</p>                                                                        <div class="ars-interlude-container"></div>
+                                                                                
+<p>Normally, the email would contain a valid link posting to the CocoaPods.org server such as:</p>
+<figure class="image shortcode-img center large" style="width:100%"><a href="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocopods-email-verification.png" class="enlarge" data-height="582" data-width="1156" alt="How a valid verification email looks."><img alt="How a valid verification email looks." src="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocopods-email-verification-640x322.png" width="640" height="322" srcset="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocopods-email-verification.png 2x"></a><figcaption class="caption"><div class="caption-text"><a href="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocopods-email-verification.png" class="enlarge-link" data-height="582" data-width="1156">Enlarge</a> <span class="sep">/</span> How a valid verification email looks.</div><div class="caption-credit">E.V.A. Information Security</div></figcaption></figure>
+<p>The researchers could instead change the URL to lead to their own server:</p>
+<figure class="image shortcode-img center large" style="width:100%"><a href="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocoapods-manipulated-email-verification.png" class="enlarge" data-height="676" data-width="1202" alt="An email verification after it has been manipulated."><img alt="An email verification after it has been manipulated." src="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocoapods-manipulated-email-verification-640x360.png" width="640" height="360" srcset="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocoapods-manipulated-email-verification.png 2x"></a><figcaption class="caption"><div class="caption-text"><a href="https://cdn.arstechnica.net/wp-content/uploads/2024/07/cocoapods-manipulated-email-verification.png" class="enlarge-link" data-height="676" data-width="1202">Enlarge</a> <span class="sep">/</span> An email verification after it has been manipulated.</div><div class="caption-credit">E.V.A. Information Security</div></figcaption></figure>
+<p>This vulnerability, tracked as CVE-2024-38367, resided in the session_controller class of the trunk server source code, which handles the session validation URL. The class uses the sessions_controller.rb mechanism, which prioritizes the XFH over the original host header. The researchers’ exploit code was:</p>
+<pre><code class="language-http">POST /api/v1/sessions HTTP/1.1
+Host: trunk.cococapods.org
+Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
+User-Agent: CocoaPods/1.12.1
+Accept-Encoding: gzip, deflate
+X-Forwarded-Host: research.evasec.io
+Content-Length: 78
+
+{
+  "email":"research@evasec.io",
+  "name":"EVAResearch",
+  "description":null
+}
+</code></pre>
+<p>A separate vulnerability tracked as CVE-2024-38368 allowed attackers to take control of pods that had been abandoned by their developers but continue to be used by apps. A programming interface allowing the developers to reclaim their pods remained active almost 10 years after it was first implemented. The researchers found that anyone who found the interface to an orphaned pod could activate it to gain control over it, with no ownership proof required.</p>
+<p>A simple <a href="https://curl.se/download.html">curl</a> request that contained the pod name was all that was required:</p>
+<pre><code class="language-bash"># Curl request for changing ownership of a targeted orphaned pod
+curl -X 'POST' \
+  -H 'Host: trunk.cocoapods.org' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  --data-binary 'owner[name]=EVA&amp;email=research@evasec.io'
+  --data-binary 'pods[]=[TARGET_UNCLAIMED_POD]&amp;button=SEND'
+  'https://trunk.cocoapods.org/claims'
+</code></pre>
+<p>The third vulnerability, CVE-2024-38366, allowed attackers to execute code on the trunk server. The trunk server relies on <a href="https://tools.ietf.org/html/rfc822">RFC822</a> formalized in 1982 to verify the uniqueness of registered developer email addresses and check if they follow the correct format. Part of the process involves examining the <a href="https://en.wikipedia.org/wiki/MX_record">MX record</a> for the email address domain as implemented by <a href="https://github.com/dim/rfc-822">this</a> RFC822 implementation.</p>
+
+                                                </div>
+
+            
+            
+                            <nav class="page-numbers">Page: <span class="numbers">1 <a href="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/2/">2</a> <a href="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/2/"><span class="next">Next <span class="arrow">&rarr;</span></span></a></span></nav>
+            
+        </section>
+    </div>
+    <div class="xrail">
+        <div class="xrail-content">
+            
+            
+            
+                                        
+            
+                            <aside class="ad ad_xrail ad_xrail_top ad_xrail_last" aria-label="Top sidebar advertisement"></aside>
+                    </div>
+    </div>
+</div>
+
+<div class="column-wrapper">
+    <div class="left-column">
+        <div id="social-footer">
+                  <a class="comment-count icon-comment-bubble-down" href="https://arstechnica.com/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?comments=1">
+      <h4 class="comment-count-before">reader comments</h4>
+  
+  <span class="comment-count-number">14</span>
+  </a>
+          </div>
+                    <!-- cache hit 68:single/author:2814756d09510ff24ad530ca37a5a9a9 -->  <section class="article-author">
+          <a style="background-image:url('https://cdn.arstechnica.net/wp-content/uploads/2018/10/Dang.jpg');" class="author-photo" href="/author/dan-goodin" tabindex="-1" role="presentation" aria-hidden="true"></a>
+    
+    <div class="author-bio">
+      <section class="author-bio-top">
+        <a href="/author/dan-goodin" class="author-name">Dan Goodin</a>
+        Dan Goodin is Senior Security Editor at Ars Technica, where he oversees coverage of malware, computer espionage, botnets, hardware hacking, encryption, and passwords. In his spare time, he enjoys gardening, cooking, and following the independent music scene.      </section>
+    </div>
+
+  </section>
+            </div>
+    <div class="xrail"></div>
+</div>
+<div id="article-footer-wrap">
+            <aside class="ad_wrapper" aria-label="Full width advertisement">
+    <span class="ad_notice">Advertisement </span>        
+    <div class="ad ad_fullwidth fullwidth"></div>
+</aside>
+    
+            <section id="comments-area" class="comments-area column-wrapper">
+      <div class="row comments-row left-column">
+      <a name="comments-bar"></a>
+      
+<div class="wp-forum-connect-container">
+
+    
+<div class="wp-forum-connect-featured">
+
+    <h2 class="comments-title">Promoted Comments</h2>
+
+    <div class="wp-forum-connect-comment-list">
+
+                <article class="wp-forum-connect-comment">
+
+            <div class="wp-forum-connect-comment-avatar">
+
+                <img alt="" src="https://arstechnica.com/wp-content/plugins/article-forum-connect/public/img/avatar.png" srcset="https://arstechnica.com/wp-content/plugins/article-forum-connect/public/img/avatar.png 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
+
+            </div>
+
+            <div class="wp-forum-connect-comment-message">
+
+                <div>
+
+                    <b class="fn"><a href="https://arstechnica.com/civis/members/reidnez.887677/" target="_blank">reidnez</a></b>
+
+                </div>
+
+                <div>
+
+                    <blockquote class="xfBb-quote" data-name="TimeWinder">Honestly, Cocoapods can't go away soon enough to make me happy.   They've always been a clumsy glue-on mechanism posing as a package manager, with a bunch of manual steps and such.  If I never have to type &quot;pod install&quot; only to have it tell me I need to &quot;pod update&quot; and then &quot;pod install&quot; again, only to have it tell me... well, it'll be too soon.<br />
+<br />
+Swift Packages is a decade newer, easier to use, better integrated, and hopefully more secure....</blockquote>You forgot the fact that it takes over your project file, forces you to use a workspace which it also then takes over, and if it breaks shit for you there…good luck. I’ve always disliked CocoaPods and really disliked the fact that, in the absence of an official/Apple-supported package manager, it became the de-facto standard for iOS developers. Any time I had a choice, I refused. Many times when I had to use some SDK from a vendor, the official instructions assumed you were already using CocoaPods and the instructions for manual installation were often incorrect, incomplete, or just absent. This was the case even with major vendors like Google. I was always so grateful when someone at least accommodated Carthage as an alternative.<br />
+<br />
+SPM is hardly perfect but it’s worlds better. Its main deficiency is how long it took to arrive and then mature, but it finally feels “there” now.<br />
+<br />
+Oddly enough there’s still no official package manager for MacOS itself, but Homebrew fills the gap nicely enough (and has for so long) that it’s seldom if ever a problem. Thanks, Homebrew.
+                </div>
+
+                <div>
+
+                    <a href="https://arstechnica.com/civis/posts/42957928/" target="_blank">
+
+                        <time datetime="2024-07-02T02:11:23+00:00">July 2, 2024 at 2:11 am</time>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+                <article class="wp-forum-connect-comment">
+
+            <div class="wp-forum-connect-comment-avatar">
+
+                <img alt="" src="https://arstechnica.com/wp-content/plugins/article-forum-connect/public/img/avatar.png" srcset="https://arstechnica.com/wp-content/plugins/article-forum-connect/public/img/avatar.png 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
+
+            </div>
+
+            <div class="wp-forum-connect-comment-message">
+
+                <div>
+
+                    <b class="fn"><a href="https://arstechnica.com/civis/members/a_very_tired_geek.760555/" target="_blank">A_Very_Tired_Geek</a></b>
+
+                </div>
+
+                <div>
+
+                    <blockquote class="xfBb-quote" data-name="barich">The notion that developers should all independently verify widely used third-party libraries every time they're updated is completely unrealistic. Nobody would have time to work on their own apps.</blockquote>The notion that all developers should verify third party libraries is only unrealistic when people have unrealistic expectations about pushing out products.  <i>This is no longer optional</i>. Supply chain attacks on libraries and utility projects are real.  It's no longer a theoretical problem. Either do it yourself, or pay to have it done, or be honest with people and say you don't care enough about THEIR security and privacy to be sure your dependencies are reasonably free of taint.  If it's a matter of money, then proportionate raises in prices are called for, and it's possible to cooperatively pool resources with other developers using the same library to pay for a skilled audit.  Raising prices as appropriate is called for and the general public expectations of always getting stuff for &quot;free&quot; needs to end.<br />
+<br />
+If developers (and companies) can't manage this requirement, then they should be reevaluating whether they should be in the business of software products at all.
+                </div>
+
+                <div>
+
+                    <a href="https://arstechnica.com/civis/posts/42957943/" target="_blank">
+
+                        <time datetime="2024-07-02T02:23:21+00:00">July 2, 2024 at 2:23 am</time>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+        
+    </div>
+
+</div>
+
+    
+</div>
+
+    </div>
+          <div class="xrail xrail-comments">
+        <div class="xrail-content-wrapper">
+          <div class="xrail-content xrail-content-comments">
+            <aside class="ad ad_xrail ad_xrail_comments" aria-label="Comments sidebar advertisement"></aside>
+          </div>
+        </div>
+                  <div class="xrail-content-wrapper xrail-content-wrapper-bottom">
+            <div class="xrail-content xrail-content-comments">
+              <aside class="ad ad_xrail ad_xrail_comments" aria-label="Comments sidebar advertisement"></aside>
+            </div>
+          </div>
+              </div>
+      </section>
+                    <section class="inline-playlist">
+  <div class='ars-video-playlist'>
+    <h3 class="ars-video-playlist-module-header">Channel <span>Ars Technica</span></h3>
+    <div class='ars-video-playlist-module' data-playlist-id='arstechnica-channel-ars-security' data-video-options='[]'></div>
+  </div>
+</section>
+                <div class="prev-next-links">
+  <a href="https://arstechnica.com/cars/2024/07/the-best-audi-ev-so-far-we-drive-the-2025-q6-e-tron-suv/" rel="prev"><span class="arrow">&larr;</span> Previous story</a>  <a href="https://arstechnica.com/space/2024/07/firefly-is-building-fast-and-breaking-things-on-path-to-a-reusable-rocket/" rel="next">Next story <span class="arrow">&rarr;</span></a></div>
+        <footer id="article-footer">
+  <div class="recommendations-footer">
+    <div id="story-recommendations">
+  <div class="heading-column">
+    <h3>Related Stories</h3>
+  </div>
+  <ul id="story-recs" class="rec-wrap"></ul>
+</div>
+  </div>
+      <div id="taboola-below-article-thumbnails---at"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'thumbnails-a-6x1',
+    container: 'taboola-below-article-thumbnails---at',
+    placement: 'Below Article Thumbnails - AT',
+    target_type: 'mix'
+  });
+</script>
+    <div class="recommendations-footer">
+    <div id="latest-stories">
+  <div class="heading-column">
+    <h3>Today on Ars</h3>
+  </div>
+  <ul id="latest-recs" class="rec-wrap"></ul>
+</div>
+  </div>
+</footer>
+    </div>
+  </article>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="nav-footer">
+
+  <section>
+    <ul>
+      <li><a href="/store/">Store</a></li>
+      <li><a href="/store/product/subscriptions/">Subscribe</a></li>
+      <li><a href="/about-us/">About Us</a></li>
+      <li><a href="/rss-feeds/">RSS Feeds</a></li>
+      <li><a rel="nofollow" href="/security/2024/07/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks/?view=mobile">View Mobile Site</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <ul>
+      <li><a href="/contact-us/">Contact Us</a></li>
+      <li><a href="/staff-directory/">Staff</a></li>
+      <li><a href="https://advertising.condenast.com/brands/ars-technica">Advertise with us</a></li>
+      <li><a href="/reprints/">Reprints</a></li>
+    </ul>
+  </section>
+
+  <section class="footer-newsletter">
+    <div class="newsletter-wrapper">
+      <h3>
+        <a href="/newsletters/" class="footer-newsletter-sign-up">Newsletter Signup</a>
+      </h3>
+      <p>Join the Ars Orbital Transmission mailing list to get weekly updates delivered to your inbox. <a href="/newsletters/" class="footer-newsletter-sign-up">Sign me up &rarr;</a></p>
+
+      <div class="footer-social-links">
+        <a href="https://twitter.com/arstechnica" class="footer-social-twitter">
+          <svg style="height: 40px; width: 40px;" id="b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+            <defs>
+              <clipPath id="e">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+              <clipPath id="f">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+            </defs>
+            <g id="c">
+              <g id="d">
+                <g clip-path="url(#e)">
+                  <g clip-path="url(#f)">
+                    <path d="M16.3,28.1c7.5,0,11.7-6.3,11.7-11.7s0-.4,0-.5c.8-.6,1.5-1.3,2-2.1-.7,.3-1.5,.5-2.4,.6,.9-.5,1.5-1.3,1.8-2.3-.8,.5-1.7,.8-2.6,1-.6-.7-1.4-1.1-2.3-1.2s-1.8,0-2.6,.4c-.8,.4-1.4,1.1-1.8,1.9-.4,.8-.5,1.7-.3,2.6-1.6,0-3.2-.5-4.7-1.2-1.5-.7-2.7-1.8-3.8-3-.5,.9-.7,2-.5,3,.2,1,.9,1.9,1.7,2.5-.7,0-1.3-.2-1.9-.5h0c0,1,.3,1.9,.9,2.7,.6,.7,1.4,1.2,2.4,1.4-.6,.2-1.2,.2-1.9,0,.3,.8,.8,1.5,1.5,2s1.5,.8,2.4,.8c-1.5,1.1-3.2,1.8-5.1,1.8-.3,0-.7,0-1,0,1.9,1.2,4.1,1.8,6.3,1.8" fill="currentColor" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="https://mastodon.social/@arstechnica" class="footer-social-mastodon">
+          <svg style="height: 40px; width: 40px;" id="b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+            <defs>
+              <clipPath id="e">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+              <clipPath id="f">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+            </defs>
+            <g id="c">
+              <g id="d">
+                <g clip-path="url(#e)">
+                  <g clip-path="url(#f)">
+                    <path d="M29.3,16.6c0-4.3-2.8-5.6-2.8-5.6-1.4-.7-3.9-.9-6.5-1h0c-2.6,0-5,.3-6.4,1,0,0-2.8,1.3-2.8,5.6s0,2.2,0,3.4c.1,4.2,.8,8.4,4.7,9.5,1.8,.5,3.4,.6,4.6,.5,2.3-.1,3.5-.8,3.5-.8v-1.6c0,0-1.7,.5-3.5,.4-1.8,0-3.7-.2-4-2.4,0-.2,0-.4,0-.6,0,0,1.8,.4,4,.5,1.4,0,2.7,0,4-.2,2.5-.3,4.7-1.8,5-3.3,.4-2.2,.4-5.4,.4-5.4h0Zm-3.4,5.6h-2.1v-5.1c0-1.1-.5-1.6-1.4-1.6s-1.5,.6-1.5,1.9v2.8h-2.1v-2.8c0-1.3-.5-1.9-1.5-1.9s-1.4,.5-1.4,1.6v5.1h-2.1v-5.3c0-1.1,.3-1.9,.8-2.6,.6-.6,1.3-1,2.2-1s1.9,.4,2.4,1.2l.5,.9,.5-.9c.5-.8,1.3-1.2,2.4-1.2s1.7,.3,2.2,1c.6,.6,.8,1.5,.8,2.6v5.3Z" fill="currentColor" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/arstechnica" class="footer-social-facebook">
+          <svg style="height: 40px; width: 40px;" id="b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+            <defs>
+              <clipPath id="e">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+              <clipPath id="f">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+            </defs>
+            <g id="c">
+              <g id="d">
+                <g clip-path="url(#e)">
+                  <g clip-path="url(#f)">
+                    <path d="M17.3,13.9v2.8h-2v3.4h2v10h4.2v-10h2.8s.3-1.6,.4-3.4h-3.2v-2.3c0-.3,.5-.8,.9-.8h2.3v-3.5h-3.1c-4.4,0-4.3,3.4-4.3,3.9" fill="currentColor" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@arstechnica" class="footer-social-youtube">
+          <svg style="height: 40px; width: 40px;" id="b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+            <defs>
+              <clipPath id="e">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+              <clipPath id="f">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+            </defs>
+            <g id="c">
+              <g id="d">
+                <g clip-path="url(#e)">
+                  <g clip-path="url(#f)">
+                    <path d="M29.6,15.2c-.1-.4-.3-.8-.6-1.1-.3-.3-.7-.5-1.1-.7-1.6-.4-7.8-.4-7.8-.4,0,0-6.3,0-7.8,.4-.4,.1-.8,.3-1.1,.7-.3,.3-.5,.7-.6,1.1-.4,1.6-.4,4.8-.4,4.8,0,0,0,3.3,.4,4.8,.1,.4,.3,.8,.6,1.1,.3,.3,.7,.5,1.1,.7,1.6,.4,7.8,.4,7.8,.4,0,0,6.3,0,7.8-.4,.4-.1,.8-.3,1.1-.7s.5-.7,.6-1.1c.4-1.6,.4-4.8,.4-4.8,0,0,0-3.3-.4-4.8m-11.6,7.8v-5.9l5.2,3-5.2,3Z" fill="currentColor" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/arstechnica/" class="footer-social-instagram">
+          <svg style="height: 40px; width: 40px;" id="b" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+            <defs>
+              <clipPath id="e">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+              <clipPath id="f">
+                <rect width="40" height="40" fill="none" />
+              </clipPath>
+            </defs>
+            <g id="c">
+              <g id="d">
+                <g clip-path="url(#e)">
+                  <g clip-path="url(#f)">
+                    <path d="M20,10c2.7,0,3.1,0,4.1,0,1.1,0,1.8,.2,2.4,.5,.7,.3,1.2,.6,1.8,1.2,.6,.6,.9,1.1,1.2,1.8,.2,.6,.4,1.4,.5,2.4,0,1.1,0,1.4,0,4.1s0,3.1,0,4.1c0,1.1-.2,1.8-.5,2.4-.3,.7-.6,1.3-1.2,1.8-.6,.6-1.1,.9-1.8,1.2-.6,.2-1.4,.4-2.4,.5-1.1,0-1.4,0-4.1,0s-3.1,0-4.1,0c-1.1,0-1.8-.2-2.4-.5-.7-.3-1.3-.6-1.8-1.2-.5-.5-.9-1.1-1.2-1.8-.2-.6-.4-1.4-.5-2.4,0-1.1,0-1.4,0-4.1s0-3.1,0-4.1c0-1.1,.2-1.8,.5-2.4,.3-.7,.6-1.2,1.2-1.8,.6-.6,1.1-.9,1.8-1.2,.6-.2,1.4-.4,2.4-.5,1.1,0,1.4,0,4.1,0m0,2.5c-2.4,0-2.7,0-3.7,0-.9,0-1.4,.2-1.7,.3-.4,.1-.8,.4-1.1,.7-.3,.3-.5,.6-.7,1.1-.1,.3-.3,.8-.3,1.7,0,1,0,1.3,0,3.7s0,2.7,0,3.7c0,.9,.2,1.4,.3,1.7,.2,.4,.4,.7,.7,1.1,.3,.3,.6,.5,1.1,.7,.3,.1,.8,.3,1.7,.3,1,0,1.3,0,3.7,0s2.7,0,3.7,0c.9,0,1.4-.2,1.7-.3,.4-.2,.7-.4,1.1-.7,.3-.3,.5-.6,.7-1.1,.1-.3,.3-.8,.3-1.7,0-1,0-1.3,0-3.7s0-2.7,0-3.7c0-.9-.2-1.4-.3-1.7-.1-.4-.4-.8-.7-1.1-.3-.3-.7-.5-1.1-.7-.3-.1-.8-.3-1.7-.3-1,0-1.3,0-3.7,0m0,2.2c.7,0,1.4,.1,2,.4,.6,.3,1.2,.7,1.7,1.1,.5,.5,.9,1.1,1.1,1.7,.3,.6,.4,1.3,.4,2s-.1,1.4-.4,2c-.3,.6-.7,1.2-1.1,1.7-.5,.5-1.1,.9-1.7,1.1-.6,.3-1.3,.4-2,.4-1.4,0-2.7-.6-3.7-1.5-1-1-1.5-2.3-1.5-3.7s.6-2.7,1.5-3.7,2.3-1.5,3.7-1.5m0,8.3c.8,0,1.5-.3,2.1-.9,.6-.6,.9-1.3,.9-2.1s-.3-1.5-.9-2.1c-.6-.6-1.3-.9-2.1-.9s-1.5,.3-2.1,.9c-.6,.6-.9,1.3-.9,2.1s.3,1.5,.9,2.1c.6,.6,1.3,.9,2.1,.9m6.6-8.1c0,.4-.2,.7-.4,1s-.6,.4-1,.4-.7-.2-1-.4c-.3-.3-.4-.6-.4-1s.2-.7,.4-1c.3-.3,.6-.4,1-.4s.7,.2,1,.4c.3,.3,.4,.6,.4,1" fill="currentColor" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+</nav>
+
+<section class="footer-terms-logo">
+  <div class="cn-logo">
+    <a href="http://condenast.com/" class="icon icon-logo-cn-us" title="Visit Condé Nast"></a>
+  </div>
+
+  <p id="copyright-terms">
+  CNMN Collection<br>
+  WIRED Media Group<br>
+  © 2024 Condé Nast. All rights reserved. Use of and/or registration on any portion of this site constitutes acceptance of our <a href="https://www.condenast.com/user-agreement/">User Agreement</a> (updated 1/1/20) and <a href="https://www.condenast.com/privacy-policy/">Privacy Policy and Cookie Statement</a> (updated 1/1/20) and <a href="/amendment-to-conde-nast-user-agreement-privacy-policy/">Ars Technica Addendum</a> (effective 8/21/2018). Ars may earn compensation on sales from links on this site. <a href="/affiliate-link-policy/">Read our affiliate link policy</a>.<br>
+  <span style="display: inline-flex; flex-flow: row nowrap; align-items: center; gap: 5px;"><a href="https://www.condenast.com/privacy-policy/#california">Your California Privacy Rights</a> | <img src="https://cdn.arstechnica.net/wp-content/themes/ars/assets/img/privacyoptions123x59-c5c9972158.png" style="height: 1em; width: auto;" /> <a id="ot-sdk-btn" class="ot-sdk-show-settings">Do Not Sell My Personal Information</a></span><br>
+  The material on this site may not be reproduced, distributed, transmitted, cached or otherwise used, except with the prior written permission of Condé Nast.<br>
+  <a href="https://www.aboutads.info/">Ad Choices</a>
+</p>
+</section>
+  </footer>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.arstechnica.net/wp-content/themes/ars/assets/js/main-d1ad651ce0.js"></script>
+
+
+<!-- cache hit 68:single/javascript-footer:8aa528eeb288b1a122d1823f766fb3cb -->
+        
+
+
+    <!-- Taboola -->
+  <script type="text/javascript">
+    window._taboola = window._taboola || [];
+    _taboola.push({
+      flush: true
+    });
+  </script>
+
+  <!-- Parse.ly start -->
+<script type="text/plain" class="optanon-category-C0002" id="parsely-cfg" src="//fpa-cdn.arstechnica.com/keys/arstechnica.com/p.js"></script>
+<!-- Parse.ly end -->
+
+<!-- Memo start -->
+<script type="text/javascript">
+__memo_config = {
+	pid: ars.MEMO_PID,
+	url: ars.ARTICLE.url,
+	author: [ars.ARTICLE.authorName],
+	title: ars.ARTICLE.title,
+	date: ars.ARTICLE.pubDate,
+};
+(function(){
+	var s = document.createElement('script'); 
+	s.async = true; 
+	s.type = 'text/javascript'; 
+	s.src = document.location.protocol + '//cdn.memo.co/js/memo.js';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body') [0]).appendChild(s); 
+})();
+</script>
+<!-- Memo end -->
+
+  
+  
+    
+<script>
+  (function() {
+    var w = window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    var src = 'https://player.cnevids.com/interlude/arstechnica.js';
+    var s = document.createElement('script');
+    s.setAttribute('async', true);
+    s.setAttribute('src', src);
+    document.body.appendChild(s);
+  })();
+</script>
+
+<script id="conde-polar" src="https://cdn.mediavoice.com/nativeads/script/condenastcorporate/conde-asa-polar-master.js" async></script>
+<script type="text/javascript" src="//s.skimresources.com/js/100098X1555750.skimlinks.js"></script>
+<script type='text/javascript' id='snowplow-js-before'>
+window.snowplowQueue = window.snowplowQueue || []; window.snowplowContexts = {"site":{"orgId":"4gKgcFGUFUvCGFzHakTPfYp85Yi8","orgAppId":null,"appVersion":null,"env":"production"},"content":{"functionalTags":null,"hasBuyButtons":null,"noOfRevisions":null,"editorNames":null,"author_name":"Dan Goodin","contentId":"2034866","contentLength":2,"contentTitle":"3 million iOS and macOS apps were exposed to potent supply-chain attacks","contentSource":"web","authorIds":"3","publishDate":"2024-07-01T23:43:41Z","modifiedDate":"2024-07-01T23:44:32Z","tags":"apps|cocoapods|iOS|MacOS|open source","contentLang":"en-US","galleryName":null,"totalGalleryImages":null,"wordCount":1168,"contentType":null,"templateType":"article_standard_two_column","primaryTag":null,"contentFlag":"news","isCommerceContent":null,"pageTypeProperties":null,"section":"security","subsection":null,"subsection2":null,"dataSource":"web","content_type":"article"},"syndication":{"content":null,"originalSource":null,"originalContentLanguage":null},"page":{"canonical":"https:\/\/arstechnica.com\/security\/2024\/07\/3-million-ios-and-macos-apps-were-exposed-to-potent-supply-chain-attacks\/","syndicatorUrl":null},"user":{"amguuid":null}}; window.snowplowConfig = {"SNOWPLOW_COLLECTOR":"c.arstechnica.com","SNOWPLOW_SCRIPT":"https:\/\/globalservices.conde.digital\/p77xzrbz9z.js","AVO_API_KEY":"FTJO6mVPBIzdGhjn2Ruy","APP_ID":"ars-technica","APP_NAME":"ars-technica","APP_ENV":"production","APP_VERSION":"1.0.0","COOKIE_DOMAIN":".arstechnica.com"};
+</script>
+<script type='text/javascript' src='https://cdn.arstechnica.net/wp-content/mu-plugins/ars-snowplow/ars-snowplow-js/dist/main-1-0-4.js?ver=1.0.4' id='snowplow-js'></script>
+<script type='text/javascript' src='https://cdn.arstechnica.net/wp-content/plugins/article-forum-connect/public/js/iframeResizer.min.js?ver=1.2.2' id='article_forum_connect_iframe_resizer-js'></script>
+<script type='text/javascript' src='https://cdn.arstechnica.net/wp-content/plugins/article-forum-connect/public/js/iframe.js?ver=1.2.2' id='article_forum_connect_iframe-js'></script>
+  </body>
+
+  </html>
