@@ -17,7 +17,7 @@ do
     do
 	link=$(echo $file | sed -e 's/_title$//' | sed -e 's/%/%25/g')
 
-	echo -n "<a href=\"$base/$link\">" >> index.html
+	echo -n "<a href=\"$base$link\">" >> index.html
 	cat $file >> index.html
 	echo "</a><br>" >> index.html
     done
