@@ -13,11 +13,11 @@ do
     echo "<b>$directory</b>" >> index.html
     echo "<br><br>" >> index.html
 
-    for file in $(ls $directory/*_title 2>/dev/null)
+    for file in $(ls $directory*_title 2>/dev/null)
     do
 	link=$(echo $file | sed -e 's/_title$//' | sed -e 's/%/%25/g')
 
-	echo -n "<a href=\"$base$link\">" >> index.html
+	echo -n "<a href=\"$base/$link\">" >> index.html
 	cat $file >> index.html
 	echo "</a><br>" >> index.html
     done
