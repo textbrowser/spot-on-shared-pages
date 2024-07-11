@@ -19,6 +19,7 @@ while
     git commit -m "New pages."
     git push \
 	https://${GIT_A}:${GIT_T}@github.com/textbrowser/spot-on-shared-pages
+    ./buid_index.sh
     echo "Pausing for 300 seconds."
     sleep 300
 do true; done
