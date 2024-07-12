@@ -11,7 +11,7 @@ echo "<body>" >> index.html
 for directory in $(ls -p | grep '/')
 do
     echo -n "<b>" >> index.html
-    echo $directory | tr '[:lower:]' '[:upper:]' >> index.html
+    echo -n $directory | tr '[:lower:]' '[:upper:]' >> index.html
     echo "</b>" >> index.html
     echo "<br>" >> index.html
     echo "<ul>" >> index.html
