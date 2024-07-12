@@ -16,7 +16,7 @@ do
     echo "<br>" >> index.html
     echo "<ul>" >> index.html
 
-    for file in $(ls $directory*_title 2>/dev/null)
+    for file in $(find $directory -name '*_title' -type f)
     do
 	link=$(echo $file | sed -e 's/_title$//' | sed -e 's/%/%25/g')
 
