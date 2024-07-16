@@ -8,7 +8,7 @@ rm -f index.html
 /bin/echo "<html>" >> index.html
 /bin/echo "<body>" >> index.html
 
-for directory in $(ls -p | grep '/')
+for directory in $(ls -p | grep '/' | sed -e 's/\///')
 do
     /bin/echo -n "<b>" >> index.html
     /bin/echo -n $directory | tr '[:lower:]' '[:upper:]' >> index.html
