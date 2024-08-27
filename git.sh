@@ -21,8 +21,8 @@ while
 	https://${GIT_A}:${GIT_T}@github.com/textbrowser/spot-on-shared-pages
     echo "Preparing index.html."
     ./build_index.sh
-    echo "Pausing for 300 seconds."
-    sleep 300
+    echo "Pausing for one hour."
+    sleep 3600
 do true; done
 
 exit 0
