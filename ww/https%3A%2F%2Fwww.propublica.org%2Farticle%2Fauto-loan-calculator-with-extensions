@@ -1,0 +1,2506 @@
+
+
+
+    
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+
+    
+            
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta Tags for Parse.ly -->
+        
+    
+  
+  
+          
+    
+<meta name="parsely-title" content="Auto Loan Calculator with Extensions/Deferments" />
+<meta name="parsely-link" content="https://www.propublica.org/article/auto-loan-calculator-with-extensions" />
+<meta name="parsely-type" content="post" />
+<meta name="parsely-image-url" content="https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=630&amp;imgixProfile=propublicaAssetsV5&amp;q=90&amp;w=1200&amp;s=2dcb23e068258583e3be6448d4c2c458" />
+
+<meta name="parsely-pub-date" content="2024-09-12T05:05:00-04:00" />
+
+<meta name="parsely-section" content="National" />
+<meta name="parsely-author" content="Byard Duncan" />
+<meta name="parsely-author" content="Ryan Gabrielson" />
+<meta name="parsely-author" content="Lucas Waldron" />
+<meta name="parsely-tags" content="lang:en,storytype:sidebar,topic:Debt" />
+    
+    <!-- Critical JS -->
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'enhanced')})(document.documentElement)</script>
+    <script>(function(win,undefined){win.PP=win.PP||{};win.PP.utils=win.PP.utils||{};var PP=win.PP;// loadJS: load a JS file asynchronously. Included from https://github.com/filamentgroup/loadJS/
+function loadJS(src,cb){"use strict";var ref=window.document.getElementsByTagName("script")[0];var script=window.document.createElement("script");script.src=src;script.async=true;ref.parentNode.insertBefore(script,ref);if(cb&&typeof cb==="function"){script.onload=cb}return script}PP.utils.loadJS=loadJS;// cookie function from https://github.com/filamentgroup/cookie/
+function cookie(name,value,days){// if value is undefined, get the cookie value
+if(value===undefined){var cookiestring="; "+window.document.cookie;var cookies=cookiestring.split("; "+name+"=");if(cookies.length===2){return cookies.pop().split(";").shift()}return null}else{var expires;var domain;// if value is a false boolean, we'll treat that as a delete
+if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}// check if we're in dev, if not, lets make it a domain-wide cookie
+if(location.hostname=="localhost"||location.hostname=="127.0.0.1"){domain=""}else{domain="; domain=.propublica.org"}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
+PP.utils.cookie=cookie;// basic logging function
+function log(logLine){const logOn=new URLSearchParams(window.location.search).get("__pp-debug");if(logOn!==null){console.log(logLine)}}// expose it
+PP.utils.log=log;// generic event throttler using requestAnimationFrame
+function rafEvent(type,name,obj){obj=obj||win;var running=false;var func=function(){if(running){return}running=true;requestAnimationFrame(function(){obj.dispatchEvent(new CustomEvent(name));running=false})};obj.addEventListener(type,func)}PP.utils.rafEvent=rafEvent;PP.utils.rafEvent("resize","rafResize");PP.utils.rafEvent("scroll","rafScroll");// Create a series of breakpoints corresponding to the ones in css/config/_column-settings.scss
+//
+// Usage:
+//
+// 1. Check if breakpoint condition matches
+//    if (PP.utils.aboveBreakpoint("lg").matches) { console.log("Is Desktop"); }
+//    if (PP.utils.belowBreakpoint("lg").matches) { console.log("Is Mobile"); }
+//
+// 2. Listener that triggers when breakpoint condition changes
+//    aboveBreakpoint("lg").addEventListener("change", function () { console.log("Mobile/Desktop breakpoint changed."); });
+const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=breakpoints;function aboveBreakpoint(value){return window.matchMedia(`(min-width: ${PP.utils.breakpoints[value]}em)`)}function belowBreakpoint(value){return window.matchMedia(`(max-width: ${PP.utils.breakpoints[value]}em)`)}PP.utils.aboveBreakpoint=aboveBreakpoint;PP.utils.belowBreakpoint=belowBreakpoint})(this);;(function(){var undefined;var VERSION="4.17.5";var FUNC_ERROR_TEXT="Expected a function";var NAN=0/0;var nullTag="[object Null]",symbolTag="[object Symbol]",undefinedTag="[object Undefined]";var reTrim=/^\s+|\s+$/g;var reIsBadHex=/^[-+]0x[0-9a-f]+$/i;var reIsBinary=/^0b[01]+$/i;var reIsOctal=/^0o[0-7]+$/i;var freeParseInt=parseInt;var freeGlobal=typeof global=="object"&&global&&global.Object===Object&&global;var freeSelf=typeof self=="object"&&self&&self.Object===Object&&self;var root=freeGlobal||freeSelf||Function("return this")();var freeExports=typeof exports=="object"&&exports&&!exports.nodeType&&exports;var freeModule=freeExports&&typeof module=="object"&&module&&!module.nodeType&&module;var objectProto=Object.prototype;var hasOwnProperty=objectProto.hasOwnProperty;var nativeObjectToString=objectProto.toString;var Symbol=root.Symbol,symToStringTag=Symbol?Symbol.toStringTag:undefined;var nativeMax=Math.max,nativeMin=Math.min;var realNames={};function lodash(){}function baseGetTag(value){if(value==null){return value===undefined?undefinedTag:nullTag}return symToStringTag&&symToStringTag in Object(value)?getRawTag(value):objectToString(value)}function getRawTag(value){var isOwn=hasOwnProperty.call(value,symToStringTag),tag=value[symToStringTag];try{value[symToStringTag]=undefined;var unmasked=true}catch(e){}var result=nativeObjectToString.call(value);if(unmasked){if(isOwn){value[symToStringTag]=tag}else{delete value[symToStringTag]}}return result}function objectToString(value){return nativeObjectToString.call(value)}var now=function(){return root.Date.now()};function debounce(func,wait,options){var lastArgs,lastThis,maxWait,result,timerId,lastCallTime,lastInvokeTime=0,leading=false,maxing=false,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}wait=toNumber(wait)||0;if(isObject(options)){leading=!!options.leading;maxing="maxWait"in options;maxWait=maxing?nativeMax(toNumber(options.maxWait)||0,wait):maxWait;trailing="trailing"in options?!!options.trailing:trailing}function invokeFunc(time){var args=lastArgs,thisArg=lastThis;lastArgs=lastThis=undefined;lastInvokeTime=time;result=func.apply(thisArg,args);return result}function leadingEdge(time){lastInvokeTime=time;timerId=setTimeout(timerExpired,wait);return leading?invokeFunc(time):result}function remainingWait(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime,timeWaiting=wait-timeSinceLastCall;return maxing?nativeMin(timeWaiting,maxWait-timeSinceLastInvoke):timeWaiting}function shouldInvoke(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime;return lastCallTime===undefined||timeSinceLastCall>=wait||timeSinceLastCall<0||maxing&&timeSinceLastInvoke>=maxWait}function timerExpired(){var time=now();if(shouldInvoke(time)){return trailingEdge(time)}timerId=setTimeout(timerExpired,remainingWait(time))}function trailingEdge(time){timerId=undefined;if(trailing&&lastArgs){return invokeFunc(time)}lastArgs=lastThis=undefined;return result}function cancel(){if(timerId!==undefined){clearTimeout(timerId)}lastInvokeTime=0;lastArgs=lastCallTime=lastThis=timerId=undefined}function flush(){return timerId===undefined?result:trailingEdge(now())}function debounced(){var time=now(),isInvoking=shouldInvoke(time);lastArgs=arguments;lastThis=this;lastCallTime=time;if(isInvoking){if(timerId===undefined){return leadingEdge(lastCallTime)}if(maxing){timerId=setTimeout(timerExpired,wait);return invokeFunc(lastCallTime)}}if(timerId===undefined){timerId=setTimeout(timerExpired,wait)}return result}debounced.cancel=cancel;debounced.flush=flush;return debounced}function throttle(func,wait,options){var leading=true,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}if(isObject(options)){leading="leading"in options?!!options.leading:leading;trailing="trailing"in options?!!options.trailing:trailing}return debounce(func,wait,{leading:leading,maxWait:wait,trailing:trailing})}function isObject(value){var type=typeof value;return value!=null&&(type=="object"||type=="function")}function isObjectLike(value){return value!=null&&typeof value=="object"}function isSymbol(value){return typeof value=="symbol"||isObjectLike(value)&&baseGetTag(value)==symbolTag}function toNumber(value){if(typeof value=="number"){return value}if(isSymbol(value)){return NAN}if(isObject(value)){var other=typeof value.valueOf=="function"?value.valueOf():value;value=isObject(other)?other+"":other}if(typeof value!="string"){return value===0?value:+value}value=value.replace(reTrim,"");var isBinary=reIsBinary.test(value);return isBinary||reIsOctal.test(value)?freeParseInt(value.slice(2),isBinary?2:8):reIsBadHex.test(value)?NAN:+value}lodash.debounce=debounce;lodash.throttle=throttle;lodash.isObject=isObject;lodash.isObjectLike=isObjectLike;lodash.isSymbol=isSymbol;lodash.now=now;lodash.toNumber=toNumber;lodash.VERSION=VERSION;if(typeof define=="function"&&typeof define.amd=="object"&&define.amd){root._=lodash;define(function(){return lodash})}else if(freeModule){(freeModule.exports=lodash)._=lodash;freeExports._=lodash}else{root._=lodash}}).call(this);;/* eslint-disable */ /*! lazysizes - v5.3.0 */!function(e){const t=function(u,D,f){let k;let H;if(function(){let e;const t={lazyClass:"lazyload",loadedClass:"lazyloaded",loadingClass:"lazyloading",preloadClass:"lazypreload",errorClass:"lazyerror",autosizesClass:"lazyautosizes",fastLoadedClass:"ls-is-cached",iframeLoadMode:0,srcAttr:"data-src",srcsetAttr:"data-srcset",sizesAttr:"data-sizes",minSize:40,customMedia:{},init:true,expFactor:1.5,hFac:0.8,loadMode:2,loadHidden:true,ricTimeout:0,throttleDelay:125};H=u.lazySizesConfig||u.lazysizesConfig||{};for(e in t){if(!(e in H)){H[e]=t[e]}}}(),!D||!D.getElementsByClassName){return{init(){},cfg:H,noSupport:true}}const O=D.documentElement;const i=u.HTMLPictureElement;const P="addEventListener";const $="getAttribute";const q=u[P].bind(u);const I=u.setTimeout;const U=u.requestAnimationFrame||I;const o=u.requestIdleCallback;const j=/^picture$/i;const r=["load","error","lazyincluded","_lazyloaded"];const a={};const G=Array.prototype.forEach;const J=function(e,t){if(!a[t]){a[t]=new RegExp(`(\\s|^)${t}(\\s|$)`)}return a[t].test(e[$]("class")||"")&&a[t]};const K=function(e,t){if(!J(e,t)){e.setAttribute("class",`${(e[$]("class")||"").trim()} ${t}`)}};const Q=function(e,t){let a;if(a=J(e,t)){e.setAttribute("class",(e[$]("class")||"").replace(a," "))}};var V=function(t,a,e){const i=e?P:"removeEventListener";if(e){V(t,a)}r.forEach(function(e){t[i](e,a)})};const X=function(e,t,a,i,r){const n=D.createEvent("Event");if(!a){a={}}a.instance=k;n.initEvent(t,!i,!r);n.detail=a;e.dispatchEvent(n);return n};const Y=function(e,t){let a;if(!i&&(a=u.picturefill||H.pf)){if(t&&t.src&&!e[$]("srcset")){e.setAttribute("srcset",t.src)}a({reevaluate:true,elements:[e]})}else if(t&&t.src){e.src=t.src}};const Z=function(e,t){return(getComputedStyle(e,null)||{})[t]};const s=function(e,t,a){a=a||e.offsetWidth;while(a<H.minSize&&t&&!e._lazysizesWidth){a=t.offsetWidth;t=t.parentNode}return a};const ee=function(){let a;let i;const t=[];const r=[];let n=t;const s=function(){const e=n;n=t.length?r:t;a=true;i=false;while(e.length){e.shift()()}a=false};const e=function(e,t){if(a&&!t){e.apply(this,arguments)}else{n.push(e);if(!i){i=true;(D.hidden?I:U)(s)}}};e._lsFlush=s;return e}();const te=function(a,e){return e?function(){ee(a)}:function(){const e=this;const t=arguments;ee(function(){a.apply(e,t)})}};const ae=function(e){let a;let i=0;const r=H.throttleDelay;let n=H.ricTimeout;const t=function(){a=false;i=f.now();e()};const s=o&&n>49?function(){o(t,{timeout:n});if(n!==H.ricTimeout){n=H.ricTimeout}}:te(function(){I(t)},true);return function(e){let t;if(e=e===true){n=33}if(a){return}a=true;t=r-(f.now()-i);if(t<0){t=0}if(e||t<9){s()}else{I(s,t)}}};const ie=function(e){let t;let a;const i=99;const r=function(){t=null;e()};var n=function(){const e=f.now()-a;if(e<i){I(n,i-e)}else{(o||r)(r)}};return function(){a=f.now();if(!t){t=I(n,i)}}};const e=function(){let v;let m;let c;let h;let e;let y;let z;let g;let p;let C;let b;let A;const n=/^img$/i;const d=/^iframe$/i;const E="onscroll"in u&&!/(gle|ing)bot/.test(navigator.userAgent);const _=0;let w=0;let M=0;let N=-1;const L=function(e){M--;if(!e||M<0||!e.target){M=0}};const x=function(e){if(A==null){A=Z(D.body,"visibility")=="hidden"}return A||!(Z(e.parentNode,"visibility")=="hidden"&&Z(e,"visibility")=="hidden")};const W=function(e,t){let a;let i=e;let r=x(e);g-=t;b+=t;p-=t;C+=t;while(r&&(i=i.offsetParent)&&i!=D.body&&i!=O){r=(Z(i,"opacity")||1)>0;if(r&&Z(i,"overflow")!="visible"){a=i.getBoundingClientRect();r=C>a.left&&p<a.right&&b>a.top-1&&g<a.bottom+1}}return r};const t=function(){let e;let t;let a;let i;let r;let n;let s;let o;let l;let u;let f;let c;const d=k.elements;if((h=H.loadMode)&&M<8&&(e=d.length)){t=0;N++;for(;t<e;t++){if(!d[t]||d[t]._lazyRace){continue}if(!E||k.prematureUnveil&&k.prematureUnveil(d[t])){R(d[t]);continue}if(!(o=d[t][$]("data-expand"))||!(n=o*1)){n=w}if(!u){u=!H.expand||H.expand<1?O.clientHeight>500&&O.clientWidth>500?500:370:H.expand;k._defEx=u;f=u*H.expFactor;c=H.hFac;A=null;if(w<f&&M<1&&N>2&&h>2&&!D.hidden){w=f;N=0}else if(h>1&&N>1&&M<6){w=u}else{w=_}}if(l!==n){y=innerWidth+n*c;z=innerHeight+n;s=n*-1;l=n}a=d[t].getBoundingClientRect();if((b=a.bottom)>=s&&(g=a.top)<=z&&(C=a.right)>=s*c&&(p=a.left)<=y&&(b||C||p||g)&&(H.loadHidden||x(d[t]))&&(m&&M<3&&!o&&(h<3||N<4)||W(d[t],n))){R(d[t]);r=true;if(M>9){break}}else if(!r&&m&&!i&&M<4&&N<4&&h>2&&(v[0]||H.preloadAfterLoad)&&(v[0]||!o&&(b||C||p||g||d[t][$](H.sizesAttr)!="auto"))){i=v[0]||d[t]}}if(i&&!r){R(i)}}};const a=ae(t);const S=function(e){const t=e.target;if(t._lazyCache){delete t._lazyCache;return}L(e);K(t,H.loadedClass);Q(t,H.loadingClass);V(t,B);X(t,"lazyloaded")};const i=te(S);var B=function(e){i({target:e.target})};const T=function(e,t){const a=e.getAttribute("data-load-mode")||H.iframeLoadMode;if(a==0){e.contentWindow.location.replace(t)}else if(a==1){e.src=t}};const F=function(e){let t;const a=e[$](H.srcsetAttr);if(t=H.customMedia[e[$]("data-media")||e[$]("media")]){e.setAttribute("media",t)}if(a){e.setAttribute("srcset",a)}};const s=te(function(t,e,a,i,r){let n;let s;let o;let l;let u;let f;if(!(u=X(t,"lazybeforeunveil",e)).defaultPrevented){if(i){if(a){K(t,H.autosizesClass)}else{t.setAttribute("sizes",i)}}s=t[$](H.srcsetAttr);n=t[$](H.srcAttr);if(r){o=t.parentNode;l=o&&j.test(o.nodeName||"")}f=e.firesLoad||"src"in t&&(s||n||l);u={target:t};K(t,H.loadingClass);if(f){clearTimeout(c);c=I(L,2500);V(t,B,true)}if(l){G.call(o.getElementsByTagName("source"),F)}if(s){t.setAttribute("srcset",s)}else if(n&&!l){if(d.test(t.nodeName)){T(t,n)}else{t.src=n}}if(r&&(s||l)){Y(t,{src:n})}}if(t._lazyRace){delete t._lazyRace}Q(t,H.lazyClass);ee(function(){const e=t.complete&&t.naturalWidth>1;if(!f||e){if(e){K(t,H.fastLoadedClass)}S(u);t._lazyCache=true;I(function(){if("_lazyCache"in t){delete t._lazyCache}},9)}if(t.loading=="lazy"){M--}},true)});var R=function(e){if(e._lazyRace){return}let t;const a=n.test(e.nodeName);const i=a&&(e[$](H.sizesAttr)||e[$]("sizes"));const r=i=="auto";if((r||!m)&&a&&(e[$]("src")||e.srcset)&&!e.complete&&!J(e,H.errorClass)&&J(e,H.lazyClass)){return}t=X(e,"lazyunveilread").detail;if(r){re.updateElem(e,true,e.offsetWidth)}e._lazyRace=true;M++;s(e,t,r,i,a)};const r=ie(function(){H.loadMode=3;a()});const o=function(){if(H.loadMode==3){H.loadMode=2}r()};var l=function(){if(m){return}if(f.now()-e<999){I(l,999);return}m=true;H.loadMode=3;a();q("scroll",o,true)};return{_(){e=f.now();k.elements=D.getElementsByClassName(H.lazyClass);v=D.getElementsByClassName(`${H.lazyClass} ${H.preloadClass}`);q("scroll",a,true);q("resize",a,true);q("pageshow",function(e){if(e.persisted){const t=D.querySelectorAll(`.${H.loadingClass}`);if(t.length&&t.forEach){U(function(){t.forEach(function(e){if(e.complete){R(e)}})})}}});if(u.MutationObserver){new MutationObserver(a).observe(O,{childList:true,subtree:true,attributes:true})}else{O[P]("DOMNodeInserted",a,true);O[P]("DOMAttrModified",a,true);setInterval(a,999)}q("hashchange",a,true);["focus","mouseover","click","load","transitionend","animationend"].forEach(function(e){D[P](e,a,true)});if(/d$|^c/.test(D.readyState)){l()}else{q("load",l);D[P]("DOMContentLoaded",a);I(l,2e4)}if(k.elements.length){t();ee._lsFlush()}else{a()}},checkElems:a,unveil:R,_aLSL:o}}();var re=function(){let a;const n=te(function(e,t,a,i){let r;let n;let s;e._lazysizesWidth=i;i+="px";e.setAttribute("sizes",i);if(j.test(t.nodeName||"")){r=t.getElementsByTagName("source");for(n=0,s=r.length;n<s;n++){r[n].setAttribute("sizes",i)}}if(!a.detail.dataAttr){Y(e,a.detail)}});const i=function(e,t,a){let i;const r=e.parentNode;if(r){a=s(e,r,a);i=X(e,"lazybeforesizes",{width:a,dataAttr:!!t});if(!i.defaultPrevented){a=i.detail.width;if(a&&a!==e._lazysizesWidth){n(e,r,i,a)}}}};const e=function(){let e;const t=a.length;if(t){e=0;for(;e<t;e++){i(a[e])}}};const t=ie(e);return{_(){a=D.getElementsByClassName(H.autosizesClass);q("resize",t)},checkElems:t,updateElem:i}}();var t=function(){if(!t.i&&D.getElementsByClassName){t.i=true;re._();e._()}};return I(function(){H.init&&t()}),k={cfg:H,autoSizer:re,loader:e,init:t,uP:Y,aC:K,rC:Q,hC:J,fire:X,gW:s,rAF:ee}}(e,e.document,Date);e.lazySizes=t,typeof module==="object"&&module.exports&&(module.exports=t)}(typeof window!=="undefined"?window:{});;/* eslint-disable */ /*! lazysizes - v5.3.2 */!function(e,t){var a=function(){t(e.lazySizes),e.removeEventListener("lazyunveilread",a,!0)};t=t.bind(null,e,e.document),"object"==typeof module&&module.exports?t(require("lazysizes")):"function"==typeof define&&define.amd?define(["lazysizes"],t):e.lazySizes?a():e.addEventListener("lazyunveilread",a,!0)}(window,function(e,i,o){"use strict";var l,d,u={};function s(e,t,a){var n,r;u[e]||(n=i.createElement(t?"link":"script"),r=i.getElementsByTagName("script")[0],t?(n.rel="stylesheet",n.href=e):(n.onload=function(){n.onerror=null,n.onload=null,a()},n.onerror=n.onload,n.src=e),u[e]=!0,u[n.src||n.href]=!0,r.parentNode.insertBefore(n,r))}i.addEventListener&&(l=function(e,t){var a=i.createElement("img");a.onload=function(){a.onload=null,a.onerror=null,a=null,t()},a.onerror=a.onload,a.src=e,a&&a.complete&&a.onload&&a.onload()},addEventListener("lazybeforeunveil",function(e){var t,a,n;if(e.detail.instance==o&&!e.defaultPrevented){var r=e.target;if("none"==r.preload&&(r.preload=r.getAttribute("data-preload")||"auto"),null!=r.getAttribute("data-autoplay"))if(r.getAttribute("data-expand")&&!r.autoplay)try{r.play()}catch(e){}else requestAnimationFrame(function(){r.setAttribute("data-expand","-10"),o.aC(r,o.cfg.lazyClass)});(t=r.getAttribute("data-link"))&&s(t,!0),(t=r.getAttribute("data-script"))&&(e.detail.firesLoad=!0,s(t,null,function(){e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(t=r.getAttribute("data-require"))&&(o.cfg.requireJs?o.cfg.requireJs([t]):s(t)),(a=r.getAttribute("data-bg"))&&(e.detail.firesLoad=!0,l(a,function(){r.style.backgroundImage="url("+(d.test(a)?JSON.stringify(a):a)+")",e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(n=r.getAttribute("data-poster"))&&(e.detail.firesLoad=!0,l(n,function(){r.poster=n,e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)}))}},!(d=/\(|\)|\s|'/)))});
+//# sourceMappingURL=initial.js.map
+</script>
+
+        <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'contentType': 'Item', // updated taxonomy TK
+        'publicationDate': 'September 12, 2024 05:05:00',
+        'articleTopic': 'Debt',
+        'articleTitle': 'What No One Tells You About Car Loan Deferments',
+        'authorName': 'Byard Duncan,Ryan Gabrielson,Lucas Waldron',
+        'seriesName': '',
+        'contentRegion': 'National',
+        'contentLanguage': 'en',
+        'craftId' : '2444382',
+        'articleVersion' : 'V5',
+        'contentLocation' : '',
+        'storyType': 'sidebar',
+        'impact': "false"
+    });
+</script>
+
+    <!-- PRECONNECT -->
+        <link href="https://assets.propublica.org" rel="preconnect">
+    <link href="https://assets.propublica.org" rel="dns-prefetch">
+        <link href="https://img.assets-c3.propublica.org" rel="dns-prefetch">
+    <link href="https://img.assets-d.propublica.org" rel="dns-prefetch">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.5a4c512c.css">
+
+    <!-- OTHER -->
+            
+        <link rel="icon" href="https://assets.propublica.org/static/prod/v5/images/favicon.ico">
+    <link rel="icon" href="https://assets.propublica.org/static/prod/v5/images/icon.min.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="https://assets.propublica.org/static/prod/v5/images/apple-touch-icon-180x180.png">
+    
+    <style>
+.bb--chunky-border-top::before  {
+display: none;
+}
+
+.opener__art-wrapper {
+display: none;
+}
+
+.opener--none.opener--center {
+padding: 0;
+}
+</style>
+
+<script type="module" crossorigin src="https://static.propublica.org/projects/graphics/2024-used-cars/assets/index-jjDMzDVS.js"></script>
+    <link rel="stylesheet" crossorigin href="https://static.propublica.org/projects/graphics/2024-used-cars/assets/index-CKCTzKJf.css">
+    <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
+    <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
+
+    <!--mastodon-->
+    <link rel="me" href="https://newsie.social/@ProPublica" />
+
+<title>Auto Loan Calculator with Extensions/Deferments — ProPublica</title><meta name="description" content="Our free tool helps you figure out how much you’ll likely owe at the end of your car loan if you’ve delayed one or more payments.">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="robots" content="all">
+<meta content="Byard Duncan,Ryan Gabrielson,Lucas Waldron" property="author">
+<meta content="Auto Loan Calculator with Extensions/Deferments" property="headline">
+<meta content="13320939444" property="fb:profile_id">
+<meta content="229862657130557" property="fb:app_id">
+<meta content="en_US" property="og:locale">
+<meta content="ProPublica" property="og:site_name">
+<meta content="article" property="og:type">
+<meta content="https://www.propublica.org/article/auto-loan-calculator-with-extensions" property="og:url">
+<meta content="What No One Tells You About Deferring a Car Payment" property="og:title">
+<meta content="When you defer a car payment, you’ll likely end up owing more at the end of your loan. Our free auto loan calculator tool was built to help borrowers figure out their final payment amount and understand how car loan extensions work." property="og:description">
+<meta content="https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=630&amp;imgixProfile=propublicaAssetsV5&amp;q=90&amp;w=1200&amp;s=2dcb23e068258583e3be6448d4c2c458" property="og:image">
+<meta content="https://vimeo.com/propublica" property="og:see_also">
+<meta content="https://www.pinterest.com/propublica" property="og:see_also">
+<meta content="https://www.instagram.com/propublica" property="og:see_also">
+<meta content="https://www.linkedin.com/company/propublica/" property="og:see_also">
+<meta content="https://github.com/propublica" property="og:see_also">
+<meta content="https://www.youtube.com/user/propublica" property="og:see_also">
+<meta content="https://en.wikipedia.org/wiki/ProPublica" property="og:see_also">
+<meta content="https://www.facebook.com/propublica/" property="og:see_also">
+<meta content="https://twitter.com/propublica" property="og:see_also">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@propublica">
+<meta name="twitter:creator" content="@propublica">
+<meta name="twitter:title" content="What No One Tells You About Car Loan Deferments">
+<meta name="twitter:description" content="When you defer a car payment, you’ll likely end up owing more at the end of your loan. Our free auto loan calculator tool was built to help borrowers figure out their final payment amount and understand how car loan extensions work.">
+<meta name="twitter:image" content="https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=630&amp;imgixProfile=propublicaAssetsV5&amp;q=90&amp;w=1200&amp;s=2dcb23e068258583e3be6448d4c2c458">
+<link href="https://www.propublica.org/article/auto-loan-calculator-with-extensions" rel="canonical">
+<link href="https://www.propublica.org" rel="home">
+<link type="text/plain" href="https://www.propublica.org/humans.txt" rel="author"></head>
+
+<body id="www-propublica-org" class="entry-type-article bg-white text-dark neutral-cool user-level--0 accent-blue" data-pp-location="v5 body">
+    
+            
+    
+
+    <!-- Load SiteHeader variant based on variable -->
+
+<script type="application/json" class="svelte-config">
+                            {"componentName":"SiteHeader","props":{"type":"compact","fixedNavScrollStart":".opener"},"contextArray":[]}
+                        </script>
+                        <a class="site-header-skip-link a11y a11y-focusable--absolute svelte-w1soqx" href="#main" data-svelte-h="svelte-19fmzuu">Skip to content</a>   <div class="site-header--compact svelte-w1soqx" data-pp-location="svelte-siteheader"><div class="variant-compact__inner-wrap svelte-w1soqx variant-compact__inner-wrap--has-border"><div class="variant-compact__section-menu svelte-w1soqx"> <button class="button shape--round-rect  button-is-icon-only  svelte-1qpwxqa" data-link="Menu" data-pp-skip="false" data-testid="compact-menu-button" style="--button-bg-color: transparent; --button-border: none; --button-color: var(--site-header-color-button-text, var(--color-neutral-80)); --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 11.4477 2.44772 11 3 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H3C2.44772 13 2 12.5523 2 12Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M2 18C2 17.4477 2.44772 17 3 17H21C21.5523 17 22 17.4477 22 18C22 18.5523 21.5523 19 21 19H3C2.44772 19 2 18.5523 2 18Z" fill="currentColor"></path></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Menu</span>  </button></div> <a class="variant-compact__wordmark svelte-w1soqx" href="https://www.propublica.org"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 574.24 75" fill="currentColor"><title>ProPublica</title><path d="M66.4,13.48,66,14.91l6.23,11.45,1.15.47L75,26.29V75H50.95A41.2,41.2,0,0,0,62.13,46.88a40.61,40.61,0,0,0-3.39-16.26,45.17,45.17,0,0,1,7.79-4.95l1.69-.2.14-.41L65,18.83H64.5l-.88,1.29c-2.91,1.9-4.67,2.3-8.54,3.79A41.35,41.35,0,0,0,20.46,5.42,39.87,39.87,0,0,0,0,10.91V0H75V8.81ZM57.32,47A37.54,37.54,0,0,1,44.65,75H0V16A37,37,0,0,1,57.32,47ZM43.7,37.06c0-8.13-6-12-17.75-12H7.18v3.66l4.2.95V62.2l-4.2.95v3.73H27.85V63.14l-7.18-.95V50.14h5.15C37.26,50.14,43.7,45.53,43.7,37.06Zm-9.76.27c0,5.15-2.78,8.33-7.25,8.33h-6V29.47H27C31.37,29.47,33.94,32.32,33.94,37.33Z"></path><path d="M116.53,60.07l9.15,1.08v4.2H99.39v-4.2l5.28-1.36v-44l-5.28-1.36V10.41H123c15.31,0,22.9,5.28,22.9,16.13,0,11.18-8.33,17.41-23.1,17.41h-6.3Zm0-21.14h6.84c6.44,0,10.5-4.61,10.5-12.06,0-7.18-3.73-11.45-10.09-11.45h-7.25Z"></path><path d="M200.74,61.15v4.2H185.9l-16-20.6h-2.51v15l5.28,1.36v4.2H150.27v-4.2l5.28-1.36V23.35l-5-1.36V17.93H175.2c10.5,0,17.55,5.08,17.55,12.67,0,8.4-5.76,12.2-11,13.55l13.48,15.79ZM167.41,39.74h4.47c5.76,0,8.81-3.18,8.81-8.88,0-5.35-2.85-7.93-8.81-7.93h-4.47Z"></path><path d="M199.59,41.64c0-14.77,9.82-24.73,25.68-24.73s25.68,10,25.68,24.73-9.82,24.73-25.68,24.73S199.59,56.48,199.59,41.64Zm38.89,0c0-9.69-3.25-19.17-13.21-19.17S212.05,32,212.05,41.64s3.25,19.17,13.21,19.17S238.48,51.33,238.48,41.64Z"></path><path d="M270.79,60.07l9.15,1.08v4.2H253.31v-4.2l5.62-1.36v-44l-5.62-1.36V10.41h24c15.31,0,22.9,5.28,22.9,16.13,0,11.18-8.33,17.41-23.1,17.41h-6.3Zm0-21.14h6.84c6.44,0,10.5-4.61,10.5-12.06,0-7.18-3.73-11.45-10.1-11.45h-7.25Z"></path><path d="M354.26,22l-4.95,1.36V47c0,12.87-7.79,19.38-20.05,19.38-13.62,0-20.73-7.86-20.73-20v-23L303.58,22V17.93h22V22l-5.08,1.36V47.74c0,7.25,4.34,12.06,11.45,12.06,6.84,0,11.25-4.47,11.25-11.31V23.35L338.14,22V17.93h16.12Z"></path><path d="M403.85,52.21c0,8.88-7.11,13.14-22,13.14H357.58v-4.2l5.56-1.36V23.35L358.26,22V17.93h23.92c12.6,0,19.51,3.79,19.51,11.72,0,6.17-4.06,9.08-10.91,9.89v.27C399.31,40.76,403.85,45.1,403.85,52.21ZM375,38.32h5.76c6.1,0,9-2.78,9-7.79,0-5.22-3.12-7.59-9-7.59H375Zm16.8,13.41c0-5.62-3.79-8.67-11.25-8.67H375V60.34h6.64C388.07,60.34,391.79,57.29,391.79,51.74Z"></path><path d="M451.07,48.62l-4.4,16.73H408v-4.2l5.28-1.36V23.35L407.65,22V17.93h22.76V22l-5.28,1.36v37l14.16-.81L447,47.26Z"></path><path d="M475.4,61.15v4.2H453v-4.2l5.28-1.36V23.35L453,22V17.93H475.4V22l-5.28,1.36V59.8Z"></path><path d="M478,41.78c0-15.85,12.13-24.86,27-24.86a35.6,35.6,0,0,1,18.29,5.15l-2,13.21h-4.2l-1.69-9.08a13.23,13.23,0,0,0-10.09-4.13c-9.15,0-14.7,6.57-14.7,18.22,0,13.21,6.84,19.31,15.24,19.31,6.17,0,10.23-3.39,13.41-9.55l4.27,2c-4.27,10-11.65,14.36-21.07,14.36C488.4,66.37,478,56.48,478,41.78Z"></path><path d="M574.24,61.15v4.2H551.48v-4.2L557,60l-2.85-8.13h-16.6l-3.12,8.2,5.42,1.15-.07,4.2-16.53-.07v-4.2l4.27-1.08,14.9-37.33-4-1.29V17.93h13.69L569.3,60Zm-27.57-31-.47-1.56-.47,1.56-6.23,16.73h12.94Z"></path></svg></a>  <a data-pp-view="" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=UpRed" class="button shape--round-rect    svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--red-50); --button-border: none; --button-color: var(--white); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale2); --icon-size: 1em;"> <span class="text font--serif svelte-1qpwxqa">Donate</span>  </a></div></div>  <div class="site-header-overlay svelte-w1soqx" data-testid="overlay" data-pp-location="svelte-siteheader-overlay" style="opacity: 0; pointer-events: none;"><div class="variant-overlay__top-inner-wrap svelte-w1soqx"><div class="variant-overlay__section-menu svelte-w1soqx"> <button class="button shape--round-rect  button-is-icon-only  svelte-1qpwxqa" data-link="Menu" data-pp-skip="false" data-testid="close-overlay-button" style="--button-bg-color: transparent; --button-border: none; --button-color: white; --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: var(--scale0);"><span class="icon-before svelte-1qpwxqa"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Close</title><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Close</span>  </button></div> <a class="variant-overlay__wordmark svelte-w1soqx" href="https://www.propublica.org"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 574.24 75" fill="currentColor"><title>ProPublica</title><path d="M66.4,13.48,66,14.91l6.23,11.45,1.15.47L75,26.29V75H50.95A41.2,41.2,0,0,0,62.13,46.88a40.61,40.61,0,0,0-3.39-16.26,45.17,45.17,0,0,1,7.79-4.95l1.69-.2.14-.41L65,18.83H64.5l-.88,1.29c-2.91,1.9-4.67,2.3-8.54,3.79A41.35,41.35,0,0,0,20.46,5.42,39.87,39.87,0,0,0,0,10.91V0H75V8.81ZM57.32,47A37.54,37.54,0,0,1,44.65,75H0V16A37,37,0,0,1,57.32,47ZM43.7,37.06c0-8.13-6-12-17.75-12H7.18v3.66l4.2.95V62.2l-4.2.95v3.73H27.85V63.14l-7.18-.95V50.14h5.15C37.26,50.14,43.7,45.53,43.7,37.06Zm-9.76.27c0,5.15-2.78,8.33-7.25,8.33h-6V29.47H27C31.37,29.47,33.94,32.32,33.94,37.33Z"></path><path d="M116.53,60.07l9.15,1.08v4.2H99.39v-4.2l5.28-1.36v-44l-5.28-1.36V10.41H123c15.31,0,22.9,5.28,22.9,16.13,0,11.18-8.33,17.41-23.1,17.41h-6.3Zm0-21.14h6.84c6.44,0,10.5-4.61,10.5-12.06,0-7.18-3.73-11.45-10.09-11.45h-7.25Z"></path><path d="M200.74,61.15v4.2H185.9l-16-20.6h-2.51v15l5.28,1.36v4.2H150.27v-4.2l5.28-1.36V23.35l-5-1.36V17.93H175.2c10.5,0,17.55,5.08,17.55,12.67,0,8.4-5.76,12.2-11,13.55l13.48,15.79ZM167.41,39.74h4.47c5.76,0,8.81-3.18,8.81-8.88,0-5.35-2.85-7.93-8.81-7.93h-4.47Z"></path><path d="M199.59,41.64c0-14.77,9.82-24.73,25.68-24.73s25.68,10,25.68,24.73-9.82,24.73-25.68,24.73S199.59,56.48,199.59,41.64Zm38.89,0c0-9.69-3.25-19.17-13.21-19.17S212.05,32,212.05,41.64s3.25,19.17,13.21,19.17S238.48,51.33,238.48,41.64Z"></path><path d="M270.79,60.07l9.15,1.08v4.2H253.31v-4.2l5.62-1.36v-44l-5.62-1.36V10.41h24c15.31,0,22.9,5.28,22.9,16.13,0,11.18-8.33,17.41-23.1,17.41h-6.3Zm0-21.14h6.84c6.44,0,10.5-4.61,10.5-12.06,0-7.18-3.73-11.45-10.1-11.45h-7.25Z"></path><path d="M354.26,22l-4.95,1.36V47c0,12.87-7.79,19.38-20.05,19.38-13.62,0-20.73-7.86-20.73-20v-23L303.58,22V17.93h22V22l-5.08,1.36V47.74c0,7.25,4.34,12.06,11.45,12.06,6.84,0,11.25-4.47,11.25-11.31V23.35L338.14,22V17.93h16.12Z"></path><path d="M403.85,52.21c0,8.88-7.11,13.14-22,13.14H357.58v-4.2l5.56-1.36V23.35L358.26,22V17.93h23.92c12.6,0,19.51,3.79,19.51,11.72,0,6.17-4.06,9.08-10.91,9.89v.27C399.31,40.76,403.85,45.1,403.85,52.21ZM375,38.32h5.76c6.1,0,9-2.78,9-7.79,0-5.22-3.12-7.59-9-7.59H375Zm16.8,13.41c0-5.62-3.79-8.67-11.25-8.67H375V60.34h6.64C388.07,60.34,391.79,57.29,391.79,51.74Z"></path><path d="M451.07,48.62l-4.4,16.73H408v-4.2l5.28-1.36V23.35L407.65,22V17.93h22.76V22l-5.28,1.36v37l14.16-.81L447,47.26Z"></path><path d="M475.4,61.15v4.2H453v-4.2l5.28-1.36V23.35L453,22V17.93H475.4V22l-5.28,1.36V59.8Z"></path><path d="M478,41.78c0-15.85,12.13-24.86,27-24.86a35.6,35.6,0,0,1,18.29,5.15l-2,13.21h-4.2l-1.69-9.08a13.23,13.23,0,0,0-10.09-4.13c-9.15,0-14.7,6.57-14.7,18.22,0,13.21,6.84,19.31,15.24,19.31,6.17,0,10.23-3.39,13.41-9.55l4.27,2c-4.27,10-11.65,14.36-21.07,14.36C488.4,66.37,478,56.48,478,41.78Z"></path><path d="M574.24,61.15v4.2H551.48v-4.2L557,60l-2.85-8.13h-16.6l-3.12,8.2,5.42,1.15-.07,4.2-16.53-.07v-4.2l4.27-1.08,14.9-37.33-4-1.29V17.93h13.69L569.3,60Zm-27.57-31-.47-1.56-.47,1.56-6.23,16.73h12.94Z"></path></svg></a>  <a data-pp-view="" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=UpRed" class="button shape--round-rect    svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--red-50); --button-border: none; --button-color: var(--white); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale2); --icon-size: 1em;"> <span class="text font--serif svelte-1qpwxqa">Donate</span>  </a></div> <div class="site-header-overlay__wrap-expanded svelte-w1soqx" data-pp-location="masthead wrap-expanded"> <div class="site-header__section-search svelte-w1soqx"><form class="search-form svelte-w1soqx" role="search" action="https://propublica.org/search" method="get"><label class="a11y hed-form hed-site-search" for="search-form__input-text" data-svelte-h="svelte-zdbb25">Search ProPublica:</label> <div class="search-form__input-wrap svelte-w1soqx"><input placeholder="Search" id="search-form__input-text" class="search-form__input-text svelte-w1soqx" type="search" value="" name="qss">  <button class="button shape--circle  button-is-icon-only  svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--cool-70); --button-border: none; --button-color: white; --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale4); --icon-size: var(--scale0);"><span class="icon-before svelte-1qpwxqa"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Search</title><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Search</span>  </button></div></form></div>   <nav class="site-header__section-links-expanded svelte-w1soqx" aria-label="Expanded Links" hidden><div class="site-header__links site-header__links-topics svelte-w1soqx"><strong class="site-header__links-heading svelte-w1soqx">Topics </strong> <ul class="site-header__links-list svelte-w1soqx"><li class="svelte-w1soqx"><span class="icon svelte-w1soqx"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="currentColor"><title>Racial Justice</title><path d="M15,12.23v0L14,4.55l.24.06.11,0a.38.38,0,0,0,.36-.27.38.38,0,0,0-.25-.47c-.19-.06-.39-.1-.59-.15a.38.38,0,0,0-.29-.26.37.37,0,0,0-.28.11c-.6-.15-1.21-.28-1.82-.39V1.29A1.29,1.29,0,0,0,10.17,0,1.32,1.32,0,0,0,9.11.57a1.37,1.37,0,0,0-2,.26A1.3,1.3,0,0,0,6.23.51a1.32,1.32,0,0,0-1.12.66A1.13,1.13,0,0,0,4.46,1,1.19,1.19,0,0,0,3.27,2.14V3.25c-.53.1-1,.21-1.57.34a.37.37,0,0,0-.28-.11.38.38,0,0,0-.29.26c-.19,0-.39.09-.58.15a.38.38,0,0,0-.25.47.38.38,0,0,0,.36.27l.11,0L1,4.55,0,12.21v0A2.67,2.67,0,0,0,2.6,15a2.67,2.67,0,0,0,2.57-2.73h0a.19.19,0,0,0,0-.07.13.13,0,0,0,0-.06h0L2,4.27c.41-.1.82-.18,1.24-.25v.37a4,4,0,0,0-.12,1A3.93,3.93,0,0,0,5.21,8.81v1.77a.38.38,0,1,0,.75,0v-2a.39.39,0,0,0-.21-.34A3.19,3.19,0,0,1,3.9,5.39a1.18,1.18,0,0,0,.56.16,1.2,1.2,0,0,0,.8-.32,1.35,1.35,0,0,0,1,.43,1.29,1.29,0,0,0,1-.44,1.29,1.29,0,0,0,.6.32,3.58,3.58,0,0,0-.89.85.37.37,0,0,0,.3.59.39.39,0,0,0,.31-.15A2.81,2.81,0,0,1,9.76,5.61a.38.38,0,0,0,0-.75H8.14a.59.59,0,0,1-.58-.59v-.5h2.82a.73.73,0,0,1,.75.71v.89A3.19,3.19,0,0,1,9.28,8.24a.39.39,0,0,0-.21.34v2a.38.38,0,1,0,.75,0V8.81a3.93,3.93,0,0,0,2.06-3.44V4.48A1.33,1.33,0,0,0,11.8,4c.4.07.79.15,1.18.24L9.87,12.11h0a.13.13,0,0,0,0,.06.25.25,0,0,0,0,.07h0A2.67,2.67,0,0,0,12.41,15,2.67,2.67,0,0,0,15,12.25ZM1.65,5.35l2.59,6.53H.83Zm1,8.9A1.88,1.88,0,0,1,.81,12.63H4.39A1.88,1.88,0,0,1,2.6,14.25ZM4.9,4.36a.44.44,0,0,1-.44.44A.44.44,0,0,1,4,4.36V2.14a.44.44,0,0,1,.44-.44.44.44,0,0,1,.44.44Zm1.91,0a.58.58,0,1,1-1.16,0V2.14a.7.7,0,0,0,0-.14.4.4,0,0,0,0-.15.58.58,0,1,1,1.16,0Zm.73-2.58a.43.43,0,0,0,0-.11.65.65,0,1,1,1.29,0V3H7.56V1.85S7.54,1.78,7.54,1.74ZM9.6,3V1.63s0,0,0-.06,0,0,0,0V1.29a.57.57,0,0,1,1.14,0V3.07a1.49,1.49,0,0,0-.36,0Zm4.58,8.86H10.77l2.59-6.53Zm-1.77,2.37a1.89,1.89,0,0,1-1.79-1.62H14.2A1.88,1.88,0,0,1,12.41,14.25Z"></path></svg> </span> <a class="site-header__link svelte-w1soqx" data-link="Racial Justice" href="https://www.propublica.org/topics/racial-justice">Racial Justice</a> </li><li class="svelte-w1soqx"><span class="icon svelte-w1soqx"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="currentColor"><title>Healthcare</title><path d="M6.77,4.81H6.28a10,10,0,0,1-4.19-.92L.44,3a.67.67,0,0,1-.36-.67.7.7,0,0,1,.49-.6L4.38.65a1.14,1.14,0,0,1,1,.19,1.08,1.08,0,0,1,.42.86.56.56,0,0,0,.54.56h.48a.37.37,0,0,1,.37.37A.38.38,0,0,1,6.77,3H6.29A1.3,1.3,0,0,1,5,1.7a.31.31,0,0,0-.13-.26.31.31,0,0,0-.29-.06L.92,2.43l1.5.79a9.35,9.35,0,0,0,3.86.84h.49a.38.38,0,0,1,0,.75Z"></path><path d="M8.76,4.81H8.29a.38.38,0,1,1,0-.75h.47a9.24,9.24,0,0,0,3.87-.85l1.5-.78L10.45,1.38a.3.3,0,0,0-.27.05.35.35,0,0,0-.13.27A1.3,1.3,0,0,1,8.77,3H8.29a.38.38,0,0,1-.38-.38.37.37,0,0,1,.38-.37h.47A.56.56,0,0,0,9.3,1.7,1.1,1.1,0,0,1,9.72.84a1.08,1.08,0,0,1,.93-.19l3.82,1.1A.7.7,0,0,1,14.61,3L13,3.88A9.92,9.92,0,0,1,8.76,4.81Z"></path><path d="M7.52,13.82a.34.34,0,0,1-.23-.08L6,12.76a1.72,1.72,0,0,1-.61-1.52,1.63,1.63,0,0,1,.77-1.33L9.61,8A.88.88,0,0,0,10,7.33a1.11,1.11,0,0,0-.28-.91l-.33-.29a.38.38,0,1,1,.51-.55l.32.29a1.8,1.8,0,0,1,.52,1.55A1.59,1.59,0,0,1,10,8.65L6.56,10.56a.89.89,0,0,0-.39.74,1,1,0,0,0,.32.87l1.26,1a.39.39,0,0,1,.07.53A.41.41,0,0,1,7.52,13.82Z"></path><path d="M7.53,13.82a.41.41,0,0,1-.3-.14.39.39,0,0,1,.07-.53l1.26-1a1,1,0,0,0,.32-.87.89.89,0,0,0-.39-.74L5.07,8.65a1.62,1.62,0,0,1-.76-1.24,1.82,1.82,0,0,1,.51-1.54l.32-.29a.38.38,0,0,1,.51.55l-.33.3a1.08,1.08,0,0,0-.27.89A.92.92,0,0,0,5.44,8L8.86,9.91a1.63,1.63,0,0,1,.77,1.33A1.72,1.72,0,0,1,9,12.76l-1.26,1A.34.34,0,0,1,7.53,13.82Z"></path><path d="M7.52,15a.37.37,0,0,1-.37-.38V.44A.37.37,0,0,1,7.52.06.38.38,0,0,1,7.9.44V14.57A.38.38,0,0,1,7.52,15Z"></path></svg> </span> <a class="site-header__link svelte-w1soqx" data-link="Health Care" href="https://www.propublica.org/topics/health-care">Health Care</a> </li><li class="svelte-w1soqx"><span class="icon svelte-w1soqx"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="currentColor"><title>Politics</title><path d="M12.54,14.89h-10a.38.38,0,0,1-.38-.37V11a.38.38,0,0,1,.38-.38h10a.38.38,0,0,1,.38.38v3.55A.38.38,0,0,1,12.54,14.89Zm-9.66-.75h9.29v-2.8H2.88Z"></path><path d="M14.52,14.89H.53a.38.38,0,0,1,0-.75h14a.38.38,0,0,1,0,.75Z"></path><path d="M11.71,11.35H3.34A.37.37,0,0,1,3,11V8.7a.38.38,0,0,1,.37-.38h8.37a.37.37,0,0,1,.37.38V11A.36.36,0,0,1,11.71,11.35Zm-8-.75h7.61V9.07H3.72Z"></path><path d="M8.36,5.11A.38.38,0,0,1,8,4.73V3.42H7.07V4.73a.38.38,0,1,1-.75,0V3a.37.37,0,0,1,.37-.37H8.36A.37.37,0,0,1,8.73,3V4.73A.38.38,0,0,1,8.36,5.11Z"></path><path d="M3.84,13.79a.38.38,0,0,1-.38-.37V12.25a.38.38,0,0,1,.75,0v1.17A.38.38,0,0,1,3.84,13.79Z"></path><path d="M5.31,13.79a.38.38,0,0,1-.37-.37V12.25a.38.38,0,0,1,.75,0v1.17A.38.38,0,0,1,5.31,13.79Z"></path><path d="M6.79,13.79a.37.37,0,0,1-.37-.37V12.25a.36.36,0,0,1,.37-.37.37.37,0,0,1,.38.37v1.17A.38.38,0,0,1,6.79,13.79Z"></path><path d="M8.27,13.79a.38.38,0,0,1-.38-.37V12.25a.37.37,0,0,1,.38-.37.36.36,0,0,1,.37.37v1.17A.37.37,0,0,1,8.27,13.79Z"></path><path d="M9.75,13.79a.38.38,0,0,1-.38-.37V12.25a.38.38,0,0,1,.75,0v1.17A.38.38,0,0,1,9.75,13.79Z"></path><path d="M11.22,13.79a.38.38,0,0,1-.37-.37V12.25a.38.38,0,0,1,.75,0v1.17A.38.38,0,0,1,11.22,13.79Z"></path><path d="M7.53,3.42A.37.37,0,0,1,7.16,3V.48A.37.37,0,0,1,7.53.11a.38.38,0,0,1,.38.37V3A.38.38,0,0,1,7.53,3.42Z"></path><path d="M11.72,9.06a.38.38,0,0,1-.38-.37A3.74,3.74,0,0,0,7.53,5,3.74,3.74,0,0,0,3.72,8.69a.38.38,0,0,1-.75,0A4.49,4.49,0,0,1,7.53,4.28a4.49,4.49,0,0,1,4.56,4.41A.37.37,0,0,1,11.72,9.06Z"></path></svg> </span> <a class="site-header__link svelte-w1soqx" data-link="Politics" href="https://www.propublica.org/topics/politics">Politics</a> </li><li class="svelte-w1soqx"><span class="icon svelte-w1soqx"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="currentColor"><title>Criminal Justice</title><path d="M13.48,4h-.11A20.22,20.22,0,0,0,1.76,4a.38.38,0,0,1-.47-.26.37.37,0,0,1,.25-.46,21,21,0,0,1,12.05,0,.37.37,0,0,1-.11.73Z"></path><path d="M10.53,15h-6a.38.38,0,1,1,0-.75h6a.38.38,0,0,1,0,.75Z"></path><path d="M7.5,15a.37.37,0,0,1-.37-.38V.42A.37.37,0,0,1,7.5,0a.38.38,0,0,1,.38.38V14.6A.38.38,0,0,1,7.5,15Z"></path><path d="M5.39,9.89H.46a.37.37,0,0,1-.31-.16.36.36,0,0,1,0-.35L2.57,3.16a.38.38,0,0,1,.35-.24h0a.38.38,0,0,1,.35.23L5.74,9.38a.36.36,0,0,1,0,.35A.37.37,0,0,1,5.39,9.89ZM1,9.14H4.84L2.92,4.31Z"></path><path d="M14.6,9.89H9.67a.37.37,0,0,1-.31-.16.36.36,0,0,1,0-.35l2.46-6.22a.38.38,0,0,1,.35-.24h0a.37.37,0,0,1,.35.23L15,9.38a.36.36,0,0,1,0,.35A.37.37,0,0,1,14.6,9.89Zm-4.38-.75h3.83L12.13,4.31Z"></path><path d="M2.92,11.75A3,3,0,0,1,.1,9.62a.36.36,0,0,1,.06-.33.38.38,0,0,1,.3-.15H5.39a.38.38,0,0,1,.3.15.39.39,0,0,1,.06.33A3,3,0,0,1,2.92,11.75ZM1,9.89A2.21,2.21,0,0,0,2.92,11,2.22,2.22,0,0,0,4.83,9.89Z"></path><path d="M12.13,11.75A3,3,0,0,1,9.3,9.62a.39.39,0,0,1,.06-.33.38.38,0,0,1,.3-.15h4.93a.38.38,0,0,1,.3.15.36.36,0,0,1,.06.33A3,3,0,0,1,12.13,11.75ZM10.22,9.89a2.19,2.19,0,0,0,3.81,0Z"></path></svg> </span> <a class="site-header__link svelte-w1soqx" data-link="Criminal Justice" href="https://www.propublica.org/topics/criminal-justice">Criminal Justice</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="more…" href="https://www.propublica.org/topics/">more…</a> </li></ul> </div><div class="site-header__links site-header__links-region svelte-w1soqx"><strong class="site-header__links-heading svelte-w1soqx">Browse by Place </strong> <ul class="site-header__links-list svelte-w1soqx"><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Midwest" href="https://www.propublica.org/midwest/">Midwest</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Northwest" href="https://www.propublica.org/northwest/">Northwest</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="South" href="https://www.propublica.org/south/">South</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Southwest" href="https://www.propublica.org/southwest/">Southwest</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Texas" href="https://www.propublica.org/texas/">Texas</a> </li></ul> </div><div class="site-header__links site-header__links-type svelte-w1soqx"><strong class="site-header__links-heading svelte-w1soqx">Type </strong> <ul class="site-header__links-list svelte-w1soqx"><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Graphics &amp; Data" href="https://www.propublica.org/newsapps/">Graphics &amp; Data</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Newsletters" href="https://www.propublica.org/newsletters/">Newsletters</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Series" href="https://www.propublica.org/series/">Series</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Videos" href="https://www.propublica.org/video/">Videos</a> </li></ul> </div><div class="site-header__links site-header__links-special svelte-w1soqx"> <ul class="site-header__links-list svelte-w1soqx"><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Local Reporting Network" href="https://www.propublica.org/local-reporting-network/">Local Reporting Network</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Electionland" href="https://www.propublica.org/electionland/">Electionland</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Data Store" href="https://www.propublica.org/datastore/">Data Store</a> </li></ul> </div><div class="site-header__links site-header__links-info svelte-w1soqx"><strong class="site-header__links-heading svelte-w1soqx">Info </strong> <ul class="site-header__links-list svelte-w1soqx"><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="About Us" href="https://www.propublica.org/about/">About Us</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Impact" href="https://www.propublica.org/impact/">Impact</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Jobs &amp; Fellowships" href="https://www.propublica.org/jobs/">Jobs &amp; Fellowships</a> </li><li class="svelte-w1soqx"> <a class="site-header__link svelte-w1soqx" data-link="Contact Us" href="https://www.propublica.org/contact/">Contact Us</a> </li></ul> </div>  <div class="site-header__links site-header__links-follow svelte-w1soqx"><strong class="site-header__links-heading svelte-w1soqx" data-svelte-h="svelte-14chcvl">Follow</strong> <ul class="site-header__links-list site-header__links-list-follow svelte-w1soqx" data-link="Facebook"><li class="svelte-w1soqx"> <a href="https://www.facebook.com/propublica" class="button shape--circle  button-is-icon-only  svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--cool-70); --button-border: none; --button-color: white; --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>Facebook</title><path d="M8.25 14.0297V24H13.6875V14.0297H17.7422L18.5859 9.44531H13.6875V7.82344C13.6875 5.4 14.6391 4.47188 17.0953 4.47188C17.8594 4.47188 18.4734 4.49062 18.8297 4.52812V0.370313C18.1594 0.1875 16.5187 0 15.5719 0C10.5609 0 8.25 2.36719 8.25 7.47187V9.44531H5.15625V14.0297H8.25Z"></path></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Facebook</span>  </a></li> <li data-link="Twitter" class="svelte-w1soqx"> <a href="https://twitter.com/propublica" class="button shape--circle  button-is-icon-only  svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--cool-70); --button-border: none; --button-color: white; --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>X</title><path d="M18.2439 2.25H21.5532L14.3251 10.5094L22.8282 21.75H16.172L10.9548 14.9344L4.99229 21.75H1.67822L9.40791 12.9141L1.25635 2.25H8.08135L12.7923 8.47969L18.2439 2.25ZM17.0813 19.7719H18.9142L7.08291 4.125H5.11416L17.0813 19.7719Z"></path></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Twitter</span>  </a></li> <li data-link="Instagram" class="svelte-w1soqx"> <a href="https://www.instagram.com/propublica/" class="button shape--circle  button-is-icon-only  svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--cool-70); --button-border: none; --button-color: white; --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>Instagram</title><path d="M12,2.32c3.15,0,3.53,0,4.77.07a6.51,6.51,0,0,1,2.19.4,3.58,3.58,0,0,1,1.36.89A3.58,3.58,0,0,1,21.21,5a6.51,6.51,0,0,1,.4,2.19c.06,1.24.07,1.62.07,4.77s0,3.53-.07,4.77a6.51,6.51,0,0,1-.4,2.19A4,4,0,0,1,19,21.21a6.51,6.51,0,0,1-2.19.4c-1.24.06-1.62.07-4.77.07s-3.53,0-4.77-.07A6.51,6.51,0,0,1,5,21.21a3.58,3.58,0,0,1-1.36-.89A3.58,3.58,0,0,1,2.79,19a6.51,6.51,0,0,1-.4-2.19c-.06-1.24-.07-1.62-.07-4.77s0-3.53.07-4.77A6.51,6.51,0,0,1,2.79,5a3.58,3.58,0,0,1,.89-1.36A3.58,3.58,0,0,1,5,2.79a6.51,6.51,0,0,1,2.19-.4c1.24-.06,1.62-.07,4.77-.07M12,.19C8.79.19,8.39.2,7.13.26A8.84,8.84,0,0,0,4.26.81,6,6,0,0,0,.81,4.26,8.84,8.84,0,0,0,.26,7.13C.2,8.39.19,8.79.19,12s0,3.61.07,4.87a8.84,8.84,0,0,0,.55,2.87,6,6,0,0,0,3.45,3.45,8.84,8.84,0,0,0,2.87.55c1.26.06,1.66.07,4.87.07s3.61,0,4.87-.07a8.84,8.84,0,0,0,2.87-.55,6,6,0,0,0,3.45-3.45,8.84,8.84,0,0,0,.55-2.87c.06-1.26.07-1.66.07-4.87s0-3.61-.07-4.87a8.84,8.84,0,0,0-.55-2.87A6,6,0,0,0,19.74.81,8.84,8.84,0,0,0,16.87.26C15.61.2,15.21.19,12,.19Z"></path><path d="M12,5.94A6.06,6.06,0,1,0,18.06,12,6.06,6.06,0,0,0,12,5.94Zm0,10A3.94,3.94,0,1,1,15.94,12,3.95,3.95,0,0,1,12,15.94Z"></path><circle cx="18.3" cy="5.7" r="1.42"></circle></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Instagram</span>  </a></li></ul></div> </nav> </div>  </div>
+                        <!--svelte-component-end-->
+                            
+    
+<main class="content" id="main">
+
+        <article class="article center">
+
+        
+            <!-- Class assignment -->
+
+
+
+
+
+                
+    
+<div class="opener  opener--large opener--center opener--order-hed-dek-art" data-pp-location="article opener">
+
+            
+                <figure class="opener__art-wrapper">
+            
+    
+
+
+    <img
+        class="opener__art"
+        alt=""
+        width="3000"
+        height="2250"
+                src="https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=600&amp;q=75&amp;w=800&amp;s=b0173cbfff1bb49ab5d2eec91ccd2bf1"
+        srcset="https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=300&amp;q=75&amp;w=400&amp;s=89802613f8d757a69919fd4225fe76a3 400w, https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=600&amp;q=75&amp;w=800&amp;s=b0173cbfff1bb49ab5d2eec91ccd2bf1 800w, https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=900&amp;q=75&amp;w=1200&amp;s=3bb17ee7c8da14cda1ea11a58aab8c09 1200w, https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=975&amp;q=75&amp;w=1300&amp;s=1f2ed6b805e923ede200b18471e8e447 1300w, https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1088&amp;q=75&amp;w=1450&amp;s=b53c3c41e15d1c907d506b1b0e0c21b8 1450w, https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1200&amp;q=75&amp;w=1600&amp;s=c95bd988910e158b8dff34748c410857 1600w, https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1500&amp;q=75&amp;w=2000&amp;s=731207a6b86b3e7430dbc090746d7fe0 2000w"
+                fetchpriority="high"    />
+
+
+            
+            
+<figcaption class="attribution">
+        <span class="attribution__caption">A letter from Exeter Finance to a borrower. Photo blurred by ProPublica to obscure personal information.</span>
+    
+        <span class="attribution__credit">
+        <span class="a11y">Credit: </span>
+        Greg Kahn, special to ProPublica
+    </span>
+    
+    
+    </figcaption>
+
+        </figure>
+            <div class="opener__topic-title-dek-wrapper ">
+
+                    <span class="opener__topics  opener__topics--vertical-rule">
+            <a class="opener__topics-link " href="https://www.propublica.org/topics/debt">Debt</a>
+        </span>
+    
+    <h1 class="opener__hed " >        What No One Tells You About Car Loan Deferments
+    </h1>
+
+    <h2 class="opener__dek "  >        When you defer a car payment, you’ll likely end up owing more at the end of your loan. Our free auto loan calculator tool was built to help borrowers figure out their final payment amount and understand how car loan extensions work.
+    </h2>
+    </div> <!-- Close .opener__topic-title-dek-wrapper -->
+
+</div>
+        
+<div class="article-meta-1
+     article-meta-1--center     " data-pp-location="article meta">
+
+    <span class="article-meta-1__byline" data-pp-location="article byine">
+        by <a class="name" href="https://www.propublica.org/people/byard-duncan">Byard Duncan</a>, <a class="name" href="https://www.propublica.org/people/ryan-gabrielson">Ryan Gabrielson</a> and <a class="name" href="https://www.propublica.org/people/lucas-waldron">Lucas Waldron</a>    </span>
+    <time class="article-meta-1__pubdate">
+        <time class="timestamp" datetime="2024-09-12EDT05:05">Sept. 12, 5:05 a.m. EDT</time>
+    </time>
+
+    <div class="article-meta-1__section-actions
+         article-meta-1__section-actions--center     " data-pp-location="article story-tools">
+        <script type="application/json" class="svelte-config">
+                            {"componentName":"ShareTools","props":{"pageTitle":"Auto Loan Calculator with Extensions/Deferments","pageUrl":"https://www.propublica.org/article/auto-loan-calculator-with-extensions"},"contextArray":[]}
+                        </script>
+                        <div class="share-tools" data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="WbSgtZ8qg3" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <!--svelte-component-end-->
+                                <script type="application/json" class="svelte-config">
+                            {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
+                        </script>
+                        <div class="dark-mode-toggle svelte-1x7qxk6"> <button aria-hidden class="button shape--circle  button-is-icon-only  svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: var(--color-bg); --button-border: 1px solid var(--color-neutral-10); --button-color: var(--color-text-supp); --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: 1.7rem; --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Contrast</title><circle cx="12" cy="12" r="10"></circle><path fill="currentColor" d="M12 18a6 6 0 000-12v12z"></path></svg> </span> <span class="text font--sans svelte-1qpwxqa a11y">Change Appearance</span>  </button> <label class="a11y" for="dark-mode-toggle__select" data-svelte-h="svelte-ku6aby">Change Appearance</label> <select class="dark-mode-toggle__select svelte-1x7qxk6" id="dark-mode-toggle__select" data-pp-change data-pp-category="change-mode"><option value="auto">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select> </div>
+                        <!--svelte-component-end-->
+                                        <a class="article-meta-1__republish btn btn--outline" style="--button-color: var(--color-neutral-10); color: var(--color-neutral-70)" href="#" data-pp-action="republish open">Republish</a>
+            </div>
+
+            <span class="article-meta-1__partnership">
+                Co-published with
+                        <a href="https://scrippsnews.com/">Scripps News</a>            </span>
+    </div>
+    
+
+    
+    <div class="article-body" data-pp-location="article body" >
+
+        
+        
+        
+        
+
+
+
+        
+    
+    
+    
+                            
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size08 center  wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <style>
+.bb-aside.offset-aside {
+padding: 25px;
+border-radius: 5px;
+margin: 0;
+color: 	var(--gray-70);
+background-color: var(--gray-10);
+line-height: 1.3;
+}
+
+/* Styling aimed at light mode */
+
+html.force-light-mode .bb-aside.offset-aside {
+    color: 	var(--gray-70);
+background-color: var(--gray-10);
+}
+@media (prefers-color-scheme: light) {
+    html:not(.force-dark-mode) .bb-aside.offset-aside {
+        color: 	var(--gray-70);
+background-color: var(--gray-10);
+    }
+}
+
+/* Styling aimed at dark mode */
+
+html.force-dark-mode .bb-aside.offset-aside {
+    color: 	var(--gray-20);
+background-color: var(--gray-80);
+}
+@media (prefers-color-scheme: dark) {
+    html:not(.force-light-mode) .bb-aside.offset-aside {
+        color: 	var(--gray-20);
+background-color: var(--gray-80);
+    }
+}
+
+.offset-aside p {
+margin: 0;
+padding: 0;
+}
+
+
+
+</style>
+
+<aside data-pp-id="2" data-pp-blocktype="aside" class="bb-aside size08 left  wide-sm wrap offset-aside
+                ">
+
+    <p>On this page, you can find out how much a car loan deferment might cost by using our free <strong><a href="#thecalculator">Car Loan Deferment Calculator</a></strong>, explore <strong><a href="#faq">frequently asked questions</a></strong> about car loan deferments, read our <strong><a href="#definitions">glossary of car loan terms</a></strong> or <strong><a href="#callout">get in touch</a></strong> with ProPublica reporters.</p>
+
+
+</aside>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
+            
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="4.0">Have you taken out a car loan and struggled to pay it back? You’re not alone. Borrowers like you owe more than $1.6 trillion in auto debt, and many are falling behind. Your lender might have given you the option to move payments to a later date, also known as a “deferment” or “extension.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="5.0">We’ve collected advice from borrowers, consumer finance experts, auto dealers and more to help people make more-informed choices about deferring car payments. Our reporting shows lenders aren’t always up front about how much these deferments will cost you in the long run.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="6.0">In 2018, one lender got into trouble for allegedly misleading borrowers about them. <a href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">We found another company, Exeter Finance, using similar extension practices</a>, driving struggling people deeper into debt. These deferments especially affect those with bad credit, who often must pay sky-high interest rates to borrow money.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="7.0">Exeter Finance responded to our story saying it is “fully committed to transparency in its lending practices” and follows all relevant laws. But in dozens of interviews, people told us they did not understand how much more they would owe after they took deferments. At the end of their terms, some ended up with thousands of dollars in unexpected charges. Some defaulted and lost their cars anyway.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="8.0">“If I would have known,” said Chassidy Smith, an Exeter borrower living in Georgia who received six extensions in the course of her five-year auto loan, “I probably would have done something different.”</p>
+        
+            
+    
+    
+    
+                            
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size03 right out03 wide-md wrap
+                hide-print
+        ">
+
+    
+
+
+                        <div data-pp-view data-pp-click data-pp-location="custom trust module" class="trust-module">
+    <div class="trust-module__icon-container">
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-check"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+    </div>
+    <p><strong>Why should I trust your research?</strong></p>
+    <p>We (<a href="https://www.propublica.org/people/byard-duncan">Byard Duncan</a> and <a href="https://www.propublica.org/people/ryan-gabrielson">Ryan Gabrielson</a>) are reporters at ProPublica. We’ve been reporting on car loans for more than a year. In that time, we reviewed thousands of pages of lawsuits and complaints, and we spoke to dozens of borrowers, consumer finance experts, auto lending specialists, former Exeter Finance employees and more. We do not profit in any way off of tools such as our loan extensions calculator.</p>
+    <hr style="border: 0.5px solid var(--color-neutral-10); height: 1px; background: none;" />
+    <p><strong>What’s ProPublica?</strong></p>
+    <p>ProPublica is a nonprofit news organization. We write stories that <a href="https://www.propublica.org/about/">hold powerful institutions accountable</a>. All of our stories are rigorously fact-checked, nonpartisan and free to read.</p>
+    <div class="trust-module__cta-container stack stack--spacing-1">
+    <a data-pp-click data-pp-location="custom trust callout" class="trust-module__cta btn" href="#callout">
+        Get in Touch
+    </a>
+    <a data-pp-click data-pp-location="custom trust ethics button" class="trust-module__cta btn" style="background-color: var(--color-neutral-10); color: var(--color-neutral-90);" href="https://www.propublica.org/code-of-ethics">
+        Code of Ethics
+    </a>
+    </div>
+</div>
+
+
+<style>
+.trust-module {
+    position: relative;
+
+    border-top: 1px solid var(--color-neutral-10);
+    border-bottom: 1px solid var(--color-neutral-10);
+    padding: var(--spacing1) 0;
+}
+
+@media screen and (min-width: 0) and (max-width: 78em) {
+    .wide-md:has(.trust-module) {
+        margin-left: auto !important;
+        margin-right: 0 !important;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 78em) {
+    .trust-module {
+        margin-top: -200%;
+    }
+}
+
+.trust-module__icon-container {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) translateY(-50%);
+
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+
+    background-color: var(--color-accent-10);
+    color: var(--color-accent-70);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trust-module p {
+    color: var(--color-text-body);
+    font-family: var(--fonts-sans);
+    font-size: var(--scale-1);
+    line-height: 1.6;
+}
+
+@media screen and (min-width: 78em) {
+    .trust-module p {
+        font-size: var(--scale-2);
+        line-height: var(--line-height-1);
+    }
+}
+
+.trust-module p a {
+    color: inherit;
+}
+
+.trust-module__cta-container {
+    margin-top: 0.8rem;
+}
+
+.trust-module__cta {
+    flex-grow: 1;
+    padding: 0.5rem !important;
+}
+
+
+</style>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
+            
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="11.0"><a id="thecalculator"></a></p>
+        
+    
+                    <h3    data-pp-id="12"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--standard-hed"
+    id="the-car-loan-deferment-calculator"
+    >
+    The Car Loan Deferment Calculator
+</h3>
+
+        
+    
+                    
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="15.0">To calculate what you could owe at the end of your car loan, all you need is your contract, your monthly statement and the dates that you received deferments. Need help finding something? <a href="#wheretolook">Learn where to look</a>.</p>
+        
+            
+    
+    
+    
+                            
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size08 center  wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <style>
+  .lead-in__title {
+    font-size: var(--scale1);
+  }
+</style>
+<a id="deferment-calculator"></a>
+<figure
+  data-pp-click
+  data-pp-view
+  data-pp-location="used-cars-service-post-calculator">
+  <used-car-calculator>
+    <form class="wider-first-column">
+      <div class="column">
+        <fieldset>
+          <div class="input-group">
+            <label
+              for="used-car-calculator-original-loan-amount"
+              class="no-margin-top"
+              >How much was your original loan?
+            </label>
+            <p class="instruction">
+              This is the amount you borrowed when you first got your loan,
+              sometimes called “amount financed.”
+            </p>
+            <used-car-number-input>
+              <div class="number-input-box">
+                &nbsp;$
+                <input
+                  type="text"
+                  name="used-car-calculator-original-loan-amount"
+                  id="used-car-calculator-original-loan-amount"
+                  class="original-loan-amount"
+                  data-bind="originalBalance"
+                  placeholder="20,000"
+                  pattern="^\$?[\d,]{1,8}(\.\d{0,2})?$" />
+              </div>
+            </used-car-number-input>
+
+            <label for="used-car-calculator-loan-interest-rate"
+              >What is your loan’s interest rate?</label
+            >
+            <p class="instruction">
+              If you don't know it, you can use the Annual Percentage Rate (APR)
+              from your loan contract as an approximate.
+            </p>
+            <used-car-number-input suffix="%">
+              <div class="number-input-box">
+                <input
+                  type="text"
+                  name="used-car-calculator-loan-interest-rate"
+                  id="used-car-calculator-loan-interest-rate"
+                  class="loan-interest-rate slightly-less-wide"
+                  data-bind="interestRate"
+                  placeholder="20"
+                  pattern="^\d{1,2}(\.\d{0,2})?%?$" />%&nbsp;
+              </div>
+            </used-car-number-input>
+
+            <label for="used-car-calculator-loan-term"
+              >How many months was the original term of your loan?</label
+            >
+            <p class="instruction">
+              Find this under “number of payments” in your contract.
+            </p>
+            <used-car-number-input>
+              <div class="number-input-box">
+                <input
+                  type="number"
+                  name="used-car-calculator-loan-term"
+                  id="used-car-calculator-loan-term"
+                  class="loan-term less-wide"
+                  data-bind="termMonths"
+                  placeholder="60"
+                  min="10"
+                  max="360" />
+              </div>
+            </used-car-number-input>
+
+            <label for="used-car-calculator-start-date-month"
+              >What month did you make your first payment?</label
+            >
+            <used-car-number-input>
+              <div class="number-input-box">
+                <input
+                  type="number"
+                  name="used-car-calculator-start-date-month"
+                  class="start-date-month less-wide"
+                  data-bind="startMonth"
+                  placeholder="01"
+                  min="1"
+                  max="12" />
+              </div>
+            </used-car-number-input>
+            <used-car-number-input>
+              <div class="number-input-box">
+                <input
+                  type="number"
+                  name="used-car-calculator-start-date-year"
+                  id="used-car-calculator-start-date-year"
+                  class="start-date-year slightly-less-wide"
+                  data-bind="startYear"
+                  placeholder="2020"
+                  min="1900"
+                  max="2100" />
+              </div>
+            </used-car-number-input>
+          </div>
+
+          <fieldset>
+            <legend>Which months did you receive deferments?</legend>
+
+            <p class="instruction">
+              Select each month that you did not make a payment because of a
+              deferment:
+            </p>
+
+            <div class="extension-months select-box"></div>
+
+            <!--
+                      <i>
+                        <img src="./calendar.svg" alt="calendar" />
+                      </i>
+  
+                      <input
+                        type="text"
+                        name="used-car-calculator-extension-months"
+                        class="extension-months"
+                        placeholder="March 2023, April 2023"
+                      />
+                      -->
+          </fieldset>
+        </fieldset>
+      </div>
+      <div class="column align-bottom">
+        <div class="result balloon-payment-result">
+          <p>
+            Your standard monthly payment is
+            <strong class="standard-monthly-payment"></strong>.
+          </p>
+
+          <span
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            class="result-number-grid">
+            <p class="result-number-grid-column">
+              On the last month of the loan, you may owe an additional:
+            </p>
+            <p
+              class="excess-final-payment result-number result-number-grid-column"></p>
+          </span>
+        </div>
+      </div>
+    </form>
+  </used-car-calculator>
+</figure>
+            
+    
+<figcaption class="attribution">
+        <span class="attribution__caption">Note: This tool assumes the borrower paid on time every month that a payment was made and does not account for late fees. The standard monthly payment and final payment calculations are based on a simple interest formula that is common in most used car loans but may not reflect the terms of every loan. Borrowers should use this tool as an estimate. The standard monthly payment may have slight discrepancies depending on how lenders calculate the number of days per month.</span>
+    
+        <span class="attribution__credit">
+        <span class="a11y">Credit: </span>
+        Development by Chris Zubak-Skees for ProPublica. Design by Lucas Waldron.
+    </span>
+    
+    
+    </figcaption>
+
+
+</figure>
+
+            
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="17.0"><a id="wheretolook"></a></p>
+        
+    
+                    <h3    data-pp-id="18"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="where-to-find-information-about-your-car-loan"
+    >
+    Where to find information about your car loan:
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="19.0"><strong>Contract:</strong> If you don’t have a hard copy of your auto loan contract, you should be able to download a digital one from your lender’s website.</p>
+        
+    
+                    
+
+<figure
+    data-pp-id="21"
+    data-pp-blocktype="image"
+    class="bb-image size08 center  wide-sm wrap 
+                ">
+
+    
+
+
+                    
+    
+
+
+    <img
+        class=""
+        alt=""
+        width="1469"
+        height="666"
+        loading="lazy" js-autosizes        src="https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=363&amp;q=80&amp;w=800&amp;s=3aab20aa18f063001c741180b39ec03f"
+        srcset="https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=181&amp;q=80&amp;w=400&amp;s=d84089c74fbf2bfb32452df14eac60f1 400w, https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=363&amp;q=80&amp;w=800&amp;s=3aab20aa18f063001c741180b39ec03f 800w, https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=544&amp;q=80&amp;w=1200&amp;s=e699ed91db9058b34d8b16c5119e90c7 1200w, https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=589&amp;q=80&amp;w=1300&amp;s=945317cec2ce9ff3fde9d97ff73d0ca1 1300w, https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=657&amp;q=80&amp;w=1450&amp;s=6a1c3b09b0111c2a24a665b3f5864632 1450w, https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=725&amp;q=80&amp;w=1600&amp;s=c790e9304bd8edeaa994f9148df31211 1600w, https://img.assets-d.propublica.org/v5/images/usedcars-servicepost-TILAdisclosure.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=907&amp;q=80&amp;w=2000&amp;s=e03b1d564797fc0c6be33df11add0385 2000w"
+                    />
+
+            
+    
+<figcaption class="attribution">
+        <span class="attribution__caption">An excerpt of an Exeter borrower’s contract. What do the boxes in this contract mean? <a href="#definitions">Jump to our definitions.</a></span>
+    
+        <span class="attribution__credit">
+        <span class="a11y">Credit: </span>
+        Obtained by ProPublica
+    </span>
+    
+    
+    </figcaption>
+
+</figure>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="22.0"><strong>Dates of deferments:</strong> This should be the months covered by the deferments. Lenders sometimes send you written notices when they grant you deferments. You can also contact your lender’s customer service team and ask if you don’t remember.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="23.0"><strong>Monthly statement:</strong> Our auto loan calculator is most accurate when you use your loan’s interest rate, which can be slightly different from the APR, or annual percentage rate. You’ll sometimes find the true interest rate on your monthly billing statement.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="24.0">Got more questions? There’s no shame in feeling overwhelmed by the process. Even the experts sympathize.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="25.0">“Auto transactions are notoriously complex and confusing,” said Rosemary Shahan, president and founder of Consumers for Auto Reliability and Safety, an advocacy organization. “There is nothing in life that prepares you for that transaction. It’s unlike any other transaction you ever enter into.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="26.0">Here are answers to some of the most common questions about car loan extensions that came up in our reporting.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="27.0"><a id="faq"></a></p>
+        
+    
+                    <h3    data-pp-id="28"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--standard-hed"
+    id="frequently-asked-questions-about-car-loan-deferments"
+    >
+    Frequently Asked Questions about Car Loan Deferments
+</h3>
+
+        
+    
+                    <h3    data-pp-id="29"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="what-is-a-car-loan-deferment"
+    >
+    What is a car loan deferment?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="30.0">A car loan deferment is when a lender allows you to postpone one or more payments to a later date. Some borrowers said they chose to defer car payments when they faced unexpected expenses, like an illness, hurricane or death in the family. Others simply couldn’t afford their loans. Not all lenders allow you to defer payments, and different lenders have different rules. Some, for example, require you to make a certain number of on-time payments in a row before they will grant you a deferment.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="31.0">Ask your lender what its specific deferment policies are. Get them in writing if you can.</p>
+        
+    
+                    <h3    data-pp-id="32"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="whats-the-difference-between-a-deferment-and-an-extension"
+    >
+    What’s the difference between a deferment and an extension?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="33.0">There is no difference. In fact, the Consumer Financial Protection Bureau, a federal watchdog agency, uses the terms interchangeably. “Deferment,” “deferral” and “extension” all mean basically the same thing: You’re pushing one or more loan payments to a later date.</p>
+        
+    
+                    <h3    data-pp-id="34"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="how-do-car-loan-deferments-work"
+    >
+    How do car loan deferments work?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="35.0">To understand what deferments do, you first have to understand how car loan interest is <em>supposed</em> to work.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="36.0">Most car loans use a “<a href="https://www.documentcloud.org/documents/24401628-louisiana-complaints#document/p23/a2571848"><u>simple
+interest</u></a>”
+formula. This means that although you usually make a car payment once per month, you technically owe a little bit of interest for every single day of the loan. As a result, paying late can cause you to owe more later on.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="37.0">On the other hand, paying early can reduce your balance faster. Imagine you won the lottery tomorrow and paid off the whole loan immediately. That would save you money because you’d pay a lot less in interest over time.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="38.0">Let’s say you have a $15,000 loan with a hefty 25% interest rate that you will pay back over 72 months.</p>
+
+<p data-pp-blocktype="copy" data-pp-id="38.1">If you pay exactly on time, a typical daily simple interest car loan will look like this:</p>
+        
+            
+    
+    
+    
+                            
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size05 center  wide-sm 
+                hide-print
+        ">
+
+    
+
+
+                        <!-- Generated by ai2html v0.115.1 - 2024-07-29 09:24 -->
+<!-- ai file: loans-regular-ai2html-servicepost.ai -->
+<style media="screen,print">
+	#g-loans-regular-ai2html-servicepost-box {
+		max-width:400px;
+        margin:auto;
+	}
+	#g-loans-regular-ai2html-servicepost-box p {
+		margin:0;
+	}
+	#g-loans-regular-ai2html-servicepost-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-loans-regular-ai2html-servicepost-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-loans-regular-ai2html-servicepost-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-loans-regular-ai2html-servicepost-box .g-aiPointText p { white-space: nowrap; }
+	#g-loans-regular-ai2html-servicepost-regular {
+		position:relative;
+		overflow:hidden;
+        margin:auto;
+	}
+	#g-loans-regular-ai2html-servicepost-regular p {
+		font-family:graphik,sans-serif;
+		font-weight:400;
+		line-height:1.2;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:14px;
+		text-align:left;
+		color:	var(--color-text-body);
+		height:auto;
+		position:static;
+	}
+	#g-loans-regular-ai2html-servicepost-regular .g-pstyle0 {
+		font-weight:700;
+		line-height:1.2;
+		color:rgb(0,131,140);
+	}
+	#g-loans-regular-ai2html-servicepost-regular .g-pstyle1 {
+		height:17px;
+		font-size:13px;
+	}
+	#g-loans-regular-ai2html-servicepost-regular .g-pstyle2 {
+		text-align:center;
+	}
+
+	/* Custom CSS */
+	#g-loans-regular-ai2html-servicepost-box > div  {
+	    overflow:visible !important
+    }
+
+</style>
+
+<div id="g-loans-regular-ai2html-servicepost-box" class="ai2html">
+
+	<!-- Artboard: regular -->
+	<div id="g-loans-regular-ai2html-servicepost-regular" class="g-artboard" style="max-width: 350px;max-height: 221px" data-aspect-ratio="1.584" data-min-width="0">
+<div style="padding: 0 0 63.1494% 0;"></div>
+		<img id="g-loans-regular-ai2html-servicepost-regular-img" class="g-loans-regular-ai2html-servicepost-regular-img g-aiImg" alt="" src="https://static.propublica.org/projects/graphics/2024-used-cars/service-post/servicepost-regular.png"/>
+		<div id="g-ai0-1" class="g-text g-aiAbs g-aiPointText" style="top:9.1061%;margin-top:-8.1px;left:5.9345%;width:112px;">
+			<p class="g-pstyle0">Regular Loan</p>
+		</div>
+		<div id="g-ai0-2" class="g-text g-aiAbs g-aiPointText" style="top:20.6%;margin-top:-9px;left:35.0084%;width:68px;">
+			<p class="g-pstyle1">Interest</p>
+		</div>
+		<div id="g-ai0-3" class="g-text g-aiAbs g-aiPointText" style="top:20.6%;margin-top:-9px;left:11.5492%;width:75px;">
+			<p class="g-pstyle1">Principal</p>
+		</div>
+		<div id="g-ai0-4" class="g-text g-aiAbs" style="top:38.0051%;left:49.0014%;margin-left:-42.1429%;width:84.2857%;">
+			<p class="g-pstyle2">Monthly payments are always $404</p>
+		</div>
+	</div>
+
+</div>
+
+<!-- End ai2html - 2024-07-29 09:24 -->
+            
+    
+<figcaption class="attribution">
+        <span class="attribution__caption">Note: This chart assumes that the borrower always paid on time and did not accrue late fees.</span>
+    
+        <span class="attribution__credit">
+        <span class="a11y">Credit: </span>
+        Lucas Waldron/ProPublica
+    </span>
+    
+    
+    </figcaption>
+
+
+</figure>
+
+            
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="40.0">When you start off, more of your payment will count toward interest than principal (the amount you owe excluding interest) each month. That’s normal. Over time, this dynamic switches: By the loan’s endpoint (also known as its “maturity date”), you’ll pay mostly principal until you owe nothing at all. Then you get the title and own the car outright.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="41.0">Deferments can change this equation. Let’s say you move a $404 monthly payment to the end of your loan several years from now. If your lender charges interest on the extension, as many do, you will owe more than $404 at the end of the loan: You will have to pay higher interest charges for the rest of the loan, so your remaining payments won’t be enough to eliminate your debt. You will still owe hundreds, or even thousands, of dollars.</p>
+        
+            
+    
+    
+    
+                            
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size05 center  wide-sm 
+                hide-print
+        ">
+
+    
+
+
+                        <!-- Generated by ai2html v0.115.1 - 2024-07-29 09:42 -->
+<!-- ai file: loans-extensions-ai2html-servicepost.ai -->
+<style media="screen,print">
+	#g-loans-extensions-ai2html-servicepost-box {
+		max-width:400px;
+        margin:auto;
+	}
+	#g-loans-extensions-ai2html-servicepost-box p {
+		margin:0;
+	}
+	#g-loans-extensions-ai2html-servicepost-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-loans-extensions-ai2html-servicepost-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-loans-extensions-ai2html-servicepost-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-loans-extensions-ai2html-servicepost-box .g-aiPointText p { white-space: nowrap; }
+	#g-loans-extensions-ai2html-servicepost-extensions {
+		position:relative;
+		overflow:hidden;
+        margin:auto;
+	}
+	#g-loans-extensions-ai2html-servicepost-extensions p {
+		font-family:graphik,sans-serif;
+		font-weight:400;
+		line-height:17px;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:14px;
+		text-align:left;
+		color:var(--color-text-body);
+		height:auto;
+		position:static;
+	}
+	#g-loans-extensions-ai2html-servicepost-extensions .g-pstyle0 {
+		font-weight:700;
+		line-height:15px;
+		height:15px;
+		color:rgb(207,157,43);
+	}
+	#g-loans-extensions-ai2html-servicepost-extensions .g-pstyle1 {
+		height:17px;
+		font-size:13px;
+	}
+	#g-loans-extensions-ai2html-servicepost-extensions .g-pstyle2 {
+		font-weight:700;
+		line-height:15px;
+		text-align:right;
+	}
+	#g-loans-extensions-ai2html-servicepost-extensions .g-pstyle3 {
+		text-align:right;
+        line-height:15px;
+	}
+
+</style>
+
+<div id="g-loans-extensions-ai2html-servicepost-box" class="ai2html">
+
+	<!-- Artboard: extensions -->
+	<div id="g-loans-extensions-ai2html-servicepost-extensions" class="g-artboard" style="max-width: 350px;max-height: 464px" data-aspect-ratio="0.755" data-min-width="0">
+<div style="padding: 0 0 132.518% 0;"></div>
+		<img id="g-loans-extensions-ai2html-servicepost-extensions-img" class="g-loans-extensions-ai2html-servicepost-extensions-img g-aiImg" alt="" src="https://static.propublica.org/projects/graphics/2024-used-cars/service-post/servicepost-extensions.png"/>
+		<div id="g-ai0-1" class="g-text g-aiAbs g-aiPointText" style="top:4.3392%;margin-top:-8.1px;left:6.2531%;width:198px;">
+			<p class="g-pstyle0">Loan with Two Deferments</p>
+		</div>
+		<div id="g-ai0-2" class="g-text g-aiAbs g-aiPointText" style="top:9.4874%;margin-top:-9px;left:35.2573%;width:68px;">
+			<p class="g-pstyle1">Interest</p>
+		</div>
+		<div id="g-ai0-3" class="g-text g-aiAbs g-aiPointText" style="top:9.4874%;margin-top:-9px;left:11.798%;width:75px;">
+			<p class="g-pstyle1">Principal</p>
+		</div>
+		<div id="g-ai0-4" class="g-text g-aiAbs" style="top:12.0738%;left:11.7484%;width:54.5714%;">
+			<p class="g-pstyle1">Months with deferments<br>(no payment made)</p>
+		</div>
+		<div id="g-ai0-5" class="g-text g-aiAbs" style="top:38.5931%;right:23.8921%;width:37.7143%;">
+			<p class="g-pstyle2">$2,589</p>
+		</div>
+		<div id="g-ai0-6" class="g-text g-aiAbs" style="top:42.5%;right:23.8945%;width:42.8571%;">
+			<p class="g-pstyle3">Final payment</p>
+		</div>
+		<div id="g-ai0-7" class="g-text g-aiAbs" style="top:61.5%;left:14.4923%;width:56.5714%;">
+			<p>After deferments, the next payments are almost entirely interest.</p>
+		</div>
+	</div>
+
+</div>
+
+<!-- End ai2html - 2024-07-29 09:42 -->
+            
+    
+<figcaption class="attribution">
+        <span class="attribution__caption">Note: This chart assumes that the borrower always paid on time and did not accrue late fees.</span>
+    
+        <span class="attribution__credit">
+        <span class="a11y">Credit: </span>
+        Lucas Waldron/ProPublica
+    </span>
+    
+    
+    </figcaption>
+
+
+</figure>
+
+            
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="43.0">This leaves some people with a “balloon payment” — a large lump sum, due when your loan term ends. These balloon payments caught a lot of Exeter borrowers we spoke to by surprise and caused them financial pain.</p>
+        
+    
+                    <h3    data-pp-id="44"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="who-decides-if-i-can-defer-a-car-payment"
+    >
+    Who decides if I can defer a car payment?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="45.0">It’s important to remember that the company selling you the car is often different from the company that will be collecting the payments. In fact, several experts told us that If you decide to take out a loan, you’re under no obligation to choose financing at the dealership, even if you buy the car there.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="46.0">If you’re making monthly car payments, there’s a good chance the dealer “assigned” the contract to an auto lender like Exeter Finance (or Santander Consumer USA or Capital One) after you signed on the dotted line. The lender is the entity you’re now paying back — and the one that might grant you a deferment.</p>
+        
+    
+                    <h3    data-pp-id="47"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="will-deferred-car-payments-cost-me-money"
+    >
+    Will deferred car payments cost me money?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="48.0">Deferments can cost you more money in the long run, but the exact amount is not always obvious to borrowers. As mentioned above, deferments provide a temporary break from monthly payments. But if interest continues to accrue during that reprieve, you will end up paying higher interest charges and then owing more in a lump sum at the end. For Exeter borrowers who received multiple extensions, the final payment totaled thousands of dollars.</p>
+        
+    
+                    <h3    data-pp-id="49"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="should-i-take-a-deferment-on-my-car-loan"
+    >
+    Should I take a deferment on my car loan?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="50.0">Consumer finance experts told us it depends on several factors. Overall, you should think about it in terms of your broader financial health.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="51.0">“It’s not just the cost of the monthly payment — it’s all of this other stuff,” said Dara Duguay, CEO of the nonprofit <a href="https://creditbuildersalliance.org/"><u>Credit Builders
+Alliance</u></a>.  “Can you afford gas? If — and especially if — gas is going to fluctuate up and down?”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="52.0">“It’s tempting to just say, ‘Oh yeah, let’s just add it to the end,’” said John Van Alst, director of the National Consumer Law Center’s <a href="https://www.workingcarsforworkingfamilies.org/">Working Cars for Working Families</a> project. But “if the numbers weren’t working before — unless something’s changed — there’s a real chance the numbers aren’t going to work as you continue to go forward.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="53.0">Some borrowers told us they regretted their decisions to accept deferments. Some didn’t. But nearly everyone we spoke to wished they’d had more information.</p>
+
+<p data-pp-blocktype="copy" data-pp-id="53.1">“I would have tried to make arrangements” like making extra payments, said Natosha Smith, an Exeter borrower living in Georgia whose eight car loan extensions led to a balloon balance of roughly $6,000. “I honestly did not understand the full complexity of the situation.”</p>
+        
+    
+                    <h3    data-pp-id="54"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="what-questions-should-i-ask-before-taking-a-deferment"
+    >
+    What questions should I ask before taking a deferment?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="55.0">If you’re considering deferring a car payment, experts say you need to get as much information about the cost as possible.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="56.0">Pamela Foohey, a University of Georgia law professor who studies subprime lending, said lenders would ideally give borrowers a table explaining what they will owe each month until the end of the loan. She said the table should lay out “exactly what is going to be paid, broken down by principal and interest.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="57.0">Foohey also recommended asking for:</p>
+
+<ul>
+<li><p data-pp-blocktype="copy" data-pp-id="57.1">Your new loan maturity date.</p>
+
+</li>
+<li><p data-pp-blocktype="copy" data-pp-id="57.2">An explanation of any fees or penalties.</p>
+
+</li>
+<li><p data-pp-blocktype="copy" data-pp-id="57.3">Any changes to your monthly payment amount.</p>
+
+</li>
+<li><p data-pp-blocktype="copy" data-pp-id="57.4">A breakdown of what will be going to principal versus interest for
+all future payments.</p>
+
+</li>
+</ul>
+</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="58.0">Get familiar with your other financial obligations, too, said Barry
+Coleman, <span class="mark">vice president of program management and
+education at the <a href="https://www.nfcc.org/"><u>National Foundation for Credit
+Counseling</u></a>. Ask yourself: Will I have to
+skimp on necessities to stay in the car? Is the deferment to cure a
+one-off problem, or am I postponing payment because the car wasn’t
+affordable in the first place?</span></p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="59.0">“Do a budget,” Coleman advised. “Know what your
+expenses are and whether or not an extension is necessary. Maybe you’re
+able to make some adjustments in other parts of your budget, where you
+don’t have to get this extension.”</p>
+        
+    
+                    <h3    data-pp-id="60"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="will-deferring-a-car-payment-hurt-my-credit"
+    >
+    Will deferring a car payment hurt my credit?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="61.0">In most cases, deferments do not negatively affect your credit score. This is because they are not the same as late payments. Instead, they represent a mutual agreement between you and your lender. But be aware that you can hurt your credit by failing to restart payments when they become due again — or by failing to pay off your balloon balance.</p>
+        
+    
+                    <h3    data-pp-id="62"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="i-cant-make-my-car-payment-what-can-i-do-besides-deferring-a-payment"
+    >
+    I can’t make my car payment. What can I do besides deferring a payment?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="63.0">You may have options. Experts we spoke to said the first thing to do is call your lender. Different banks have different repayment policies, and trying to adjust your agreement proactively is often a good bet.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="64.0">“View the extension offer as the beginning of a negotiation,” Foohey said. “It is not the thing that you absolutely have to take.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="65.0">The CFPB also <a href="https://www.consumerfinance.gov/about-us/blog/worried-about-making-your-auto-loan-payments-your-lender-may-have-options-to-help/"><u>lays out a few
+options</u></a>  to avoid deferring a car payment:</p>
+        
+    
+                    
+<ul>
+<li><strong>Ask to change the date your payment is due each month.</strong> For some people, paying off a car loan consistently is all about timing. If it’s more convenient for you to be billed right after you receive a paycheck, tell your lender that. Ask if they can change your due date to better match the rhythm of your income.</li>
+</ul>
+</p>
+        
+    
+                    
+<ul>
+<li><strong>Request a payment plan.</strong> Rather than extend your loan, some lenders will allow you to pay a smaller monthly payment for a while, then increase your bill totals later to balance things out. If you choose to do this, make sure to ask your lender for a written breakdown of how the payment plan will work and how it would change the interest charges.</li>
+</ul>
+</p>
+        
+    
+                    
+<ul>
+<li><strong>Refinance your loan.</strong> Refinancing means looking for a bank that will buy the debt from your auto lender and continue working with you at a lower interest rate. Working out an arrangement like this can bring down both your monthly payment and the total amount you’ll owe in the long term. But be aware that refinancing often requires a steady payment history or good credit.</li>
+</ul>
+</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="69.0">There are also lots of credit counseling nonprofits across the U.S. that can help advise you.</p>
+
+<ul>
+<li><p data-pp-blocktype="copy" data-pp-id="69.1">The <a href="https://creditbuildersalliance.org/find-a-member/"><u>Credit Builders
+Alliance</u></a> has
+more than 600 members and a handy map to find one near you.</p>
+
+</li>
+<li><p data-pp-blocktype="copy" data-pp-id="69.2">The <a href="https://www.nfcc.org/credit-counseling"><u>National Foundation for Credit
+Counseling</u></a> is the
+country’s oldest nonprofit “dedicated to improving people’s
+financial wellbeing.”</p>
+
+</li>
+</ul>
+</p>
+        
+    
+                    <h3    data-pp-id="70"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="what-should-i-do-if-i-cant-afford-to-pay-back-interest-on-my-deferment"
+    >
+    What should I do if I can’t afford to pay back interest on my deferment?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="71.0">If you’ve made a lot of on-time payments in a row, there’s a chance you’ve improved your credit score along the way. In that case, consumer finance experts say it’s worth reaching out to a bank or credit union to see if they might refinance your loan.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="72.0">Not everyone can do this, though. Once the true cost of car loan deferments became clear to some of the borrowers we interviewed, they saw no choice but to let their car be repossessed. Repossessions and late payments hurt your credit score, and damaged credit can keep you from getting a low interest rate on your next car loan.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="73.0">One silver lining: If you surrender your car, it’s possible you won’t end up owing the total remainder of the loan. That’s because after a lender auctions it off, they’re usually required to charge you only the difference between what you owe and what they got at auction. But beware: If your loan remainder was bigger than the car’s actual value, there’s a chance you could still owe a sizable chunk of change after this.</p>
+        
+    
+                    <h3    data-pp-id="74"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--explanatory-hed"
+    id="i-think-my-lender-didnt-give-me-information-they-were-supposed-to-is-there-anything-i-can-do"
+    >
+    I think my lender didn’t give me information they were supposed to. Is there anything I can do?
+</h3>
+
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="75.0">First, you can try to work something out with them. <a href="https://www.consumerfinance.gov/ask-cfpb/what-should-i-do-if-i-think-an-auto-dealer-or-lender-is-breaking-the-law-en-719/"><u>According to
+CFPB</u></a>,
+“Companies can usually answer questions unique to your situation and
+more specific to the products and services they offer. Keep all the
+documents, messages, voicemails, and records of your interactions with
+the dealer or lender.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="76.0">If that doesn’t work, you have the right to file a complaint to state
+and federal regulators.</p>
+
+<ul>
+<li><a href="https://www.consumerfinance.gov/complaint/"><u>The CFPB accepts complaints
+here</u></a>.</li>
+</ul>
+</p>
+        
+    
+                    
+<ul>
+<li>You can use <a href="https://www.naag.org/find-my-ag/"><u>this database</u></a>
+to find your attorney general’s contact information. In addition to
+fielding complaints, your attorney general can sometimes help answer
+questions about your state’s car loan laws.</li>
+</ul>
+</p>
+        
+    
+                    
+<ul>
+<li>If you’d like to find an attorney with affordable fees, CFPB
+maintains a <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-find-an-attorney-in-my-state-en-1549/"><u>state-by-state list of them
+here</u></a>.</li>
+</ul>
+</p>
+        
+    
+                    
+<ul>
+<li>CFPB also has a searchable “<a href="https://www.consumerfinance.gov/consumer-tools/auto-loans/answers/know-your-rights/"><u>know your
+rights</u></a>”
+database that answers lots of questions about car loans.</li>
+</ul>
+</p>
+        
+    
+                    
+<ul>
+<li>Finally, if you want to understand the federal laws that apply to
+your car loan, the National Automobile Dealers Association has an
+<a href="https://www.nada.org/media/3211/download?inline"><u>easy-to-understand
+primer</u></a>.</li>
+</ul>
+</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="81.0">AAuto contracts often include class-action lawsuit waivers and arbitration provisions. These can make it hard for people to sue lenders.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="82.0">For this reason, a lot of recent legal action against auto lenders has come from the CFPB and state attorneys general. When those agencies sue a company, it can sometimes result in a monetary settlement for people harmed. It can also wipe away borrowers’ debt and prevent their cars from getting repossessed.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="83.0"><a id="definitions"></a></p>
+        
+    
+                    <h3    data-pp-id="84"
+    data-pp-blocktype="heading"
+    class="bb-heading bb-heading--standard-hed"
+    id="common-car-loan-terms"
+    >
+    Common Car Loan Terms
+</h3>
+
+        
+    
+                    <aside
+    data-pp-id="85"
+    data-pp-blocktype="aside"
+    class="bb-aside size08 left  wide-sm wrap
+                ">
+
+    <p><strong>Amortization:</strong> The process of reducing a debt through regular payments.</p>
+<p><strong>Amount financed:</strong> The amount of money you've borrowed.</p>
+<p><strong>Amount of payments:</strong> What you'll owe each time a payment is due.</p>
+<p><strong>Annual percentage rate:</strong> The cost of your loan, including interest rate and fees. It's usually expressed as a percentage.</p>
+<p><strong>Balloon payment:</strong> A one-time, lump sum charge including any money you still owe on principal or fees, due at your loan's maturity date. This is typically the result of extensions and late payments.</p>
+<p><strong>Debt-to-income ratio:</strong> The amount of money you owe for housing, credit card and all other loan payments divided by the amount of money you make each month (before taxes). </p>
+<p><strong>Down payment:</strong> The up-front payment you put down when you buy your car. The more you can put down, the cheaper your loan will be in the long run.</p>
+<p><strong>Extension/deferment:</strong> A postponement of one or more payments on your car loan.</p>
+<p><strong>Finance charge:</strong> The total dollar amount of interest you'll owe if you make every payment on time.</p>
+<p><strong>Interest:</strong> The cost of borrowing money. This is usually a percentage of the unpaid debt that accumulates on a daily, monthly or annual basis.</p>
+<p><strong>Loan term:</strong> The amount of time it will take to completely pay off your loan. Usually measured in months: 48-, 60- and 72-month terms are common.</p>
+<p><strong>Loan-to-value ratio:</strong> The amount you borrowed to purchase the car divided by the car's current value.</p>
+<p><strong>Negative equity:</strong> When the amount you owe to your lender exceeds the value of your car. This is also called being "upside-down" or "underwater" on your loan.</p>
+<p><strong>Number of payments:</strong> This usually equals the number of months your loan will last. Occasionally, car loan payments are due every two weeks. You can make sure by checking for the term "monthly" under "When Payments Are Due" in your Truth-in-Lending Disclosures. </p>
+<p><strong>Principal:</strong> The total dollar amount you borrowed, and have not yet repaid, before interest is calculated. If you bought a car for cash, you'd be paying just the principal.</p>
+<p><strong>Refinancing:</strong> The process of taking out a new loan — sometimes with your current lender, sometimes with a new one — to pay for your existing one. People often refinance to get more favorable terms, like a lower APR.</p>
+<p><strong>Repossession:</strong> When a lender seizes your vehicle because you've missed several payments, typically the equivalent of four months. Lenders have different rights of repossession in different states.</p>
+<p><strong>Total of payments:</strong> The combination of the amount of money you borrowed and what you'll owe in interest on the loan.</p>
+<p><strong>Total sale price:</strong> The total of payments plus the down payment you made.</p>
+
+
+</aside>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="86.0"><a id="callout"></a></p>
+        
+    
+                    
+    
+    
+    <figure
+        data-pp-id="89"
+        data-pp-blocktype="callout"
+        data-pp-location="callout"
+        callout-slug="help-propublica-investigate-the-world-of-subprime-car-loans"
+        class="bb-callout size08 center  wide-sm wrap | hide-print">
+
+        
+<div class="lead-in">
+            <p class="lead-in__title" id="help-propublica-investigate-the-world-of-subprime-car-loans">Help ProPublica Investigate the World of Subprime Car Loans</p>
+                <div class="lead-in__intro">
+            <p>More and more people are struggling to pay back loans on their used cars. Our journalists want to hear from the people who know the industry best.</p>
+
+        </div>
+    </div>
+
+
+        <div class="bb-callout__wrapper">
+            <script type="text/javascript" src="https://propublica.jotform.com/jsform/232506235463856"></script>
+        </div>
+
+        <div class="bb-callout__overlay | -js-hide"></div>
+        <a href="#"
+            class="bb-callout__expand-button | btn size02 center -js-hide"
+            style="--button-color: var(--color-accent-70)"
+            data-pp-view data-pp-category="get involved" data-pp-action="expand"
+        >Expand</a>
+
+    </figure>
+
+    
+            
+    
+                    <div class="article-body__bottom-notes" data-pp-location="bottom-note">
+                                    
+
+                                    
+        <div class="article-body__note article-body__note--contributor-line" data-pp-location="bottom-note" >
+                        <p>Development by Chris Zubak-Skees. Research by Sophia Kovatch.</p>
+
+        </div>
+
+    
+            </div><!-- end .article-body__bottom-notes -->
+        
+    </div>
+
+    <footer class="article-footer" data-pp-location="article footer">
+        
+    
+    <div class="topics-list  size02 out02 wrap left wide-md | hide-print">
+        <p class="topics-list__label"><strong>Filed under —</strong></p>
+        <ul class="topics-list__group">
+                            <li class="topics-list__topic">
+                    <a class="topics-list__topic-link" href="https://www.propublica.org/topics/debt">Debt</a>
+                </li>
+                    </ul>
+    </div>
+        
+        <div class="rich-byline-group">
+
+
+
+
+
+
+    <div class="rich-byline">
+
+                                            <a class="rich-byline__headshot" href="https://www.propublica.org/people/byard-duncan"><img alt="Portrait of Byard Duncan" src="https://assets-c3.propublica.org/images/bio/_oneOne75w/Byard-Duncan_1x1.jpg" width="75" height="75" srcset="https://assets-c3.propublica.org/images/bio/_oneOne75w/Byard-Duncan_1x1.jpg 75w, https://assets-c3.propublica.org/images/bio/_oneOne150w/Byard-Duncan_1x1.jpg 150w" loading="lazy"/></a>
+                        <div class="rich-byline__info">
+                <a class="rich-byline__name" href="https://www.propublica.org/people/byard-duncan">Byard Duncan</a>
+                                    <p class="rich-byline__bio-short">Byard Duncan is an engagement reporter at ProPublica.</p>
+
+                                <ul class="rich-byline__contact-list">
+                                        <li class="rich-byline__contact-item">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#b8dac1d9cadc96dccdd6dbd9d6f8c8cad7c8cddad4d1dbd996d7cadf">
+                            <span class="icon">
+                                
+<svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title>Mail</title>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
+</svg>
+                            </span>
+                            <span class="__cf_email__" data-cfemail="63011a0211074d07160d00020d2313110c1316010f0a00024d0c1104">[email&#160;protected]</span>
+                        </a>
+                    </li>
+                                                                                <li class="rich-byline__contact-item">
+                        <a title="Twitter" href="https://twitter.com/byardduncan">
+                            <span class="icon">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <title>X</title>
+    <path d="M18.2439 2.25H21.5532L14.3251 10.5094L22.8282 21.75H16.172L10.9548 14.9344L4.99229 21.75H1.67822L9.40791 12.9141L1.25635 2.25H8.08135L12.7923 8.47969L18.2439 2.25ZM17.0813 19.7719H18.9142L7.08291 4.125H5.11416L17.0813 19.7719Z"/>
+</svg>
+                            </span>
+                            @byardduncan
+                        </a>
+                    </li>
+                                                            <li class="rich-byline__contact-item">
+                        <a title="Phone" href="tel:401-429-3767">                            <span class="icon">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Message</title>
+    <path fill="currentColor" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+</svg>
+                            </span>
+                            401-429-3767
+                        </a>
+                    </li>
+                                                            <li class="rich-byline__contact-item">
+                        <a href="https://signal.me/#p/+14014293767">
+                            <span class="icon" title="Signal (Secure)">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Lock</title>
+    <rect fill="currentColor" x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+    <path d="M7 11V7a5 5 0 0110 0v4"></path>
+</svg>
+                            </span>
+                            Signal: 401-429-3767
+                        </a>
+                    </li>
+                                    </ul> <!-- end .rich-byline__contact-list -->
+            </div> <!-- end .rich-byline__info -->
+
+        
+    </div> <!-- end .rich-byline -->
+
+
+
+
+
+
+    <div class="rich-byline">
+
+                                            <a class="rich-byline__headshot" href="https://www.propublica.org/people/ryan-gabrielson"><img alt="Portrait of Ryan Gabrielson" src="https://assets-c3.propublica.org/images/bio/_oneOne75w/ryan-gabrielson-1000x1000.jpg" width="75" height="75" srcset="https://assets-c3.propublica.org/images/bio/_oneOne75w/ryan-gabrielson-1000x1000.jpg 75w, https://assets-c3.propublica.org/images/bio/_oneOne150w/ryan-gabrielson-1000x1000.jpg 150w" loading="lazy"/></a>
+                        <div class="rich-byline__info">
+                <a class="rich-byline__name" href="https://www.propublica.org/people/ryan-gabrielson">Ryan Gabrielson</a>
+                                    <p class="rich-byline__bio-short">Ryan Gabrielson is a reporter for ProPublica covering health care.</p>
+
+                                <ul class="rich-byline__contact-list">
+                                        <li class="rich-byline__contact-item">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#bbc9c2dad595dcdad9c9d2ded7c8d4d5fbcbc9d4cbced9d7d2d8da95d4c9dc">
+                            <span class="icon">
+                                
+<svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title>Mail</title>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
+</svg>
+                            </span>
+                            <span class="__cf_email__" data-cfemail="26545f474808414744544f434a554948665654495653444a4f454708495441">[email&#160;protected]</span>
+                        </a>
+                    </li>
+                                                                                <li class="rich-byline__contact-item">
+                        <a title="Twitter" href="https://twitter.com/ryangabrielson">
+                            <span class="icon">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <title>X</title>
+    <path d="M18.2439 2.25H21.5532L14.3251 10.5094L22.8282 21.75H16.172L10.9548 14.9344L4.99229 21.75H1.67822L9.40791 12.9141L1.25635 2.25H8.08135L12.7923 8.47969L18.2439 2.25ZM17.0813 19.7719H18.9142L7.08291 4.125H5.11416L17.0813 19.7719Z"/>
+</svg>
+                            </span>
+                            @ryangabrielson
+                        </a>
+                    </li>
+                                                            <li class="rich-byline__contact-item">
+                        <a title="Phone" href="tel:510-990-6308">                            <span class="icon">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Message</title>
+    <path fill="currentColor" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+</svg>
+                            </span>
+                            510-990-6308
+                        </a>
+                    </li>
+                                                            <li class="rich-byline__contact-item">
+                        <a href="https://signal.me/#p/+19174551713">
+                            <span class="icon" title="Signal (Secure)">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Lock</title>
+    <rect fill="currentColor" x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+    <path d="M7 11V7a5 5 0 0110 0v4"></path>
+</svg>
+                            </span>
+                            Signal: 917-455-1713
+                        </a>
+                    </li>
+                                    </ul> <!-- end .rich-byline__contact-list -->
+            </div> <!-- end .rich-byline__info -->
+
+        
+    </div> <!-- end .rich-byline -->
+
+
+
+
+
+
+    <div class="rich-byline">
+
+                                            <a class="rich-byline__headshot" href="https://www.propublica.org/people/lucas-waldron"><img alt="Portrait of Lucas Waldron" src="https://assets-c3.propublica.org/images/bio/_oneOne75w/20190703-lucas-waldron-sized.jpg" width="75" height="75" srcset="https://assets-c3.propublica.org/images/bio/_oneOne75w/20190703-lucas-waldron-sized.jpg 75w, https://assets-c3.propublica.org/images/bio/_oneOne150w/20190703-lucas-waldron-sized.jpg 150w" loading="lazy"/></a>
+                        <div class="rich-byline__info">
+                <a class="rich-byline__name" href="https://www.propublica.org/people/lucas-waldron">Lucas Waldron</a>
+                                    <p class="rich-byline__bio-short">Lucas Waldron is a graphics editor at ProPublica.</p>
+
+                                <ul class="rich-byline__contact-list">
+                                        <li class="rich-byline__contact-item">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#d1bda4b2b0a2ffa6b0bdb5a3bebf91a1a3bea1a4b3bdb8b2b0ffbea3b6">
+                            <span class="icon">
+                                
+<svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title>Mail</title>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
+</svg>
+                            </span>
+                            <span class="__cf_email__" data-cfemail="402c352321336e37212c24322f2e0030322f3035222c2923216e2f3227">[email&#160;protected]</span>
+                        </a>
+                    </li>
+                                                                                <li class="rich-byline__contact-item">
+                        <a title="Twitter" href="https://twitter.com/lhwaldron">
+                            <span class="icon">
+                                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <title>X</title>
+    <path d="M18.2439 2.25H21.5532L14.3251 10.5094L22.8282 21.75H16.172L10.9548 14.9344L4.99229 21.75H1.67822L9.40791 12.9141L1.25635 2.25H8.08135L12.7923 8.47969L18.2439 2.25ZM17.0813 19.7719H18.9142L7.08291 4.125H5.11416L17.0813 19.7719Z"/>
+</svg>
+                            </span>
+                            @lhwaldron
+                        </a>
+                    </li>
+                                                                            </ul> <!-- end .rich-byline__contact-list -->
+            </div> <!-- end .rich-byline__info -->
+
+        
+    </div> <!-- end .rich-byline -->
+
+
+</div> <!-- end .rich-byline-group -->
+    </footer>
+
+    </article>
+    
+    <div class="post-article" data-pp-location="post-article">
+
+    </div><!-- end .post-article -->
+
+</main><!-- end .content -->
+
+        
+
+<div class="topics-band | hide-print" data-pp-location="recirc more in topic">
+    <strong class="topics-band__heading">
+        <a href="https://www.propublica.org/topics/debt" class="link-style--no-decoration link-style--hover-underline">More in Debt</a>
+        <div class="icon">
+            
+
+<svg role="img" xmlns="http://www.w3.org/2000/svg" fill="none" height="16" viewBox="0 0 16 16" width="16">
+    <title>Caret</title>
+    <path clip-rule="evenodd" d="m9.5858 8.00008-5.29289-5.2929 1.41421-1.41421 6.70708 6.70711-6.70708 6.70712-1.41421-1.4142z" fill="currentColor" fill-rule="evenodd"/>
+</svg>
+        </div>
+    </strong>
+
+    <ul class="topics-band-group | stack stack--row stack--spacing-gutter | scrollable-overflow scrollable-overflow--snap scrollable-overflow--full-below-xl">
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=a068e3b71d2a5ca02bb2a22b75fd1c88 400w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=7e6bea4a90a7f78514698ecfaa44ced9 800w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=f2ec51d3b1ae1b50b6e0980f11eac881 1200w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=16c635c97343dd423302623163156dcb 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">
+                                    One of the Nation’s Largest Auto Lenders Told Customers, “We’re Here to Help.” Then It Took Their Money and Their Cars.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            CarMax partner Exeter Finance makes high-interest loans to people with troubled financial histories. It allows borrowers to skip payments but often adds thousands of dollars in new charges — costs that customers say Exeter didn’t tell them about.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/ryan-gabrielson">Ryan Gabrielson</a> and <a class="name" href="https://www.propublica.org/people/byard-duncan">Byard Duncan</a>,             <time class="timestamp" datetime="2024-09-12EDT05:00">Sept. 12, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-predatory-lending-lawsuit-sovereign-immunity">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/240802_LacduFlambeauDrone_0351_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=3380edc9600c7c2945949e09aa447ac3 400w, https://img.assets-d.propublica.org/v5/images/240802_LacduFlambeauDrone_0351_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=befbf059b2791cb655792905f89b8a1b 800w, https://img.assets-d.propublica.org/v5/images/240802_LacduFlambeauDrone_0351_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=fd8283acafedc5e1e1787a381f55269a 1200w, https://img.assets-d.propublica.org/v5/images/240802_LacduFlambeauDrone_0351_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=844d7b7a645d3580364f2dc95d79233a 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-predatory-lending-lawsuit-sovereign-immunity">
+                                    A Wisconsin Tribe Built a Lending Empire Charging 600% Annual Rates to Borrowers
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The Lac du Flambeau tribe is at the center of a $1 billion class-action settlement that comes after years of fending off claims of predatory lending practices.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/megan-omatz">Megan O’Matz</a> and <a class="name" href="https://www.propublica.org/people/joel-jacobs">Joel Jacobs</a>,             <time class="timestamp" datetime="2024-08-13EDT05:00">Aug. 13, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/why-title-lenders-excluded-chapter-13-bankruptcy-georgia">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Lead-final_2023-07-10-163327_iciq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6455&amp;fp-y=0.3642&amp;h=267&amp;q=75&amp;w=400&amp;s=793842dd1d69fa0c7a71ddacafef7a88 400w, https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Lead-final_2023-07-10-163327_iciq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6455&amp;fp-y=0.3642&amp;h=533&amp;q=75&amp;w=800&amp;s=eee9579a9230aa6f5e1e1379da0d6357 800w, https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Lead-final_2023-07-10-163327_iciq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6455&amp;fp-y=0.3642&amp;h=800&amp;q=75&amp;w=1200&amp;s=d4cf87c109cef7e1c900bcf93cf96803 1200w, https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Lead-final_2023-07-10-163327_iciq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6455&amp;fp-y=0.3642&amp;h=1067&amp;q=75&amp;w=1600&amp;s=4328a7f177d54de119dbbc02367f6187 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-title-pawn-trap">The Title Pawn Trap</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/why-title-lenders-excluded-chapter-13-bankruptcy-georgia">
+                                    TitleMax Demands High-Interest Payments From Borrowers in Bankruptcy
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            In Georgia, borrowers looking to alleviate debt through Chapter 13 bankruptcy can’t escape their high-interest title pawns thanks to a legal loophole that TitleMax helped secure.
+                    </p>
+
+        <p class="story-card__byline">
+            by <span class="name">Margaret Coker</span>, <a href="https://thecurrentga.org">The Current</a>, and <a class="name" href="https://www.propublica.org/people/joel-jacobs">Joel Jacobs</a> and <a class="name" href="https://www.propublica.org/people/mollie-simon">Mollie Simon</a>, ProPublica, illustrations by <span class="name">Laila Milevski</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2023-07-13EDT05:00">July 13, 2023, 5 a.m. EDT</time>
+        </p>
+
+                <p class="story-card__unit">Local Reporting Network</p>
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/how-we-measured-title-lending-industry-georgia">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Titlemax_2023-07-12-210743_nubq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=de7dddd0fbfc3926cd4a5add5761659d 400w, https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Titlemax_2023-07-12-210743_nubq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=1d58545290c70f2a0b5cd566634b674a 800w, https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Titlemax_2023-07-12-210743_nubq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=2e3d2883553d9882d3d126871f85c444 1200w, https://img.assets-d.propublica.org/v5/images/20230713-Title-Lending-Bankruptcy-Titlemax_2023-07-12-210743_nubq.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=8c5fb6ef7c4a7d310c37e780eceb3ef4 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-title-pawn-trap">The Title Pawn Trap</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/how-we-measured-title-lending-industry-georgia">
+                                    How We Measured the Title Lending Industry in Georgia
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            No statewide agency monitors Georgia’s high-interest title lenders, so we used a variety of data sources to reveal the scope of the industry and its impact on customers who file for bankruptcy.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/joel-jacobs">Joel Jacobs</a>, ProPublica, and <span class="name">Margaret Coker</span>, <a href="https://thecurrentga.org">The Current</a>,             <time class="timestamp" datetime="2023-07-13EDT04:59">July 13, 2023, 4:59 a.m. EDT</time>
+        </p>
+
+                <p class="story-card__unit">Local Reporting Network</p>
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/louisiana-road-home-debt-freed">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20230411-Road-Home-Reimbursement-1.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=554971de09cfc93ba36b714d1a465355 400w, https://img.assets-d.propublica.org/v5/images/20230411-Road-Home-Reimbursement-1.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=6441a82242f0ec9823259b957a429eb2 800w, https://img.assets-d.propublica.org/v5/images/20230411-Road-Home-Reimbursement-1.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=bfb0a5ad0531ba4012099aa0d7b70a4c 1200w, https://img.assets-d.propublica.org/v5/images/20230411-Road-Home-Reimbursement-1.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=622837f7eb3c07f8fe3ff902dc862fe3 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/disaster-after-disaster">Disaster After Disaster</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/louisiana-road-home-debt-freed">
+                                    Thousands of Katrina Survivors Were Freed From Debt to the State. Those Who Already Paid Are Out of Luck.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The state said it was no longer suing residents who had improperly used hurricane recovery money. That doesn’t change anything for the 425 who already paid.
+                    </p>
+
+        <p class="story-card__byline">
+            by <span class="name">Richard A. Webster</span>, <a href="https://veritenews.org/">Verite News</a>, and <span class="name">David Hammer</span>, <a href="https://www.wwltv.com/">WWL-TV</a>,             <time class="timestamp" datetime="2023-04-11EDT18:00">April 11, 2023, 6 p.m. EDT</time>
+        </p>
+
+                <p class="story-card__unit">Local Reporting Network</p>
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/how-gop-leaders-block-title-lending-reform-georgia">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20230404-Title-Legislation-Lead-2.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=0c76518febcb3b48bb733aad74dbc7be 400w, https://img.assets-d.propublica.org/v5/images/20230404-Title-Legislation-Lead-2.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=4856743cdcc56fad188bb8da14749ee2 800w, https://img.assets-d.propublica.org/v5/images/20230404-Title-Legislation-Lead-2.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=35ba516e70c24a0213b5e5e23752b1b4 1200w, https://img.assets-d.propublica.org/v5/images/20230404-Title-Legislation-Lead-2.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=6b2dcc44dc20ddc5d2fde9578d53d18c 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-title-pawn-trap">The Title Pawn Trap</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/how-gop-leaders-block-title-lending-reform-georgia">
+                                    The Powerful Forces Keeping High Interest Title Lending Alive in Georgia
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            TMX Finance and Select Management Resources, the owners of two major title lending brands, have been cozying up to Georgia lawmakers in a position to bottleneck industry reform.
+                    </p>
+
+        <p class="story-card__byline">
+            by <span class="name">Margaret Coker</span>, <a href="https://thecurrentga.org">The Current</a>, and <a class="name" href="https://www.propublica.org/people/mollie-simon">Mollie Simon</a>, ProPublica,             <time class="timestamp" datetime="2023-04-04EDT05:00">April 4, 2023, 5 a.m. EDT</time>
+        </p>
+
+                <p class="story-card__unit">Local Reporting Network</p>
+            </div>
+</div>
+            </ul>
+</div>
+
+
+
+    
+<div class="most-read | hide-print" data-pp-location="most read">
+
+    <strong class="most-read__heading">Most Read</strong>
+
+    <ol class="most-read-group">
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/saudi-officials-may-have-assisted-911-hijackers-new-evidence-suggests">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-50705429_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=e12342aba97a0fe93bec2a5bff48b890 400w, https://img.assets-d.propublica.org/v5/images/GettyImages-50705429_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=33a40489b3064eac0e4b4955f23319ae 800w, https://img.assets-d.propublica.org/v5/images/GettyImages-50705429_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=6dc97509af7b038638e925802d41d376 1200w, https://img.assets-d.propublica.org/v5/images/GettyImages-50705429_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=bf1b5da34117caae838c8f7eec697683 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/saudi-officials-may-have-assisted-911-hijackers-new-evidence-suggests">
+                                    At Least Two Saudi Officials May Have Deliberately Assisted 9/11 Hijackers, New Evidence Suggests
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Newly revealed information also raises questions about whether the FBI and CIA mishandled or downplayed evidence of the kingdom’s possible ties to the plotters.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/tim-golden">Tim Golden</a>,             <time class="timestamp" datetime="2024-09-11EDT05:00">Sept. 11, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/ambetter-ghost-network-consequences">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=9b0e51e478794a4d2eb606ddeadd80cb 400w, https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=ff353e9811d1b179c34a0ad7c858efa4 800w, https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=8d78bcd53b2360c65c324d244f1d7468 1200w, https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=3d11b33658d4efbc64ae4c0e83a696d9 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/americas-mental-barrier">America’s Mental Barrier</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/ambetter-ghost-network-consequences">
+                                    “I Don’t Want to Die”: Needing Mental Health Care, He Got Trapped in His Insurer’s Ghost Network
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Ravi Coutinho bought a health insurance plan thinking it would deliver on its promise of access to mental health providers. But even after 21 phone calls and multiple hospitalizations, no one could find him a therapist.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/max-blau">Max Blau</a>, illustrations by <span class="name">Vanessa Saba</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-09-08EDT06:05">Sept. 8, 6:05 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+                        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/national-debt-trump">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-c3.propublica.org/images/articles/20210114-trump-deficit-1x1.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=0e60d90543df8b4989af5ec5cc733ca4 105w, https://img.assets-c3.propublica.org/images/articles/20210114-trump-deficit-1x1.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=e4aa97b6956735686d5f910733a916cb 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/a-closer-look">A Closer Look</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/national-debt-trump">
+                                    Trump Built a National Debt So Big That It’ll Weigh Down the Economy for Years
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The “King of Debt” promised to reduce the national debt — then his tax cuts made it surge. Add in the pandemic, and he oversaw the third-biggest deficit increase of any president.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/allan-sloan">Allan Sloan</a>, ProPublica, and <span class="name">Cezary Podkul</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2021-01-14EST05:00">Jan. 14, 2021, 5 a.m. EST</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/nypd-tossed-out-police-misconduct-discipline-cases-edward-caban">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/h_16169502.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=d68e76ccc8fe7db3dc880844bc8689d3 105w, https://img.assets-d.propublica.org/v5/images/h_16169502.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=c08a11a8f5648936aed243c08adf1866 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-nypd-files">The NYPD Files</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/nypd-tossed-out-police-misconduct-discipline-cases-edward-caban">
+                                    The NYPD Is Tossing Out Hundreds of Misconduct Cases — Including Stop-and-Frisks — Without Even Looking at Them
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The department has killed more than 400 cases of alleged misconduct this year that an oversight board had investigated and substantiated. It’s part of a lax attitude toward discipline under the current police commissioner, Edward Caban, critics say.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/eric-umansky">Eric Umansky</a>,             <time class="timestamp" datetime="2024-09-11EDT12:35">Sept. 11, 12:35 p.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/russell-maze-nashville-medical-examiner-recants-testimony">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/nashville-conviction-review-units-impact_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=de9ffdf0a19df4f6996cfbadd8877683 105w, https://img.assets-d.propublica.org/v5/images/nashville-conviction-review-units-impact_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=e0a91abf27c6dd5f48d095efeec807db 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/russell-maze-nashville-medical-examiner-recants-testimony">
+                                    Medical Examiner, Whose Testimony Helped Convict a Man in 2004 of Killing His Baby, Now Says He Was Wrong
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The former Nashville medical examiner has recanted his testimony that Russell Maze’s son had died of shaken baby syndrome, joining the DA’s office in now saying a crime never occurred. Yet Maze could still spend the rest of his life in prison.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/pamela-colloff">Pamela Colloff</a>,             <time class="timestamp" datetime="2024-09-10EDT10:30">Sept. 10, 10:30 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+            </ol> <!-- end .most-read-group -->
+
+</div> <!-- end .most-read -->
+
+
+
+    
+<style>
+
+    /* re-assert som CSS Custom Properties from v5 */
+    .admin-shortcuts {
+        --fonts-sans: "Graphik", sans-serif;
+        --scale0: 1rem;
+        --scale-1: 13px;
+        --scale-2: 11px;
+        --scale-3: 9px;
+        --spacing-2: 4px;
+        --spacing-1: 8px;
+        --spacing0: 16px;
+        --spacing1: 24px;
+        --spacing2: 32px;
+        --spacing3: 64px;
+    }
+
+    .admin-shortcuts {
+        position: fixed;
+        z-index: 10000;
+        bottom: 0;
+        right: var(--spacing0);
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        gap: var(--spacing0);
+        padding: var(--spacing-1) var(--spacing0);
+        background-color: black;
+        color: white;
+        font-size: var(--scale-1);
+        font-family: var(--fonts-sans);
+        border-radius: 0.25rem 0.25rem 0 0;
+    }
+
+    .admin-shortcuts__link {
+        display: inline-block;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        gap: 0.33em;
+    }
+
+    .admin-shortcuts__user:before {
+        content: "";
+        width: 0.66em;
+        height: 0.66em;
+        border-radius: 100%;
+        background-color: #14b84f; /* green 50 */
+    }
+
+    .admin-shortcuts__user {
+        padding-right: calc(var(--spacing-2) * 4);
+        border-right: 1px solid hsla(0, 0%, 100%, 0.2);
+    }
+
+    .admin-shortcuts__user:before,
+    .admin-shortcuts__icon {
+        align-self: center;
+    }
+
+    .admin-shortcuts__icon {
+        width: 1.1em;
+        height: 1.1em;
+    }
+</style>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" class="svelte-config">
+                            {"componentName":"SiteFooter","props":{"newsletterSignupProps":{"source":"https://www.propublica.org/","region":"national"}},"contextArray":[]}
+                        </script>
+                        <footer class="site-footer hide-print svelte-m9jkvx" id="site-footer" data-pp-location="footer"><div class="site-footer__section-newsletter svelte-m9jkvx"><div class="site-footer__newsletter-wrap svelte-m9jkvx"><strong class="site-footer__newsletter-heading svelte-m9jkvx" data-svelte-h="svelte-1f8pah3">Stay informed with the Daily Digest.</strong> <div class="newsletter-signup__input-wrap svelte-m9jkvx"><form class="newsletter-signup" action="https://signup.propublica.org/newsletter/turing" method="post" name="newsletterSignup"><div role="region" aria-live="polite" class="newsletter-signup__feedback" data-svelte-h="svelte-2nawdb"><p class="newsletter-signup__error-message"></p></div> <div class="newsletter-signup__input-wrap newsletter-signup__input-wrap--null svelte-10wydf7"><span class="icon"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Mail</title><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span> <label for="site-footer-signup" class="a11y">Email Address:</label> <input class="newsletter-signup__input-text svelte-10wydf7" type="email" placeholder="Enter your email" id="site-footer-signup" name="email" onfocus="recaptchaInit()" required> <div class="newsletter-signup__submit-btn-wrapper svelte-10wydf7"> <button class="button shape--circle  button-is-icon-only  svelte-1qpwxqa" data-pp-skip="false" style="--button-bg-color: transparent; --button-border: none; --button-color: var(--color-light-none); --button-font-size: var(--scale-1); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: fill;"><span class="icon-before svelte-1qpwxqa"><svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Arrow Right</title><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM16.7064 11.2922L12.7071 7.29289C12.3166 6.90237 11.6834 6.90237 11.2929 7.29289C10.9024 7.68342 10.9024 8.31658 11.2929 8.70711L13.5858 11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13H13.5858L11.2929 15.2929C10.9024 15.6834 10.9024 16.3166 11.2929 16.7071C11.6834 17.0976 12.3166 17.0976 12.7071 16.7071L16.7064 12.7078L16.7136 12.7005C16.8901 12.5208 16.9992 12.2746 17 12.003L17 12L17 11.997C16.9996 11.8625 16.9727 11.7343 16.9241 11.6172C16.8764 11.502 16.8063 11.3938 16.7136 11.2995L16.7064 11.2922Z" fill="currentColor"></path></svg></span> <span class="text font--sans svelte-1qpwxqa a11y">Sign Up</span>  </button></div> <input type="hidden" name="stlist" value="The Daily Digest">  <input type="hidden" name="success_location" value="https://www.propublica.org/forms/thankyou"> <input type="hidden" name="error_location" value="https://www.propublica.org/forms/error"> <input type="hidden" name="placement" value="site-footer"> <input type="hidden" name="region" value="national"> <input type="hidden" name="source" value="https://www.propublica.org/"></div> <div class="newsletter-signup__post-signup-prompt" role="region" aria-live="polite" data-svelte-h="svelte-1uvtbcq"></div></form>  </div></div> </div>  <div class="site-footer__wrap-outer svelte-m9jkvx"><div class="site-footer__wrap-inner svelte-m9jkvx"> <div class="site-footer__section-logo svelte-m9jkvx"><a class="site-footer__wordmark svelte-m9jkvx" href="https://www.propublica.org/"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 574.24 75" fill="currentColor"><title>ProPublica</title><path d="M66.4,13.48,66,14.91l6.23,11.45,1.15.47L75,26.29V75H50.95A41.2,41.2,0,0,0,62.13,46.88a40.61,40.61,0,0,0-3.39-16.26,45.17,45.17,0,0,1,7.79-4.95l1.69-.2.14-.41L65,18.83H64.5l-.88,1.29c-2.91,1.9-4.67,2.3-8.54,3.79A41.35,41.35,0,0,0,20.46,5.42,39.87,39.87,0,0,0,0,10.91V0H75V8.81ZM57.32,47A37.54,37.54,0,0,1,44.65,75H0V16A37,37,0,0,1,57.32,47ZM43.7,37.06c0-8.13-6-12-17.75-12H7.18v3.66l4.2.95V62.2l-4.2.95v3.73H27.85V63.14l-7.18-.95V50.14h5.15C37.26,50.14,43.7,45.53,43.7,37.06Zm-9.76.27c0,5.15-2.78,8.33-7.25,8.33h-6V29.47H27C31.37,29.47,33.94,32.32,33.94,37.33Z"></path><path d="M116.53,60.07l9.15,1.08v4.2H99.39v-4.2l5.28-1.36v-44l-5.28-1.36V10.41H123c15.31,0,22.9,5.28,22.9,16.13,0,11.18-8.33,17.41-23.1,17.41h-6.3Zm0-21.14h6.84c6.44,0,10.5-4.61,10.5-12.06,0-7.18-3.73-11.45-10.09-11.45h-7.25Z"></path><path d="M200.74,61.15v4.2H185.9l-16-20.6h-2.51v15l5.28,1.36v4.2H150.27v-4.2l5.28-1.36V23.35l-5-1.36V17.93H175.2c10.5,0,17.55,5.08,17.55,12.67,0,8.4-5.76,12.2-11,13.55l13.48,15.79ZM167.41,39.74h4.47c5.76,0,8.81-3.18,8.81-8.88,0-5.35-2.85-7.93-8.81-7.93h-4.47Z"></path><path d="M199.59,41.64c0-14.77,9.82-24.73,25.68-24.73s25.68,10,25.68,24.73-9.82,24.73-25.68,24.73S199.59,56.48,199.59,41.64Zm38.89,0c0-9.69-3.25-19.17-13.21-19.17S212.05,32,212.05,41.64s3.25,19.17,13.21,19.17S238.48,51.33,238.48,41.64Z"></path><path d="M270.79,60.07l9.15,1.08v4.2H253.31v-4.2l5.62-1.36v-44l-5.62-1.36V10.41h24c15.31,0,22.9,5.28,22.9,16.13,0,11.18-8.33,17.41-23.1,17.41h-6.3Zm0-21.14h6.84c6.44,0,10.5-4.61,10.5-12.06,0-7.18-3.73-11.45-10.1-11.45h-7.25Z"></path><path d="M354.26,22l-4.95,1.36V47c0,12.87-7.79,19.38-20.05,19.38-13.62,0-20.73-7.86-20.73-20v-23L303.58,22V17.93h22V22l-5.08,1.36V47.74c0,7.25,4.34,12.06,11.45,12.06,6.84,0,11.25-4.47,11.25-11.31V23.35L338.14,22V17.93h16.12Z"></path><path d="M403.85,52.21c0,8.88-7.11,13.14-22,13.14H357.58v-4.2l5.56-1.36V23.35L358.26,22V17.93h23.92c12.6,0,19.51,3.79,19.51,11.72,0,6.17-4.06,9.08-10.91,9.89v.27C399.31,40.76,403.85,45.1,403.85,52.21ZM375,38.32h5.76c6.1,0,9-2.78,9-7.79,0-5.22-3.12-7.59-9-7.59H375Zm16.8,13.41c0-5.62-3.79-8.67-11.25-8.67H375V60.34h6.64C388.07,60.34,391.79,57.29,391.79,51.74Z"></path><path d="M451.07,48.62l-4.4,16.73H408v-4.2l5.28-1.36V23.35L407.65,22V17.93h22.76V22l-5.28,1.36v37l14.16-.81L447,47.26Z"></path><path d="M475.4,61.15v4.2H453v-4.2l5.28-1.36V23.35L453,22V17.93H475.4V22l-5.28,1.36V59.8Z"></path><path d="M478,41.78c0-15.85,12.13-24.86,27-24.86a35.6,35.6,0,0,1,18.29,5.15l-2,13.21h-4.2l-1.69-9.08a13.23,13.23,0,0,0-10.09-4.13c-9.15,0-14.7,6.57-14.7,18.22,0,13.21,6.84,19.31,15.24,19.31,6.17,0,10.23-3.39,13.41-9.55l4.27,2c-4.27,10-11.65,14.36-21.07,14.36C488.4,66.37,478,56.48,478,41.78Z"></path><path d="M574.24,61.15v4.2H551.48v-4.2L557,60l-2.85-8.13h-16.6l-3.12,8.2,5.42,1.15-.07,4.2-16.53-.07v-4.2l4.27-1.08,14.9-37.33-4-1.29V17.93h13.69L569.3,60Zm-27.57-31-.47-1.56-.47,1.56-6.23,16.73h12.94Z"></path></svg></a> <strong class="site-footer__tagline svelte-m9jkvx" data-svelte-h="svelte-1xxi0b1">Investigative Journalism in the Public Interest</strong> <p class="site-footer__copyright svelte-m9jkvx">© Copyright 2024 Pro Publica Inc.</p></div>   <nav class="site-footer__section-links svelte-m9jkvx">   <div class="site-footer__links-sites svelte-m9jkvx"> <strong class="site-footer__links-heading svelte-m9jkvx">Sites</strong> <ul class="site-footer__links-list svelte-m9jkvx hide-below-sm" id="site-footer__links-list-sites"><li class="site-footer__link"><a href="https://www.propublica.org/" class="svelte-m9jkvx">ProPublica</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/local-reporting-network/" class="svelte-m9jkvx">Local Reporting Network</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/texas/" class="svelte-m9jkvx">Texas Tribune Partnership</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/datastore/" class="svelte-m9jkvx">The Data Store</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/electionland/" class="svelte-m9jkvx">Electionland</a>  </li></ul> </div>   <div class="site-footer__links-sections svelte-m9jkvx"> <strong class="site-footer__links-heading svelte-m9jkvx">Sections</strong> <ul class="site-footer__links-list svelte-m9jkvx hide-below-sm" id="site-footer__links-list-sections"><li class="site-footer__link"><a href="https://www.propublica.org/topics/" class="svelte-m9jkvx">Topics</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/series/" class="svelte-m9jkvx">Series</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/video/" class="svelte-m9jkvx">Videos</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/newsapps/" class="svelte-m9jkvx">News Apps</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/getinvolved/" class="svelte-m9jkvx">Get Involved</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/nerds/" class="svelte-m9jkvx">The Nerd Blog</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/atpropublica/" class="svelte-m9jkvx">@ProPublica</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/events/" class="svelte-m9jkvx">Events</a>  </li></ul> </div>   <div class="site-footer__links-info svelte-m9jkvx"> <strong class="site-footer__links-heading svelte-m9jkvx">Info</strong> <ul class="site-footer__links-list svelte-m9jkvx hide-below-sm" id="site-footer__links-list-info"><li class="site-footer__link"><a href="https://www.propublica.org/about/" class="svelte-m9jkvx">About</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/leadership/" class="svelte-m9jkvx">Board and Advisors</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/staff/" class="svelte-m9jkvx">Officers and Staff</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/diversity/" class="svelte-m9jkvx">Diversity</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/jobs/" class="svelte-m9jkvx">Jobs</a> and <a href="https://www.propublica.org/fellowships/" class="svelte-m9jkvx">Fellowships</a> </li><li class="site-footer__link"><a href="https://www.propublica.org/media-center/" class="svelte-m9jkvx">Media Center</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/reports/" class="svelte-m9jkvx">Reports</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/impact/" class="svelte-m9jkvx">Impact</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/awards/" class="svelte-m9jkvx">Awards</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/corrections/" class="svelte-m9jkvx">Corrections</a>  </li></ul> </div>   <div class="site-footer__links-policies svelte-m9jkvx"> <strong class="site-footer__links-heading svelte-m9jkvx">Policies</strong> <ul class="site-footer__links-list svelte-m9jkvx hide-below-sm" id="site-footer__links-list-policies"><li class="site-footer__link"><a href="https://www.propublica.org/code-of-ethics/" class="svelte-m9jkvx">Code of Ethics</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/advertising/" class="svelte-m9jkvx">Advertising Policy</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/legal/" class="svelte-m9jkvx">Privacy Policy</a>  </li></ul> </div>   <div class="site-footer__links-follow svelte-m9jkvx"> <strong class="site-footer__links-heading svelte-m9jkvx">Follow</strong> <ul class="site-footer__links-list svelte-m9jkvx hide-below-sm" id="site-footer__links-list-follow"><li class="site-footer__link"><a href="https://www.propublica.org/newsletters/" data-pp-view="" data-pp-action="visit" class="svelte-m9jkvx">Newsletters</a>  </li><li class="site-footer__link"><a href="https://itunes.apple.com/us/app/propublica/id355298887?mt=8" class="svelte-m9jkvx">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.propublica&amp;amp;hl=en" class="svelte-m9jkvx">Android</a> </li><li class="site-footer__link"><a href="https://www.propublica.org/feeds/propublica/main" class="svelte-m9jkvx">RSS Feed</a>  </li></ul> </div>   <div class="site-footer__links-more svelte-m9jkvx"> <strong class="site-footer__links-heading svelte-m9jkvx">More</strong> <ul class="site-footer__links-list svelte-m9jkvx hide-below-sm" id="site-footer__links-list-more"><li class="site-footer__link"><a href="https://www.propublica.org/tips/" class="svelte-m9jkvx">Send Us Tips</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/steal-our-stories/" class="svelte-m9jkvx">Steal Our Stories</a>  </li><li class="site-footer__link"><a href="http://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/" class="svelte-m9jkvx">Browse via Tor</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/contact/" class="svelte-m9jkvx">Contact Us</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/donate/" data-pp-view="" data-pp-action="visit classy" class="svelte-m9jkvx">Donate</a>  </li><li class="site-footer__link"><a href="https://www.propublica.org/support/other-ways-to-give/" class="svelte-m9jkvx">More Ways to Give</a>  </li></ul> </div></nav> </div> </div>  </footer>
+                        <!--svelte-component-end-->
+                        
+    <div class="modal-republish | modal -js-hide" tabindex="-1" role="dialog" title="Republish Story" data-pp-location="republish modal">
+    <div class="content">
+
+    <div class="modal__header">
+        <a class="modal__close-button btn btn--icon-only btn--transparent" style="--button-size: var(--scale3)" href="#" tabindex="0"
+            role="button" aria-labelledby="modal-republish__hed" aria-describedby="modal-republish__intro" data-pp-action="republish close">
+            <div class="btn__icon" aria-hidden="true">
+                
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <title>Close</title>
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+            </div>
+            <span class="a11y">Close this dialogue</span>
+        </a>
+    </div>
+    <!-- end .collapsible-header -->
+
+    <div class="modal-republish__content-wrapper">
+
+        <div class="modal__content modal-republish__content">
+
+            <div class="modal-republish__instructions republish-instructions">
+
+                <h3 id="modal-republish__hed">Republish This Story for Free</h3>
+
+                <p class="modal-republish__license"><a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons License (CC BY-NC-ND 3.0)</a></p>
+
+                <hr/>
+
+                <p id="modal-republish__intro" class="modal-republish__intro">Thank you for your interest in republishing this story. You are free to republish it so long as you do the following:</p>
+
+                <ul>
+                    <li>You have to credit <em>ProPublica and any co-reporting partners</em>. In the byline, we prefer “Author Name, Publication(s).” At the top of the text of your story, include a line that reads: “This story was originally published by ProPublica.” You must link the word “ProPublica” to the original URL of the story.</li>
+
+                    <li>If you’re republishing online, you must link to the URL of this story on propublica.org, include all of the links from our story, including our newsletter sign up language and link, and use our <a href="/pixelping">PixelPing tag</a>.</li>
+
+                    <li>If you use canonical metadata, please use the ProPublica URL. For more information about canonical metadata, <a href="https://support.google.com/webmasters/answer/139066?hl=en">refer to this Google SEO link</a>.</li>
+
+                    <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
+
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#fd909899949c8f949a95898ebd8d8f928d889f91949e9cd3928f9a"><span class="__cf_email__" data-cfemail="513c343538302338363925221121233e2124333d3832307f3e2336">[email&#160;protected]</span></a>.</li>
+
+                    <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
+
+                    <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
+
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#05696c66606b766c6b624575776a757067696c66642b6a7762"><span class="__cf_email__" data-cfemail="2b4742484e455842454c6b5b59445b5e494742484a0544594c">[email&#160;protected]</span></a>.)</li>
+
+                    <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
+
+                    <li>We do not generally permit translation of our stories into another language.</li>
+
+                    <li>Any website our stories appear on must include a prominent and effective way to contact you.</li>
+
+                    <li>If you share republished stories on social media, we’d appreciate being tagged in your posts. We have official accounts for ProPublica on <a href="https://twitter.com/propublica">Twitter</a>, <a href="https://www.facebook.com/propublica">Facebook</a> and <a href="https://www.instagram.com/propublica/">Instagram</a>.</li>
+
+                </ul>
+            </div>
+
+            <div class="modal-republish__section-copy">
+                <textarea readonly class="-js-copy-textarea" aria-hidden="true" tabindex="-1"></textarea>
+                <a href="#" class="btn -js-copy-btn" style="--button-color: var(--color-accent-50)" data-pp-action="republish copy">Copy HTML</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+</div>
+<!-- end #modal-republish -->
+
+          
+  
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" class="svelte-config">
+                            {"componentName":"BottomPanelCta","props":{"contentUrl":"https://www.propublica.org//api_components/modal-default.json"},"contextArray":[]}
+                        </script>
+                         <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-h4wdnn" aria-hidden="true"><button id="cta-close" class="cta-close svelte-h4wdnn" data-svelte-h="svelte-dqexqs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-h4wdnn"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-h4wdnn"><div class="cta-message svelte-h4wdnn"><h2 class="cta-heading svelte-h4wdnn">undefined</h2> <p class="cta-text svelte-h4wdnn">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-h4wdnn" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-h4wdnn"></div> <button id="cta-toast-button" class="cta-toast-button svelte-h4wdnn" data-svelte-h="svelte-lboo9g"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-h4wdnn"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
+                        <!--svelte-component-end-->
+                        
+    <script src="https://assets.propublica.org/static/prod/v5/js/main.7fdd6d4a.js"></script>
+
+            <script>
+        // Google Tag Manager
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-K8BNLGX');
+        // End Google Tag Manager
+
+        PP.utils.loadJS('https://ak.sail-horizon.com/spm/spm.v1.min.js',function() {
+            while(!window.hasOwnProperty("Sailthru")) {
+                setTimeout(Function.prototype(), 500);
+            }
+            Sailthru.init({ "customerId" : "c1d320b4976cc13366759531bf948c3a" });
+        });
+
+        // Parse.ly
+                  PP.utils.loadJS('//cdn.parsely.com/keys/propublica.org/p.js');
+            </script>
+    <!-- GA4 (for no-JS pages) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8BNLGX"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    <script>PP.utils.loadJS('https://www.google.com/recaptcha/api.js?onload=grecaptchaLoaded&render=6LdI1rAUAAAAACI0GsFv-yRpC0tPF5ECiIMDUz2x');</script>
+
+        <script>
+        const noAds = new URLSearchParams(window.location.search).get('__no-ads');
+        let adTimeout = new URLSearchParams(window.location.search).get('__ad-timeout');
+        if( noAds === null ) {
+            if( adTimeout === null ) { adTimeout = 0; }
+            setTimeout(function() {
+                PP.utils.loadJS('https://htlbid.com/v3/propublica.org/htlbid.js',function() {
+                    window.htlbid = window.htlbid || {};
+                    htlbid.cmd = htlbid.cmd || [];
+                    htlbid.cmd.push(function() {
+                        htlbid.layout("universal"); // Leave as "universal" or add custom layout
+                                                    htlbid.setTargeting("is_testing", "no");
+                                                htlbid.setTargeting("is_home", "no"); // Set to "yes" on the homepage
+                        htlbid.setTargeting("post_tags", "debt");
+                    });
+                });
+            }, adTimeout);
+        }
+    </script>
+
+    <!-- Begin Convert Experiences code-->
+<script>
+    // This variable prevents Convert from creating an overlay that can cover the page. Because we use deferred loading, we never want this overlay.
+    // https://support.convert.com/hc/en-us/articles/205160025-Disable-Body-Hiding-in-Convert-Experiences
+    var _conv_prevent_bodyhide = true;
+</script>
+<script defer src="//cdn-4.convertexperiments.com/js/1004759-1004714.js"></script>
+<!-- End Convert Experiences code -->
+
+    <!-- Hotjar Tracking Code for ProPublica -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3261149,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+    <!-- Iterate Code -->
+
+<!-- Iterate baseline styles: additional styles included in pp-v5-shared -->
+<style>
+.iterate__container {
+    font-family: var(--fonts-sans, "graphik") !important;
+}
+</style>
+
+<script>
+
+// Iterate setup script
+window.iterateSettings = {
+    apiKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55X2lkIjoiNjJmM2M2ZGNjYmVhNDQwMDAxNDZmMjRjIiwiaWF0IjoxNjYwMTQzMzI1fQ.HJYYZWnRLo7nKQHPteT9eeNeXePWXpYAyhaNyFAES-Y',
+};
+(function(i,t,e,r,a){if(t.getElementById(r)){return}
+i.IterateObjectName=a;var z=function(){z.c(arguments)};z.q=[];
+z.c=function(args){z.q.push(args)};i[a]=z;
+function l() {var js,fjs=t.getElementsByTagName(e)[0];js=t.createElement(e);js.id=r;js.async=1;js.src="https://platform.iteratehq.com/loader.js";fjs.parentNode.insertBefore(js,fjs)};
+if(t.readyState==="complete") {l();} else if(i.attachEvent) {i.attachEvent('onload', l);} else{i.addEventListener('load', l, false);}
+}(window, document,'script','iterate-js','Iterate'));
+
+// Start Iterate: this will check the server to see if a survey should be displayed
+Iterate('install')
+
+// Pass custom properties to Iterate: the 2nd parameter is user-level data, the 3rd parameter is response-level data
+var url = new URL(window.location.href);
+Iterate('identify', null, {
+    canonical: 'https://www.propublica.org/article/auto-loan-calculator-with-extensions',
+    utm_campaign: url.searchParams.get("utm_campaign"),
+    utm_medium: url.searchParams.get("utm_medium"),
+    utm_source: url.searchParams.get("utm_source")
+})
+
+</script>
+
+<!-- End Iterate Code -->
+
+    <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+    <script nomodule crossorigin id="vite-legacy-polyfill" src="https://static.propublica.org/projects/graphics/2024-used-cars/assets/polyfills-legacy-D0wfb6vl.js"></script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="https://static.propublica.org/projects/graphics/2024-used-cars/assets/index-legacy-ClkIcxhF.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Byard Duncan","Ryan Gabrielson","Lucas Waldron"],"dateCreated":"2024-07-28T14:10:02-04:00","dateModified":"2024-09-12T03:23:06-04:00","datePublished":"2024-09-12T05:05:00-04:00","description":"Our free tool helps you figure out how much you’ll likely owe at the end of your car loan if you’ve delayed one or more payments.","headline":"Auto Loan Calculator with Extensions/Deferments","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=2dcb23e068258583e3be6448d4c2c458"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/auto-loan-calculator-with-extensions","name":"Auto Loan Calculator with Extensions/Deferments","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/240612_GK_JessicaPatterson487-blurred.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=2dcb23e068258583e3be6448d4c2c458","url":"https://www.propublica.org/article/auto-loan-calculator-with-extensions"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/auto-loan-calculator-with-extensions","name":"What No One Tells You About Car Loan Deferments","position":2}],"name":"Breadcrumbs"}]}</script></body>
+</html>
