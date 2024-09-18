@@ -139,6 +139,105 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Fall Member Drive:</strong>
+            Support journalism that protects our democracy.
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -222,7 +321,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Oregon’s Largest Natural Gas Utility Hasn’t Actually Gone Green","pageUrl":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="WbSgtZ8qg3" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="M82UX1C2BJ" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -302,44 +401,70 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">Seven years ago, Oregon’s biggest natural gas company set out to convince lawmakers and residents that an abundant new source of green energy was out there, just waiting to be tapped.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="3.0">Renewable natural gas is derived from decomposing organic waste at sites like landfills or dairy farms. It could, in theory, replace fossil natural gas in our pipelines with something far better for the environment.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="4.0">The company, NW Natural, sent a bow-tied lobbyist to the state capital to talk up renewable natural gas, and it helped write a new law promoting development of the new fuel. The company worked with the Oregon Department of Energy to prepare a statewide inventory of potential resources. And, with more than $1 million in customer money, the company targeted those customers with ads, introducing a slogan that highlighted its commitment to lowering carbon emissions: “Less We Can.”</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="5.0">These and subsequent efforts became a template for NW Natural’s industry peers — and effectively tamped down a growing push by climate activists to phase out gas use in Oregon homes and electrify everything instead.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="6.0">Seven years on, the utility has not delivered on its clean-energy sales pitch. NW Natural has more retail gas customers than ever. It supplies them little, if any, renewable natural gas. It sells them as much fossil natural gas in an average year as it did before. And it wages steady battles in the courts and in local city halls to keep the gas flowing.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="8.0">Internal industry documents obtained by ProPublica, coupled with an analysis of regulatory filings and testimony before the state Legislature, reveal how NW Natural pursued an approach that perpetuated its core fossil fuel business while the company painted a picture of going green.</p>
-        
-    
-                    
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="10.0">“The story they’re telling us is simply not possible,” said former state Rep. Phil Barnhart, a Democrat who voted for some of the company’s legislation when in office. </p>
 
-<p data-pp-blocktype="copy" data-pp-id="10.1">“What they’re trying to do,” Barnhart said, “is to prevent being put out of business.”</p>
+<figure
+    data-pp-id="2"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">NW Natural, for its part, says that its renewables goals remain attainable and that it firmly believes in them. But “uncertain support from policy makers and regulators along with ongoing barriers demanded by certain climate advocates” have made the company’s path needlessly difficult, spokesperson David Roy wrote in an email. “It’s baffling how a relatively small but loud group of stakeholders have been in opposition to our many efforts to lower system emissions,” he continued. Roy defended the Less We Can campaign as “providing customers with valuable information.”</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">Seven years ago, Oregon’s biggest natural gas company set out to convince lawmakers and residents that an abundant new source of green energy was out there, just waiting to be tapped.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="4.0">Renewable natural gas is derived from decomposing organic waste at sites like landfills or dairy farms. It could, in theory, replace fossil natural gas in our pipelines with something far better for the environment.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="5.0">The company, NW Natural, sent a bow-tied lobbyist to the state capital to talk up renewable natural gas, and it helped write a new law promoting development of the new fuel. The company worked with the Oregon Department of Energy to prepare a statewide inventory of potential resources. And, with more than $1 million in customer money, the company targeted those customers with ads, introducing a slogan that highlighted its commitment to lowering carbon emissions: “Less We Can.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="6.0">These and subsequent efforts became a template for NW Natural’s industry peers — and effectively tamped down a growing push by climate activists to phase out gas use in Oregon homes and electrify everything instead.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="7.0">Seven years on, the utility has not delivered on its clean-energy sales pitch. NW Natural has more retail gas customers than ever. It supplies them little, if any, renewable natural gas. It sells them as much fossil natural gas in an average year as it did before. And it wages steady battles in the courts and in local city halls to keep the gas flowing.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="9.0">Internal industry documents obtained by ProPublica, coupled with an analysis of regulatory filings and testimony before the state Legislature, reveal how NW Natural pursued an approach that perpetuated its core fossil fuel business while the company painted a picture of going green.</p>
+        
+    
+                    
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="11.0">“The story they’re telling us is simply not possible,” said former state Rep. Phil Barnhart, a Democrat who voted for some of the company’s legislation when in office. </p>
+
+<p data-pp-blocktype="copy" data-pp-id="11.1">“What they’re trying to do,” Barnhart said, “is to prevent being put out of business.”</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="12.0">NW Natural, for its part, says that its renewables goals remain attainable and that it firmly believes in them. But “uncertain support from policy makers and regulators along with ongoing barriers demanded by certain climate advocates” have made the company’s path needlessly difficult, spokesperson David Roy wrote in an email. “It’s baffling how a relatively small but loud group of stakeholders have been in opposition to our many efforts to lower system emissions,” he continued. Roy defended the Less We Can campaign as “providing customers with valuable information.”</p>
         
     
                     <figure
-    data-pp-id="12"
+    data-pp-id="13"
     data-pp-blocktype="pull-quote"
     class="bb-pull-quote bb--border-top
         size04 right out02 wide-sm wrap">
@@ -357,21 +482,21 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">NW Natural operates in a state where residents and their Democratic leaders demand real action on climate change. Unlike many other public utilities, it does not sell electricity in addition to gas; if a home switches from gas ranges and furnaces to electric, the company likely loses that customer.</p>
+<p data-pp-blocktype="copy" data-pp-id="14.0">NW Natural operates in a state where residents and their Democratic leaders demand real action on climate change. Unlike many other public utilities, it does not sell electricity in addition to gas; if a home switches from gas ranges and furnaces to electric, the company likely loses that customer.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="14.0">As it navigates the new climate economy, the utility has followed a course that other companies, especially energy companies, have taken in the face of public pressure: a loud embrace of environmental goals; then a complicated, often unproven solution; then a continuation of the status quo if and when that solution falls short. The company’s actions ensured that even as it has failed to hit its targets on renewables, and as the planet has kept heating up, it has faced few consequences.</p>
+<p data-pp-blocktype="copy" data-pp-id="15.0">As it navigates the new climate economy, the utility has followed a course that other companies, especially energy companies, have taken in the face of public pressure: a loud embrace of environmental goals; then a complicated, often unproven solution; then a continuation of the status quo if and when that solution falls short. The company’s actions ensured that even as it has failed to hit its targets on renewables, and as the planet has kept heating up, it has faced few consequences.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="15.0">An early ad from the Less We Can campaign suggested that Oregonians — and maybe NW Natural itself — could save the world with little in the way of personal sacrifice. It shows the sun emerging from a cloud. “Renewable Natural Gas is on the way home,” it reads. “Change for the better. Without changing a thing.”</p>
+<p data-pp-blocktype="copy" data-pp-id="16.0">An early ad from the Less We Can campaign suggested that Oregonians — and maybe NW Natural itself — could save the world with little in the way of personal sacrifice. It shows the sun emerging from a cloud. “Renewable Natural Gas is on the way home,” it reads. “Change for the better. Without changing a thing.”</p>
         
     
                     
 
 <figure
-    data-pp-id="16"
+    data-pp-id="17"
     data-pp-blocktype="image"
     class="bb-image size08 center  wide-sm wrap 
                 ">
@@ -415,69 +540,69 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="18.0">The story of NW Natural’s long fight against the movement to phase out gas emerges from a trove of more than 100 insider documents from the Northwest Gas Association, a trade group that includes the company and five of its regional peers. The utility watchdog Energy and Policy Institute obtained the documents — four years’ worth of meeting minutes, strategy papers and PowerPoint presentations from 2017 through 2020 — and recently shared them with ProPublica.</p>
+<p data-pp-blocktype="copy" data-pp-id="19.0">The story of NW Natural’s long fight against the movement to phase out gas emerges from a trove of more than 100 insider documents from the Northwest Gas Association, a trade group that includes the company and five of its regional peers. The utility watchdog Energy and Policy Institute obtained the documents — four years’ worth of meeting minutes, strategy papers and PowerPoint presentations from 2017 through 2020 — and recently shared them with ProPublica.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="19.0">The documents capture a moment when the natural gas industry realized it was becoming a target. Barely a decade before, fossil natural gas had been hailed as a bridge to a low-carbon future. The Obama administration promoted it as a cleaner alternative to coal and diesel, an energy source to rely on until more wind and solar could come online. Until 2010, even the Sierra Club supported it.</p>
+<p data-pp-blocktype="copy" data-pp-id="20.0">The documents capture a moment when the natural gas industry realized it was becoming a target. Barely a decade before, fossil natural gas had been hailed as a bridge to a low-carbon future. The Obama administration promoted it as a cleaner alternative to coal and diesel, an energy source to rely on until more wind and solar could come online. Until 2010, even the Sierra Club supported it.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="20.0">But pipelines carrying natural gas <a href="https://www.propublica.org/article/natural-gas-and-coal-pollution-gap-in-doubt">leaked more than was first understood</a>, releasing uncombusted methane, a greenhouse gas more than 28 times as harmful as carbon dioxide. And North America’s fracking boom was making fossil natural gas so plentiful and cheap that environmentalists increasingly worried the world would get stuck on this energy bridge forever. Going all-electric, they argued, was the way forward.</p>
+<p data-pp-blocktype="copy" data-pp-id="21.0">But pipelines carrying natural gas <a href="https://www.propublica.org/article/natural-gas-and-coal-pollution-gap-in-doubt">leaked more than was first understood</a>, releasing uncombusted methane, a greenhouse gas more than 28 times as harmful as carbon dioxide. And North America’s fracking boom was making fossil natural gas so plentiful and cheap that environmentalists increasingly worried the world would get stuck on this energy bridge forever. Going all-electric, they argued, was the way forward.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="21.0">The Northwest Gas Association decided it had to confront what internal documents alternately called the “anti-fossil fuel chorus,” “zero fossil fuel paradigm,” “zero carbon threat” or, simply, an “existential challenge.”</p>
+<p data-pp-blocktype="copy" data-pp-id="22.0">The Northwest Gas Association decided it had to confront what internal documents alternately called the “anti-fossil fuel chorus,” “zero fossil fuel paradigm,” “zero carbon threat” or, simply, an “existential challenge.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="22.0">Board members met to plan their response one June morning in 2017 at Washington state’s Skamania Lodge, where floor-to-ceiling windows frame the Cascade Mountains and Columbia River Gorge, then again for two days in September at another luxury lodge, Cedarbrook, set on 18 acres of gardens and wetlands outside Seattle.</p>
+<p data-pp-blocktype="copy" data-pp-id="23.0">Board members met to plan their response one June morning in 2017 at Washington state’s Skamania Lodge, where floor-to-ceiling windows frame the Cascade Mountains and Columbia River Gorge, then again for two days in September at another luxury lodge, Cedarbrook, set on 18 acres of gardens and wetlands outside Seattle.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="23.0">The gas executives agreed that climate change needed to be addressed but that climate policies in the Northwest should not penalize natural gas utilities or their customers.</p>
+<p data-pp-blocktype="copy" data-pp-id="24.0">The gas executives agreed that climate change needed to be addressed but that climate policies in the Northwest should not penalize natural gas utilities or their customers.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="24.0">They adopted a new strategic plan to push a unified message: Natural gas can be compatible with a low-carbon Northwest economy, thanks in part to emerging concepts like renewable natural gas. (Today, the association and NW Natural say more specifically that policies favoring electric stoves and heat pumps won’t necessarily cut emissions because the region’s strained electrical system relies increasingly on gas-fired power plants.)</p>
+<p data-pp-blocktype="copy" data-pp-id="25.0">They adopted a new strategic plan to push a unified message: Natural gas can be compatible with a low-carbon Northwest economy, thanks in part to emerging concepts like renewable natural gas. (Today, the association and NW Natural say more specifically that policies favoring electric stoves and heat pumps won’t necessarily cut emissions because the region’s strained electrical system relies increasingly on gas-fired power plants.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="25.0">To sell the idea of continued gas use, the strategic plan said the industry should adopt a more “assertive advocacy style” that borrows insights from psychological research. People first make value judgments “via intuition and emotion,” the strategic plan noted, not facts. So the association would place “greater emphasis on the heart, in the public battle for the ‘hearts and minds.’”</p>
+<p data-pp-blocktype="copy" data-pp-id="26.0">To sell the idea of continued gas use, the strategic plan said the industry should adopt a more “assertive advocacy style” that borrows insights from psychological research. People first make value judgments “via intuition and emotion,” the strategic plan noted, not facts. So the association would place “greater emphasis on the heart, in the public battle for the ‘hearts and minds.’”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="26.0">NW Natural’s representative at the trade association, an executive named Kim Rush (Kim Heiting, at the time), gave her industry colleagues a look inside Less We Can. It was just the kind of play for the heart the strategic plan envisioned.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.0">NW Natural’s representative at the trade association, an executive named Kim Rush (Kim Heiting, at the time), gave her industry colleagues a look inside Less We Can. It was just the kind of play for the heart the strategic plan envisioned.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="27.0">“It’s a theme line,” Rush’s slideshow, dated July 2017, explained. “A rallying cry. A movement. A coalition with customers. A celebration. A call to action. A clean energy stake-in-the-ground… in 3 words or less.”</p>
+<p data-pp-blocktype="copy" data-pp-id="28.0">“It’s a theme line,” Rush’s slideshow, dated July 2017, explained. “A rallying cry. A movement. A coalition with customers. A celebration. A call to action. A clean energy stake-in-the-ground… in 3 words or less.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="28.0">NW Natural had already road-tested the new slogan across four focus groups, via a consumer survey with 864 respondents and through television-ad concepts shown to 100 customers and 100 noncustomers. It had readied a new website, www.lesswecan.com, which featured cows and green fields and a FAQ about renewable natural gas.</p>
+<p data-pp-blocktype="copy" data-pp-id="29.0">NW Natural had already road-tested the new slogan across four focus groups, via a consumer survey with 864 respondents and through television-ad concepts shown to 100 customers and 100 noncustomers. It had readied a new website, www.lesswecan.com, which featured cows and green fields and a FAQ about renewable natural gas.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="29.0">One of Rush’s slides contained the campaign’s takeaways. Among them: “NW Natural and natural gas have an important, long-term role to play in our energy future”; “NW Natural has a plan, a goal and a running start”; and “Renewable natural gas is an exciting part of that plan.”</p>
+<p data-pp-blocktype="copy" data-pp-id="30.0">One of Rush’s slides contained the campaign’s takeaways. Among them: “NW Natural and natural gas have an important, long-term role to play in our energy future”; “NW Natural has a plan, a goal and a running start”; and “Renewable natural gas is an exciting part of that plan.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="30.0">The campaign went live in fall 2017. Residents of Portland and other Oregon cities saw Less We Can TV spots, Less We Can YouTube videos, Less We Can newsletters, Less We Can billboards and Less We Can water bottles.</p>
+<p data-pp-blocktype="copy" data-pp-id="31.0">The campaign went live in fall 2017. Residents of Portland and other Oregon cities saw Less We Can TV spots, Less We Can YouTube videos, Less We Can newsletters, Less We Can billboards and Less We Can water bottles.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="31.0">“Can a natural gas company be serious when it says it wants us to use less gas?” one video asked before showing a scene of a couple chopping vegetables together in the kitchen. “Can we really raise our families and lower emissions? Can we heat our homes and fight climate change? Can we expand our economy and use less?”</p>
+<p data-pp-blocktype="copy" data-pp-id="32.0">“Can a natural gas company be serious when it says it wants us to use less gas?” one video asked before showing a scene of a couple chopping vegetables together in the kitchen. “Can we really raise our families and lower emissions? Can we heat our homes and fight climate change? Can we expand our economy and use less?”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="32.0">“Yes,” a narrator answered, as the video cut to an image of free-range cows and hand-drawn arrows pointing to the words “renewable natural gas.”</p>
+<p data-pp-blocktype="copy" data-pp-id="33.0">“Yes,” a narrator answered, as the video cut to an image of free-range cows and hand-drawn arrows pointing to the words “renewable natural gas.”</p>
         
     
                     
 
 <figure
-    data-pp-id="33"
+    data-pp-id="34"
     data-pp-blocktype="image"
     class="bb-image size12 center  wide-sm wrap 
                 ">
@@ -521,51 +646,51 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="35.0">At the time the Less We Can campaign was getting off the ground, not a single public utility in the United States regularly piped renewable natural gas to customers’ homes. The market for such organics-based gas was mainly clean fuels programs for vehicle fleets. Residential use would be pioneering, even experimental.</p>
+<p data-pp-blocktype="copy" data-pp-id="36.0">At the time the Less We Can campaign was getting off the ground, not a single public utility in the United States regularly piped renewable natural gas to customers’ homes. The market for such organics-based gas was mainly clean fuels programs for vehicle fleets. Residential use would be pioneering, even experimental.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="36.0">But if NW Natural’s ads had gotten ahead of reality, the company was already backing legislation that seemed to portend widespread use of the alternative fuel.</p>
+<p data-pp-blocktype="copy" data-pp-id="37.0">But if NW Natural’s ads had gotten ahead of reality, the company was already backing legislation that seemed to portend widespread use of the alternative fuel.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="37.0">It started earlier in 2017 with a bill in the Oregon Legislature that put forward a seemingly straightforward proposition. Oregon would take stock of its every landfill, every dairy farm, every sewage plant and every conceivable pile of woody debris: sites that could emit methane as organic matter broke down. Why not study how much was out there? The bill, a precursor to similar bills in other states, including Washington, sailed through with little opposition.</p>
+<p data-pp-blocktype="copy" data-pp-id="38.0">It started earlier in 2017 with a bill in the Oregon Legislature that put forward a seemingly straightforward proposition. Oregon would take stock of its every landfill, every dairy farm, every sewage plant and every conceivable pile of woody debris: sites that could emit methane as organic matter broke down. Why not study how much was out there? The bill, a precursor to similar bills in other states, including Washington, sailed through with little opposition.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="38.0">The ensuing inventory was a rigorous, yearlong process led by the Oregon Department of Energy that produced a 110-page report to the Legislature in September 2018 — which NW Natural quickly turned into a valuable talking point.</p>
+<p data-pp-blocktype="copy" data-pp-id="39.0">The ensuing inventory was a rigorous, yearlong process led by the Oregon Department of Energy that produced a 110-page report to the Legislature in September 2018 — which NW Natural quickly turned into a valuable talking point.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="39.0">The report’s authors found that Oregon’s “technical potential” for renewable natural gas was significant: nearly 50 billion cubic feet. “That’s equivalent to the total amount of natural gas used by all Oregon residential customers today,” read a NW Natural press release. The company would go on to use variations of this phrase on its website, in annual sustainability reports and in statements to lawmakers.</p>
+<p data-pp-blocktype="copy" data-pp-id="40.0">The report’s authors found that Oregon’s “technical potential” for renewable natural gas was significant: nearly 50 billion cubic feet. “That’s equivalent to the total amount of natural gas used by all Oregon residential customers today,” read a NW Natural press release. The company would go on to use variations of this phrase on its website, in annual sustainability reports and in statements to lawmakers.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="40.0">But “technical potential” represents the amount Oregon could produce if money was no obstacle. NW Natural said little about another, more problematic finding: Using currently available technologies and waste streams, the state could produce just 10 billion cubic feet of gas from organic sources.</p>
+<p data-pp-blocktype="copy" data-pp-id="41.0">But “technical potential” represents the amount Oregon could produce if money was no obstacle. NW Natural said little about another, more problematic finding: Using currently available technologies and waste streams, the state could produce just 10 billion cubic feet of gas from organic sources.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="41.0">Barnhart, the former state lawmaker, says the utility’s selective interpretation of the study not only overstated the size of the resource, it left out “the real denominator” by ignoring industrial and commercial gas use. Including those and transportation customers in the equation would put total gas demand in Oregon at three times the figure NW Natural cited; the state’s potential renewable natural gas resources, using current technology, could meet less than 7% of that demand.</p>
+<p data-pp-blocktype="copy" data-pp-id="42.0">Barnhart, the former state lawmaker, says the utility’s selective interpretation of the study not only overstated the size of the resource, it left out “the real denominator” by ignoring industrial and commercial gas use. Including those and transportation customers in the equation would put total gas demand in Oregon at three times the figure NW Natural cited; the state’s potential renewable natural gas resources, using current technology, could meet less than 7% of that demand.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="42.0">“NW Natural has done a very, very good job of saying true things in a way that is grossly misleading,” Barnhart said.</p>
+<p data-pp-blocktype="copy" data-pp-id="43.0">“NW Natural has done a very, very good job of saying true things in a way that is grossly misleading,” Barnhart said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="43.0">Roy, the company spokesperson, said it was reasonable to call out Oregon’s full theoretical capacity to make the biogas, noting that all renewable energy sources have required innovation to bring them to market. As for focusing on residential use alone, NW Natural said highlighting a single sector was a useful way to “help people understand the magnitude of the resource.”</p>
+<p data-pp-blocktype="copy" data-pp-id="44.0">Roy, the company spokesperson, said it was reasonable to call out Oregon’s full theoretical capacity to make the biogas, noting that all renewable energy sources have required innovation to bring them to market. As for focusing on residential use alone, NW Natural said highlighting a single sector was a useful way to “help people understand the magnitude of the resource.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="44.0">The company leaned on the state’s most optimistic numbers in early 2019 when it returned to lawmakers with a second, far more expansive bill that was the first of its kind in the country.</p>
+<p data-pp-blocktype="copy" data-pp-id="45.0">The company leaned on the state’s most optimistic numbers in early 2019 when it returned to lawmakers with a second, far more expansive bill that was the first of its kind in the country.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="45.0">The new bill aimed to address another key barrier to NW Natural’s plans for renewable natural gas. Under existing state rules, utilities had to purchase gas for their customers at the lowest available price, and gas made from biomass could be 10 times more expensive than fossil natural gas. But the bill would allow NW Natural to pursue renewable natural gas and recoup the added cost from its customers. It would be able to spend up to 5% of its annual revenues, some $40 million or more, to secure a dedicated supply.</p>
+<p data-pp-blocktype="copy" data-pp-id="46.0">The new bill aimed to address another key barrier to NW Natural’s plans for renewable natural gas. Under existing state rules, utilities had to purchase gas for their customers at the lowest available price, and gas made from biomass could be 10 times more expensive than fossil natural gas. But the bill would allow NW Natural to pursue renewable natural gas and recoup the added cost from its customers. It would be able to spend up to 5% of its annual revenues, some $40 million or more, to secure a dedicated supply.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="46.0">The legislation also set out ambitious but voluntary goals for NW Natural and other large gas utilities: to produce or acquire renewable natural gas equivalent to 5% of deliveries to retail customers by 2024, 10% by 2029 and 30% by 2050.</p>
+<p data-pp-blocktype="copy" data-pp-id="47.0">The legislation also set out ambitious but voluntary goals for NW Natural and other large gas utilities: to produce or acquire renewable natural gas equivalent to 5% of deliveries to retail customers by 2024, 10% by 2029 and 30% by 2050.</p>
         
             
     
@@ -672,33 +797,33 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="48.0">The company sent an executive named Anna Chittum to testify before an Oregon Senate committee, and she cited the inventory almost immediately. “They found about 50 billion cubic feet of potential in the state of Oregon,” she said.</p>
+<p data-pp-blocktype="copy" data-pp-id="49.0">The company sent an executive named Anna Chittum to testify before an Oregon Senate committee, and she cited the inventory almost immediately. “They found about 50 billion cubic feet of potential in the state of Oregon,” she said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="49.0">Chittum emphasized that this would be a boon not only for the planet but for Oregon businesses.</p>
+<p data-pp-blocktype="copy" data-pp-id="50.0">Chittum emphasized that this would be a boon not only for the planet but for Oregon businesses.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="50.0">“Renewable natural gas is a local resource, first and foremost,” she continued. “We believe that Oregon entities like wastewater treatment plants and landfills, some of the dairies in our region and other companies, as well as our natural gas customers, will directly benefit.”</p>
+<p data-pp-blocktype="copy" data-pp-id="51.0">“Renewable natural gas is a local resource, first and foremost,” she continued. “We believe that Oregon entities like wastewater treatment plants and landfills, some of the dairies in our region and other companies, as well as our natural gas customers, will directly benefit.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="51.0">The bill passed easily and with support from both parties just a day before a partisan meltdown tanked a more controversial piece of climate legislation, an effort to create a California-style carbon cap-and-trade system. The changes called for by cap-and-trade would have been mandatory, unlike those created by the renewable gas legislation. (The company now says it wanted binding targets for renewable gas but “other stakeholders,” whom it declined to name, opposed them.)</p>
+<p data-pp-blocktype="copy" data-pp-id="52.0">The bill passed easily and with support from both parties just a day before a partisan meltdown tanked a more controversial piece of climate legislation, an effort to create a California-style carbon cap-and-trade system. The changes called for by cap-and-trade would have been mandatory, unlike those created by the renewable gas legislation. (The company now says it wanted binding targets for renewable gas but “other stakeholders,” whom it declined to name, opposed them.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="52.0">On social media, the company’s Kim Rush soon cheered the bill’s success, sharing a photo of Oregon Gov. Kate Brown at a September 2019 signing ceremony, flanked by fellow lawmakers, NW Natural CEO David Anderson and at least three other employees of the company.</p>
+<p data-pp-blocktype="copy" data-pp-id="53.0">On social media, the company’s Kim Rush soon cheered the bill’s success, sharing a photo of Oregon Gov. Kate Brown at a September 2019 signing ceremony, flanked by fellow lawmakers, NW Natural CEO David Anderson and at least three other employees of the company.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="53.0">“Proud of our state for leading the nation on renewable natural gas development!” Rush wrote. “A vital step in the path toward decarbonizing our pipeline network. #LessWeCan.”</p>
+<p data-pp-blocktype="copy" data-pp-id="54.0">“Proud of our state for leading the nation on renewable natural gas development!” Rush wrote. “A vital step in the path toward decarbonizing our pipeline network. #LessWeCan.”</p>
         
     
                     
 
 <figure
-    data-pp-id="54"
+    data-pp-id="55"
     data-pp-blocktype="image"
     class="bb-image size06 center  wide-sm wrap 
                 ">
@@ -742,53 +867,53 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="56.0">Despite the victory lap with Oregon’s chief executive, behind the scenes NW Natural and its allies were preparing to quash measures that activist groups and government officials said were needed to reduce the gas industry’s footprint.</p>
+<p data-pp-blocktype="copy" data-pp-id="57.0">Despite the victory lap with Oregon’s chief executive, behind the scenes NW Natural and its allies were preparing to quash measures that activist groups and government officials said were needed to reduce the gas industry’s footprint.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="57.0">For this mission the Northwest Gas Association initially hired Kelly Evans, a public affairs consultant who once ran the successful reelection campaign of Washington Gov. Christine Gregoire. Evans recommended creating a formal coalition with partners outside the gas industry to lobby for continued natural gas use. It would draw in restaurant associations, labor unions, appliance manufacturers, homebuilders and more.</p>
+<p data-pp-blocktype="copy" data-pp-id="58.0">For this mission the Northwest Gas Association initially hired Kelly Evans, a public affairs consultant who once ran the successful reelection campaign of Washington Gov. Christine Gregoire. Evans recommended creating a formal coalition with partners outside the gas industry to lobby for continued natural gas use. It would draw in restaurant associations, labor unions, appliance manufacturers, homebuilders and more.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="58.0">The winner of a million-dollar contract to build just such a coalition and launch a pro-gas campaign across the Northwest was the communications firm Quinn Thomas. It had helped Washington business interests win fights against cap-and-trade and a carbon tax in that state in 2015 and 2016. Now the firm pledged to “defeat policies detrimental to the natural gas industry” once again.</p>
+<p data-pp-blocktype="copy" data-pp-id="59.0">The winner of a million-dollar contract to build just such a coalition and launch a pro-gas campaign across the Northwest was the communications firm Quinn Thomas. It had helped Washington business interests win fights against cap-and-trade and a carbon tax in that state in 2015 and 2016. Now the firm pledged to “defeat policies detrimental to the natural gas industry” once again.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="59.0">“When the time comes to ‘turn on’ the coalition to combat a specific proposal,” Quinn Thomas wrote in its bid, “we have extensive experience training and deploying spokespeople for public hearings.”</p>
+<p data-pp-blocktype="copy" data-pp-id="60.0">“When the time comes to ‘turn on’ the coalition to combat a specific proposal,” Quinn Thomas wrote in its bid, “we have extensive experience training and deploying spokespeople for public hearings.”</p>
 
-<p data-pp-blocktype="copy" data-pp-id="59.1">Evans and Quinn Thomas did not respond to ProPublica’s requests for comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="60.1">Evans and Quinn Thomas did not respond to ProPublica’s requests for comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="60.0">Northwest cities including Bellingham, Washington, and Eugene, Oregon, were beginning to consider natural gas restrictions. Evans had outlined a messaging plan for such fights, one focused on affordability, reliability and resiliency, on solutions like renewable natural gas, and, most of all, on consumer choice: “There are policies being advanced to limit YOUR choice…” and “people want to take it away,” she wrote when describing the plan.</p>
+<p data-pp-blocktype="copy" data-pp-id="61.0">Northwest cities including Bellingham, Washington, and Eugene, Oregon, were beginning to consider natural gas restrictions. Evans had outlined a messaging plan for such fights, one focused on affordability, reliability and resiliency, on solutions like renewable natural gas, and, most of all, on consumer choice: “There are policies being advanced to limit YOUR choice…” and “people want to take it away,” she wrote when describing the plan.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="61.0">After activists in Eugene accused NW Natural of overstating Oregon’s potential for renewable natural gas, Rush prepared a letter in 2021 to the city manager repeating the consultant’s talking points — “affordability, reliability and choice” — almost verbatim.</p>
+<p data-pp-blocktype="copy" data-pp-id="62.0">After activists in Eugene accused NW Natural of overstating Oregon’s potential for renewable natural gas, Rush prepared a letter in 2021 to the city manager repeating the consultant’s talking points — “affordability, reliability and choice” — almost verbatim.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="62.0">Eugene’s City Council nevertheless passed a partial natural gas ban in early 2023. Three days later, a group formed to collect signatures to revoke the ban, its name another apparent echo of the talking points: “Eugene Residents for Energy Choice.” Belying its grassroots name, the group’s work was bankrolled by $1,014,300 in donations — all but $220 of them from NW Natural. (The council eventually revoked the ban on its own.)</p>
+<p data-pp-blocktype="copy" data-pp-id="63.0">Eugene’s City Council nevertheless passed a partial natural gas ban in early 2023. Three days later, a group formed to collect signatures to revoke the ban, its name another apparent echo of the talking points: “Eugene Residents for Energy Choice.” Belying its grassroots name, the group’s work was bankrolled by $1,014,300 in donations — all but $220 of them from NW Natural. (The council eventually revoked the ban on its own.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="63.0">Another fight loomed at the state level. With cap-and-trade dead in the Oregon Legislature, Brown had issued an executive order mandating statewide controls on greenhouse gas emissions. For much of 2020 and 2021, the state prepared new rules to put Brown’s order in action.</p>
+<p data-pp-blocktype="copy" data-pp-id="64.0">Another fight loomed at the state level. With cap-and-trade dead in the Oregon Legislature, Brown had issued an executive order mandating statewide controls on greenhouse gas emissions. For much of 2020 and 2021, the state prepared new rules to put Brown’s order in action.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="64.0">The Oregon Public Utility Commission, which determines which costs NW Natural can pass along to consumers, soon began to question whether renewable natural gas was the most economical way for the company to meet the new climate rules. What if money spent on renewable natural gas went instead to home weatherization or more efficient appliances? What if it wasn’t spent on natural gas at all?</p>
+<p data-pp-blocktype="copy" data-pp-id="65.0">The Oregon Public Utility Commission, which determines which costs NW Natural can pass along to consumers, soon began to question whether renewable natural gas was the most economical way for the company to meet the new climate rules. What if money spent on renewable natural gas went instead to home weatherization or more efficient appliances? What if it wasn’t spent on natural gas at all?</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="65.0">NW Natural filed suit against regulations stemming from the governor’s executive order in early 2022, serving as the lead plaintiff. The company noted in a letter to its customers that it was committed to addressing climate change, citing its support for past “landmark” renewable natural gas legislation among other actions. It said its legal challenge to the state’s climate program came only “after exhausting all other options.”</p>
+<p data-pp-blocktype="copy" data-pp-id="66.0">NW Natural filed suit against regulations stemming from the governor’s executive order in early 2022, serving as the lead plaintiff. The company noted in a letter to its customers that it was committed to addressing climate change, citing its support for past “landmark” renewable natural gas legislation among other actions. It said its legal challenge to the state’s climate program came only “after exhausting all other options.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="66.0">NW Natural’s public messaging around renewable natural gas, meanwhile, remained upbeat. Starting in the summer of 2021, its events team visited at least two dozen street fairs and town festivals across Oregon with what it called the Cowthouse (“think cow + outhouse,” the utility explained): a fake toilet with cow legs sticking out below the door.</p>
+<p data-pp-blocktype="copy" data-pp-id="67.0">NW Natural’s public messaging around renewable natural gas, meanwhile, remained upbeat. Starting in the summer of 2021, its events team visited at least two dozen street fairs and town festivals across Oregon with what it called the Cowthouse (“think cow + outhouse,” the utility explained): a fake toilet with cow legs sticking out below the door.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="67.0">Those who approached the Cowthouse were challenged to a riddle: “What do a cow, a toilet and a banana peel have in common?” The answer, “RNG,” for renewable natural gas, was stamped on sugar cookies the company handed out.</p>
+<p data-pp-blocktype="copy" data-pp-id="68.0">Those who approached the Cowthouse were challenged to a riddle: “What do a cow, a toilet and a banana peel have in common?” The answer, “RNG,” for renewable natural gas, was stamped on sugar cookies the company handed out.</p>
         
     
                     
@@ -797,17 +922,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="69.0">As it pitched Oregonians on renewable natural gas, NW Natural had gone all out in emphasizing the vast amounts of rotting matter their state could use to produce it. In the end, the company opted not to use a bit of homegrown waste. It turned instead to other states, especially Nebraska.</p>
+<p data-pp-blocktype="copy" data-pp-id="70.0">As it pitched Oregonians on renewable natural gas, NW Natural had gone all out in emphasizing the vast amounts of rotting matter their state could use to produce it. In the end, the company opted not to use a bit of homegrown waste. It turned instead to other states, especially Nebraska.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="70.0">Meat and poultry giant Tyson Foods kept two of its biggest beef slaughterhouses there, each week churning through tens of thousands of cows that, in turn, churned out hundreds of thousands of pounds of manure as they awaited their end at the facility.</p>
+<p data-pp-blocktype="copy" data-pp-id="71.0">Meat and poultry giant Tyson Foods kept two of its biggest beef slaughterhouses there, each week churning through tens of thousands of cows that, in turn, churned out hundreds of thousands of pounds of manure as they awaited their end at the facility.</p>
         
     
                     
 
 <figure
-    data-pp-id="71"
+    data-pp-id="72"
     data-pp-blocktype="image"
     class="bb-image size12 center  wide-sm wrap 
                 ">
@@ -822,10 +947,10 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <img
         class=""
         alt=""
-        width="3014"
-        height="1580"
-        loading="lazy" js-autosizes        src="https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=419&amp;q=80&amp;w=800&amp;s=dc17f17c30078f83e4aaf0a2f7e6b210"
-        srcset="https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=80&amp;w=400&amp;s=2ecba5088456368f1fae2a1fc2315e52 400w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=419&amp;q=80&amp;w=800&amp;s=dc17f17c30078f83e4aaf0a2f7e6b210 800w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=629&amp;q=80&amp;w=1200&amp;s=c956ef5a0d0bebc9db0607bb7b03f1a7 1200w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=681&amp;q=80&amp;w=1300&amp;s=2b6b8038935251e094f8b9051d5c4961 1300w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=760&amp;q=80&amp;w=1450&amp;s=02844af8e3295abe5512acc2300e530d 1450w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=839&amp;q=80&amp;w=1600&amp;s=5b54bcbaa6be1de46c1ab45909b26de3 1600w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.png?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1048&amp;q=80&amp;w=2000&amp;s=d609d501a35fc06bb092f8f58059a36f 2000w"
+        width="2000"
+        height="1048"
+        loading="lazy" js-autosizes        src="https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=419&amp;q=75&amp;w=800&amp;s=26697e5e896b11fc748ef98ce310e4d5"
+        srcset="https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=400&amp;s=7f7ab148273852a4700cb8c19899c283 400w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=419&amp;q=75&amp;w=800&amp;s=26697e5e896b11fc748ef98ce310e4d5 800w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=629&amp;q=75&amp;w=1200&amp;s=1aa2a60eaf3778affe51f1aef2c8d473 1200w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=681&amp;q=75&amp;w=1300&amp;s=9fd31392476b9665a436bf8201c20d19 1300w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=760&amp;q=75&amp;w=1450&amp;s=83e8e33c3766b68ddbcb75a97f2d7e43 1450w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=838&amp;q=75&amp;w=1600&amp;s=b3f62593c3f7f09b3515e1cfe72438f4 1600w, https://img.assets-d.propublica.org/v5/images/Screenshot-2024-08-26-at-5.04.03-PM.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1048&amp;q=75&amp;w=2000&amp;s=14c5877cdd285af1ec6dbf3bd1e63c58 2000w"
                     />
 
             
@@ -846,15 +971,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="72.0">Rotting manure lets off methane. Rotting carcasses let off methane. Rotting garbage lets off methane. The gas is so much worse for the climate than carbon dioxide, ounce for ounce, that capturing a farm or landfill’s uncontrolled methane and purifying it to pipeline quality could, under the right circumstances, offset the harm from emissions it creates when burned.</p>
+<p data-pp-blocktype="copy" data-pp-id="73.0">Rotting manure lets off methane. Rotting carcasses let off methane. Rotting garbage lets off methane. The gas is so much worse for the climate than carbon dioxide, ounce for ounce, that capturing a farm or landfill’s uncontrolled methane and purifying it to pipeline quality could, under the right circumstances, offset the harm from emissions it creates when burned.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="73.0">NW Natural has described renewable natural gas as “carbon neutral” in corporate reports and a “zero-carbon resource” in news releases. But in more recent filings with Oregon regulators, the company estimates that gas from its project in Dakota City, Nebraska, while cleaner than ordinary natural gas, still packs 25% of the climate impact. At the Tyson slaughterhouse in Lexington, Nebraska, it’s 40%.</p>
+<p data-pp-blocktype="copy" data-pp-id="74.0">NW Natural has described renewable natural gas as “carbon neutral” in corporate reports and a “zero-carbon resource” in news releases. But in more recent filings with Oregon regulators, the company estimates that gas from its project in Dakota City, Nebraska, while cleaner than ordinary natural gas, still packs 25% of the climate impact. At the Tyson slaughterhouse in Lexington, Nebraska, it’s 40%.</p>
         
     
                                   <aside
-    data-pp-id="74"
+    data-pp-id="75"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -909,36 +1034,36 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="75.0">In an interview, Chittum noted that there is no universal standard to measure how much a renewable natural gas project actually helps the climate. By the standards followed by some state programs, including in California, she said the Tyson projects could possibly be certified as carbon-zero, or even carbon-negative. But it’s expensive to hire someone to do a full accounting, and Oregon doesn’t require NW Natural to prove any benefit — so “we just haven’t spent … the third-party dollars to go calculate all of that,” she said.</p>
+<p data-pp-blocktype="copy" data-pp-id="76.0">In an interview, Chittum noted that there is no universal standard to measure how much a renewable natural gas project actually helps the climate. By the standards followed by some state programs, including in California, she said the Tyson projects could possibly be certified as carbon-zero, or even carbon-negative. But it’s expensive to hire someone to do a full accounting, and Oregon doesn’t require NW Natural to prove any benefit — so “we just haven’t spent … the third-party dollars to go calculate all of that,” she said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="76.0">Methane from the Tyson operations is captured and piped not to Oregon, but to customers mainly near the two plants. NW Natural counts it as a credit against the fossil natural gas its own customers burn.</p>
+<p data-pp-blocktype="copy" data-pp-id="77.0">Methane from the Tyson operations is captured and piped not to Oregon, but to customers mainly near the two plants. NW Natural counts it as a credit against the fossil natural gas its own customers burn.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="77.0">For 2023, NW Natural reported renewable natural gas from the Tyson projects, some dairy digesters in Wisconsin, a sewage treatment plant in New York and a food-waste project in Utah.</p>
+<p data-pp-blocktype="copy" data-pp-id="78.0">For 2023, NW Natural reported renewable natural gas from the Tyson projects, some dairy digesters in Wisconsin, a sewage treatment plant in New York and a food-waste project in Utah.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="77.1">“It doesn’t matter where the renewable molecule of RNG comes from if reducing emissions is the goal,” NW Natural’s Roy told ProPublica.</p>
+<p data-pp-blocktype="copy" data-pp-id="78.1">“It doesn’t matter where the renewable molecule of RNG comes from if reducing emissions is the goal,” NW Natural’s Roy told ProPublica.</p>
 
 <hr>
-<p data-pp-blocktype="copy" data-pp-id="77.2">NW Natural has notched a series of wins in recent months.</p>
+<p data-pp-blocktype="copy" data-pp-id="78.2">NW Natural has notched a series of wins in recent months.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="78.0">For the fourth year in a row, it was named one of the best gas utilities in the West by the survey company J.D. Power. For the third year in a row, it was named one of the world’s most ethical companies by Ethisphere, a for-profit company that rates other companies’ ethics for a fee.</p>
+<p data-pp-blocktype="copy" data-pp-id="79.0">For the fourth year in a row, it was named one of the best gas utilities in the West by the survey company J.D. Power. For the third year in a row, it was named one of the world’s most ethical companies by Ethisphere, a for-profit company that rates other companies’ ethics for a fee.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="79.0">In late December, the Oregon Court of Appeals ruled in favor of NW Natural in overturning the state climate program that resulted from Brown’s executive order.</p>
+<p data-pp-blocktype="copy" data-pp-id="80.0">In late December, the Oregon Court of Appeals ruled in favor of NW Natural in overturning the state climate program that resulted from Brown’s executive order.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="80.0">In May, NW Natural touted the results of a poll it had commissioned: It said 72% of Oregon voters opposed bans on natural gas in new homes and buildings, a 9-point increase since 2019. “Voters’ attention is more focused on what they believe are pressing concerns, such as homelessness,” a press release said. More than 75% of respondents supported efforts promoting renewable natural gas.</p>
+<p data-pp-blocktype="copy" data-pp-id="81.0">In May, NW Natural touted the results of a poll it had commissioned: It said 72% of Oregon voters opposed bans on natural gas in new homes and buildings, a 9-point increase since 2019. “Voters’ attention is more focused on what they believe are pressing concerns, such as homelessness,” a press release said. More than 75% of respondents supported efforts promoting renewable natural gas.</p>
         
     
                     <figure
-    data-pp-id="81"
+    data-pp-id="82"
     data-pp-blocktype="pull-quote"
     class="bb-pull-quote bb--border-top
         size04 left out02 wide-sm wrap">
@@ -956,23 +1081,23 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="82.0">But the renewable gas business has not gone as billed.</p>
+<p data-pp-blocktype="copy" data-pp-id="83.0">But the renewable gas business has not gone as billed.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="83.0">The company’s data for 2023 showed that even as it harnesses the waste streams of one of the world’s biggest meatpackers — at an anticipated cost of $38 million, if two more planned Tyson projects come online — NW Natural is falling far short of the share of its supply it said would come from the alternative fuel.</p>
+<p data-pp-blocktype="copy" data-pp-id="84.0">The company’s data for 2023 showed that even as it harnesses the waste streams of one of the world’s biggest meatpackers — at an anticipated cost of $38 million, if two more planned Tyson projects come online — NW Natural is falling far short of the share of its supply it said would come from the alternative fuel.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="84.0">In a document filed in August with the Public Utility Commission, the company said it had slowed its procurement and did not expect to hit the goal of 5% it had set for 2024. It blamed “policy and regulatory uncertainty,” particularly the commission’s skepticism of its renewable natural gas plans.</p>
+<p data-pp-blocktype="copy" data-pp-id="85.0">In a document filed in August with the Public Utility Commission, the company said it had slowed its procurement and did not expect to hit the goal of 5% it had set for 2024. It blamed “policy and regulatory uncertainty,” particularly the commission’s skepticism of its renewable natural gas plans.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="85.0">Less We Can is taking on a new meaning.</p>
+<p data-pp-blocktype="copy" data-pp-id="86.0">Less We Can is taking on a new meaning.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="85.1">After years of fanfare about renewable natural gas, what’s its share of NW Natural’s gas supply today?</p>
+<p data-pp-blocktype="copy" data-pp-id="86.1">After years of fanfare about renewable natural gas, what’s its share of NW Natural’s gas supply today?</p>
 
-<p data-pp-blocktype="copy" data-pp-id="85.2">Less than 1%.</p>
+<p data-pp-blocktype="copy" data-pp-id="86.2">Less than 1%.</p>
         
     
         
@@ -990,6 +1115,25 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect Journalism That Gets Results</h2>
+
+    <div class="module-content">
+
+        <p>
+            This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.
+        </p>
+        <p>
+            ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life</strong>. Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions.
+        </p>
+        <p>
+            Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 50,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.
+        </p>
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
         <div class="rich-byline-group">
 
 
@@ -1328,17 +1472,153 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
     
 
+
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=36faa25d93e1dc4d30ab74fffae2af20 400w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=90070dbe7938086df635cc964a95e7a6 800w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=37dfc99aab8e5611e75d928dd243b933 1200w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=d003dffb79789b7d62f5197a60a75714 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
+                                    Abortion Bans Have Delayed Emergency Medical Care. In Georgia, Experts Say This Mother’s Death Was Preventable.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            At least two women in Georgia died after they couldn’t access legal abortions and timely medical care in their state, ProPublica has found. This is one of their stories.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-09-16EDT05:00">Sept. 16, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
                     
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/trump-media-ceo-devin-nunes-north-macedonia-truthsocial-hristijan-mickoski">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/ohio-taxpayer-money-funding-private-religious-schools">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=267&amp;q=75&amp;w=400&amp;s=ae92749952e2acf33d427fb81cdd2211 400w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=533&amp;q=75&amp;w=800&amp;s=f4c63903ff5bb4f798b26a00e066851e 800w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=800&amp;q=75&amp;w=1200&amp;s=9ccc2dd190eaf581811a89ce31f7b7c2 1200w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=1067&amp;q=75&amp;w=1600&amp;s=47adae0259ae0be37c6f0d4964f195c4 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=267&amp;q=75&amp;w=400&amp;s=121dd6e09730837c96e2e91cd9614a83 400w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=533&amp;q=75&amp;w=800&amp;s=04c946abc9817d290471fce472ffced1 800w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=800&amp;q=75&amp;w=1200&amp;s=e3300be118269ad8a239099b25350da2 1200w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=1067&amp;q=75&amp;w=1600&amp;s=0411a35eadaa89ccf7f66da2f36f8c60 1600w"
                     width="400"
                     height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/ohio-taxpayer-money-funding-private-religious-schools">
+                                    In an Unprecedented Move, Ohio Is Funding the Construction of Private Religious Schools
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The state is giving millions in taxpayer dollars directly to private schools to help them renovate and expand their campuses. It may be the next frontier in the push to increase the use of school vouchers, proponents say.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/eli-hager">Eli Hager</a>,             <time class="timestamp" datetime="2024-09-17EDT05:00">Sept. 17, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+                        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/national-debt-trump">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-c3.propublica.org/images/articles/20210114-trump-deficit-1x1.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=0e60d90543df8b4989af5ec5cc733ca4 105w, https://img.assets-c3.propublica.org/images/articles/20210114-trump-deficit-1x1.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=e4aa97b6956735686d5f910733a916cb 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/a-closer-look">A Closer Look</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/national-debt-trump">
+                                    Trump Built a National Debt So Big That It’ll Weigh Down the Economy for Years
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The “King of Debt” promised to reduce the national debt — then his tax cuts made it surge. Add in the pandemic, and he oversaw the third-biggest deficit increase of any president.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/allan-sloan">Allan Sloan</a>, ProPublica, and <span class="name">Cezary Podkul</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2021-01-14EST05:00">Jan. 14, 2021, 5 a.m. EST</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/trump-media-ceo-devin-nunes-north-macedonia-truthsocial-hristijan-mickoski">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=105&amp;q=75&amp;w=105&amp;s=72b96473db0a9b2c8029136cfdcadf28 105w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=210&amp;q=75&amp;w=210&amp;s=320ccc7f88ed5cba01226c813a387976 210w"
+                    width="105"
+                    height="105"
                     loading="lazy"
                     js-autosizes
                 />
@@ -1377,14 +1657,14 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     
     
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">
                 <img
                     alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=a068e3b71d2a5ca02bb2a22b75fd1c88 400w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=7e6bea4a90a7f78514698ecfaa44ced9 800w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=f2ec51d3b1ae1b50b6e0980f11eac881 1200w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=16c635c97343dd423302623163156dcb 1600w"
-                    width="400"
-                    height="267"
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=eda6d543c1e89df24833d7f21b92f5a5 105w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=219f0ae56dcd6e5727bf188adb35f70c 210w"
+                    width="105"
+                    height="105"
                     loading="lazy"
                     js-autosizes
                 />
@@ -1405,146 +1685,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
         <p class="story-card__byline">
             by <a class="name" href="https://www.propublica.org/people/ryan-gabrielson">Ryan Gabrielson</a> and <a class="name" href="https://www.propublica.org/people/byard-duncan">Byard Duncan</a>,             <time class="timestamp" datetime="2024-09-12EDT05:00">Sept. 12, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/nypd-tossed-out-police-misconduct-discipline-cases-edward-caban">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/h_16169502.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=d68e76ccc8fe7db3dc880844bc8689d3 105w, https://img.assets-d.propublica.org/v5/images/h_16169502.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=c08a11a8f5648936aed243c08adf1866 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/the-nypd-files">The NYPD Files</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/nypd-tossed-out-police-misconduct-discipline-cases-edward-caban">
-                                    The NYPD Is Tossing Out Hundreds of Misconduct Cases — Including Stop-and-Frisks — Without Even Looking at Them
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            The department has killed more than 400 cases of alleged misconduct this year that an oversight board had investigated and substantiated. It’s part of a lax attitude toward discipline under the current police commissioner, Edward Caban, critics say.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/eric-umansky">Eric Umansky</a>,             <time class="timestamp" datetime="2024-09-11EDT12:35">Sept. 11, 12:35 p.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/saudi-officials-may-have-assisted-911-hijackers-new-evidence-suggests">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-50705429_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=345c33790e53a1b8386f833948ccf34f 105w, https://img.assets-d.propublica.org/v5/images/GettyImages-50705429_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=4f7e50ab0ca587b269a015492a680fda 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/saudi-officials-may-have-assisted-911-hijackers-new-evidence-suggests">
-                                    At Least Two Saudi Officials May Have Deliberately Assisted 9/11 Hijackers, New Evidence Suggests
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Newly revealed information also raises questions about whether the FBI and CIA mishandled or downplayed evidence of the kingdom’s possible ties to the plotters.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/tim-golden">Tim Golden</a>,             <time class="timestamp" datetime="2024-09-11EDT05:00">Sept. 11, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/ambetter-ghost-network-consequences">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=300892a490f91b3620bcbb5f417abc73 105w, https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=811b37902674f54da220746e62a8a2d0 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/americas-mental-barrier">America’s Mental Barrier</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/ambetter-ghost-network-consequences">
-                                    “I Don’t Want to Die”: Needing Mental Health Care, He Got Trapped in His Insurer’s Ghost Network
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Ravi Coutinho bought a health insurance plan thinking it would deliver on its promise of access to mental health providers. But even after 21 phone calls and multiple hospitalizations, no one could find him a therapist.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/max-blau">Max Blau</a>, illustrations by <span class="name">Vanessa Saba</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-09-08EDT06:05">Sept. 8, 6:05 a.m. EDT</time>
         </p>
 
             </div>
@@ -1674,13 +1814,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#3a575f5e535b48535d524e497a4a48554a4f585653595b1455485d"><span class="__cf_email__" data-cfemail="3f525a5b565e4d5658574b4c7f4f4d504f4a5d53565c5e11504d58">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#ec818988858d9e858b84989fac9c9e839c998e80858f8dc2839e8b"><span class="__cf_email__" data-cfemail="abc6cecfc2cad9c2ccc3dfd8ebdbd9c4dbdec9c7c2c8ca85c4d9cc">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#d7bbbeb4b2b9a4beb9b097a7a5b8a7a2b5bbbeb4b6f9b8a5b0"><span class="__cf_email__" data-cfemail="9ff3f6fcfaf1ecf6f1f8dfefedf0efeafdf3f6fcfeb1f0edf8">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#f09c9993959e83999e97b080829f8085929c999391de9f8297"><span class="__cf_email__" data-cfemail="fb9792989e958892959cbb8b89948b8e999792989ad594899c">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1821,5 +1961,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["McKenzie Funk"],"dateCreated":"2024-09-12T10:10:06-04:00","dateModified":"2024-09-12T16:53:19-04:00","datePublished":"2024-09-13T05:00:00-04:00","description":"NW Natural told Oregonians it had a new source of clean energy: renewable natural gas. Industry documents obtained by ProPublica reveal how the company has, for years, perpetuated its core fossil fuel business while painting a picture of going green.","headline":"Oregon’s Largest Natural Gas Utility Hasn’t Actually Gone Green","image":{"@type":"ImageObject","url":"https://img.assets-c3.propublica.org/images/articles/Northwest-Gas-PR-OG.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=d8138ecd3b174d5e76609526a03f40e4"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel","name":"Oregon’s Largest Natural Gas Utility Hasn’t Actually Gone Green","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-c3.propublica.org/images/articles/Northwest-Gas-PR-OG.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=d8138ecd3b174d5e76609526a03f40e4","url":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel","name":"Oregon’s Largest Natural Gas Company Said It Was Going Green. It Sells as Much Fossil Fuel as Before.","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["McKenzie Funk"],"dateCreated":"2024-09-12T10:10:06-04:00","dateModified":"2024-09-13T12:44:57-04:00","datePublished":"2024-09-13T05:00:00-04:00","description":"NW Natural told Oregonians it had a new source of clean energy: renewable natural gas. Industry documents obtained by ProPublica reveal how the company has, for years, perpetuated its core fossil fuel business while painting a picture of going green.","headline":"Oregon’s Largest Natural Gas Utility Hasn’t Actually Gone Green","image":{"@type":"ImageObject","url":"https://img.assets-c3.propublica.org/images/articles/Northwest-Gas-PR-OG.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=d8138ecd3b174d5e76609526a03f40e4"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel","name":"Oregon’s Largest Natural Gas Utility Hasn’t Actually Gone Green","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-c3.propublica.org/images/articles/Northwest-Gas-PR-OG.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=d8138ecd3b174d5e76609526a03f40e4","url":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel","name":"Oregon’s Largest Natural Gas Company Said It Was Going Green. It Sells as Much Fossil Fuel as Before.","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
