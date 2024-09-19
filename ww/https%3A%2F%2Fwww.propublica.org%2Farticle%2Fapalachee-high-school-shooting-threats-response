@@ -136,6 +136,105 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Fall Member Drive:</strong>
+            Support journalism that protects our democracy.
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -217,7 +316,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"After Apalachee Shooting, How Should Georgia Respond to Threats?","pageUrl":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="WbSgtZ8qg3" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="M82UX1C2BJ" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -277,23 +376,49 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="1.0">A year ago, sheriff’s deputies in Georgia <a href="https://www.youtube.com/watch?v=Cmlo0JRiy_s">showed up on the doorstep</a> of middle school student Colt Gray. They were there to question him about an online threat to shoot up his school. Last week, the 14-year-old was charged with shooting and killing four people at Apalachee High School.</p>
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/apalachee-high-school-shooting-threats-response&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">As details continue to emerge, the question now in front of Georgia legislators is: How should officials respond to these kinds of warning signs in the future?</p>
+<p data-pp-blocktype="copy" data-pp-id="2.0">A year ago, sheriff’s deputies in Georgia <a href="https://www.youtube.com/watch?v=Cmlo0JRiy_s">showed up on the doorstep</a> of middle school student Colt Gray. They were there to question him about an online threat to shoot up his school. Last week, the 14-year-old was charged with shooting and killing four people at Apalachee High School.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="3.0">Lawmakers are already indicating that they intend to take tougher action against students who make threats. In a Sept. 12 letter to members of the state House Republican Caucus, House Speaker Jon Burns wrote that one of his objectives in the next legislative session will be to “increase penalties for making terroristic threats in our schools — and make it clear that here in Georgia, threats of violence against our students will not be tolerated and will be prosecuted to the fullest extent of the law.” (Burns did not respond to a request for comment.)</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">As details continue to emerge, the question now in front of Georgia legislators is: How should officials respond to these kinds of warning signs in the future?</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="4.0">But, as ProPublica has reported this year, there can be consequences to increasing penalties: trampling the rights of children who don’t pose a threat to anyone.</p>
+<p data-pp-blocktype="copy" data-pp-id="4.0">Lawmakers are already indicating that they intend to take tougher action against students who make threats. In a Sept. 12 letter to members of the state House Republican Caucus, House Speaker Jon Burns wrote that one of his objectives in the next legislative session will be to “increase penalties for making terroristic threats in our schools — and make it clear that here in Georgia, threats of violence against our students will not be tolerated and will be prosecuted to the fullest extent of the law.” (Burns did not respond to a request for comment.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="6.0">Two weeks before the Apalachee shooting, <a href="https://www.propublica.org/article/tennessee-school-threats-expulsions">we published a story about a 10-year-old in Tennessee</a> who was expelled from school for a year after he angrily pointed his finger in the shape of a gun. The article explored how a state law, passed in response to last year’s Covenant School shooting in Nashville that left six people dead, requires schools to kick students out for making threats of mass violence.</p>
+<p data-pp-blocktype="copy" data-pp-id="5.0">But, as ProPublica has reported this year, there can be consequences to increasing penalties: trampling the rights of children who don’t pose a threat to anyone.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="7.0">Two weeks before the Apalachee shooting, <a href="https://www.propublica.org/article/tennessee-school-threats-expulsions">we published a story about a 10-year-old in Tennessee</a> who was expelled from school for a year after he angrily pointed his finger in the shape of a gun. The article explored how a state law, passed in response to last year’s Covenant School shooting in Nashville that left six people dead, requires schools to kick students out for making threats of mass violence.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -302,30 +427,30 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="8.0">Another Tennessee law went into effect in July that increases the charge for making a threat of mass violence from a misdemeanor to a felony — without requiring officials to take actual intent into account. Many experts and some officials consider both laws an overreach.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="9.0">There is no indication that the Tennessee 10-year-old whose case we examined posed a danger to his school or his community. The fifth grader had no access to a firearm, according to his mother. She said school officials described him as a good kid and expressed regret at having to expel him. (The assistant director of his school district declined to comment, even after his mother signed a form permitting school officials to do so.)</p>
+<p data-pp-blocktype="copy" data-pp-id="9.0">Another Tennessee law went into effect in July that increases the charge for making a threat of mass violence from a misdemeanor to a felony — without requiring officials to take actual intent into account. Many experts and some officials consider both laws an overreach.</p>
         
     
                     
             
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">Meanwhile, Georgia law enforcement officials were warned a year ago that Gray was making threats, and they heard directly from his father that the teenager had access to guns. (School officials said the warnings were never passed on to them.)</p>
+<p data-pp-blocktype="copy" data-pp-id="11.0">There is no indication that the Tennessee 10-year-old whose case we examined posed a danger to his school or his community. The fifth grader had no access to a firearm, according to his mother. She said school officials described him as a good kid and expressed regret at having to expel him. (The assistant director of his school district declined to comment, even after his mother signed a form permitting school officials to do so.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="12.0">As Georgia lawmakers consider what they can do to keep students safer, experts say they should consider the implications their decisions may have for a broad spectrum of children — from the 14-year-old with access to assault rifles to the 10-year-old pointing a finger gun. People who study the warning signs of and legislative reactions to school shootings have long warned that zero-tolerance policies, such as the ones Tennessee adopted, are not proven to make schools safer — and in fact can harm students.</p>
+<p data-pp-blocktype="copy" data-pp-id="12.0">Meanwhile, Georgia law enforcement officials were warned a year ago that Gray was making threats, and they heard directly from his father that the teenager had access to guns. (School officials said the warnings were never passed on to them.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">To deter violence, experts maintain, the research suggests that the most effective strategy is not mandatory expulsions and felony charges but a different kind of tactic, one that federal officials have touted based on decades of interviews with mass shooters, political assassins and people who survived attacks. Threat assessments, when done effectively, bring together mental health professionals, law enforcement and others in the community to help school officials sort out the credible threats from the simply disruptive acts and provide students with needed help.</p>
+<p data-pp-blocktype="copy" data-pp-id="13.0">As Georgia lawmakers consider what they can do to keep students safer, experts say they should consider the implications their decisions may have for a broad spectrum of children — from the 14-year-old with access to assault rifles to the 10-year-old pointing a finger gun. People who study the warning signs of and legislative reactions to school shootings have long warned that zero-tolerance policies, such as the ones Tennessee adopted, are not proven to make schools safer — and in fact can harm students.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="14.0">“It is the best option available for us to prevent these kinds of shootings,” said Dewey Cornell, a psychologist and a leading expert on the use of threat assessments in schools. A threat assessment team is supposed to interview anyone involved with a threat to assess whether the student poses an imminent risk to others. And it is supposed to warn any intended victims of major threats, take precautions to protect them and seek ways to resolve conflict.</p>
+<p data-pp-blocktype="copy" data-pp-id="14.0">To deter violence, experts maintain, the research suggests that the most effective strategy is not mandatory expulsions and felony charges but a different kind of tactic, one that federal officials have touted based on decades of interviews with mass shooters, political assassins and people who survived attacks. Threat assessments, when done effectively, bring together mental health professionals, law enforcement and others in the community to help school officials sort out the credible threats from the simply disruptive acts and provide students with needed help.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="15.0">“It is the best option available for us to prevent these kinds of shootings,” said Dewey Cornell, a psychologist and a leading expert on the use of threat assessments in schools. A threat assessment team is supposed to interview anyone involved with a threat to assess whether the student poses an imminent risk to others. And it is supposed to warn any intended victims of major threats, take precautions to protect them and seek ways to resolve conflict.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -334,19 +459,19 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="16.0">Cornell said law enforcement involvement and harsh discipline should be reserved for the most serious cases — the exact opposite of zero-tolerance policies. Tennessee, <a href="https://www.motherjones.com/criminal-justice/2024/05/threat-assessment-mass-shooting-elliot-rodger-isla-vista-mother/">along with 20 other states</a>, requires threat assessments in schools. But because the state also mandates expulsions and felony charges, many students end up ostracized and isolated rather than getting the ongoing help that experts consider to be one of the greatest strengths of the threat assessment process.</p>
+<p data-pp-blocktype="copy" data-pp-id="17.0">Cornell said law enforcement involvement and harsh discipline should be reserved for the most serious cases — the exact opposite of zero-tolerance policies. Tennessee, <a href="https://www.motherjones.com/criminal-justice/2024/05/threat-assessment-mass-shooting-elliot-rodger-isla-vista-mother/">along with 20 other states</a>, requires threat assessments in schools. But because the state also mandates expulsions and felony charges, many students end up ostracized and isolated rather than getting the ongoing help that experts consider to be one of the greatest strengths of the threat assessment process.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="17.0">The suggestion that schools and authorities should closely monitor and assist students who make threats may feel counterintuitive, especially with fear and frustration soaring, said Mark Follman, a journalist with Mother Jones and author of the 2022 book “Trigger Points: Inside the Mission to Stop Mass Shootings in America.”</p>
+<p data-pp-blocktype="copy" data-pp-id="18.0">The suggestion that schools and authorities should closely monitor and assist students who make threats may feel counterintuitive, especially with fear and frustration soaring, said Mark Follman, a journalist with Mother Jones and author of the 2022 book “Trigger Points: Inside the Mission to Stop Mass Shootings in America.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="18.0">It’s also easy to understand why people want a punitive response to threats, Follman said, but it can make the problem worse. Expelling a student who is potentially dangerous means school officials and others have little ability to monitor them. And, crucially, “you’re also potentially exacerbating their sense of crisis, their grievance, especially if it involves the school,” he said, moving them toward a point of attack instead of away from it.</p>
+<p data-pp-blocktype="copy" data-pp-id="19.0">It’s also easy to understand why people want a punitive response to threats, Follman said, but it can make the problem worse. Expelling a student who is potentially dangerous means school officials and others have little ability to monitor them. And, crucially, “you’re also potentially exacerbating their sense of crisis, their grievance, especially if it involves the school,” he said, moving them toward a point of attack instead of away from it.</p>
         
     
                                   <aside
-    data-pp-id="19"
+    data-pp-id="20"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -401,15 +526,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="20.0">For his book, Follman interviewed leading experts on threat assessments and embedded with a team at a school district in Oregon. He points out that for the threat assessment process to work, it has to be carried out correctly. “Most, if not all, examples I have seen of stories about threat assessment having negative impact on students and families are cases in which it’s not being done right,” Follman said.</p>
+<p data-pp-blocktype="copy" data-pp-id="21.0">For his book, Follman interviewed leading experts on threat assessments and embedded with a team at a school district in Oregon. He points out that for the threat assessment process to work, it has to be carried out correctly. “Most, if not all, examples I have seen of stories about threat assessment having negative impact on students and families are cases in which it’s not being done right,” Follman said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="21.0">Tennessee school officials carry out threat assessments inconsistently, our story last month found. Some allow police to take the lead in minor incidents, resulting in criminal charges for kids who made threats that school officials themselves did not consider credible.</p>
+<p data-pp-blocktype="copy" data-pp-id="22.0">Tennessee school officials carry out threat assessments inconsistently, our story last month found. Some allow police to take the lead in minor incidents, resulting in criminal charges for kids who made threats that school officials themselves did not consider credible.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="22.0">At least one Tennessee lawmaker is responding to the shooting in Georgia by saying it validates the harsh penalties for students who make threats. Tennessee state Sen. Jon Lundberg, who co-sponsored both punitive Tennessee laws, <a href="https://www.timesfreepress.com/news/2024/sep/07/words-do-have-consequences-eight-student-arrested/#/questions">told the Chattanooga Times Free Press this week</a>, “The legislature is constantly looking at, What else can we do?”</p>
+<p data-pp-blocktype="copy" data-pp-id="23.0">At least one Tennessee lawmaker is responding to the shooting in Georgia by saying it validates the harsh penalties for students who make threats. Tennessee state Sen. Jon Lundberg, who co-sponsored both punitive Tennessee laws, <a href="https://www.timesfreepress.com/news/2024/sep/07/words-do-have-consequences-eight-student-arrested/#/questions">told the Chattanooga Times Free Press this week</a>, “The legislature is constantly looking at, What else can we do?”</p>
         
     
         
@@ -419,6 +544,25 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
         
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect Journalism That Gets Results</h2>
+
+    <div class="module-content">
+
+        <p>
+            This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.
+        </p>
+        <p>
+            ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life</strong>. Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions.
+        </p>
+        <p>
+            Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 50,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.
+        </p>
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
         <div class="rich-byline-group">
 
 
@@ -435,7 +579,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#ef8e838696968ec19c988e8d96af9f9d809f9a8d83868c8ec1809d88">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#12737e7b6b6b733c616573706b5262607d6267707e7b71733c7d6075">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -443,7 +587,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="1b7a777262627a35686c7a79625b6b69746b6e797772787a3574697c">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="c3a2afaababaa2edb0b4a2a1ba83b3b1acb3b6a1afaaa0a2edacb1a4">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -512,11 +656,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/trump-media-ceo-devin-nunes-north-macedonia-truthsocial-hristijan-mickoski">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/judge-aileen-cannon-trump-documents-case-travel-disclosures">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=267&amp;q=75&amp;w=400&amp;s=ae92749952e2acf33d427fb81cdd2211 400w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=533&amp;q=75&amp;w=800&amp;s=f4c63903ff5bb4f798b26a00e066851e 800w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=800&amp;q=75&amp;w=1200&amp;s=9ccc2dd190eaf581811a89ce31f7b7c2 1200w, https://img.assets-d.propublica.org/v5/images/Trump-Macedonia-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5885&amp;fp-y=0.3305&amp;h=1067&amp;q=75&amp;w=1600&amp;s=47adae0259ae0be37c6f0d4964f195c4 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20240913-cannon-george-mason_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=b6be137f114b8a77fb21fc618d3b81de 400w, https://img.assets-d.propublica.org/v5/images/20240913-cannon-george-mason_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=fd9f6a439816c5762a2e651ded70cedc 800w, https://img.assets-d.propublica.org/v5/images/20240913-cannon-george-mason_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=1c7fea99136dc4f45b54fbbc6c6b401a 1200w, https://img.assets-d.propublica.org/v5/images/20240913-cannon-george-mason_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=120c029f19ab252d0e62e7b8d223abb5 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -528,17 +672,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/trump-media-ceo-devin-nunes-north-macedonia-truthsocial-hristijan-mickoski">
-                                    Trump Company CEO’s Unexplained Meeting With Balkans Leader Raises Specter of New Conflict
+            <a href="https://www.propublica.org/article/judge-aileen-cannon-trump-documents-case-travel-disclosures">
+                                    Judge Aileen Cannon Failed to Disclose a Right-Wing Junket
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Devin Nunes, the former congressman who runs the company behind Truth Social, traveled to North Macedonia as former President Trump vies to once again shape U.S. foreign policy.
+                            Cannon, whose oversight of the Donald Trump classified documents case has garnered widespread criticism, has repeatedly violated a rule requiring that federal judges disclose their attendance at private seminars.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a>, <a class="name" href="https://www.propublica.org/people/robert-faturechi">Robert Faturechi</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-09-12EDT06:00">Sept. 12, 6 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/marilyn-thompson">Marilyn W. Thompson</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-09-17EDT12:50">Sept. 17, 12:50 p.m. EDT</time>
         </p>
 
             </div>
@@ -558,11 +702,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=a068e3b71d2a5ca02bb2a22b75fd1c88 400w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=7e6bea4a90a7f78514698ecfaa44ced9 800w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=f2ec51d3b1ae1b50b6e0980f11eac881 1200w, https://img.assets-d.propublica.org/v5/images/used-cars-opener-PROMO_2024-08-05-200045_zxln.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=16c635c97343dd423302623163156dcb 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=36faa25d93e1dc4d30ab74fffae2af20 400w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=90070dbe7938086df635cc964a95e7a6 800w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=37dfc99aab8e5611e75d928dd243b933 1200w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=d003dffb79789b7d62f5197a60a75714 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -572,19 +716,66 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/exeter-finance-skip-payments-debt">
-                                    One of the Nation’s Largest Auto Lenders Told Customers, “We’re Here to Help.” Then It Took Their Money and Their Cars.
+            <a href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
+                                    Abortion Bans Have Delayed Emergency Medical Care. In Georgia, Experts Say This Mother’s Death Was Preventable.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            CarMax partner Exeter Finance makes high-interest loans to people with troubled financial histories. It allows borrowers to skip payments but often adds thousands of dollars in new charges — costs that customers say Exeter didn’t tell them about.
+                            At least two women in Georgia died after they couldn’t access legal abortions and timely medical care in their state, ProPublica has found. This is one of their stories.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/ryan-gabrielson">Ryan Gabrielson</a> and <a class="name" href="https://www.propublica.org/people/byard-duncan">Byard Duncan</a>,             <time class="timestamp" datetime="2024-09-12EDT05:00">Sept. 12, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-09-16EDT05:00">Sept. 16, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/ohio-taxpayer-money-funding-private-religious-schools">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=105&amp;q=75&amp;w=105&amp;s=425ccc6404f75048245bbcb6d8759cf5 105w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=210&amp;q=75&amp;w=210&amp;s=8e2f4fda5bfa8b1ae43abfbf6d488d88 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/ohio-taxpayer-money-funding-private-religious-schools">
+                                    In an Unprecedented Move, Ohio Is Funding the Construction of Private Religious Schools
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The state is giving millions in taxpayer dollars directly to private schools to help them renovate and expand their campuses. It may be the next frontier in the push to increase the use of school vouchers, proponents say.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/eli-hager">Eli Hager</a>,             <time class="timestamp" datetime="2024-09-17EDT05:00">Sept. 17, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -643,15 +834,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
     
 
-                    
+
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/candi-miller-abortion-ban-death-georgia">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Northwest-Gas-PR.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=cafb184ef9f7df9b5eb5285c5090994f 105w, https://img.assets-d.propublica.org/v5/images/Northwest-Gas-PR.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=3ec2f75fcdf96d2a68b61b03e1ee775b 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-candi-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=471323133b9453fcf5fa0b849d451b58 105w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-candi-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=ed488e90da9e350386a18b48919656a4 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -661,66 +852,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/nw-natural-gas-oregon-fossil-fuel">
-                                    Oregon’s Largest Natural Gas Company Said It Was Going Green. It Sells as Much Fossil Fuel as Before.
+            <a href="https://www.propublica.org/article/candi-miller-abortion-ban-death-georgia">
+                                    Afraid to Seek Care Amid Georgia’s Abortion Ban, She Stayed at Home and Died
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            NW Natural told Oregonians it had a new source of clean energy: renewable natural gas. Industry documents obtained by ProPublica reveal how the company has, for years, perpetuated its core fossil fuel business while painting a picture of going green.
+                            Candi Miller’s family said she didn&#039;t visit a doctor “due to the current legislation on pregnancies and abortions.” Maternal health experts deemed her death preventable and blamed Georgia’s abortion ban.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/mac-funk">McKenzie Funk</a>,             <time class="timestamp" datetime="2024-09-13EDT05:00">Sept. 13, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/ambetter-ghost-network-consequences">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=300892a490f91b3620bcbb5f417abc73 105w, https://img.assets-d.propublica.org/v5/images/Saba_ProPublica_GhostNetwork_Opener_Final_Revised.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=811b37902674f54da220746e62a8a2d0 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/americas-mental-barrier">America’s Mental Barrier</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/ambetter-ghost-network-consequences">
-                                    “I Don’t Want to Die”: Needing Mental Health Care, He Got Trapped in His Insurer’s Ghost Network
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Ravi Coutinho bought a health insurance plan thinking it would deliver on its promise of access to mental health providers. But even after 21 phone calls and multiple hospitalizations, no one could find him a therapist.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/max-blau">Max Blau</a>, illustrations by <span class="name">Vanessa Saba</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-09-08EDT06:05">Sept. 8, 6:05 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-09-18EDT06:00">Sept. 18, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -850,13 +995,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#5f323a3b363e2d3638372b2c1f2f2d302f2a3d33363c3e71302d38"><span class="__cf_email__" data-cfemail="600d050409011209070814132010120f1015020c0903014e0f1207">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#bad7dfded3dbc8d3ddd2cec9facac8d5cacfd8d6d3d9db94d5c8dd"><span class="__cf_email__" data-cfemail="7e131b1a171f0c1719160a0d3e0e0c110e0b1c12171d1f50110c19">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#8de1e4eee8e3fee4e3eacdfdffe2fdf8efe1e4eeeca3e2ffea"><span class="__cf_email__" data-cfemail="a1cdc8c2c4cfd2c8cfc6e1d1d3ced1d4c3cdc8c2c08fced3c6">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#375b5e545259445e5950774745584742555b5e545619584550"><span class="__cf_email__" data-cfemail="abc7c2c8cec5d8c2c5ccebdbd9c4dbdec9c7c2c8ca85c4d9cc">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -997,5 +1142,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","articleSection":"A Closer Look","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Aliyya Swaby"],"dateCreated":"2024-09-13T15:58:27-04:00","dateModified":"2024-09-13T17:11:06-04:00","datePublished":"2024-09-14T05:00:00-04:00","description":"A top Georgia lawmaker is seeking tougher penalties for students who make threats. But this approach can have consequences: trampling the rights of children who don’t pose a threat to anyone.","headline":"After Apalachee Shooting, How Should Georgia Respond to Threats?","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/GettyImages-2169743687_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.6523&fp-y=0.5805&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=2f4508544017abdfdfaf7167064974fb"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response","name":"After Apalachee Shooting, How Should Georgia Respond to Threats?","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/GettyImages-2169743687_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.6523&fp-y=0.5805&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=2f4508544017abdfdfaf7167064974fb","url":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response","name":"Georgia’s Top GOP Lawmaker Seeks Tougher Action Against Students Who Make Threats. But It May Not Make Schools Safer.","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","articleSection":"A Closer Look","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Aliyya Swaby"],"dateCreated":"2024-09-13T15:58:27-04:00","dateModified":"2024-09-14T15:36:56-04:00","datePublished":"2024-09-14T05:00:00-04:00","description":"A top Georgia lawmaker is seeking tougher penalties for students who make threats. But this approach can have consequences: trampling the rights of children who don’t pose a threat to anyone.","headline":"After Apalachee Shooting, How Should Georgia Respond to Threats?","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/GettyImages-2169743687_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.6523&fp-y=0.5805&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=2f4508544017abdfdfaf7167064974fb"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response","name":"After Apalachee Shooting, How Should Georgia Respond to Threats?","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/GettyImages-2169743687_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.6523&fp-y=0.5805&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=2f4508544017abdfdfaf7167064974fb","url":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/apalachee-high-school-shooting-threats-response","name":"Georgia’s Top GOP Lawmaker Seeks Tougher Action Against Students Who Make Threats. But It May Not Make Schools Safer.","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
