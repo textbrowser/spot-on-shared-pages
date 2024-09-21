@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Deterministic Record-and-Replay - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Debugging" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3695735" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<h3><a href="/listing.cfm?sort=publication_date&order=desc&qc_type=Researchforpractice&page_title=Research%20for%20Practice">Research for Practice</a></h3>
+<label>September 19, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3695735">Volume 22, issue 4 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3688088">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Deterministic Record-and-Replay</h1>
+<h2>Zeroing in only on the nondeterministic actions of the process</h2>
+<h3>Andrew Quinn with Introduction by Peter Alvaro</h3>
+<p><i>Research for Practice combines the resources of the ACM Digital Library, the largest collection of computer science research in the world, with the expertise of the ACM membership. Research for Practice columns have a common goal of sharing the joy and utility of reading about computer science research exchanged between academics and their counterparts in industry.</i></p>
+<p>&nbsp;</p>
+<p>This summer's installment of Research for Practice covers a topic that, despite its maturity, continues to produce cutting-edge research: deterministic record-and-replay. Deterministic record-and-replay technologies enable a faithful re-execution (<i>replay</i>) of a program that ran in the past (and perhaps encountered a rare bug, a performance anomaly, or an intrusion by an adversary). But accomplishing this requires that any nondeterministic inputs to the program be logged (<i>record</i>ed) during execution.</p>
+<p>The selection of techniques presented here is curated by Andrew Quinn, assistant professor of computer science and engineering at UC Santa Cruz. We chose the topic because of its growing relevance to our audience of practitioners, and we chose Professor Quinn because of his expertise in the area. His selections here all come from recent publications in top CS conferences, and they cover a range of topics from core technologies providing record-and-replay to somewhat more exotic applications. They reveal both how broadly applicable this technique is across domains and just how HOT record-and-replay remains even though it has been an active area of research for a long time.</p>
+<p>Professor Quinn's summaries are detailed, so I will keep mine short. His first selection, which is called RR, provides a fantastic opportunity to get your feet wet with a system that "maximizes deployability" and works right out of the box by taking advantage of a mix of hardware and software features available on any modern system. </p>
+<p>The second paper (which just came out in 2024) uses record-and-replay techniques not to re-execute a program per se, but instead to address the problem of lightweight auditing—for example, to ensure a cloud provider is indeed running the program you submitted without needing to resort to the massive compute resources offered by the provider. </p>
+<p>Finally, he shares a paper that creatively applies record-and-replay ideas to a seemingly unrelated domain: securing GPU computations on mobile devices by treating each execution on new inputs as a "replay" of a canonical execution.</p>
+<p>I cannot think of a better way to spend a weekend afternoon than reading these three papers, along with Professor Quinn's expert summary.</p>
+<p align="right" style="text-align:right"><i> —Peter Alvaro</i></p>
+<h3>Research for Practice: Deterministic Record-and-Replay</h3>
+<p>Andrew Quinn</p>
+<p>&nbsp;</p>
+<p>Deterministic record-and-replay is a technique that allows a user to record a program execution and then replay <i>the exact same</i> execution at a later time. Think of it as being like TiVo, only for processes that execute on a computer. Researchers have created hundreds of systems that use deterministic record-and-replay across many domains. For example, security forensic systems (e.g., Backtracker<sup>5</sup>) use record-and-replay to determine what data was exfiltrated during a security breach, while replay-based debuggers (e.g., Instant Replay<sup>6</sup>) use record-and-replay to debug rare production issues and heisenbugs (bugs that go away once you observe them).</p>
+<p>The key challenge with deterministic record-and-replay is that processes produce <i>a lot</i> of execution state, far too much to capture and store. To illustrate, let's do a back-of-the-envelope calculation for the size of a process's instruction sequence, which is a subset of the information that must be encoded for record-and-replay. Assume that each instruction pointer is eight bytes, that the process is single-threaded and executes for 10 minutes, and that the system uses a 2GhZ processor. In this scenario, the instruction sequence would require 1.2TB of storage. Imagine the storage demands to do this for <i>all</i> your workloads, which execute longer, have more threads, and use faster processes.</p>
+<p>The key insight enabling deterministic record-and-replay is that <i>most</i> of a process's actions are deterministic—meaning their behavior is dependent entirely on the current state of the process. Thus, a deterministic record-and-replay system can eschew storing most execution states and instead store only information about the nondeterministic actions of the process. During recording, such systems store the nondeterministic inputs that were passed to the process (e.g., the bytes read from the network) into a log; during replay, the systems then re-execute the process with the values in the log to re-create the execution state.</p>
+<p>This column describes three recent research results that use deterministic record-and-replay, focusing on diverse use cases of the technique. </p>
+<p>&nbsp;</p>
+<h3>Readily Deployable Record-and-Replay</h3>
+<p> Robert O'Callahan, Chris Jones, Nathan Froyd, Kyle Huey, Albert Noll, and Nimrod Partush.<br/> Engineering record and replay for deployability.<br/> <i>Proceedings of the Usenix Annual Technical Conference</i>, 2017.<br/> <a href="https://www.usenix.org/conference/atc17/technical-sessions/presentation/ocallahan"> https://www.usenix.org/conference/atc17/technical-sessions/presentation/ocallahan</a> </p>
+<p>&nbsp;</p>
+<p>This system, called RR, is something you could probably add to your engineering workflow right now since it's a record-and-replay debugger that's easy to deploy. The system's key novelty is that it performs record-and-replay on an unprivileged user-space implementation that supports unmodified user-space applications on a stock Linux kernel, compiler, language runtime, and standard x86/x86-64 CPU. RR even supports programs that have bugs, such as data races, which have been a major source of issues for past record-and-replay systems. RR is also an open-source system, so you should build and tinker around with it if you haven't had the chance already.</p>
+<p>RR works by building on software and hardware features that were originally intended for traditional debugging and performance profiling. It uses ptrace, which was designed to implement software debuggers (e.g., gdb) that capture system call results and signals. The system accelerates the performance of ptrace by introducing in-process, system-call intersection, a technique that selectively suppresses ptrace traps and hence minimizes context switches, using seccomp-bpf (secure computing-Berkeley Packet Filter). RR executes only one thread at a time to avoid nondeterministic data races, and it uses CPU hardware performance counters (originally designed for performance profiling) to measure application progress so it can deliver signals and perform context switches at the right point in the program. This evaluation indicates whether the system meets reasonable compute, memory, and storage requirements for regular use as a debugger.</p>
+<p>&nbsp;</p>
+<h3>Auditing Event-driven Web Applications</h3>
+<p> Ioanna Tzialla, Jeffery Wang, Jingyi Zhu, Aurojit Panda, and Michael Walfish.<br/> Efficient auditing of event-driven web applications.<br/> In <i>Proceedings of the 19th European Conference on Computer Systems (EuroSys)</i>. 2024<br/> <a href="https://dl.acm.org/doi/10.1145/3627703.3650089"> https://dl.acm.org/doi/10.1145/3627703.3650089</a> </p>
+<p>&nbsp;</p>
+<p>Suppose that you deploy a web server on a remote cloud machine. How can you be sure that the machine is actually executing your web server? This brings us to the second system of interest: Karousos, which uses a variant of record-and-replay to answer that question about how your web server is faring, a concern these researchers refer to as "execution integrity." Specifically, Karousos provides a solution that provides a principal (you, that is) with confidence that running a given program (your web server) on given inputs (user requests) actually produces the alleged outputs (user responses) observed from a third-party machine (the remote cloud machine). </p>
+<p>Karousos uses the model from Orochi<sup>7</sup> in that a trusted collector machine captures all inputs and outputs to the program, while a verifier re-executes the inputs in the trace to check whether re-executed outputs match the trace. The model accelerates the process by re-executing requests in batches, using untrusted advice produced by the untrusted machine that consists of some of the nondeterministic actions made by the program.</p>
+<p>Karousos specifically targets event-driven web applications, for which prior work provides poor support. The system's key contributions center around techniques that balance the tradeoff between re-execution throughput and the size of advice. The technique and analysis are deep and beyond the scope of this column. So, I encourage interested readers to dive into the paper. (I promise you'll learn something!) </p>
+<p>In the end, Karousos's re-execution is essentially deterministic record-and-replay, with two key caveats. First, its re-executions aim to require less computation than the recorded execution; otherwise, it would not make sense to use the cloud in the first place. Second, deterministic record-and-replay assumes a correct log of nondeterministic events, whereas Karousos targets scenarios where the third-party adversarially constructs the advice. </p>
+<p>&nbsp;</p>
+<h3>GPUReplay for Client ML</h3>
+<p> Heejin Park and Felix Xiaozhu Lin.<br/> GPUReplay: a 50-KB GPU stack for client ML.<br/> <i>Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)</i>, 2022.<br/> <a href="https://dl.acm.org/doi/10.1145/3503222.3507754"> https://dl.acm.org/doi/10.1145/3503222.3507754</a> </p>
+<p>&nbsp;</p>
+<p>Let's say you design and maintain a mobile application that uses a GPU to accelerate a machine-learning (ML) component. Moreover, let's say this application executes on a GPU stack consisting of an ML framework (e.g., TensorFlow), a runtime (e.g., OpenCL), and a GPU driver. Together, the GPU stack converts a high-level language definition of your program into low-level GPU commands and places them on the GPU. Unfortunately, these sophisticated stacks come with three main concerns: weak security, deployment difficulty, and slow startup. </p>
+<p>GPUReplay uses deterministic record-and-replay to improve this state of affairs. At development time, it executes your ML application and records the GPU stack executions. The executions encode how the GPU stack interacts with the GPU to initialize each execution. At deployment time, GPUReplay executes your ML application by invoking the recorded GPU stack executions when given new input data. In doing so, it needs to deal with nondeterminism that may arise between the recorded executions and the replay ones, which it does by allowing nondeterminism that does not affect program output (e.g., timing variations), preventing the nondeterminism from occurring in the first place, or detecting nondeterminism and attempting re-execution. The authors show that GPUReplay eliminates a large number of high-impact CVEs (Common Vulnerabilities and Exposures) from occurring in deployment and validates that the replayed executions are indeed correct. </p>
+<p>&nbsp;</p>
+<h4>Summary</h4>
+<p>This column describes three recent research advances related to deterministic record-and-replay, with the goal of showing both classical use cases (replay-based debugging) and emerging use cases (execution integrity and GPU acceleration). A growing number of systems use a weaker form of deterministic record-and-replay (which I call "mostly deterministic" record-and-replay). Essentially, these systems exploit the determinism that exists across many program executions but intentionally allow some nondeterminism for performance reasons. This trend is exemplified in GPUReplay in particular, but also in systems such as ShortCut<sup>4</sup> and Dora.<sup>8</sup> </p>
+<p>For more information on deterministic record-and-replay, I suggest any of the detailed surveys on the topic.<sup>1,2,3</sup> </p>
+<p>&nbsp;</p>
+<h4>References</h4>
+<p>1. Chen, Y., Zhang, S., Guo, Q., Li, L., Wu, R., Chen, T. 2015. Deterministic replay: a survey. <i>ACM Computing Surveys 48(2)</i>; <a href="https://dl.acm.org/doi/10.1145/2790077"> https://dl.acm.org/doi/10.1145/2790077</a>.</p>
+<p>2. Cornelis, F., Georges, A., Christiaens, M., Ronsse, M., Ghesquiere, T., De Bosschere, K. 2003. A taxonomy of execution replay systems. In <i>International Conference on Advances in Infrastructure for Electronic Business, Education, Science, Medicine, and Mobile Technologies on the Internet</i>; <a href="https://www.researchgate.net/publication/244149898_A_Taxonomy_of_Execution_Replay_Systems"> https://www.researchgate.net/publication/244149898_A_Taxonomy_of_Execution_Replay_Systems</a>.</p>
+<p>3. Dionne, C., Feeley, M., Desbiens, J. 1996. A taxonomy of distributed debuggers based on execution replay. In <i>Proceedings of the International Conference on Parallel and Distributed Processing Techniques (PDPTA)</i>; <a href="http://www.iro.umontreal.ca/~feeley/papers/DionneFeeleyDesbiensPDPTA96.pdf"> http://www.iro.umontreal.ca/~feeley/papers/DionneFeeleyDesbiensPDPTA96.pdf</a>.</p>
+<p>4. Dou, X., Chen, P. M., Flinn, J. 2019. ShortCut: accelerating mostly deterministic code regions. In <i>Proceedings of the 27th ACM Symposium on Operating Systems Principles</i>, 570?585; <a href="https://dl.acm.org/doi/10.1145/3341301.3359659"> https://dl.acm.org/doi/10.1145/3341301.3359659</a>. </p>
+<p>5. King, S. T., Chen, P. M. 2003. Backtracking intrusions. In <i>Proceedings of the 19th ACM Symposium on Operating Systems Principles, </i>223?236; <a href="https://dl.acm.org/doi/10.1145/945445.945467"> https://dl.acm.org/doi/10.1145/945445.945467</a>.</p>
+<p>6. Leblanc, T. J., Mellor-Crummey, J. M. 1987. Debugging parallel programs with Instant Replay. <i>IEEE Transactions on Computers C-36 (4),</i> 471?482; <a href="https://dl.acm.org/doi/abs/10.1109/TC.1987.1676929"> https://dl.acm.org/doi/abs/10.1109/TC.1987.1676929</a>.</p>
+<p>7. Tan, C., Yu, L., Leners, J. B., Walfish, M. 2017. The efficient server audit problem, deduplicated re-execution, and the web. In <i>Proceedings of the 26th Symposium on Operating Systems Principles</i>, 546?564; <a href="https://dl.acm.org/doi/10.1145/3132747.3132760"> https://dl.acm.org/doi/10.1145/3132747.3132760</a>.</p>
+<p>8. Viennot, N., Nair, S., Nieh, J. 2013. Transparent mutable replay for multicore debugging and patch validation. In <i>Proceedings of the 18th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)</i>; <a href="https://dl.acm.org/doi/10.1145/2499368.2451130"> https://dl.acm.org/doi/10.1145/2499368.2451130</a>. </p>
+<p>&nbsp;</p>
+<p><b>Peter Alvaro</b> is an associate professor of computer science at the University of California Santa Cruz, where he leads the Disorderly Labs research group (disorderlylabs.github.io). His research focuses on using data-centric languages and analysis techniques to build and reason about data-intensive distributed systems in order to make them scalable, predictable, and robust to the failures and nondeterminism endemic to large-scale distribution. He earned his Ph.D. at UC Berkeley, where he studied with Joseph M. Hellerstein. He is a recipient of the National Science Foundation Career Award, Facebook Research Award, Usenix ATC 2020 Best Presentation Award, SIGMOD 2021 Distinguished PC Award, and UCSC Excellence in Teaching Award.</p>
+<p><b>Andrew Quinn</b> is an assistant professor at UC Santa Cruz. They work at the intersection of operating systems, programming languages, and computer architecture. Andrew's work has been awarded with an ASPLOS best paper award, an IEEE Micro top picks honorable mention, a Microsoft fellowship, an NSF GRFP fellowship, and numerous publications at top-tier venues across these areas.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8c6936d4188d208e',t:'MTcyNjkxMjg4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 4</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3688088">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+More related articles:
+<p>
+<span>Charisma Chan, Beth Cooper</span> - <a href="detail.cfm?id=3404974"><b>Debugging Incidents in Google&#8217;s Distributed Systems</b></a>
+<br/>
+This article covers the outcomes of research performed in 2019 on how engineers at Google debug production issues, including the types of tools, high-level strategies, and low-level tasks that engineers use in varying combinations to debug effectively. It examines the research approach used to capture data, summarizing the common engineering journeys for production investigations and sharing examples of how experts debug complex distributed systems. Finally, the article extends the Google specifics of this research to provide some practical strategies that you can apply in your organization.
+</p>
+<br/>
+<p>
+<span>Devon H. O'Dell</span> - <a href="detail.cfm?id=3068754"><b>The Debugging Mindset</b></a>
+<br/>
+Software developers spend 35-50 percent of their time validating and debugging software. The cost of debugging, testing, and verification is estimated to account for 50-75 percent of the total budget of software development projects, amounting to more than $100 billion annually. While tools, languages, and environments have reduced the time spent on individual debugging tasks, they have not significantly reduced the total time spent debugging, nor the cost of doing so. Therefore, a hyperfocus on elimination of bugs during development is counterproductive; programmers should instead embrace debugging as an exercise in problem solving.
+</p>
+<br/>
+<p>
+<span>Peter Phillips</span> - <a href="detail.cfm?id=1753170"><b>Enhanced Debugging with Traces</b></a>
+<br/>
+Creating an emulator to run old programs is a difficult task. You need a thorough understanding of the target hardware and the correct functioning of the original programs that the emulator is to execute. In addition to being functionally correct, the emulator must hit a performance target of running the programs at their original realtime speed. Reaching these goals inevitably requires a considerable amount of debugging. The bugs are often subtle errors in the emulator itself but could also be a misunderstanding of the target hardware or an actual known bug in the original program. (It is also possible the binary data for the original program has become subtly corrupted or is not the version expected.)
+</p>
+<br/>
+<p>
+<span>Queue Readers</span> - <a href="detail.cfm?id=945156"><b>Another Day, Another Bug</b></a>
+<br/>
+As part of this issue on programmer tools, we at Queue decided to conduct an informal Web poll on the topic of debugging. We asked you to tell us about the tools that you use and how you use them. We also collected stories about those hard-to-track-down bugs that sometimes make us think of taking up another profession.
+</p>
+<br/>
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>

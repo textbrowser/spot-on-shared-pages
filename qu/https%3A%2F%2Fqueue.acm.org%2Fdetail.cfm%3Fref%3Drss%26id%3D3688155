@@ -1,0 +1,489 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+<title>Program Merge: What's Deep Learning Got to Do with It? - ACM Queue</title>
+<meta name="description" value />
+<meta name="keywords" value="Distributed Development" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0" href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0" href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0" href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS" href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS" href="/rss/feeds/risksforum.xml" />
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0" href="/rss/feeds/ai.xml" />
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0" href="/rss/feeds/apidesign.xml" />
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0" href="/rss/feeds/bioscience.xml" />
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0" href="/rss/feeds/blockchain.xml" />
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0" href="/rss/feeds/business/management.xml" />
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0" href="/rss/feeds/compliance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0" href="/rss/feeds/componenttechnologies.xml" />
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0" href="/rss/feeds/computerarchitecture.xml" />
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0" href="/rss/feeds/concurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0" href="/rss/feeds/cryptocurrency.xml" />
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0" href="/rss/feeds/dsps.xml" />
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0" href="/rss/feeds/data.xml" />
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0" href="/rss/feeds/databases.xml" />
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0" href="/rss/feeds/debugging.xml" />
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0" href="/rss/feeds/development.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0" href="/rss/feeds/distributedcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0" href="/rss/feeds/distributeddevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0" href="/rss/feeds/education.xml" />
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0" href="/rss/feeds/emailandim.xml" />
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0" href="/rss/feeds/embeddedsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0" href="/rss/feeds/failureandrecovery.xml" />
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0" href="/rss/feeds/filesystemsandstorage.xml" />
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0" href="/rss/feeds/gamedevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0" href="/rss/feeds/graphics.xml" />
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0" href="/rss/feeds/hci.xml" />
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0" href="/rss/feeds/managingmegaservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0" href="/rss/feeds/mobilecomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0" href="/rss/feeds/networks.xml" />
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0" href="/rss/feeds/object-relationalmapping.xml" />
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0" href="/rss/feeds/opensource.xml" />
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0" href="/rss/feeds/patchinganddeployment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0" href="/rss/feeds/performance.xml" />
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0" href="/rss/feeds/powermanagement.xml" />
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0" href="/rss/feeds/privacyandrights.xml" />
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0" href="/rss/feeds/processors.xml" />
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0" href="/rss/feeds/programminglanguages.xml" />
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0" href="/rss/feeds/purpose-builtsystems.xml" />
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0" href="/rss/feeds/qualityassurance.xml" />
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0" href="/rss/feeds/rfid.xml" />
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0" href="/rss/feeds/sip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0" href="/rss/feeds/searchengines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0" href="/rss/feeds/security.xml" />
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0" href="/rss/feeds/semi-structureddata.xml" />
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0" href="/rss/feeds/socialcomputing.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0" href="/rss/feeds/systemadministration.xml" />
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0" href="/rss/feeds/systemevolution.xml" />
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0" href="/rss/feeds/testing.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0" href="/rss/feeds/virtualmachines.xml" />
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0" href="/rss/feeds/virtualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0" href="/rss/feeds/visualization.xml" />
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0" href="/rss/feeds/voip.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0" href="/rss/feeds/webdevelopment.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0" href="/rss/feeds/websecurity.xml" />
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0" href="/rss/feeds/webservices.xml" />
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0" href="/rss/feeds/workflowsystems.xml" />
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+<div class="navbar">
+<form id="form-search" name="searchform" onsubmit="return false;" style="float:right;">
+<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+<br/>
+<a href="issuedetail.cfm?issue=3695735" style="width:150px;font-size:0.7em;">Current Issue</a> &nbsp; <a href="pastissues.cfm" style="width:150px;font-size:0.7em;">Past Issues</a> &nbsp; <a href="topics.cfm" style="width:150px;font-size:0.7em;">Topics</a>
+</form>
+<a href="/"><img src="https://queue.acm.org/img/acmqueue_logo.gif" /></a>
+</div>
+
+<br/>
+<p style="float:right;width:50%"><b>
+<a href="https://www.surveymonkey.com/r/QRML32B" target="_new2">
+What case study topics do you want to read about? Take a quick survey.
+</a><br/>
+</b></p>
+<h3><a href="/casestudies.cfm">Case Studies</a></h3>
+<label>September 18, 2024<br/><b><a class="descriptor" href="issuedetail.cfm?issue=3695735">Volume 22, issue 4 </a></b></label>
+<p>
+
+&nbsp;
+<a href="https://portal.acm.org/citation.cfm?id=3688155">
+<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+PDF
+</a>
+</p>
+<h1 class="hidetitle">Program Merge: What's Deep Learning Got to Do with It?</h1>
+<h2>A discussion with Shuvendu Lahiri, Alexey Svyatkovskiy, Christian Bird, Erik Meijer and Terry Coatta</h2>
+<p><i>If you regularly work with open-source code or produce software for a large organization, you're already familiar with many of the challenges posed by collaborative programming at scale. Some of the most vexing of these tend to surface as a consequence of the many independent alterations inevitably made to code, which, unsurprisingly, can lead to updates that don't synchronize. </i></p>
+<p><i>Difficult merges are nothing new, of course, but the scale of the problem has gotten much worse. This is what led a group of researchers at MSR (Microsoft Research) to take on the task of complicated merges as a grand program-repair challenge—one they believed might be addressed at least in part by machine learning. </i></p>
+<p><i>To understand the thinking that led to this effort and then follow where that led, we asked Erik Meijer and Terry Coatta to speak with three of the leading figures in the MSR research effort, called DeepMerge </i>("<a href="https://www.microsoft.com/en-us/research/publication/deepmerge-learning-to-merge-programs/">DeepMerge: Learning to Merge Programs," </a> Microsoft Research )<i>. Meijer was long a member of MSR, but at the time of this discussion was director of engineering at Meta. Coatta is the CTO of Marine Learning Systems. Shuvendu Lahiri and Christian Bird, two of the researchers who helped drive this effort, represent MSR, as does Alexey Svyatkovskiy, who was with Microsoft DevDiv (Development Division) at the time. </i></p>
+<p><b>TERRY COATTA</b> What inspired you to focus on merge conflicts in the first place? And what made you think you'd be able to gain some advantage by applying AI techniques?</p>
+<p><b>CHRISTIAN BIRD</b> Back in the winter of 2020, some of us started talking about ways in which we might be able to use machine learning to improve the state of software engineering. We certainly thought the time was right to jump into an effort along these lines in hopes of gaining enough competency to launch into a related research program.</p>
+<p>We tried to identify problems other researchers weren't already addressing, meaning that something like code completion—which people had been working on for quite some time—was soon dismissed. Instead, we turned to problems where developers didn't already have much help.</p>
+<p>Shuvendu [Lahiri] has a long history of looking at program merge from a symbolic perspective, whereas my own focus has had more to do with understanding the changes that occur in the course of program merges. As we were talking about this, it dawned on us that almost no one seemed to be working on program merge. And yet, that's a problem where we, as developers, still have little to rely upon. For the most part, we just look at the diffs between different generations of code to see if we can figure out exactly what's going on. But there just isn't much current tooling to help beyond that, which can prove to be problematic whenever there's a merge conflict to resolve. </p>
+<p>So, we figured, "OK, let's look at how some deep-learning models might be applied to this problem. As we go along, we'll probably also identify some other things we can do to build on that."</p>
+<p><b>SHUVENDU LAHIRI</b> Yes, as Chris suggests, I've been thinking about the issues here for quite some time. Moreover, we found program merge to be appealing, since it's a collaboration problem. That is, even if two skilled developers make correct changes, the merge itself may introduce a bug.</p>
+<p>We were also keenly aware of the sort of pain program-merge problems can cause, having known about it through studies within Microsoft <i>("What developers want and need from program analysis: an empirical study," </i>Microsoft Research<i>) </i>. I thought maybe there was something we could do to provide relief. It also turns out that AI was just coming along at that point, and Alexey [Svyatkovskiy] had already developed a couple of powerful models that looked quite promising for code completion. What's more, information about merge conflicts was just starting to become more readily available from the Git commit history, so that too looked like it might serve as a good upfront source of clean data. </p>
+<p><b>ERIK MEIJER</b> I like the fact that you focused on merge conflict, since, when it comes to this, I don't think source control solves any of the real problems. Maybe I'm being a little extreme here, but even if source control lets you know where you have a merge conflict, it won't help you when it comes to actually resolving the conflict. In fact, I'm baffled as to why this problem wasn't solved in an intelligent manner a long time ago. Are people just not listening to complaints from actual users? </p>
+<p><b>SL </b>Basically, I think it comes down to academicians consistently resorting to symbolic methods to solve this problem. Whereas people in the real world have looked at this as just another aspect of programming, practitioners have been more inclined to approach it as a social process—that is, as a problem best addressed by encouraging co-workers to figure out solutions together. Personally, I've always seen merge conflicts as more of a tooling challenge.</p>
+<p><b>ALEXEY SVYATKOVSKIY</b> For me, this just looked like an exciting software engineering problem to address with machine learning. I've spent years working on code completion, but this effort looked like something that would take that up to the next level of complexity, since it necessarily would involve aligning multiple sequences somehow and then complementing that with an understanding of where things ought to be inserted, deleted, or swapped. And, of course, there were also those special cases where the developer would be able to add new tokens during the merge.</p>
+<p>This took us on a journey where we ended up addressing program merge down at the line-and-token level. I found this fascinating, since a lot of people don't have any idea about how merge actually works and so, by extension, don't have a clear understanding about what leads to merge conflicts. Taking on this problem also seemed important in that, while merge conflicts are far less common than software bugs, they require considerably more time to resolve and can end up causing far more pain.</p>
+<p><b>TC</b> How did you initially attack the problem? </p>
+<p><b>SL</b> We realized that repositories (both open-source ones on GitHub and internal ones at Microsoft) contain data on merge conflicts and their resolution across several different programming languages. What's more, Alexey had recently created a neural model that had been pre-trained on a large subset of the code in those repositories. Our initial thought was to fine-tune that model with information about merge conflicts and their resolution. And we figured that should be simple enough to be treated as an intern project. So, that's how we scoped it initially. We figured: Just get the data, train a model, and deploy. What we failed to grasp was that, while there was an ample amount of program merge data to be mined, coming to an understanding of what the intent behind all those merges had been was at least as important as the data itself. In fact, it proved to be absolutely critical.</p>
+<p>A considerable amount of time and effort was required to understand and interpret the data. This included some significant technical challenges. For example, how best to align these programs? And how can you communicate to a neural model that these are not independent programs but instead represent some number of changes to an underlying program? The notion of how to go from program text to a program edit became quite crucial and, in fact, required considerable research. Ultimately, we concluded that if you manage to combine your existing merge tools correctly, add just the right amount of granularity—which for us proved to be tokens—and then employ neural modeling, you can often succeed in reducing the complexity. But it took us quite a bit of time to work that out.</p>
+<p>Of course, we also underestimated the importance of user experience. How exactly would a user end up employing such a tool—one that's AI-based, that is? And what would be the right time to surface that aspect of the tool? </p>
+<p><b>TC</b> I find it fascinating that it proved to be so difficult to scope this project correctly. Can you dig a bit deeper into that?</p>
+<p><b>AS</b> To me, at least, as we were analyzing the different types of merges, it soon became clear that there are varying levels of complexity. Sometimes we'd find ourselves looking at two simple merge resolution strategies where it essentially came down to "Take ours or take theirs." Such cases are trivial to analyze, of course, and developers don't require much AI assistance when it comes to resolving these conflicts. </p>
+<p>But then there's another class of merge where a new interleaving line is introduced that involves more than just concatenation. There could also be token-level interleaving, where lines in the code have been broken and new tokens introduced in between. This leads to the notoriously complex case where a switch to token-level granularity proves to be crucial. Beyond that, there's a whole other class of merges where you find somebody has introduced some new tokens. </p>
+<p><b>EM</b> How do you go about defining what you consider to be a correct merge? Doesn't that require you to make your own value judgments in some sense?</p>
+<p><b>SL</b> Well, I'll just say we had a very semantic way of looking at merges. Essentially: "Forget about the syntax; instead, what does it <i>mean </i> for the merge to be correct?" In effect, this amounts to: If something was changed in one program, then that ought to be reflected in the merge. And, if that also changes a behavior, then that too ought to be included in the merge. But no other changes or altered behaviors should be introduced. </p>
+<p>We then found, however, that we could get tangled up whenever we ran into one of these "take my changes or take yours" merges. We also found that one set of changes would often just be dropped—like a branch being deprecated, as Alexey once pointed out. This is how we discovered that our initial notion of correctness didn't always hold. That's also how we came to realize we shouldn't adhere to overly semantic notions.</p>
+<p>So, we decided just to do our best to curate the training data by removing any indications of "take your changes or take mine" wherever possible. Then we looked at those places where both changes had been incorporated to some extent and said, "OK, so this now is our ground truth—our notion of what's correct." But notice that this is <i>empirical </i> correctness as opposed to <i>semantic </i> correctness—which is to say, we had to scale back from our original high ambitions for semantic correctness. </p>
+<p><b>AS</b> We now treat user resolutions retrieved from the GitHub commit histories as our ground truth. But yes, naturally, there are all kinds of ways to define a "correct" merge. For example, it's possible to reorder the statements in a structured merge and yet still end up with a functionally equivalent resolution. Yet that would be deemed as "incorrect," so, there's clearly room for retooling our definition of correctness. In this instance, however, we chose to take a data-driven approach that treats user resolutions from the GitHub commit histories as our ground truth.</p>
+<p><b>CB</b> Right. And let me also say that, from the beginning of this project, we decided to approach it as something that might yield a product. With that in mind, we realized it needed to be, perhaps not language-agnostic, but at least something that could be readily adapted to multiple languages—and definitely <i>not </i> something that would require some bespoke analysis framework for each language. That essentially guided our choice not to employ richer or more complex code representations. </p>
+<p><b>EM</b> I've also run into situations like this where it looked really tempting to use an AST [abstract syntax tree] or something of the sort, since that would provide all the structure that was required. But then, as you go deeper into that sort of project, you find yourself wondering whether it's actually a good idea to feed semantically rich programs into models and start thinking it might be better just to send strings instead.</p>
+<p><b>TC</b> To dive a bit deeper into that, you had a practical motivation to work with a token-based approach. But what does your intuition tell you about how models behave when you do that? If you feed a model a rich, structured information set, is that model then actually more likely to make better decisions? Or is that perhaps a false assumption?</p>
+<p><b>AS</b> The model ought to be able to make better decisions, I think. </p>
+<p><b>EM</b> All right, but can I challenge that a bit? The model can handle the syntax and semantic analysis internally, which suggests this work may not need to be done ahead of time, since machines don't look at code the same way humans do. I don't know why the model couldn't just build its own internal representation and then let a type-checker come along at the end of the process. </p>
+<p><b>CB</b> I think it's hazardous to speculate about what models may or may not be capable of. I mean, that's a super-nuanced question in that it depends on how the model has been trained and what the architecture is like—along with any number of other things. I'm constantly surprised to learn what models are now capable of doing. And, in this case, we're talking about the state of the world back in 2020—even as I now find it hard to remember what the state of the world looked like six months prior to the GPT models becoming widespread.</p>
+<p><b>SL</b> For one thing, we were using pretrained models to handle classification and generation, which then left us with quite a bit of work to do in terms of representing the resulting edits at the AST level before tuning for performance. That certainly proved to be a complex problem—and one that came along with some added computational costs. Also, as I remember it, the models we were using at the time had been trained as text representations of code—meaning we then needed to train them on a lot more AST-level representations to achieve better performance. I'm sure it would be fascinating to go back to revisit some of the decisions we made back in 2020.</p>
+<p><b>EM</b> What model are you using now?</p>
+<p><b>AS</b> For this iteration, we're employing a token-level merge along with a transformer-based classifier. We've also been looking at using a prompt-driven approach based on GPT-4.</p>
+<p><b>EM</b> I love that this is now something where you can take advantage of demonstrated preferences to resolve merge conflicts instead of being left to rely solely on your own opinions.</p>
+<p><b>SL</b> Another way of looking at this that came up during our user studies was that, even after a merge has been produced, someone might want to know why the merge was accomplished in that particular way and may even want to see some evidence of what the reasoning was there. Well, that's a thorny issue. </p>
+<p>But one of the nice things about these large foundational models is that they're able to produce textual descriptions of what they've done. Still, we haven't explored this capability in depth yet, since we don't actually have the means available to us now to evaluate the veracity of these descriptions. That will have to wait until some user studies supply us with more data. Still, I think there are some fascinating possibilities here that ultimately should enable us to reduce some of the friction that seems to surface whenever these sorts of AI power tools are used to accomplish certain critical tasks. </p>
+<p>&nbsp;</p>
+<p><i>In the event you regularly work with open-source code, you're surely already familiar with some of the challenges that can arise in the course of trying to resolve merge conflicts. Many of these problems have been encountered for as long as people have collaborated on programs, and these have metastasized as the scale and complexity of software has multiplied many times over. Also, with thousands of developers sometimes now collaborating on projects, the potential for conflicts only continues to soar. </i></p>
+<p><i>Many of these are conflicts that can lead to program failures, of course. But even worse in some respects are the more subtle semantic merge conflicts that can fail the compiler, break a test, or introduce a regression. Despite these painfully obvious problems, the program merge issue has been largely left to fester for decades simply because the challenge of addressing it has seemed so daunting. </i></p>
+<p>&nbsp;</p>
+<p><b>TC</b> You've mentioned that you had access to a vast amount of training data, but you've also suggested some of that data contained surprises—which is to say it proved to be both a blessing and a curse. Can you go into that a bit more?</p>
+<p><b>SL</b> Yes, we were surprised to find that a large percentage of the merges—perhaps 70 percent—had the attribute of choosing just one side of the edit and then dropping the other. In some of those cases, it seemed one edit was superseding the others, but it can be hard to be sure whenever the syntax changes a little. In many instances, there were genuine edits that had been dropped on the floor. It was unclear whether that was due to a tooling problem or a social issue—that is, in some cases, perhaps some senior developer's changes had superseded those that had been made by a junior developer. Another hypothesis was that, instead of a single merge, some people may have chosen to merge in multiple commits. </p>
+<p>This sort of thing was so common that it accounted for a significant portion of the data, leaving us uncertain at first as to whether we should throw out these instances, ignore them, or somehow make an effort to account for them. That certainly proved to be one of the bigger surprises we encountered. </p>
+<p>Another surprise was that we discovered instances where some new tokens had been introduced that were irrelevant to the merge. It was unclear at first whether those were due to a genuine conflict in the merge or just because somebody had decided to add a pretty print statement while doing the refactoring. That proved to be another thorny issue for us.</p>
+<p><b>TC</b> How did you resolve that? It sounds like you had some datasets you didn't quite know how to interpret. So, how did you decide what should be classified as correct merges or treated as incorrect ones?</p>
+<p><b>SL</b> We curated a dataset that did not include the "trivial" merge resolutions, with the goal of assisting users with the more complex cases first. As Alexey mentioned, users may not need tooling support for those resolutions that only require dropping one of the two edits.</p>
+<p><b>AS</b> And then, from user studies, we learned that some users still wanted to be able to use the approach that had been dismissed. We solved that problem by providing a "B option" that people could get to by using a drop-down menu. </p>
+<p><b>SL</b> Which is to say we addressed the problem by way of user experience rather than by changing the model. </p>
+<p>The other data problem we encountered had to do with new tokens that would occasionally appear. Upon closer examination, we found these tokens were typically related to existing changes. By going down to token-level merges, we were able to make many of these aspects go away. Ultimately, we built a model that excluded that part of the dataset where new tokens were introduced. </p>
+<p><b>EM</b> In terms of how you went about your work, I understand one of the tools you particularly relied on was Tree-sitter [a parser-generator tool used to build syntax trees]. Can you tell us a bit about the role it played in your overall development process?</p>
+<p><b>CB </b>We were immediately attracted to Tree-sitter because it lets you parse just about anything you can imagine right off the shelf. And it provides a consistent API, unlike most other parsers out there that each come with their own API and work only with one language or another. </p>
+<p>For all that, I was surprised to learn that Tree-sitter doesn't provide a tokenizing API. As an example of why that proved to be an issue for us, we wanted to try Python, which basically lets everyone handle their own tokenizing. But, of course, Tree-sitter didn't help there. We resorted to a Python tokenizing library. </p>
+<p>Beyond that relatively small complaint, Tree-sitter is great in terms of letting you apply an algorithm to one language and then quickly scale that up for many other languages. In fact, between that capability and the Python tokenizing library, which made it possible for us to handle multiple languages, we were able to try out things with other languages without needing to invest a lot of upfront effort. Of course, there's still the matter of obtaining all the data required to train the model, and that's always a challenge. At least we didn't need to write our own parsers, and the consistent interfaces have proved to be incredibly beneficial.</p>
+<p><b>EM</b> Once you finally managed to get all this deployed, what turned out to be your biggest surprise? </p>
+<p><b>CB</b> There were so many surprises. One I particularly remember came up when we were trying to figure out how people would even want to view merge conflicts and diffs. At first, some of us thought they'd want to focus only on the conflict itself—that is, with a view that let them see both their side and the other side. It turns out you also need to be able to see the base to understand the different implications between an existing branch in the base and your branch. </p>
+<p>So, we ran a Twitter survey to get a sense of how much of that people thought we should show. How much of that did they even <i>want </i> to see? For example, as I recall, most people couldn't even handle the idea of a three-way diff, or at least weren't expecting to see anything quite like that. That really blew my mind, since I don't know how anyone could possibly expect to deterministically resolve a conflict if they don't know exactly what they're facing.</p>
+<p>Some other issues also came up that UI people probably would expect, but I nevertheless was incredibly surprised. That proved to be a big challenge, since we'd been thinking throughout this whole process that we'd just get around to the UI whenever we got around to it. And yes, as this suggests, our tendency initially was just to focus on making sure the underlying algorithm worked. But then we found to our surprise just how tough it could be to find the right UI to associate with that.</p>
+<p><b>TC</b> From what you say, it seems you weren't surprised about the need for a good user experience, but it did surprise you to learn what's considered to <i>be </i> a good experience. What are your thoughts now on what constitutes a good user experience for merge?</p>
+<p><b>CB</b> I'm not entirely clear on that even now, but I'll be happy to share some of the things we learned about this early on. As we've already discussed, people definitely want to see both sides of a merge. Beyond that, we discovered that they want the ability to study the provenance of each part of the merge because they want to know where each token came from. </p>
+<p>So, we wrote some code to track each token all the way back to whichever side it came from. </p>
+<p>There also were tokens that had come in from both sides. To make it clear where a token had originated, we wrestled with whether we should add colors as an indicator of that. How might that also be used to indicate whether a token happens to come from both sides or simply is new? </p>
+<p>In addition, we knew it was important that the interface didn't just ask you to click "yes" or "no" in response to a suggested change, since it's rare to find any merge that's going to be 100 percent correct. Which is to say developers are going to want to be able to modify the code and will only end up being frustrated by any interface that denies them that opportunity.</p>
+<p>The real challenge is that there are lots of moving pieces in any given merge. Accordingly, there are many possible views, and yet you still want to keep things simple enough to avoid overwhelming the user. That's a real challenge. For example, we know that if we offer three suggestions for a merge rather than just one, the chance of the best one being selected is much higher. But that also adds complexity, so we ultimately decided to go with suggesting the most likely option, even though that might sometimes lead to less-optimal results. </p>
+<p>There are some other user-experience considerations worth noting. For example, if you are working on some particular Visual Studio feature, you're going to want to produce something that feels intuitive to someone who has been using that same tool. Suffice it to say, there's plenty to think about in this respect. Basically, once you finally get your model to work, you might not even be halfway home, since that's just how critical—and time-consuming—the user-experience aspect of this work can be.</p>
+<p>&nbsp;</p>
+<p><i>Yes, user experience actually does matter—even when the users happen to be developers. Accordingly, a substantial user study was launched in this instance, where the subjects of the study were members of MSR's own technical staff. </i></p>
+<p><i>Another interesting aspect was that the study participants were presented with code samples extracted from their own work. The significance of this, of course, was that it involved the use of not only real-world examples but also ones where all the tradeoffs and implications associated with each important decision point were sure to be fully appreciated by the study subjects. </i></p>
+<p><i>Which is to say that the exercise proved to be an interesting learning experience for all parties involved. </i></p>
+<p>&nbsp;</p>
+<p><b>TC </b>We all know that creating a tool for internal purposes is one thing, while turning that into a product is something else altogether. It seems you took that journey here, so what were some of the bigger surprises you encountered along the way? </p>
+<p><b>SL</b> Actually, we don't have a product yet that implements the DeepMerge algorithm and aren't at liberty to talk about how that might be used in future products. Still, as we've just discussed, I can say most of the unusual challenges we encountered were related to various aspects of the user experience. So, we got much deeper into that here than we normally would. </p>
+<p>One of the biggest challenges had to do with determining how much information needed to be surfaced to convince the user that what was just done was even possible—never mind appropriate. Suddenly you've just introduced some new tokens over here, along with a new parsable tree over there. I think that can really throw some users off. </p>
+<p><b>CB</b> What did all this look like from the DevDiv perspective, Alexey? You deal with customers all the time. What proved to be the biggest challenges there?</p>
+<p><b>AS</b>Some of the most crucial design decisions came down to choosing between client-side or server-side implementation. Our chief concern had to do with the new merge algorithm we were talking about earlier. Customer feedback obtained from user studies and early adopters proved to be particularly crucial in terms of finding ways to smooth things out. Certainly, that helped in terms of identifying areas where improvements were called for, such as achieving better symmetries between what happens when you merge A to B versus when you merge B to A. </p>
+<p><b>SL</b> I'd like to add a couple of points. One is that some developers would prefer to handle these merges themselves. They just don't see the value of tooling when it's used to deal with something they could do themselves. But that just resulted in some inertia, which is always hard to overcome without a lot of usage. Still, from our empirical study we learned that, even when merges were not identical to the ground truth, users would accept them if they proved to be semantically equivalent. Ultimately, that proved to be a pleasant surprise, since it revealed we had previously been undercounting our wins according to our success metrics.</p>
+<p><b>TC</b> Did anything else interesting surface along the way?</p>
+<p><b>CB</b> At one point, one of our interns did a user study that pulled merge conflicts and their resolutions out of Microsoft's historical repositories so they could then be compared with the resolutions our tool would have applied. As you might imagine, quite a few differences surfaced. To understand where our tool may have gone wrong, we went back to consult with those people who had been involved in the original merges and showed them a comparison between what they had done and how the tool had addressed the same merge conflicts.</p>
+<p>We specifically focused on those conflicts that had been resolved over the preceding three months on the premise that people might still recall the reasoning behind those decisions. We learned a ton by going through that particular exercise. One of the lessons was that we had probably undercounted how often we were getting things right, since some of these developers would say things like, "Well, this may not exactly match the merge I did, but I would have accepted it anyway."</p>
+<p>The other major benefit of that study was the insight it provided into what the user experience for our tool should be. This all proved to be a major revelation for me, since it was the first time I'd been involved in a user study that was approached in quite this way—where developers were pulled in and presented with code they'd actually worked on. </p>
+<p>Which is just to say this wasn't at all like one of those lab studies where people are presented with a toy problem. In this case, we were pulling in real-world merge conflicts and then talking with the developers who had worked to resolve them. We learned so much from taking this approach that I'd recommend other researchers consider doing their own studies in much the same way.</p>
+<p><b>AS</b> Another thing that came out of these user studies was the importance of explainability. With large language models, for example, we can drill into specific three-way diffs and their proposed resolutions and then ask for summaries of certain decisions, which can be helpful when it comes to building confidence in some of these AI suggestions. </p>
+<p>Also, as Chris indicated, even when users chose not to go with the solution offered by DeepMerge, the reasoning behind the suggestion still seemed to inform their own thinking and often led to an improved merge resolution. </p>
+<p><b>TC</b> What's next?</p>
+<p><b>SL</b> There's room for more prompt engineering in terms of determining what goes into the model's input. We also need to address correlated conflicts. So far, we've addressed each conflict as if it was independent, but you can have multiple conflicts in a file that all relate to a certain dependency. Some users have told us that, once a resolution has been worked out for one of those conflicts, they'd like to see something similar applied to each of the other conflicts that exhibit a similar pattern, which certainly seems quite reasonable.</p>
+<p>Also, while the types of conflicts we've addressed so far are highly syntactic in nature, there is, in fact, a whole spectrum of merge conflicts. There's still much to address, including silent merges that include semantic conflicts, which are much harder to deal with than anything we've handled so far. Still, I'd say it feels like we're off to a reasonably good start.</p>
+<p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8c6936db9bbc05a9',t:'MTcyNjkxMjg5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<p>
+<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+<em>Originally published in Queue vol. 22, no. 4</em>&#8212;
+<br>
+Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3688155">ACM Digital Library</a>
+</p>
+<br/>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br/>
+
+<br/>
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+
+
+
+<hr noshade size="1" />
+<hr noshade size="1" />
+<hr noshade size="1" />
+<p>
+<a href="#"><img src="https://queue.acm.org/img/logo_acm.gif" /></a>
+<br/>
+&copy; ACM, Inc. All Rights Reserved.
+</p>
+</div>
+</body>
+</html>
