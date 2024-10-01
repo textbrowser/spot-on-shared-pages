@@ -41,8 +41,10 @@
 function loadJS(src,cb){"use strict";var ref=window.document.getElementsByTagName("script")[0];var script=window.document.createElement("script");script.src=src;script.async=true;ref.parentNode.insertBefore(script,ref);if(cb&&typeof cb==="function"){script.onload=cb}return script}PP.utils.loadJS=loadJS;// cookie function from https://github.com/filamentgroup/cookie/
 function cookie(name,value,days){// if value is undefined, get the cookie value
 if(value===undefined){var cookiestring="; "+window.document.cookie;var cookies=cookiestring.split("; "+name+"=");if(cookies.length===2){return cookies.pop().split(";").shift()}return null}else{var expires;var domain;// if value is a false boolean, we'll treat that as a delete
-if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}// check if we're in dev, if not, lets make it a domain-wide cookie
-if(location.hostname=="localhost"||location.hostname=="127.0.0.1"){domain=""}else{domain="; domain=.propublica.org"}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
+if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}if(location.hostname.endsWith(".propublica.org")){// Cookie set on www.propublica.org can be read on
+// projects.propublica.org (and vice versa)
+domain="; domain=.propublica.org"}else{// Cookie limited to current hostname
+domain=""}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
 PP.utils.cookie=cookie;// basic logging function
 function log(logLine){const logOn=new URLSearchParams(window.location.search).get("__pp-debug");if(logOn!==null){console.log(logLine)}}// expose it
 PP.utils.log=log;// generic event throttler using requestAnimationFrame
@@ -86,7 +88,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <link href="https://img.assets-d.propublica.org" rel="dns-prefetch">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.5a4c512c.css">
+    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.527cdf09.css">
 
     <!-- OTHER -->
             
@@ -136,105 +138,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
-<style>
-    .site-header__banner {
-        font-family: Graphik, sans-serif;
-        font-size: 13px;
-        line-height: 1.2;
-        position: relative;
-        z-index: 100;
-    }
-    @media screen and (min-width: 40em) {
-        .site-header__banner {
-            font-size: 15px;
-        }
-    }
-    a.site-header__banner-link {
-        align-items: center;
-        background: linear-gradient(
-            to right,
-            #e98406,
-            #cf176d,
-            #2074df
-        );
-        color: white;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        padding: 0.5em 1em;
-        text-decoration: none;
-        transition: unset;
-    }
-    .site-header__banner-link > * + * {
-        margin-left: 8px;
-    }
-    .site-header__banner-cta {
-        background: #da352b;
-        border-radius: 0.2em;
-        color: white;
-        display: inline;
-        font-size: 0.85em;
-        font-weight: 700;
-        padding: 0.5em 1em;
-        text-transform: uppercase;
-        text-align: center;
-        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
-        /*
-        box-shadow:
-            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
-            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
-            0 20px 20px rgba(0, 0, 0, 0.028)
-        ;
-        */
-    }
-    /*
-    .site-header__banner-copy {
-        display: none;
-    }
-    @media screen and (min-width: 50em) {
-        .site-header__banner-copy {
-            display: block;
-        }
-    }
-    */
-    /*
-    .site-header__banner-link:focus .site-header__banner-cta,
-    .site-header__banner-link:hover .site-header__banner-cta {
-        background: #9b0000;
-        color: white;
-    }
-    */
-
-    .site-header__banner-title {
-        padding-right: 0.25em;
-    }
-
-    @media screen and (min-width: 60em) {
-        .opener--grid {
-            /* Tweak full height to account for promo bar height */
-            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
-        }
-    }
-    @media screen and (min-width: 60em) {
-        .opener--grid .opener__art.opener__art--inset,
-        .opener--grid .opener__art.opener__art--inset > img,
-        .opener--grid .opener__art.opener__art--inset > video {
-            /* Tweak full height to account for promo bar height */
-            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
-        }
-    }
-</style>
-
-<div class="site-header__banner" data-pp-location="promo-bar">
-    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
-        <span class="site-header__banner-copy">
-            <strong class="site-header__banner-title">Protect democracy, support independent journalism.</strong>
-            Fall Member Drive deadline: Friday
-        </span>
-        </br>
-        <span class="site-header__banner-cta">Donate Now</span>
-    </a>
-</div>
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -316,7 +219,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Did the LDF Tribe Allow Its Partners to Skirt State Lending Laws?","pageUrl":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="Ikm97zi36S" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="RZzPMQJjnN" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -399,27 +302,45 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="1.0">The sprawling business empire created by tribal leaders in northern Wisconsin was born of desperate times, as the Lac du Flambeau Band of Lake Superior Chippewa Indians faced financial ruin. Its subsequent success would be built on the desperate needs of others far from the reservation.</p>
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">The tribe had made some poor choices as it sought to expand its fortunes beyond a modest casino in its home state of Wisconsin two decades ago. Grand plans for a floating casino off Cancun, Mexico, collapsed, and a riverboat gambling venture in Mississippi required more cash than the tribe had on hand.</p>
+<p data-pp-blocktype="copy" data-pp-id="2.0">The sprawling business empire created by tribal leaders in northern Wisconsin was born of desperate times, as the Lac du Flambeau Band of Lake Superior Chippewa Indians faced financial ruin. Its subsequent success would be built on the desperate needs of others far from the reservation.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="3.0">The resulting loans — $50 million in bonds issued in 2008 at 12% — proved crushing. Struggling to make debt payments, tribal officials soon were forced to slash spending for essential programs on the reservation and lay off dozens of employees.</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">The tribe had made some poor choices as it sought to expand its fortunes beyond a modest casino in its home state of Wisconsin two decades ago. Grand plans for a floating casino off Cancun, Mexico, collapsed, and a riverboat gambling venture in Mississippi required more cash than the tribe had on hand.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="4.0">Protests erupted, with demonstrators barricading themselves inside a government building and demanding audits and investigations. When angry tribal members elected a new governing council, it refused to pay anymore. The tribe defaulted on a loan it had come to regret.</p>
+<p data-pp-blocktype="copy" data-pp-id="4.0">The resulting loans — $50 million in bonds issued in 2008 at 12% — proved crushing. Struggling to make debt payments, tribal officials soon were forced to slash spending for essential programs on the reservation and lay off dozens of employees.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="5.0">The LDF tribe turned to the one asset that could distinguish it in the marketplace: sovereign immunity.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="7.0">This special status allowed it as a Native American tribe to enter the world of internet lending without interest rate caps, an option not open to other lenders in most states. <a href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-predatory-lending-lawsuit-sovereign-immunity">The annual rates it charged for small-sum, installment loans frequently exceeded 600%.</a></p>
+<p data-pp-blocktype="copy" data-pp-id="5.0">Protests erupted, with demonstrators barricading themselves inside a government building and demanding audits and investigations. When angry tribal members elected a new governing council, it refused to pay anymore. The tribe defaulted on a loan it had come to regret.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -428,26 +349,34 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="9.0">Business partners, seeing the favorable math, were easy to find. So, too, were consumers who had run out of options to pay their bills. Their decisions to sign up for LDF loans often made things worse.</p>
+<p data-pp-blocktype="copy" data-pp-id="7.0">The LDF tribe turned to the one asset that could distinguish it in the marketplace: sovereign immunity.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="9.0">This special status allowed it as a Native American tribe to enter the world of internet lending without interest rate caps, an option not open to other lenders in most states. <a href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-predatory-lending-lawsuit-sovereign-immunity">The annual rates it charged for small-sum, installment loans frequently exceeded 600%.</a></p>
         
     
                     
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">ProPublica traced the key decisions that put LDF on the path to becoming a prominent player in a sector of the payday lending industry that has long skirted regulation and drawn controversy.</p>
+<p data-pp-blocktype="copy" data-pp-id="11.0">Business partners, seeing the favorable math, were easy to find. So, too, were consumers who had run out of options to pay their bills. Their decisions to sign up for LDF loans often made things worse.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="12.0">LDF did not just dabble in this type of lending; it fully embraced it. Like other tribes that have taken this route, LDF built its success on a series of complex business arrangements, with roles and motives difficult to unravel.</p>
+<p data-pp-blocktype="copy" data-pp-id="12.0">ProPublica traced the key decisions that put LDF on the path to becoming a prominent player in a sector of the payday lending industry that has long skirted regulation and drawn controversy.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">Over time, ProPublica found, LDF signed off on deals involving outsiders with histories of predatory practices — associations that carried profound implications for the tribe. Not only did they put the tribe’s reputation at risk, they generated a barrage of costly lawsuits and questions of whether LDF was allowing partners to take advantage of tribal rights to skirt state usury laws.</p>
+<p data-pp-blocktype="copy" data-pp-id="13.0">LDF did not just dabble in this type of lending; it fully embraced it. Like other tribes that have taken this route, LDF built its success on a series of complex business arrangements, with roles and motives difficult to unravel.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="14.0">In Boston, Brian Coughlin initially had no idea that a Native American tribe was involved in the small loan he took out with a high interest rate. He only learned about LDF after he filed for bankruptcy to seek protection from his creditors.</p>
+<p data-pp-blocktype="copy" data-pp-id="14.0">Over time, ProPublica found, LDF signed off on deals involving outsiders with histories of predatory practices — associations that carried profound implications for the tribe. Not only did they put the tribe’s reputation at risk, they generated a barrage of costly lawsuits and questions of whether LDF was allowing partners to take advantage of tribal rights to skirt state usury laws.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="15.0">In Boston, Brian Coughlin initially had no idea that a Native American tribe was involved in the small loan he took out with a high interest rate. He only learned about LDF after he filed for bankruptcy to seek protection from his creditors.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -456,17 +385,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="16.0">“I was definitely surprised,” he said. “I didn’t think they operated things like that.”</p>
+<p data-pp-blocktype="copy" data-pp-id="17.0">“I was definitely surprised,” he said. “I didn’t think they operated things like that.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="17.0">During the bankruptcy process, an LDF partner still hounded him to pay, which Coughlin said pushed him to a breaking point and a suicide attempt. Federal law prohibits chasing debtors who have filed for bankruptcy, and Coughlin sued the tribe in a dispute that went all the way to the U.S. Supreme Court. Last year, the court — in a decision with far-reaching implications for tribes — <a href="https://www.oyez.org/cases/2022/22-227">ruled that LDF could be held liable under the Bankruptcy Code</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="18.0">During the bankruptcy process, an LDF partner still hounded him to pay, which Coughlin said pushed him to a breaking point and a suicide attempt. Federal law prohibits chasing debtors who have filed for bankruptcy, and Coughlin sued the tribe in a dispute that went all the way to the U.S. Supreme Court. Last year, the court — in a decision with far-reaching implications for tribes — <a href="https://www.oyez.org/cases/2022/22-227">ruled that LDF could be held liable under the Bankruptcy Code</a>.</p>
         
     
                     
 
 <figure
-    data-pp-id="18"
+    data-pp-id="19"
     data-pp-blocktype="image"
     class="bb-image size06 center  wide-sm wrap 
                 ">
@@ -505,48 +434,48 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="19.0">His and other consumer lawsuits paint LDF as a front for outsiders who take an oversized cut of the proceeds, leaving LDF with only dollars per loan. Interviews and ProPublica’s review of records also show how heavily LDF relies on its partners for most of the essential operations. These descriptions are disputed by LDF, which has told ProPublica that it merely is outsourcing for much-needed expertise while still maintaining control.</p>
+<p data-pp-blocktype="copy" data-pp-id="20.0">His and other consumer lawsuits paint LDF as a front for outsiders who take an oversized cut of the proceeds, leaving LDF with only dollars per loan. Interviews and ProPublica’s review of records also show how heavily LDF relies on its partners for most of the essential operations. These descriptions are disputed by LDF, which has told ProPublica that it merely is outsourcing for much-needed expertise while still maintaining control.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="20.0">In a statement to ProPublica this year, John Johnson Sr., LDF’s president, described the tribe’s lending business as “a narrative of empowerment, ethical business practice, and commitment to community enrichment.” He has declined to be interviewed and did not respond to written questions for this story.</p>
+<p data-pp-blocktype="copy" data-pp-id="21.0">In a statement to ProPublica this year, John Johnson Sr., LDF’s president, described the tribe’s lending business as “a narrative of empowerment, ethical business practice, and commitment to community enrichment.” He has declined to be interviewed and did not respond to written questions for this story.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="21.0">Over time, LDF has set up at least two dozen internet lending companies and websites, ProPublica determined. Its loans are so pervasive the LDF tribe showed up as a creditor in roughly 1 out of every 100 bankruptcy cases sampled nationwide, as <a href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-predatory-lending-lawsuit-sovereign-immunity">ProPublica reported</a> in August.</p>
+<p data-pp-blocktype="copy" data-pp-id="22.0">Over time, LDF has set up at least two dozen internet lending companies and websites, ProPublica determined. Its loans are so pervasive the LDF tribe showed up as a creditor in roughly 1 out of every 100 bankruptcy cases sampled nationwide, as <a href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-predatory-lending-lawsuit-sovereign-immunity">ProPublica reported</a> in August.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="22.0">This year, LDF and some of its business affiliates agreed to a federal class-action settlement in Virginia that, if finalized, will erase $1.4 billion in consumer debt and provide $37 million in restitution. Tribal defendants are responsible for $2 million of that; the tribe in a statement has indicated that its business arm would pay.</p>
+<p data-pp-blocktype="copy" data-pp-id="23.0">This year, LDF and some of its business affiliates agreed to a federal class-action settlement in Virginia that, if finalized, will erase $1.4 billion in consumer debt and provide $37 million in restitution. Tribal defendants are responsible for $2 million of that; the tribe in a statement has indicated that its business arm would pay.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="23.0">Tribal officials have consistently denied wrongdoing. A newsletter to tribal members as LDF was starting up its venture said the tribe “is not practicing any type of predatory lending.” In his statements to ProPublica for the August story, Johnson stressed that the tribe complies with tribal and federal law, that its lending practices are transparent, that its collections are done ethically and that the loans help distressed borrowers who have little access to credit.</p>
+<p data-pp-blocktype="copy" data-pp-id="24.0">Tribal officials have consistently denied wrongdoing. A newsletter to tribal members as LDF was starting up its venture said the tribe “is not practicing any type of predatory lending.” In his statements to ProPublica for the August story, Johnson stressed that the tribe complies with tribal and federal law, that its lending practices are transparent, that its collections are done ethically and that the loans help distressed borrowers who have little access to credit.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="24.0">LDF leaders have not publicly stated any desire to alter their business practices, even as some community members express concern.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.0">LDF leaders have not publicly stated any desire to alter their business practices, even as some community members express concern.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="24.1">“Feeding greed with unscrupulous business practices is crushing us,” one LDF member recently wrote on a community Facebook page.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.1">“Feeding greed with unscrupulous business practices is crushing us,” one LDF member recently wrote on a community Facebook page.</p>
 
 <h3>“The Money Is Dirty”</h3>
-<p data-pp-blocktype="copy" data-pp-id="24.2">After the bond debacle in the 2000s, LDF leaders felt stung by their outside financial advisers, believing they were deceived about the terms of the transaction and risks involved.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.2">After the bond debacle in the 2000s, LDF leaders felt stung by their outside financial advisers, believing they were deceived about the terms of the transaction and risks involved.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="24.3">Moving forward, they wanted someone they could trust. They found that in Brent McFarland.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.3">Moving forward, they wanted someone they could trust. They found that in Brent McFarland.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="25.0">McFarland was not a tribal member, but he grew up near the reservation and had friends on the Tribal Council. McFarland, an investment adviser who’d run a restaurant and worked in real estate, offered some helpful advice to the tribe, and the council eventually hired him for a wider role. He helped it establish the Lac du Flambeau Business Development Corporation in 2012, governed by a board answerable to the Tribal Council. And he looked for ways LDF could make money, apart from gaming.</p>
+<p data-pp-blocktype="copy" data-pp-id="26.0">McFarland was not a tribal member, but he grew up near the reservation and had friends on the Tribal Council. McFarland, an investment adviser who’d run a restaurant and worked in real estate, offered some helpful advice to the tribe, and the council eventually hired him for a wider role. He helped it establish the Lac du Flambeau Business Development Corporation in 2012, governed by a board answerable to the Tribal Council. And he looked for ways LDF could make money, apart from gaming.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="26.0">“I ended up meeting some people that were doing online lending,” he said in an interview.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.0">“I ended up meeting some people that were doing online lending,” he said in an interview.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.1">Tribes could get into the industry — attracting willing partners with expertise in lending — without putting up any capital because sovereign immunity was its own bounty.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.1">Tribes could get into the industry — attracting willing partners with expertise in lending — without putting up any capital because sovereign immunity was its own bounty.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="27.0">But as certain as LDF was that state laws wouldn’t apply to its operations, the tribe took a careful approach. LDF decided it would not lend to people in Wisconsin, including its own members. “It keeps our relationship with the state of Wisconsin healthy,” McFarland <a href="https://archive.jsonline.com/business/lac-du-flambeau-chippewa-enter-payday-loan-business-with-eye-to-online-gambling-b99164952z1-237906421.html">told the Milwaukee Journal Sentinel</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="28.0">But as certain as LDF was that state laws wouldn’t apply to its operations, the tribe took a careful approach. LDF decided it would not lend to people in Wisconsin, including its own members. “It keeps our relationship with the state of Wisconsin healthy,” McFarland <a href="https://archive.jsonline.com/business/lac-du-flambeau-chippewa-enter-payday-loan-business-with-eye-to-online-gambling-b99164952z1-237906421.html">told the Milwaukee Journal Sentinel</a>.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -555,43 +484,43 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="29.0">Peter Bildsten, who ran the state Department of Financial Institutions then, remembers visiting the reservation as it was embarking on the new venture. He recalled that he met some of LDF’s business partners, who recognized that the lending operation would be extremely lucrative but also potentially controversial.</p>
+<p data-pp-blocktype="copy" data-pp-id="30.0">Peter Bildsten, who ran the state Department of Financial Institutions then, remembers visiting the reservation as it was embarking on the new venture. He recalled that he met some of LDF’s business partners, who recognized that the lending operation would be extremely lucrative but also potentially controversial.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="30.0">“They talked about yeah, we are doing it, and we know there’s virtually nothing you can do about it and especially if we don’t lend to any people in Wisconsin. You can’t do anything,” Bildsten said. “It was almost kind of a dare.”</p>
+<p data-pp-blocktype="copy" data-pp-id="31.0">“They talked about yeah, we are doing it, and we know there’s virtually nothing you can do about it and especially if we don’t lend to any people in Wisconsin. You can’t do anything,” Bildsten said. “It was almost kind of a dare.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="31.0">Many tribes, still suffering from a legacy of racism and inadequate federal resources, struggle to find economic solutions for their people. McFarland, who no longer works for LDF but does consulting for tribes, defended LDF’s decision to move into high-interest loans as a legitimate option.</p>
+<p data-pp-blocktype="copy" data-pp-id="32.0">Many tribes, still suffering from a legacy of racism and inadequate federal resources, struggle to find economic solutions for their people. McFarland, who no longer works for LDF but does consulting for tribes, defended LDF’s decision to move into high-interest loans as a legitimate option.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="32.0">“The business is offering a service where the interest rates and cost of borrowing are well disclosed to consumers,” he told ProPublica in an email. “It’s expensive, but if used responsibly can be more affordable than many other options. The costs and risks are not hidden from consumers.”</p>
+<p data-pp-blocktype="copy" data-pp-id="33.0">“The business is offering a service where the interest rates and cost of borrowing are well disclosed to consumers,” he told ProPublica in an email. “It’s expensive, but if used responsibly can be more affordable than many other options. The costs and risks are not hidden from consumers.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="33.0">Johnson, LDF’s president, has said there was a rational reason for the tribe’s business partnerships: It needed outside expertise as it entered a new industry.</p>
+<p data-pp-blocktype="copy" data-pp-id="34.0">Johnson, LDF’s president, has said there was a rational reason for the tribe’s business partnerships: It needed outside expertise as it entered a new industry.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="34.0">“But let me be more specific: Zero I.T. enterprise architects, data analysts, or marketing strategists lived on the Lac Du Flambeau reservation when the Tribal Council decided to enter this industry,” he wrote in an email to ProPublica in August.</p>
+<p data-pp-blocktype="copy" data-pp-id="35.0">“But let me be more specific: Zero I.T. enterprise architects, data analysts, or marketing strategists lived on the Lac Du Flambeau reservation when the Tribal Council decided to enter this industry,” he wrote in an email to ProPublica in August.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="35.0">LDF’s partners run their operations far from tribal land. ProPublica identified several Florida lawsuits that allege a straight-forward process: “The LDF Tribe mints a new ‘tribal’ limited liability company, supposedly organized under Tribal law, for each new investor. Each new investor then runs his or her own ‘tribally owned’ website, offering consumers loans at interest rates between 450% and 1100% annually.”</p>
+<p data-pp-blocktype="copy" data-pp-id="36.0">LDF’s partners run their operations far from tribal land. ProPublica identified several Florida lawsuits that allege a straight-forward process: “The LDF Tribe mints a new ‘tribal’ limited liability company, supposedly organized under Tribal law, for each new investor. Each new investor then runs his or her own ‘tribally owned’ website, offering consumers loans at interest rates between 450% and 1100% annually.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="36.0">Those cases were settled or dismissed without LDF addressing the allegations.</p>
+<p data-pp-blocktype="copy" data-pp-id="37.0">Those cases were settled or dismissed without LDF addressing the allegations.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="36.1">LDF does not publicly disclose its partners. ProPublica identified one of them as RIVO Holdings, a fintech firm based in a high-rise in downtown San Diego that has serviced two LDF websites.</p>
+<p data-pp-blocktype="copy" data-pp-id="37.1">LDF does not publicly disclose its partners. ProPublica identified one of them as RIVO Holdings, a fintech firm based in a high-rise in downtown San Diego that has serviced two LDF websites.</p>
         
     
                         
 
 <figure
-    data-pp-id="37"
+    data-pp-id="38"
     data-pp-blocktype="image-sets"
     class="bb-image-set size12 center  wide-sm wrap
                 ">
@@ -645,15 +574,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="38.0">RIVO is an acronym for respect, integrity, value and opportunity. The company’s founder and CEO is Daniel Koetting. His personal website touts his employment of “over 200 local employees at RIVO.” His brother Mark, of Kansas, managed a separate lending portfolio for the tribe.</p>
+<p data-pp-blocktype="copy" data-pp-id="39.0">RIVO is an acronym for respect, integrity, value and opportunity. The company’s founder and CEO is Daniel Koetting. His personal website touts his employment of “over 200 local employees at RIVO.” His brother Mark, of Kansas, managed a separate lending portfolio for the tribe.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="39.0">The brothers entered the tribal lending industry after facing regulatory scrutiny for previous lending operations. In 2006, Califonia issued a <a href="https://dfpi.ca.gov/wp-content/uploads/sites/337/2013/03/m1y.pdf">cease-and-desist order</a> to both men for unlicensed lending; Daniel Koetting received a similar demand <a href="https://mm.nh.gov/files/uploads/banking/orders/10-423-otsc-20110914.pdf">from New Hampshire</a> in 2011.</p>
+<p data-pp-blocktype="copy" data-pp-id="40.0">The brothers entered the tribal lending industry after facing regulatory scrutiny for previous lending operations. In 2006, Califonia issued a <a href="https://dfpi.ca.gov/wp-content/uploads/sites/337/2013/03/m1y.pdf">cease-and-desist order</a> to both men for unlicensed lending; Daniel Koetting received a similar demand <a href="https://mm.nh.gov/files/uploads/banking/orders/10-423-otsc-20110914.pdf">from New Hampshire</a> in 2011.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="40.0">Initially, the Koettings partnered with the Big Lagoon Rancheria tribe in California to offer high-interest loans beginning in 2013. But that relationship began to fall apart several years later.</p>
+<p data-pp-blocktype="copy" data-pp-id="41.0">Initially, the Koettings partnered with the Big Lagoon Rancheria tribe in California to offer high-interest loans beginning in 2013. But that relationship began to fall apart several years later.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -662,41 +591,41 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="42.0">The tribe alleged that the Koettings surreptitiously pushed customers to new lending companies set up with LDF, and an arbitrator awarded Big Lagoon Rancheria $14 million in 2018. Years of litigation followed as the Koettings fought the decision. The case is still pending.</p>
+<p data-pp-blocktype="copy" data-pp-id="43.0">The tribe alleged that the Koettings surreptitiously pushed customers to new lending companies set up with LDF, and an arbitrator awarded Big Lagoon Rancheria $14 million in 2018. Years of litigation followed as the Koettings fought the decision. The case is still pending.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="43.0">“I actually called Lac du Flambeau and warned them and informed them that they were getting into business with Big Lagoon’s client list,” Virgil Moorehead, Big Lagoon Rancheria’s chairperson, told ProPublica.</p>
+<p data-pp-blocktype="copy" data-pp-id="44.0">“I actually called Lac du Flambeau and warned them and informed them that they were getting into business with Big Lagoon’s client list,” Virgil Moorehead, Big Lagoon Rancheria’s chairperson, told ProPublica.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="44.0">Joseph Schulte Jr., who once worked at RIVO, likened one area of the company’s San Diego office to a Wall Street trading floor, with exuberant staff celebrating short-term wins, such as meeting daily sales goals. To keep the staff pumped up, he said, management brought in pallets of free Celsius energy drinks.</p>
+<p data-pp-blocktype="copy" data-pp-id="45.0">Joseph Schulte Jr., who once worked at RIVO, likened one area of the company’s San Diego office to a Wall Street trading floor, with exuberant staff celebrating short-term wins, such as meeting daily sales goals. To keep the staff pumped up, he said, management brought in pallets of free Celsius energy drinks.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="45.0">“People were making a lot of money working there,” Schulte said of RIVO Holdings.</p>
+<p data-pp-blocktype="copy" data-pp-id="46.0">“People were making a lot of money working there,” Schulte said of RIVO Holdings.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="46.0">Although figures for LDF’s loan portfolios are private, Daniel Koetting’s previous venture with the Big Lagoon Rancheria amassed approximately $83 million in revenue over five years, according to a legal filing.</p>
+<p data-pp-blocktype="copy" data-pp-id="47.0">Although figures for LDF’s loan portfolios are private, Daniel Koetting’s previous venture with the Big Lagoon Rancheria amassed approximately $83 million in revenue over five years, according to a legal filing.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="47.0">Court papers, including divorce filings, show Daniel Koetting enjoying a lavish lifestyle in recent years, living in a five-bedroom, five-bath house in La Jolla, an affluent seaside enclave of San Diego. He <a href="https://twitter.com/i/status/1693046242849264123">owned thoroughbred horses</a>, drove a Porsche and dabbled in motion pictures. He and his wife had three children. In the divorce, he reported household expenses in 2021 that included an average of $7,000 a month on groceries and eating out, plus an additional $5,000 a month for “entertainment, gifts and vacation.”</p>
+<p data-pp-blocktype="copy" data-pp-id="48.0">Court papers, including divorce filings, show Daniel Koetting enjoying a lavish lifestyle in recent years, living in a five-bedroom, five-bath house in La Jolla, an affluent seaside enclave of San Diego. He <a href="https://twitter.com/i/status/1693046242849264123">owned thoroughbred horses</a>, drove a Porsche and dabbled in motion pictures. He and his wife had three children. In the divorce, he reported household expenses in 2021 that included an average of $7,000 a month on groceries and eating out, plus an additional $5,000 a month for “entertainment, gifts and vacation.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="48.0">Daniel and Mark Koetting did not reply to emails, calls or letters from ProPublica seeking comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="49.0">Daniel and Mark Koetting did not reply to emails, calls or letters from ProPublica seeking comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="49.0">Meanwhile, the two companies that RIVO and LDF run — Evergreen Services and Bridge Lending Solutions — are associated with more than 200 complaints from customers since 2019, frequently about onerous interest rates and payment terms. “I just don’t understand how people can do this,” a California resident <a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/detail/3281558">protested</a> to the Consumer Financial Protection Bureau. “This is a predatory lender and I am a victim.”</p>
+<p data-pp-blocktype="copy" data-pp-id="50.0">Meanwhile, the two companies that RIVO and LDF run — Evergreen Services and Bridge Lending Solutions — are associated with more than 200 complaints from customers since 2019, frequently about onerous interest rates and payment terms. “I just don’t understand how people can do this,” a California resident <a href="https://www.consumerfinance.gov/data-research/consumer-complaints/search/detail/3281558">protested</a> to the Consumer Financial Protection Bureau. “This is a predatory lender and I am a victim.”</p>
         
     
                     
 
 <figure
-    data-pp-id="50"
+    data-pp-id="51"
     data-pp-blocktype="image"
     class="bb-image size10 center  wide-sm wrap 
                 ">
@@ -735,22 +664,22 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="51.0">Bildsten, the former Wisconsin department head, believes that LDF tribal leaders are trying to help the reservation improve services, such as dental care, for its members and that the lending business is part of that laudable goal.</p>
+<p data-pp-blocktype="copy" data-pp-id="52.0">Bildsten, the former Wisconsin department head, believes that LDF tribal leaders are trying to help the reservation improve services, such as dental care, for its members and that the lending business is part of that laudable goal.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="52.0">“They’re able to do some good stuff,” Bildsten said, “but the money is dirty.”</p>
+<p data-pp-blocktype="copy" data-pp-id="53.0">“They’re able to do some good stuff,” Bildsten said, “but the money is dirty.”</p>
 
 <h3>An Ill-Fated Loan With Profound Ramifications</h3>
-<p data-pp-blocktype="copy" data-pp-id="52.1">Brian Coughlin lit a cigar. Sitting in his Chevy Malibu with the sunroof open to let out the smoke and a bottle of pills next to him, he wondered: When will this end?</p>
+<p data-pp-blocktype="copy" data-pp-id="53.1">Brian Coughlin lit a cigar. Sitting in his Chevy Malibu with the sunroof open to let out the smoke and a bottle of pills next to him, he wondered: When will this end?</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="53.0">He’d faced many hurdles in life, from serious physical and mental health issues to the loss of his father. He’d also used bad judgment, overspending and loading up on multiple credit cards as he blew through a decent paycheck as head of trash collection for the city of Boston.</p>
+<p data-pp-blocktype="copy" data-pp-id="54.0">He’d faced many hurdles in life, from serious physical and mental health issues to the loss of his father. He’d also used bad judgment, overspending and loading up on multiple credit cards as he blew through a decent paycheck as head of trash collection for the city of Boston.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="54.0">Like many other Americans with little to no savings and poor credit scores, he was enticed by online pitches for quick cash — offers that came with exorbitantly high interest rates.</p>
+<p data-pp-blocktype="copy" data-pp-id="55.0">Like many other Americans with little to no savings and poor credit scores, he was enticed by online pitches for quick cash — offers that came with exorbitantly high interest rates.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -759,11 +688,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="56.0">Months earlier, in December 2019, he’d filed for bankruptcy, expecting relief. There would be payment plans and a court injunction halting contact from creditors — a key protection laid out in U.S. bankruptcy law. But one creditor would not give up.</p>
+<p data-pp-blocktype="copy" data-pp-id="57.0">Months earlier, in December 2019, he’d filed for bankruptcy, expecting relief. There would be payment plans and a court injunction halting contact from creditors — a key protection laid out in U.S. bankruptcy law. But one creditor would not give up.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="57.0">Lendgreen, one of LDF’s initial companies, had loaned Coughlin $900 at an annual percentage rate of 741%. At the time of the bankruptcy, he owed $1,595. The company continued to call, email and text him, fueling his anxiety. A phone log shows Lendgreen called Coughlin 50 times during one four-month period.</p>
+<p data-pp-blocktype="copy" data-pp-id="58.0">Lendgreen, one of LDF’s initial companies, had loaned Coughlin $900 at an annual percentage rate of 741%. At the time of the bankruptcy, he owed $1,595. The company continued to call, email and text him, fueling his anxiety. A phone log shows Lendgreen called Coughlin 50 times during one four-month period.</p>
         
             
     
@@ -806,21 +735,21 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="59.0">“This is all for nothing,” Coughlin recalls thinking of the bankruptcy process.</p>
+<p data-pp-blocktype="copy" data-pp-id="60.0">“This is all for nothing,” Coughlin recalls thinking of the bankruptcy process.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="59.1">That night in his Chevy, Coughlin took a fistful of pills and ended up in the hospital. Lendgreen still was calling him while he recovered. But now he was ready to fight.</p>
+<p data-pp-blocktype="copy" data-pp-id="60.1">That night in his Chevy, Coughlin took a fistful of pills and ended up in the hospital. Lendgreen still was calling him while he recovered. But now he was ready to fight.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="59.2">Coughlin’s attorney filed a motion with the bankruptcy court in March 2020 asking a judge to order Lendgreen, the LDF tribe and LDF Business Development Corporation to stop harassing him.</p>
+<p data-pp-blocktype="copy" data-pp-id="60.2">Coughlin’s attorney filed a motion with the bankruptcy court in March 2020 asking a judge to order Lendgreen, the LDF tribe and LDF Business Development Corporation to stop harassing him.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="60.0">The case was about more than just harassment, however. Coughlin wanted compensation for all that had happened. He asked the court to award him attorneys fees, medical costs, expenses for lost time from work while hospitalized and punitive damages.</p>
+<p data-pp-blocktype="copy" data-pp-id="61.0">The case was about more than just harassment, however. Coughlin wanted compensation for all that had happened. He asked the court to award him attorneys fees, medical costs, expenses for lost time from work while hospitalized and punitive damages.</p>
         
     
                     
 
 <figure
-    data-pp-id="61"
+    data-pp-id="62"
     data-pp-blocktype="image"
     class="bb-image size10 center  wide-sm wrap 
                 ">
@@ -859,31 +788,31 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="62.0">To Coughlin’s surprise, LDF told the court that sovereign immunity protected it even in a federal bankruptcy case, and the bankruptcy judge in Massachusetts agreed. When Coughlin took the case to the 1st U.S. Circuit Court of Appeals and won, the tribe appealed to the U.S. Supreme Court.</p>
+<p data-pp-blocktype="copy" data-pp-id="63.0">To Coughlin’s surprise, LDF told the court that sovereign immunity protected it even in a federal bankruptcy case, and the bankruptcy judge in Massachusetts agreed. When Coughlin took the case to the 1st U.S. Circuit Court of Appeals and won, the tribe appealed to the U.S. Supreme Court.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="63.0">As they dug into who actually violated the collections ban, Coughlin’s attorneys needed to unravel the business relationships surrounding Lendgreen, which no longer has an active website. That led them on an international paper chase from Wisconsin to Ontario, Latvia and Malta, an island in the Mediterranean, where an entity that provided capital for Lendgreen appeared to be based.</p>
+<p data-pp-blocktype="copy" data-pp-id="64.0">As they dug into who actually violated the collections ban, Coughlin’s attorneys needed to unravel the business relationships surrounding Lendgreen, which no longer has an active website. That led them on an international paper chase from Wisconsin to Ontario, Latvia and Malta, an island in the Mediterranean, where an entity that provided capital for Lendgreen appeared to be based.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="64.0">In gathering evidence, Coughlin’s lawyers obtained an agreement between Lendgreen and another company — Vivus Servicing Ltd. of Canada — showing Vivus was to handle most all operations of issuing and collecting the loans made in Lendgreen’s name. It also would retain most of the profits.</p>
+<p data-pp-blocktype="copy" data-pp-id="65.0">In gathering evidence, Coughlin’s lawyers obtained an agreement between Lendgreen and another company — Vivus Servicing Ltd. of Canada — showing Vivus was to handle most all operations of issuing and collecting the loans made in Lendgreen’s name. It also would retain most of the profits.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="65.0">For each new or renewed loan, the contract called for Vivus to share $3.25 with LDF as well as $3.25 per loan payment, or not less than $10,000 a month.</p>
+<p data-pp-blocktype="copy" data-pp-id="66.0">For each new or renewed loan, the contract called for Vivus to share $3.25 with LDF as well as $3.25 per loan payment, or not less than $10,000 a month.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="66.0">Vivus Servicing had subcontracted certain administrative functions of the Lendgreen loans to 4finance Canada, an affiliate company of a European lending conglomerate based in Latvia, court records show. An attorney who represents Vivus and 4finance declined to comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="67.0">Vivus Servicing had subcontracted certain administrative functions of the Lendgreen loans to 4finance Canada, an affiliate company of a European lending conglomerate based in Latvia, court records show. An attorney who represents Vivus and 4finance declined to comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="67.0">“There’s money flowing to all sorts of places,” Coughlin’s attorney Richard Gottlieb said.</p>
+<p data-pp-blocktype="copy" data-pp-id="68.0">“There’s money flowing to all sorts of places,” Coughlin’s attorney Richard Gottlieb said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="68.0">As he began to better understand the web of connections, Gottlieb concluded that LDF’s role in its lending operations was minimal. The partners, he said, performed all the key functions — “from the creation of the loans themselves to the maintenance of the computer software and internet sites to the collections personnel to the customer service reps to the management.”</p>
+<p data-pp-blocktype="copy" data-pp-id="69.0">As he began to better understand the web of connections, Gottlieb concluded that LDF’s role in its lending operations was minimal. The partners, he said, performed all the key functions — “from the creation of the loans themselves to the maintenance of the computer software and internet sites to the collections personnel to the customer service reps to the management.”</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -892,11 +821,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="70.0">Even though LDF fought in court to be able to pursue collections against people in bankruptcy, internal documents indicate that the head of LDF Holdings, which oversees the tribe’s lending enterprise, was not pleased with how a business partner treated Coughlin.</p>
+<p data-pp-blocktype="copy" data-pp-id="71.0">Even though LDF fought in court to be able to pursue collections against people in bankruptcy, internal documents indicate that the head of LDF Holdings, which oversees the tribe’s lending enterprise, was not pleased with how a business partner treated Coughlin.</p>
         
     
                         <figure
-        data-pp-id="71"
+        data-pp-id="72"
         data-pp-blocktype="audio"
         class="bb-audio size04 left out02 wide-sm wrap
              bb--border-top             hide-print
@@ -930,15 +859,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="72.0">Jessi Lorenzo, president of LDF Holdings at the time, communicated in May 2020 with 4finance Canada about Coughlin’s loan. Why had they not stopped soliciting repayment once notified that Coughlin had filed for bankruptcy, she asked in an email.</p>
+<p data-pp-blocktype="copy" data-pp-id="73.0">Jessi Lorenzo, president of LDF Holdings at the time, communicated in May 2020 with 4finance Canada about Coughlin’s loan. Why had they not stopped soliciting repayment once notified that Coughlin had filed for bankruptcy, she asked in an email.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="73.0">“Everything should have ceased then,” wrote Lorenzo, who was based in Tampa.</p>
+<p data-pp-blocktype="copy" data-pp-id="74.0">“Everything should have ceased then,” wrote Lorenzo, who was based in Tampa.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="74.0">In a brief interview on her porch, Lorenzo declined to comment on the Coughlin case and said she did not want to be part of a tribal lending story that might be negative. Later, in an email, she wrote that she was proud to have worked for LDF as it “built a business that benefited their community, providing modern careers with upward mobility and good benefits in a remote part of Wisconsin.”</p>
+<p data-pp-blocktype="copy" data-pp-id="75.0">In a brief interview on her porch, Lorenzo declined to comment on the Coughlin case and said she did not want to be part of a tribal lending story that might be negative. Later, in an email, she wrote that she was proud to have worked for LDF as it “built a business that benefited their community, providing modern careers with upward mobility and good benefits in a remote part of Wisconsin.”</p>
         
     
                     
@@ -947,43 +876,43 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="76.0">LDF tribal leaders don’t talk much about their business with outsiders. But there is little doubt that the lending business has altered the shape of the tribe’s finances, allowing LDF to move past its costly mistake of issuing $50 million in bonds for the Mississippi casino boat.</p>
+<p data-pp-blocktype="copy" data-pp-id="77.0">LDF tribal leaders don’t talk much about their business with outsiders. But there is little doubt that the lending business has altered the shape of the tribe’s finances, allowing LDF to move past its costly mistake of issuing $50 million in bonds for the Mississippi casino boat.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="77.0">The Tribal Council agreed in 2017 to pay $4 million and finance an additional $23 million to settle claims against it after defaulting.</p>
+<p data-pp-blocktype="copy" data-pp-id="78.0">The Tribal Council agreed in 2017 to pay $4 million and finance an additional $23 million to settle claims against it after defaulting.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="77.1">But the tribe and its partners continue to face new threats from a range of legal actions.</p>
+<p data-pp-blocktype="copy" data-pp-id="78.1">But the tribe and its partners continue to face new threats from a range of legal actions.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="78.0">The attorneys in the Virginia case have promised future litigation against more LDF partners. And as LDF keeps lending, it opens its companies up to additional consumer lawsuits. Dozens of such cases have been filed since 2019, most of which end quickly, with undisclosed settlements.</p>
+<p data-pp-blocktype="copy" data-pp-id="79.0">The attorneys in the Virginia case have promised future litigation against more LDF partners. And as LDF keeps lending, it opens its companies up to additional consumer lawsuits. Dozens of such cases have been filed since 2019, most of which end quickly, with undisclosed settlements.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="79.0">McFarland takes issue with these types of cases against tribes. “The law firms filing class action lawsuits seek to paint tribes as either victims or villains in online lending,” he said in an email. “This approach has been employed against tribes since Europeans came to the Americas, whether Tribes are entering gaming, cannabis, selling tobacco, and a host of business opportunities.”</p>
+<p data-pp-blocktype="copy" data-pp-id="80.0">McFarland takes issue with these types of cases against tribes. “The law firms filing class action lawsuits seek to paint tribes as either victims or villains in online lending,” he said in an email. “This approach has been employed against tribes since Europeans came to the Americas, whether Tribes are entering gaming, cannabis, selling tobacco, and a host of business opportunities.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="80.0">When Coughlin’s suit reached the Supreme Court, some of the issues involving tribal-lending partnerships were touched on, if only briefly.</p>
+<p data-pp-blocktype="copy" data-pp-id="81.0">When Coughlin’s suit reached the Supreme Court, some of the issues involving tribal-lending partnerships were touched on, if only briefly.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="81.0">During a <a href="https://www.supremecourt.gov/oral_arguments/audio/2022/22-227">hearing in April 2023</a>, Justice Samuel Alito interrupted LDF’s lawyer as he was talking about sovereign immunity and the Constitutional Convention. Alito inquired about the tribe’s relationship with Lendgreen.</p>
+<p data-pp-blocktype="copy" data-pp-id="82.0">During a <a href="https://www.supremecourt.gov/oral_arguments/audio/2022/22-227">hearing in April 2023</a>, Justice Samuel Alito interrupted LDF’s lawyer as he was talking about sovereign immunity and the Constitutional Convention. Alito inquired about the tribe’s relationship with Lendgreen.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="82.0">“Who actually operates this?” he asked.</p>
+<p data-pp-blocktype="copy" data-pp-id="83.0">“Who actually operates this?” he asked.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="82.1">“The tribe does, Your Honor,” replied attorney Pratik Shah, representing LDF. “This is not a rent-a-tribe situation.”</p>
+<p data-pp-blocktype="copy" data-pp-id="83.1">“The tribe does, Your Honor,” replied attorney Pratik Shah, representing LDF. “This is not a rent-a-tribe situation.”</p>
 
-<p data-pp-blocktype="copy" data-pp-id="82.2">Shah said the enterprise employed 50 to 60 people working out of a headquarters on the reservation, though “they use third-party vendors, servicers and all, like any other business.”</p>
+<p data-pp-blocktype="copy" data-pp-id="83.2">Shah said the enterprise employed 50 to 60 people working out of a headquarters on the reservation, though “they use third-party vendors, servicers and all, like any other business.”</p>
 
-<p data-pp-blocktype="copy" data-pp-id="82.3">Shah added: “This is a fully tribal operation.”</p>
+<p data-pp-blocktype="copy" data-pp-id="83.3">Shah added: “This is a fully tribal operation.”</p>
 
-<p data-pp-blocktype="copy" data-pp-id="82.4">But the central issue was whether the tribe could be held liable for violating bankruptcy rules.</p>
+<p data-pp-blocktype="copy" data-pp-id="83.4">But the central issue was whether the tribe could be held liable for violating bankruptcy rules.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="82.5">“What the tribe is saying is you can’t sue them for hundreds of thousands of dollars of actual damages,” Shah told the court. “That’s at the core of sovereign immunity.”</p>
+<p data-pp-blocktype="copy" data-pp-id="83.5">“What the tribe is saying is you can’t sue them for hundreds of thousands of dollars of actual damages,” Shah told the court. “That’s at the core of sovereign immunity.”</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -992,17 +921,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="84.0">In June of last year, the high court <a href="https://www.supremecourt.gov/opinions/22pdf/22-227_i426.pdf">sided with Coughlin</a>, ruling 8-1 that there’s no sovereign immunity for tribes when it comes to the Bankruptcy Code.</p>
+<p data-pp-blocktype="copy" data-pp-id="85.0">In June of last year, the high court <a href="https://www.supremecourt.gov/opinions/22pdf/22-227_i426.pdf">sided with Coughlin</a>, ruling 8-1 that there’s no sovereign immunity for tribes when it comes to the Bankruptcy Code.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="85.0">Justice Clarence Thomas concurred in the ruling, not because of his reading of the Bankruptcy Code, but because he held that sovereign immunity does not apply to lawsuits arising from a tribe’s commercial activity conducted off-reservation.</p>
+<p data-pp-blocktype="copy" data-pp-id="86.0">Justice Clarence Thomas concurred in the ruling, not because of his reading of the Bankruptcy Code, but because he held that sovereign immunity does not apply to lawsuits arising from a tribe’s commercial activity conducted off-reservation.</p>
         
     
                     
 
 <figure
-    data-pp-id="86"
+    data-pp-id="87"
     data-pp-blocktype="image"
     class="bb-image size08 center  wide-sm wrap 
                 ">
@@ -1041,11 +970,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="87.0">Back in Bankruptcy Court, Coughlin continued to pursue LDF and Lendgreen for damages and legal fees. In mid-August, in the midst of settlement talks, Coughlin asked the court to pause the process required to unmask the outside entities involved with LDF as all sides tried to resolve the dispute. In September, a judge approved a settlement in which the tribe and Lendgreen agreed to pay Coughlin $340,000. LDF denied liability as part of the agreement.</p>
+<p data-pp-blocktype="copy" data-pp-id="88.0">Back in Bankruptcy Court, Coughlin continued to pursue LDF and Lendgreen for damages and legal fees. In mid-August, in the midst of settlement talks, Coughlin asked the court to pause the process required to unmask the outside entities involved with LDF as all sides tried to resolve the dispute. In September, a judge approved a settlement in which the tribe and Lendgreen agreed to pay Coughlin $340,000. LDF denied liability as part of the agreement.</p>
         
     
                                   <aside
-    data-pp-id="88"
+    data-pp-id="89"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -1072,7 +1001,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
                             
-        <a href="https://www.propublica.org/article/epa-scientists-faced-retaliation-after-finding-harm-from-chemicals" class="story-promo section-articles" >
+        <a href="https://www.propublica.org/article/texas-medicaid-unwinding-consequences" class="story-promo section-articles" >
 
             
                                                                                                                                 
@@ -1085,13 +1014,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                             width="75"
                             height="75"
                             data-sizes="auto"
-                            data-srcset="https://img.assets-d.propublica.org/v5/images/20240803-Ackerman-EPA-Whistleblower-035.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=24b24f0a79a344774c18236b739844a4 75w, https://img.assets-d.propublica.org/v5/images/20240803-Ackerman-EPA-Whistleblower-035.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=786a6b8a50acd780990a0de5e4db06cd 150w, https://img.assets-d.propublica.org/v5/images/20240803-Ackerman-EPA-Whistleblower-035.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=b3f52791120632cbbb83a9558d5eeb13 400w"
+                            data-srcset="https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=52b6d2b32cfbe7c659b1b5d97059596f 75w, https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=59c6d2c3820c0c90e8e719d3ff0525fc 150w, https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=f9860d93e338ca89fa3f318162276317 400w"
                             />
                     </div>
                 
             
             <div class="story-promo__info" dir="auto">
-                <strong class="story-promo__hed">EPA Scientists Said They Were Pressured to Downplay Harms From Chemicals. A Watchdog Found They Were Retaliated Against.</strong>
+                <strong class="story-promo__hed">Despite Persistent Warnings, Texas Rushed to Remove Millions From Medicaid. That Move Cost Eligible Residents Care.</strong>
                             </div>
         </a>
 
@@ -1100,13 +1029,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="89.0">At the same time, pressure is mounting on the tribe’s business partners. As part of the deal, the tribe will give Coughlin documents “with respect to the culpability and responsibility” of the outside partners, according to the settlement. That will enable Coughlin’s lawyers to dig further. LDF also will make a corporate representative available to testify in legal actions against their former business allies, if necessary.</p>
+<p data-pp-blocktype="copy" data-pp-id="90.0">At the same time, pressure is mounting on the tribe’s business partners. As part of the deal, the tribe will give Coughlin documents “with respect to the culpability and responsibility” of the outside partners, according to the settlement. That will enable Coughlin’s lawyers to dig further. LDF also will make a corporate representative available to testify in legal actions against their former business allies, if necessary.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="90.0">“I want to see all the actors that are actually part of this scheme brought to justice, in a way,” said Coughlin, who now lives in Florida.</p>
+<p data-pp-blocktype="copy" data-pp-id="91.0">“I want to see all the actors that are actually part of this scheme brought to justice, in a way,” said Coughlin, who now lives in Florida.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="90.1">“I don’t necessarily believe the tribe is the orchestrator of this whole mess. I think they’re a pawn, unfortunately.”</p>
+<p data-pp-blocktype="copy" data-pp-id="91.1">“I don’t necessarily believe the tribe is the orchestrator of this whole mess. I think they’re a pawn, unfortunately.”</p>
         
     
                     <div class="article-body__bottom-notes" data-pp-location="bottom-note">
@@ -1114,7 +1043,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                     
         <div class="article-body__note article-body__note--tips-callout" data-pp-location="bottom-note" data-pp-view data-pp-category="get involved">
-                        <p>To do the best, most comprehensive reporting on this opaque industry, we want to hear from more of the people who know it best. Do you work for a tribal lending operation, either on a reservation or for an outside business partner? Do you belong to a tribe that participates in this lending or one that has rejected the industry? Are you a regulator or lawyer dealing with these issues? Have you borrowed from a tribal lender? All perspectives matter to us. Please get in touch with Megan O’Matz at <a href="/cdn-cgi/l/email-protection#204d4547414e0e4f4d41545a6050524f5055424c4943410e4f5247"><span class="__cf_email__" data-cfemail="1e737b797f703071737f6a645e6e6c716e6b7c72777d7f30716c79">[email&#160;protected]</span></a> or 954-873-7576, or Joel Jacobs at <a href="/cdn-cgi/l/email-protection#99f3f6fcf5b7f3f8faf6fbead9e9ebf6e9ecfbf5f0faf8b7f6ebfe"><span class="__cf_email__" data-cfemail="b4dedbd1d89aded5d7dbd6c7f4c4c6dbc4c1d6d8ddd7d59adbc6d3">[email&#160;protected]</span></a> or 917-512-0297. Visit <a href="http://propublica.org/tips">propublica.org/tips</a> for information on secure communication channels.</p>
+                        <p>To do the best, most comprehensive reporting on this opaque industry, we want to hear from more of the people who know it best. Do you work for a tribal lending operation, either on a reservation or for an outside business partner? Do you belong to a tribe that participates in this lending or one that has rejected the industry? Are you a regulator or lawyer dealing with these issues? Have you borrowed from a tribal lender? All perspectives matter to us. Please get in touch with Megan O’Matz at <a href="/cdn-cgi/l/email-protection#670a0200060949080a06131d271715081712050b0e040649081500"><span class="__cf_email__" data-cfemail="35585052545b1b5a5854414f7545475a454057595c56541b5a4752">[email&#160;protected]</span></a> or 954-873-7576, or Joel Jacobs at <a href="/cdn-cgi/l/email-protection#046e6b61682a6e65676b66774474766b747166686d67652a6b7663"><span class="__cf_email__" data-cfemail="3f55505a5311555e5c505d4c7f4f4d504f4a5d53565c5e11504d58">[email&#160;protected]</span></a> or 917-512-0297. Visit <a href="http://propublica.org/tips">propublica.org/tips</a> for information on secure communication channels.</p>
 
         </div>
 
@@ -1136,26 +1065,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
         
-<div class="fundraising-letter-inline | hide-print">
-<h2 class="pp-module-title">Protect Journalism That Gets Results</h2>
-
-    <div class="module-content">
-
-        <p>
-            This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.
-        </p>
-        <p>
-            ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life</strong>. Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions.
-        </p>
-        <p>
-            Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 50,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.
-        </p>
-        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
-
-    </div>
-
-</div><!-- end .fundraising-letter-inline -->
-        <div class="rich-byline-group">
+            <div class="rich-byline-group">
 
 
 
@@ -1171,7 +1081,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#e68b83818788c8898b87929ca69694899693848a8f8587c8899481">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#45282022242b6b2a2824313f0535372a353027292c26246b2a3722">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1179,7 +1089,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="ec81898b8d82c283818d9896ac9c9e839c998e80858f8dc2839e8b">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="9ef3fbf9fff0b0f1f3ffeae4deeeecf1eeebfcf2f7fdffb0f1ecf9">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -1238,7 +1148,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#2943464c450743484a464b5a69595b46595c4b45404a4807465b4e">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#462c29232a682c2725292435063634293633242a2f252768293421">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1246,7 +1156,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="c7ada8a2abe9ada6a4a8a5b487b7b5a8b7b2a5abaea4a6e9a8b5a0">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="ee84818b82c0848f8d818c9dae9e9c819e9b8c82878d8fc0819c89">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -1302,11 +1212,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/gaza-palestine-israel-blocked-humanitarian-aid-blinken">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/epa-chevron-cancer-causing-fuels">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=2e3e455d99f7ddf33057f25a41490b71 400w, https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=c0d3fa5e4598dd15f60ea90712ecf1ab 800w, https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=c06ecf53e98a1b2340071143fe482d04 1200w, https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=181cf81dfb75623204402b2178412c22 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=12936af7819f24b9713397d803f30c43 400w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=e723216e4ea50d670d90aa894e27821e 800w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=d1222af86efd9fe5fb99fd36b7ec6cc1 1200w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2f2ad8c0ff73659af7a0ef10f1662a55 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1318,17 +1228,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/gaza-palestine-israel-blocked-humanitarian-aid-blinken">
-                                    Israel Deliberately Blocked Humanitarian Aid to Gaza, Two Government Bodies Concluded. Antony Blinken Rejected Them.
+            <a href="https://www.propublica.org/article/epa-chevron-cancer-causing-fuels">
+                                    EPA Says It Plans to Withdraw Approval for Chevron’s Plastic-Based Fuels That Are Likely to Cause Cancer
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Blinken told Congress, “We do not currently assess that the Israeli government is prohibiting or otherwise restricting” aid, even though the U.S. Agency for International Development and others had determined that Israel had broken the law.
+                            The decision comes after a ProPublica investigation revealed that the EPA had found that one of the fuels had a cancer risk more than 1 million times higher than the agency usually considers acceptable.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/brett-murphy">Brett Murphy</a>,             <time class="timestamp" datetime="2024-09-24EDT05:00">Sept. 24, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/sharon-lerner">Sharon Lerner</a>,             <time class="timestamp" datetime="2024-09-30EDT05:00">Sept. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1348,13 +1258,59 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/teens-fentanyl-percocet-green-bay-wisconsin-maylia-sotelo-jack-mcdonough">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=36faa25d93e1dc4d30ab74fffae2af20 400w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=90070dbe7938086df635cc964a95e7a6 800w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=37dfc99aab8e5611e75d928dd243b933 1200w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=d003dffb79789b7d62f5197a60a75714 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=f3d93355a12ded12e4f8b917f1dff6d1 400w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=23e155c8f4570051317dfdc143bd589f 800w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=3494c2485d53cbdea9fcab69bff4b5d5 1200w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=e8e2267e9bd4c93d2160a4f5ba0dd8d0 1600w"
                     width="400"
                     height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/teens-fentanyl-percocet-green-bay-wisconsin-maylia-sotelo-jack-mcdonough">
+                                    Maylia and Jack: A Story of Teens and Fentanyl
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Police knew she was selling fake Percocet but did not stop her. His mother sought the right treatment for his addiction but could not find it. Two teens got caught up in a system unprepared to handle kids on either side of the drug trade.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a>,             <time class="timestamp" datetime="2024-09-28EDT05:00">Sept. 28, 5 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=498de054c6e614ffcad4849a294676dc 105w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=392fc7dc8a1ad90acea66a1aecb96bd6 210w"
+                    width="105"
+                    height="105"
                     loading="lazy"
                     js-autosizes
                 />
@@ -1391,15 +1347,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
     
 
-
+                    
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/supreme-court-chevron-deference-loper-bright-guns-abortion-pending-cases">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/arizona-school-vouchers-budget-meltdown">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/SCOTUS-Administrative-Impact-Promo_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=b6c7f6823aa69c70c644e1d9180a5039 105w, https://img.assets-d.propublica.org/v5/images/SCOTUS-Administrative-Impact-Promo_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=10f508b1bb17dbf617bc6d7bd3ada5fe 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/AP22228775425337_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=5fe30a0d0dcf89c78f5a12f88540f822 105w, https://img.assets-d.propublica.org/v5/images/AP22228775425337_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=98b25663971fa75f0e748711e321be34 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1409,19 +1365,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/school-wars">School Wars</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/supreme-court-chevron-deference-loper-bright-guns-abortion-pending-cases">
-                                    A Supreme Court Justice Warned That a Ruling Would Cause “Large-Scale Disruption.” The Effects Are Already Being Felt.
+            <a href="https://www.propublica.org/article/arizona-school-vouchers-budget-meltdown">
+                                    School Vouchers Were Supposed to Save Taxpayer Money. Instead They Blew a Massive Hole in Arizona’s Budget.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            One recent Supreme Court decision is already rippling through dozens of key lower court cases involving everything from airline fees to gun sales to abortion access, affecting people’s lives in important — and sometimes contradictory — ways.
+                            Arizona, the model for voucher programs across the country, has spent so much money paying private schoolers’ tuition that it’s now facing hundreds of millions in budget cuts to critical state programs and projects.
                     </p>
 
         <p class="story-card__byline">
-            by <span class="name">Eli Sanders</span> for <a href="https://www.propublica.org">ProPublica</a>, illustrations by <span class="name">Michael Haddid</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-09-23EDT05:00">Sept. 23, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/eli-hager">Eli Hager</a>,             <time class="timestamp" datetime="2024-07-16EDT06:00">July 16, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1441,11 +1398,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/telegram-terrorgram-collective-extremism-accelerationists-dallas-humber-matthew-allison">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/texas-medicaid-unwinding-consequences">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2170821145_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5013&amp;fp-y=0.5728&amp;h=105&amp;q=75&amp;w=105&amp;s=d5b38ff6c2b338e59131eba870aa08b8 105w, https://img.assets-d.propublica.org/v5/images/GettyImages-2170821145_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5013&amp;fp-y=0.5728&amp;h=210&amp;q=75&amp;w=210&amp;s=25f13038eafaadf135964bcb9c0ffe6c 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=ed77c904a55303bd8e5b33b9fa5aba5a 105w, https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=6627615aa38d5782060205510d3bd548 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1457,64 +1414,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/telegram-terrorgram-collective-extremism-accelerationists-dallas-humber-matthew-allison">
-                                    Neo-Nazi Telegram Users Panic Amid Crackdown and Arrest of Alleged Leaders of Online Extremist Group
+            <a href="https://www.propublica.org/article/texas-medicaid-unwinding-consequences">
+                                    Despite Persistent Warnings, Texas Rushed to Remove Millions From Medicaid. That Move Cost Eligible Residents Care.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            An analysis by ProPublica and FRONTLINE shows a surge in activity on Telegram channels aligned with the Terrorgram Collective, as allies tried to rally support for their comrades in custody and sought to oust users they believed to be federal agents.
+                            The decision to buck federal government guidelines was one of many that led to serious repercussions for Texas residents who rely on Medicaid. Among them were children forced to forgo or postpone lifesaving operations, doctors say.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/ac-thompson">A.C. Thompson</a>, <a class="name" href="https://www.propublica.org/people/james-bandler">James Bandler</a> and <a class="name" href="https://www.propublica.org/people/brandon-roberts">Brandon Roberts</a>,             <time class="timestamp" datetime="2024-09-25EDT12:00">Sept. 25, 12 p.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/amber-thurman-georgia-abortion-wyden-emtala">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240917-Blas-Abortion-Death-06.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6034&amp;fp-y=0.5554&amp;h=105&amp;q=75&amp;w=105&amp;s=4a779a9f0ca0239effff25f7c3de8acf 105w, https://img.assets-d.propublica.org/v5/images/20240917-Blas-Abortion-Death-06.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6034&amp;fp-y=0.5554&amp;h=210&amp;q=75&amp;w=210&amp;s=459cec7979525dad91a7280faf11f485 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/amber-thurman-georgia-abortion-wyden-emtala">
-                                    Did a Georgia Hospital Break Federal Law When It Failed to Save Amber Thurman? A Senate Committee Chair Wants Answers.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Thurman died after waiting 20 hours for emergency care under the state’s abortion ban. Sen. Ron Wyden demanded records his committee could review to determine whether the hospital violated the law. “It’s not even a question,” one expert said.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/ziva-branstetter">Ziva Branstetter</a>,             <time class="timestamp" datetime="2024-09-23EDT11:15">Sept. 23, 11:15 a.m. EDT</time>
+            by <a class="name" href="https://www.texastribune.org/about/staff/eleanor-klibanoff/">Eleanor Klibanoff</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, and <a class="name" href="https://www.propublica.org/people/lomi-kriel">Lomi Kriel</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>,             <time class="timestamp" datetime="2024-09-26EDT06:00">Sept. 26, 5 a.m. CDT</time>
         </p>
 
             </div>
@@ -1644,13 +1554,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#e8858d8c81899a818f809c9ba8989a87989d8a84818b89c6879a8f"><span class="__cf_email__" data-cfemail="8fe2eaebe6eefde6e8e7fbfccffffde0fffaede3e6eceea1e0fde8">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#e8858d8c81899a818f809c9ba8989a87989d8a84818b89c6879a8f"><span class="__cf_email__" data-cfemail="28454d4c41495a414f405c5b68585a47585d4a44414b4906475a4f">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#9cf0f5fff9f2eff5f2fbdceceef3ece9fef0f5fffdb2f3eefb"><span class="__cf_email__" data-cfemail="4824212b2d263b21262f08383a27383d2a24212b2966273a2f">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#3854515b5d564b51565f78484a57484d5a54515b5916574a5f"><span class="__cf_email__" data-cfemail="e08c8983858e93898e87a090928f9095828c898381ce8f9287">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1684,7 +1594,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                          <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-h4wdnn" aria-hidden="true"><button id="cta-close" class="cta-close svelte-h4wdnn" data-svelte-h="svelte-dqexqs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-h4wdnn"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-h4wdnn"><div class="cta-message svelte-h4wdnn"><h2 class="cta-heading svelte-h4wdnn">undefined</h2> <p class="cta-text svelte-h4wdnn">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-h4wdnn" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-h4wdnn"></div> <button id="cta-toast-button" class="cta-toast-button svelte-h4wdnn" data-svelte-h="svelte-lboo9g"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-h4wdnn"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
                         <!--svelte-component-end-->
                         
-    <script src="https://assets.propublica.org/static/prod/v5/js/main.cd173529.js"></script>
+    <script src="https://assets.propublica.org/static/prod/v5/js/main.1130c746.js"></script>
 
             <script>
         // Google Tag Manager
@@ -1791,5 +1701,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Megan O’Matz","Joel Jacobs"],"dateCreated":"2024-09-25T12:21:19-04:00","dateModified":"2024-09-25T13:01:00-04:00","datePublished":"2024-09-26T05:00:00-04:00","description":"Entering the tribal lending industry helped avert financial ruin for the Lac du Flambeau tribe, but questionable business practices have led to costly lawsuits.","headline":"Did the LDF Tribe Allow Its Partners to Skirt State Lending Laws?","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/240803_LacduFlambeau_0800_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=5e659a3bf1f0b169f3a4a1145b2ffa41"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit","name":"Did the LDF Tribe Allow Its Partners to Skirt State Lending Laws?","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/240803_LacduFlambeau_0800_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=5e659a3bf1f0b169f3a4a1145b2ffa41","url":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit","name":"Desperate Times Led Wisconsin Tribe to High-Interest Lending, Dubious Partnerships and Legal Jeopardy","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Megan O’Matz","Joel Jacobs"],"dateCreated":"2024-09-25T12:21:19-04:00","dateModified":"2024-09-26T09:56:29-04:00","datePublished":"2024-09-26T05:00:00-04:00","description":"Entering the tribal lending industry helped avert financial ruin for the Lac du Flambeau tribe, but questionable business practices have led to costly lawsuits.","headline":"Did the LDF Tribe Allow Its Partners to Skirt State Lending Laws?","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/240803_LacduFlambeau_0800_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=5e659a3bf1f0b169f3a4a1145b2ffa41"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit","name":"Did the LDF Tribe Allow Its Partners to Skirt State Lending Laws?","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/240803_LacduFlambeau_0800_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=5e659a3bf1f0b169f3a4a1145b2ffa41","url":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit","name":"Desperate Times Led Wisconsin Tribe to High-Interest Lending, Dubious Partnerships and Legal Jeopardy","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
