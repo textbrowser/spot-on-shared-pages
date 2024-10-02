@@ -39,8 +39,10 @@
 function loadJS(src,cb){"use strict";var ref=window.document.getElementsByTagName("script")[0];var script=window.document.createElement("script");script.src=src;script.async=true;ref.parentNode.insertBefore(script,ref);if(cb&&typeof cb==="function"){script.onload=cb}return script}PP.utils.loadJS=loadJS;// cookie function from https://github.com/filamentgroup/cookie/
 function cookie(name,value,days){// if value is undefined, get the cookie value
 if(value===undefined){var cookiestring="; "+window.document.cookie;var cookies=cookiestring.split("; "+name+"=");if(cookies.length===2){return cookies.pop().split(";").shift()}return null}else{var expires;var domain;// if value is a false boolean, we'll treat that as a delete
-if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}// check if we're in dev, if not, lets make it a domain-wide cookie
-if(location.hostname=="localhost"||location.hostname=="127.0.0.1"){domain=""}else{domain="; domain=.propublica.org"}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
+if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}if(location.hostname.endsWith(".propublica.org")){// Cookie set on www.propublica.org can be read on
+// projects.propublica.org (and vice versa)
+domain="; domain=.propublica.org"}else{// Cookie limited to current hostname
+domain=""}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
 PP.utils.cookie=cookie;// basic logging function
 function log(logLine){const logOn=new URLSearchParams(window.location.search).get("__pp-debug");if(logOn!==null){console.log(logLine)}}// expose it
 PP.utils.log=log;// generic event throttler using requestAnimationFrame
@@ -134,105 +136,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
-<style>
-    .site-header__banner {
-        font-family: Graphik, sans-serif;
-        font-size: 13px;
-        line-height: 1.2;
-        position: relative;
-        z-index: 100;
-    }
-    @media screen and (min-width: 40em) {
-        .site-header__banner {
-            font-size: 15px;
-        }
-    }
-    a.site-header__banner-link {
-        align-items: center;
-        background: linear-gradient(
-            to right,
-            #e98406,
-            #cf176d,
-            #2074df
-        );
-        color: white;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        padding: 0.5em 1em;
-        text-decoration: none;
-        transition: unset;
-    }
-    .site-header__banner-link > * + * {
-        margin-left: 8px;
-    }
-    .site-header__banner-cta {
-        background: #da352b;
-        border-radius: 0.2em;
-        color: white;
-        display: inline;
-        font-size: 0.85em;
-        font-weight: 700;
-        padding: 0.5em 1em;
-        text-transform: uppercase;
-        text-align: center;
-        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
-        /*
-        box-shadow:
-            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
-            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
-            0 20px 20px rgba(0, 0, 0, 0.028)
-        ;
-        */
-    }
-    /*
-    .site-header__banner-copy {
-        display: none;
-    }
-    @media screen and (min-width: 50em) {
-        .site-header__banner-copy {
-            display: block;
-        }
-    }
-    */
-    /*
-    .site-header__banner-link:focus .site-header__banner-cta,
-    .site-header__banner-link:hover .site-header__banner-cta {
-        background: #9b0000;
-        color: white;
-    }
-    */
-
-    .site-header__banner-title {
-        padding-right: 0.25em;
-    }
-
-    @media screen and (min-width: 60em) {
-        .opener--grid {
-            /* Tweak full height to account for promo bar height */
-            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
-        }
-    }
-    @media screen and (min-width: 60em) {
-        .opener--grid .opener__art.opener__art--inset,
-        .opener--grid .opener__art.opener__art--inset > img,
-        .opener--grid .opener__art.opener__art--inset > video {
-            /* Tweak full height to account for promo bar height */
-            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
-        }
-    }
-</style>
-
-<div class="site-header__banner" data-pp-location="promo-bar">
-    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
-        <span class="site-header__banner-copy">
-            <strong class="site-header__banner-title">Protect democracy, support independent journalism.</strong>
-            Fall Member Drive deadline: Friday
-        </span>
-        </br>
-        <span class="site-header__banner-cta">Donate Now</span>
-    </a>
-</div>
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -317,7 +220,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"ExxonMobil Accused of Deceptive Marketing of Plastics Recycling Process","pageUrl":"https://www.propublica.org/article/exxonmobil-plastics-recycling-pyrolysis-lawsuit-california"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="NFRYbrxozt" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="RZzPMQJjnN" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -589,26 +492,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
-<div class="fundraising-letter-inline | hide-print">
-<h2 class="pp-module-title">Protect Journalism That Gets Results</h2>
-
-    <div class="module-content">
-
-        <p>
-            This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.
-        </p>
-        <p>
-            ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life</strong>. Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions.
-        </p>
-        <p>
-            Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 50,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.
-        </p>
-        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
-
-    </div>
-
-</div><!-- end .fundraising-letter-inline -->
-        <div class="rich-byline-group">
+            <div class="rich-byline-group">
 
 
 
@@ -624,7 +508,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#a8e4c1dbc986fbc7c6cfe8d8dac7d8ddcac4c1cbc986c7dacf">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#2965405a48077a46474e69595b46595c4b45404a4807465b4e">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -632,7 +516,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="a2eecbd1c38cf1cdccc5e2d2d0cdd2d7c0cecbc1c38ccdd0c5">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="773b1e04165924181910370705180702151b1e141659180510">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -999,11 +883,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/texas-medicaid-unwinding-consequences">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/epa-chevron-cancer-causing-fuels">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=f6158731956166fe29f0c48aa7a61d4b 400w, https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=553f2e8a3dac1a074622a76b1eebc06d 800w, https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=23817bea7e58f1338e04fe991df91703 1200w, https://img.assets-d.propublica.org/v5/images/20240804-Villasana-TX-Motherhood-14_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=a77c57fbf53c13d5b4efc18f63a7fe0c 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=12936af7819f24b9713397d803f30c43 400w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=e723216e4ea50d670d90aa894e27821e 800w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=d1222af86efd9fe5fb99fd36b7ec6cc1 1200w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2f2ad8c0ff73659af7a0ef10f1662a55 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1015,17 +899,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/texas-medicaid-unwinding-consequences">
-                                    Despite Persistent Warnings, Texas Rushed to Remove Millions From Medicaid. That Move Cost Eligible Residents Care.
+            <a href="https://www.propublica.org/article/epa-chevron-cancer-causing-fuels">
+                                    EPA Says It Plans to Withdraw Approval for Chevron’s Plastic-Based Fuels That Are Likely to Cause Cancer
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            The decision to buck federal government guidelines was one of many that led to serious repercussions for Texas residents who rely on Medicaid. Among them were children forced to forgo or postpone lifesaving operations, doctors say.
+                            The decision comes after a ProPublica investigation revealed that the EPA had found that one of the fuels had a cancer risk more than 1 million times higher than the agency usually considers acceptable.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.texastribune.org/about/staff/eleanor-klibanoff/">Eleanor Klibanoff</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, and <a class="name" href="https://www.propublica.org/people/lomi-kriel">Lomi Kriel</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>,             <time class="timestamp" datetime="2024-09-26EDT06:00">Sept. 26, 5 a.m. CDT</time>
+            by <a class="name" href="https://www.propublica.org/people/sharon-lerner">Sharon Lerner</a>,             <time class="timestamp" datetime="2024-09-30EDT05:00">Sept. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1041,15 +925,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
     
 
-                    
+
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/gaza-palestine-israel-blocked-humanitarian-aid-blinken">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/teens-fentanyl-percocet-green-bay-wisconsin-maylia-sotelo-jack-mcdonough">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=2e3e455d99f7ddf33057f25a41490b71 400w, https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=c0d3fa5e4598dd15f60ea90712ecf1ab 800w, https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=c06ecf53e98a1b2340071143fe482d04 1200w, https://img.assets-d.propublica.org/v5/images/Biden-Humanitarian-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=181cf81dfb75623204402b2178412c22 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=f3d93355a12ded12e4f8b917f1dff6d1 400w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=23e155c8f4570051317dfdc143bd589f 800w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=3494c2485d53cbdea9fcab69bff4b5d5 1200w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=e8e2267e9bd4c93d2160a4f5ba0dd8d0 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1061,17 +945,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/gaza-palestine-israel-blocked-humanitarian-aid-blinken">
-                                    Israel Deliberately Blocked Humanitarian Aid to Gaza, Two Government Bodies Concluded. Antony Blinken Rejected Them.
+            <a href="https://www.propublica.org/article/teens-fentanyl-percocet-green-bay-wisconsin-maylia-sotelo-jack-mcdonough">
+                                    Maylia and Jack: A Story of Teens and Fentanyl
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Blinken told Congress, “We do not currently assess that the Israeli government is prohibiting or otherwise restricting” aid, even though the U.S. Agency for International Development and others had determined that Israel had broken the law.
+                            Police knew she was selling fake Percocet but did not stop her. His mother sought the right treatment for his addiction but could not find it. Two teens got caught up in a system unprepared to handle kids on either side of the drug trade.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/brett-murphy">Brett Murphy</a>,             <time class="timestamp" datetime="2024-09-24EDT05:00">Sept. 24, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a>,             <time class="timestamp" datetime="2024-09-28EDT05:00">Sept. 28, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1138,6 +1022,53 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/arizona-school-vouchers-budget-meltdown">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/AP22228775425337_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=5fe30a0d0dcf89c78f5a12f88540f822 105w, https://img.assets-d.propublica.org/v5/images/AP22228775425337_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=98b25663971fa75f0e748711e321be34 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/school-wars">School Wars</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/arizona-school-vouchers-budget-meltdown">
+                                    School Vouchers Were Supposed to Save Taxpayer Money. Instead They Blew a Massive Hole in Arizona’s Budget.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Arizona, the model for voucher programs across the country, has spent so much money paying private schoolers’ tuition that it’s now facing hundreds of millions in budget cuts to critical state programs and projects.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/eli-hager">Eli Hager</a>,             <time class="timestamp" datetime="2024-07-16EDT06:00">July 16, 6 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
             <a class="aspect-1-1" href="https://www.propublica.org/article/telegram-terrorgram-collective-extremism-accelerationists-dallas-humber-matthew-allison">
                 <img
                     alt=""
@@ -1165,52 +1096,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
         <p class="story-card__byline">
             by <a class="name" href="https://www.propublica.org/people/ac-thompson">A.C. Thompson</a>, <a class="name" href="https://www.propublica.org/people/james-bandler">James Bandler</a> and <a class="name" href="https://www.propublica.org/people/brandon-roberts">Brandon Roberts</a>,             <time class="timestamp" datetime="2024-09-25EDT12:00">Sept. 25, 12 p.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/240803_LacduFlambeau_0800_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=121262e7bdad5e1db89e08bd36a14b08 105w, https://img.assets-d.propublica.org/v5/images/240803_LacduFlambeau_0800_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=bf7a80c9b3c0018dd23d9bb59763b7db 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/wisconsin-lac-du-flambeau-tribe-lending-brian-coughlin-bankruptcy-lawsuit">
-                                    Desperate Times Led Wisconsin Tribe to High-Interest Lending, Dubious Partnerships and Legal Jeopardy
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Facing financial ruin, the Lac du Flambeau tribe began offering short-term loans online with annual rates often over 600%. But as the tribe rose in an industry derided for predatory practices, it put its reputation at risk and drew costly lawsuits.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/megan-omatz">Megan O’Matz</a> and <a class="name" href="https://www.propublica.org/people/joel-jacobs">Joel Jacobs</a>,             <time class="timestamp" datetime="2024-09-26EDT05:00">Sept. 26, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1340,13 +1225,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#cda0a8a9a4acbfa4aaa5b9be8dbdbfa2bdb8afa1a4aeace3a2bfaa"><span class="__cf_email__" data-cfemail="f59890919c94879c929d8186b585879a858097999c9694db9a8792">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#d3beb6b7bab2a1bab4bba7a093a3a1bca3a6b1bfbab0b2fdbca1b4"><span class="__cf_email__" data-cfemail="771a12131e16051e101f0304370705180702151b1e141659180510">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#f995909a9c978a90979eb9898b96898c9b95909a98d7968b9e"><span class="__cf_email__" data-cfemail="e985808a8c879a80878ea9999b86999c8b85808a88c7869b8e">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#325e5b51575c415b5c557242405d4247505e5b51531c5d4055"><span class="__cf_email__" data-cfemail="b3dfdad0d6ddc0daddd4f3c3c1dcc3c6d1dfdad0d29ddcc1d4">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1372,10 +1257,10 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 </div>
 <!-- end #modal-republish -->
 
-  
+          
   
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" class="svelte-config">
-                            {"componentName":"BottomPanelCta","props":{"contentUrl":"https://www.propublica.org//api_components/modal-fall-2024-fundraising-2024-09-27.json"},"contextArray":[]}
+                            {"componentName":"BottomPanelCta","props":{"contentUrl":"https://www.propublica.org//api_components/modal-default.json"},"contextArray":[]}
                         </script>
                          <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-h4wdnn" aria-hidden="true"><button id="cta-close" class="cta-close svelte-h4wdnn" data-svelte-h="svelte-dqexqs"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-h4wdnn"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-h4wdnn"><div class="cta-message svelte-h4wdnn"><h2 class="cta-heading svelte-h4wdnn">undefined</h2> <p class="cta-text svelte-h4wdnn">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-h4wdnn" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-h4wdnn"></div> <button id="cta-toast-button" class="cta-toast-button svelte-h4wdnn" data-svelte-h="svelte-lboo9g"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-h4wdnn"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
                         <!--svelte-component-end-->
