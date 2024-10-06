@@ -32,8 +32,10 @@
 function loadJS(src,cb){"use strict";var ref=window.document.getElementsByTagName("script")[0];var script=window.document.createElement("script");script.src=src;script.async=true;ref.parentNode.insertBefore(script,ref);if(cb&&typeof cb==="function"){script.onload=cb}return script}PP.utils.loadJS=loadJS;// cookie function from https://github.com/filamentgroup/cookie/
 function cookie(name,value,days){// if value is undefined, get the cookie value
 if(value===undefined){var cookiestring="; "+window.document.cookie;var cookies=cookiestring.split("; "+name+"=");if(cookies.length===2){return cookies.pop().split(";").shift()}return null}else{var expires;var domain;// if value is a false boolean, we'll treat that as a delete
-if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}// check if we're in dev, if not, lets make it a domain-wide cookie
-if(location.hostname=="localhost"||location.hostname=="127.0.0.1"){domain=""}else{domain="; domain=.propublica.org"}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
+if(value===false){days=-1}if(days){var date=new Date;date.setTime(date.getTime()+days*24*60*60*1000);expires="; expires="+date.toGMTString()}else{expires=""}if(location.hostname.endsWith(".propublica.org")){// Cookie set on www.propublica.org can be read on
+// projects.propublica.org (and vice versa)
+domain="; domain=.propublica.org"}else{// Cookie limited to current hostname
+domain=""}window.document.cookie=name+"="+value+expires+domain+"; path=/"}}// expose it
 PP.utils.cookie=cookie;// basic logging function
 function log(logLine){const logOn=new URLSearchParams(window.location.search).get("__pp-debug");if(logOn!==null){console.log(logLine)}}// expose it
 PP.utils.log=log;// generic event throttler using requestAnimationFrame
@@ -473,8 +475,8 @@ htlbid.cmd.push(function() {
                     </li>
                     
                                                                                                                                                                 <li class="topics-nav-item">
-                                <a href="https://www.propublica.org/topics/environment">
-                                    <svg class="topic-icon" viewBox="0 0 15 15"><path d="M7.52,9.81c-1.63,0-3-1.84-3-4.11S7.12.34,7.23.21a.38.38,0,0,1,.58,0c.11.13,2.67,3.31,2.67,5.49S9.15,9.81,7.52,9.81Zm0-8.75c-.66.88-2.21,3.13-2.21,4.64,0,1.85,1,3.36,2.21,3.36S9.73,7.55,9.73,5.7C9.73,4.19,8.18,1.94,7.52,1.06Z"/><path d="M7.52,15a.37.37,0,0,1-.37-.37V9.44a.37.37,0,0,1,.37-.38.38.38,0,0,1,.38.38V14.6A.38.38,0,0,1,7.52,15Z"/><path d="M4.81,14.4A4.37,4.37,0,0,1,1.86,13C.47,11.63.07,8,.05,7.81A.39.39,0,0,1,.16,7.5a.36.36,0,0,1,.3-.11c.16,0,3.84.42,5.23,1.81h0c1.48,1.48,1.81,3.49.74,4.57a2.25,2.25,0,0,1-1.61.63ZM.86,8.2c.15,1,.59,3.36,1.53,4.3a3.61,3.61,0,0,0,2.42,1.15h0a1.57,1.57,0,0,0,1.09-.41c.76-.77.43-2.34-.74-3.51h0C4.29,8.86,2.08,8.38.86,8.2Z"/><path d="M10.21,14.42a2.28,2.28,0,0,1-1.63-.63c-1.06-1.08-.74-3.09.74-4.57h0c1.4-1.38,5.07-1.79,5.23-1.81a.38.38,0,0,1,.41.41c0,.16-.41,3.83-1.81,5.23A4.31,4.31,0,0,1,10.21,14.42ZM9.85,9.75c-1.16,1.17-1.49,2.74-.73,3.51s2.33.43,3.5-.74c.94-.94,1.38-3.29,1.53-4.3C13.14,8.38,10.79,8.82,9.85,9.75Z"/></svg>                                    Environment
+                                <a href="https://www.propublica.org/topics/biden-administration">
+                                    <svg class="topic-icon" viewBox="0 0 15 15"><path d="M7.53,12a.38.38,0,0,1-.25-.09l-1-.86A2.32,2.32,0,0,1,5.63,9.4V7.75A.37.37,0,0,1,6,7.38h3a.37.37,0,0,1,.38.37V9.4A2.35,2.35,0,0,1,8.76,11l-1,.87A.38.38,0,0,1,7.53,12ZM6.38,8.13V9.4a1.6,1.6,0,0,0,.45,1.09l.7.61.71-.63A1.55,1.55,0,0,0,8.68,9.4V8.13Z"/><path d="M8.26,8.13H6.8a.38.38,0,0,1-.37-.38V6.61a1.1,1.1,0,1,1,2.2,0V7.75A.37.37,0,0,1,8.26,8.13ZM7.18,7.38h.7V6.61a.35.35,0,0,0-.35-.36.36.36,0,0,0-.35.36Z"/><path d="M6.73,6.8H6.31a.38.38,0,1,1,0-.75h.42a.38.38,0,1,1,0,.75Z"/><path d="M7.53,14.88A7.38,7.38,0,1,1,14.91,7.5,7.38,7.38,0,0,1,7.53,14.88Zm0-14A6.62,6.62,0,1,0,14.16,7.5,6.63,6.63,0,0,0,7.53.88Z"/><path d="M9.53,13.46a.38.38,0,0,1-.26-.11.37.37,0,0,1,0-.53L13.05,9a.38.38,0,0,1,.53,0,.37.37,0,0,1,0,.53L9.8,13.35A.4.4,0,0,1,9.53,13.46Z"/><path d="M6.39,11h-.1a5.66,5.66,0,0,1-3.8-5.66V4.16a.38.38,0,0,1,.23-.35.39.39,0,0,1,.41.09L4.86,5.63A18.49,18.49,0,0,1,6.32,7.54a.38.38,0,0,1-.1.52A.37.37,0,0,1,5.7,8a21.06,21.06,0,0,0-1.37-1.8L3.24,5.07v.28a4.81,4.81,0,0,0,3.25,4.93.4.4,0,0,1,.26.47A.38.38,0,0,1,6.39,11Z"/><path d="M8.68,11a.37.37,0,0,1-.36-.27.38.38,0,0,1,.26-.47,4.82,4.82,0,0,0,3.25-4.93V5.07L10.74,6.16A17.45,17.45,0,0,0,9.37,8a.38.38,0,0,1-.63-.42,19,19,0,0,1,1.47-1.91L11.94,3.9a.37.37,0,0,1,.4-.09.39.39,0,0,1,.24.35V5.35A5.67,5.67,0,0,1,8.78,11Z"/><path d="M4.52,12.89a.4.4,0,0,1-.27-.11.39.39,0,0,1,0-.53l1.87-1.87a.37.37,0,1,1,.53.53L4.78,12.78A.36.36,0,0,1,4.52,12.89Z"/><path d="M10.54,12.89a.38.38,0,0,1-.26-.11L8.41,10.91a.37.37,0,0,1,.53-.53l1.87,1.87a.39.39,0,0,1,0,.53A.4.4,0,0,1,10.54,12.89Z"/><path d="M5.54,13.46a.36.36,0,0,1-.26-.11l-3.8-3.8A.37.37,0,0,1,2,9l3.8,3.8a.39.39,0,0,1,0,.53A.4.4,0,0,1,5.54,13.46Z"/><path d="M7.54,14a.6.6,0,0,1-.44-.18l-.74-.64a.74.74,0,0,1-.16-.89l.52-1a.39.39,0,0,1,.51-.16.38.38,0,0,1,.16.5l-.53,1,.7.6.67-.61-.55-1a.38.38,0,0,1,.15-.51.39.39,0,0,1,.51.15l.54,1a.78.78,0,0,1-.15.9L8,13.8A.65.65,0,0,1,7.54,14Zm.07-.73h0Z"/><path d="M4.27,3.61A.36.36,0,0,1,4,3.5a.38.38,0,0,1-.09-.13.59.59,0,0,1,0-.14A.39.39,0,0,1,4,3a.37.37,0,0,1,.4-.08A.57.57,0,0,1,4.54,3a.39.39,0,0,1,.11.27.32.32,0,0,1,0,.14.57.57,0,0,1-.08.13.57.57,0,0,1-.13.08A.32.32,0,0,1,4.27,3.61Z"/><path d="M5.45,2.52a.37.37,0,0,1,.24-.47h0a.37.37,0,0,1,.47.23h0a.38.38,0,0,1-.23.48h0l-.12,0h0A.38.38,0,0,1,5.45,2.52Zm3.68.24h0a.36.36,0,0,1-.23-.47h0A.37.37,0,0,1,9.37,2h0a.38.38,0,0,1,.24.48h0a.38.38,0,0,1-.36.25H9.13Zm-2-.64a.38.38,0,0,1,.38-.38h0a.38.38,0,0,1,.37.38h0a.36.36,0,0,1-.37.37h0A.37.37,0,0,1,7.15,2.12Z"/><path d="M10.79,3.61a.32.32,0,0,1-.14,0,.57.57,0,0,1-.13-.08.57.57,0,0,1-.08-.13.32.32,0,0,1,0-.14.43.43,0,0,1,.1-.27.4.4,0,0,1,.54,0,.57.57,0,0,1,.08.13.34.34,0,0,1,0,.28.38.38,0,0,1-.09.13A.36.36,0,0,1,10.79,3.61Z"/></svg>                                    Biden Administration
                                 </a>
                             </li>
                                             
@@ -485,8 +487,8 @@ htlbid.cmd.push(function() {
                             </li>
                                             
                                                                                                                                             <li class="topics-nav-item">
-                                <a href="https://www.propublica.org/topics/technology">
-                                    <svg class="topic-icon" viewBox="0 0 15 15"><path d="M3.69,6.44a.38.38,0,0,1-.22-.07,2.46,2.46,0,0,1-1-2,2.42,2.42,0,0,1,4.78-.52A.39.39,0,0,1,7,4.32.39.39,0,0,1,6.5,4,1.67,1.67,0,1,0,3.91,5.76.37.37,0,0,1,4,6.28.4.4,0,0,1,3.69,6.44Z"/><path d="M4,8.61H3.94A4.32,4.32,0,1,1,9.19,4.39a4.62,4.62,0,0,1,0,.65.37.37,0,0,1-.43.32.38.38,0,0,1-.31-.43,4.73,4.73,0,0,0,0-.54A3.57,3.57,0,1,0,4.11,7.87a.36.36,0,0,1,.28.44A.37.37,0,0,1,4,8.61Z"/><path d="M10.67,14.91h-.06a.38.38,0,0,1-.24-.15L8,11.34,6.15,13.45a.38.38,0,0,1-.66-.19L3.94,3.72a.36.36,0,0,1,.15-.37.38.38,0,0,1,.4,0L13,8a.39.39,0,0,1,.19.35.38.38,0,0,1-.23.33l-2.59,1,2.4,3.39a.38.38,0,0,1-.09.53l-1.75,1.24A.41.41,0,0,1,10.67,14.91ZM8,10.36H8a.39.39,0,0,1,.29.16L10.76,14l1.14-.81L9.44,9.72a.33.33,0,0,1,0-.32.35.35,0,0,1,.22-.24l2.29-.91L4.8,4.36l1.3,8,1.61-1.86A.39.39,0,0,1,8,10.36Z"/></svg>                                    Technology
+                                <a href="https://www.propublica.org/topics/criminal-justice">
+                                    <svg class="topic-icon" viewBox="0 0 15 15"><path d="M13.48,4h-.11A20.22,20.22,0,0,0,1.76,4a.38.38,0,0,1-.47-.26.37.37,0,0,1,.25-.46,21,21,0,0,1,12.05,0,.37.37,0,0,1-.11.73Z"/><path d="M10.53,15h-6a.38.38,0,1,1,0-.75h6a.38.38,0,0,1,0,.75Z"/><path d="M7.5,15a.37.37,0,0,1-.37-.38V.42A.37.37,0,0,1,7.5,0a.38.38,0,0,1,.38.38V14.6A.38.38,0,0,1,7.5,15Z"/><path d="M5.39,9.89H.46a.37.37,0,0,1-.31-.16.36.36,0,0,1,0-.35L2.57,3.16a.38.38,0,0,1,.35-.24h0a.38.38,0,0,1,.35.23L5.74,9.38a.36.36,0,0,1,0,.35A.37.37,0,0,1,5.39,9.89ZM1,9.14H4.84L2.92,4.31Z"/><path d="M14.6,9.89H9.67a.37.37,0,0,1-.31-.16.36.36,0,0,1,0-.35l2.46-6.22a.38.38,0,0,1,.35-.24h0a.37.37,0,0,1,.35.23L15,9.38a.36.36,0,0,1,0,.35A.37.37,0,0,1,14.6,9.89Zm-4.38-.75h3.83L12.13,4.31Z"/><path d="M2.92,11.75A3,3,0,0,1,.1,9.62a.36.36,0,0,1,.06-.33.38.38,0,0,1,.3-.15H5.39a.38.38,0,0,1,.3.15.39.39,0,0,1,.06.33A3,3,0,0,1,2.92,11.75ZM1,9.89A2.21,2.21,0,0,0,2.92,11,2.22,2.22,0,0,0,4.83,9.89Z"/><path d="M12.13,11.75A3,3,0,0,1,9.3,9.62a.39.39,0,0,1,.06-.33.38.38,0,0,1,.3-.15h4.93a.38.38,0,0,1,.3.15.36.36,0,0,1,.06.33A3,3,0,0,1,12.13,11.75ZM10.22,9.89a2.19,2.19,0,0,0,3.81,0Z"/></svg>                                    Criminal Justice
                                 </a>
                             </li>
                                             
@@ -576,7 +578,7 @@ htlbid.cmd.push(function() {
 			</a>
 		</li>
 		<li>
-									<a class="nav-tools-link" title="Republish this story" href="/cdn-cgi/l/email-protection#033c707661696660773e406276646b772631336a6d26313357667b6270264631263b33263a3a2631334e66676a60626a67263133626d67263133456c6c672631335077626e732631334273736f6a6062776a6c6d263133416260686f6c64263045263133486d6c74263133506c6e666c6d66263133546b6c2631334a702630452631334b666f7326313356702631335166736c71772d25616c677a3e4a23776b6c76646b77237a6c76236e6a646b7723666d696c7a23776b6a70236271776a606f662365716c6e2353716c5376616f6a606239236b777773702630422631452631457474742d73716c7376616f6a60622d6c71642631456466776a6d756c6f7566672631456b666f732e73716c7376616f6a60622e7166736c71772e6c6d2e77667b62702e6e66676a60626a672e706d62732e616260686f6c64">
+									<a class="nav-tools-link" title="Republish this story" href="/cdn-cgi/l/email-protection#251a5650474f40465118664450424d510017154c4b00171571405d4456006017001d15001c1c0017156840414c46444c41001715444b41001715634a4a410017157651444855001715645555494c4644514c4a4b0017156744464e494a420016630017156e4b4a52001715764a48404a4b40001715724d4a0017156c560016630017156d40495500171570560017157740554a57510b03474a415c186c05514d4a50424d51055c4a5005484c424d5105404b4f4a5c05514d4c56054457514c4649400543574a480575574a755047494c46441f054d515155560016640017630017635252520b55574a555047494c46440b4a57420017634240514c4b534a495340410017634d4049550855574a555047494c4644085740554a5751084a4b0851405d4456084840414c46444c4108564b4455084744464e494a42">
 				<svg class="icon" width="24" height="24">
 					<use xlink:href="#icon-email" />
 				</svg>
@@ -684,11 +686,11 @@ htlbid.cmd.push(function() {
 
 		<ul class="contact">
 			<li>
-				<a class="contact-method" title="Email" href="/cdn-cgi/l/email-protection#c8a2adbbbba1aba9e6b8baa1adbbbc88b8baa7b8bdaaa4a1aba9e6a7baaf">
+				<a class="contact-method" title="Email" href="/cdn-cgi/l/email-protection#e9838c9a9a808a88c7999b808c9a9da9999b86999c8b85808a88c7869b8e">
 					<svg class="icon" width="24" height="24">
 						<use xlink:href="#icon-email" />
 					</svg>
-					<span class="__cf_email__" data-cfemail="7f151a0c0c161c1e510f0d161a0c0b3f0f0d100f0a1d13161c1e51100d18">[email&#160;protected]</span>
+					<span class="__cf_email__" data-cfemail="513b3422223832307f2123383422251121233e2124333d3832307f3e2336">[email&#160;protected]</span>
 				</a>
 			</li>
 			<li>
@@ -726,11 +728,11 @@ htlbid.cmd.push(function() {
 
 		<ul class="contact">
 			<li>
-				<a class="contact-method" title="Email" href="/cdn-cgi/l/email-protection#f5999a989cdb9e879c9099b585879a858097999c9694db9a8792">
+				<a class="contact-method" title="Email" href="/cdn-cgi/l/email-protection#234f4c4e4a0d48514a464f6353514c5356414f4a40420d4c5144">
 					<svg class="icon" width="24" height="24">
 						<use xlink:href="#icon-email" />
 					</svg>
-					<span class="__cf_email__" data-cfemail="c1adaeaca8efaab3a8a4ad81b1b3aeb1b4a3ada8a2a0efaeb3a6">[email&#160;protected]</span>
+					<span class="__cf_email__" data-cfemail="b5d9dad8dc9bdec7dcd0d9f5c5c7dac5c0d7d9dcd6d49bdac7d2">[email&#160;protected]</span>
 				</a>
 			</li>
 			<li>
@@ -797,70 +799,6 @@ htlbid.cmd.push(function() {
                 
             
                         
-    <div class="story-entry region-national section-articles">
-
-        
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/epa-chevron-cancer-causing-fuels">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=12936af7819f24b9713397d803f30c43 400w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=e723216e4ea50d670d90aa894e27821e 800w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=d1222af86efd9fe5fb99fd36b7ec6cc1 1200w, https://img.assets-d.propublica.org/v5/images/RTS20237_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2f2ad8c0ff73659af7a0ef10f1662a55 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-
-      <div class="description">
-        <h3 class="hed" ><a href="https://www.propublica.org/article/epa-chevron-cancer-causing-fuels">EPA Says It Plans to Withdraw Approval for Chevron’s Plastic-Based Fuels That Are Likely to Cause Cancer</a></h3>
-                  </div>
-      </div><!-- end .story-entry -->
-
-  
-                
-            
-                        
-    <div class="story-entry region-national section-articles">
-
-        
-    
-
-
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/teens-fentanyl-percocet-green-bay-wisconsin-maylia-sotelo-jack-mcdonough">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=f3d93355a12ded12e4f8b917f1dff6d1 400w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=23e155c8f4570051317dfdc143bd589f 800w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=3494c2485d53cbdea9fcab69bff4b5d5 1200w, https://img.assets-d.propublica.org/v5/images/Teens-Fentanyl-Promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=e8e2267e9bd4c93d2160a4f5ba0dd8d0 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-
-      <div class="description">
-        <h3 class="hed" ><a href="https://www.propublica.org/article/teens-fentanyl-percocet-green-bay-wisconsin-maylia-sotelo-jack-mcdonough">Maylia and Jack: A Story of Teens and Fentanyl</a></h3>
-                  </div>
-      </div><!-- end .story-entry -->
-
-  
-                
-            
-                        
     <div class="story-entry region-national section-atPropublica">
 
         
@@ -868,7 +806,7 @@ htlbid.cmd.push(function() {
         
 
       <div class="description">
-        <h3 class="hed" ><a href="https://www.propublica.org/atpropublica/cengiz-yar-joins-propublicas-visuals-team">Cengiz Yar Joins ProPublica’s Visuals Team</a></h3>
+        <h3 class="hed" ><a href="https://www.propublica.org/atpropublica/propublica-expands-audience-team">ProPublica Expands Audience Team</a></h3>
                   </div>
       </div><!-- end .story-entry -->
 
@@ -885,11 +823,11 @@ htlbid.cmd.push(function() {
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/exxonmobil-plastics-recycling-pyrolysis-lawsuit-california">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/israel-gaza-america-biden-administration-weapons-bombs-state-department">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2174253884_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=3035e918276079661b5855aa9477d250 400w, https://img.assets-d.propublica.org/v5/images/GettyImages-2174253884_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=9b222a046043a5973bd9424342c6526f 800w, https://img.assets-d.propublica.org/v5/images/GettyImages-2174253884_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=525dbaf6ccf146d1b85df99d8456f362 1200w, https://img.assets-d.propublica.org/v5/images/GettyImages-2174253884_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=83faf4c3218b4506f8ea52c1de0f610d 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/gettyimages-1254027827-2048x2048-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=f6f2806b7044da6c7c6771d97efcbca5 400w, https://img.assets-d.propublica.org/v5/images/gettyimages-1254027827-2048x2048-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=022336a65858e2df9865d1da008501db 800w, https://img.assets-d.propublica.org/v5/images/gettyimages-1254027827-2048x2048-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=5f92cab2b3c9d584c83e8b7be342fc94 1200w, https://img.assets-d.propublica.org/v5/images/gettyimages-1254027827-2048x2048-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=e13da8e1fe4a7c304620ec0c615e4db2 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -900,7 +838,71 @@ htlbid.cmd.push(function() {
     
 
       <div class="description">
-        <h3 class="hed" ><a href="https://www.propublica.org/article/exxonmobil-plastics-recycling-pyrolysis-lawsuit-california">ExxonMobil Accused of “Deceptively” Promoting Chemical Recycling as a Solution for the Plastics Crisis</a></h3>
+        <h3 class="hed" ><a href="https://www.propublica.org/article/israel-gaza-america-biden-administration-weapons-bombs-state-department">Inside the State Department’s Weapons Pipeline to Israel</a></h3>
+                  </div>
+      </div><!-- end .story-entry -->
+
+  
+                
+            
+                        
+    <div class="story-entry region-local section-articles">
+
+        
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/nike-just-made-it-harder-to-track-executives-use-of-private-jets">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Nike-private-jets-4_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=a0919dd65f9aa3eb26c296e12554291b 400w, https://img.assets-d.propublica.org/v5/images/Nike-private-jets-4_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2c1ac2523bb69924c6a7d4418b9a42c0 800w, https://img.assets-d.propublica.org/v5/images/Nike-private-jets-4_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=abc746f007632df88c09534c06477c7d 1200w, https://img.assets-d.propublica.org/v5/images/Nike-private-jets-4_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=5d0e50518f9aad13b13483e5e2794bf3 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+
+      <div class="description">
+        <h3 class="hed" ><a href="https://www.propublica.org/article/nike-just-made-it-harder-to-track-executives-use-of-private-jets">We Reported on Nike’s Extensive Use of Private Jets. The Company Just Made It Harder to Track Them.</a></h3>
+                  </div>
+      </div><!-- end .story-entry -->
+
+  
+                
+            
+                        
+    <div class="story-entry region-national section-articles">
+
+        
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/trump-media-truth-social-executives-ousted-devin-nunes">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Media-Departures-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4955&amp;fp-y=0.2052&amp;h=267&amp;q=75&amp;w=400&amp;s=e9ce7f004bbbecd93d0386aa4aa92ea9 400w, https://img.assets-d.propublica.org/v5/images/Trump-Media-Departures-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4955&amp;fp-y=0.2052&amp;h=533&amp;q=75&amp;w=800&amp;s=9d5bc2061da60032048d9d0ea4f50428 800w, https://img.assets-d.propublica.org/v5/images/Trump-Media-Departures-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4955&amp;fp-y=0.2052&amp;h=800&amp;q=75&amp;w=1200&amp;s=4bdbe3b648ef0ed1d92bd277cc802ffb 1200w, https://img.assets-d.propublica.org/v5/images/Trump-Media-Departures-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4955&amp;fp-y=0.2052&amp;h=1067&amp;q=75&amp;w=1600&amp;s=51594f258ea68c75cd70f3aa4bcece35 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+
+      <div class="description">
+        <h3 class="hed" ><a href="https://www.propublica.org/article/trump-media-truth-social-executives-ousted-devin-nunes">Top Execs Exit Trump Media Amid Allegations of CEO’s Mismanagement and Retaliation</a></h3>
                   </div>
       </div><!-- end .story-entry -->
 
@@ -965,13 +967,13 @@ htlbid.cmd.push(function() {
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#a6cbc3c2cfc7d4cfc1ced2d5e6d6d4c9d6d3c4cacfc5c788c9d4c1"><span class="__cf_email__" data-cfemail="620f07060b03100b050a16112212100d1217000e0b01034c0d1005">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#640901000d05160d030c10172414160b141106080d07054a0b1603"><span class="__cf_email__" data-cfemail="bad7dfded3dbc8d3ddd2cec9facac8d5cacfd8d6d3d9db94d5c8dd">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#0f63666c6a617c6661684f7f7d607f7a6d63666c6e21607d68"><span class="__cf_email__" data-cfemail="3854515b5d564b51565f78484a57484d5a54515b5916574a5f">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#64080d07010a170d0a032414160b141106080d07054a0b1603"><span class="__cf_email__" data-cfemail="2c40454f49425f45424b6c5c5e435c594e40454f4d02435e4b">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
