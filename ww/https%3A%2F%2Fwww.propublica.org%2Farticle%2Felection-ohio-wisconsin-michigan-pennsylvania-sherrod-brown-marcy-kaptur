@@ -139,6 +139,107 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Independent journalism powered by the people.</strong>
+            Join us
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
+
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -223,7 +324,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Small Midwestern Cities Could Be Key to 2024 Elections","pageUrl":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="_XuPc0DV8p" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="3hPZ9fvAKO" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -475,7 +576,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">In 2007, the academic Lorlene Hoyt and the city planning consultant André Leroux assembled a nationwide list of “forgotten cities” that were old and small, with a population of 15,000 to 150,000 and a median household income of less than $35,000. Recently, the urban researcher Michael Bloomberg updated it. Of the 179 cities now on the list, 37 are in Pennsylvania, Michigan and Wisconsin. And leading the way, with 23 cities, is Ohio.</p>
+<p data-pp-blocktype="copy" data-pp-id="11.0">In 2007, the academic Lorlene Hoyt and the city planning consultant André Leroux assembled a nationwide list of “forgotten cities” that were old and small, with a population of 15,000 to 150,000 and a median household income of less than $35,000. Recently, the urban researcher Michael Bloomberg updated it. Of the <a href="https://www.groundworkdata.org/forgottencities">179 cities now on the list</a>, 37 are in Pennsylvania, Michigan and Wisconsin. And leading the way, with 23 cities, is Ohio.</p>
         
     
                     
@@ -635,7 +736,22 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
-            <div class="rich-byline-group">
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect journalism that gets results</h2>
+
+    <div class="module-content">
+
+        <p>This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.</p>
+<p>ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life.</strong> Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions. </p>
+<p>Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 55,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.</p>
+
+
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
+        <div class="rich-byline-group">
 
 
 
@@ -651,7 +767,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#a7e6cbc2c489eac6c4e0cecbcbced4e7d7d5c8d7d2c5cbcec4c689c8d5c0">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#afeec3cacc81e2cecce8c6c3c3c6dcefdfddc0dfdacdc3c6ccce81c0ddc8">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -659,7 +775,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="85c4e9e0e6abc8e4e6c2ece9e9ecf6c5f5f7eaf5f0e7e9ece6e4abeaf7e2">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="8ccde0e9efa2c1edefcbe5e0e0e5ffccfcfee3fcf9eee0e5efeda2e3feeb">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -998,11 +1114,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=785886dbd153e233d798d7d701c1b979 400w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=fc844b47f697cb4edf582ac29e43519d 800w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=690a0930ef2ad473484e51e94b6a37db 1200w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=6813d2b3ac3cb39a2b35c4f00a351616 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=267&amp;q=75&amp;w=400&amp;s=8d7c146b838a9b682cea46c7855d9110 400w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=533&amp;q=75&amp;w=800&amp;s=235f3419e9e368ee7cc2b199a7bb6913 800w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=800&amp;q=75&amp;w=1200&amp;s=e9fdec560c35288be5503ca7930bc077 1200w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=1067&amp;q=75&amp;w=1600&amp;s=c51de9a057ab29dcfbfc3f9fa11076a9 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1012,20 +1128,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/uncovered">Uncovered</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
-                                    “Not Medically Necessary”: Inside the Company Helping America’s Biggest Health Insurers Deny Coverage for Care
+            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            When companies like Aetna or UnitedHealthcare want to rein in costs, they turn to EviCore, whose business model depends on turning down payments for care recommended by doctors for their patients.
+                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/t-christian-miller">T. Christian Miller</a>, ProPublica; <span class="name">Patrick Rucker</span>, <a href="https://thecapitolforum.com/">The Capitol Forum</a>;  and <a class="name" href="https://www.propublica.org/people/david-armstrong">David Armstrong</a>, ProPublica,             <time class="timestamp" datetime="2024-10-23EDT13:30">Oct. 23, 1:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1045,11 +1161,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/immigration-whitewater-wisconsin-nicaragua-trump-police">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Immigration-Whitewater-11.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=75df0458d75359f4b54b388d7ed9415a 400w, https://img.assets-d.propublica.org/v5/images/Immigration-Whitewater-11.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=a3c26b9e2a6c7426402cd576617f7a1d 800w, https://img.assets-d.propublica.org/v5/images/Immigration-Whitewater-11.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=2c0363a313d57ad215fd7acf4314419f 1200w, https://img.assets-d.propublica.org/v5/images/Immigration-Whitewater-11.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=e23ce80fa83414a372e458522f766f25 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=08cd0c90c6d774c7a74c41229fc1a333 400w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=8a12ed4fc0b4708378970112eb457dc8 800w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=bab8ca5a8922bbea7742b40ed154099d 1200w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dd4412939ffef5d99941c777aba95cf4 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1062,64 +1178,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                         <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/immigration-whitewater-wisconsin-nicaragua-trump-police">
-                                    What Happened in Whitewater
+            <a href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
+                                    When a Florida Farmer-Legislator Turned Against Immigration, the Consequences Were Severe. But Not for Him.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            How immigration is affecting one small Wisconsin city.
+                            For a lawmaker’s political career and his farm, a federal visa program was a lifeline. For a young father trying to meet his son’s mounting medical needs, that same lifeline failed him.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/melissa-sanchez">Melissa Sanchez</a> and <a class="name" href="https://www.propublica.org/people/maryam-jameel">Maryam Jameel</a>, photography by <span class="name">Sofia Aldinio</span>, special to <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-10-24EDT05:00">Oct. 24, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=498de054c6e614ffcad4849a294676dc 105w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=392fc7dc8a1ad90acea66a1aecb96bd6 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
-                                    Abortion Bans Have Delayed Emergency Medical Care. In Georgia, Experts Say This Mother’s Death Was Preventable.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            At least two women in Georgia died after they couldn’t access legal abortions and timely medical care in their state, ProPublica has found. This is one of their stories.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-09-16EDT05:00">Sept. 16, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/seth-freed-wessler">Seth Freed Wessler</a>, photography by <span class="name">Zaydee Sanchez</span> and <span class="name">Kathleen Flynn</span>, with additional reporting by <span class="name">Zaydee Sanchez</span>,             <time class="timestamp" datetime="2024-10-29EDT07:00">Oct. 29, 7 a.m. EDT</time>
         </p>
 
             </div>
@@ -1139,11 +1208,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/gunmakers-owners-sensitive-personal-information-glock-remington-nssf">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=ab32ec7784ea72b9eb8927225f79e74a 105w, https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=67f4c8606efe0dcec4a13c5ccb0d2645 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=141407206f124c325515d6fa6f97f46b 105w, https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=b6f57390b700fb24250203f44f66f7a3 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1155,17 +1224,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/gunmakers-owners-sensitive-personal-information-glock-remington-nssf">
-                                    Without Knowledge or Consent
+            <a href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
+                                    “Put Them in Trauma”: Inside a Key MAGA Leader’s Plans for a New Trump Agenda
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            At least 10 gun industry businesses, including Glock, Smith &amp; Wesson, Remington and Mossberg, secretly handed over names, addresses and other data to lobbyists, who used the details to rally firearm owners to elect pro-gun politicians.
+                            Private videos reveal Trump adviser Russ Vought’s “shadow” plans for using the military on protesters, defunding the EPA and villainizing civil servants.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/corey-johnson">Corey G. Johnson</a>,             <time class="timestamp" datetime="2024-10-24EDT06:00">Oct. 24, 6 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/molly-redden">Molly Redden</a> and <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>, ProPublica, and <a class="name" href="https://documented.net/author/nick-surgey">Nick Surgey</a>, <a href="https://documented.net/">Documented</a>,             <time class="timestamp" datetime="2024-10-28EDT05:00">Oct. 28, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1180,12 +1249,16 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 <div class="story-card story-card--standard">
     
     
-                        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/what-to-do-if-you-change-your-mind-about-voting-by-mail">
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested">
                 <img
-                    alt="A mail in ballot adjacent to a woman voting in person wearing a surgical mask."
+                    alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-c3.propublica.org/images/articles/electionland-template-switch-to-in-person-voting-500-500.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=5e86fc51968cfde073e5145c64cde5a5 105w, https://img.assets-c3.propublica.org/images/articles/electionland-template-switch-to-in-person-voting-500-500.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=365e3c6a1728999f48d44a5cb2ca8bf6 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/241025-TennesseeThreatsArrests-0045-1-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=abdb7adcf76ec8b0220555b6db9973b5 105w, https://img.assets-d.propublica.org/v5/images/241025-TennesseeThreatsArrests-0045-1-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=72367aa4c9b6174ee5a7b5b5e1542888 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1197,17 +1270,63 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/what-to-do-if-you-change-your-mind-about-voting-by-mail">
-                                    What to Do if You Change Your Mind About Voting by Mail
+            <a href="https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested">
+                                    An 11-Year-Old Denied Making a Threat and Was Allowed to Return to School. Tennessee Police Arrested Him Anyway.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Maybe you requested a mail ballot but changed your mind and want to vote in person. This is what you can do in every state if you’ve reconsidered how you want to cast your vote.
+                            A state law makes threats of mass violence at school a felony, even if they’re not credible. Judges and school officials say the law unnecessarily traumatizes kids.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/susie-armitage-2">Susie Armitage</a>,             <time class="timestamp" datetime="2020-10-26EDT14:30">Oct. 26, 2020, 2:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/aliyya-swaby">Aliyya Swaby</a>, ProPublica, and <span class="name">Paige Pfleger</span>, WPLN/Nashville Public Radio,             <time class="timestamp" datetime="2024-10-30EDT07:00">Oct. 30, 7 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=f8ae4699e7b15768a827171cbdf27a42 105w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=ab02be053e6331ee68acb1accebdad0a 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
+                                    She Supports Trump’s Anti-Immigration Policies. Texas Incorrectly Flagged Her as a “Noncitizen” on Its Voting Rolls.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Mary Howard-Elley is the 10th U.S. citizen identified by ProPublica, The Texas Tribune and Votebeat whose registration was canceled after her citizenship was questioned. Her saga shows how tough it can be for eligible voters to get reinstated.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/lexi-churchill">Lexi Churchill</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, <a class="name" href="https://www.texastribune.org/about/staff/james-barragan/">James Barragán</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, and <a class="name" href="https://www.votebeat.org/authors/natalia-contreras/">Natalia Contreras</a>, <a href="https://www.votebeat.org/">Votebeat</a>,             <time class="timestamp" datetime="2024-10-29EDT06:00">Oct. 29, 5 a.m. CDT</time>
         </p>
 
             </div>
@@ -1337,13 +1456,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#5f323a3b363e2d3638372b2c1f2f2d302f2a3d33363c3e71302d38"><span class="__cf_email__" data-cfemail="afc2cacbc6ceddc6c8c7dbdcefdfddc0dfdacdc3c6ccce81c0ddc8">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#4c212928252d3e252b24383f0c3c3e233c392e20252f2d62233e2b"><span class="__cf_email__" data-cfemail="6d000809040c1f040a05191e2d1d1f021d180f01040e0c43021f0a">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#cfa3a6acaaa1bca6a1a88fbfbda0bfbaada3a6acaee1a0bda8"><span class="__cf_email__" data-cfemail="670b0e040209140e0900271715081712050b0e040649081500">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#ec80858f89829f85828bac9c9e839c998e80858f8dc2839e8b"><span class="__cf_email__" data-cfemail="1a7673797f746973747d5a6a68756a6f787673797b3475687d">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1377,7 +1496,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                          <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-rz6ji1" aria-hidden="true"><button id="cta-close" class="cta-close svelte-rz6ji1" data-svelte-h="svelte-12f7hfy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-rz6ji1"><div class="cta-message svelte-rz6ji1"><h2 class="cta-heading svelte-rz6ji1">undefined</h2> <p class="cta-text svelte-rz6ji1">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-rz6ji1" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-rz6ji1"></div> <button id="cta-toast-button" class="cta-toast-button svelte-rz6ji1" data-svelte-h="svelte-8kx5h6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
                         <!--svelte-component-end-->
                         
-    <script src="https://assets.propublica.org/static/prod/v5/js/main.52d38b5e.js"></script>
+    <script src="https://assets.propublica.org/static/prod/v5/js/main.11444218.js"></script>
 
             <script>
         // Google Tag Manager
@@ -1484,5 +1603,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","articleSection":"A Closer Look","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Alec MacGillis"],"dateCreated":"2024-10-25T19:01:56-04:00","dateModified":"2024-10-25T21:27:06-04:00","datePublished":"2024-10-26T07:00:00-04:00","description":"For all the talk about big-city Democrats and rural Republicans, it’s the voters in overlooked places like Sandusky, Ohio, and Racine, Wisconsin, who could decide everything from key congressional races to the presidency.","headline":"Small Midwestern Cities Could Be Key to 2024 Elections","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=c9afd072725989bbef9c7e2ea7604256"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur","name":"Small Midwestern Cities Could Be Key to 2024 Elections","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=c9afd072725989bbef9c7e2ea7604256","url":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur","name":"The Small Midwestern Cities That Could Play a Pivotal Role in This Year’s Elections","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","articleSection":"A Closer Look","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Alec MacGillis"],"dateCreated":"2024-10-25T19:01:56-04:00","dateModified":"2024-10-29T11:18:45-04:00","datePublished":"2024-10-26T07:00:00-04:00","description":"For all the talk about big-city Democrats and rural Republicans, it’s the voters in overlooked places like Sandusky, Ohio, and Racine, Wisconsin, who could decide everything from key congressional races to the presidency.","headline":"Small Midwestern Cities Could Be Key to 2024 Elections","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=c9afd072725989bbef9c7e2ea7604256"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur","name":"Small Midwestern Cities Could Be Key to 2024 Elections","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=c9afd072725989bbef9c7e2ea7604256","url":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur","name":"The Small Midwestern Cities That Could Play a Pivotal Role in This Year’s Elections","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
