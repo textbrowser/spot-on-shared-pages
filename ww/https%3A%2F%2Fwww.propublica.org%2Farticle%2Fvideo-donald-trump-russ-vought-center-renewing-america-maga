@@ -135,6 +135,107 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Independent journalism powered by the people.</strong>
+            Join us
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
+
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -219,7 +320,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Videos Reveal Trump Adviser’s “Shadow” Plan for Second Administration","pageUrl":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="_XuPc0DV8p" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="3hPZ9fvAKO" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -302,19 +403,45 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="1.0">A key ally to former President Donald Trump detailed plans to deploy the military in response to domestic unrest, defund the Environmental Protection Agency and put career civil servants “in trauma” in a series of previously unreported speeches that provide a sweeping vision for a second Trump term.</p>
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">In private speeches delivered in 2023 and 2024, Russell Vought, who served as Trump’s director of the Office of Management and Budget, described his work crafting legal justifications so that military leaders or government lawyers would not stop Trump’s executive actions.</p>
+<p data-pp-blocktype="copy" data-pp-id="2.0">A key ally to former President Donald Trump detailed plans to deploy the military in response to domestic unrest, defund the Environmental Protection Agency and put career civil servants “in trauma” in a series of previously unreported speeches that provide a sweeping vision for a second Trump term.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="3.0">He said the plans are a response to a “Marxist takeover” of the country; likened the moment to 1776 and 1860, when the country was at war or on the brink of it; and said the timing of Trump’s candidacy was a “gift of God.”</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">In private speeches delivered in 2023 and 2024, Russell Vought, who served as Trump’s director of the Office of Management and Budget, described his work crafting legal justifications so that military leaders or government lawyers would not stop Trump’s executive actions.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="4.0">He said the plans are a response to a “Marxist takeover” of the country; likened the moment to 1776 and 1860, when the country was at war or on the brink of it; and said the timing of Trump’s candidacy was a “gift of God.”</p>
         
     
                     <figure
-    data-pp-id="4"
+    data-pp-id="5"
     data-pp-blocktype="video"
     class="bb-video size08 center  wide-sm wrap
                      bb--chunky-border-top                 hide-print
@@ -349,7 +476,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="5.0">ProPublica and Documented obtained videos of the two speeches Vought delivered during events for the Center for Renewing America, a pro-Trump think tank led by Vought. The think tank’s employees or fellows include Jeffrey Clark, the former senior Justice Department lawyer who aided Trump’s attempts to overturn the 2020 election result; Ken Cuccinelli, a former acting deputy secretary in the Department of Homeland Security under Trump; and Mark Paoletta, a former senior budget official in the Trump administration. Other Trump allies such as former White House adviser Steve Bannon and U.S. Reps. Chip Roy and Scott Perry either spoke at the conferences or appeared on promotional materials for the events.</p>
+<p data-pp-blocktype="copy" data-pp-id="6.0">ProPublica and Documented obtained videos of the two speeches Vought delivered during events for the Center for Renewing America, a pro-Trump think tank led by Vought. The think tank’s employees or fellows include Jeffrey Clark, the former senior Justice Department lawyer who aided Trump’s attempts to overturn the 2020 election result; Ken Cuccinelli, a former acting deputy secretary in the Department of Homeland Security under Trump; and Mark Paoletta, a former senior budget official in the Trump administration. Other Trump allies such as former White House adviser Steve Bannon and U.S. Reps. Chip Roy and Scott Perry either spoke at the conferences or appeared on promotional materials for the events.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -358,11 +485,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="7.0">Vought does not hide his agenda or shy away from using extreme rhetoric in public. But the apocalyptic tone and hard-line policy prescriptions in the two private speeches go further than his earlier pronouncements. As OMB director, Vought sought to use Trump’s 2020 “Schedule F” executive order to strip away job protections for nonpartisan government workers. But he has never spoken in such pointed terms about demoralizing federal workers to the point that they don’t want to do their jobs. He has spoken in broad terms about undercutting independent agencies but never spelled out sweeping plans to defund the EPA and other federal agencies.</p>
+<p data-pp-blocktype="copy" data-pp-id="8.0">Vought does not hide his agenda or shy away from using extreme rhetoric in public. But the apocalyptic tone and hard-line policy prescriptions in the two private speeches go further than his earlier pronouncements. As OMB director, Vought sought to use Trump’s 2020 “Schedule F” executive order to strip away job protections for nonpartisan government workers. But he has never spoken in such pointed terms about demoralizing federal workers to the point that they don’t want to do their jobs. He has spoken in broad terms about undercutting independent agencies but never spelled out sweeping plans to defund the EPA and other federal agencies.</p>
         
     
                             <figure
-    data-pp-id="8"
+    data-pp-id="9"
     data-pp-blocktype="intro-module"
     class="bb-intro-module
             size03 out03 wrap right bb-intro-module-article
@@ -507,30 +634,30 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="9.0">Vought’s plans track closely with Trump’s campaign rhetoric about using the military against domestic protesters or what Trump has called the “enemy within.” Trump’s desire to use the military on U.S. soil recently prompted his longest-serving chief of staff, retired Marine Gen. John Kelly, to <a href="https://www.nytimes.com/2024/10/22/us/politics/john-kelly-trump-fitness-character.html">speak out</a>, saying Trump “certainly prefers the dictator approach to government.”</p>
+<p data-pp-blocktype="copy" data-pp-id="10.0">Vought’s plans track closely with Trump’s campaign rhetoric about using the military against domestic protesters or what Trump has called the “enemy within.” Trump’s desire to use the military on U.S. soil recently prompted his longest-serving chief of staff, retired Marine Gen. John Kelly, to <a href="https://www.nytimes.com/2024/10/22/us/politics/john-kelly-trump-fitness-character.html">speak out</a>, saying Trump “certainly prefers the dictator approach to government.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">Other policies mentioned by Vought dovetail with Trump’s plans, such as embracing a wartime footing on the southern border and rolling back transgender rights. Agenda 47, the campaign’s policy blueprint, calls for <a href="https://www.donaldjtrump.com/agenda47/president-trumps-plan-to-protect-children-from-left-wing-gender-insanity">revoking President Joe Biden’s order expanding gender-affirming care</a> for transgender people; Vought uses even more extreme language, decrying the “transgender sewage that’s being pumped into our schools and institutions” and referring to gender-affirming care as “chemical castration.”</p>
+<p data-pp-blocktype="copy" data-pp-id="12.0">Other policies mentioned by Vought dovetail with Trump’s plans, such as embracing a wartime footing on the southern border and rolling back transgender rights. Agenda 47, the campaign’s policy blueprint, calls for <a href="https://www.donaldjtrump.com/agenda47/president-trumps-plan-to-protect-children-from-left-wing-gender-insanity">revoking President Joe Biden’s order expanding gender-affirming care</a> for transgender people; Vought uses even more extreme language, decrying the “transgender sewage that’s being pumped into our schools and institutions” and referring to gender-affirming care as “chemical castration.”</p>
         
     
                     
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">Since leaving government, Vought has reportedly remained a close ally of the former president. Speaking in July to undercover journalists posing as relatives of a potential donor, Vought said Trump had “blessed” the Center for Renewing America and was “very supportive of what we do,” <a href="https://www.cnn.com/2024/08/15/politics/russ-vought-project-2025-trump-secret-recording-invs/index.html">CNN reported</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="14.0">Since leaving government, Vought has reportedly remained a close ally of the former president. Speaking in July to undercover journalists posing as relatives of a potential donor, Vought said Trump had “blessed” the Center for Renewing America and was “very supportive of what we do,” <a href="https://www.cnn.com/2024/08/15/politics/russ-vought-project-2025-trump-secret-recording-invs/index.html">CNN reported</a>.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="14.0">Vought did not respond to requests for comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="15.0">Vought did not respond to requests for comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="15.0">"Since the Fall of 2023, President Trump’s campaign made it clear that only President Trump and the campaign, and NOT any other organization or former staff, represent policies for the second term,” Danielle Alvarez, a senior adviser to the Trump campaign, said in a statement. She did not directly address Vought’s statements.</p>
+<p data-pp-blocktype="copy" data-pp-id="16.0">"Since the Fall of 2023, President Trump’s campaign made it clear that only President Trump and the campaign, and NOT any other organization or former staff, represent policies for the second term,” Danielle Alvarez, a senior adviser to the Trump campaign, said in a statement. She did not directly address Vought’s statements.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="16.0">Karoline Leavitt, his campaign’s national press secretary, added there have been no discussions on who would serve in a second Trump administration.</p>
+<p data-pp-blocktype="copy" data-pp-id="17.0">Karoline Leavitt, his campaign’s national press secretary, added there have been no discussions on who would serve in a second Trump administration.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -539,15 +666,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="18.0">In addition to running his think tank, Vought was the policy director of the Republican National Committee’s official platform committee ahead of the nominating convention. He’s also an architect of Project 2025, the controversial coalition effort mapping out how a second Trump administration can quickly eliminate obstacles to rolling out a hard-right policy agenda.</p>
+<p data-pp-blocktype="copy" data-pp-id="19.0">In addition to running his think tank, Vought was the policy director of the Republican National Committee’s official platform committee ahead of the nominating convention. He’s also an architect of Project 2025, the controversial coalition effort mapping out how a second Trump administration can quickly eliminate obstacles to rolling out a hard-right policy agenda.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="19.0">As ProPublica and Documented reported, <a href="https://www.propublica.org/article/inside-project-2025-secret-training-videos-trump-election">Project 2025 has launched</a> a massive program to recruit, vet and train thousands of people to “be ready on day one” to serve in a future conservative administration. (Trump has repeatedly criticized Project 2025, and his top aides have said the effort has no connection to the official campaign despite the dozens of former Trump aides and advisers <a href="https://www.nytimes.com/interactive/2024/10/22/us/politics/project-2025-trump-heritage-foundation.html">who contributed</a> to Project 2025.)</p>
+<p data-pp-blocktype="copy" data-pp-id="20.0">As ProPublica and Documented reported, <a href="https://www.propublica.org/article/inside-project-2025-secret-training-videos-trump-election">Project 2025 has launched</a> a massive program to recruit, vet and train thousands of people to “be ready on day one” to serve in a future conservative administration. (Trump has repeatedly criticized Project 2025, and his top aides have said the effort has no connection to the official campaign despite the dozens of former Trump aides and advisers <a href="https://www.nytimes.com/interactive/2024/10/22/us/politics/project-2025-trump-heritage-foundation.html">who contributed</a> to Project 2025.)</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="20.0">Vought is widely expected to take a high-level government role if Trump wins a second term. His name has even been mentioned as a <a href="https://www.pbs.org/newshour/politics/russell-vought-a-project-2025-architect-likely-in-line-for-high-ranking-post-if-trump-wins-2nd-term">potential White House chief of staff</a>. The videos obtained by ProPublica and Documented offer an unfiltered look at Vought’s worldview, his plans for a Trump administration and his fusing of MAGA ideology and <a href="https://www.politico.com/news/2024/02/20/donald-trump-allies-christian-nationalism-00142086">Christian nationalism</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="21.0">Vought is widely expected to take a high-level government role if Trump wins a second term. His name has even been mentioned as a <a href="https://www.pbs.org/newshour/politics/russell-vought-a-project-2025-architect-likely-in-line-for-high-ranking-post-if-trump-wins-2nd-term">potential White House chief of staff</a>. The videos obtained by ProPublica and Documented offer an unfiltered look at Vought’s worldview, his plans for a Trump administration and his fusing of MAGA ideology and <a href="https://www.politico.com/news/2024/02/20/donald-trump-allies-christian-nationalism-00142086">Christian nationalism</a>.</p>
         
     
                     
@@ -556,23 +683,23 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="22.0">In his 2024 speech, Vought said he was spending the majority of his time helping lead Project 2025 and drafting an agenda for a future Trump presidency. “We have detailed agency plans,” he said. “We are writing the actual executive orders. We are writing the actual regulations now, and we are sorting out the legal authorities for all of what President Trump is running on.”</p>
+<p data-pp-blocktype="copy" data-pp-id="23.0">In his 2024 speech, Vought said he was spending the majority of his time helping lead Project 2025 and drafting an agenda for a future Trump presidency. “We have detailed agency plans,” he said. “We are writing the actual executive orders. We are writing the actual regulations now, and we are sorting out the legal authorities for all of what President Trump is running on.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="23.0">Vought laid out how his think tank is crafting the legal rationale for invoking the Insurrection Act, a law that gives the president broad power to use the military for domestic law enforcement. The Washington Post previously <a href="https://www.washingtonpost.com/politics/2023/11/05/trump-revenge-second-term/">reported</a> the issue was at the top of the Center for Renewing America’s priorities.</p>
+<p data-pp-blocktype="copy" data-pp-id="24.0">Vought laid out how his think tank is crafting the legal rationale for invoking the Insurrection Act, a law that gives the president broad power to use the military for domestic law enforcement. The Washington Post previously <a href="https://www.washingtonpost.com/politics/2023/11/05/trump-revenge-second-term/">reported</a> the issue was at the top of the Center for Renewing America’s priorities.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="24.0">“We want to be able to shut down the riots and not have the legal community or the defense community come in and say, ‘That’s an inappropriate use of what you’re trying to do,’” he said. Vought held up the summer 2020 unrest following George Floyd’s murder as an example of when Trump ought to have had the ability to deploy the armed forces but was stymied<em>.</em></p>
+<p data-pp-blocktype="copy" data-pp-id="25.0">“We want to be able to shut down the riots and not have the legal community or the defense community come in and say, ‘That’s an inappropriate use of what you’re trying to do,’” he said. Vought held up the summer 2020 unrest following George Floyd’s murder as an example of when Trump ought to have had the ability to deploy the armed forces but was stymied<em>.</em></p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="25.0">Vought’s preparations for a future Trump administration involve building a “shadow” Office of Legal Counsel, he told the gathered supporters in May 2023. That office, part of the Justice Department, advises the president on the scope of their powers. Vought made clear he wants the office to help Trump steamroll the kind of internal opposition he faced in his first term.</p>
+<p data-pp-blocktype="copy" data-pp-id="26.0">Vought’s preparations for a future Trump administration involve building a “shadow” Office of Legal Counsel, he told the gathered supporters in May 2023. That office, part of the Justice Department, advises the president on the scope of their powers. Vought made clear he wants the office to help Trump steamroll the kind of internal opposition he faced in his first term.</p>
         
     
                     <figure
-    data-pp-id="26"
+    data-pp-id="27"
     data-pp-blocktype="video"
     class="bb-video size08 center  wide-sm wrap
                      bb--chunky-border-top                 hide-print
@@ -607,23 +734,23 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="27.0">Historically, the OLC has operated with a degree of independence. “If, all of a sudden, the office is full of a bunch of loyalists whose only job is to rubber-stamp the White House’s latest policy directive, whose only goal is to justify the ends by whatever means, that would be quite dangerous,” said an attorney who worked in the office under a previous Republican administration and requested anonymity to speak freely.</p>
+<p data-pp-blocktype="copy" data-pp-id="28.0">Historically, the OLC has operated with a degree of independence. “If, all of a sudden, the office is full of a bunch of loyalists whose only job is to rubber-stamp the White House’s latest policy directive, whose only goal is to justify the ends by whatever means, that would be quite dangerous,” said an attorney who worked in the office under a previous Republican administration and requested anonymity to speak freely.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="28.0">Another priority, according to Vought, was to “defund” certain independent federal agencies and demonize career civil servants, which include scientists and subject matter experts. Project 2025’s plan to revive Schedule F, an attempt to make it easier to fire a large swath of government workers who currently have civil service protections, aligns with Vought’s vision.</p>
+<p data-pp-blocktype="copy" data-pp-id="29.0">Another priority, according to Vought, was to “defund” certain independent federal agencies and demonize career civil servants, which include scientists and subject matter experts. Project 2025’s plan to revive Schedule F, an attempt to make it easier to fire a large swath of government workers who currently have civil service protections, aligns with Vought’s vision.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="29.0">“We want the bureaucrats to be traumatically affected,” he said. “When they wake up in the morning, we want them to not want to go to work because they are increasingly viewed as the villains. We want their funding to be shut down so that the EPA can't do all of the rules against our energy industry because they have no bandwidth financially to do so.</p>
+<p data-pp-blocktype="copy" data-pp-id="30.0">“We want the bureaucrats to be traumatically affected,” he said. “When they wake up in the morning, we want them to not want to go to work because they are increasingly viewed as the villains. We want their funding to be shut down so that the EPA can't do all of the rules against our energy industry because they have no bandwidth financially to do so.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="30.0">“We want to put them in trauma.”</p>
+<p data-pp-blocktype="copy" data-pp-id="31.0">“We want to put them in trauma.”</p>
         
     
                     <figure
-    data-pp-id="31"
+    data-pp-id="32"
     data-pp-blocktype="video"
     class="bb-video size08 center  wide-sm wrap
                      bb--chunky-border-top                 hide-print
@@ -658,7 +785,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="32.0">Vought also revealed the extent of the Center for Renewing America’s role in whipping up right-wing panic ahead of the 2022 midterms over an increase in asylum-seekers crossing at the U.S.-Mexico border.</p>
+<p data-pp-blocktype="copy" data-pp-id="33.0">Vought also revealed the extent of the Center for Renewing America’s role in whipping up right-wing panic ahead of the 2022 midterms over an increase in asylum-seekers crossing at the U.S.-Mexico border.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -667,50 +794,50 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="34.0">In February 2022, Arizona Attorney General Mark Brnovich released a legal opinion claiming the state was under “invasion” by violent cartels and could invoke war powers to deploy National Guard troops to its southern border. The legally dubious “invasion” theory became a potent Republican talking point.</p>
+<p data-pp-blocktype="copy" data-pp-id="35.0">In February 2022, Arizona Attorney General Mark Brnovich released a legal opinion claiming the state was under “invasion” by violent cartels and could invoke war powers to deploy National Guard troops to its southern border. The legally dubious “invasion” theory became a potent Republican talking point.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="35.0">Vought said in the 2023 speech that he and Cuccinelli, the former top Homeland Security official for Trump, personally lobbied Brnovich on the effort. “We said, ‘Look, you can write your own opinion, but here’s a draft opinion of what this should look like,’” Vought said.</p>
+<p data-pp-blocktype="copy" data-pp-id="36.0">Vought said in the 2023 speech that he and Cuccinelli, the former top Homeland Security official for Trump, personally lobbied Brnovich on the effort. “We said, ‘Look, you can write your own opinion, but here’s a draft opinion of what this should look like,’” Vought said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="36.0">The nonpartisan watchdog group American Oversight later obtained an email in which Vought pitched <a href="https://americanoversight.org/emails-show-former-trump-officials-suggesting-arizona-governor-use-war-powers-to-address-border-issues/">the “invasion” framework</a> to Brnovich.</p>
+<p data-pp-blocktype="copy" data-pp-id="37.0">The nonpartisan watchdog group American Oversight later obtained an email in which Vought pitched <a href="https://americanoversight.org/emails-show-former-trump-officials-suggesting-arizona-governor-use-war-powers-to-address-border-issues/">the “invasion” framework</a> to Brnovich.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="37.0">Brnovich wrote in an email to ProPublica that he recalled multiple discussions with Cuccinelli about border security. But he added that “the invasion opinion was the result of a formal request from a member of the Arizona legislature. And I can assure you it was drafted and written by hard working attorneys (including myself) in our office.”</p>
+<p data-pp-blocktype="copy" data-pp-id="38.0">Brnovich wrote in an email to ProPublica that he recalled multiple discussions with Cuccinelli about border security. But he added that “the invasion opinion was the result of a formal request from a member of the Arizona legislature. And I can assure you it was drafted and written by hard working attorneys (including myself) in our office.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="38.0">In the event Trump loses, Vought called for Republican leaders of states such as Florida and Texas to “create red-state sanctuaries” by “kicking out all the feds as much as they possibly can.”</p>
+<p data-pp-blocktype="copy" data-pp-id="39.0">In the event Trump loses, Vought called for Republican leaders of states such as Florida and Texas to “create red-state sanctuaries” by “kicking out all the feds as much as they possibly can.”</p>
 
 <h3>“Nothing Short of a Quiet Revolution”</h3>
-<p data-pp-blocktype="copy" data-pp-id="38.1">The two speeches delivered by Vought, taken together, offer an unvarnished look at the animating ideology and political worldview of a key figure in the MAGA movement.</p>
+<p data-pp-blocktype="copy" data-pp-id="39.1">The two speeches delivered by Vought, taken together, offer an unvarnished look at the animating ideology and political worldview of a key figure in the MAGA movement.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="39.0">Over the last century, Vought said, the U.S. has “experienced nothing short of a quiet revolution” and abandoned what he saw as the true meaning and force of the Constitution. The country today, he argued, was a “post-constitutional regime,” one that no longer adhered to the separation of powers among the three branches of government as laid out by the framers.</p>
+<p data-pp-blocktype="copy" data-pp-id="40.0">Over the last century, Vought said, the U.S. has “experienced nothing short of a quiet revolution” and abandoned what he saw as the true meaning and force of the Constitution. The country today, he argued, was a “post-constitutional regime,” one that no longer adhered to the separation of powers among the three branches of government as laid out by the framers.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="40.0">He lamented that the conservative right and the nation writ large had become “too secular” and “too globalist.” He urged his allies to join his mission to “renew a consensus of America as a nation under God.”</p>
+<p data-pp-blocktype="copy" data-pp-id="41.0">He lamented that the conservative right and the nation writ large had become “too secular” and “too globalist.” He urged his allies to join his mission to “renew a consensus of America as a nation under God.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="41.0">And in one of his most dramatic flourishes, he likened the 2024 election to moments in America’s history when the country was facing all-out war.</p>
+<p data-pp-blocktype="copy" data-pp-id="42.0">And in one of his most dramatic flourishes, he likened the 2024 election to moments in America’s history when the country was facing all-out war.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="42.0">“We are here in the year of 2024, a year that very well [could] — and I believe it will — rival 1776 and 1860 for the complexity and the uncertainty of the forces arrayed against us,” Vought told his audience, referring to years when the colonies declared independence from Britain and the first state seceded over President Abraham Lincoln’s election. “God put us here for such a time as this.”</p>
+<p data-pp-blocktype="copy" data-pp-id="43.0">“We are here in the year of 2024, a year that very well [could] — and I believe it will — rival 1776 and 1860 for the complexity and the uncertainty of the forces arrayed against us,” Vought told his audience, referring to years when the colonies declared independence from Britain and the first state seceded over President Abraham Lincoln’s election. “God put us here for such a time as this.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="43.0">Vought said that independent agencies and unelected bureaucrats and experts wield far too much power while the traditional legislative process is a sham. He extended that critique to agencies like the Department of Justice and the Federal Reserve, whose independence from the White House had long been protected by both political parties.</p>
+<p data-pp-blocktype="copy" data-pp-id="44.0">Vought said that independent agencies and unelected bureaucrats and experts wield far too much power while the traditional legislative process is a sham. He extended that critique to agencies like the Department of Justice and the Federal Reserve, whose independence from the White House had long been protected by both political parties.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="44.0">“The left in the U.S. doesn’t want an energetic president with the power to motivate the executive branch to the will of the American people consistent with the laws of the country,” he said in the 2024 speech. “They don’t want a vibrant Congress where great questions are debated and decided in front of the American people. They don’t want empowered members. They want discouraged and bored backbenchers.”</p>
+<p data-pp-blocktype="copy" data-pp-id="45.0">“The left in the U.S. doesn’t want an energetic president with the power to motivate the executive branch to the will of the American people consistent with the laws of the country,” he said in the 2024 speech. “They don’t want a vibrant Congress where great questions are debated and decided in front of the American people. They don’t want empowered members. They want discouraged and bored backbenchers.”</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -719,31 +846,31 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="46.0">He added, “The all-empowered career expert like Tony Fauci is their model, wielding power behind the curtains.” Fauci was one of the top public health experts under Trump at the start of the COVID-19 pandemic and a key figure in coordinating the national response.</p>
+<p data-pp-blocktype="copy" data-pp-id="47.0">He added, “The all-empowered career expert like Tony Fauci is their model, wielding power behind the curtains.” Fauci was one of the top public health experts under Trump at the start of the COVID-19 pandemic and a key figure in coordinating the national response.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="47.0">What sets Vought apart from most of his fellow conservative activists is that he accuses powerful organizations on the right of being complicit in the current system of government, singling out the Federalist Society for Law and Public Policy Studies, the conservative and libertarian legal network co-chaired by activist Leonard Leo. The society is widely seen as an instrumental force in cultivating young conservative lawyers and building a bench of future judges whose embrace of legal theories like originalism and textualism have led to decisions overturning abortion rights, environmental protections and social welfare policies.</p>
+<p data-pp-blocktype="copy" data-pp-id="48.0">What sets Vought apart from most of his fellow conservative activists is that he accuses powerful organizations on the right of being complicit in the current system of government, singling out the Federalist Society for Law and Public Policy Studies, the conservative and libertarian legal network co-chaired by activist Leonard Leo. The society is widely seen as an instrumental force in cultivating young conservative lawyers and building a bench of future judges whose embrace of legal theories like originalism and textualism have led to decisions overturning abortion rights, environmental protections and social welfare policies.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="48.0">Yet in his 2024 speech, Vought accused the Federalist Society and “originalist judges” of being a part of the problem, perpetuating the “post-constitutional structure” that Vought lamented by not ruling more aggressively to weaken or dismantle independent regulatory agencies that Vought and his allies view as illegitimate or unconstitutional.</p>
+<p data-pp-blocktype="copy" data-pp-id="49.0">Yet in his 2024 speech, Vought accused the Federalist Society and “originalist judges” of being a part of the problem, perpetuating the “post-constitutional structure” that Vought lamented by not ruling more aggressively to weaken or dismantle independent regulatory agencies that Vought and his allies view as illegitimate or unconstitutional.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="49.0">It was “like being in a contract quietly revoked two decades ago, in which one party didn’t tell the other,” he said. “At some point, reality needs to set in. Instead, we have the vaunted so-called Federalist Society and originalist judges acting as a Praetorian Guard for this post-constitutional structure.”</p>
+<p data-pp-blocktype="copy" data-pp-id="50.0">It was “like being in a contract quietly revoked two decades ago, in which one party didn’t tell the other,” he said. “At some point, reality needs to set in. Instead, we have the vaunted so-called Federalist Society and originalist judges acting as a Praetorian Guard for this post-constitutional structure.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="50.0">Echoing Trump’s rhetoric, Vought implicitly endorsed the false claim of a stolen 2020 election and likened the media’s debunkings of that claim to Chinese Communist propaganda.</p>
+<p data-pp-blocktype="copy" data-pp-id="51.0">Echoing Trump’s rhetoric, Vought implicitly endorsed the false claim of a stolen 2020 election and likened the media’s debunkings of that claim to Chinese Communist propaganda.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="51.0">“In the aftermath of the election, we had all these people going around saying, ‘Well, I don’t see any evidence of voter fraud. The media’s not giving enough [of] a compelling case,’” he said. “Well, that compelling case has emerged. But does a Christian in China ask and come away saying, ‘You know, there’s no persecution, because I haven’t read about it in the state regime press?’ No, they don’t.”</p>
+<p data-pp-blocktype="copy" data-pp-id="52.0">“In the aftermath of the election, we had all these people going around saying, ‘Well, I don’t see any evidence of voter fraud. The media’s not giving enough [of] a compelling case,’” he said. “Well, that compelling case has emerged. But does a Christian in China ask and come away saying, ‘You know, there’s no persecution, because I haven’t read about it in the state regime press?’ No, they don’t.”</p>
         
     
                     <figure
-    data-pp-id="52"
+    data-pp-id="53"
     data-pp-blocktype="video"
     class="bb-video size08 center  wide-sm wrap
                      bb--chunky-border-top                 hide-print
@@ -778,23 +905,23 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="53.0">Vought referred to the people detained for alleged crimes committed on Jan. 6, 2021, as “political prisoners” and defended the lawyers Jeffrey Clark and John Eastman, who have both faced criminal charges for their role in Trump’s attempts to overturn the 2020 election. Federal law enforcement agencies, he added, “are keeping political opponents in jail, and I think we need to be honest about that.”</p>
+<p data-pp-blocktype="copy" data-pp-id="54.0">Vought referred to the people detained for alleged crimes committed on Jan. 6, 2021, as “political prisoners” and defended the lawyers Jeffrey Clark and John Eastman, who have both faced criminal charges for their role in Trump’s attempts to overturn the 2020 election. Federal law enforcement agencies, he added, “are keeping political opponents in jail, and I think we need to be honest about that.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="54.0">The left, Vought continued, has the ultimate goal of ending representative democracy altogether. “The stark reality in America is that we are in the late stages of a complete Marxist takeover of the country,” he said, “in which our adversaries already hold the weapons of the government apparatus, and they have aimed it at us. And they are going to continue to aim it until they no longer have to win elections.”</p>
+<p data-pp-blocktype="copy" data-pp-id="55.0">The left, Vought continued, has the ultimate goal of ending representative democracy altogether. “The stark reality in America is that we are in the late stages of a complete Marxist takeover of the country,” he said, “in which our adversaries already hold the weapons of the government apparatus, and they have aimed it at us. And they are going to continue to aim it until they no longer have to win elections.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="55.0">When Democrats called Trump an “existential threat to democracy,” they were not merely calling for his defeat at the ballot box, he said, but were using “coded language the national security state uses overseas when they are overthrowing other governments” to discourage the military from putting down anti-Trump protests should he win.</p>
+<p data-pp-blocktype="copy" data-pp-id="56.0">When Democrats called Trump an “existential threat to democracy,” they were not merely calling for his defeat at the ballot box, he said, but were using “coded language the national security state uses overseas when they are overthrowing other governments” to discourage the military from putting down anti-Trump protests should he win.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="56.0">“They’re making Trump out to be a would-be dictator or an authoritarian,” he said. “So they’re actively working now to ensure, on a number of levels, that the military will perceive this as dictatorial and therefore not respond to any orders to quell any violence.”</p>
+<p data-pp-blocktype="copy" data-pp-id="57.0">“They’re making Trump out to be a would-be dictator or an authoritarian,” he said. “So they’re actively working now to ensure, on a number of levels, that the military will perceive this as dictatorial and therefore not respond to any orders to quell any violence.”</p>
         
     
                                   <aside
-    data-pp-id="57"
+    data-pp-id="58"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -821,7 +948,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
                             
-        <a href="https://www.propublica.org/article/election-ohio-wisconsin-michigan-pennsylvania-sherrod-brown-marcy-kaptur" class="story-promo section-articles" >
+        <a href="https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested" class="story-promo section-articles" >
 
             
                                                                                                                                 
@@ -834,13 +961,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                             width="75"
                             height="75"
                             data-sizes="auto"
-                            data-srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=54f59fcd07bbd0d54a585e6a366f58b1 75w, https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=8bc12e697437ced831b4a9660e5bbcc0 150w, https://img.assets-d.propublica.org/v5/images/GettyImages-2175351804_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=f6b6783b4f1cec4314c3dd5d508312db 400w"
+                            data-srcset="https://img.assets-d.propublica.org/v5/images/241025-TennesseeThreatsArrests-0045-1-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=ba1394891bb36e9940348f526c9a4f40 75w, https://img.assets-d.propublica.org/v5/images/241025-TennesseeThreatsArrests-0045-1-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=fc8d95fbe519b88b6a6e59ef44949b7f 150w, https://img.assets-d.propublica.org/v5/images/241025-TennesseeThreatsArrests-0045-1-1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=39a4400d223908ca1039b3f1c88fdce1 400w"
                             />
                     </div>
                 
             
             <div class="story-promo__info" dir="auto">
-                <strong class="story-promo__hed">The Small Midwestern Cities That Could Play a Pivotal Role in This Year’s Elections</strong>
+                <strong class="story-promo__hed">An 11-Year-Old Denied Making a Threat and Was Allowed to Return to School. Tennessee Police Arrested Him Anyway.</strong>
                             </div>
         </a>
 
@@ -849,7 +976,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="58.0">Trump, Vought insisted, has the credibility and the track record to defeat the “Marxist” left and bring about the changes that Vought and his MAGA allies seek. In his view, the Democratic Party’s agenda and its “quiet revolution” could be stopped only by a “radical constitutionalist,” someone in the mold of Thomas Jefferson or James Madison. For Vought, no one was in a better position to fill that role than Trump.</p>
+<p data-pp-blocktype="copy" data-pp-id="59.0">Trump, Vought insisted, has the credibility and the track record to defeat the “Marxist” left and bring about the changes that Vought and his MAGA allies seek. In his view, the Democratic Party’s agenda and its “quiet revolution” could be stopped only by a “radical constitutionalist,” someone in the mold of Thomas Jefferson or James Madison. For Vought, no one was in a better position to fill that role than Trump.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -858,11 +985,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="60.0">“We have in Donald Trump a man who is so uniquely positioned to serve this role, a man whose own interests perfectly align with the interests of the country,” Vought said. “He has seen what it has done to him, and he has seen what they are trying to do to the country.</p>
+<p data-pp-blocktype="copy" data-pp-id="61.0">“We have in Donald Trump a man who is so uniquely positioned to serve this role, a man whose own interests perfectly align with the interests of the country,” Vought said. “He has seen what it has done to him, and he has seen what they are trying to do to the country.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="61.0">“That,” he added, “is nothing more than a gift of God.”</p>
+<p data-pp-blocktype="copy" data-pp-id="62.0">“That,” he added, “is nothing more than a gift of God.”</p>
         
     
         
@@ -880,7 +1007,22 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
-            <div class="rich-byline-group">
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect journalism that gets results</h2>
+
+    <div class="module-content">
+
+        <p>This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.</p>
+<p>ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life.</strong> Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions. </p>
+<p>Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 55,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.</p>
+
+
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
+        <div class="rich-byline-group">
 
 
 
@@ -895,7 +1037,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#25484a49495c0b57404141404b6555574a555047494c46440b4a5742">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#0d6062616174237f68696968634d7d7f627d786f61646e6c23627f6a">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -903,7 +1045,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="54393b38382d7a26313030313a1424263b242136383d37357a3b2633">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="630e0c0f0f1a4d11060707060d2313110c1316010f0a00024d0c1104">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -962,7 +1104,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#b8d9d6dcc196d3cad7d4d4f8c8cad7c8cddad4d1dbd996d7cadf">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#2a4b444e530441584546466a5a58455a5f484643494b0445584d">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -970,7 +1112,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="ee8f808a97c0859c818282ae9e9c819e9b8c82878d8fc0819c89">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="2e4f404a5700455c4142426e5e5c415e5b4c42474d4f00415c49">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -1047,6 +1189,51 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     </strong>
 
     <ul class="topics-band-group | stack stack--row stack--spacing-gutter | scrollable-overflow scrollable-overflow--snap scrollable-overflow--full-below-xl">
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/AP24296680616413_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=095d8b091b40e9a890492658ac886f86 400w, https://img.assets-d.propublica.org/v5/images/AP24296680616413_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=87778a6a40d6ddbdb083bed28bec0662 800w, https://img.assets-d.propublica.org/v5/images/AP24296680616413_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=0315e985639a7ea7e6219b948d0865c0 1200w, https://img.assets-d.propublica.org/v5/images/AP24296680616413_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=0d951d292051c2fa7ae5165734d4eab9 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania">
+                                    Election Skeptics Are Targeting Voting Officials With Ads That Suggest They Don’t Have to Certify Results
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            The ads, which have been placed in swing states like Wisconsin and Pennsylvania, come from a new group with deep ties to activists who have challenged the legitimacy of recent elections.
+                    </p>
+
+        <p class="story-card__byline">
+            by <span class="name">Phoebe Petrovic</span>, <a href="https://wisconsinwatch.org/">Wisconsin Watch</a>,  and <a class="name" href="https://www.propublica.org/people/doug-bock-clark">Doug Bock Clark</a>, ProPublica,             <time class="timestamp" datetime="2024-10-30EDT06:00">Oct. 30, 6 a.m. EDT</time>
+        </p>
+
+                <p class="story-card__unit">Local Reporting Network</p>
+            </div>
+</div>
                     
 
 
@@ -1268,50 +1455,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
             </div>
 </div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/georgia-election-rule-could-exclude-votes">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/AP23227038294535_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.401&amp;fp-y=0.8471&amp;h=267&amp;q=75&amp;w=400&amp;s=c5a05cc056bd8dae9622606134d9009c 400w, https://img.assets-d.propublica.org/v5/images/AP23227038294535_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.401&amp;fp-y=0.8471&amp;h=533&amp;q=75&amp;w=800&amp;s=e4e073c47ea97c77ddf0b972dfafd216 800w, https://img.assets-d.propublica.org/v5/images/AP23227038294535_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.401&amp;fp-y=0.8471&amp;h=800&amp;q=75&amp;w=1200&amp;s=1ed3dfb14a56932555cd293125f74e19 1200w, https://img.assets-d.propublica.org/v5/images/AP23227038294535_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.401&amp;fp-y=0.8471&amp;h=1067&amp;q=75&amp;w=1600&amp;s=57c91c65131558438dcb5e2a1b2e670c 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/georgia-election-rule-could-exclude-votes">
-                                    Election Skeptics Are Running Some County Election Boards in Georgia. A New Rule Could Allow Them to Exclude Decisive Votes.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            An examination of a new election rule in Georgia suggests that local officials in just a handful of rural counties could exclude enough votes to affect the outcome of the 2024 presidential race.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/doug-bock-clark">Doug Bock Clark</a> and <a class="name" href="https://www.propublica.org/people/heather-vogell">Heather Vogell</a>,             <time class="timestamp" datetime="2024-10-06EDT06:00">Oct. 6, 6 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
             </ul>
 </div>
 
@@ -1337,11 +1480,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=785886dbd153e233d798d7d701c1b979 400w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=fc844b47f697cb4edf582ac29e43519d 800w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=690a0930ef2ad473484e51e94b6a37db 1200w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=6813d2b3ac3cb39a2b35c4f00a351616 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=28e01cbe3700edc2f5c18e07eaaa640a 400w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2d369781422f569adc567b93be051421 800w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=7e44d3df423a29f494b4a64b76c115b7 1200w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dc783315de6cd1aa52dfb81fcfd2812b 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1351,20 +1494,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/uncovered">Uncovered</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
-                                    “Not Medically Necessary”: Inside the Company Helping America’s Biggest Health Insurers Deny Coverage for Care
+            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            When companies like Aetna or UnitedHealthcare want to rein in costs, they turn to EviCore, whose business model depends on turning down payments for care recommended by doctors for their patients.
+                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/t-christian-miller">T. Christian Miller</a>, ProPublica; <span class="name">Patrick Rucker</span>, <a href="https://thecapitolforum.com/">The Capitol Forum</a>;  and <a class="name" href="https://www.propublica.org/people/david-armstrong">David Armstrong</a>, ProPublica,             <time class="timestamp" datetime="2024-10-23EDT13:30">Oct. 23, 1:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1384,11 +1527,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/gunmakers-owners-sensitive-personal-information-glock-remington-nssf">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=4e120668f146b422c86c3a5524fc2e48 400w, https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=5b7cf512200e10ed4877abc280edfcea 800w, https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=b27e1e6f9c9cc82a1833f51748c1b51e 1200w, https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=6ed2e4128e452afd064b92f8819c5343 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=267&amp;q=75&amp;w=400&amp;s=8d7c146b838a9b682cea46c7855d9110 400w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=533&amp;q=75&amp;w=800&amp;s=235f3419e9e368ee7cc2b199a7bb6913 800w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=800&amp;q=75&amp;w=1200&amp;s=e9fdec560c35288be5503ca7930bc077 1200w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=1067&amp;q=75&amp;w=1600&amp;s=c51de9a057ab29dcfbfc3f9fa11076a9 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1398,19 +1541,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/gunmakers-owners-sensitive-personal-information-glock-remington-nssf">
-                                    Without Knowledge or Consent
+            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            At least 10 gun industry businesses, including Glock, Smith &amp; Wesson, Remington and Mossberg, secretly handed over names, addresses and other data to lobbyists, who used the details to rally firearm owners to elect pro-gun politicians.
+                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/corey-johnson">Corey G. Johnson</a>,             <time class="timestamp" datetime="2024-10-24EDT06:00">Oct. 24, 6 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1430,11 +1574,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/inside-ziklag-secret-christian-charity-2024-election">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Ziklag-Lead-Moharam_2024-07-11-182230_rcku.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=23a74fc64b9103b1983106709adc68e4 105w, https://img.assets-d.propublica.org/v5/images/Ziklag-Lead-Moharam_2024-07-11-182230_rcku.JPG?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=da9974312931044f0a370f1ef15f594f 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=f8ae4699e7b15768a827171cbdf27a42 105w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=ab02be053e6331ee68acb1accebdad0a 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1446,17 +1590,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/inside-ziklag-secret-christian-charity-2024-election">
-                                    Inside Ziklag, the Secret Organization of Wealthy Christians Trying to Sway the Election and Change the Country
+            <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
+                                    She Supports Trump’s Anti-Immigration Policies. Texas Incorrectly Flagged Her as a “Noncitizen” on Its Voting Rolls.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            The little-known charity is backed by famous conservative donors, including the families behind Hobby Lobby and Uline. It’s spending millions to make a big political push for this election — but it may be violating the law.
+                            Mary Howard-Elley is the 10th U.S. citizen identified by ProPublica, The Texas Tribune and Votebeat whose registration was canceled after her citizenship was questioned. Her saga shows how tough it can be for eligible voters to get reinstated.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>, ProPublica, and <span class="name">Nick Surgey</span>, <a href="https://documented.net/">Documented</a>,             <time class="timestamp" datetime="2024-07-13EDT05:00">July 13, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/lexi-churchill">Lexi Churchill</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, <a class="name" href="https://www.texastribune.org/about/staff/james-barragan/">James Barragán</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, and <a class="name" href="https://www.votebeat.org/authors/natalia-contreras/">Natalia Contreras</a>, <a href="https://www.votebeat.org/">Votebeat</a>,             <time class="timestamp" datetime="2024-10-29EDT06:00">Oct. 29, 5 a.m. CDT</time>
         </p>
 
             </div>
@@ -1471,12 +1615,16 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 <div class="story-card story-card--standard">
     
     
-                        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/what-to-do-if-you-change-your-mind-about-voting-by-mail">
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/tim-walz-mayo-clinic-health-care-influence-election-minnesota">
                 <img
-                    alt="A mail in ballot adjacent to a woman voting in person wearing a surgical mask."
+                    alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-c3.propublica.org/images/articles/electionland-template-switch-to-in-person-voting-500-500.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=5e86fc51968cfde073e5145c64cde5a5 105w, https://img.assets-c3.propublica.org/images/articles/electionland-template-switch-to-in-person-voting-500-500.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=365e3c6a1728999f48d44a5cb2ca8bf6 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/Walz-Mayo-Clinic_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951_2024-10-30-194103_sahu.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4419&amp;fp-y=0.3879&amp;h=105&amp;q=75&amp;w=105&amp;s=db5230c924e453985d5cbe82ce02f2ba 105w, https://img.assets-d.propublica.org/v5/images/Walz-Mayo-Clinic_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951_2024-10-30-194103_sahu.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4419&amp;fp-y=0.3879&amp;h=210&amp;q=75&amp;w=210&amp;s=44f50538db030b3058f5eb7f5733d177 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1488,17 +1636,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/what-to-do-if-you-change-your-mind-about-voting-by-mail">
-                                    What to Do if You Change Your Mind About Voting by Mail
+            <a href="https://www.propublica.org/article/tim-walz-mayo-clinic-health-care-influence-election-minnesota">
+                                    In Minnesota, the Mayo Clinic Sometimes Called the Shots With Gov. Tim Walz
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Maybe you requested a mail ballot but changed your mind and want to vote in person. This is what you can do in every state if you’ve reconsidered how you want to cast your vote.
+                            The governor’s ties to the Mayo Clinic raise questions about the world-renowned hospital’s potential influence on federal health care reform.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/susie-armitage-2">Susie Armitage</a>,             <time class="timestamp" datetime="2020-10-26EDT14:30">Oct. 26, 2020, 2:30 p.m. EDT</time>
+            by <span class="name">Max Nesterak</span>, <a href="https://minnesotareformer.com/">Minnesota Reformer</a>, and <a class="name" href="https://www.propublica.org/people/jessica-lussenhop">Jessica Lussenhop</a>, ProPublica,             <time class="timestamp" datetime="2024-10-31EDT06:00">Oct. 31, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1675,13 +1823,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#f69b93929f97849f919e8285b68684998683949a9f9597d8998491"><span class="__cf_email__" data-cfemail="acc1c9c8c5cddec5cbc4d8dfecdcdec3dcd9cec0c5cfcd82c3decb">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#92fff7f6fbf3e0fbf5fae6e1d2e2e0fde2e7f0fefbf1f3bcfde0f5"><span class="__cf_email__" data-cfemail="fc919998959d8e959b94888fbc8c8e938c899e90959f9dd2938e9b">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#5f33363c3a312c3631381f2f2d302f2a3d33363c3e71302d38"><span class="__cf_email__" data-cfemail="54383d37313a273d3a331424263b242136383d37357a3b2633">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#adc1c4cec8c3dec4c3caeddddfc2ddd8cfc1c4cecc83c2dfca"><span class="__cf_email__" data-cfemail="9ef2f7fdfbf0edf7f0f9deeeecf1eeebfcf2f7fdffb0f1ecf9">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1715,7 +1863,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                          <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-rz6ji1" aria-hidden="true"><button id="cta-close" class="cta-close svelte-rz6ji1" data-svelte-h="svelte-12f7hfy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-rz6ji1"><div class="cta-message svelte-rz6ji1"><h2 class="cta-heading svelte-rz6ji1">undefined</h2> <p class="cta-text svelte-rz6ji1">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-rz6ji1" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-rz6ji1"></div> <button id="cta-toast-button" class="cta-toast-button svelte-rz6ji1" data-svelte-h="svelte-8kx5h6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
                         <!--svelte-component-end-->
                         
-    <script src="https://assets.propublica.org/static/prod/v5/js/main.52d38b5e.js"></script>
+    <script src="https://assets.propublica.org/static/prod/v5/js/main.11444218.js"></script>
 
             <script>
         // Google Tag Manager
@@ -1822,5 +1970,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Molly Redden","Andy Kroll","Nick Surgey"],"dateCreated":"2024-10-25T15:37:39-04:00","dateModified":"2024-10-25T17:37:26-04:00","datePublished":"2024-10-28T05:00:00-04:00","description":"Private videos reveal Trump adviser Russ Vought’s “shadow” plans for using the military on protesters, defunding the EPA and villainizing civil servants.","headline":"Videos Reveal Trump Adviser’s “Shadow” Plan for Second Administration","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=b4eb15ad3125fcb68138a1d3f3a82385"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga","name":"Videos Reveal Trump Adviser’s “Shadow” Plan for Second Administration","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=b4eb15ad3125fcb68138a1d3f3a82385","url":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga","name":"“Put Them in Trauma”: Inside a Key MAGA Leader’s Plans for a New Trump Agenda","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Molly Redden","Andy Kroll","Nick Surgey"],"dateCreated":"2024-10-25T15:37:39-04:00","dateModified":"2024-10-28T10:08:01-04:00","datePublished":"2024-10-28T05:00:00-04:00","description":"Private videos reveal Trump adviser Russ Vought’s “shadow” plans for using the military on protesters, defunding the EPA and villainizing civil servants.","headline":"Videos Reveal Trump Adviser’s “Shadow” Plan for Second Administration","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=b4eb15ad3125fcb68138a1d3f3a82385"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga","name":"Videos Reveal Trump Adviser’s “Shadow” Plan for Second Administration","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=b4eb15ad3125fcb68138a1d3f3a82385","url":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga","name":"“Put Them in Trauma”: Inside a Key MAGA Leader’s Plans for a New Trump Agenda","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
