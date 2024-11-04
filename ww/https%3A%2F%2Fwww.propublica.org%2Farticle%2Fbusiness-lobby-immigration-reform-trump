@@ -137,6 +137,95 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -233,7 +322,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"The Business Lobby Once Fought for Immigration Reform. What Happened?","pageUrl":"https://www.propublica.org/article/business-lobby-immigration-reform-trump"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="aFG70IHwrT" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="3hPZ9fvAKO" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -1187,10 +1276,10 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
                             
-        <a href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth" class="story-promo section-articles" >
+        <a href="https://www.propublica.org/article/joe-frank-martinez-sheriff-del-rio-documentary" class="story-promo section-articles" >
 
             
-                                                                                                                                
+                                
                                     
                     <div class="story-promo__art">
                         <img
@@ -1200,13 +1289,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                             width="75"
                             height="75"
                             data-sizes="auto"
-                            data-srcset="https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=f8e7cd363f4ab7adaf37c0050f4a92dc 75w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=ca7a373d8d56743b193d0d412358d0ff 150w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=8acb276591405d549f0e84d0db794610 400w"
+                            data-srcset="https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=96bc97aa9c19d1201f29a6897cc08929 75w, https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=8db4fc283b386051c2e9ebd83e6b315a 150w, https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=4b46deffea3d6725a905bb7f4bf819db 400w"
                             />
                     </div>
                 
             
             <div class="story-promo__info" dir="auto">
-                <strong class="story-promo__hed">When a Florida Farmer-Legislator Turned Against Immigration, the Consequences Were Severe. But Not for Him.</strong>
+                <strong class="story-promo__hed">Watch: How the Race for Sheriff in Del Rio, Texas, Became a Referendum on Immigration</strong>
                             </div>
         </a>
 
@@ -1273,7 +1362,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
-            <div class="rich-byline-group">
+        <div class="rich-byline-group">
 
 
 
@@ -1289,7 +1378,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#43262f2a6d2b222426310333312c3336212f2a20226d2c3124">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#7f1a131651171e181a0d3f0f0d100f0a1d13161c1e51100d18">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1297,7 +1386,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="8de8e1e4a3e5eceae8ffcdfdffe2fdf8efe1e4eeeca3e2ffea">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="ceaba2a7e0a6afa9abbc8ebebca1bebbaca2a7adafe0a1bca9">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -1346,6 +1435,185 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     </strong>
 
     <ul class="topics-band-group | stack stack--row stack--spacing-gutter | scrollable-overflow scrollable-overflow--snap scrollable-overflow--full-below-xl">
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/joe-frank-martinez-sheriff-del-rio-documentary">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=e2584d7a9cde044a0c5e5747257675b2 400w, https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=a1d7b24a4b6497feb3e248ef74a7b526 800w, https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=517bcc9c92c5276f5fbe870d5db5a341 1200w, https://img.assets-d.propublica.org/v5/images/del-rio-doc-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=d9baf864fb6c01987d46be2f0a831323 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/joe-frank-martinez-sheriff-del-rio-documentary">
+                                    Watch: How the Race for Sheriff in Del Rio, Texas, Became a Referendum on Immigration
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Sheriff Joe Frank Martinez’s run for reelection provides a glimpse at how new patterns of immigration along the U.S.-Mexico border have coincided with, if not driven, changing attitudes among voters who live there.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/gerardo-del-valle">Gerardo del Valle</a>, ProPublica, and <a class="name" href="https://www.propublica.org/people/perla-trevizo">Perla Trevizo</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>,             <time class="timestamp" datetime="2024-11-03EST06:05">Nov. 3, 5:05 a.m. CST</time>
+        </p>
+
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=220b35bfff88c5789bf7788651c5e0a0 400w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=5b42651c4376583f8c9dcb1e6462aa41 800w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=276fa20e0ab54bb6f54ce30240cd6eb5 1200w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=71b26c6b1f8685cf1d1237d15046c2f7 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics">
+                                    A Pro-Gun, Anti-Abortion Border Sheriff Appealed to Both Parties. Then He Was Painted as Soft on Immigration.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            In Del Rio, Texas, like in other majority Latino communities, immigration is high on voters’ minds and is disrupting long-standing political allegiances.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/perla-trevizo">Perla Trevizo</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, photography by <a class="name" href="https://www.propublica.org/people/gerardo-del-valle">Gerardo del Valle</a>, ProPublica,             <time class="timestamp" datetime="2024-11-03EST06:00">Nov. 3, 5 a.m. CST</time>
+        </p>
+
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/election-issues-2024-immigration-abortion-economy">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2178184196_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=e5153b3e793cf41be6c9c244880b2171 400w, https://img.assets-d.propublica.org/v5/images/GettyImages-2178184196_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=906892f2dafdec096e0fb203b5e6c57c 800w, https://img.assets-d.propublica.org/v5/images/GettyImages-2178184196_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=06d52a4794c20ea422deb24022c47ae4 1200w, https://img.assets-d.propublica.org/v5/images/GettyImages-2178184196_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=26f97073ef5d7076390dc9ed70a71a81 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/election-issues-2024-immigration-abortion-economy">
+                                    ProPublica’s Coverage of the Election Issues That Matter to Voters
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            ProPublica avoids horse race coverage of the election, instead deeply exploring issues that voters care about, like immigration, abortion, health care, the economy, extremism and education.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/propublica">ProPublica</a>,             <time class="timestamp" datetime="2024-11-02EDT06:00">Nov. 2, 6 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/immigration-mexico-us-migrants-mass-kidnappings-cartels-border">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/migrant_kidnappings_MX23_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4755&amp;fp-y=0.3643&amp;h=267&amp;q=75&amp;w=400&amp;s=072ef974067f5cd783f33db0e59b77a8 400w, https://img.assets-d.propublica.org/v5/images/migrant_kidnappings_MX23_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4755&amp;fp-y=0.3643&amp;h=533&amp;q=75&amp;w=800&amp;s=798b799de2ba86795913366a798f7d06 800w, https://img.assets-d.propublica.org/v5/images/migrant_kidnappings_MX23_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4755&amp;fp-y=0.3643&amp;h=800&amp;q=75&amp;w=1200&amp;s=6c385f0b6c33ca0be13f2573ce199c31 1200w, https://img.assets-d.propublica.org/v5/images/migrant_kidnappings_MX23_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4755&amp;fp-y=0.3643&amp;h=1067&amp;q=75&amp;w=1600&amp;s=7d5bcdb604c2e177658801ca9838bbde 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/immigration-mexico-us-migrants-mass-kidnappings-cartels-border">
+                                    Held for Ransom in Animal Pens, Migrants Face Mass Kidnappings as U.S. and Mexico Ramp Up Enforcement
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Cartel-affiliated gangs have created an industrial-scale extortion racket that involves kidnapping large numbers of migrants in southern Mexico as the U.S. pressures Mexican authorities to stop people from reaching the U.S. border.
+                    </p>
+
+        <p class="story-card__byline">
+            by <span class="name">Emily Green</span>,             <time class="timestamp" datetime="2024-11-01EDT14:20">Nov. 1, 2:20 p.m. EDT</time>
+        </p>
+
+            </div>
+</div>
                     
 
 
@@ -1436,180 +1704,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
             </div>
 </div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/immigration-louisiana-houma-shipbuilding-jobs-safety">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Elmer-Promo_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=5fc2f30c44f23b71a1f3082f7297dd9a 400w, https://img.assets-d.propublica.org/v5/images/Elmer-Promo_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=465435cc11703f7a5997d8eaff48d757 800w, https://img.assets-d.propublica.org/v5/images/Elmer-Promo_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=4b35d1a17485a6c1414a32b137bed2b6 1200w, https://img.assets-d.propublica.org/v5/images/Elmer-Promo_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=fa746ebd99a56ea848068967a1df34f6 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/immigration-louisiana-houma-shipbuilding-jobs-safety">
-                                    An Immigrant Died Building a Ship for the U.S. Government. His Family Got Nothing.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Elmer Pérez was one of many immigrants hired by U.S. shipbuilders to fill the urgent need for skilled labor. These workers do the same jobs and take the same risks as their American counterparts, but are left on their own when things go wrong.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/nicole-foy">Nicole Foy</a>,             <time class="timestamp" datetime="2024-10-22EDT05:00">Oct. 22, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-                <div class="lead-art">
-            <a class="aspect-3-2" href="https://projects.propublica.org/new-effects-of-immigration">
-                <img
-                    alt=""
-                    src="https://assets-c3.propublica.org/images/externals/_threeTwo400w/20231118-1122-Ratje-Asylum-066.JPG"
-                    width="400"
-                    height="267"
-                    srcset="https://assets-c3.propublica.org/images/externals/_threeTwo400w/20231118-1122-Ratje-Asylum-066.JPG 400w, https://assets-c3.propublica.org/images/externals/_threeTwo800w/20231118-1122-Ratje-Asylum-066.JPG 800w, https://assets-c3.propublica.org/images/externals/_threeTwo1200w/20231118-1122-Ratje-Asylum-066.JPG 1200w, https://assets-c3.propublica.org/images/externals/_threeTwo1600w/20231118-1122-Ratje-Asylum-066.JPG 1600w "
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://projects.propublica.org/new-effects-of-immigration">
-                                    What the Data Reveals About U.S. Immigration Ahead of the 2024 Election
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Recent years have seen a big increase in migrants crossing the U.S. border. But that’s not the most significant change. It’s that many are coming from new countries and with more legal ways to be here. All this is shaping the 2024 election.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/mica-rosenberg">Mica Rosenberg</a> and <a class="name" href="https://www.propublica.org/people/jeff-ernsthausen">Jeff Ernsthausen</a>,             <time class="timestamp" datetime="2024-10-21EDT05:00">Oct. 21, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/trump-media-foreign-executive-us-visa-don-bacon">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240826-trump-media-visas_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=03619041d73bdf86c7afb1ee6df2f351 400w, https://img.assets-d.propublica.org/v5/images/20240826-trump-media-visas_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=c4cad5fecef5b55bb2ec173ce6bf79fd 800w, https://img.assets-d.propublica.org/v5/images/20240826-trump-media-visas_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=c7784bc79ca8ca5aec53db5493c07956 1200w, https://img.assets-d.propublica.org/v5/images/20240826-trump-media-visas_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=9d9109c887f06a174bbe54b950eb5192 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/trump-media-foreign-executive-us-visa-don-bacon">
-                                    Exec at Trump Media Jumped the Line for U.S. Visa After Company Lobbied GOP Lawmaker
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            A former aide to Rep. Don Bacon, a Nebraska Republican, said she intervened on the company’s behalf even though she thought it was inappropriate. “It was specifically the congressman that suggested I needed to deal with it.”
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/robert-faturechi">Robert Faturechi</a>, <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-08-29EDT06:00">Aug. 29, 6 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/us-immigration-policy-2024-mexico">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/RTS11WIPI-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=6ace7ad3f84d3bb5584e293aacc15380 400w, https://img.assets-d.propublica.org/v5/images/RTS11WIPI-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=07da6a85afdf10d5862beed91de4c0c3 800w, https://img.assets-d.propublica.org/v5/images/RTS11WIPI-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=1f51a531da8778021483a44fc95ac658 1200w, https://img.assets-d.propublica.org/v5/images/RTS11WIPI-1_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=66b3193e102e1387788c003abf2129de 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/us-immigration-policy-2024-mexico">
-                                    What’s Next for U.S. Immigration Policy on the Southern Border?
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            ProPublica and The Texas Tribune talked with experts about U.S. border policies that contributed to a deadly detention center fire in Ciudad Juárez, Mexico, and why immigration has become a leading concern in a presidential election year.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/connor-goodwin-2">Connor Goodwin</a>,             <time class="timestamp" datetime="2024-06-10EDT05:00">June 10, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
             </ul>
 </div>
 
@@ -1635,11 +1729,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=c09b25a57029749e020989c691e3fa1a 400w, https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=e8e58a7046aad53ca7adc1437618940a 800w, https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=41ec63ca89753d62ad4a5bcea6feebf0 1200w, https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=cd3f4940496305bf9314a49391c3e2d3 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=28e01cbe3700edc2f5c18e07eaaa640a 400w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2d369781422f569adc567b93be051421 800w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=7e44d3df423a29f494b4a64b76c115b7 1200w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dc783315de6cd1aa52dfb81fcfd2812b 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1649,19 +1743,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
-                                    “Put Them in Trauma”: Inside a Key MAGA Leader’s Plans for a New Trump Agenda
+            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Private videos reveal Trump adviser Russ Vought’s “shadow” plans for using the military on protesters, defunding the EPA and villainizing civil servants.
+                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/molly-redden">Molly Redden</a> and <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>, ProPublica, and <a class="name" href="https://documented.net/author/nick-surgey">Nick Surgey</a>, <a href="https://documented.net/">Documented</a>,             <time class="timestamp" datetime="2024-10-28EDT05:00">Oct. 28, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1677,63 +1772,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
     
 
-                    
+
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=0561eae667fad7b97a0689f1053372bb 400w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=a683f92157cababadf9bc80258f9ba76 800w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=e79180d65f8450fc47d3ff508b433525 1200w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2fedff3bcbca7e923faf316ddc8c0c99 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=220b35bfff88c5789bf7788651c5e0a0 400w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=5b42651c4376583f8c9dcb1e6462aa41 800w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=276fa20e0ab54bb6f54ce30240cd6eb5 1200w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=71b26c6b1f8685cf1d1237d15046c2f7 1600w"
                     width="400"
                     height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
-                                    She Supports Trump’s Anti-Immigration Policies. Texas Incorrectly Flagged Her as a “Noncitizen” on Its Voting Rolls.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Mary Howard-Elley is the 10th U.S. citizen identified by ProPublica, The Texas Tribune and Votebeat whose registration was canceled after her citizenship was questioned. Her saga shows how tough it can be for eligible voters to get reinstated.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/lexi-churchill">Lexi Churchill</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, <a class="name" href="https://www.texastribune.org/about/staff/james-barragan/">James Barragán</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, and <a class="name" href="https://www.votebeat.org/authors/natalia-contreras/">Natalia Contreras</a>, <a href="https://www.votebeat.org/">Votebeat</a>,             <time class="timestamp" datetime="2024-10-29EDT06:00">Oct. 29, 5 a.m. CDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=2dc590ae4a32c8c8e33e82f83eced363 105w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=1e3f43bcbfe200a61f4e190b3bb962da 210w"
-                    width="105"
-                    height="105"
                     loading="lazy"
                     js-autosizes
                 />
@@ -1744,17 +1793,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                         <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
-                                    When a Florida Farmer-Legislator Turned Against Immigration, the Consequences Were Severe. But Not for Him.
+            <a href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics">
+                                    A Pro-Gun, Anti-Abortion Border Sheriff Appealed to Both Parties. Then He Was Painted as Soft on Immigration.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            For a lawmaker’s political career and his farm, a federal visa program was a lifeline. For a young father trying to meet his son’s mounting medical needs, that same lifeline failed him.
+                            In Del Rio, Texas, like in other majority Latino communities, immigration is high on voters’ minds and is disrupting long-standing political allegiances.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/seth-freed-wessler">Seth Freed Wessler</a>, photography by <span class="name">Zaydee Sanchez</span> and <span class="name">Kathleen Flynn</span>, with additional reporting by <span class="name">Zaydee Sanchez</span>,             <time class="timestamp" datetime="2024-10-29EDT07:00">Oct. 29, 7 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/perla-trevizo">Perla Trevizo</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, photography by <a class="name" href="https://www.propublica.org/people/gerardo-del-valle">Gerardo del Valle</a>, ProPublica,             <time class="timestamp" datetime="2024-11-03EST06:00">Nov. 3, 5 a.m. CST</time>
         </p>
 
             </div>
@@ -1774,11 +1823,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/donald-trump-media-outsourced-jobs-mexico-truth-social">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=2f308666d26a8ce5e4b90e4aa5673611 105w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=fc108c215eb93c7895232f432b09da8f 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2180782205.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5246&amp;fp-y=0.5666&amp;h=105&amp;q=75&amp;w=105&amp;s=d841ed3887d7b53f9dfbff88d6a76511 105w, https://img.assets-d.propublica.org/v5/images/GettyImages-2180782205.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5246&amp;fp-y=0.5666&amp;h=210&amp;q=75&amp;w=210&amp;s=f6b01921b6889bc98b7852ce32f133c8 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1788,20 +1837,66 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/uncovered">Uncovered</a>
-        
+                
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
-                                    “Not Medically Necessary”: Inside the Company Helping America’s Biggest Health Insurers Deny Coverage for Care
+            <a href="https://www.propublica.org/article/donald-trump-media-outsourced-jobs-mexico-truth-social">
+                                    Trump Media Outsourced Jobs to Mexico Even as Trump Pushes “America First”
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            When companies like Aetna or UnitedHealthcare want to rein in costs, they turn to EviCore, whose business model depends on turning down payments for care recommended by doctors for their patients.
+                            On the campaign trail, Donald Trump threatened businesses that send jobs south of the border, while his own company that runs the Truth Social platform outsourced coding jobs to workers in Mexico, outraging some staff members.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/t-christian-miller">T. Christian Miller</a>, ProPublica; <span class="name">Patrick Rucker</span>, <a href="https://thecapitolforum.com/">The Capitol Forum</a>;  and <a class="name" href="https://www.propublica.org/people/david-armstrong">David Armstrong</a>, ProPublica,             <time class="timestamp" datetime="2024-10-23EDT13:30">Oct. 23, 1:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/robert-faturechi">Robert Faturechi</a>, <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-11-02EDT18:07">Nov. 2, 6:07 p.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=105&amp;q=75&amp;w=105&amp;s=e21aafc838f0ba0c57dc7aed0bfe48c7 105w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=210&amp;q=75&amp;w=210&amp;s=b7b686b6d628b381af93e5ca76e1d50b 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1973,13 +2068,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#f19c94959890839896998582b181839e8184939d989290df9e8396"><span class="__cf_email__" data-cfemail="a2cfc7c6cbc3d0cbc5cad6d1e2d2d0cdd2d7c0cecbc1c38ccdd0c5">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#cba6aeafa2aab9a2aca3bfb88bbbb9a4bbbea9a7a2a8aae5a4b9ac"><span class="__cf_email__" data-cfemail="d2bfb7b6bbb3a0bbb5baa6a192a2a0bda2a7b0bebbb1b3fcbda0b5">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#076b6e646269746e6960477775687772656b6e646629687560"><span class="__cf_email__" data-cfemail="cea2a7adaba0bda7a0a98ebebca1bebbaca2a7adafe0a1bca9">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#1d71747e78736e74737a5d6d6f726d687f71747e7c33726f7a"><span class="__cf_email__" data-cfemail="076b6e646269746e6960477775687772656b6e646629687560">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
