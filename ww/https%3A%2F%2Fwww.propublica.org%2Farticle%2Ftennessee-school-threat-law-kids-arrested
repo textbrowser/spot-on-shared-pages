@@ -140,6 +140,95 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -242,7 +331,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Under Tennessee’s School Threat Law, Kids Are Arrested for Rumors and Jokes","pageUrl":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="aFG70IHwrT" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="3hPZ9fvAKO" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -322,23 +411,45 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="1.0">In late September, Torri was driving down the highway with her 11-year-old son Junior in the back seat when her phone started ringing.</p>
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">It was the Hamilton County Sheriff’s deputy who worked at Junior’s middle school in Chattanooga, Tennessee. Deputy Arthur Richardson asked Torri where she was. She told him she was on the way to a family birthday dinner at LongHorn Steakhouse.</p>
+<p data-pp-blocktype="copy" data-pp-id="2.0">In late September, Torri was driving down the highway with her 11-year-old son Junior in the back seat when her phone started ringing.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="3.0">“He said, ‘Is Junior with you?’” Torri recalled.</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">It was the Hamilton County Sheriff’s deputy who worked at Junior’s middle school in Chattanooga, Tennessee. Deputy Arthur Richardson asked Torri where she was. She told him she was on the way to a family birthday dinner at LongHorn Steakhouse.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="4.0">Earlier that day, Junior had been accused by other students of making a threat against the school. When Torri had come to pick him up, she’d spoken with Richardson and with administrators, who’d told her he was allowed to return to class the next day. The principal had said she would carry out an investigation then. ProPublica and WPLN are using a nickname for Junior and not including Torri’s last name at the family’s request, to prevent him from being identifiable.</p>
+<p data-pp-blocktype="copy" data-pp-id="4.0">“He said, ‘Is Junior with you?’” Torri recalled.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="5.0">When Richardson called her in the car, Torri immediately felt uneasy. He didn’t say much before hanging up, and she thought about turning around to go home. But she kept driving. When they walked into the restaurant, Torri watched as Junior happily greeted his family.</p>
+<p data-pp-blocktype="copy" data-pp-id="5.0">Earlier that day, Junior had been accused by other students of making a threat against the school. When Torri had come to pick him up, she’d spoken with Richardson and with administrators, who’d told her he was allowed to return to class the next day. The principal had said she would carry out an investigation then. ProPublica and WPLN are using a nickname for Junior and not including Torri’s last name at the family’s request, to prevent him from being identifiable.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -347,30 +458,34 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="7.0">Soon her phone rang again. It was the deputy. He said he was outside in the strip mall’s parking lot and needed to talk to Junior. Torri called Junior’s stepdad, Kevin Boyer, for extra support, putting him on speaker as she went outside to talk to Richardson. She left Junior with the family, wanting to protect her son for as long as she could.</p>
+<p data-pp-blocktype="copy" data-pp-id="7.0">When Richardson called her in the car, Torri immediately felt uneasy. He didn’t say much before hanging up, and she thought about turning around to go home. But she kept driving. When they walked into the restaurant, Torri watched as Junior happily greeted his family.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="8.0">Richardson quickly made his intentions clear. “We’re coming to arrest him,” he told the parents.</p>
+<p data-pp-blocktype="copy" data-pp-id="8.0">Soon her phone rang again. It was the deputy. He said he was outside in the strip mall’s parking lot and needed to talk to Junior. Torri called Junior’s stepdad, Kevin Boyer, for extra support, putting him on speaker as she went outside to talk to Richardson. She left Junior with the family, wanting to protect her son for as long as she could.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="9.0">In Torri’s memory, everything that happened next is a blur. Both parents began pleading with the officer: They told him Junior is autistic and would feel claustrophobic in the back of a police car in handcuffs. They said he wasn’t a danger to anyone. Could they drive him to the juvenile detention center themselves? “‘There’s no reason for you to put bracelets on an 11-year-old. He doesn’t understand,’” Boyer recalls saying.</p>
+<p data-pp-blocktype="copy" data-pp-id="9.0">Richardson quickly made his intentions clear. “We’re coming to arrest him,” he told the parents.</p>
         
     
                     
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">It didn’t work. Torri went inside to get Junior, holding back tears as she tried to explain what was happening. Boyer heard Junior crying on the other end of the phone and began to give him a pep talk. “‘Hey, listen, they got it wrong. I’m on my way down to the jail, and I will not leave until you come home with us. But you have to go with them,’” he recalls telling Junior. “‘Just let them take you.’” Family members followed Torri and Junior into the parking lot to see what was happening, and strangers watched from their cars. Junior’s 5-year-old brother was sobbing.</p>
+<p data-pp-blocktype="copy" data-pp-id="11.0">In Torri’s memory, everything that happened next is a blur. Both parents began pleading with the officer: They told him Junior is autistic and would feel claustrophobic in the back of a police car in handcuffs. They said he wasn’t a danger to anyone. Could they drive him to the juvenile detention center themselves? “‘There’s no reason for you to put bracelets on an 11-year-old. He doesn’t understand,’” Boyer recalls saying.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="12.0">Richardson put handcuffs on the 11-year-old and locked him in the back of the patrol car. In a police report written later that day, Richardson cited a new state law as the basis for the arrest. He did not respond to multiple requests for comment or to a detailed list of questions.</p>
+<p data-pp-blocktype="copy" data-pp-id="12.0">It didn’t work. Torri went inside to get Junior, holding back tears as she tried to explain what was happening. Boyer heard Junior crying on the other end of the phone and began to give him a pep talk. “‘Hey, listen, they got it wrong. I’m on my way down to the jail, and I will not leave until you come home with us. But you have to go with them,’” he recalls telling Junior. “‘Just let them take you.’” Family members followed Torri and Junior into the parking lot to see what was happening, and strangers watched from their cars. Junior’s 5-year-old brother was sobbing.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">After a shooter killed six people at Nashville’s Covenant School in 2023, Tennessee’s Republican-controlled legislature <a href="https://wpln.org/post/tennessees-gun-laws-made-it-difficult-to-prevent-the-covenant-school-shooting-have-they-changed-since/">ignored calls to pass gun control measures</a>. Instead, they passed a series of <a href="https://www.propublica.org/article/tennessee-school-threats-expulsions">increasingly punitive laws</a> aimed not only at preventing future violence but dissuading kids from making threats that disrupt school and terrify other students.</p>
+<p data-pp-blocktype="copy" data-pp-id="13.0">Richardson put handcuffs on the 11-year-old and locked him in the back of the patrol car. In a police report written later that day, Richardson cited a new state law as the basis for the arrest. He did not respond to multiple requests for comment or to a detailed list of questions.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="14.0">After a shooter killed six people at Nashville’s Covenant School in 2023, Tennessee’s Republican-controlled legislature <a href="https://wpln.org/post/tennessees-gun-laws-made-it-difficult-to-prevent-the-covenant-school-shooting-have-they-changed-since/">ignored calls to pass gun control measures</a>. Instead, they passed a series of <a href="https://www.propublica.org/article/tennessee-school-threats-expulsions">increasingly punitive laws</a> aimed not only at preventing future violence but dissuading kids from making threats that disrupt school and terrify other students.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -379,33 +494,33 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="15.0">Two contradictory laws went into effect before this school year began. One requires school officials to expel a student only if their investigation finds the threat is “valid,” a term that the law does not define. The other mandates that police charge people, including kids, with felonies for making threats of any kind, credible or not. As a result, students across the state can be arrested for statements that wouldn’t even get them expelled.</p>
+<p data-pp-blocktype="copy" data-pp-id="16.0">Two contradictory laws went into effect before this school year began. One requires school officials to expel a student only if their investigation finds the threat is “valid,” a term that the law does not define. The other mandates that police charge people, including kids, with felonies for making threats of any kind, credible or not. As a result, students across the state can be arrested for statements that wouldn’t even get them expelled.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="16.0">Police in Tennessee say that even when kids make threats that are not credible, they need to be held accountable for their actions — including with arrests and felony charges. The Tennessee Sheriffs’ Association announced in September that law enforcement would “not tolerate anyone making threats and inciting fear within our schools and our community. Those responsible will be prosecuted to the fullest extent of the law.”</p>
+<p data-pp-blocktype="copy" data-pp-id="17.0">Police in Tennessee say that even when kids make threats that are not credible, they need to be held accountable for their actions — including with arrests and felony charges. The Tennessee Sheriffs’ Association announced in September that law enforcement would “not tolerate anyone making threats and inciting fear within our schools and our community. Those responsible will be prosecuted to the fullest extent of the law.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="17.0">Rep. Cameron Sexton, Tennessee House speaker and the Republican sponsor of the felony law, said his legislation is working as intended and will lead to safer schools. “Unfortunately sometimes you have to make examples of the first few who are doing it so that others know that it’s going to be taken seriously,” he said.</p>
+<p data-pp-blocktype="copy" data-pp-id="18.0">Rep. Cameron Sexton, Tennessee House speaker and the Republican sponsor of the felony law, said his legislation is working as intended and will lead to safer schools. “Unfortunately sometimes you have to make examples of the first few who are doing it so that others know that it’s going to be taken seriously,” he said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="18.0">Tennessee has not yet released statewide data on how many arrests for threats of mass violence have been made since school started in August. But Hamilton County arrested 18 students in the first six weeks of the school year, more than twice as many as Nashville’s Davidson County — despite Hamilton having far fewer students. Data that ProPublica and WPLN obtained through a records request shows that at least 519 students were charged with threats of mass violence last school year, when it was a misdemeanor, an increase from 442 the prior year. Many of them were middle schoolers and most were boys. The youngest child charged last school year was 7 years old.</p>
+<p data-pp-blocktype="copy" data-pp-id="19.0">Tennessee has not yet released statewide data on how many arrests for threats of mass violence have been made since school started in August. But Hamilton County arrested 18 students in the first six weeks of the school year, more than twice as many as Nashville’s Davidson County — despite Hamilton having far fewer students. Data that ProPublica and WPLN obtained through a records request shows that at least 519 students were charged with threats of mass violence last school year, when it was a misdemeanor, an increase from 442 the prior year. Many of them were middle schoolers and most were boys. The youngest child charged last school year was 7 years old.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="19.0">Juvenile defense lawyers, judges, school officials and parents criticized the felony law for casting too wide a net — unnecessarily traumatizing kids by arresting and handcuffing them over jokes, rumors and misunderstandings. Ben Connor, a school board member in Junior’s district, said the new law has muddied the waters, making it more difficult to spot real threats when so much time is spent punishing kids who don’t have the intent or the means to carry out violence.</p>
+<p data-pp-blocktype="copy" data-pp-id="20.0">Juvenile defense lawyers, judges, school officials and parents criticized the felony law for casting too wide a net — unnecessarily traumatizing kids by arresting and handcuffing them over jokes, rumors and misunderstandings. Ben Connor, a school board member in Junior’s district, said the new law has muddied the waters, making it more difficult to spot real threats when so much time is spent punishing kids who don’t have the intent or the means to carry out violence.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="20.0">“We may not even be keeping the kids safer by choosing to just send everyone to jail,” Connor said. “At some point you’re going to get desensitized to so many children going to jail for silly things that a credible threat could easily pass through the cracks of that system.”</p>
+<p data-pp-blocktype="copy" data-pp-id="21.0">“We may not even be keeping the kids safer by choosing to just send everyone to jail,” Connor said. “At some point you’re going to get desensitized to so many children going to jail for silly things that a credible threat could easily pass through the cracks of that system.”</p>
         
     
                     
 
 <figure
-    data-pp-id="22"
+    data-pp-id="23"
     data-pp-blocktype="image"
     class="bb-image size12 center  wide-sm wrap 
                 ">
@@ -449,19 +564,19 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="24.0">The incident that got Junior in trouble happened in science class, during the last hour of the school day. As he would later describe it to his parents, he overheard two other students talking. One was asking if the other was going to shoot up the school tomorrow. Junior looked at the other student, who seemed like he was going to say yes. So Junior answered for him. “Yes,” Junior recalls saying.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.0">The incident that got Junior in trouble happened in science class, during the last hour of the school day. As he would later describe it to his parents, he overheard two other students talking. One was asking if the other was going to shoot up the school tomorrow. Junior looked at the other student, who seemed like he was going to say yes. So Junior answered for him. “Yes,” Junior recalls saying.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="25.0">According to the police report, other students went to the teacher and told her that Junior said he was going to shoot up the school. Junior denies ever having said that. He lives with his mom, who doesn’t own guns.</p>
+<p data-pp-blocktype="copy" data-pp-id="26.0">According to the police report, other students went to the teacher and told her that Junior said he was going to shoot up the school. Junior denies ever having said that. He lives with his mom, who doesn’t own guns.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="26.0">It was the type of misunderstanding that, in past years, might have been sorted out by the teacher or a school counselor. But Tennessee law now requires school staff to report threats, credible or not, to law enforcement. If they don’t, they could be charged with a misdemeanor.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.0">It was the type of misunderstanding that, in past years, might have been sorted out by the teacher or a school counselor. But Tennessee law now requires school staff to report threats, credible or not, to law enforcement. If they don’t, they could be charged with a misdemeanor.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="27.0">Junior was called to the principal’s office to give his version of events. Since it was the end of the day, Torri joined him there when she came to pick him up. The principal, the dean and Richardson questioned Junior about what happened.</p>
+<p data-pp-blocktype="copy" data-pp-id="28.0">Junior was called to the principal’s office to give his version of events. Since it was the end of the day, Torri joined him there when she came to pick him up. The principal, the dean and Richardson questioned Junior about what happened.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -470,29 +585,29 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="29.0">After he retold the story, Torri asked what to expect the next day. Torri said the principal responded: “‘Oh, he can attend school,’ as if he was not a threat. No hesitation.” </p>
+<p data-pp-blocktype="copy" data-pp-id="30.0">After he retold the story, Torri asked what to expect the next day. Torri said the principal responded: “‘Oh, he can attend school,’ as if he was not a threat. No hesitation.” </p>
 
-<p data-pp-blocktype="copy" data-pp-id="29.1">Relieved by what the principal said, Torri took Junior home to get ready for the birthday party.</p>
+<p data-pp-blocktype="copy" data-pp-id="30.1">Relieved by what the principal said, Torri took Junior home to get ready for the birthday party.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="30.0">Hamilton County Schools did not respond to questions from ProPublica and WPLN about their general approach to threats of mass violence or Junior’s case, even though Torri signed a form giving school officials permission to speak about what happened to her son. Instead, Superintendent Justin Robertson emailed his communications team asking them to send the news organizations a “generic quote” on the district’s position.</p>
+<p data-pp-blocktype="copy" data-pp-id="31.0">Hamilton County Schools did not respond to questions from ProPublica and WPLN about their general approach to threats of mass violence or Junior’s case, even though Torri signed a form giving school officials permission to speak about what happened to her son. Instead, Superintendent Justin Robertson emailed his communications team asking them to send the news organizations a “generic quote” on the district’s position.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="31.0">“We recognize the critical importance of identifying and assessing any threat of mass violence made within our schools and advocating for a system of assessment that prioritizes our value of care,” a spokesperson wrote in a subsequent email. “It is critical that we work in partnership with our local law enforcement agencies to conduct threat assessments to determine their severity level and hold individuals accountable for valid threats.”</p>
+<p data-pp-blocktype="copy" data-pp-id="32.0">“We recognize the critical importance of identifying and assessing any threat of mass violence made within our schools and advocating for a system of assessment that prioritizes our value of care,” a spokesperson wrote in a subsequent email. “It is critical that we work in partnership with our local law enforcement agencies to conduct threat assessments to determine their severity level and hold individuals accountable for valid threats.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="32.0">Junior’s parents felt it was overzealous of Richardson to track down Junior and arrest him at the party, especially since the officer knew he would be at school the next day. They later filed a citizen’s complaint against Richardson, stating that he “arrested their son on hearsay” and “wanted glory for making that arrest.” The complaint is still under investigation by the sheriff’s department.</p>
+<p data-pp-blocktype="copy" data-pp-id="33.0">Junior’s parents felt it was overzealous of Richardson to track down Junior and arrest him at the party, especially since the officer knew he would be at school the next day. They later filed a citizen’s complaint against Richardson, stating that he “arrested their son on hearsay” and “wanted glory for making that arrest.” The complaint is still under investigation by the sheriff’s department.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="33.0">Under the law, Richardson did not need to consider the context or intent before making an arrest.</p>
+<p data-pp-blocktype="copy" data-pp-id="34.0">Under the law, Richardson did not need to consider the context or intent before making an arrest.</p>
         
     
                             <figure
-    data-pp-id="34"
+    data-pp-id="35"
     data-pp-blocktype="intro-module"
     class="bb-intro-module
             size03 out03 wrap right bb-intro-module-article
@@ -637,27 +752,27 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="35.0">“We don’t pick and choose,” Hamilton County Sheriff Austin Garrett told a panel of county commissioners at a public hearing in mid-September. His officers “know to make an arrest and charge the person making that threat, child or adult.” When Garrett was elected in 2022, one of his biggest priorities was installing more police in public schools, in part through state grants. Within a year, he succeeded. Garrett turned down requests to be interviewed for this story.</p>
+<p data-pp-blocktype="copy" data-pp-id="36.0">“We don’t pick and choose,” Hamilton County Sheriff Austin Garrett told a panel of county commissioners at a public hearing in mid-September. His officers “know to make an arrest and charge the person making that threat, child or adult.” When Garrett was elected in 2022, one of his biggest priorities was installing more police in public schools, in part through state grants. Within a year, he succeeded. Garrett turned down requests to be interviewed for this story.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="36.0">Boyer, Junior’s stepfather, spoke on the phone twice in late October with Richardson’s boss, Hamilton County Sheriff’s Lt. Jeremy Durham. During the calls, which Boyer recorded, Durham said he had reviewed camera footage of the arrest and thought Richardson “did not violate policy.”</p>
+<p data-pp-blocktype="copy" data-pp-id="37.0">Boyer, Junior’s stepfather, spoke on the phone twice in late October with Richardson’s boss, Hamilton County Sheriff’s Lt. Jeremy Durham. During the calls, which Boyer recorded, Durham said he had reviewed camera footage of the arrest and thought Richardson “did not violate policy.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="37.0">“He was not out to get anybody,” Durham said. “None of us like doing this. There’s no high-five or big honor in putting a child in jail.”</p>
+<p data-pp-blocktype="copy" data-pp-id="38.0">“He was not out to get anybody,” Durham said. “None of us like doing this. There’s no high-five or big honor in putting a child in jail.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="38.0">Durham said that ultimately internal affairs would review whether the case was handled properly. “We do have discretion, but it puts a little bit more burden on the deputy when it is a felony, especially one like threats of mass violence on school,” Durham said on one of the calls. He did not respond to multiple requests for comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="39.0">Durham said that ultimately internal affairs would review whether the case was handled properly. “We do have discretion, but it puts a little bit more burden on the deputy when it is a felony, especially one like threats of mass violence on school,” Durham said on one of the calls. He did not respond to multiple requests for comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="39.0">ProPublica and WPLN requested data from Hamilton County Schools on their response to threats in the first six weeks of school. The district investigated 38 threats from students in nearly all grade levels, including finger guns pointed at other classmates and remarks about burning down the classroom. One fourth grader was hit with a soccer ball at recess and angrily told students he would blow up the school.</p>
+<p data-pp-blocktype="copy" data-pp-id="40.0">ProPublica and WPLN requested data from Hamilton County Schools on their response to threats in the first six weeks of school. The district investigated 38 threats from students in nearly all grade levels, including finger guns pointed at other classmates and remarks about burning down the classroom. One fourth grader was hit with a soccer ball at recess and angrily told students he would blow up the school.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="40.0">Police arrested 18 students, even though school officials labeled most of the threats as “low level” with “no evidence of motive.” Of the students arrested, 39% were Black, compared to 30% of students in the district overall. And 33% had disabilities, more than double the share of disabled students in the district’s population.</p>
+<p data-pp-blocktype="copy" data-pp-id="41.0">Police arrested 18 students, even though school officials labeled most of the threats as “low level” with “no evidence of motive.” Of the students arrested, 39% were Black, compared to 30% of students in the district overall. And 33% had disabilities, more than double the share of disabled students in the district’s population.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -666,15 +781,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="42.0">Junior is Black. But his stepdad thought they had more time before they’d have to have the talk about how the police are not always looking out for his best interests. It was a lesson Boyer learned himself when he was a few years older than Junior. At age 13, Boyer was walking his dog when police officers stopped him and slammed him against a fence, saying he “fit the description” of a boy who had escaped from the nearby juvenile detention center.</p>
+<p data-pp-blocktype="copy" data-pp-id="43.0">Junior is Black. But his stepdad thought they had more time before they’d have to have the talk about how the police are not always looking out for his best interests. It was a lesson Boyer learned himself when he was a few years older than Junior. At age 13, Boyer was walking his dog when police officers stopped him and slammed him against a fence, saying he “fit the description” of a boy who had escaped from the nearby juvenile detention center.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="43.0">When he stumbled home, nose bleeding, he sought reassurance from his dad, who greeted him from the porch. His dad’s response has echoed in his head for years: “Yeah, boy, you’re going to deal with that your whole life.” Boyer is determined to avoid making the same mistake with his son. “I’m going to go to the end of the earth for my kids,” he said.</p>
+<p data-pp-blocktype="copy" data-pp-id="44.0">When he stumbled home, nose bleeding, he sought reassurance from his dad, who greeted him from the porch. His dad’s response has echoed in his head for years: “Yeah, boy, you’re going to deal with that your whole life.” Boyer is determined to avoid making the same mistake with his son. “I’m going to go to the end of the earth for my kids,” he said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="44.0"><a href="https://www.nytimes.com/2024/09/25/us/school-violence-threats-student-arrests.html">Hundreds of children across the country</a> are facing charges this year similar to Junior’s, especially after a deadly school shooting in Georgia this September fueled a frenzied response. School officials and law enforcement reported immediate increases in the number of school threats on social media and vowed to crack down on anyone making them.</p>
+<p data-pp-blocktype="copy" data-pp-id="45.0"><a href="https://www.nytimes.com/2024/09/25/us/school-violence-threats-student-arrests.html">Hundreds of children across the country</a> are facing charges this year similar to Junior’s, especially after a deadly school shooting in Georgia this September fueled a frenzied response. School officials and law enforcement reported immediate increases in the number of school threats on social media and vowed to crack down on anyone making them.</p>
         
     
                     
@@ -683,31 +798,31 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="46.0">As soon as Boyer got to Hamilton County’s juvenile detention center the night of the arrest, he started making his case. Junior has autism, he told the man at the front desk. He’s probably scared out of his mind right now. He’s only 11 years old. Is there any way the man could tell Junior his parents were there, so that he knows he’s not alone?</p>
+<p data-pp-blocktype="copy" data-pp-id="47.0">As soon as Boyer got to Hamilton County’s juvenile detention center the night of the arrest, he started making his case. Junior has autism, he told the man at the front desk. He’s probably scared out of his mind right now. He’s only 11 years old. Is there any way the man could tell Junior his parents were there, so that he knows he’s not alone?</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="47.0">The man offered to bring Junior into a room with a window that was visible from the waiting room so that he could see Boyer. Hours passed like that, father and son trading half-hearted waves and thumbs ups while they waited.</p>
+<p data-pp-blocktype="copy" data-pp-id="48.0">The man offered to bring Junior into a room with a window that was visible from the waiting room so that he could see Boyer. Hours passed like that, father and son trading half-hearted waves and thumbs ups while they waited.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="48.0">Boyer started to worry that the detention center might try to keep Junior overnight.</p>
+<p data-pp-blocktype="copy" data-pp-id="49.0">Boyer started to worry that the detention center might try to keep Junior overnight.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="49.0">But when he asked an employee, he found out that the detention center wouldn’t hold Junior overnight at all — he was too young. According to state records, the detention center holds children ages 12 through 18. Once Richardson finished writing his report, Junior was free to go.</p>
+<p data-pp-blocktype="copy" data-pp-id="50.0">But when he asked an employee, he found out that the detention center wouldn’t hold Junior overnight at all — he was too young. According to state records, the detention center holds children ages 12 through 18. Once Richardson finished writing his report, Junior was free to go.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="50.0">“So all of this is unnecessary. Putting the handcuffs on the kid, this whole show that you guys are trying to have,” Boyer said. “You’re not even gonna accept the 11-year-old.”</p>
+<p data-pp-blocktype="copy" data-pp-id="51.0">“So all of this is unnecessary. Putting the handcuffs on the kid, this whole show that you guys are trying to have,” Boyer said. “You’re not even gonna accept the 11-year-old.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="51.0">Junior was only detained for a few hours before he got to go home, but other kids have been locked in juvenile detention for days. <a href="https://storage.courtlistener.com/recap/gov.uscourts.tnmd.100663/gov.uscourts.tnmd.100663.1.0.pdf">A recent lawsuit against the school board</a> and district attorney in Williamson County, outside of Nashville, alleges that last September a high school junior was handcuffed, taken to juvenile detention and strip searched before being placed in solitary confinement. His requests to speak with his parents or a lawyer were denied, the lawsuit claims. He was held in juvenile detention for three nights, until he was released on house arrest.</p>
+<p data-pp-blocktype="copy" data-pp-id="52.0">Junior was only detained for a few hours before he got to go home, but other kids have been locked in juvenile detention for days. <a href="https://storage.courtlistener.com/recap/gov.uscourts.tnmd.100663/gov.uscourts.tnmd.100663.1.0.pdf">A recent lawsuit against the school board</a> and district attorney in Williamson County, outside of Nashville, alleges that last September a high school junior was handcuffed, taken to juvenile detention and strip searched before being placed in solitary confinement. His requests to speak with his parents or a lawyer were denied, the lawsuit claims. He was held in juvenile detention for three nights, until he was released on house arrest.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="52.0">The arrest stemmed from an incident in his chemistry class. The principal asserted the student had raised his hand in a “Hilter salute” and made a threat against the school. According to the lawsuit, this claim was baseless and the teacher present denied that the student had done anything inappropriate.</p>
+<p data-pp-blocktype="copy" data-pp-id="53.0">The arrest stemmed from an incident in his chemistry class. The principal asserted the student had raised his hand in a “Hilter salute” and made a threat against the school. According to the lawsuit, this claim was baseless and the teacher present denied that the student had done anything inappropriate.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -716,49 +831,49 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="54.0">Williamson County’s school board disputed some of the facts of the lawsuit in a <a href="https://www.documentcloud.org/documents/25248096-williamson-county-school-board-response">court filing in early October</a>, including that a Hitler salute was the reason for the student’s discipline and that the teacher said he’d done nothing wrong. The school board did not describe what happened but said in the filing that the student’s “comments and actions warranted” discipline. A school district spokesperson declined to answer further questions about pending litigation, and the district attorney did not respond to a request for comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="55.0">Williamson County’s school board disputed some of the facts of the lawsuit in a <a href="https://www.documentcloud.org/documents/25248096-williamson-county-school-board-response">court filing in early October</a>, including that a Hitler salute was the reason for the student’s discipline and that the teacher said he’d done nothing wrong. The school board did not describe what happened but said in the filing that the student’s “comments and actions warranted” discipline. A school district spokesperson declined to answer further questions about pending litigation, and the district attorney did not respond to a request for comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="55.0">It’s unclear what will happen with Junior’s case in juvenile court. He was charged with a felony, which could mean imprisonment in a state facility, though it wouldn’t follow him into adulthood because juvenile records are sealed. His case will be heard in juvenile court in December.</p>
+<p data-pp-blocktype="copy" data-pp-id="56.0">It’s unclear what will happen with Junior’s case in juvenile court. He was charged with a felony, which could mean imprisonment in a state facility, though it wouldn’t follow him into adulthood because juvenile records are sealed. His case will be heard in juvenile court in December.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="56.0">“Because the charge has been enhanced to a felony level, some law enforcement officers started the school year thinking they had no choice but to make an arrest,” said Robert Philyaw, Hamilton County’s juvenile court judge and the president of the Tennessee Council of Juvenile and Family Court Judges.</p>
+<p data-pp-blocktype="copy" data-pp-id="57.0">“Because the charge has been enhanced to a felony level, some law enforcement officers started the school year thinking they had no choice but to make an arrest,” said Robert Philyaw, Hamilton County’s juvenile court judge and the president of the Tennessee Council of Juvenile and Family Court Judges.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="57.0">Many of the threats of mass violence cases he’s seen should never have made it to his court, he said. One child held up a battery and called it a bomb. He was arrested. Another said he was going to nuke the place. That child was arrested too, even though he realistically “didn’t have any plutonium in his backpack,” Philyaw said.</p>
+<p data-pp-blocktype="copy" data-pp-id="58.0">Many of the threats of mass violence cases he’s seen should never have made it to his court, he said. One child held up a battery and called it a bomb. He was arrested. Another said he was going to nuke the place. That child was arrested too, even though he realistically “didn’t have any plutonium in his backpack,” Philyaw said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="58.0">“If some child says, ‘I’m going to run an elephant through here and it’s going to tear the school up,’ are they going to be arrested?” Philyaw asked. “Even though there’s no elephant in sight or within that child’s control? I don’t know.” Most of these cases in his court this school year have been dismissed after a thorough review, he said.</p>
+<p data-pp-blocktype="copy" data-pp-id="59.0">“If some child says, ‘I’m going to run an elephant through here and it’s going to tear the school up,’ are they going to be arrested?” Philyaw asked. “Even though there’s no elephant in sight or within that child’s control? I don’t know.” Most of these cases in his court this school year have been dismissed after a thorough review, he said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="59.0">According to a ProPublica and WPLN analysis of state data, juvenile court judges are rarely finding students “delinquent,” a term equivalent to “guilty” in adult court. In fact, about 80% of young people charged with threats in the past three school years have either had their charges completely dismissed or were sent through diversion programs, which could require them to complete community service hours, therapy or other interventions.</p>
+<p data-pp-blocktype="copy" data-pp-id="60.0">According to a ProPublica and WPLN analysis of state data, juvenile court judges are rarely finding students “delinquent,” a term equivalent to “guilty” in adult court. In fact, about 80% of young people charged with threats in the past three school years have either had their charges completely dismissed or were sent through diversion programs, which could require them to complete community service hours, therapy or other interventions.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="60.0">Judges are, in effect, acting as safety nets at the end of a harsh process. In some cases, they’ve overruled district attorneys seeking harsher treatment of children. In Knox County, located in East Tennessee, <a href="https://www.knoxnews.com/story/news/crime/2024/09/26/knox-county-da-cracks-down-on-students-who-make-threats/75193086007/">judges largely rejected</a> the local district attorney’s request to detain all children charged with making threats until trial — which could be up to 30 days.</p>
+<p data-pp-blocktype="copy" data-pp-id="61.0">Judges are, in effect, acting as safety nets at the end of a harsh process. In some cases, they’ve overruled district attorneys seeking harsher treatment of children. In Knox County, located in East Tennessee, <a href="https://www.knoxnews.com/story/news/crime/2024/09/26/knox-county-da-cracks-down-on-students-who-make-threats/75193086007/">judges largely rejected</a> the local district attorney’s request to detain all children charged with making threats until trial — which could be up to 30 days.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="61.0">Rep. Bo Mitchell, a Nashville Democrat who co-sponsored the felony law, acknowledged that children who do not pose any danger are being arrested. But he said that district attorneys and judges should use good judgment when determining how to handle the charge.</p>
+<p data-pp-blocktype="copy" data-pp-id="62.0">Rep. Bo Mitchell, a Nashville Democrat who co-sponsored the felony law, acknowledged that children who do not pose any danger are being arrested. But he said that district attorneys and judges should use good judgment when determining how to handle the charge.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="62.0">But Matt Moore, a defense lawyer in West Tennessee, said the stakes for children are too high to rely on the discretion of individual prosecutors and judges as protection from an overly punitive law.</p>
+<p data-pp-blocktype="copy" data-pp-id="63.0">But Matt Moore, a defense lawyer in West Tennessee, said the stakes for children are too high to rely on the discretion of individual prosecutors and judges as protection from an overly punitive law.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="63.0">“The whole point is, these are juveniles. They’re supposed to make mistakes. They’re supposed to be young and dumb,” he said. “And if you don’t have a judge or a district attorney who take that into account, these kids’ lives are basically over.”</p>
+<p data-pp-blocktype="copy" data-pp-id="64.0">“The whole point is, these are juveniles. They’re supposed to make mistakes. They’re supposed to be young and dumb,” he said. “And if you don’t have a judge or a district attorney who take that into account, these kids’ lives are basically over.”</p>
         
     
                         
 
 <figure
-    data-pp-id="64"
+    data-pp-id="65"
     data-pp-blocktype="image-sets"
     class="bb-image-set size14 center  wide-sm wrap
                 ">
@@ -813,7 +928,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
                     
 <h3>“Who Takes Responsibility?”</h3>
-<p data-pp-blocktype="copy" data-pp-id="65.0">The only thing Junior loves more than talking about football is playing it. When the weather is too harsh to get outside, he plays his favorite football video game.</p>
+<p data-pp-blocktype="copy" data-pp-id="66.0">The only thing Junior loves more than talking about football is playing it. When the weather is too harsh to get outside, he plays his favorite football video game.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -822,35 +937,35 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="67.0">His parents sat high up in the bleachers one day in early October as he ran drills alongside his teammates. They picked him out from the other students easily, his height and stocky build adding to his talent as a lineman. He often encourages the younger players on the team, an unofficial mentor.</p>
+<p data-pp-blocktype="copy" data-pp-id="68.0">His parents sat high up in the bleachers one day in early October as he ran drills alongside his teammates. They picked him out from the other students easily, his height and stocky build adding to his talent as a lineman. He often encourages the younger players on the team, an unofficial mentor.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="68.0">“This field is his place,” Torri said, smiling. “He’s the gentle giant of the field.”</p>
+<p data-pp-blocktype="copy" data-pp-id="69.0">“This field is his place,” Torri said, smiling. “He’s the gentle giant of the field.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="69.0">That night, Hamilton County Schools had been planning to host a town hall about the threats and arrests. Junior’s parents were hoping to attend and share their story as a way to advocate for their son while the charge against him remains pending in court. But the board canceled the meeting at the last minute without giving a clear explanation.</p>
+<p data-pp-blocktype="copy" data-pp-id="70.0">That night, Hamilton County Schools had been planning to host a town hall about the threats and arrests. Junior’s parents were hoping to attend and share their story as a way to advocate for their son while the charge against him remains pending in court. But the board canceled the meeting at the last minute without giving a clear explanation.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="70.0">By the time the two parents found out about the regularly scheduled school board meeting later that week, it was too late to sign up to make a public comment. They felt like they were constantly bumping up against roadblocks in a system that wasn’t designed to let them be heard.</p>
+<p data-pp-blocktype="copy" data-pp-id="71.0">By the time the two parents found out about the regularly scheduled school board meeting later that week, it was too late to sign up to make a public comment. They felt like they were constantly bumping up against roadblocks in a system that wasn’t designed to let them be heard.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="71.0">The school district has been grappling with the state laws since the start of the school year. Connor, a school board member, is the father of four daughters in the public school system. He <a href="https://www.documentcloud.org/documents/25249459-hamilton-county-resolution-re-threats-of-mass-violence-and-revisions-to-tca">drafted a resolution</a> in an attempt to convince legislators to align the way schools and police handle threats of mass violence. Most importantly, he said, police should have to consider whether a threat is valid before making an arrest, just like schools are required to do before expulsions.</p>
+<p data-pp-blocktype="copy" data-pp-id="72.0">The school district has been grappling with the state laws since the start of the school year. Connor, a school board member, is the father of four daughters in the public school system. He <a href="https://www.documentcloud.org/documents/25249459-hamilton-county-resolution-re-threats-of-mass-violence-and-revisions-to-tca">drafted a resolution</a> in an attempt to convince legislators to align the way schools and police handle threats of mass violence. Most importantly, he said, police should have to consider whether a threat is valid before making an arrest, just like schools are required to do before expulsions.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="72.0">“As a result of this unfortunate disparity,” the resolution reads, “students who have not made valid, credible threats against the security of the school or the safety of their classmates are nevertheless being arrested by law enforcement and detained when these same students might not face discipline at school.”</p>
+<p data-pp-blocktype="copy" data-pp-id="73.0">“As a result of this unfortunate disparity,” the resolution reads, “students who have not made valid, credible threats against the security of the school or the safety of their classmates are nevertheless being arrested by law enforcement and detained when these same students might not face discipline at school.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="73.0">The school board was supposed to vote on the resolution twice in the last two months, but it canceled both votes. Connor said the board will instead try to speak directly with the authors of the law. A group of parents, many organized by a chapter of the far-right group Moms for Liberty, showed up to speak out against the resolution at a board meeting in September. One school employee and parent begged the board not to ask for a change in the law and asked them to treat all threats the same: “How can you be sure it’s a valid threat?”</p>
+<p data-pp-blocktype="copy" data-pp-id="74.0">The school board was supposed to vote on the resolution twice in the last two months, but it canceled both votes. Connor said the board will instead try to speak directly with the authors of the law. A group of parents, many organized by a chapter of the far-right group Moms for Liberty, showed up to speak out against the resolution at a board meeting in September. One school employee and parent begged the board not to ask for a change in the law and asked them to treat all threats the same: “How can you be sure it’s a valid threat?”</p>
         
     
                                   <aside
-    data-pp-id="74"
+    data-pp-id="75"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -877,10 +992,10 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
                             
-        <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban" class="story-promo section-articles" >
+        <a href="https://www.propublica.org/article/denver-colorado-migrants-unhoused" class="story-promo section-articles" >
 
             
-                                                                                                                                
+                                
                                     
                     <div class="story-promo__art">
                         <img
@@ -890,13 +1005,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                             width="75"
                             height="75"
                             data-sizes="auto"
-                            data-srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=ca48d5620c10bef81cf2fc737a2eefc6 75w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=6be9656e0b7e3c139932180bc3210039 150w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=9c4fa134c79ed77e0f693fa2b4139015 400w"
+                            data-srcset="https://img.assets-d.propublica.org/v5/images/Immigration-Denver-Day-Three-351-social.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.6208&amp;fp-y=0.4025&amp;h=75&amp;q=70&amp;w=75&amp;s=42ec100182e127f49027e9801587f5ac 75w, https://img.assets-d.propublica.org/v5/images/Immigration-Denver-Day-Three-351-social.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.6208&amp;fp-y=0.4025&amp;h=150&amp;q=70&amp;w=150&amp;s=aa14503ebbd1636afb6281134cb218e6 150w, https://img.assets-d.propublica.org/v5/images/Immigration-Denver-Day-Three-351-social.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.6208&amp;fp-y=0.4025&amp;h=400&amp;q=70&amp;w=400&amp;s=743a0dac313a23798b9ee79e2be74362 400w"
                             />
                     </div>
                 
             
             <div class="story-promo__info" dir="auto">
-                <strong class="story-promo__hed">A Texas Woman Died After the Hospital Said It Would be a “Crime” to Intervene in Her Miscarriage</strong>
+                <strong class="story-promo__hed">As Denver Mobilized to Support Arriving Migrants, the City’s Unhoused Population Has Grappled With Feeling Left Behind</strong>
                             </div>
         </a>
 
@@ -905,15 +1020,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="75.0">Junior was suspended for two days, according to his parents, but the consequences of the arrest have lasted much longer. Junior can barely talk about what happened, even with his parents. He gets scared when he spots a police officer on the street. Little by little, Junior said, it’s gotten easier for him to sit in the classroom of the teacher who reported him to the police and to walk past the officer who handcuffed him and put him in the back of a cop car.</p>
+<p data-pp-blocktype="copy" data-pp-id="76.0">Junior was suspended for two days, according to his parents, but the consequences of the arrest have lasted much longer. Junior can barely talk about what happened, even with his parents. He gets scared when he spots a police officer on the street. Little by little, Junior said, it’s gotten easier for him to sit in the classroom of the teacher who reported him to the police and to walk past the officer who handcuffed him and put him in the back of a cop car.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="76.0">In past years, Junior had struggled with reading and math due to his disability and required extra support in school. And it seemed to be working. Before the arrest, Junior was “rocking this school year,” his mom said. “I’m a proud mama.” He would check his own grades daily, excited to see how well he was doing and track his progress. His parents worry his improvements might be derailed.</p>
+<p data-pp-blocktype="copy" data-pp-id="77.0">In past years, Junior had struggled with reading and math due to his disability and required extra support in school. And it seemed to be working. Before the arrest, Junior was “rocking this school year,” his mom said. “I’m a proud mama.” He would check his own grades daily, excited to see how well he was doing and track his progress. His parents worry his improvements might be derailed.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="77.0">“So do you fault the officer? Do you fault the new law? Who takes responsibility of this massive problem?” Boyer said. “We’re traumatizing our children.”</p>
+<p data-pp-blocktype="copy" data-pp-id="78.0">“So do you fault the officer? Do you fault the new law? Who takes responsibility of this massive problem?” Boyer said. “We’re traumatizing our children.”</p>
         
     
         
@@ -931,7 +1046,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
-            <div class="rich-byline-group">
+        <div class="rich-byline-group">
 
 
 
@@ -947,7 +1062,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#79181510000018570a0e181b0039090b16090c1b15101a1857160b1e">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#82e3eeebfbfbe3acf1f5e3e0fbc2f2f0edf2f7e0eeebe1e3acedf0e5">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -955,7 +1070,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="0c6d606575756d227f7b6d6e754c7c7e637c796e60656f6d22637e6b">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="19787570606078376a6e787b6059696b76696c7b75707a7837766b7e">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -1315,11 +1430,58 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=08cd0c90c6d774c7a74c41229fc1a333 400w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=8a12ed4fc0b4708378970112eb457dc8 800w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=bab8ca5a8922bbea7742b40ed154099d 1200w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dd4412939ffef5d99941c777aba95cf4 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=28e01cbe3700edc2f5c18e07eaaa640a 400w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2d369781422f569adc567b93be051421 800w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=7e44d3df423a29f494b4a64b76c115b7 1200w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dc783315de6cd1aa52dfb81fcfd2812b 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=220b35bfff88c5789bf7788651c5e0a0 400w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=5b42651c4376583f8c9dcb1e6462aa41 800w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=276fa20e0ab54bb6f54ce30240cd6eb5 1200w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=71b26c6b1f8685cf1d1237d15046c2f7 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1332,63 +1494,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                         <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
-                                    When a Florida Farmer-Legislator Turned Against Immigration, the Consequences Were Severe. But Not for Him.
+            <a href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics">
+                                    A Pro-Gun, Anti-Abortion Border Sheriff Appealed to Both Parties. Then He Was Painted as Soft on Immigration.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            For a lawmaker’s political career and his farm, a federal visa program was a lifeline. For a young father trying to meet his son’s mounting medical needs, that same lifeline failed him.
+                            In Del Rio, Texas, like in other majority Latino communities, immigration is high on voters’ minds and is disrupting long-standing political allegiances.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/seth-freed-wessler">Seth Freed Wessler</a>, photography by <span class="name">Zaydee Sanchez</span> and <span class="name">Kathleen Flynn</span>, with additional reporting by <span class="name">Zaydee Sanchez</span>,             <time class="timestamp" datetime="2024-10-29EDT07:00">Oct. 29, 7 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=0561eae667fad7b97a0689f1053372bb 400w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=a683f92157cababadf9bc80258f9ba76 800w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=e79180d65f8450fc47d3ff508b433525 1200w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2fedff3bcbca7e923faf316ddc8c0c99 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
-                                    She Supports Trump’s Anti-Immigration Policies. Texas Incorrectly Flagged Her as a “Noncitizen” on Its Voting Rolls.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            Mary Howard-Elley is the 10th U.S. citizen identified by ProPublica, The Texas Tribune and Votebeat whose registration was canceled after her citizenship was questioned. Her saga shows how tough it can be for eligible voters to get reinstated.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/lexi-churchill">Lexi Churchill</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, <a class="name" href="https://www.texastribune.org/about/staff/james-barragan/">James Barragán</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, and <a class="name" href="https://www.votebeat.org/authors/natalia-contreras/">Natalia Contreras</a>, <a href="https://www.votebeat.org/">Votebeat</a>,             <time class="timestamp" datetime="2024-10-29EDT06:00">Oct. 29, 5 a.m. CDT</time>
+            by <a class="name" href="https://www.propublica.org/people/perla-trevizo">Perla Trevizo</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, photography by <a class="name" href="https://www.propublica.org/people/gerardo-del-valle">Gerardo del Valle</a>, ProPublica,             <time class="timestamp" datetime="2024-11-03EST06:00">Nov. 3, 5 a.m. CST</time>
         </p>
 
             </div>
@@ -1408,11 +1524,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/donald-trump-media-outsourced-jobs-mexico-truth-social">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=141407206f124c325515d6fa6f97f46b 105w, https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=b6f57390b700fb24250203f44f66f7a3 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2180782205.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5246&amp;fp-y=0.5666&amp;h=105&amp;q=75&amp;w=105&amp;s=d841ed3887d7b53f9dfbff88d6a76511 105w, https://img.assets-d.propublica.org/v5/images/GettyImages-2180782205.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5246&amp;fp-y=0.5666&amp;h=210&amp;q=75&amp;w=210&amp;s=f6b01921b6889bc98b7852ce32f133c8 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1424,17 +1540,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
-                                    “Put Them in Trauma”: Inside a Key MAGA Leader’s Plans for a New Trump Agenda
+            <a href="https://www.propublica.org/article/donald-trump-media-outsourced-jobs-mexico-truth-social">
+                                    Trump Media Outsourced Jobs to Mexico Even as Trump Pushes “America First”
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Private videos reveal Trump adviser Russ Vought’s “shadow” plans for using the military on protesters, defunding the EPA and villainizing civil servants.
+                            On the campaign trail, Donald Trump threatened businesses that send jobs south of the border, while his own company that runs the Truth Social platform outsourced coding jobs to workers in Mexico, outraging some staff members.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/molly-redden">Molly Redden</a> and <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>, ProPublica, and <a class="name" href="https://documented.net/author/nick-surgey">Nick Surgey</a>, <a href="https://documented.net/">Documented</a>,             <time class="timestamp" datetime="2024-10-28EDT05:00">Oct. 28, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/robert-faturechi">Robert Faturechi</a>, <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-11-02EDT18:07">Nov. 2, 6:07 p.m. EDT</time>
         </p>
 
             </div>
@@ -1454,11 +1570,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=2f308666d26a8ce5e4b90e4aa5673611 105w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=fc108c215eb93c7895232f432b09da8f 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=105&amp;q=75&amp;w=105&amp;s=e21aafc838f0ba0c57dc7aed0bfe48c7 105w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=210&amp;q=75&amp;w=210&amp;s=b7b686b6d628b381af93e5ca76e1d50b 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1468,20 +1584,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/uncovered">Uncovered</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
-                                    “Not Medically Necessary”: Inside the Company Helping America’s Biggest Health Insurers Deny Coverage for Care
+            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            When companies like Aetna or UnitedHealthcare want to rein in costs, they turn to EviCore, whose business model depends on turning down payments for care recommended by doctors for their patients.
+                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/t-christian-miller">T. Christian Miller</a>, ProPublica; <span class="name">Patrick Rucker</span>, <a href="https://thecapitolforum.com/">The Capitol Forum</a>;  and <a class="name" href="https://www.propublica.org/people/david-armstrong">David Armstrong</a>, ProPublica,             <time class="timestamp" datetime="2024-10-23EDT13:30">Oct. 23, 1:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1653,13 +1769,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#5b363e3f323a29323c332f281b2b29342b2e393732383a7534293c"><span class="__cf_email__" data-cfemail="4b262e2f222a39222c233f380b3b39243b3e292722282a6524392c">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#c6aba3a2afa7b4afa1aeb2b586b6b4a9b6b3a4aaafa5a7e8a9b4a1"><span class="__cf_email__" data-cfemail="1c717978757d6e757b74686f5c6c6e736c697e70757f7d32736e7b">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#15797c76707b667c7b725565677a656077797c76743b7a6772"><span class="__cf_email__" data-cfemail="2a4643494f445943444d6a5a58455a5f484643494b0445584d">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#b9d5d0dadcd7cad0d7def9c9cbd6c9ccdbd5d0dad897d6cbde"><span class="__cf_email__" data-cfemail="a9c5c0caccc7dac0c7cee9d9dbc6d9dccbc5c0cac887c6dbce">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1800,5 +1916,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Aliyya Swaby","Paige Pfleger"],"dateCreated":"2024-10-29T15:16:33-04:00","dateModified":"2024-10-29T16:14:00-04:00","datePublished":"2024-10-30T07:00:00-04:00","description":"A state law makes threats of mass violence a felony, even for kids. Judges and school officials say it’s casting a wide net that is unnecessarily entangling children in the justice system.","headline":"Under Tennessee’s School Threat Law, Kids Are Arrested for Rumors and Jokes","image":{"@type":"ImageObject","url":"https://img.assets-c3.propublica.org/images/articles/241025-TennesseeThreatsArrests-0045_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95-1.jpg?crop=focalpoint&fit=crop&fp-x=0.728&fp-y=0.0587&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=fe79f5440329cbc2ee1e851cf672d083"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested","name":"Under Tennessee’s School Threat Law, Kids Are Arrested for Rumors and Jokes","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-c3.propublica.org/images/articles/241025-TennesseeThreatsArrests-0045_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95-1.jpg?crop=focalpoint&fit=crop&fp-x=0.728&fp-y=0.0587&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=fe79f5440329cbc2ee1e851cf672d083","url":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested","name":"An 11-Year-Old Denied Making a Threat and Was Allowed to Return to School. Tennessee Police Arrested Him Anyway.","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Aliyya Swaby","Paige Pfleger"],"dateCreated":"2024-10-29T15:16:33-04:00","dateModified":"2024-10-30T13:25:39-04:00","datePublished":"2024-10-30T07:00:00-04:00","description":"A state law makes threats of mass violence a felony, even for kids. Judges and school officials say it’s casting a wide net that is unnecessarily entangling children in the justice system.","headline":"Under Tennessee’s School Threat Law, Kids Are Arrested for Rumors and Jokes","image":{"@type":"ImageObject","url":"https://img.assets-c3.propublica.org/images/articles/241025-TennesseeThreatsArrests-0045_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95-1.jpg?crop=focalpoint&fit=crop&fp-x=0.728&fp-y=0.0587&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=fe79f5440329cbc2ee1e851cf672d083"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested","name":"Under Tennessee’s School Threat Law, Kids Are Arrested for Rumors and Jokes","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-c3.propublica.org/images/articles/241025-TennesseeThreatsArrests-0045_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95-1.jpg?crop=focalpoint&fit=crop&fp-x=0.728&fp-y=0.0587&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=fe79f5440329cbc2ee1e851cf672d083","url":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested","name":"An 11-Year-Old Denied Making a Threat and Was Allowed to Return to School. Tennessee Police Arrested Him Anyway.","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>

@@ -140,6 +140,107 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     
             
     
+<style>
+    .site-header__banner {
+        font-family: Graphik, sans-serif;
+        font-size: 13px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 100;
+    }
+    @media screen and (min-width: 40em) {
+        .site-header__banner {
+            font-size: 15px;
+        }
+    }
+    a.site-header__banner-link {
+        align-items: center;
+        background: linear-gradient(
+            to right,
+            #e98406,
+            #cf176d,
+            #2074df
+        );
+        color: white;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        transition: unset;
+    }
+    .site-header__banner-link > * + * {
+        margin-left: 8px;
+    }
+    .site-header__banner-cta {
+        background: #da352b;
+        border-radius: 0.2em;
+        color: white;
+        display: inline;
+        font-size: 0.85em;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        text-transform: uppercase;
+        text-align: center;
+        /* see here for smooth box-shadow calculation: https://shadows.brumm.af */
+        /*
+        box-shadow:
+            0 1.3px 1.3px rgba(0, 0, 0, 0.07),
+            0 4.5px 4.5px rgba(0, 0, 0, 0.042),
+            0 20px 20px rgba(0, 0, 0, 0.028)
+        ;
+        */
+    }
+    /*
+    .site-header__banner-copy {
+        display: none;
+    }
+    @media screen and (min-width: 50em) {
+        .site-header__banner-copy {
+            display: block;
+        }
+    }
+    */
+    /*
+    .site-header__banner-link:focus .site-header__banner-cta,
+    .site-header__banner-link:hover .site-header__banner-cta {
+        background: #9b0000;
+        color: white;
+    }
+    */
+
+    .site-header__banner-title {
+        padding-right: 0.25em;
+    }
+
+    @media screen and (min-width: 60em) {
+        .opener--grid {
+            /* Tweak full height to account for promo bar height */
+            grid-template-rows: minmax(calc(100vh - 2.25rem), auto) auto auto;
+        }
+    }
+    @media screen and (min-width: 60em) {
+        .opener--grid .opener__art.opener__art--inset,
+        .opener--grid .opener__art.opener__art--inset > img,
+        .opener--grid .opener__art.opener__art--inset > video {
+            /* Tweak full height to account for promo bar height */
+            max-height: calc( 100vh - 2.25rem - 2 * var(--opener-page-margins));
+        }
+    }
+</style>
+
+
+<div class="site-header__banner" data-pp-location="promo-bar">
+    <a class="site-header__banner-link" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PB">
+        <span class="site-header__banner-copy">
+            <strong class="site-header__banner-title">Independent journalism powered by the people.</strong>
+            Join us
+        </span>
+        </br>
+        <span class="site-header__banner-cta">Donate Now</span>
+    </a>
+</div>
+
 
     <!-- Load SiteHeader variant based on variable -->
 
@@ -224,7 +325,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Election Skeptics Target Voting Officials With Ads in Swing States","pageUrl":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="aFG70IHwrT" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="3hPZ9fvAKO" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -248,7 +349,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                 
 
         <div class="article-body__note article-body__note--co-publish">
-                        <p><em>This article was produced for ProPublica’s Local Reporting Network in partnership with <a href="https://wisconsinwatch.org/">Wisconsin Watch</a>. <a href="https://www.propublica.org/newsletters/dispatches">Sign up for Dispatches</a> to get stories like this one as soon as they are published.</em></p>
+                        <p><em>This article was produced for ProPublica’s Local Reporting Network in partnership with <a href="https://wisconsinwatch.org/2024/10/wisconsin-election-ads-voting-swing-state-activists-follow-the-law/">Wisconsin Watch</a>. <a href="https://www.propublica.org/newsletters/dispatches">Sign up for Dispatches</a> to get stories like this one as soon as they are published.</em></p>
 
         </div>
 
@@ -262,23 +363,45 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="1.0">Earlier this month, subscribers to the Wisconsin Law Journal received an <a href="https://www.documentcloud.org/documents/25252062-follow-the-law-ad-on-wisconsin-law-journal-20241015">email</a> with an urgent subject: “Upholding Election Integrity — A Call to Action for Attorneys.”</p>
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">The letter began by talking about fairness and following the law in elections. But it then suggested that election officials do something that courts have found to be <a href="https://law.stanford.edu/publications/certification-and-non-discretion-a-guide-to-protecting-the-2024-election/">illegal for over a century</a>: treat the certification of election results as an option, not an obligation.</p>
+<p data-pp-blocktype="copy" data-pp-id="2.0">Earlier this month, subscribers to the Wisconsin Law Journal received an <a href="https://www.documentcloud.org/documents/25252062-follow-the-law-ad-on-wisconsin-law-journal-20241015">email</a> with an urgent subject: “Upholding Election Integrity — A Call to Action for Attorneys.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="3.0">The large logo at the top of the email gave the impression that it was an official correspondence from the respected legal newspaper, though smaller print said it was sent on behalf of a public relations company. The missive was an advertisement from a new group with deep ties to activists who have challenged the legitimacy of recent American elections.</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">The letter began by talking about fairness and following the law in elections. But it then suggested that election officials do something that courts have found to be <a href="https://law.stanford.edu/publications/certification-and-non-discretion-a-guide-to-protecting-the-2024-election/">illegal for over a century</a>: treat the certification of election results as an option, not an obligation.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="4.0">The group, Follow the Law, has placed ads in Pennsylvania and Wisconsin news outlets serving attorneys, judges and election administrators — individuals who could be involved in election disputes. In Georgia, it ran ads supporting the State Election Board as its majority, <a href="https://www.usatoday.com/story/news/politics/elections/2024/08/05/trump-praises-georgia-election-board/74674946007/">backed by former President Donald Trump</a>, passed a rule that <a href="https://www.propublica.org/article/georgia-election-board-vote-certification">experts warned</a> could have allowed county board members to exclude <a href="https://www.propublica.org/article/georgia-election-rule-could-exclude-votes">enough Democratic votes to impact the presidential election</a>. (A <a href="https://abcnews.go.com/US/wireStory/georgia-supreme-court-rejects-republican-attempt-quickly-reinstate-115043386">judge later struck down the rule as “illegal, unconstitutional and void</a>.”)</p>
+<p data-pp-blocktype="copy" data-pp-id="4.0">The large logo at the top of the email gave the impression that it was an official correspondence from the respected legal newspaper, though smaller print said it was sent on behalf of a public relations company. The missive was an advertisement from a new group with deep ties to activists who have challenged the legitimacy of recent American elections.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="5.0">In making its arguments about certification, Follow the Law has mischaracterized election rules and directed readers to a website providing an incomplete and inaccurate description of how certification works and what the laws and rules are in various states, election experts and state officials said.</p>
+<p data-pp-blocktype="copy" data-pp-id="5.0">The group, Follow the Law, has placed ads in Pennsylvania and Wisconsin news outlets serving attorneys, judges and election administrators — individuals who could be involved in election disputes. In Georgia, it ran ads supporting the State Election Board as its majority, <a href="https://www.usatoday.com/story/news/politics/elections/2024/08/05/trump-praises-georgia-election-board/74674946007/">backed by former President Donald Trump</a>, passed a rule that <a href="https://www.propublica.org/article/georgia-election-board-vote-certification">experts warned</a> could have allowed county board members to exclude <a href="https://www.propublica.org/article/georgia-election-rule-could-exclude-votes">enough Democratic votes to impact the presidential election</a>. (A <a href="https://abcnews.go.com/US/wireStory/georgia-supreme-court-rejects-republican-attempt-quickly-reinstate-115043386">judge later struck down the rule as “illegal, unconstitutional and void</a>.”)</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -287,11 +410,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="7.0">“Anyone relying on that website is being deceived, and whoever is responsible for its content is being dishonest,” said Mike Hassinger, public information officer for Georgia’s secretary of state.</p>
+<p data-pp-blocktype="copy" data-pp-id="7.0">In making its arguments about certification, Follow the Law has mischaracterized election rules and directed readers to a website providing an incomplete and inaccurate description of how certification works and what the laws and rules are in various states, election experts and state officials said.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="8.0">“Anyone relying on that website is being deceived, and whoever is responsible for its content is being dishonest,” said Mike Hassinger, public information officer for Georgia’s secretary of state.</p>
         
     
                             <figure
-    data-pp-id="8"
+    data-pp-id="9"
     data-pp-blocktype="intro-module"
     class="bb-intro-module
             size03 out03 wrap right bb-intro-module-article
@@ -436,28 +563,28 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="10.0"><a href="https://www.eac.gov/election-officials/election-results-canvass-and-certification">Certification is the mandatory administrative process</a> that officials undertake after they finish counting and adjudicating ballots. Official results need to be certified by tight deadlines, so they can be aggregated and certified at the state and federal levels. Other procedures like lawsuits and recounts exist to check or challenge election outcomes, but those typically cannot commence until certification occurs. If officials fail to meet those deadlines or exclude a subset of votes, courts could order them to certify, as they have done in the past. But <a href="https://www.propublica.org/article/georgia-election-board-vote-certification">experts have warned</a> that, in a worst-case scenario, the transition of power could be thrown into chaos.</p>
+<p data-pp-blocktype="copy" data-pp-id="11.0"><a href="https://www.eac.gov/election-officials/election-results-canvass-and-certification">Certification is the mandatory administrative process</a> that officials undertake after they finish counting and adjudicating ballots. Official results need to be certified by tight deadlines, so they can be aggregated and certified at the state and federal levels. Other procedures like lawsuits and recounts exist to check or challenge election outcomes, but those typically cannot commence until certification occurs. If officials fail to meet those deadlines or exclude a subset of votes, courts could order them to certify, as they have done in the past. But <a href="https://www.propublica.org/article/georgia-election-board-vote-certification">experts have warned</a> that, in a worst-case scenario, the transition of power could be thrown into chaos.</p>
         
     
                     
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="12.0">“These ads make it seem as if there's only one way for election officials to show that they're on the ball, and that is to delay or refuse to certify an election. And just simply put, that is not their role,” said Sarah Gonski, an Arizona elections attorney and senior policy adviser for the Institute for Responsive Government, a think tank working on election issues. “What this is, is political propaganda that’s dressed up in a fancy legal costume.”</p>
+<p data-pp-blocktype="copy" data-pp-id="13.0">“These ads make it seem as if there's only one way for election officials to show that they're on the ball, and that is to delay or refuse to certify an election. And just simply put, that is not their role,” said Sarah Gonski, an Arizona elections attorney and senior policy adviser for the Institute for Responsive Government, a think tank working on election issues. “What this is, is political propaganda that’s dressed up in a fancy legal costume.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">The activities of Follow the Law, which have not been previously reported, represent a broader push by those aligned with Trump to leverage the mechanics of elections to their advantage. The combination of those strategies, including <a href="https://www.propublica.org/article/poll-worker-recruitment-swing-states-true-the-vote-lion-of-judah">recruiting poll workers</a> and <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-included-americans">removing people from voting rolls</a>, could matter in an election that might be determined by a small number of votes.   </p>
+<p data-pp-blocktype="copy" data-pp-id="14.0">The activities of Follow the Law, which have not been previously reported, represent a broader push by those aligned with Trump to leverage the mechanics of elections to their advantage. The combination of those strategies, including <a href="https://www.propublica.org/article/poll-worker-recruitment-swing-states-true-the-vote-lion-of-judah">recruiting poll workers</a> and <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-included-americans">removing people from voting rolls</a>, could matter in an election that might be determined by a small number of votes.   </p>
 
-<p data-pp-blocktype="copy" data-pp-id="13.1">Since Trump lost the 2020 election, <a href="https://www.citizensforethics.org/reports-investigations/crew-investigations/election-certification-under-threat/">at least 35 election board members in various states,</a> who have been overwhelmingly Republican, have unsuccessfully tried to refuse to certify election results before being <a href="https://www.propublica.org/article/election-officials-refused-certify-results-few-held-accountable">compelled to certify by courts or being outvoted</a> by Democratic members. Last week, a county supervisor in Arizona <a href="https://www.azag.gov/press-release/attorney-general-mayes-announces-plea-deal-cochise-county-election-interference-case">pleaded guilty</a> to a misdemeanor for failing to perform election duties when she voted to delay certifying the 2022 election. And last month, the American Civil Liberties Union sued an election board member in Michigan after he said he might not certify the 2024 results. He ultimately <a href="https://www.democracydocket.com/wp-content/uploads/2024/09/2024-09-10-order.pdf">signed an affidavit</a> acknowledging his legal obligation to certify, and the ACLU dismissed its case. Experts have warned that more could refuse to certify the 2024 election if Trump loses.</p>
+<p data-pp-blocktype="copy" data-pp-id="14.1">Since Trump lost the 2020 election, <a href="https://www.citizensforethics.org/reports-investigations/crew-investigations/election-certification-under-threat/">at least 35 election board members in various states,</a> who have been overwhelmingly Republican, have unsuccessfully tried to refuse to certify election results before being <a href="https://www.propublica.org/article/election-officials-refused-certify-results-few-held-accountable">compelled to certify by courts or being outvoted</a> by Democratic members. Last week, a county supervisor in Arizona <a href="https://www.azag.gov/press-release/attorney-general-mayes-announces-plea-deal-cochise-county-election-interference-case">pleaded guilty</a> to a misdemeanor for failing to perform election duties when she voted to delay certifying the 2022 election. And last month, the American Civil Liberties Union sued an election board member in Michigan after he said he might not certify the 2024 results. He ultimately <a href="https://www.democracydocket.com/wp-content/uploads/2024/09/2024-09-10-order.pdf">signed an affidavit</a> acknowledging his legal obligation to certify, and the ACLU dismissed its case. Experts have warned that more could refuse to certify the 2024 election if Trump loses.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="14.0">Follow the Law bills itself as a “group of lawyers committed to ensuring elections are free, fair and represent the true votes of all American citizens.” It’s led by Melody Clarke, a longtime conservative activist with stints at Heritage Action, a conservative advocacy organization, and the Election Integrity Network, headed by a lawyer who helped Trump try to overturn the 2020 election results in Georgia.</p>
+<p data-pp-blocktype="copy" data-pp-id="15.0">Follow the Law bills itself as a “group of lawyers committed to ensuring elections are free, fair and represent the true votes of all American citizens.” It’s led by Melody Clarke, a longtime conservative activist with stints at Heritage Action, a conservative advocacy organization, and the Election Integrity Network, headed by a lawyer who helped Trump try to overturn the 2020 election results in Georgia.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="15.0">This summer, Clarke left a leadership position at EIN to join the Election Transparency Initiative, a group headed by <a href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">Ken Cuccinelli</a>, a former Trump administration official. The two groups work together, according to Cuccinelli and <a href="https://whoscounting.us/wp-content/uploads/2024/07/EIN-Booklet-2024-Edition.pdf">EIN’s 2024 handbook</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="16.0">This summer, Clarke left a leadership position at EIN to join the Election Transparency Initiative, a group headed by <a href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">Ken Cuccinelli</a>, a former Trump administration official. The two groups work together, according to Cuccinelli and <a href="https://whoscounting.us/wp-content/uploads/2024/07/EIN-Booklet-2024-Edition.pdf">EIN’s 2024 handbook</a>.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -466,51 +593,51 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="17.0">The banner ads that appeared in Georgia and Wisconsin outlets disclosed they were paid for by the American Principles Project Foundation. ETI is a subsidiary of a related nonprofit, the American Principles Project. Financial reports show that packaging magnate Richard Uihlein has contributed millions of dollars to the American Principles Project this year through a political action committee. Uihlein has funneled his fortune into supporting far-right candidates and election deniers, <a href="https://www.propublica.org/article/uline-uihlein-election-denial">as ProPublica has reported</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="18.0">The banner ads that appeared in Georgia and Wisconsin outlets disclosed they were paid for by the American Principles Project Foundation. ETI is a subsidiary of a related nonprofit, the American Principles Project. Financial reports show that packaging magnate Richard Uihlein has contributed millions of dollars to the American Principles Project this year through a political action committee. Uihlein has funneled his fortune into supporting far-right candidates and election deniers, <a href="https://www.propublica.org/article/uline-uihlein-election-denial">as ProPublica has reported</a>.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="18.0">Cuccinelli, Clarke and a lawyer for Uihlein did not respond to requests for comment or detailed lists of questions. Cuccinelli <a href="https://www.propublica.org/article/georgia-election-rule-violates-state-law-experts-say">previously defended to ProPublica</a> the legality of election officials exercising their discretion in certifying results. “The proposed rule will protect the foundational, one person-one vote principle underpinning our democratic elections and guard against certification of inaccurate or erroneous results,” <a href="https://electiontransparency.org/wp-content/uploads/sites/9/2024/08/ETI_183-1-12-.12_Comment_Support.pdf">Cuccinelli wrote in a letter</a> to Georgia’s State Election Board.</p>
+<p data-pp-blocktype="copy" data-pp-id="19.0">Cuccinelli, Clarke and a spokesperson for Uihlein did not respond to requests for comment or detailed lists of questions. Cuccinelli <a href="https://www.propublica.org/article/georgia-election-rule-violates-state-law-experts-say">previously defended to ProPublica</a> the legality of election officials exercising their discretion in certifying results. “The proposed rule will protect the foundational, one person-one vote principle underpinning our democratic elections and guard against certification of inaccurate or erroneous results,” <a href="https://electiontransparency.org/wp-content/uploads/sites/9/2024/08/ETI_183-1-12-.12_Comment_Support.pdf">Cuccinelli wrote in a letter</a> to Georgia’s State Election Board.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="19.0">The most recent ads appear to be an extension of a monthslong effort that started in Georgia to expand the discretion of county election officials ahead of the November contest.</p>
+<p data-pp-blocktype="copy" data-pp-id="20.0">The most recent ads appear to be an extension of a monthslong effort that started in Georgia to expand the discretion of county election officials ahead of the November contest.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="20.0">In August and September, Follow the Law bought ads as Georgia’s <a href="https://www.ajc.com/politics/georgia-election-board-votes-to-add-more-requirements-before-vote-certification/HWWL2ELWIJDZJF6OUWFTXIQKLQ/">election board passed controversial rules</a>, including one that <a href="https://www.ajc.com/politics/georgia-republicans-pursue-power-over-certifying-election-results/JXEH2QC43JCIBJ7QEPXOLSK5SY/">empowered county election board members to not certify votes</a> they found suspicious. As <a href="https://www.propublica.org/article/georgia-election-board-vote-certification">ProPublica has reported</a>, the rule was secretly pushed by the EIN, where <a href="https://virginiainstitute.org/staff-spotlight-melody-clarke-deputy-director-ein/">Clarke worked as deputy director</a>.</p>
+<p data-pp-blocktype="copy" data-pp-id="21.0">In August and September, Follow the Law bought ads as Georgia’s <a href="https://www.ajc.com/politics/georgia-election-board-votes-to-add-more-requirements-before-vote-certification/HWWL2ELWIJDZJF6OUWFTXIQKLQ/">election board passed controversial rules</a>, including one that <a href="https://www.ajc.com/politics/georgia-republicans-pursue-power-over-certifying-election-results/JXEH2QC43JCIBJ7QEPXOLSK5SY/">empowered county election board members to not certify votes</a> they found suspicious. As <a href="https://www.propublica.org/article/georgia-election-board-vote-certification">ProPublica has reported</a>, the rule was secretly pushed by the EIN, where <a href="https://virginiainstitute.org/staff-spotlight-melody-clarke-deputy-director-ein/">Clarke worked as deputy director</a>.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="21.0">Certification “is not a ministerial function,” Cuccinelli said at <a href="https://www.wabe.org/georgia-election-board-approves-another-rule-that-could-disrupt-certification/">the election board’s August meeting</a>. The law, he argued, “clearly implies that that board is intended and expected to use its judgment to determine, on very short time frames, what is the most proper outcome of the vote count.”</p>
+<p data-pp-blocktype="copy" data-pp-id="22.0">Certification “is not a ministerial function,” Cuccinelli said at <a href="https://www.wabe.org/georgia-election-board-approves-another-rule-that-could-disrupt-certification/">the election board’s August meeting</a>. The law, he argued, “clearly implies that that board is intended and expected to use its judgment to determine, on very short time frames, what is the most proper outcome of the vote count.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="22.0">However, a state <a href="https://www.propublica.org/article/georgia-election-results-certification-counting-votes">judge made clear in an October ruling</a> the dangers of giving county board members the power to conduct investigations and decide which votes are valid. If board members, who are often political appointees, were “free to play investigator, prosecutor, jury, and judge” and refuse to certify election results, “Georgia voters would be silenced,” he wrote, finding that this would be unconstitutional. <a href="https://www.wabe.org/appeals-court-in-georgia-wont-expedite-case-on-election-certification/">The case is on appeal</a> and will be heard after the election.</p>
+<p data-pp-blocktype="copy" data-pp-id="23.0">However, a state <a href="https://www.propublica.org/article/georgia-election-results-certification-counting-votes">judge made clear in an October ruling</a> the dangers of giving county board members the power to conduct investigations and decide which votes are valid. If board members, who are often political appointees, were “free to play investigator, prosecutor, jury, and judge” and refuse to certify election results, “Georgia voters would be silenced,” he wrote, finding that this would be unconstitutional. <a href="https://www.wabe.org/appeals-court-in-georgia-wont-expedite-case-on-election-certification/">The case is on appeal</a> and will be heard after the election.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="23.0">Despite that ruling, and another from a different judge also <a href="https://abcnews.go.com/US/wireStory/georgia-supreme-court-rejects-republican-attempt-quickly-reinstate-115043386">finding both certification rules unconstitutional</a>, Follow the Law’s website section for Georgia still asserts that a State Election Board rule “makes crystal clear” that county board members’ duty is “more than a simple ministerial task” without mentioning either ruling. The state Republican party has appealed the second ruling.</p>
+<p data-pp-blocktype="copy" data-pp-id="24.0">Despite that ruling, and another from a different judge also <a href="https://abcnews.go.com/US/wireStory/georgia-supreme-court-rejects-republican-attempt-quickly-reinstate-115043386">finding both certification rules unconstitutional</a>, Follow the Law’s website section for Georgia still asserts that a State Election Board rule “makes crystal clear” that county board members’ duty is “more than a simple ministerial task” without mentioning either ruling. The state Republican party has appealed the second ruling.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="24.0">In a Telegram channel created by a Fulton County, Georgia, commissioner, someone shared what they called a “dream checklist” for election officials this week that contains extensive “suggestions” for how they should fulfill their statutory duties. The unsigned 15-page document, which bears the same three icons that appear on Follow the Law’s website, concludes, “Resolve all discrepancies prior to certification.”  </p>
+<p data-pp-blocktype="copy" data-pp-id="25.0">In a Telegram channel created by a Fulton County, Georgia, commissioner, someone shared what they called a “dream checklist” for election officials this week that contains extensive “suggestions” for how they should fulfill their statutory duties. The unsigned 15-page document, which bears the same three icons that appear on Follow the Law’s website, concludes, “Resolve all discrepancies prior to certification.”  </p>
 
-<p data-pp-blocktype="copy" data-pp-id="24.1">On the same day the Georgia judge ruled that county board members can’t refuse to certify votes, Follow the Law began running ads in Pennsylvania and Wisconsin legal publications. The communications argued that certification is a discretionary step officials should take only after performing an investigation to ensure an election’s accuracy, largely continuing the line of argument that Cuccinelli pushed to Georgia’s election board and that the lawyers took before the judge. “Uphold your oath to only certify an accurate election,” said banner ads that ran in WisPolitics, a political news outlet. Another read: “No rubber stamps!” WisPolitics did not respond to requests for comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.1">On the same day the Georgia judge ruled that county board members can’t refuse to certify votes, Follow the Law began running ads in Pennsylvania and Wisconsin legal publications. The communications argued that certification is a discretionary step officials should take only after performing an investigation to ensure an election’s accuracy, largely continuing the line of argument that Cuccinelli pushed to Georgia’s election board and that the lawyers took before the judge. “Uphold your oath to only certify an accurate election,” said banner ads that ran in WisPolitics, a political news outlet. Another read: “No rubber stamps!” WisPolitics did not respond to requests for comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="25.0">In Pennsylvania, the ad claimed that “simply put, the role of election officials is not ‘ministerial’” and that election officials are by law “required to ensure (and investigate if necessary) that elections are free from ‘fraud, deceit, or abuse’ and that the results are accurate prior to certification.”  </p>
+<p data-pp-blocktype="copy" data-pp-id="26.0">In Pennsylvania, the ad claimed that “simply put, the role of election officials is not ‘ministerial’” and that election officials are by law “required to ensure (and investigate if necessary) that elections are free from ‘fraud, deceit, or abuse’ and that the results are accurate prior to certification.”  </p>
 
-<p data-pp-blocktype="copy" data-pp-id="25.1">Follow the Law has <a href="https://www.documentcloud.org/documents/25252050-follow-the-law-letter-to-eureka-county-nv-20241004">also directly contacted at least one county official in Eureka County, Nevada,</a> pointing him to the group’s website, according to a letter obtained by ProPublica and Wisconsin Watch.</p>
+<p data-pp-blocktype="copy" data-pp-id="26.1">Follow the Law has <a href="https://www.documentcloud.org/documents/25252050-follow-the-law-letter-to-eureka-county-nv-20241004">also directly contacted at least one county official in Eureka County, Nevada,</a> pointing him to the group’s website, according to a letter obtained by ProPublica and Wisconsin Watch.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="26.0">Follow the Law’s ads and website overstate officials’ roles beyond what statutes allow, state officials in Georgia, Arizona, Pennsylvania and Wisconsin said.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.0">Follow the Law’s ads and website overstate officials’ roles beyond what statutes allow, state officials in Georgia, Arizona, Pennsylvania and Wisconsin said.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="27.0">The group’s Wisconsin page reads: “Canvassers must first ensure that all votes are legally cast and can only certify results after verifying this.” But officials tasked with certifying elections are scorekeepers, not referees, said Edgar Lin, Wisconsin policy strategist and attorney for Protect Democracy, a nonprofit that works to protect the integrity of American elections. Lin and other experts said officials ensure the accuracy of an election’s basic arithmetic, for example, by checking that the number of ballots matches the number of voters, but they are not empowered to undertake deeper investigations.</p>
+<p data-pp-blocktype="copy" data-pp-id="28.0">The group’s Wisconsin page reads: “Canvassers must first ensure that all votes are legally cast and can only certify results after verifying this.” But officials tasked with certifying elections are scorekeepers, not referees, said Edgar Lin, Wisconsin policy strategist and attorney for Protect Democracy, a nonprofit that works to protect the integrity of American elections. Lin and other experts said officials ensure the accuracy of an election’s basic arithmetic, for example, by checking that the number of ballots matches the number of voters, but they are not empowered to undertake deeper investigations.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -519,15 +646,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="29.0">Gonski said that in addition to overstating certifiers’ responsibilities, Follow the Law’s messaging underplays the protections that already exist. “Our election system is chock-full of checks and balances,” Gonski said. “Thousands of individuals have roles to play, and all of them seamlessly work together using well-established procedures to ensure a safe, accurate and secure election. No single individual has unchecked power over any piece of the process."</p>
+<p data-pp-blocktype="copy" data-pp-id="30.0">Gonski said that in addition to overstating certifiers’ responsibilities, Follow the Law’s messaging underplays the protections that already exist. “Our election system is chock-full of checks and balances,” Gonski said. “Thousands of individuals have roles to play, and all of them seamlessly work together using well-established procedures to ensure a safe, accurate and secure election. No single individual has unchecked power over any piece of the process."</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="30.0">Ads in the Wisconsin Law Journal and the Legal Intelligencer in Pennsylvania also presented the findings of a poll that Follow the Law said was conducted by Rasmussen Reports, a company whose credibility the ad emphasizes. But Rasmussen Reports did not conduct the poll. It was conducted by Scott Rasmussen, who founded the polling company but has not worked there in over a decade.</p>
+<p data-pp-blocktype="copy" data-pp-id="31.0">Ads in the Wisconsin Law Journal and the Legal Intelligencer in Pennsylvania also presented the findings of a poll that Follow the Law said was conducted by Rasmussen Reports, a company whose credibility the ad emphasizes. But Rasmussen Reports did not conduct the poll. It was conducted by Scott Rasmussen, who founded the polling company but has not worked there in over a decade.</p>
         
     
                                   <aside
-    data-pp-id="31"
+    data-pp-id="32"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -554,10 +681,10 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
                             
-        <a href="https://www.propublica.org/article/gunmakers-owners-sensitive-personal-information-glock-remington-nssf" class="story-promo section-articles" >
+        <a href="https://www.propublica.org/article/del-rio-texas-immigration-local-politics" class="story-promo section-articles" >
 
             
-                                                                                                                                
+                                
                                     
                     <div class="story-promo__art">
                         <img
@@ -567,13 +694,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                             width="75"
                             height="75"
                             data-sizes="auto"
-                            data-srcset="https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=c46073c0c1065162609c38d482b1803e 75w, https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=faa06630e6c96568d893f790d2f8112a 150w, https://img.assets-d.propublica.org/v5/images/20241024-GunsInc-WongOpener-D-3.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=32b5011f1bf51640e40c0c0ed26ed02f 400w"
+                            data-srcset="https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=75&amp;q=70&amp;w=75&amp;s=22dca48be8d63f0faf18ebb9035ed827 75w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=150&amp;q=70&amp;w=150&amp;s=d298ddb188aacb98e20abdb521931ab1 150w, https://img.assets-d.propublica.org/v5/images/immigration-del-rio-PROMO.jpg?crop=focalpoint&amp;fit=crop&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=400&amp;q=70&amp;w=400&amp;s=76c746bec0d9b89e5e3498b6f51503e8 400w"
                             />
                     </div>
                 
             
             <div class="story-promo__info" dir="auto">
-                <strong class="story-promo__hed">Without Knowledge or Consent</strong>
+                <strong class="story-promo__hed">A Pro-Gun, Anti-Abortion Border Sheriff Appealed to Both Parties. Then He Was Painted as Soft on Immigration.</strong>
                             </div>
         </a>
 
@@ -582,23 +709,30 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="32.0">Both the company and pollster confirmed the misattribution but did not comment further. The Wisconsin Law Journal and ALM, which owns the Legal Intelligencer, declined to comment.</p>
+<p data-pp-blocktype="copy" data-pp-id="33.0">Both the company and pollster confirmed the misattribution but did not comment further. The Wisconsin Law Journal and ALM, which owns the Legal Intelligencer, declined to comment.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="33.0">Sam Liebert, a former election clerk and the Wisconsin director for All Voting is Local, said he wants the state’s attorney general to issue an unequivocal directive reminding election officials of their legal duty to certify.</p>
+<p data-pp-blocktype="copy" data-pp-id="34.0">Sam Liebert, a former election clerk and the Wisconsin director for All Voting is Local, said he wants the state’s attorney general to issue an unequivocal directive reminding election officials of their legal duty to certify.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="34.0">“Certifying elections is a mandatory, democratic duty of our election officials,” he said. “Each refusal to certify threatens to validate the broader election denier movement, while sowing disorder in our election administration processes.”</p>
+<p data-pp-blocktype="copy" data-pp-id="35.0">“Certifying elections is a mandatory, democratic duty of our election officials,” he said. “Each refusal to certify threatens to validate the broader election denier movement, while sowing disorder in our election administration processes.”</p>
         
     
                     <div class="article-body__bottom-notes" data-pp-location="bottom-note">
-                                    
+                    
+                <div class="article-body__note article-body__note--correction">
+            <span class="article-body__correction-label | wrap left size02 out02">Correction</span>
+            <p><strong>Oct. 31, 2024:</strong> This story originally misstated the profession of a representative for Richard Uihlein. The representative was a spokesperson, not a lawyer.</p>
+
+        </div>
+
+                
 
                                     
         <div class="article-body__note article-body__note--contributor-line" data-pp-location="bottom-note" >
-                        <p><em>Do you have any information about Follow the Law or other groups’ efforts to challenge election certification that we should know? Have you seen Follow the Law ads or outreach elsewhere? If so, please make a record of the ad and reach out to us. Phoebe Petrovic can be reached by email at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="27575742535548514e4467504e54444849544e49504653444f09485540">[email&#160;protected]</a> and by Signal at 608-571-3748. Doug Bock Clark can be reached at 678-243-0784 and <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ffbf0eaf8b1fcf3feedf4dfefedf0efeafdf3f6fcfeb1f0edf8">[email&#160;protected]</a>.</em></p>
+                        <p><em>Do you have any information about Follow the Law or other groups’ efforts to challenge election certification that we should know? Have you seen Follow the Law ads or outreach elsewhere? If so, please make a record of the ad and reach out to us. Phoebe Petrovic can be reached by email at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f7878792838598819e94b7809e84949899849e99809683949fd9988590">[email&#160;protected]</a> and by Signal at 608-571-3748. Doug Bock Clark can be reached at 678-243-0784 and <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21454e54460f424d40534a6151534e5154434d4842400f4e5346">[email&#160;protected]</a>.</em></p>
 
         </div>
 
@@ -619,7 +753,22 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     </ul>
     </div>
         
-            <div class="rich-byline-group">
+<div class="fundraising-letter-inline | hide-print">
+<h2 class="pp-module-title">Protect journalism that gets results</h2>
+
+    <div class="module-content">
+
+        <p>This story you’ve just finished was funded by our readers. We hope it inspires you to make a gift to ProPublica so that we can publish more investigations like this one that <strong>hold people in power to account and produce real change</strong>.</p>
+<p>ProPublica is a nonprofit newsroom that produces nonpartisan, evidence-based journalism to expose injustice, corruption and wrongdoing. We were founded in 2008 to fill a growing hole in journalism: Newsrooms are shrinking, and legacy funding models are failing. <strong>Deep-dive reporting like ours is slow and expensive, and investigative journalism is a luxury in many newsrooms today — but it remains as critical as ever to democracy and our civic life.</strong> Over 15 years (and seven Pulitzer Prizes) later, ProPublica has built one of the largest investigative newsrooms in the country. Our work has spurred reform through legislation, at the voting booth and inside our nation’s most important institutions. </p>
+<p>Your donation today will help us ensure that we can continue this critical work. From the climate crisis, to threats to our democracy, to ethics in our judiciary and much more, we are busier than ever covering stories you won’t see anywhere else. Make your gift of any amount today and join over 55,000 ProPublicans across the country, standing up for the power of independent journalism to produce real, lasting change. Thank you.</p>
+
+
+        <p><a class="btn btn-urgent" href="https://give.propublica.org/give/346423/#!/donation/checkout?c_src=PSN">Donate Now</a></p>
+
+    </div>
+
+</div><!-- end .fundraising-letter-inline -->
+        <div class="rich-byline-group">
 
 
 
@@ -641,7 +790,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#583c372d3f763a373b33763b34392a3318282a37282d3a34313b3976372a3f">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#bfdbd0cad891ddd0dcd491dcd3decdd4ffcfcdd0cfcaddd3d6dcde91d0cdd8">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -649,7 +798,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="7a1e150f1d54181519115419161b08113a0a08150a0f181613191b5415081d">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="593d362c3e773b363a32773a35382b3219292b36292c3b35303a3877362b3e">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -711,6 +860,50 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     </strong>
 
     <ul class="topics-band-group | stack stack--row stack--spacing-gutter | scrollable-overflow scrollable-overflow--snap scrollable-overflow--full-below-xl">
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/nevada-voter-registration-election-management-system-concerns">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/AP24275007530360_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5271&amp;fp-y=0.3491&amp;h=267&amp;q=75&amp;w=400&amp;s=ccd3e9ad065d1a27ddd71993aafdc3e0 400w, https://img.assets-d.propublica.org/v5/images/AP24275007530360_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5271&amp;fp-y=0.3491&amp;h=533&amp;q=75&amp;w=800&amp;s=a62b12378102b382cd484632f9437c17 800w, https://img.assets-d.propublica.org/v5/images/AP24275007530360_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5271&amp;fp-y=0.3491&amp;h=800&amp;q=75&amp;w=1200&amp;s=4f23409f30ef3eee86d286f6dff20e5d 1200w, https://img.assets-d.propublica.org/v5/images/AP24275007530360_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5271&amp;fp-y=0.3491&amp;h=1067&amp;q=75&amp;w=1600&amp;s=c6476f6bc49a9f8493fd8b4761cea548 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/nevada-voter-registration-election-management-system-concerns">
+                                    Nevada Says It Worked Out the Kinks in Its New Voter System in Time for The Election, but Concerns Remain
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            After recent practice runs showed significant problems in transferring data accurately, the battleground state’s new centralized voter registration system will get its first real-world test in a major presidential election.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/anjeanette-damon">Anjeanette Damon</a> and <a class="name" href="https://www.propublica.org/people/nicole-santa-cruz">Nicole Santa Cruz</a>,             <time class="timestamp" datetime="2024-11-02EDT07:00">Nov. 2, 7 a.m. EDT</time>
+        </p>
+
+            </div>
+</div>
                     
 
 
@@ -932,50 +1125,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
             </div>
 </div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/ballot-drop-boxes-wisconsin-election-conspiracies-voting">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Ballot-Box-Wisconsin-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=05b55e697cd5736385e30281dc0e39ca 400w, https://img.assets-d.propublica.org/v5/images/Ballot-Box-Wisconsin-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2fd4e11e1a9aa85f81a3be58563178fe 800w, https://img.assets-d.propublica.org/v5/images/Ballot-Box-Wisconsin-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=d14406aee726db7afb9ce2fb0d652b2a 1200w, https://img.assets-d.propublica.org/v5/images/Ballot-Box-Wisconsin-Lead_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=619df0db9635ad832f9bec593973d904 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/ballot-drop-boxes-wisconsin-election-conspiracies-voting">
-                                    Battle Over Ballot Drop Boxes Rages On in Wisconsin as Officials Put Them at Center of Election Integrity Debate
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            After court rulings that first outlawed the boxes and then made them legal again, conspiracy theories continue to stir opposition that will result in heightened surveillance at sites this election. The hijacking of one box reflects the controversy.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/megan-omatz">Megan O’Matz</a>,             <time class="timestamp" datetime="2024-10-10EDT05:00">Oct. 10, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
             </ul>
 </div>
 
@@ -1001,11 +1150,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=08cd0c90c6d774c7a74c41229fc1a333 400w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=8a12ed4fc0b4708378970112eb457dc8 800w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=bab8ca5a8922bbea7742b40ed154099d 1200w, https://img.assets-d.propublica.org/v5/images/07302024-Flynn-Roth-029_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dd4412939ffef5d99941c777aba95cf4 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=28e01cbe3700edc2f5c18e07eaaa640a 400w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2d369781422f569adc567b93be051421 800w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=7e44d3df423a29f494b4a64b76c115b7 1200w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dc783315de6cd1aa52dfb81fcfd2812b 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1015,20 +1164,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/the-new-immigration">The New Immigration</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/florida-immigration-bill-farmers-rick-roth">
-                                    When a Florida Farmer-Legislator Turned Against Immigration, the Consequences Were Severe. But Not for Him.
+            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            For a lawmaker’s political career and his farm, a federal visa program was a lifeline. For a young father trying to meet his son’s mounting medical needs, that same lifeline failed him.
+                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/seth-freed-wessler">Seth Freed Wessler</a>, photography by <span class="name">Zaydee Sanchez</span> and <span class="name">Kathleen Flynn</span>, with additional reporting by <span class="name">Zaydee Sanchez</span>,             <time class="timestamp" datetime="2024-10-29EDT07:00">Oct. 29, 7 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1048,11 +1197,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/donald-trump-agenda-working-class">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=0561eae667fad7b97a0689f1053372bb 400w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=a683f92157cababadf9bc80258f9ba76 800w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=e79180d65f8450fc47d3ff508b433525 1200w, https://img.assets-d.propublica.org/v5/images/20241020-Villasana-TX-Voter-Rolls-16_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-10-28-180449_njbi.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2fedff3bcbca7e923faf316ddc8c0c99 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2178845933_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=fd3637d8a340d61de2f30388db6a5625 400w, https://img.assets-d.propublica.org/v5/images/GettyImages-2178845933_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=20f03fb8f85859a79d3bf549e0a0094e 800w, https://img.assets-d.propublica.org/v5/images/GettyImages-2178845933_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=a9c58ef9d2d80873900a69d2cd4509c1 1200w, https://img.assets-d.propublica.org/v5/images/GettyImages-2178845933_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dfcb951bc1c8badfe85ec0a8605c7009 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1064,17 +1213,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/texas-noncitizen-voter-roll-removal-mary-howard-elley">
-                                    She Supports Trump’s Anti-Immigration Policies. Texas Incorrectly Flagged Her as a “Noncitizen” on Its Voting Rolls.
+            <a href="https://www.propublica.org/article/donald-trump-agenda-working-class">
+                                    Trump Says He’ll Fight for Working-Class Americans. His First Presidency Suggests He Won’t.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Mary Howard-Elley is the 10th U.S. citizen identified by ProPublica, The Texas Tribune and Votebeat whose registration was canceled after her citizenship was questioned. Her saga shows how tough it can be for eligible voters to get reinstated.
+                            From cutting children&#039;s disability benefits to allowing employers to pocket workers&#039; tips, Trump tried to slash protections for the working poor in ways that have been forgotten by many.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/lexi-churchill">Lexi Churchill</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, <a class="name" href="https://www.texastribune.org/about/staff/james-barragan/">James Barragán</a>, <a href="https://www.texastribune.org/">The Texas Tribune</a>, <a class="name" href="https://www.propublica.org/people/vianna-davila">Vianna Davila</a>, <a href="https://www.propublica.org/texas">ProPublica and The Texas Tribune</a>, and <a class="name" href="https://www.votebeat.org/authors/natalia-contreras/">Natalia Contreras</a>, <a href="https://www.votebeat.org/">Votebeat</a>,             <time class="timestamp" datetime="2024-10-29EDT06:00">Oct. 29, 5 a.m. CDT</time>
+            by <a class="name" href="https://www.propublica.org/people/eli-hager">Eli Hager</a>,             <time class="timestamp" datetime="2024-11-02EDT05:00">Nov. 2, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1094,11 +1243,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/donald-trump-media-outsourced-jobs-mexico-truth-social">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=141407206f124c325515d6fa6f97f46b 105w, https://img.assets-d.propublica.org/v5/images/Trump-Trauma-Lead_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=b6f57390b700fb24250203f44f66f7a3 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/GettyImages-2180782205.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5246&amp;fp-y=0.5666&amp;h=105&amp;q=75&amp;w=105&amp;s=d841ed3887d7b53f9dfbff88d6a76511 105w, https://img.assets-d.propublica.org/v5/images/GettyImages-2180782205.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5246&amp;fp-y=0.5666&amp;h=210&amp;q=75&amp;w=210&amp;s=f6b01921b6889bc98b7852ce32f133c8 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1110,17 +1259,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/video-donald-trump-russ-vought-center-renewing-america-maga">
-                                    “Put Them in Trauma”: Inside a Key MAGA Leader’s Plans for a New Trump Agenda
+            <a href="https://www.propublica.org/article/donald-trump-media-outsourced-jobs-mexico-truth-social">
+                                    Trump Media Outsourced Jobs to Mexico Even as Trump Pushes “America First”
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Private videos reveal Trump adviser Russ Vought’s “shadow” plans for using the military on protesters, defunding the EPA and villainizing civil servants.
+                            On the campaign trail, Donald Trump threatened businesses that send jobs south of the border, while his own company that runs the Truth Social platform outsourced coding jobs to workers in Mexico, outraging some staff members.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/molly-redden">Molly Redden</a> and <a class="name" href="https://www.propublica.org/people/andy-kroll">Andy Kroll</a>, ProPublica, and <a class="name" href="https://documented.net/author/nick-surgey">Nick Surgey</a>, <a href="https://documented.net/">Documented</a>,             <time class="timestamp" datetime="2024-10-28EDT05:00">Oct. 28, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/robert-faturechi">Robert Faturechi</a>, <a class="name" href="https://www.propublica.org/people/justin-elliott">Justin Elliott</a> and <a class="name" href="https://www.propublica.org/people/alex-mierjeski">Alex Mierjeski</a>,             <time class="timestamp" datetime="2024-11-02EDT18:07">Nov. 2, 6:07 p.m. EDT</time>
         </p>
 
             </div>
@@ -1140,11 +1289,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=2f308666d26a8ce5e4b90e4aa5673611 105w, https://img.assets-d.propublica.org/v5/images/20241022-evicore-denials1x1a.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=fc108c215eb93c7895232f432b09da8f 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=105&amp;q=75&amp;w=105&amp;s=e21aafc838f0ba0c57dc7aed0bfe48c7 105w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=210&amp;q=75&amp;w=210&amp;s=b7b686b6d628b381af93e5ca76e1d50b 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1154,20 +1303,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/uncovered">Uncovered</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/evicore-health-insurance-denials-cigna-unitedhealthcare-aetna-prior-authorizations">
-                                    “Not Medically Necessary”: Inside the Company Helping America’s Biggest Health Insurers Deny Coverage for Care
+            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            When companies like Aetna or UnitedHealthcare want to rein in costs, they turn to EviCore, whose business model depends on turning down payments for care recommended by doctors for their patients.
+                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/t-christian-miller">T. Christian Miller</a>, ProPublica; <span class="name">Patrick Rucker</span>, <a href="https://thecapitolforum.com/">The Capitol Forum</a>;  and <a class="name" href="https://www.propublica.org/people/david-armstrong">David Armstrong</a>, ProPublica,             <time class="timestamp" datetime="2024-10-23EDT13:30">Oct. 23, 1:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1182,12 +1331,16 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 <div class="story-card story-card--standard">
     
     
-                        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/what-to-do-if-you-change-your-mind-about-voting-by-mail">
+
+
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
                 <img
-                    alt="A mail in ballot adjacent to a woman voting in person wearing a surgical mask."
+                    alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-c3.propublica.org/images/articles/electionland-template-switch-to-in-person-voting-500-500.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=5e86fc51968cfde073e5145c64cde5a5 105w, https://img.assets-c3.propublica.org/images/articles/electionland-template-switch-to-in-person-voting-500-500.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=365e3c6a1728999f48d44a5cb2ca8bf6 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=498de054c6e614ffcad4849a294676dc 105w, https://img.assets-d.propublica.org/v5/images/abortion-deaths-amber-promo.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=392fc7dc8a1ad90acea66a1aecb96bd6 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1197,19 +1350,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/what-to-do-if-you-change-your-mind-about-voting-by-mail">
-                                    What to Do if You Change Your Mind About Voting by Mail
+            <a href="https://www.propublica.org/article/georgia-abortion-ban-amber-thurman-death">
+                                    Abortion Bans Have Delayed Emergency Medical Care. In Georgia, Experts Say This Mother’s Death Was Preventable.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Maybe you requested a mail ballot but changed your mind and want to vote in person. This is what you can do in every state if you’ve reconsidered how you want to cast your vote.
+                            At least two women in Georgia died after they couldn’t access legal abortions and timely medical care in their state, ProPublica has found. This is one of their stories.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/susie-armitage-2">Susie Armitage</a>,             <time class="timestamp" datetime="2020-10-26EDT14:30">Oct. 26, 2020, 2:30 p.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-09-16EDT05:00">Sept. 16, 5 a.m. EDT</time>
         </p>
 
             </div>
@@ -1339,13 +1493,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#432e26272a22312a242b37300333312c3336212f2a20226d2c3124"><span class="__cf_email__" data-cfemail="94f9f1f0fdf5e6fdf3fce0e7d4e4e6fbe4e1f6f8fdf7f5bafbe6f3">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#076a62636e66756e606f7374477775687772656b6e646629687560"><span class="__cf_email__" data-cfemail="19747c7d70786b707e716d6a59696b76696c7b75707a7837766b7e">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#d1bdb8b2b4bfa2b8bfb691a1a3bea1a4b3bdb8b2b0ffbea3b6"><span class="__cf_email__" data-cfemail="b8d4d1dbddd6cbd1d6dff8c8cad7c8cddad4d1dbd996d7cadf">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#b0dcd9d3d5dec3d9ded7f0c0c2dfc0c5d2dcd9d3d19edfc2d7"><span class="__cf_email__" data-cfemail="b7dbded4d2d9c4ded9d0f7c7c5d8c7c2d5dbded4d699d8c5d0">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1486,5 +1640,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Phoebe Petrovic","Doug Bock Clark"],"dateCreated":"2024-10-29T15:31:12-04:00","dateModified":"2024-10-29T16:58:36-04:00","datePublished":"2024-10-30T06:00:00-04:00","description":"The ads, which have been placed in swing states like Wisconsin and Pennsylvania, come from a new group with deep ties to activists who have challenged the legitimacy of recent elections.","headline":"Election Skeptics Target Voting Officials With Ads in Swing States","image":{"@type":"ImageObject","url":"https://img.assets-c3.propublica.org/images/articles/AP24296680616413-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=0affc66681ddaa2ebeaf0920cdb6cd38"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania","name":"Election Skeptics Target Voting Officials With Ads in Swing States","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-c3.propublica.org/images/articles/AP24296680616413-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=0affc66681ddaa2ebeaf0920cdb6cd38","url":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania","name":"Election Skeptics Are Targeting Voting Officials With Ads That Suggest They Don’t Have to Certify Results","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Phoebe Petrovic","Doug Bock Clark"],"dateCreated":"2024-10-29T15:31:12-04:00","dateModified":"2024-10-31T12:43:42-04:00","datePublished":"2024-10-30T06:00:00-04:00","description":"The ads, which have been placed in swing states like Wisconsin and Pennsylvania, come from a new group with deep ties to activists who have challenged the legitimacy of recent elections.","headline":"Election Skeptics Target Voting Officials With Ads in Swing States","image":{"@type":"ImageObject","url":"https://img.assets-c3.propublica.org/images/articles/AP24296680616413-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=0affc66681ddaa2ebeaf0920cdb6cd38"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania","name":"Election Skeptics Target Voting Officials With Ads in Swing States","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-c3.propublica.org/images/articles/AP24296680616413-OG_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_951.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssets&q=90&w=1200&s=0affc66681ddaa2ebeaf0920cdb6cd38","url":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/2024-election-certification-ads-georgia-wisconsin-pennsylvania","name":"Election Skeptics Are Targeting Voting Officials With Ads That Suggest They Don’t Have to Certify Results","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
