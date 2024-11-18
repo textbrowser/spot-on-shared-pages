@@ -61,7 +61,7 @@ function rafEvent(type,name,obj){obj=obj||win;var running=false;var func=functio
 //
 // 2. Listener that triggers when breakpoint condition changes
 //    aboveBreakpoint("lg").addEventListener("change", function () { console.log("Mobile/Desktop breakpoint changed."); });
-const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=breakpoints;function aboveBreakpoint(value){return window.matchMedia(`(min-width: ${PP.utils.breakpoints[value]}em)`)}function belowBreakpoint(value){return window.matchMedia(`(max-width: ${PP.utils.breakpoints[value]}em)`)}PP.utils.aboveBreakpoint=aboveBreakpoint;PP.utils.belowBreakpoint=belowBreakpoint})(this);;(function(){var undefined;var VERSION="4.17.5";var FUNC_ERROR_TEXT="Expected a function";var NAN=0/0;var nullTag="[object Null]",symbolTag="[object Symbol]",undefinedTag="[object Undefined]";var reTrim=/^\s+|\s+$/g;var reIsBadHex=/^[-+]0x[0-9a-f]+$/i;var reIsBinary=/^0b[01]+$/i;var reIsOctal=/^0o[0-7]+$/i;var freeParseInt=parseInt;var freeGlobal=typeof global=="object"&&global&&global.Object===Object&&global;var freeSelf=typeof self=="object"&&self&&self.Object===Object&&self;var root=freeGlobal||freeSelf||Function("return this")();var freeExports=typeof exports=="object"&&exports&&!exports.nodeType&&exports;var freeModule=freeExports&&typeof module=="object"&&module&&!module.nodeType&&module;var objectProto=Object.prototype;var hasOwnProperty=objectProto.hasOwnProperty;var nativeObjectToString=objectProto.toString;var Symbol=root.Symbol,symToStringTag=Symbol?Symbol.toStringTag:undefined;var nativeMax=Math.max,nativeMin=Math.min;var realNames={};function lodash(){}function baseGetTag(value){if(value==null){return value===undefined?undefinedTag:nullTag}return symToStringTag&&symToStringTag in Object(value)?getRawTag(value):objectToString(value)}function getRawTag(value){var isOwn=hasOwnProperty.call(value,symToStringTag),tag=value[symToStringTag];try{value[symToStringTag]=undefined;var unmasked=true}catch(e){}var result=nativeObjectToString.call(value);if(unmasked){if(isOwn){value[symToStringTag]=tag}else{delete value[symToStringTag]}}return result}function objectToString(value){return nativeObjectToString.call(value)}var now=function(){return root.Date.now()};function debounce(func,wait,options){var lastArgs,lastThis,maxWait,result,timerId,lastCallTime,lastInvokeTime=0,leading=false,maxing=false,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}wait=toNumber(wait)||0;if(isObject(options)){leading=!!options.leading;maxing="maxWait"in options;maxWait=maxing?nativeMax(toNumber(options.maxWait)||0,wait):maxWait;trailing="trailing"in options?!!options.trailing:trailing}function invokeFunc(time){var args=lastArgs,thisArg=lastThis;lastArgs=lastThis=undefined;lastInvokeTime=time;result=func.apply(thisArg,args);return result}function leadingEdge(time){lastInvokeTime=time;timerId=setTimeout(timerExpired,wait);return leading?invokeFunc(time):result}function remainingWait(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime,timeWaiting=wait-timeSinceLastCall;return maxing?nativeMin(timeWaiting,maxWait-timeSinceLastInvoke):timeWaiting}function shouldInvoke(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime;return lastCallTime===undefined||timeSinceLastCall>=wait||timeSinceLastCall<0||maxing&&timeSinceLastInvoke>=maxWait}function timerExpired(){var time=now();if(shouldInvoke(time)){return trailingEdge(time)}timerId=setTimeout(timerExpired,remainingWait(time))}function trailingEdge(time){timerId=undefined;if(trailing&&lastArgs){return invokeFunc(time)}lastArgs=lastThis=undefined;return result}function cancel(){if(timerId!==undefined){clearTimeout(timerId)}lastInvokeTime=0;lastArgs=lastCallTime=lastThis=timerId=undefined}function flush(){return timerId===undefined?result:trailingEdge(now())}function debounced(){var time=now(),isInvoking=shouldInvoke(time);lastArgs=arguments;lastThis=this;lastCallTime=time;if(isInvoking){if(timerId===undefined){return leadingEdge(lastCallTime)}if(maxing){timerId=setTimeout(timerExpired,wait);return invokeFunc(lastCallTime)}}if(timerId===undefined){timerId=setTimeout(timerExpired,wait)}return result}debounced.cancel=cancel;debounced.flush=flush;return debounced}function throttle(func,wait,options){var leading=true,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}if(isObject(options)){leading="leading"in options?!!options.leading:leading;trailing="trailing"in options?!!options.trailing:trailing}return debounce(func,wait,{leading:leading,maxWait:wait,trailing:trailing})}function isObject(value){var type=typeof value;return value!=null&&(type=="object"||type=="function")}function isObjectLike(value){return value!=null&&typeof value=="object"}function isSymbol(value){return typeof value=="symbol"||isObjectLike(value)&&baseGetTag(value)==symbolTag}function toNumber(value){if(typeof value=="number"){return value}if(isSymbol(value)){return NAN}if(isObject(value)){var other=typeof value.valueOf=="function"?value.valueOf():value;value=isObject(other)?other+"":other}if(typeof value!="string"){return value===0?value:+value}value=value.replace(reTrim,"");var isBinary=reIsBinary.test(value);return isBinary||reIsOctal.test(value)?freeParseInt(value.slice(2),isBinary?2:8):reIsBadHex.test(value)?NAN:+value}lodash.debounce=debounce;lodash.throttle=throttle;lodash.isObject=isObject;lodash.isObjectLike=isObjectLike;lodash.isSymbol=isSymbol;lodash.now=now;lodash.toNumber=toNumber;lodash.VERSION=VERSION;if(typeof define=="function"&&typeof define.amd=="object"&&define.amd){root._=lodash;define(function(){return lodash})}else if(freeModule){(freeModule.exports=lodash)._=lodash;freeExports._=lodash}else{root._=lodash}}).call(this);;/* eslint-disable */ /*! lazysizes - v5.3.0 */!function(e){const t=function(u,D,f){let k;let H;if(function(){let e;const t={lazyClass:"lazyload",loadedClass:"lazyloaded",loadingClass:"lazyloading",preloadClass:"lazypreload",errorClass:"lazyerror",autosizesClass:"lazyautosizes",fastLoadedClass:"ls-is-cached",iframeLoadMode:0,srcAttr:"data-src",srcsetAttr:"data-srcset",sizesAttr:"data-sizes",minSize:40,customMedia:{},init:true,expFactor:1.5,hFac:0.8,loadMode:2,loadHidden:true,ricTimeout:0,throttleDelay:125};H=u.lazySizesConfig||u.lazysizesConfig||{};for(e in t){if(!(e in H)){H[e]=t[e]}}}(),!D||!D.getElementsByClassName){return{init(){},cfg:H,noSupport:true}}const O=D.documentElement;const i=u.HTMLPictureElement;const P="addEventListener";const $="getAttribute";const q=u[P].bind(u);const I=u.setTimeout;const U=u.requestAnimationFrame||I;const o=u.requestIdleCallback;const j=/^picture$/i;const r=["load","error","lazyincluded","_lazyloaded"];const a={};const G=Array.prototype.forEach;const J=function(e,t){if(!a[t]){a[t]=new RegExp(`(\\s|^)${t}(\\s|$)`)}return a[t].test(e[$]("class")||"")&&a[t]};const K=function(e,t){if(!J(e,t)){e.setAttribute("class",`${(e[$]("class")||"").trim()} ${t}`)}};const Q=function(e,t){let a;if(a=J(e,t)){e.setAttribute("class",(e[$]("class")||"").replace(a," "))}};var V=function(t,a,e){const i=e?P:"removeEventListener";if(e){V(t,a)}r.forEach(function(e){t[i](e,a)})};const X=function(e,t,a,i,r){const n=D.createEvent("Event");if(!a){a={}}a.instance=k;n.initEvent(t,!i,!r);n.detail=a;e.dispatchEvent(n);return n};const Y=function(e,t){let a;if(!i&&(a=u.picturefill||H.pf)){if(t&&t.src&&!e[$]("srcset")){e.setAttribute("srcset",t.src)}a({reevaluate:true,elements:[e]})}else if(t&&t.src){e.src=t.src}};const Z=function(e,t){return(getComputedStyle(e,null)||{})[t]};const s=function(e,t,a){a=a||e.offsetWidth;while(a<H.minSize&&t&&!e._lazysizesWidth){a=t.offsetWidth;t=t.parentNode}return a};const ee=function(){let a;let i;const t=[];const r=[];let n=t;const s=function(){const e=n;n=t.length?r:t;a=true;i=false;while(e.length){e.shift()()}a=false};const e=function(e,t){if(a&&!t){e.apply(this,arguments)}else{n.push(e);if(!i){i=true;(D.hidden?I:U)(s)}}};e._lsFlush=s;return e}();const te=function(a,e){return e?function(){ee(a)}:function(){const e=this;const t=arguments;ee(function(){a.apply(e,t)})}};const ae=function(e){let a;let i=0;const r=H.throttleDelay;let n=H.ricTimeout;const t=function(){a=false;i=f.now();e()};const s=o&&n>49?function(){o(t,{timeout:n});if(n!==H.ricTimeout){n=H.ricTimeout}}:te(function(){I(t)},true);return function(e){let t;if(e=e===true){n=33}if(a){return}a=true;t=r-(f.now()-i);if(t<0){t=0}if(e||t<9){s()}else{I(s,t)}}};const ie=function(e){let t;let a;const i=99;const r=function(){t=null;e()};var n=function(){const e=f.now()-a;if(e<i){I(n,i-e)}else{(o||r)(r)}};return function(){a=f.now();if(!t){t=I(n,i)}}};const e=function(){let v;let m;let c;let h;let e;let y;let z;let g;let p;let C;let b;let A;const n=/^img$/i;const d=/^iframe$/i;const E="onscroll"in u&&!/(gle|ing)bot/.test(navigator.userAgent);const _=0;let w=0;let M=0;let N=-1;const L=function(e){M--;if(!e||M<0||!e.target){M=0}};const x=function(e){if(A==null){A=Z(D.body,"visibility")=="hidden"}return A||!(Z(e.parentNode,"visibility")=="hidden"&&Z(e,"visibility")=="hidden")};const W=function(e,t){let a;let i=e;let r=x(e);g-=t;b+=t;p-=t;C+=t;while(r&&(i=i.offsetParent)&&i!=D.body&&i!=O){r=(Z(i,"opacity")||1)>0;if(r&&Z(i,"overflow")!="visible"){a=i.getBoundingClientRect();r=C>a.left&&p<a.right&&b>a.top-1&&g<a.bottom+1}}return r};const t=function(){let e;let t;let a;let i;let r;let n;let s;let o;let l;let u;let f;let c;const d=k.elements;if((h=H.loadMode)&&M<8&&(e=d.length)){t=0;N++;for(;t<e;t++){if(!d[t]||d[t]._lazyRace){continue}if(!E||k.prematureUnveil&&k.prematureUnveil(d[t])){R(d[t]);continue}if(!(o=d[t][$]("data-expand"))||!(n=o*1)){n=w}if(!u){u=!H.expand||H.expand<1?O.clientHeight>500&&O.clientWidth>500?500:370:H.expand;k._defEx=u;f=u*H.expFactor;c=H.hFac;A=null;if(w<f&&M<1&&N>2&&h>2&&!D.hidden){w=f;N=0}else if(h>1&&N>1&&M<6){w=u}else{w=_}}if(l!==n){y=innerWidth+n*c;z=innerHeight+n;s=n*-1;l=n}a=d[t].getBoundingClientRect();if((b=a.bottom)>=s&&(g=a.top)<=z&&(C=a.right)>=s*c&&(p=a.left)<=y&&(b||C||p||g)&&(H.loadHidden||x(d[t]))&&(m&&M<3&&!o&&(h<3||N<4)||W(d[t],n))){R(d[t]);r=true;if(M>9){break}}else if(!r&&m&&!i&&M<4&&N<4&&h>2&&(v[0]||H.preloadAfterLoad)&&(v[0]||!o&&(b||C||p||g||d[t][$](H.sizesAttr)!="auto"))){i=v[0]||d[t]}}if(i&&!r){R(i)}}};const a=ae(t);const S=function(e){const t=e.target;if(t._lazyCache){delete t._lazyCache;return}L(e);K(t,H.loadedClass);Q(t,H.loadingClass);V(t,B);X(t,"lazyloaded")};const i=te(S);var B=function(e){i({target:e.target})};const T=function(e,t){const a=e.getAttribute("data-load-mode")||H.iframeLoadMode;if(a==0){e.contentWindow.location.replace(t)}else if(a==1){e.src=t}};const F=function(e){let t;const a=e[$](H.srcsetAttr);if(t=H.customMedia[e[$]("data-media")||e[$]("media")]){e.setAttribute("media",t)}if(a){e.setAttribute("srcset",a)}};const s=te(function(t,e,a,i,r){let n;let s;let o;let l;let u;let f;if(!(u=X(t,"lazybeforeunveil",e)).defaultPrevented){if(i){if(a){K(t,H.autosizesClass)}else{t.setAttribute("sizes",i)}}s=t[$](H.srcsetAttr);n=t[$](H.srcAttr);if(r){o=t.parentNode;l=o&&j.test(o.nodeName||"")}f=e.firesLoad||"src"in t&&(s||n||l);u={target:t};K(t,H.loadingClass);if(f){clearTimeout(c);c=I(L,2500);V(t,B,true)}if(l){G.call(o.getElementsByTagName("source"),F)}if(s){t.setAttribute("srcset",s)}else if(n&&!l){if(d.test(t.nodeName)){T(t,n)}else{t.src=n}}if(r&&(s||l)){Y(t,{src:n})}}if(t._lazyRace){delete t._lazyRace}Q(t,H.lazyClass);ee(function(){const e=t.complete&&t.naturalWidth>1;if(!f||e){if(e){K(t,H.fastLoadedClass)}S(u);t._lazyCache=true;I(function(){if("_lazyCache"in t){delete t._lazyCache}},9)}if(t.loading=="lazy"){M--}},true)});var R=function(e){if(e._lazyRace){return}let t;const a=n.test(e.nodeName);const i=a&&(e[$](H.sizesAttr)||e[$]("sizes"));const r=i=="auto";if((r||!m)&&a&&(e[$]("src")||e.srcset)&&!e.complete&&!J(e,H.errorClass)&&J(e,H.lazyClass)){return}t=X(e,"lazyunveilread").detail;if(r){re.updateElem(e,true,e.offsetWidth)}e._lazyRace=true;M++;s(e,t,r,i,a)};const r=ie(function(){H.loadMode=3;a()});const o=function(){if(H.loadMode==3){H.loadMode=2}r()};var l=function(){if(m){return}if(f.now()-e<999){I(l,999);return}m=true;H.loadMode=3;a();q("scroll",o,true)};return{_(){e=f.now();k.elements=D.getElementsByClassName(H.lazyClass);v=D.getElementsByClassName(`${H.lazyClass} ${H.preloadClass}`);q("scroll",a,true);q("resize",a,true);q("pageshow",function(e){if(e.persisted){const t=D.querySelectorAll(`.${H.loadingClass}`);if(t.length&&t.forEach){U(function(){t.forEach(function(e){if(e.complete){R(e)}})})}}});if(u.MutationObserver){new MutationObserver(a).observe(O,{childList:true,subtree:true,attributes:true})}else{O[P]("DOMNodeInserted",a,true);O[P]("DOMAttrModified",a,true);setInterval(a,999)}q("hashchange",a,true);["focus","mouseover","click","load","transitionend","animationend"].forEach(function(e){D[P](e,a,true)});if(/d$|^c/.test(D.readyState)){l()}else{q("load",l);D[P]("DOMContentLoaded",a);I(l,2e4)}if(k.elements.length){t();ee._lsFlush()}else{a()}},checkElems:a,unveil:R,_aLSL:o}}();var re=function(){let a;const n=te(function(e,t,a,i){let r;let n;let s;e._lazysizesWidth=i;i+="px";e.setAttribute("sizes",i);if(j.test(t.nodeName||"")){r=t.getElementsByTagName("source");for(n=0,s=r.length;n<s;n++){r[n].setAttribute("sizes",i)}}if(!a.detail.dataAttr){Y(e,a.detail)}});const i=function(e,t,a){let i;const r=e.parentNode;if(r){a=s(e,r,a);i=X(e,"lazybeforesizes",{width:a,dataAttr:!!t});if(!i.defaultPrevented){a=i.detail.width;if(a&&a!==e._lazysizesWidth){n(e,r,i,a)}}}};const e=function(){let e;const t=a.length;if(t){e=0;for(;e<t;e++){i(a[e])}}};const t=ie(e);return{_(){a=D.getElementsByClassName(H.autosizesClass);q("resize",t)},checkElems:t,updateElem:i}}();var t=function(){if(!t.i&&D.getElementsByClassName){t.i=true;re._();e._()}};return I(function(){H.init&&t()}),k={cfg:H,autoSizer:re,loader:e,init:t,uP:Y,aC:K,rC:Q,hC:J,fire:X,gW:s,rAF:ee}}(e,e.document,Date);e.lazySizes=t,typeof module==="object"&&module.exports&&(module.exports=t)}(typeof window!=="undefined"?window:{});;/* eslint-disable */ /*! lazysizes - v5.3.2 */!function(e,t){var a=function(){t(e.lazySizes),e.removeEventListener("lazyunveilread",a,!0)};t=t.bind(null,e,e.document),"object"==typeof module&&module.exports?t(require("lazysizes")):"function"==typeof define&&define.amd?define(["lazysizes"],t):e.lazySizes?a():e.addEventListener("lazyunveilread",a,!0)}(window,function(e,i,o){"use strict";var l,d,u={};function s(e,t,a){var n,r;u[e]||(n=i.createElement(t?"link":"script"),r=i.getElementsByTagName("script")[0],t?(n.rel="stylesheet",n.href=e):(n.onload=function(){n.onerror=null,n.onload=null,a()},n.onerror=n.onload,n.src=e),u[e]=!0,u[n.src||n.href]=!0,r.parentNode.insertBefore(n,r))}i.addEventListener&&(l=function(e,t){var a=i.createElement("img");a.onload=function(){a.onload=null,a.onerror=null,a=null,t()},a.onerror=a.onload,a.src=e,a&&a.complete&&a.onload&&a.onload()},addEventListener("lazybeforeunveil",function(e){var t,a,n;if(e.detail.instance==o&&!e.defaultPrevented){var r=e.target;if("none"==r.preload&&(r.preload=r.getAttribute("data-preload")||"auto"),null!=r.getAttribute("data-autoplay"))if(r.getAttribute("data-expand")&&!r.autoplay)try{r.play()}catch(e){}else requestAnimationFrame(function(){r.setAttribute("data-expand","-10"),o.aC(r,o.cfg.lazyClass)});(t=r.getAttribute("data-link"))&&s(t,!0),(t=r.getAttribute("data-script"))&&(e.detail.firesLoad=!0,s(t,null,function(){e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(t=r.getAttribute("data-require"))&&(o.cfg.requireJs?o.cfg.requireJs([t]):s(t)),(a=r.getAttribute("data-bg"))&&(e.detail.firesLoad=!0,l(a,function(){r.style.backgroundImage="url("+(d.test(a)?JSON.stringify(a):a)+")",e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(n=r.getAttribute("data-poster"))&&(e.detail.firesLoad=!0,l(n,function(){r.poster=n,e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)}))}},!(d=/\(|\)|\s|'/)))});
+const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=breakpoints;function aboveBreakpoint(value){return window.matchMedia(`(min-width: ${PP.utils.breakpoints[value]}em)`)}function belowBreakpoint(value){return window.matchMedia(`(max-width: ${PP.utils.breakpoints[value]}em)`)}PP.utils.aboveBreakpoint=aboveBreakpoint;PP.utils.belowBreakpoint=belowBreakpoint})(this);;(function(){var undefined;var VERSION="4.17.5";var FUNC_ERROR_TEXT="Expected a function";var NAN=0/0;var nullTag="[object Null]",symbolTag="[object Symbol]",undefinedTag="[object Undefined]";var reTrim=/^\s+|\s+$/g;var reIsBadHex=/^[-+]0x[0-9a-f]+$/i;var reIsBinary=/^0b[01]+$/i;var reIsOctal=/^0o[0-7]+$/i;var freeParseInt=parseInt;var freeGlobal=typeof global=="object"&&global&&global.Object===Object&&global;var freeSelf=typeof self=="object"&&self&&self.Object===Object&&self;var root=freeGlobal||freeSelf||Function("return this")();var freeExports=typeof exports=="object"&&exports&&!exports.nodeType&&exports;var freeModule=freeExports&&typeof module=="object"&&module&&!module.nodeType&&module;var objectProto=Object.prototype;var hasOwnProperty=objectProto.hasOwnProperty;var nativeObjectToString=objectProto.toString;var Symbol=root.Symbol,symToStringTag=Symbol?Symbol.toStringTag:undefined;var nativeMax=Math.max,nativeMin=Math.min;var realNames={};function lodash(){}function baseGetTag(value){if(value==null){return value===undefined?undefinedTag:nullTag}return symToStringTag&&symToStringTag in Object(value)?getRawTag(value):objectToString(value)}function getRawTag(value){var isOwn=hasOwnProperty.call(value,symToStringTag),tag=value[symToStringTag];try{value[symToStringTag]=undefined;var unmasked=true}catch(e){}var result=nativeObjectToString.call(value);if(unmasked){if(isOwn){value[symToStringTag]=tag}else{delete value[symToStringTag]}}return result}function objectToString(value){return nativeObjectToString.call(value)}var now=function(){return root.Date.now()};function debounce(func,wait,options){var lastArgs,lastThis,maxWait,result,timerId,lastCallTime,lastInvokeTime=0,leading=false,maxing=false,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}wait=toNumber(wait)||0;if(isObject(options)){leading=!!options.leading;maxing="maxWait"in options;maxWait=maxing?nativeMax(toNumber(options.maxWait)||0,wait):maxWait;trailing="trailing"in options?!!options.trailing:trailing}function invokeFunc(time){var args=lastArgs,thisArg=lastThis;lastArgs=lastThis=undefined;lastInvokeTime=time;result=func.apply(thisArg,args);return result}function leadingEdge(time){lastInvokeTime=time;timerId=setTimeout(timerExpired,wait);return leading?invokeFunc(time):result}function remainingWait(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime,timeWaiting=wait-timeSinceLastCall;return maxing?nativeMin(timeWaiting,maxWait-timeSinceLastInvoke):timeWaiting}function shouldInvoke(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime;return lastCallTime===undefined||timeSinceLastCall>=wait||timeSinceLastCall<0||maxing&&timeSinceLastInvoke>=maxWait}function timerExpired(){var time=now();if(shouldInvoke(time)){return trailingEdge(time)}timerId=setTimeout(timerExpired,remainingWait(time))}function trailingEdge(time){timerId=undefined;if(trailing&&lastArgs){return invokeFunc(time)}lastArgs=lastThis=undefined;return result}function cancel(){if(timerId!==undefined){clearTimeout(timerId)}lastInvokeTime=0;lastArgs=lastCallTime=lastThis=timerId=undefined}function flush(){return timerId===undefined?result:trailingEdge(now())}function debounced(){var time=now(),isInvoking=shouldInvoke(time);lastArgs=arguments;lastThis=this;lastCallTime=time;if(isInvoking){if(timerId===undefined){return leadingEdge(lastCallTime)}if(maxing){timerId=setTimeout(timerExpired,wait);return invokeFunc(lastCallTime)}}if(timerId===undefined){timerId=setTimeout(timerExpired,wait)}return result}debounced.cancel=cancel;debounced.flush=flush;return debounced}function throttle(func,wait,options){var leading=true,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}if(isObject(options)){leading="leading"in options?!!options.leading:leading;trailing="trailing"in options?!!options.trailing:trailing}return debounce(func,wait,{leading:leading,maxWait:wait,trailing:trailing})}function isObject(value){var type=typeof value;return value!=null&&(type=="object"||type=="function")}function isObjectLike(value){return value!=null&&typeof value=="object"}function isSymbol(value){return typeof value=="symbol"||isObjectLike(value)&&baseGetTag(value)==symbolTag}function toNumber(value){if(typeof value=="number"){return value}if(isSymbol(value)){return NAN}if(isObject(value)){var other=typeof value.valueOf=="function"?value.valueOf():value;value=isObject(other)?other+"":other}if(typeof value!="string"){return value===0?value:+value}value=value.replace(reTrim,"");var isBinary=reIsBinary.test(value);return isBinary||reIsOctal.test(value)?freeParseInt(value.slice(2),isBinary?2:8):reIsBadHex.test(value)?NAN:+value}lodash.debounce=debounce;lodash.throttle=throttle;lodash.isObject=isObject;lodash.isObjectLike=isObjectLike;lodash.isSymbol=isSymbol;lodash.now=now;lodash.toNumber=toNumber;lodash.VERSION=VERSION;if(typeof define=="function"&&typeof define.amd=="object"&&define.amd){root._=lodash;define(function(){return lodash})}else if(freeModule){(freeModule.exports=lodash)._=lodash;freeExports._=lodash}else{root._=lodash}}).call(this);;/*! lazysizes - v5.3.2 */!function(e){var t=function(u,D,f){"use strict";var k,H;if(function(){var e;var t={lazyClass:"lazyload",loadedClass:"lazyloaded",loadingClass:"lazyloading",preloadClass:"lazypreload",errorClass:"lazyerror",autosizesClass:"lazyautosizes",fastLoadedClass:"ls-is-cached",iframeLoadMode:0,srcAttr:"data-src",srcsetAttr:"data-srcset",sizesAttr:"data-sizes",minSize:40,customMedia:{},init:true,expFactor:1.5,hFac:.8,loadMode:2,loadHidden:true,ricTimeout:0,throttleDelay:125};H=u.lazySizesConfig||u.lazysizesConfig||{};for(e in t){if(!(e in H)){H[e]=t[e]}}}(),!D||!D.getElementsByClassName){return{init:function(){},cfg:H,noSupport:true}}var O=D.documentElement,i=u.HTMLPictureElement,P="addEventListener",$="getAttribute",q=u[P].bind(u),I=u.setTimeout,U=u.requestAnimationFrame||I,o=u.requestIdleCallback,j=/^picture$/i,r=["load","error","lazyincluded","_lazyloaded"],a={},G=Array.prototype.forEach,J=function(e,t){if(!a[t]){a[t]=new RegExp("(\\s|^)"+t+"(\\s|$)")}return a[t].test(e[$]("class")||"")&&a[t]},K=function(e,t){if(!J(e,t)){e.setAttribute("class",(e[$]("class")||"").trim()+" "+t)}},Q=function(e,t){var a;if(a=J(e,t)){e.setAttribute("class",(e[$]("class")||"").replace(a," "))}},V=function(t,a,e){var i=e?P:"removeEventListener";if(e){V(t,a)}r.forEach(function(e){t[i](e,a)})},X=function(e,t,a,i,r){var n=D.createEvent("Event");if(!a){a={}}a.instance=k;n.initEvent(t,!i,!r);n.detail=a;e.dispatchEvent(n);return n},Y=function(e,t){var a;if(!i&&(a=u.picturefill||H.pf)){if(t&&t.src&&!e[$]("srcset")){e.setAttribute("srcset",t.src)}a({reevaluate:true,elements:[e]})}else if(t&&t.src){e.src=t.src}},Z=function(e,t){return(getComputedStyle(e,null)||{})[t]},s=function(e,t,a){a=a||e.offsetWidth;while(a<H.minSize&&t&&!e._lazysizesWidth){a=t.offsetWidth;t=t.parentNode}return a},ee=function(){var a,i;var t=[];var r=[];var n=t;var s=function(){var e=n;n=t.length?r:t;a=true;i=false;while(e.length){e.shift()()}a=false};var e=function(e,t){if(a&&!t){e.apply(this,arguments)}else{n.push(e);if(!i){i=true;(D.hidden?I:U)(s)}}};e._lsFlush=s;return e}(),te=function(a,e){return e?function(){ee(a)}:function(){var e=this;var t=arguments;ee(function(){a.apply(e,t)})}},ae=function(e){var a;var i=0;var r=H.throttleDelay;var n=H.ricTimeout;var t=function(){a=false;i=f.now();e()};var s=o&&n>49?function(){o(t,{timeout:n});if(n!==H.ricTimeout){n=H.ricTimeout}}:te(function(){I(t)},true);return function(e){var t;if(e=e===true){n=33}if(a){return}a=true;t=r-(f.now()-i);if(t<0){t=0}if(e||t<9){s()}else{I(s,t)}}},ie=function(e){var t,a;var i=99;var r=function(){t=null;e()};var n=function(){var e=f.now()-a;if(e<i){I(n,i-e)}else{(o||r)(r)}};return function(){a=f.now();if(!t){t=I(n,i)}}},e=function(){var v,m,c,h,e;var y,z,g,p,C,b,A;var n=/^img$/i;var d=/^iframe$/i;var E="onscroll"in u&&!/(gle|ing)bot/.test(navigator.userAgent);var _=0;var w=0;var M=0;var N=-1;var L=function(e){M--;if(!e||M<0||!e.target){M=0}};var x=function(e){if(A==null){A=Z(D.body,"visibility")=="hidden"}return A||!(Z(e.parentNode,"visibility")=="hidden"&&Z(e,"visibility")=="hidden")};var W=function(e,t){var a;var i=e;var r=x(e);g-=t;b+=t;p-=t;C+=t;while(r&&(i=i.offsetParent)&&i!=D.body&&i!=O){r=(Z(i,"opacity")||1)>0;if(r&&Z(i,"overflow")!="visible"){a=i.getBoundingClientRect();r=C>a.left&&p<a.right&&b>a.top-1&&g<a.bottom+1}}return r};var t=function(){var e,t,a,i,r,n,s,o,l,u,f,c;var d=k.elements;if((h=H.loadMode)&&M<8&&(e=d.length)){t=0;N++;for(;t<e;t++){if(!d[t]||d[t]._lazyRace){continue}if(!E||k.prematureUnveil&&k.prematureUnveil(d[t])){R(d[t]);continue}if(!(o=d[t][$]("data-expand"))||!(n=o*1)){n=w}if(!u){u=!H.expand||H.expand<1?O.clientHeight>500&&O.clientWidth>500?500:370:H.expand;k._defEx=u;f=u*H.expFactor;c=H.hFac;A=null;if(w<f&&M<1&&N>2&&h>2&&!D.hidden){w=f;N=0}else if(h>1&&N>1&&M<6){w=u}else{w=_}}if(l!==n){y=innerWidth+n*c;z=innerHeight+n;s=n*-1;l=n}a=d[t].getBoundingClientRect();if((b=a.bottom)>=s&&(g=a.top)<=z&&(C=a.right)>=s*c&&(p=a.left)<=y&&(b||C||p||g)&&(H.loadHidden||x(d[t]))&&(m&&M<3&&!o&&(h<3||N<4)||W(d[t],n))){R(d[t]);r=true;if(M>9){break}}else if(!r&&m&&!i&&M<4&&N<4&&h>2&&(v[0]||H.preloadAfterLoad)&&(v[0]||!o&&(b||C||p||g||d[t][$](H.sizesAttr)!="auto"))){i=v[0]||d[t]}}if(i&&!r){R(i)}}};var a=ae(t);var S=function(e){var t=e.target;if(t._lazyCache){delete t._lazyCache;return}L(e);K(t,H.loadedClass);Q(t,H.loadingClass);V(t,B);X(t,"lazyloaded")};var i=te(S);var B=function(e){i({target:e.target})};var T=function(e,t){var a=e.getAttribute("data-load-mode")||H.iframeLoadMode;if(a==0){e.contentWindow.location.replace(t)}else if(a==1){e.src=t}};var F=function(e){var t;var a=e[$](H.srcsetAttr);if(t=H.customMedia[e[$]("data-media")||e[$]("media")]){e.setAttribute("media",t)}if(a){e.setAttribute("srcset",a)}};var s=te(function(t,e,a,i,r){var n,s,o,l,u,f;if(!(u=X(t,"lazybeforeunveil",e)).defaultPrevented){if(i){if(a){K(t,H.autosizesClass)}else{t.setAttribute("sizes",i)}}s=t[$](H.srcsetAttr);n=t[$](H.srcAttr);if(r){o=t.parentNode;l=o&&j.test(o.nodeName||"")}f=e.firesLoad||"src"in t&&(s||n||l);u={target:t};K(t,H.loadingClass);if(f){clearTimeout(c);c=I(L,2500);V(t,B,true)}if(l){G.call(o.getElementsByTagName("source"),F)}if(s){t.setAttribute("srcset",s)}else if(n&&!l){if(d.test(t.nodeName)){T(t,n)}else{t.src=n}}if(r&&(s||l)){Y(t,{src:n})}}if(t._lazyRace){delete t._lazyRace}Q(t,H.lazyClass);ee(function(){var e=t.complete&&t.naturalWidth>1;if(!f||e){if(e){K(t,H.fastLoadedClass)}S(u);t._lazyCache=true;I(function(){if("_lazyCache"in t){delete t._lazyCache}},9)}if(t.loading=="lazy"){M--}},true)});var R=function(e){if(e._lazyRace){return}var t;var a=n.test(e.nodeName);var i=a&&(e[$](H.sizesAttr)||e[$]("sizes"));var r=i=="auto";if((r||!m)&&a&&(e[$]("src")||e.srcset)&&!e.complete&&!J(e,H.errorClass)&&J(e,H.lazyClass)){return}t=X(e,"lazyunveilread").detail;if(r){re.updateElem(e,true,e.offsetWidth)}e._lazyRace=true;M++;s(e,t,r,i,a)};var r=ie(function(){H.loadMode=3;a()});var o=function(){if(H.loadMode==3){H.loadMode=2}r()};var l=function(){if(m){return}if(f.now()-e<999){I(l,999);return}m=true;H.loadMode=3;a();q("scroll",o,true)};return{_:function(){e=f.now();k.elements=D.getElementsByClassName(H.lazyClass);v=D.getElementsByClassName(H.lazyClass+" "+H.preloadClass);q("scroll",a,true);q("resize",a,true);q("pageshow",function(e){if(e.persisted){var t=D.querySelectorAll("."+H.loadingClass);if(t.length&&t.forEach){U(function(){t.forEach(function(e){if(e.complete){R(e)}})})}}});if(u.MutationObserver){new MutationObserver(a).observe(O,{childList:true,subtree:true,attributes:true})}else{O[P]("DOMNodeInserted",a,true);O[P]("DOMAttrModified",a,true);setInterval(a,999)}q("hashchange",a,true);["focus","mouseover","click","load","transitionend","animationend"].forEach(function(e){D[P](e,a,true)});if(/d$|^c/.test(D.readyState)){l()}else{q("load",l);D[P]("DOMContentLoaded",a);I(l,2e4)}if(k.elements.length){t();ee._lsFlush()}else{a()}},checkElems:a,unveil:R,_aLSL:o}}(),re=function(){var a;var n=te(function(e,t,a,i){var r,n,s;e._lazysizesWidth=i;i+="px";e.setAttribute("sizes",i);if(j.test(t.nodeName||"")){r=t.getElementsByTagName("source");for(n=0,s=r.length;n<s;n++){r[n].setAttribute("sizes",i)}}if(!a.detail.dataAttr){Y(e,a.detail)}});var i=function(e,t,a){var i;var r=e.parentNode;if(r){a=s(e,r,a);i=X(e,"lazybeforesizes",{width:a,dataAttr:!!t});if(!i.defaultPrevented){a=i.detail.width;if(a&&a!==e._lazysizesWidth){n(e,r,i,a)}}}};var e=function(){var e;var t=a.length;if(t){e=0;for(;e<t;e++){i(a[e])}}};var t=ie(e);return{_:function(){a=D.getElementsByClassName(H.autosizesClass);q("resize",t)},checkElems:t,updateElem:i}}(),t=function(){if(!t.i&&D.getElementsByClassName){t.i=true;re._();e._()}};return I(function(){H.init&&t()}),k={cfg:H,autoSizer:re,loader:e,init:t,uP:Y,aC:K,rC:Q,hC:J,fire:X,gW:s,rAF:ee}}(e,e.document,Date);e.lazySizes=t,"object"==typeof module&&module.exports&&(module.exports=t)}("undefined"!=typeof window?window:{});;/*! lazysizes - v5.3.2 */!function(e,t){var a=function(){t(e.lazySizes),e.removeEventListener("lazyunveilread",a,!0)};t=t.bind(null,e,e.document),"object"==typeof module&&module.exports?t(require("lazysizes")):"function"==typeof define&&define.amd?define(["lazysizes"],t):e.lazySizes?a():e.addEventListener("lazyunveilread",a,!0)}(window,function(e,i,o){"use strict";var l,d,u={};function s(e,t,a){var n,r;u[e]||(n=i.createElement(t?"link":"script"),r=i.getElementsByTagName("script")[0],t?(n.rel="stylesheet",n.href=e):(n.onload=function(){n.onerror=null,n.onload=null,a()},n.onerror=n.onload,n.src=e),u[e]=!0,u[n.src||n.href]=!0,r.parentNode.insertBefore(n,r))}i.addEventListener&&(l=function(e,t){var a=i.createElement("img");a.onload=function(){a.onload=null,a.onerror=null,a=null,t()},a.onerror=a.onload,a.src=e,a&&a.complete&&a.onload&&a.onload()},addEventListener("lazybeforeunveil",function(e){var t,a,n;if(e.detail.instance==o&&!e.defaultPrevented){var r=e.target;if("none"==r.preload&&(r.preload=r.getAttribute("data-preload")||"auto"),null!=r.getAttribute("data-autoplay"))if(r.getAttribute("data-expand")&&!r.autoplay)try{r.play()}catch(e){}else requestAnimationFrame(function(){r.setAttribute("data-expand","-10"),o.aC(r,o.cfg.lazyClass)});(t=r.getAttribute("data-link"))&&s(t,!0),(t=r.getAttribute("data-script"))&&(e.detail.firesLoad=!0,s(t,null,function(){e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(t=r.getAttribute("data-require"))&&(o.cfg.requireJs?o.cfg.requireJs([t]):s(t)),(a=r.getAttribute("data-bg"))&&(e.detail.firesLoad=!0,l(a,function(){r.style.backgroundImage="url("+(d.test(a)?JSON.stringify(a):a)+")",e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(n=r.getAttribute("data-poster"))&&(e.detail.firesLoad=!0,l(n,function(){r.poster=n,e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)}))}},!(d=/\(|\)|\s|'/)))});
 //# sourceMappingURL=initial.js.map
 </script>
 
@@ -91,7 +91,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <link href="https://img.assets-d.propublica.org" rel="dns-prefetch">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.50c0b426.css">
+    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.973c44a6.css">
 
     <!-- OTHER -->
             
@@ -314,7 +314,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"A 13-Year-Old With Autism Was Arrested Under Tennessee’s School Threats Law","pageUrl":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="W7OFKmNLbG" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="q-tfYH2tYJ" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -398,23 +398,49 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
 
                     
-<p data-pp-blocktype="copy" data-pp-id="1.0">On the second day of school this year in Hamilton County, Tennessee, Ty picked out a purple bunny from hundreds of other plushies in his room. While his mom wasn’t looking, the 13-year-old snuck it into his backpack to show to his friends.</p>
+
+<figure
+    data-pp-id="1"
+    data-pp-blocktype="embed"
+    class="bb-embed size04 right out02 wide-sm wrap
+                hide-print
+        ">
+
+    
+
+
+                        <iframe class="lazyload" id="noa-web-audio-player" style="border: none" src="https://embed-player.newsoveraudio.com/v4?key=pp03n4&id=https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities&bgColor=2B3136&color=04AEE0&playColor=04AEE0&progressBgColor=E0E0E2&progressBorderColor=2B3136&titleColor=E0E0E2&timeColor=E0E0E2&speedColor=E0E0E2&noaLinkColor=E0E0E2&noaLinkHighlightColor=04AEE0" width="100%" height="110px"></iframe>
+            
+    
+<figcaption class="attribution">
+    
+    
+    
+    </figcaption>
+
+
+</figure>
+
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="2.0">It was the 10th anniversary of his favorite video game franchise, Five Nights at Freddy’s, and Bonnie the bunny is one of the stars. Ty has autism and Bonnie is his biggest comfort when he gets agitated or discouraged. No one other than Ty, not even his mom, is allowed to touch Bonnie.</p>
+<p data-pp-blocktype="copy" data-pp-id="2.0">On the second day of school this year in Hamilton County, Tennessee, Ty picked out a purple bunny from hundreds of other plushies in his room. While his mom wasn’t looking, the 13-year-old snuck it into his backpack to show to his friends.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="3.0">Ty was new to Ooltewah Middle School, located just east of Chattanooga. In class that morning, he told his teacher he didn’t want anyone to look in his backpack, worried they would confiscate his toy, according to Ty and his mom. When the teacher asked why, Ty responded, “Because the whole school will blow up,” he and his mom recalled.</p>
+<p data-pp-blocktype="copy" data-pp-id="3.0">It was the 10th anniversary of his favorite video game franchise, Five Nights at Freddy’s, and Bonnie the bunny is one of the stars. Ty has autism and Bonnie is his biggest comfort when he gets agitated or discouraged. No one other than Ty, not even his mom, is allowed to touch Bonnie.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="4.0">School officials acted quickly, Ty’s mom said: The teacher, who had only known Ty for one day, called a school administrator, who got the police involved. They brought Ty to the counselor’s office and found Bonnie in the backpack. As Ty stood there, he said, confused about what he had done wrong, the police handcuffed him and patted him down before placing him in the back of a police car.</p>
+<p data-pp-blocktype="copy" data-pp-id="4.0">Ty was new to Ooltewah Middle School, located just east of Chattanooga. In class that morning, he told his teacher he didn’t want anyone to look in his backpack, worried they would confiscate his toy, according to Ty and his mom. When the teacher asked why, Ty responded, “Because the whole school will blow up,” he and his mom recalled.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="6.0">“I think they thought an actual bomb was in my backpack,” Ty told ProPublica and WPLN. But he didn’t have a bomb. “It was just this, right here,” he said, holding Bonnie. “And they still took me to jail.”</p>
+<p data-pp-blocktype="copy" data-pp-id="5.0">School officials acted quickly, Ty’s mom said: The teacher, who had only known Ty for one day, called a school administrator, who got the police involved. They brought Ty to the counselor’s office and found Bonnie in the backpack. As Ty stood there, he said, confused about what he had done wrong, the police handcuffed him and patted him down before placing him in the back of a police car.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="7.0">“I think they thought an actual bomb was in my backpack,” Ty told ProPublica and WPLN. But he didn’t have a bomb. “It was just this, right here,” he said, holding Bonnie. “And they still took me to jail.”</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -423,11 +449,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="8.0">The sheriff’s department issued a press release about the incident stating that police checked the backpack and it was “found to not contain any explosive device.” ProPublica and WPLN are using a nickname for Ty at his mother’s request, to protect his identity because he’s a minor. The sheriff’s department didn’t respond to questions about Ty’s case. The Hamilton County School district, which includes Ty’s school, declined to respond, even though his mother signed a form giving officials permission to do so.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="9.0">Ty’s arrest was the result of a new state law requiring that anyone who makes a threat of mass violence at school be charged with a felony. The law does not require that the threat be credible. ProPublica and WPLN <a href="https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested">previously reported on an 11-year-old with autism</a> who denied making a threat in class and was later arrested at a birthday party by a Hamilton County sheriff’s deputy.</p>
+<p data-pp-blocktype="copy" data-pp-id="9.0">The sheriff’s department issued a press release about the incident stating that police checked the backpack and it was “found to not contain any explosive device.” ProPublica and WPLN are using a nickname for Ty at his mother’s request, to protect his identity because he’s a minor. The sheriff’s department didn’t respond to questions about Ty’s case. The Hamilton County School district, which includes Ty’s school, declined to respond, even though his mother signed a form giving officials permission to do so.</p>
         
     
                     
@@ -511,19 +533,23 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                 
     
                     
-<p data-pp-blocktype="copy" data-pp-id="11.0">Advocates had warned Tennessee lawmakers during this year’s legislative session that the law would be particularly harmful for students prone to frequent outbursts or disruptive behavior as a result of a disability.</p>
+<p data-pp-blocktype="copy" data-pp-id="11.0">Ty’s arrest was the result of a new state law requiring that anyone who makes a threat of mass violence at school be charged with a felony. The law does not require that the threat be credible. ProPublica and WPLN <a href="https://www.propublica.org/article/tennessee-school-threat-law-kids-arrested">previously reported on an 11-year-old with autism</a> who denied making a threat in class and was later arrested at a birthday party by a Hamilton County sheriff’s deputy.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="12.0">Lawmakers did include an exception for people with intellectual disabilities. And according to Ty’s mom and a school district psychological report, Ty has an intellectual disability as defined by Tennessee statute, in addition to autism. But the family’s lawyer said there is no evidence that law enforcement took that into consideration — or even checked to see if Ty had a disability — before handcuffing and arresting him.</p>
+<p data-pp-blocktype="copy" data-pp-id="12.0">Advocates had warned Tennessee lawmakers during this year’s legislative session that the law would be particularly harmful for students prone to frequent outbursts or disruptive behavior as a result of a disability.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="13.0">The law doesn’t state how police should determine whether kids have intellectual disabilities before charging them. Rep. Cameron Sexton, the Tennessee House speaker and Republican co-sponsor of the law, said Ty’s case shows that “there may need to be more training and resources” for school officials and law enforcement.</p>
+<p data-pp-blocktype="copy" data-pp-id="13.0">Lawmakers did include an exception for people with intellectual disabilities. And according to Ty’s mom and a school district psychological report, Ty has an intellectual disability as defined by Tennessee statute, in addition to autism. But the family’s lawyer said there is no evidence that law enforcement took that into consideration — or even checked to see if Ty had a disability — before handcuffing and arresting him.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="14.0">Rep. Bo Mitchell, a Nashville Democrat who co-sponsored the law, said he hoped the exception for kids with intellectual disabilities would be enough to keep students like Ty from being arrested. “No one passed that law in order for a child with any type of disability to be charged,” he said.</p>
+<p data-pp-blocktype="copy" data-pp-id="14.0">The law doesn’t state how police should determine whether kids have intellectual disabilities before charging them. Rep. Cameron Sexton, the Tennessee House speaker and Republican co-sponsor of the law, said Ty’s case shows that “there may need to be more training and resources” for school officials and law enforcement.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="15.0">Rep. Bo Mitchell, a Nashville Democrat who co-sponsored the law, said he hoped the exception for kids with intellectual disabilities would be enough to keep students like Ty from being arrested. “No one passed that law in order for a child with any type of disability to be charged,” he said.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -532,65 +558,65 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="16.0">But he said the law was still necessary to help prevent hoax threats that disrupt learning and terrify students. “I don’t know whose level of trauma is going to be the greatest: the kids in the classroom wondering if there’s an active shooter roaming their halls or a kid that didn’t know better and says something like that and gets arrested,” Mitchell said. “It’s a no-win situation.”</p>
+<p data-pp-blocktype="copy" data-pp-id="17.0">But he said the law was still necessary to help prevent hoax threats that disrupt learning and terrify students. “I don’t know whose level of trauma is going to be the greatest: the kids in the classroom wondering if there’s an active shooter roaming their halls or a kid that didn’t know better and says something like that and gets arrested,” Mitchell said. “It’s a no-win situation.”</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="17.0">The state does not collect information about how the felony law, which went into effect in July, has applied to kids with disabilities like Ty. Data from Hamilton County provides a limited glimpse. In the first six weeks of the school year, 18 kids were arrested for making threats of mass violence. A third of them have disabilities, more than double the proportion of students with disabilities across the district.</p>
-        
-    
-                    
-<hr>
-<p data-pp-blocktype="copy" data-pp-id="18.0">Before the academic year began, Ty’s mom sent an email to school officials asking for their help to make her son’s transition to eighth grade as smooth as possible.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="19.0">Ty’s specialized education plan states that he is social and friendly with other students but regularly has outbursts and meltdowns in class due to his disability. He struggles to regulate his feelings when asked to follow classroom guidelines and to understand social situations and boundaries.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="20.0">Federal law prohibits his school from punishing him harshly for those behaviors, since they are caused by or related to his disability. But Ty’s principal later told his mom in an email that Tennessee’s threats of mass violence law requires school officials to report the incident to police.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="21.0">When Ty’s mom got the phone call that her son was going to be arrested, she said it was her worst fear come true: Her son’s autism was mistaken for a threat. “Once you looked at his backpack, if there was nothing in there to hurt anyone, then why did you handcuff my 13-year-old autistic son who didn’t understand what was going on and take him down to juvenile?” she said.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="22.0">Disability rights advocates said kids like Ty should not be getting arrested under the current law. And they tried to push for a broader exception for kids with other kinds of disabilities.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="23.0">In a meeting with Mitchell before the law passed, Zoe Jamail, the policy coordinator for Disability Rights Tennessee, explained that the legislation could harm kids with disabilities who struggle with communication and behavior — such as those with some developmental disabilities — but aren’t diagnosed with an intellectual disability. She proposed language that Mitchell and other sponsors could include in the law, to ensure children with disabilities were not improperly arrested.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="24.0">“No student who makes a threat that is determined to be a manifestation of the student’s disability shall be charged under this section,” one version of the amendment read.</p>
-
-<p data-pp-blocktype="copy" data-pp-id="24.1">The amendment was never taken up for a vote in the state legislature. Lawmakers passed the narrower version instead.</p>
-
-<p data-pp-blocktype="copy" data-pp-id="24.2">“I think it demonstrates a lack of understanding of disability,” Jamail said.</p>
-        
-    
-                    
-<p data-pp-blocktype="copy" data-pp-id="25.0">Sexton, the Republican House speaker, said kids with disabilities were capable of carrying out acts of mass violence and should be punished under the law. “I think you can make a lot of excuses for a lot of people,” he said.</p>
+<p data-pp-blocktype="copy" data-pp-id="18.0">The state does not collect information about how the felony law, which went into effect in July, has applied to kids with disabilities like Ty. Data from Hamilton County provides a limited glimpse. In the first six weeks of the school year, 18 kids were arrested for making threats of mass violence. A third of them have disabilities, more than double the proportion of students with disabilities across the district.</p>
         
     
                     
 <hr>
-<p data-pp-blocktype="copy" data-pp-id="26.0">Ty still doesn’t fully grasp what happened to him, and why.</p>
+<p data-pp-blocktype="copy" data-pp-id="19.0">Before the academic year began, Ty’s mom sent an email to school officials asking for their help to make her son’s transition to eighth grade as smooth as possible.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="20.0">Ty’s specialized education plan states that he is social and friendly with other students but regularly has outbursts and meltdowns in class due to his disability. He struggles to regulate his feelings when asked to follow classroom guidelines and to understand social situations and boundaries.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="21.0">Federal law prohibits his school from punishing him harshly for those behaviors, since they are caused by or related to his disability. But Ty’s principal later told his mom in an email that Tennessee’s threats of mass violence law requires school officials to report the incident to police.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="22.0">When Ty’s mom got the phone call that her son was going to be arrested, she said it was her worst fear come true: Her son’s autism was mistaken for a threat. “Once you looked at his backpack, if there was nothing in there to hurt anyone, then why did you handcuff my 13-year-old autistic son who didn’t understand what was going on and take him down to juvenile?” she said.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="23.0">Disability rights advocates said kids like Ty should not be getting arrested under the current law. And they tried to push for a broader exception for kids with other kinds of disabilities.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="24.0">In a meeting with Mitchell before the law passed, Zoe Jamail, the policy coordinator for Disability Rights Tennessee, explained that the legislation could harm kids with disabilities who struggle with communication and behavior — such as those with some developmental disabilities — but aren’t diagnosed with an intellectual disability. She proposed language that Mitchell and other sponsors could include in the law, to ensure children with disabilities were not improperly arrested.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="25.0">“No student who makes a threat that is determined to be a manifestation of the student’s disability shall be charged under this section,” one version of the amendment read.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.1">On a recent morning in October, Ty turned the stuffed bunny toward his mom and asked, “Is he the reason why I can’t bring plushies anymore?”</p>
+<p data-pp-blocktype="copy" data-pp-id="25.1">The amendment was never taken up for a vote in the state legislature. Lawmakers passed the narrower version instead.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.2">Ty’s mom told him the reason is because he didn’t ask first. “You can’t just sneak stuff out of the house,” she said.</p>
+<p data-pp-blocktype="copy" data-pp-id="25.2">“I think it demonstrates a lack of understanding of disability,” Jamail said.</p>
+        
+    
+                    
+<p data-pp-blocktype="copy" data-pp-id="26.0">Sexton, the Republican House speaker, said kids with disabilities were capable of carrying out acts of mass violence and should be punished under the law. “I think you can make a lot of excuses for a lot of people,” he said.</p>
+        
+    
+                    
+<hr>
+<p data-pp-blocktype="copy" data-pp-id="27.0">Ty still doesn’t fully grasp what happened to him, and why.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.3">“Will I get in trouble for that?” he asked her.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.1">On a recent morning in October, Ty turned the stuffed bunny toward his mom and asked, “Is he the reason why I can’t bring plushies anymore?”</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.4">“Yeah, absolutely,” she said. “You want them to possibly think it’s another bomb and take you back down to kiddie jail?”</p>
+<p data-pp-blocktype="copy" data-pp-id="27.2">Ty’s mom told him the reason is because he didn’t ask first. “You can’t just sneak stuff out of the house,” she said.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.5">“No,” he said, emphatically.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.3">“Will I get in trouble for that?” he asked her.</p>
 
-<p data-pp-blocktype="copy" data-pp-id="26.6">After the incident, Ty’s middle school suspended him for a few days. His case was dismissed in juvenile court soon after.</p>
+<p data-pp-blocktype="copy" data-pp-id="27.4">“Yeah, absolutely,” she said. “You want them to possibly think it’s another bomb and take you back down to kiddie jail?”</p>
+
+<p data-pp-blocktype="copy" data-pp-id="27.5">“No,” he said, emphatically.</p>
+
+<p data-pp-blocktype="copy" data-pp-id="27.6">After the incident, Ty’s middle school suspended him for a few days. His case was dismissed in juvenile court soon after.</p>
         
     
                         <aside class="bb-ad full | hide-print">
@@ -599,15 +625,15 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="28.0">The principal told Ty’s mom in an email that if Ty said something similar again, the school would follow the same protocol. She decided to transfer him out of Ooltewah Middle School as soon as she could.</p>
+<p data-pp-blocktype="copy" data-pp-id="29.0">The principal told Ty’s mom in an email that if Ty said something similar again, the school would follow the same protocol. She decided to transfer him out of Ooltewah Middle School as soon as she could.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="29.0">“Whenever we go past that school, Ty’s like: ‘Am I going back to jail, mom? Are you taking me back over there?’ He’s for real traumatized,” she said. “I felt like nobody at that school was really fighting for him. They were too busy trying to justify what they did.”</p>
+<p data-pp-blocktype="copy" data-pp-id="30.0">“Whenever we go past that school, Ty’s like: ‘Am I going back to jail, mom? Are you taking me back over there?’ He’s for real traumatized,” she said. “I felt like nobody at that school was really fighting for him. They were too busy trying to justify what they did.”</p>
         
     
                                   <aside
-    data-pp-id="30"
+    data-pp-id="31"
     data-pp-blocktype="promo"
     data-pp-location="story promo"
     dir="ltr"
@@ -662,18 +688,18 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="31.0">Mitchell, the Democratic representative, said he was “heartbroken” to hear that Ty was handcuffed and traumatized. But, he added, “we’re trying to stop the people who should know better from doing this, and if they do it, they should have more than a slap on the wrist.” He said he would be open to considering a carve-out in the law in the upcoming legislative session for kids with a broader range of disabilities.</p>
+<p data-pp-blocktype="copy" data-pp-id="32.0">Mitchell, the Democratic representative, said he was “heartbroken” to hear that Ty was handcuffed and traumatized. But, he added, “we’re trying to stop the people who should know better from doing this, and if they do it, they should have more than a slap on the wrist.” He said he would be open to considering a carve-out in the law in the upcoming legislative session for kids with a broader range of disabilities.</p>
         
     
                     
-<p data-pp-blocktype="copy" data-pp-id="32.0">But, he said, he believes that the law as it stands is making all children in Tennessee, with or without disabilities, safer.</p>
+<p data-pp-blocktype="copy" data-pp-id="33.0">But, he said, he believes that the law as it stands is making all children in Tennessee, with or without disabilities, safer.</p>
         
     
                     
     
     
     <figure
-        data-pp-id="33"
+        data-pp-id="34"
         data-pp-blocktype="callout"
         data-pp-location="callout"
         callout-slug="help-propublica-report-on-education"
@@ -736,7 +762,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#ddbcb1b4a4a4bcf3aeaabcbfa49dadafb2ada8bfb1b4bebcf3b2afba">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#7c1d101505051d520f0b1d1e053c0c0e130c091e10151f1d52130e1b">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -744,7 +770,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="90f1fcf9e9e9f1bee3e7f1f2e9d0e0e2ffe0e5f2fcf9f3f1beffe2f7">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="2f4e434656564e015c584e4d566f5f5d405f5a4d43464c4e01405d48">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -1105,11 +1131,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=28e01cbe3700edc2f5c18e07eaaa640a 400w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2d369781422f569adc567b93be051421 800w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=7e44d3df423a29f494b4a64b76c115b7 1200w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dc783315de6cd1aa52dfb81fcfd2812b 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=344cb63ec8f658ce9041ed720e90a151 400w, https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=0fc7942e1de32d37dee5940c0a539eac 800w, https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=4979552de210639b9dd2905dda5594a6 1200w, https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=f5efe1499d334e679982d24256d9493f 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1119,20 +1145,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/crackdown-on-student-threats">Crackdown on Student Threats</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
-                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
+            <a href="https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities">
+                                    A 13-Year-Old With Autism Got Arrested After His Backpack Sparked Fear. Only His Stuffed Bunny Was Inside.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
+                            Disability rights advocates said kids like Ty should not be getting arrested under Tennessee’s school threats law. And they tried to push for a broader exception for kids with other kinds of disabilities. It didn’t work.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/aliyya-swaby">Aliyya Swaby</a>, ProPublica, and <span class="name">Paige Pfleger</span>, WPLN/Nashville Public Radio,             <time class="timestamp" datetime="2024-11-13EST05:00">Nov. 13, 5 a.m. EST</time>
         </p>
 
             </div>
@@ -1195,11 +1221,104 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/microsoft-white-house-offer-cybersecurity-biden-nadella">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=105&amp;q=75&amp;w=105&amp;s=e21aafc838f0ba0c57dc7aed0bfe48c7 105w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=210&amp;q=75&amp;w=210&amp;s=b7b686b6d628b381af93e5ca76e1d50b 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/white-house-offer-illo-3x2-v3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4939&amp;fp-y=0.5207&amp;h=105&amp;q=75&amp;w=105&amp;s=7f1737a63edaa80180c0910ba40275be 105w, https://img.assets-d.propublica.org/v5/images/white-house-offer-illo-3x2-v3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4939&amp;fp-y=0.5207&amp;h=210&amp;q=75&amp;w=210&amp;s=ce26bb8a9f110e9350811a2dc471f700 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/zero-trust">Zero Trust</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/microsoft-white-house-offer-cybersecurity-biden-nadella">
+                                    Biden Asked Microsoft to “Raise the Bar on Cybersecurity.” He May Have Helped Create an Illegal Monopoly.
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            When the White House welcomed Microsoft’s offer of $150 million in tech services, it helped the world’s largest software provider tighten its grip on federal business and freeze out competitors.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/renee-dudley">Renee Dudley</a>, with research by <a class="name" href="https://www.propublica.org/people/doris-burke">Doris Burke</a>,             <time class="timestamp" datetime="2024-11-15EST06:00">Nov. 15, 6 a.m. EST</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/lincare-medicare-lawsuit-settlements-oxygen-equipment">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241015-Stumpf-BioOxygenLincare-047_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4877&amp;fp-y=0.3346&amp;h=105&amp;q=75&amp;w=105&amp;s=1fde017d4f4e1e8fdda648b4326589e1 105w, https://img.assets-d.propublica.org/v5/images/20241015-Stumpf-BioOxygenLincare-047_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4877&amp;fp-y=0.3346&amp;h=210&amp;q=75&amp;w=210&amp;s=a27f629b4836d3038f7015ca93087800 210w"
+                    width="105"
+                    height="105"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/lincare-medicare-lawsuit-settlements-oxygen-equipment">
+                                    How Lincare Became a Multibillion-Dollar Medicare Scofflaw
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            Lincare, the nation’s largest distributor of home oxygen equipment, has repeatedly violated Medicare rules and probation agreements, victimizing ailing patients and costing taxpayers huge sums. The federal government has done little to stop it.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/peter-elkind">Peter Elkind</a>,             <time class="timestamp" datetime="2024-11-13EST06:00">Nov. 13, 6 a.m. EST</time>
+        </p>
+
+            </div>
+</div>
+                            </div>
+                    <div class="most-read-story">
+                                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art thumbnail">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=8b89c0416a5ac46a70c27a8a181ab794 105w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=92a04cbcfedcb96b0c104e7421db056e 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1212,109 +1331,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                         <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
-                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
+            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
+                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/biden-logging-blm-oregon-climate">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240930-Nash-BidenLogging-064_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=48a551794f5e76557da3c6b630f22954 105w, https://img.assets-d.propublica.org/v5/images/20240930-Nash-BidenLogging-064_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=759388ccbeb0b51d0d18163d2a02065f 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/biden-logging-blm-oregon-climate">
-                                    Despite Biden’s Promise to Protect Old Forests, His Administration Keeps Approving Plans to Cut Them Down
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            In Oregon’s Coast Range, mature forests can absorb more carbon per acre than almost any other on the planet. Yet logging here continues at a steady pace, putting the environment at risk.
-                    </p>
-
-        <p class="story-card__byline">
-            by <span class="name">April Ehrlich</span>, <a href="https://www.opb.org/">Oregon Public Broadcasting</a>, <a class="name" href="https://www.propublica.org/people/mac-funk">McKenzie Funk</a>, ProPublica, and <span class="name">Tony Schick</span>, <a href="https://www.opb.org/">Oregon Public Broadcasting</a>,             <time class="timestamp" datetime="2024-11-12EST06:00">Nov. 12, 6 a.m. EST</time>
-        </p>
-
-            </div>
-</div>
-                            </div>
-                    <div class="most-read-story">
-                                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/idaho-coroners-baby-deaths">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241012-DiamondNBB_7701_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=de322c1b2d3bf95d3699bc0e6e205e7d 105w, https://img.assets-d.propublica.org/v5/images/20241012-DiamondNBB_7701_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=1c2cdc70aa5a18bc57b841bc3fc81945 210w"
-                    width="105"
-                    height="105"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/idaho-coroners-baby-deaths">
-                                    An Idaho Baby’s Unexplained Death Got No Autopsy and a Scant Coroner’s Investigation. State Law Says That’s Fine.
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            With a lack of regulation for coroners, a child who dies unexpectedly or outside of a doctor’s care in Idaho is less likely to be autopsied than anywhere else in the United States.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/audrey-dutton">Audrey Dutton</a>, photography by <span class="name">Natalie Behring</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-11-11EST06:00">Nov. 11, 6 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1444,13 +1471,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#84e9e1e0ede5f6ede3ecf0f7c4f4f6ebf4f1e6e8ede7e5aaebf6e3"><span class="__cf_email__" data-cfemail="e18c84858880938886899592a191938e9194838d888280cf8e9386">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#b4d9d1d0ddd5c6ddd3dcc0c7f4c4c6dbc4c1d6d8ddd7d59adbc6d3"><span class="__cf_email__" data-cfemail="9df0f8f9f4fceff4faf5e9eeddedeff2ede8fff1f4fefcb3f2effa">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#4c20252f29223f25222b0c3c3e233c392e20252f2d62233e2b"><span class="__cf_email__" data-cfemail="402c2923252e33292e270030322f3035222c2923216e2f3227">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#117d7872747f62787f765161637e6164737d7872703f7e6376"><span class="__cf_email__" data-cfemail="8de1e4eee8e3fee4e3eacdfdffe2fdf8efe1e4eeeca3e2ffea">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1484,7 +1511,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                          <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-rz6ji1" aria-hidden="true"><button id="cta-close" class="cta-close svelte-rz6ji1" data-svelte-h="svelte-12f7hfy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-rz6ji1"><div class="cta-message svelte-rz6ji1"><h2 class="cta-heading svelte-rz6ji1">undefined</h2> <p class="cta-text svelte-rz6ji1">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-rz6ji1" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-rz6ji1"></div> <button id="cta-toast-button" class="cta-toast-button svelte-rz6ji1" data-svelte-h="svelte-8kx5h6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
                         <!--svelte-component-end-->
                         
-    <script src="https://assets.propublica.org/static/prod/v5/js/main.4c2e026a.js"></script>
+    <script src="https://assets.propublica.org/static/prod/v5/js/main.c62ea0b8.js"></script>
 
             <script>
         // Google Tag Manager
@@ -1591,5 +1618,5 @@ Iterate('identify', null, {
 <!-- End Iterate Code -->
 
     
-<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","articleSection":"Crackdown on Student Threats","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Aliyya Swaby","Paige Pfleger"],"dateCreated":"2024-11-12T14:16:59-05:00","dateModified":"2024-11-12T17:30:05-05:00","datePublished":"2024-11-13T05:00:00-05:00","description":"Disability rights advocates said kids like Ty should not be getting arrested under Tennessee’s school threats law. And they tried to push for a broader exception for kids with other kinds of disabilities. It didn’t work.","headline":"A 13-Year-Old With Autism Was Arrested Under Tennessee’s School Threats Law","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=bf4d4ff9776b2d5a7a8b299cba0fa1e5"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities","name":"A 13-Year-Old With Autism Was Arrested Under Tennessee’s School Threats Law","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=bf4d4ff9776b2d5a7a8b299cba0fa1e5","url":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities","name":"A 13-Year-Old With Autism Got Arrested After His Backpack Sparked Fear. Only His Stuffed Bunny Was Inside.","position":2}],"name":"Breadcrumbs"}]}</script></body>
+<script type="application/ld+json">{"@context":"http://schema.org","@graph":[{"@type":"NewsArticle","articleSection":"Crackdown on Student Threats","author":{"@id":"https://www.propublica.org#identity"},"copyrightHolder":{"@id":"https://www.propublica.org#identity"},"copyrightYear":"2024","creator":["Aliyya Swaby","Paige Pfleger"],"dateCreated":"2024-11-12T14:16:59-05:00","dateModified":"2024-11-13T10:00:48-05:00","datePublished":"2024-11-13T05:00:00-05:00","description":"Disability rights advocates said kids like Ty should not be getting arrested under Tennessee’s school threats law. And they tried to push for a broader exception for kids with other kinds of disabilities. It didn’t work.","headline":"A 13-Year-Old With Autism Was Arrested Under Tennessee’s School Threats Law","image":{"@type":"ImageObject","url":"https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=bf4d4ff9776b2d5a7a8b299cba0fa1e5"},"inLanguage":"en-us","mainEntityOfPage":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities","name":"A 13-Year-Old With Autism Was Arrested Under Tennessee’s School Threats Law","publisher":{"@id":"#creator"},"thumbnailUrl":"https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=630&imgixProfile=propublicaAssetsV5&q=90&w=1200&s=bf4d4ff9776b2d5a7a8b299cba0fa1e5","url":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities"},{"@id":"https://www.propublica.org#identity","@type":"NewsMediaOrganization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"New York","addressRegion":"NY","postalCode":"10013","streetAddress":"155 Avenue of the Americas, 13th Floor"},"description":"ProPublica is an independent, non-profit newsroom that produces investigative journalism in the public interest.","email":"info@propublica.org","name":"ProPublica","sameAs":["https://twitter.com/propublica","https://www.facebook.com/propublica/","https://en.wikipedia.org/wiki/ProPublica","https://www.youtube.com/user/propublica","https://github.com/propublica","https://www.linkedin.com/company/propublica/","https://www.instagram.com/propublica","https://www.pinterest.com/propublica","https://vimeo.com/propublica"],"telephone":"1-212-514-5250","url":"https://www.propublica.org"},{"@id":"#creator","@type":"Organization"},{"@type":"BreadcrumbList","description":"Breadcrumbs list","itemListElement":[{"@type":"ListItem","item":"https://www.propublica.org","name":"Homepage","position":1},{"@type":"ListItem","item":"https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities","name":"A 13-Year-Old With Autism Got Arrested After His Backpack Sparked Fear. Only His Stuffed Bunny Was Inside.","position":2}],"name":"Breadcrumbs"}]}</script></body>
 </html>
