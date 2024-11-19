@@ -57,7 +57,7 @@ function rafEvent(type,name,obj){obj=obj||win;var running=false;var func=functio
 //
 // 2. Listener that triggers when breakpoint condition changes
 //    aboveBreakpoint("lg").addEventListener("change", function () { console.log("Mobile/Desktop breakpoint changed."); });
-const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=breakpoints;function aboveBreakpoint(value){return window.matchMedia(`(min-width: ${PP.utils.breakpoints[value]}em)`)}function belowBreakpoint(value){return window.matchMedia(`(max-width: ${PP.utils.breakpoints[value]}em)`)}PP.utils.aboveBreakpoint=aboveBreakpoint;PP.utils.belowBreakpoint=belowBreakpoint})(this);;(function(){var undefined;var VERSION="4.17.5";var FUNC_ERROR_TEXT="Expected a function";var NAN=0/0;var nullTag="[object Null]",symbolTag="[object Symbol]",undefinedTag="[object Undefined]";var reTrim=/^\s+|\s+$/g;var reIsBadHex=/^[-+]0x[0-9a-f]+$/i;var reIsBinary=/^0b[01]+$/i;var reIsOctal=/^0o[0-7]+$/i;var freeParseInt=parseInt;var freeGlobal=typeof global=="object"&&global&&global.Object===Object&&global;var freeSelf=typeof self=="object"&&self&&self.Object===Object&&self;var root=freeGlobal||freeSelf||Function("return this")();var freeExports=typeof exports=="object"&&exports&&!exports.nodeType&&exports;var freeModule=freeExports&&typeof module=="object"&&module&&!module.nodeType&&module;var objectProto=Object.prototype;var hasOwnProperty=objectProto.hasOwnProperty;var nativeObjectToString=objectProto.toString;var Symbol=root.Symbol,symToStringTag=Symbol?Symbol.toStringTag:undefined;var nativeMax=Math.max,nativeMin=Math.min;var realNames={};function lodash(){}function baseGetTag(value){if(value==null){return value===undefined?undefinedTag:nullTag}return symToStringTag&&symToStringTag in Object(value)?getRawTag(value):objectToString(value)}function getRawTag(value){var isOwn=hasOwnProperty.call(value,symToStringTag),tag=value[symToStringTag];try{value[symToStringTag]=undefined;var unmasked=true}catch(e){}var result=nativeObjectToString.call(value);if(unmasked){if(isOwn){value[symToStringTag]=tag}else{delete value[symToStringTag]}}return result}function objectToString(value){return nativeObjectToString.call(value)}var now=function(){return root.Date.now()};function debounce(func,wait,options){var lastArgs,lastThis,maxWait,result,timerId,lastCallTime,lastInvokeTime=0,leading=false,maxing=false,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}wait=toNumber(wait)||0;if(isObject(options)){leading=!!options.leading;maxing="maxWait"in options;maxWait=maxing?nativeMax(toNumber(options.maxWait)||0,wait):maxWait;trailing="trailing"in options?!!options.trailing:trailing}function invokeFunc(time){var args=lastArgs,thisArg=lastThis;lastArgs=lastThis=undefined;lastInvokeTime=time;result=func.apply(thisArg,args);return result}function leadingEdge(time){lastInvokeTime=time;timerId=setTimeout(timerExpired,wait);return leading?invokeFunc(time):result}function remainingWait(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime,timeWaiting=wait-timeSinceLastCall;return maxing?nativeMin(timeWaiting,maxWait-timeSinceLastInvoke):timeWaiting}function shouldInvoke(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime;return lastCallTime===undefined||timeSinceLastCall>=wait||timeSinceLastCall<0||maxing&&timeSinceLastInvoke>=maxWait}function timerExpired(){var time=now();if(shouldInvoke(time)){return trailingEdge(time)}timerId=setTimeout(timerExpired,remainingWait(time))}function trailingEdge(time){timerId=undefined;if(trailing&&lastArgs){return invokeFunc(time)}lastArgs=lastThis=undefined;return result}function cancel(){if(timerId!==undefined){clearTimeout(timerId)}lastInvokeTime=0;lastArgs=lastCallTime=lastThis=timerId=undefined}function flush(){return timerId===undefined?result:trailingEdge(now())}function debounced(){var time=now(),isInvoking=shouldInvoke(time);lastArgs=arguments;lastThis=this;lastCallTime=time;if(isInvoking){if(timerId===undefined){return leadingEdge(lastCallTime)}if(maxing){timerId=setTimeout(timerExpired,wait);return invokeFunc(lastCallTime)}}if(timerId===undefined){timerId=setTimeout(timerExpired,wait)}return result}debounced.cancel=cancel;debounced.flush=flush;return debounced}function throttle(func,wait,options){var leading=true,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}if(isObject(options)){leading="leading"in options?!!options.leading:leading;trailing="trailing"in options?!!options.trailing:trailing}return debounce(func,wait,{leading:leading,maxWait:wait,trailing:trailing})}function isObject(value){var type=typeof value;return value!=null&&(type=="object"||type=="function")}function isObjectLike(value){return value!=null&&typeof value=="object"}function isSymbol(value){return typeof value=="symbol"||isObjectLike(value)&&baseGetTag(value)==symbolTag}function toNumber(value){if(typeof value=="number"){return value}if(isSymbol(value)){return NAN}if(isObject(value)){var other=typeof value.valueOf=="function"?value.valueOf():value;value=isObject(other)?other+"":other}if(typeof value!="string"){return value===0?value:+value}value=value.replace(reTrim,"");var isBinary=reIsBinary.test(value);return isBinary||reIsOctal.test(value)?freeParseInt(value.slice(2),isBinary?2:8):reIsBadHex.test(value)?NAN:+value}lodash.debounce=debounce;lodash.throttle=throttle;lodash.isObject=isObject;lodash.isObjectLike=isObjectLike;lodash.isSymbol=isSymbol;lodash.now=now;lodash.toNumber=toNumber;lodash.VERSION=VERSION;if(typeof define=="function"&&typeof define.amd=="object"&&define.amd){root._=lodash;define(function(){return lodash})}else if(freeModule){(freeModule.exports=lodash)._=lodash;freeExports._=lodash}else{root._=lodash}}).call(this);;/* eslint-disable */ /*! lazysizes - v5.3.0 */!function(e){const t=function(u,D,f){let k;let H;if(function(){let e;const t={lazyClass:"lazyload",loadedClass:"lazyloaded",loadingClass:"lazyloading",preloadClass:"lazypreload",errorClass:"lazyerror",autosizesClass:"lazyautosizes",fastLoadedClass:"ls-is-cached",iframeLoadMode:0,srcAttr:"data-src",srcsetAttr:"data-srcset",sizesAttr:"data-sizes",minSize:40,customMedia:{},init:true,expFactor:1.5,hFac:0.8,loadMode:2,loadHidden:true,ricTimeout:0,throttleDelay:125};H=u.lazySizesConfig||u.lazysizesConfig||{};for(e in t){if(!(e in H)){H[e]=t[e]}}}(),!D||!D.getElementsByClassName){return{init(){},cfg:H,noSupport:true}}const O=D.documentElement;const i=u.HTMLPictureElement;const P="addEventListener";const $="getAttribute";const q=u[P].bind(u);const I=u.setTimeout;const U=u.requestAnimationFrame||I;const o=u.requestIdleCallback;const j=/^picture$/i;const r=["load","error","lazyincluded","_lazyloaded"];const a={};const G=Array.prototype.forEach;const J=function(e,t){if(!a[t]){a[t]=new RegExp(`(\\s|^)${t}(\\s|$)`)}return a[t].test(e[$]("class")||"")&&a[t]};const K=function(e,t){if(!J(e,t)){e.setAttribute("class",`${(e[$]("class")||"").trim()} ${t}`)}};const Q=function(e,t){let a;if(a=J(e,t)){e.setAttribute("class",(e[$]("class")||"").replace(a," "))}};var V=function(t,a,e){const i=e?P:"removeEventListener";if(e){V(t,a)}r.forEach(function(e){t[i](e,a)})};const X=function(e,t,a,i,r){const n=D.createEvent("Event");if(!a){a={}}a.instance=k;n.initEvent(t,!i,!r);n.detail=a;e.dispatchEvent(n);return n};const Y=function(e,t){let a;if(!i&&(a=u.picturefill||H.pf)){if(t&&t.src&&!e[$]("srcset")){e.setAttribute("srcset",t.src)}a({reevaluate:true,elements:[e]})}else if(t&&t.src){e.src=t.src}};const Z=function(e,t){return(getComputedStyle(e,null)||{})[t]};const s=function(e,t,a){a=a||e.offsetWidth;while(a<H.minSize&&t&&!e._lazysizesWidth){a=t.offsetWidth;t=t.parentNode}return a};const ee=function(){let a;let i;const t=[];const r=[];let n=t;const s=function(){const e=n;n=t.length?r:t;a=true;i=false;while(e.length){e.shift()()}a=false};const e=function(e,t){if(a&&!t){e.apply(this,arguments)}else{n.push(e);if(!i){i=true;(D.hidden?I:U)(s)}}};e._lsFlush=s;return e}();const te=function(a,e){return e?function(){ee(a)}:function(){const e=this;const t=arguments;ee(function(){a.apply(e,t)})}};const ae=function(e){let a;let i=0;const r=H.throttleDelay;let n=H.ricTimeout;const t=function(){a=false;i=f.now();e()};const s=o&&n>49?function(){o(t,{timeout:n});if(n!==H.ricTimeout){n=H.ricTimeout}}:te(function(){I(t)},true);return function(e){let t;if(e=e===true){n=33}if(a){return}a=true;t=r-(f.now()-i);if(t<0){t=0}if(e||t<9){s()}else{I(s,t)}}};const ie=function(e){let t;let a;const i=99;const r=function(){t=null;e()};var n=function(){const e=f.now()-a;if(e<i){I(n,i-e)}else{(o||r)(r)}};return function(){a=f.now();if(!t){t=I(n,i)}}};const e=function(){let v;let m;let c;let h;let e;let y;let z;let g;let p;let C;let b;let A;const n=/^img$/i;const d=/^iframe$/i;const E="onscroll"in u&&!/(gle|ing)bot/.test(navigator.userAgent);const _=0;let w=0;let M=0;let N=-1;const L=function(e){M--;if(!e||M<0||!e.target){M=0}};const x=function(e){if(A==null){A=Z(D.body,"visibility")=="hidden"}return A||!(Z(e.parentNode,"visibility")=="hidden"&&Z(e,"visibility")=="hidden")};const W=function(e,t){let a;let i=e;let r=x(e);g-=t;b+=t;p-=t;C+=t;while(r&&(i=i.offsetParent)&&i!=D.body&&i!=O){r=(Z(i,"opacity")||1)>0;if(r&&Z(i,"overflow")!="visible"){a=i.getBoundingClientRect();r=C>a.left&&p<a.right&&b>a.top-1&&g<a.bottom+1}}return r};const t=function(){let e;let t;let a;let i;let r;let n;let s;let o;let l;let u;let f;let c;const d=k.elements;if((h=H.loadMode)&&M<8&&(e=d.length)){t=0;N++;for(;t<e;t++){if(!d[t]||d[t]._lazyRace){continue}if(!E||k.prematureUnveil&&k.prematureUnveil(d[t])){R(d[t]);continue}if(!(o=d[t][$]("data-expand"))||!(n=o*1)){n=w}if(!u){u=!H.expand||H.expand<1?O.clientHeight>500&&O.clientWidth>500?500:370:H.expand;k._defEx=u;f=u*H.expFactor;c=H.hFac;A=null;if(w<f&&M<1&&N>2&&h>2&&!D.hidden){w=f;N=0}else if(h>1&&N>1&&M<6){w=u}else{w=_}}if(l!==n){y=innerWidth+n*c;z=innerHeight+n;s=n*-1;l=n}a=d[t].getBoundingClientRect();if((b=a.bottom)>=s&&(g=a.top)<=z&&(C=a.right)>=s*c&&(p=a.left)<=y&&(b||C||p||g)&&(H.loadHidden||x(d[t]))&&(m&&M<3&&!o&&(h<3||N<4)||W(d[t],n))){R(d[t]);r=true;if(M>9){break}}else if(!r&&m&&!i&&M<4&&N<4&&h>2&&(v[0]||H.preloadAfterLoad)&&(v[0]||!o&&(b||C||p||g||d[t][$](H.sizesAttr)!="auto"))){i=v[0]||d[t]}}if(i&&!r){R(i)}}};const a=ae(t);const S=function(e){const t=e.target;if(t._lazyCache){delete t._lazyCache;return}L(e);K(t,H.loadedClass);Q(t,H.loadingClass);V(t,B);X(t,"lazyloaded")};const i=te(S);var B=function(e){i({target:e.target})};const T=function(e,t){const a=e.getAttribute("data-load-mode")||H.iframeLoadMode;if(a==0){e.contentWindow.location.replace(t)}else if(a==1){e.src=t}};const F=function(e){let t;const a=e[$](H.srcsetAttr);if(t=H.customMedia[e[$]("data-media")||e[$]("media")]){e.setAttribute("media",t)}if(a){e.setAttribute("srcset",a)}};const s=te(function(t,e,a,i,r){let n;let s;let o;let l;let u;let f;if(!(u=X(t,"lazybeforeunveil",e)).defaultPrevented){if(i){if(a){K(t,H.autosizesClass)}else{t.setAttribute("sizes",i)}}s=t[$](H.srcsetAttr);n=t[$](H.srcAttr);if(r){o=t.parentNode;l=o&&j.test(o.nodeName||"")}f=e.firesLoad||"src"in t&&(s||n||l);u={target:t};K(t,H.loadingClass);if(f){clearTimeout(c);c=I(L,2500);V(t,B,true)}if(l){G.call(o.getElementsByTagName("source"),F)}if(s){t.setAttribute("srcset",s)}else if(n&&!l){if(d.test(t.nodeName)){T(t,n)}else{t.src=n}}if(r&&(s||l)){Y(t,{src:n})}}if(t._lazyRace){delete t._lazyRace}Q(t,H.lazyClass);ee(function(){const e=t.complete&&t.naturalWidth>1;if(!f||e){if(e){K(t,H.fastLoadedClass)}S(u);t._lazyCache=true;I(function(){if("_lazyCache"in t){delete t._lazyCache}},9)}if(t.loading=="lazy"){M--}},true)});var R=function(e){if(e._lazyRace){return}let t;const a=n.test(e.nodeName);const i=a&&(e[$](H.sizesAttr)||e[$]("sizes"));const r=i=="auto";if((r||!m)&&a&&(e[$]("src")||e.srcset)&&!e.complete&&!J(e,H.errorClass)&&J(e,H.lazyClass)){return}t=X(e,"lazyunveilread").detail;if(r){re.updateElem(e,true,e.offsetWidth)}e._lazyRace=true;M++;s(e,t,r,i,a)};const r=ie(function(){H.loadMode=3;a()});const o=function(){if(H.loadMode==3){H.loadMode=2}r()};var l=function(){if(m){return}if(f.now()-e<999){I(l,999);return}m=true;H.loadMode=3;a();q("scroll",o,true)};return{_(){e=f.now();k.elements=D.getElementsByClassName(H.lazyClass);v=D.getElementsByClassName(`${H.lazyClass} ${H.preloadClass}`);q("scroll",a,true);q("resize",a,true);q("pageshow",function(e){if(e.persisted){const t=D.querySelectorAll(`.${H.loadingClass}`);if(t.length&&t.forEach){U(function(){t.forEach(function(e){if(e.complete){R(e)}})})}}});if(u.MutationObserver){new MutationObserver(a).observe(O,{childList:true,subtree:true,attributes:true})}else{O[P]("DOMNodeInserted",a,true);O[P]("DOMAttrModified",a,true);setInterval(a,999)}q("hashchange",a,true);["focus","mouseover","click","load","transitionend","animationend"].forEach(function(e){D[P](e,a,true)});if(/d$|^c/.test(D.readyState)){l()}else{q("load",l);D[P]("DOMContentLoaded",a);I(l,2e4)}if(k.elements.length){t();ee._lsFlush()}else{a()}},checkElems:a,unveil:R,_aLSL:o}}();var re=function(){let a;const n=te(function(e,t,a,i){let r;let n;let s;e._lazysizesWidth=i;i+="px";e.setAttribute("sizes",i);if(j.test(t.nodeName||"")){r=t.getElementsByTagName("source");for(n=0,s=r.length;n<s;n++){r[n].setAttribute("sizes",i)}}if(!a.detail.dataAttr){Y(e,a.detail)}});const i=function(e,t,a){let i;const r=e.parentNode;if(r){a=s(e,r,a);i=X(e,"lazybeforesizes",{width:a,dataAttr:!!t});if(!i.defaultPrevented){a=i.detail.width;if(a&&a!==e._lazysizesWidth){n(e,r,i,a)}}}};const e=function(){let e;const t=a.length;if(t){e=0;for(;e<t;e++){i(a[e])}}};const t=ie(e);return{_(){a=D.getElementsByClassName(H.autosizesClass);q("resize",t)},checkElems:t,updateElem:i}}();var t=function(){if(!t.i&&D.getElementsByClassName){t.i=true;re._();e._()}};return I(function(){H.init&&t()}),k={cfg:H,autoSizer:re,loader:e,init:t,uP:Y,aC:K,rC:Q,hC:J,fire:X,gW:s,rAF:ee}}(e,e.document,Date);e.lazySizes=t,typeof module==="object"&&module.exports&&(module.exports=t)}(typeof window!=="undefined"?window:{});;/* eslint-disable */ /*! lazysizes - v5.3.2 */!function(e,t){var a=function(){t(e.lazySizes),e.removeEventListener("lazyunveilread",a,!0)};t=t.bind(null,e,e.document),"object"==typeof module&&module.exports?t(require("lazysizes")):"function"==typeof define&&define.amd?define(["lazysizes"],t):e.lazySizes?a():e.addEventListener("lazyunveilread",a,!0)}(window,function(e,i,o){"use strict";var l,d,u={};function s(e,t,a){var n,r;u[e]||(n=i.createElement(t?"link":"script"),r=i.getElementsByTagName("script")[0],t?(n.rel="stylesheet",n.href=e):(n.onload=function(){n.onerror=null,n.onload=null,a()},n.onerror=n.onload,n.src=e),u[e]=!0,u[n.src||n.href]=!0,r.parentNode.insertBefore(n,r))}i.addEventListener&&(l=function(e,t){var a=i.createElement("img");a.onload=function(){a.onload=null,a.onerror=null,a=null,t()},a.onerror=a.onload,a.src=e,a&&a.complete&&a.onload&&a.onload()},addEventListener("lazybeforeunveil",function(e){var t,a,n;if(e.detail.instance==o&&!e.defaultPrevented){var r=e.target;if("none"==r.preload&&(r.preload=r.getAttribute("data-preload")||"auto"),null!=r.getAttribute("data-autoplay"))if(r.getAttribute("data-expand")&&!r.autoplay)try{r.play()}catch(e){}else requestAnimationFrame(function(){r.setAttribute("data-expand","-10"),o.aC(r,o.cfg.lazyClass)});(t=r.getAttribute("data-link"))&&s(t,!0),(t=r.getAttribute("data-script"))&&(e.detail.firesLoad=!0,s(t,null,function(){e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(t=r.getAttribute("data-require"))&&(o.cfg.requireJs?o.cfg.requireJs([t]):s(t)),(a=r.getAttribute("data-bg"))&&(e.detail.firesLoad=!0,l(a,function(){r.style.backgroundImage="url("+(d.test(a)?JSON.stringify(a):a)+")",e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(n=r.getAttribute("data-poster"))&&(e.detail.firesLoad=!0,l(n,function(){r.poster=n,e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)}))}},!(d=/\(|\)|\s|'/)))});
+const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=breakpoints;function aboveBreakpoint(value){return window.matchMedia(`(min-width: ${PP.utils.breakpoints[value]}em)`)}function belowBreakpoint(value){return window.matchMedia(`(max-width: ${PP.utils.breakpoints[value]}em)`)}PP.utils.aboveBreakpoint=aboveBreakpoint;PP.utils.belowBreakpoint=belowBreakpoint})(this);;(function(){var undefined;var VERSION="4.17.5";var FUNC_ERROR_TEXT="Expected a function";var NAN=0/0;var nullTag="[object Null]",symbolTag="[object Symbol]",undefinedTag="[object Undefined]";var reTrim=/^\s+|\s+$/g;var reIsBadHex=/^[-+]0x[0-9a-f]+$/i;var reIsBinary=/^0b[01]+$/i;var reIsOctal=/^0o[0-7]+$/i;var freeParseInt=parseInt;var freeGlobal=typeof global=="object"&&global&&global.Object===Object&&global;var freeSelf=typeof self=="object"&&self&&self.Object===Object&&self;var root=freeGlobal||freeSelf||Function("return this")();var freeExports=typeof exports=="object"&&exports&&!exports.nodeType&&exports;var freeModule=freeExports&&typeof module=="object"&&module&&!module.nodeType&&module;var objectProto=Object.prototype;var hasOwnProperty=objectProto.hasOwnProperty;var nativeObjectToString=objectProto.toString;var Symbol=root.Symbol,symToStringTag=Symbol?Symbol.toStringTag:undefined;var nativeMax=Math.max,nativeMin=Math.min;var realNames={};function lodash(){}function baseGetTag(value){if(value==null){return value===undefined?undefinedTag:nullTag}return symToStringTag&&symToStringTag in Object(value)?getRawTag(value):objectToString(value)}function getRawTag(value){var isOwn=hasOwnProperty.call(value,symToStringTag),tag=value[symToStringTag];try{value[symToStringTag]=undefined;var unmasked=true}catch(e){}var result=nativeObjectToString.call(value);if(unmasked){if(isOwn){value[symToStringTag]=tag}else{delete value[symToStringTag]}}return result}function objectToString(value){return nativeObjectToString.call(value)}var now=function(){return root.Date.now()};function debounce(func,wait,options){var lastArgs,lastThis,maxWait,result,timerId,lastCallTime,lastInvokeTime=0,leading=false,maxing=false,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}wait=toNumber(wait)||0;if(isObject(options)){leading=!!options.leading;maxing="maxWait"in options;maxWait=maxing?nativeMax(toNumber(options.maxWait)||0,wait):maxWait;trailing="trailing"in options?!!options.trailing:trailing}function invokeFunc(time){var args=lastArgs,thisArg=lastThis;lastArgs=lastThis=undefined;lastInvokeTime=time;result=func.apply(thisArg,args);return result}function leadingEdge(time){lastInvokeTime=time;timerId=setTimeout(timerExpired,wait);return leading?invokeFunc(time):result}function remainingWait(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime,timeWaiting=wait-timeSinceLastCall;return maxing?nativeMin(timeWaiting,maxWait-timeSinceLastInvoke):timeWaiting}function shouldInvoke(time){var timeSinceLastCall=time-lastCallTime,timeSinceLastInvoke=time-lastInvokeTime;return lastCallTime===undefined||timeSinceLastCall>=wait||timeSinceLastCall<0||maxing&&timeSinceLastInvoke>=maxWait}function timerExpired(){var time=now();if(shouldInvoke(time)){return trailingEdge(time)}timerId=setTimeout(timerExpired,remainingWait(time))}function trailingEdge(time){timerId=undefined;if(trailing&&lastArgs){return invokeFunc(time)}lastArgs=lastThis=undefined;return result}function cancel(){if(timerId!==undefined){clearTimeout(timerId)}lastInvokeTime=0;lastArgs=lastCallTime=lastThis=timerId=undefined}function flush(){return timerId===undefined?result:trailingEdge(now())}function debounced(){var time=now(),isInvoking=shouldInvoke(time);lastArgs=arguments;lastThis=this;lastCallTime=time;if(isInvoking){if(timerId===undefined){return leadingEdge(lastCallTime)}if(maxing){timerId=setTimeout(timerExpired,wait);return invokeFunc(lastCallTime)}}if(timerId===undefined){timerId=setTimeout(timerExpired,wait)}return result}debounced.cancel=cancel;debounced.flush=flush;return debounced}function throttle(func,wait,options){var leading=true,trailing=true;if(typeof func!="function"){throw new TypeError(FUNC_ERROR_TEXT)}if(isObject(options)){leading="leading"in options?!!options.leading:leading;trailing="trailing"in options?!!options.trailing:trailing}return debounce(func,wait,{leading:leading,maxWait:wait,trailing:trailing})}function isObject(value){var type=typeof value;return value!=null&&(type=="object"||type=="function")}function isObjectLike(value){return value!=null&&typeof value=="object"}function isSymbol(value){return typeof value=="symbol"||isObjectLike(value)&&baseGetTag(value)==symbolTag}function toNumber(value){if(typeof value=="number"){return value}if(isSymbol(value)){return NAN}if(isObject(value)){var other=typeof value.valueOf=="function"?value.valueOf():value;value=isObject(other)?other+"":other}if(typeof value!="string"){return value===0?value:+value}value=value.replace(reTrim,"");var isBinary=reIsBinary.test(value);return isBinary||reIsOctal.test(value)?freeParseInt(value.slice(2),isBinary?2:8):reIsBadHex.test(value)?NAN:+value}lodash.debounce=debounce;lodash.throttle=throttle;lodash.isObject=isObject;lodash.isObjectLike=isObjectLike;lodash.isSymbol=isSymbol;lodash.now=now;lodash.toNumber=toNumber;lodash.VERSION=VERSION;if(typeof define=="function"&&typeof define.amd=="object"&&define.amd){root._=lodash;define(function(){return lodash})}else if(freeModule){(freeModule.exports=lodash)._=lodash;freeExports._=lodash}else{root._=lodash}}).call(this);;/*! lazysizes - v5.3.2 */!function(e){var t=function(u,D,f){"use strict";var k,H;if(function(){var e;var t={lazyClass:"lazyload",loadedClass:"lazyloaded",loadingClass:"lazyloading",preloadClass:"lazypreload",errorClass:"lazyerror",autosizesClass:"lazyautosizes",fastLoadedClass:"ls-is-cached",iframeLoadMode:0,srcAttr:"data-src",srcsetAttr:"data-srcset",sizesAttr:"data-sizes",minSize:40,customMedia:{},init:true,expFactor:1.5,hFac:.8,loadMode:2,loadHidden:true,ricTimeout:0,throttleDelay:125};H=u.lazySizesConfig||u.lazysizesConfig||{};for(e in t){if(!(e in H)){H[e]=t[e]}}}(),!D||!D.getElementsByClassName){return{init:function(){},cfg:H,noSupport:true}}var O=D.documentElement,i=u.HTMLPictureElement,P="addEventListener",$="getAttribute",q=u[P].bind(u),I=u.setTimeout,U=u.requestAnimationFrame||I,o=u.requestIdleCallback,j=/^picture$/i,r=["load","error","lazyincluded","_lazyloaded"],a={},G=Array.prototype.forEach,J=function(e,t){if(!a[t]){a[t]=new RegExp("(\\s|^)"+t+"(\\s|$)")}return a[t].test(e[$]("class")||"")&&a[t]},K=function(e,t){if(!J(e,t)){e.setAttribute("class",(e[$]("class")||"").trim()+" "+t)}},Q=function(e,t){var a;if(a=J(e,t)){e.setAttribute("class",(e[$]("class")||"").replace(a," "))}},V=function(t,a,e){var i=e?P:"removeEventListener";if(e){V(t,a)}r.forEach(function(e){t[i](e,a)})},X=function(e,t,a,i,r){var n=D.createEvent("Event");if(!a){a={}}a.instance=k;n.initEvent(t,!i,!r);n.detail=a;e.dispatchEvent(n);return n},Y=function(e,t){var a;if(!i&&(a=u.picturefill||H.pf)){if(t&&t.src&&!e[$]("srcset")){e.setAttribute("srcset",t.src)}a({reevaluate:true,elements:[e]})}else if(t&&t.src){e.src=t.src}},Z=function(e,t){return(getComputedStyle(e,null)||{})[t]},s=function(e,t,a){a=a||e.offsetWidth;while(a<H.minSize&&t&&!e._lazysizesWidth){a=t.offsetWidth;t=t.parentNode}return a},ee=function(){var a,i;var t=[];var r=[];var n=t;var s=function(){var e=n;n=t.length?r:t;a=true;i=false;while(e.length){e.shift()()}a=false};var e=function(e,t){if(a&&!t){e.apply(this,arguments)}else{n.push(e);if(!i){i=true;(D.hidden?I:U)(s)}}};e._lsFlush=s;return e}(),te=function(a,e){return e?function(){ee(a)}:function(){var e=this;var t=arguments;ee(function(){a.apply(e,t)})}},ae=function(e){var a;var i=0;var r=H.throttleDelay;var n=H.ricTimeout;var t=function(){a=false;i=f.now();e()};var s=o&&n>49?function(){o(t,{timeout:n});if(n!==H.ricTimeout){n=H.ricTimeout}}:te(function(){I(t)},true);return function(e){var t;if(e=e===true){n=33}if(a){return}a=true;t=r-(f.now()-i);if(t<0){t=0}if(e||t<9){s()}else{I(s,t)}}},ie=function(e){var t,a;var i=99;var r=function(){t=null;e()};var n=function(){var e=f.now()-a;if(e<i){I(n,i-e)}else{(o||r)(r)}};return function(){a=f.now();if(!t){t=I(n,i)}}},e=function(){var v,m,c,h,e;var y,z,g,p,C,b,A;var n=/^img$/i;var d=/^iframe$/i;var E="onscroll"in u&&!/(gle|ing)bot/.test(navigator.userAgent);var _=0;var w=0;var M=0;var N=-1;var L=function(e){M--;if(!e||M<0||!e.target){M=0}};var x=function(e){if(A==null){A=Z(D.body,"visibility")=="hidden"}return A||!(Z(e.parentNode,"visibility")=="hidden"&&Z(e,"visibility")=="hidden")};var W=function(e,t){var a;var i=e;var r=x(e);g-=t;b+=t;p-=t;C+=t;while(r&&(i=i.offsetParent)&&i!=D.body&&i!=O){r=(Z(i,"opacity")||1)>0;if(r&&Z(i,"overflow")!="visible"){a=i.getBoundingClientRect();r=C>a.left&&p<a.right&&b>a.top-1&&g<a.bottom+1}}return r};var t=function(){var e,t,a,i,r,n,s,o,l,u,f,c;var d=k.elements;if((h=H.loadMode)&&M<8&&(e=d.length)){t=0;N++;for(;t<e;t++){if(!d[t]||d[t]._lazyRace){continue}if(!E||k.prematureUnveil&&k.prematureUnveil(d[t])){R(d[t]);continue}if(!(o=d[t][$]("data-expand"))||!(n=o*1)){n=w}if(!u){u=!H.expand||H.expand<1?O.clientHeight>500&&O.clientWidth>500?500:370:H.expand;k._defEx=u;f=u*H.expFactor;c=H.hFac;A=null;if(w<f&&M<1&&N>2&&h>2&&!D.hidden){w=f;N=0}else if(h>1&&N>1&&M<6){w=u}else{w=_}}if(l!==n){y=innerWidth+n*c;z=innerHeight+n;s=n*-1;l=n}a=d[t].getBoundingClientRect();if((b=a.bottom)>=s&&(g=a.top)<=z&&(C=a.right)>=s*c&&(p=a.left)<=y&&(b||C||p||g)&&(H.loadHidden||x(d[t]))&&(m&&M<3&&!o&&(h<3||N<4)||W(d[t],n))){R(d[t]);r=true;if(M>9){break}}else if(!r&&m&&!i&&M<4&&N<4&&h>2&&(v[0]||H.preloadAfterLoad)&&(v[0]||!o&&(b||C||p||g||d[t][$](H.sizesAttr)!="auto"))){i=v[0]||d[t]}}if(i&&!r){R(i)}}};var a=ae(t);var S=function(e){var t=e.target;if(t._lazyCache){delete t._lazyCache;return}L(e);K(t,H.loadedClass);Q(t,H.loadingClass);V(t,B);X(t,"lazyloaded")};var i=te(S);var B=function(e){i({target:e.target})};var T=function(e,t){var a=e.getAttribute("data-load-mode")||H.iframeLoadMode;if(a==0){e.contentWindow.location.replace(t)}else if(a==1){e.src=t}};var F=function(e){var t;var a=e[$](H.srcsetAttr);if(t=H.customMedia[e[$]("data-media")||e[$]("media")]){e.setAttribute("media",t)}if(a){e.setAttribute("srcset",a)}};var s=te(function(t,e,a,i,r){var n,s,o,l,u,f;if(!(u=X(t,"lazybeforeunveil",e)).defaultPrevented){if(i){if(a){K(t,H.autosizesClass)}else{t.setAttribute("sizes",i)}}s=t[$](H.srcsetAttr);n=t[$](H.srcAttr);if(r){o=t.parentNode;l=o&&j.test(o.nodeName||"")}f=e.firesLoad||"src"in t&&(s||n||l);u={target:t};K(t,H.loadingClass);if(f){clearTimeout(c);c=I(L,2500);V(t,B,true)}if(l){G.call(o.getElementsByTagName("source"),F)}if(s){t.setAttribute("srcset",s)}else if(n&&!l){if(d.test(t.nodeName)){T(t,n)}else{t.src=n}}if(r&&(s||l)){Y(t,{src:n})}}if(t._lazyRace){delete t._lazyRace}Q(t,H.lazyClass);ee(function(){var e=t.complete&&t.naturalWidth>1;if(!f||e){if(e){K(t,H.fastLoadedClass)}S(u);t._lazyCache=true;I(function(){if("_lazyCache"in t){delete t._lazyCache}},9)}if(t.loading=="lazy"){M--}},true)});var R=function(e){if(e._lazyRace){return}var t;var a=n.test(e.nodeName);var i=a&&(e[$](H.sizesAttr)||e[$]("sizes"));var r=i=="auto";if((r||!m)&&a&&(e[$]("src")||e.srcset)&&!e.complete&&!J(e,H.errorClass)&&J(e,H.lazyClass)){return}t=X(e,"lazyunveilread").detail;if(r){re.updateElem(e,true,e.offsetWidth)}e._lazyRace=true;M++;s(e,t,r,i,a)};var r=ie(function(){H.loadMode=3;a()});var o=function(){if(H.loadMode==3){H.loadMode=2}r()};var l=function(){if(m){return}if(f.now()-e<999){I(l,999);return}m=true;H.loadMode=3;a();q("scroll",o,true)};return{_:function(){e=f.now();k.elements=D.getElementsByClassName(H.lazyClass);v=D.getElementsByClassName(H.lazyClass+" "+H.preloadClass);q("scroll",a,true);q("resize",a,true);q("pageshow",function(e){if(e.persisted){var t=D.querySelectorAll("."+H.loadingClass);if(t.length&&t.forEach){U(function(){t.forEach(function(e){if(e.complete){R(e)}})})}}});if(u.MutationObserver){new MutationObserver(a).observe(O,{childList:true,subtree:true,attributes:true})}else{O[P]("DOMNodeInserted",a,true);O[P]("DOMAttrModified",a,true);setInterval(a,999)}q("hashchange",a,true);["focus","mouseover","click","load","transitionend","animationend"].forEach(function(e){D[P](e,a,true)});if(/d$|^c/.test(D.readyState)){l()}else{q("load",l);D[P]("DOMContentLoaded",a);I(l,2e4)}if(k.elements.length){t();ee._lsFlush()}else{a()}},checkElems:a,unveil:R,_aLSL:o}}(),re=function(){var a;var n=te(function(e,t,a,i){var r,n,s;e._lazysizesWidth=i;i+="px";e.setAttribute("sizes",i);if(j.test(t.nodeName||"")){r=t.getElementsByTagName("source");for(n=0,s=r.length;n<s;n++){r[n].setAttribute("sizes",i)}}if(!a.detail.dataAttr){Y(e,a.detail)}});var i=function(e,t,a){var i;var r=e.parentNode;if(r){a=s(e,r,a);i=X(e,"lazybeforesizes",{width:a,dataAttr:!!t});if(!i.defaultPrevented){a=i.detail.width;if(a&&a!==e._lazysizesWidth){n(e,r,i,a)}}}};var e=function(){var e;var t=a.length;if(t){e=0;for(;e<t;e++){i(a[e])}}};var t=ie(e);return{_:function(){a=D.getElementsByClassName(H.autosizesClass);q("resize",t)},checkElems:t,updateElem:i}}(),t=function(){if(!t.i&&D.getElementsByClassName){t.i=true;re._();e._()}};return I(function(){H.init&&t()}),k={cfg:H,autoSizer:re,loader:e,init:t,uP:Y,aC:K,rC:Q,hC:J,fire:X,gW:s,rAF:ee}}(e,e.document,Date);e.lazySizes=t,"object"==typeof module&&module.exports&&(module.exports=t)}("undefined"!=typeof window?window:{});;/*! lazysizes - v5.3.2 */!function(e,t){var a=function(){t(e.lazySizes),e.removeEventListener("lazyunveilread",a,!0)};t=t.bind(null,e,e.document),"object"==typeof module&&module.exports?t(require("lazysizes")):"function"==typeof define&&define.amd?define(["lazysizes"],t):e.lazySizes?a():e.addEventListener("lazyunveilread",a,!0)}(window,function(e,i,o){"use strict";var l,d,u={};function s(e,t,a){var n,r;u[e]||(n=i.createElement(t?"link":"script"),r=i.getElementsByTagName("script")[0],t?(n.rel="stylesheet",n.href=e):(n.onload=function(){n.onerror=null,n.onload=null,a()},n.onerror=n.onload,n.src=e),u[e]=!0,u[n.src||n.href]=!0,r.parentNode.insertBefore(n,r))}i.addEventListener&&(l=function(e,t){var a=i.createElement("img");a.onload=function(){a.onload=null,a.onerror=null,a=null,t()},a.onerror=a.onload,a.src=e,a&&a.complete&&a.onload&&a.onload()},addEventListener("lazybeforeunveil",function(e){var t,a,n;if(e.detail.instance==o&&!e.defaultPrevented){var r=e.target;if("none"==r.preload&&(r.preload=r.getAttribute("data-preload")||"auto"),null!=r.getAttribute("data-autoplay"))if(r.getAttribute("data-expand")&&!r.autoplay)try{r.play()}catch(e){}else requestAnimationFrame(function(){r.setAttribute("data-expand","-10"),o.aC(r,o.cfg.lazyClass)});(t=r.getAttribute("data-link"))&&s(t,!0),(t=r.getAttribute("data-script"))&&(e.detail.firesLoad=!0,s(t,null,function(){e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(t=r.getAttribute("data-require"))&&(o.cfg.requireJs?o.cfg.requireJs([t]):s(t)),(a=r.getAttribute("data-bg"))&&(e.detail.firesLoad=!0,l(a,function(){r.style.backgroundImage="url("+(d.test(a)?JSON.stringify(a):a)+")",e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(n=r.getAttribute("data-poster"))&&(e.detail.firesLoad=!0,l(n,function(){r.poster=n,e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)}))}},!(d=/\(|\)|\s|'/)))});
 //# sourceMappingURL=initial.js.map
 </script>
 
@@ -87,7 +87,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <link href="https://img.assets-d.propublica.org" rel="dns-prefetch">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.50c0b426.css">
+    <link rel="stylesheet" href="https://assets.propublica.org/static/prod/v5/css/main.973c44a6.css">
 
     <!-- OTHER -->
             
@@ -311,7 +311,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         <script type="application/json" class="svelte-config">
                             {"componentName":"ShareTools","props":{"pageTitle":"Despite Trump’s Win, Voters Widely Reject School Vouchers","pageUrl":"https://www.propublica.org/article/school-vouchers-2024-election-trump"},"contextArray":[]}
                         </script>
-                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="W7OFKmNLbG" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
+                        <div class="share-tools" data-pp-click data-pp-location="share tools"> <button class="button shape--pill    svelte-1qpwxqa" data-pp-skip="false" role="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="q-tfYH2tYJ" data-melt-popover-trigger="" data-popover-trigger="" style="--button-bg-color: var(--color-neutral-10); --button-border: none; --button-color: var(--color-neutral-70); --button-font-size: var(--scale-2); --button-horizontal-spacing: var(--scale-1); --button-size: var(--scale3); --icon-size: 1em;"><span class="icon-before svelte-1qpwxqa"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_149_321)"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 11C4.55228 11 5 11.4477 5 12V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V12C19 11.4477 19.4477 11 20 11C20.5523 11 21 11.4477 21 12V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7956 3 20V12C3 11.4477 3.44772 11 4 11Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M11.2929 1.29289C11.6834 0.902369 12.3166 0.902369 12.7071 1.29289L16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711C16.3166 7.09763 15.6834 7.09763 15.2929 6.70711L12 3.41421L8.70711 6.70711C8.31658 7.09763 7.68342 7.09763 7.29289 6.70711C6.90237 6.31658 6.90237 5.68342 7.29289 5.29289L11.2929 1.29289Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.5523 1 13 1.44772 13 2V15C13 15.5523 12.5523 16 12 16C11.4477 16 11 15.5523 11 15V2C11 1.44772 11.4477 1 12 1Z" fill="currentColor"></path></g><defs><clipPath id="clip0_149_321"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg></span> <span class="text font--sans svelte-1qpwxqa">Share</span>  </button> </div>
                         <!--svelte-component-end-->
                                 <script type="application/json" class="svelte-config">
                             {"componentName":"DarkModeToggle","props":{},"contextArray":[]}
@@ -607,7 +607,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#e88d8481c680898f8d9aa8989a87989d8a84818b89c6879a8f">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#4a2f262364222b2d2f380a3a38253a3f282623292b6425382d">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -615,7 +615,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="fd989194d3959c9a988fbd8d8f928d889f91949e9cd3928f9a">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="9afff6f3b4f2fbfdffe8daeae8f5eaeff8f6f3f9fbb4f5e8fd">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                 <li class="rich-byline__contact-item">
@@ -650,7 +650,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                                 <ul class="rich-byline__contact-list">
                                         <li class="rich-byline__contact-item">
-                        <a title="Email" href="/cdn-cgi/l/email-protection#214b4453444c580f524249564053555b6151534e5154434d4842400f4e5346">
+                        <a title="Email" href="/cdn-cgi/l/email-protection#79131c0b1c1400570a1a110e180b0d0339090b16090c1b15101a1857160b1e">
                             <span class="icon">
                                 
 <svg role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -658,7 +658,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6C1 4.34772 2.34772 3 4 3H20C21.6523 3 23 4.34772 23 6V18C23 19.6523 21.6523 21 20 21H4C2.34772 21 1 19.6523 1 18V6ZM4.18077 8.42654C4.49748 7.97409 5.12101 7.86406 5.57346 8.18077L12 11.7793L18.4265 8.18077C18.879 7.86406 19.5025 7.97409 19.8192 8.42654C20.1359 8.87899 20.0259 9.50252 19.5735 9.81923L12.5735 13.8192C12.2291 14.0603 11.7709 14.0603 11.4265 13.8192L4.42654 9.81923C3.97409 9.50252 3.86405 8.87899 4.18077 8.42654Z" fill="currentColor"/>
 </svg>
                             </span>
-                            <span class="__cf_email__" data-cfemail="bcd6d9ced9d1c592cfdfd4cbddcec8c6fcccced3ccc9ded0d5dfdd92d3cedb">[email&#160;protected]</span>
+                            <span class="__cf_email__" data-cfemail="03696671666e7a2d70606b74627177794373716c7376616f6a60622d6c7164">[email&#160;protected]</span>
                         </a>
                     </li>
                                                                                                                     </ul> <!-- end .rich-byline__contact-list -->
@@ -695,6 +695,51 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     </strong>
 
     <ul class="topics-band-group | stack stack--row stack--spacing-gutter | scrollable-overflow scrollable-overflow--snap scrollable-overflow--full-below-xl">
+                    
+
+
+        
+                    
+<div class="story-card story-card--standard">
+    
+    
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/segregation-academies-school-voucher-money-north-carolina">
+                <img
+                    alt=""
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=31d5c045561448a3e3d69877092f9171 400w, https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=cd01b6c975028f2fc13e716d54be868a 800w, https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=14d17bc3e132ffc2e5b5754c3f2a4cb1 1200w, https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=8019d0d5ecc70a524ad1ff756504869e 1600w"
+                    width="400"
+                    height="267"
+                    loading="lazy"
+                    js-autosizes
+                />
+            </a>
+        </div>
+    
+    <div class="story-card__description">
+                        <a class="story-card__series" href="https://www.propublica.org/series/segregation-academies">Segregation Academies</a>
+        
+        <h3 class="story-card__hed" >
+            <a href="https://www.propublica.org/article/segregation-academies-school-voucher-money-north-carolina">
+                                    Segregation Academies Across the South Are Getting Millions in Taxpayer Dollars
+                            </a>
+        </h3>
+
+        <p class="story-card__dek" >
+                            North Carolina offers an especially telling window into what is happening across this once legally segregated region where legislatures are now rapidly expanding and adopting controversial voucher-style programs.
+                    </p>
+
+        <p class="story-card__byline">
+            by <a class="name" href="https://www.propublica.org/people/jennifer-berry-hawes">Jennifer Berry Hawes</a> and <a class="name" href="https://www.propublica.org/people/mollie-simon">Mollie Simon</a>,             <time class="timestamp" datetime="2024-11-18EST05:00">Nov. 18, 5 a.m. EST</time>
+        </p>
+
+            </div>
+</div>
                     
 
 
@@ -920,51 +965,6 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                 <p class="story-card__unit">Local Reporting Network</p>
             </div>
 </div>
-                    
-
-
-        
-                    
-<div class="story-card story-card--standard">
-    
-    
-
-                    
-                    
-    
-        <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/ohio-taxpayer-money-funding-private-religious-schools">
-                <img
-                    alt=""
-                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=267&amp;q=75&amp;w=400&amp;s=121dd6e09730837c96e2e91cd9614a83 400w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=533&amp;q=75&amp;w=800&amp;s=04c946abc9817d290471fce472ffced1 800w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=800&amp;q=75&amp;w=1200&amp;s=e3300be118269ad8a239099b25350da2 1200w, https://img.assets-d.propublica.org/v5/images/DSC_3924_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-09-16-213258_ltek.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5675&amp;fp-y=0.0466&amp;h=1067&amp;q=75&amp;w=1600&amp;s=0411a35eadaa89ccf7f66da2f36f8c60 1600w"
-                    width="400"
-                    height="267"
-                    loading="lazy"
-                    js-autosizes
-                />
-            </a>
-        </div>
-    
-    <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/school-wars">School Wars</a>
-        
-        <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/ohio-taxpayer-money-funding-private-religious-schools">
-                                    In an Unprecedented Move, Ohio Is Funding the Construction of Private Religious Schools
-                            </a>
-        </h3>
-
-        <p class="story-card__dek" >
-                            The state is giving millions in taxpayer dollars directly to private schools to help them renovate and expand their campuses. It may be the next frontier in the push to increase the use of school vouchers, proponents say.
-                    </p>
-
-        <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/eli-hager">Eli Hager</a>,             <time class="timestamp" datetime="2024-09-17EDT05:00">Sept. 17, 5 a.m. EDT</time>
-        </p>
-
-            </div>
-</div>
             </ul>
 </div>
 
@@ -990,11 +990,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/segregation-academies-school-voucher-money-north-carolina">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=28e01cbe3700edc2f5c18e07eaaa640a 400w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=2d369781422f569adc567b93be051421 800w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=7e44d3df423a29f494b4a64b76c115b7 1200w, https://img.assets-d.propublica.org/v5/images/20241024-Villasana-AbortionDeathsNevaeh-29.jpg-_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=dc783315de6cd1aa52dfb81fcfd2812b 1600w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=267&amp;q=75&amp;w=400&amp;s=31d5c045561448a3e3d69877092f9171 400w, https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=533&amp;q=75&amp;w=800&amp;s=cd01b6c975028f2fc13e716d54be868a 800w, https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=800&amp;q=75&amp;w=1200&amp;s=14d17bc3e132ffc2e5b5754c3f2a4cb1 1200w, https://img.assets-d.propublica.org/v5/images/202411DAY-Kahn-SegregationAcademiesNC-0031057_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=1067&amp;q=75&amp;w=1600&amp;s=8019d0d5ecc70a524ad1ff756504869e 1600w"
                     width="400"
                     height="267"
                     loading="lazy"
@@ -1004,20 +1004,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/segregation-academies">Segregation Academies</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/nevaeh-crain-death-texas-abortion-ban-emtala">
-                                    A Pregnant Teenager Died After Trying to Get Care in Three Visits to Texas Emergency Rooms
+            <a href="https://www.propublica.org/article/segregation-academies-school-voucher-money-north-carolina">
+                                    Segregation Academies Across the South Are Getting Millions in Taxpayer Dollars
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            It took three ER visits and 20 hours before a hospital admitted Nevaeh Crain, 18, as her condition worsened. Doctors insisted on two ultrasounds to confirm “fetal demise.” She’s one of at least two Texas women who died under the state’s abortion ban.
+                            North Carolina offers an especially telling window into what is happening across this once legally segregated region where legislatures are now rapidly expanding and adopting controversial voucher-style programs.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/lizzie-presser">Lizzie Presser</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-11-01EDT06:00">Nov. 1, 6 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/jennifer-berry-hawes">Jennifer Berry Hawes</a> and <a class="name" href="https://www.propublica.org/people/mollie-simon">Mollie Simon</a>,             <time class="timestamp" datetime="2024-11-18EST05:00">Nov. 18, 5 a.m. EST</time>
         </p>
 
             </div>
@@ -1032,14 +1032,18 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 <div class="story-card story-card--standard">
     
     
-                <div class="lead-art">
-            <a class="aspect-3-2" href="https://www.propublica.org/article/national-debt-trump">
+
+                    
+                    
+    
+        <div class="lead-art">
+            <a class="aspect-3-2" href="https://www.propublica.org/article/ghost-networks-health-insurance-regulators">
                 <img
                     alt=""
-                    src="https://assets-c3.propublica.org/images/articles/_threeTwo400w/20210114-trump-deficit-3x2.jpg"
+                    src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%273%27%20height%3D%272%27%20style%3D%27background%3Atransparent%27%2F%3E"
+                    srcset="https://img.assets-d.propublica.org/v5/images/MentalHealthGhostRegulations_Final1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-11-14-162910_wuob.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6553&amp;fp-y=0.8438&amp;h=267&amp;q=75&amp;w=400&amp;s=d63978e34528ba3b752f6f863da2ba15 400w, https://img.assets-d.propublica.org/v5/images/MentalHealthGhostRegulations_Final1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-11-14-162910_wuob.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6553&amp;fp-y=0.8438&amp;h=533&amp;q=75&amp;w=800&amp;s=83f08f140d7e9d64366f4b36a96f80bf 800w, https://img.assets-d.propublica.org/v5/images/MentalHealthGhostRegulations_Final1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-11-14-162910_wuob.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6553&amp;fp-y=0.8438&amp;h=800&amp;q=75&amp;w=1200&amp;s=5b77e94eb3405b4abbed17678053c1bb 1200w, https://img.assets-d.propublica.org/v5/images/MentalHealthGhostRegulations_Final1_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95_2024-11-14-162910_wuob.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.6553&amp;fp-y=0.8438&amp;h=1067&amp;q=75&amp;w=1600&amp;s=2cc39e67ae463278162ac04d132dd55b 1600w"
                     width="400"
                     height="267"
-                    srcset="https://assets-c3.propublica.org/images/articles/_threeTwo400w/20210114-trump-deficit-3x2.jpg 400w, https://assets-c3.propublica.org/images/articles/_threeTwo800w/20210114-trump-deficit-3x2.jpg 800w, https://assets-c3.propublica.org/images/articles/_threeTwo1200w/20210114-trump-deficit-3x2.jpg 1200w, https://assets-c3.propublica.org/images/articles/_threeTwo1600w/20210114-trump-deficit-3x2.jpg 1600w "
                     loading="lazy"
                     js-autosizes
                 />
@@ -1047,20 +1051,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/a-closer-look">A Closer Look</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/americas-mental-barrier">America’s Mental Barrier</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/national-debt-trump">
-                                    Trump Built a National Debt So Big That It’ll Weigh Down the Economy for Years
+            <a href="https://www.propublica.org/article/ghost-networks-health-insurance-regulators">
+                                    State Regulators Know Health Insurance Directories Are Full of Wrong Information. They’re Doing Little to Fix It.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            The “King of Debt” promised to reduce the national debt — then his tax cuts made it surge. Add in the pandemic, and he oversaw the third-biggest deficit increase of any president.
+                            State agencies say they’re holding insurers accountable for errors in provider directories. But ProPublica found that the actual actions taken so far do not match the regulators’ rhetoric.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/allan-sloan">Allan Sloan</a>, ProPublica, and <span class="name">Cezary Podkul</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2021-01-14EST05:00">Jan. 14, 2021, 5 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/max-blau">Max Blau</a>,             <time class="timestamp" datetime="2024-11-14EST12:01">Nov. 14, 12:01 p.m. EST</time>
         </p>
 
             </div>
@@ -1080,11 +1084,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/biden-logging-blm-oregon-climate">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/donald-trump-election-federal-agencies">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20240930-Nash-BidenLogging-064_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=48a551794f5e76557da3c6b630f22954 105w, https://img.assets-d.propublica.org/v5/images/20240930-Nash-BidenLogging-064_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=759388ccbeb0b51d0d18163d2a02065f 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241022-trump-blm-3x2.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=c4bde6cf872d93725eac7b574e870d07 105w, https://img.assets-d.propublica.org/v5/images/20241022-trump-blm-3x2.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=7f2ffab55da44a66b7090038331fdb2c 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1096,17 +1100,17 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
     <div class="story-card__description">
                 
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/biden-logging-blm-oregon-climate">
-                                    Despite Biden’s Promise to Protect Old Forests, His Administration Keeps Approving Plans to Cut Them Down
+            <a href="https://www.propublica.org/article/donald-trump-election-federal-agencies">
+                                    Trump Says He’ll Move Thousands of Federal Workers Out of Washington. Here’s What Happened the First Time He Tried.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            In Oregon’s Coast Range, mature forests can absorb more carbon per acre than almost any other on the planet. Yet logging here continues at a steady pace, putting the environment at risk.
+                            The Bureau of Land Management’s headquarters moved from the capital to Colorado in 2020, causing an exodus of leadership. If elected, Trump plans to use the same tactic across more of the federal government.
                     </p>
 
         <p class="story-card__byline">
-            by <span class="name">April Ehrlich</span>, <a href="https://www.opb.org/">Oregon Public Broadcasting</a>, <a class="name" href="https://www.propublica.org/people/mac-funk">McKenzie Funk</a>, ProPublica, and <span class="name">Tony Schick</span>, <a href="https://www.opb.org/">Oregon Public Broadcasting</a>,             <time class="timestamp" datetime="2024-11-12EST06:00">Nov. 12, 6 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/mark-olalde">Mark Olalde</a>,             <time class="timestamp" datetime="2024-10-23EDT06:00">Oct. 23, 6 a.m. EDT</time>
         </p>
 
             </div>
@@ -1126,11 +1130,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=105&amp;q=75&amp;w=105&amp;s=e21aafc838f0ba0c57dc7aed0bfe48c7 105w, https://img.assets-d.propublica.org/v5/images/JosseliBarnica_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5104&amp;fp-y=0.1827&amp;h=210&amp;q=75&amp;w=210&amp;s=b7b686b6d628b381af93e5ca76e1d50b 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=8cec6e6b69d285d61e66b690d761984e 105w, https://img.assets-d.propublica.org/v5/images/20241107-tennessee-threat-3x2a_maxWidth_3000_maxHeight_3000_ppi_72_quality_95_embedColorProfile_true.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=680e1122574f4a5db474c688e2eb52ac 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1140,20 +1144,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                        <a class="story-card__series" href="https://www.propublica.org/series/life-of-the-mother">Life of the Mother</a>
+                        <a class="story-card__series" href="https://www.propublica.org/series/crackdown-on-student-threats">Crackdown on Student Threats</a>
         
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/josseli-barnica-death-miscarriage-texas-abortion-ban">
-                                    A Woman Died After Being Told It Would Be a “Crime” to Intervene in Her Miscarriage at a Texas Hospital
+            <a href="https://www.propublica.org/article/tennessee-school-threats-arresting-kids-with-disabilities">
+                                    A 13-Year-Old With Autism Got Arrested After His Backpack Sparked Fear. Only His Stuffed Bunny Was Inside.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            Josseli Barnica is one of at least two pregnant Texas women who died after doctors delayed emergency care. She’d told her husband that the medical team said it couldn’t act until the fetal heartbeat stopped.
+                            Disability rights advocates said kids like Ty should not be getting arrested under Tennessee’s school threats law. And they tried to push for a broader exception for kids with other kinds of disabilities. It didn’t work.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/cassandra-jaramillo">Cassandra Jaramillo</a> and <a class="name" href="https://www.propublica.org/people/kavitha-surana">Kavitha Surana</a>,             <time class="timestamp" datetime="2024-10-30EDT05:00">Oct. 30, 5 a.m. EDT</time>
+            by <a class="name" href="https://www.propublica.org/people/aliyya-swaby">Aliyya Swaby</a>, ProPublica, and <span class="name">Paige Pfleger</span>, WPLN/Nashville Public Radio,             <time class="timestamp" datetime="2024-11-13EST05:00">Nov. 13, 5 a.m. EST</time>
         </p>
 
             </div>
@@ -1173,11 +1177,11 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                     
     
         <div class="lead-art thumbnail">
-            <a class="aspect-1-1" href="https://www.propublica.org/article/idaho-coroners-baby-deaths">
+            <a class="aspect-1-1" href="https://www.propublica.org/article/microsoft-white-house-offer-cybersecurity-biden-nadella">
                 <img
                     alt=""
                     src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271%27%20height%3D%271%27%20style%3D%27background%3Atransparent%27%2F%3E"
-                    srcset="https://img.assets-d.propublica.org/v5/images/20241012-DiamondNBB_7701_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=105&amp;q=75&amp;w=105&amp;s=de322c1b2d3bf95d3699bc0e6e205e7d 105w, https://img.assets-d.propublica.org/v5/images/20241012-DiamondNBB_7701_preview_maxWidth_3000_maxHeight_3000_ppi_72_embedColorProfile_true_quality_95.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.5&amp;fp-y=0.5&amp;h=210&amp;q=75&amp;w=210&amp;s=1c2cdc70aa5a18bc57b841bc3fc81945 210w"
+                    srcset="https://img.assets-d.propublica.org/v5/images/white-house-offer-illo-3x2-v3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4939&amp;fp-y=0.5207&amp;h=105&amp;q=75&amp;w=105&amp;s=7f1737a63edaa80180c0910ba40275be 105w, https://img.assets-d.propublica.org/v5/images/white-house-offer-illo-3x2-v3.jpg?crop=focalpoint&amp;fit=crop&amp;fm=webp&amp;fp-x=0.4939&amp;fp-y=0.5207&amp;h=210&amp;q=75&amp;w=210&amp;s=ce26bb8a9f110e9350811a2dc471f700 210w"
                     width="105"
                     height="105"
                     loading="lazy"
@@ -1187,19 +1191,20 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
         </div>
     
     <div class="story-card__description">
-                
+                        <a class="story-card__series" href="https://www.propublica.org/series/zero-trust">Zero Trust</a>
+        
         <h3 class="story-card__hed" >
-            <a href="https://www.propublica.org/article/idaho-coroners-baby-deaths">
-                                    An Idaho Baby’s Unexplained Death Got No Autopsy and a Scant Coroner’s Investigation. State Law Says That’s Fine.
+            <a href="https://www.propublica.org/article/microsoft-white-house-offer-cybersecurity-biden-nadella">
+                                    Biden Asked Microsoft to “Raise the Bar on Cybersecurity.” He May Have Helped Create an Illegal Monopoly.
                             </a>
         </h3>
 
         <p class="story-card__dek" >
-                            With a lack of regulation for coroners, a child who dies unexpectedly or outside of a doctor’s care in Idaho is less likely to be autopsied than anywhere else in the United States.
+                            When the White House welcomed Microsoft’s offer of $150 million in tech services, it helped the world’s largest software provider tighten its grip on federal business and freeze out competitors.
                     </p>
 
         <p class="story-card__byline">
-            by <a class="name" href="https://www.propublica.org/people/audrey-dutton">Audrey Dutton</a>, photography by <span class="name">Natalie Behring</span> for <a href="https://www.propublica.org">ProPublica</a>,             <time class="timestamp" datetime="2024-11-11EST06:00">Nov. 11, 6 a.m. EST</time>
+            by <a class="name" href="https://www.propublica.org/people/renee-dudley">Renee Dudley</a>, with research by <a class="name" href="https://www.propublica.org/people/doris-burke">Doris Burke</a>,             <time class="timestamp" datetime="2024-11-15EST06:00">Nov. 15, 6 a.m. EST</time>
         </p>
 
             </div>
@@ -1329,13 +1334,13 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
 
                     <li>You can’t edit our material, except to reflect relative changes in time, location and editorial style. (For example, “yesterday” can be changed to “last week,” and “Portland, Ore.” to “Portland” or “here.”)</li>
 
-                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#513c343538302338363925221121233e2124333d3832307f3e2336"><span class="__cf_email__" data-cfemail="fc919998959d8e959b94888fbc8c8e938c899e90959f9dd2938e9b">[email&#160;protected]</span></a>.</li>
+                    <li>You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#036e66676a62716a646b77704373716c7376616f6a60622d6c7164"><span class="__cf_email__" data-cfemail="335e56575a52415a545b47407343415c4346515f5a50521d5c4154">[email&#160;protected]</span></a>.</li>
 
                     <li>It’s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can’t state or imply that donations to your organization support ProPublica’s work.</li>
 
                     <li>You can’t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc.</li>
 
-                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#305c5953555e43595e577040425f4045525c5953511e5f4257"><span class="__cf_email__" data-cfemail="99f5f0fafcf7eaf0f7fed9e9ebf6e9ecfbf5f0faf8b7f6ebfe">[email&#160;protected]</span></a>.)</li>
+                    <li>You can’t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#610d0802040f12080f062111130e1114030d0802004f0e1306"><span class="__cf_email__" data-cfemail="6d01040e08031e04030a2d1d1f021d180f01040e0c43021f0a">[email&#160;protected]</span></a>.)</li>
 
                     <li>You can’t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements.</li>
 
@@ -1369,7 +1374,7 @@ const breakpoints={xs:0,sm:36,md:48,lg:60,xl:78,xxl:88};PP.utils.breakpoints=bre
                          <div data-pp-location="modal" data-pp-view data-pp-category="newsletter_signup" id="cta" class="cta cta-type-panel cta-fixed cta-closed svelte-rz6ji1" aria-hidden="true"><button id="cta-close" class="cta-close svelte-rz6ji1" data-svelte-h="svelte-12f7hfy"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> <div class="cta-container cta-undefined svelte-rz6ji1"><div class="cta-message svelte-rz6ji1"><h2 class="cta-heading svelte-rz6ji1">undefined</h2> <p class="cta-text svelte-rz6ji1">undefined</p></div> </div></div> <div id="cta-toast" class="cta-toast  svelte-rz6ji1" role="alert" style="background-color: var(--blue-70);"><div id="cta-toast-text" class="cta-toast-text svelte-rz6ji1"></div> <button id="cta-toast-button" class="cta-toast-button svelte-rz6ji1" data-svelte-h="svelte-8kx5h6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svelte-rz6ji1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> </div>
                         <!--svelte-component-end-->
                         
-    <script src="https://assets.propublica.org/static/prod/v5/js/main.4c2e026a.js"></script>
+    <script src="https://assets.propublica.org/static/prod/v5/js/main.c62ea0b8.js"></script>
 
             <script>
         // Google Tag Manager
