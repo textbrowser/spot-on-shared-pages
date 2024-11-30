@@ -1,0 +1,842 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Design Systems Are Accessibility Delivery Vehicles - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='HCI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3705868" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>November 25, 2024<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3705868">Volume 22, issue 5 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3704443">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Design Systems Are Accessibility Delivery Vehicles</h1> 
+  <h2>Making accessibility support for applications scalable, productive, and consistent</h2> 
+  <h3>Shahtab Wahid</h3> 
+  <p>Over the years, design systems have grown to play critical roles in building software on all platforms. They offer common sets of building blocks that designers and developers can use for functionality and value to be delivered to users. Well-known examples include IBM's Carbon Design System,<sup>2</sup> Google's Material Design,<sup>7</sup> and Salesforce's Lightning Design System.<sup>6</sup> </p> 
+  <p>While there are different ways to characterize what a design system is made of, it can be boiled down to four parts:<sup>4,5</sup> </p> 
+  <ul> 
+   <li><i>Foundations</i> determine visual aspects such as colors, spacing, and typography used throughout the system. </li> 
+   <li><i>Components</i> leverage the foundations to build out common elements such as buttons, checkboxes, input fields, and tables. </li> 
+   <li><i>Patterns</i> illustrate how a combination of components laid out and interacting together solve for common user interface workflows. </li> 
+   <li><i>Guidelines</i> provide an overarching layer for all the foundations, components, and patterns by describing what they are and how they should be used.</li> 
+  </ul> 
+  <p>Design systems are infrastructure built for consumers—the designers and developers—working on applications. A successful one allows consumers in an organization to quickly scale design and development across applications, increase productivity, and establish consistency. Design systems are also products with their own user bases. They must grow, evolve, and address the needs of consumers who are building applications. If a design system becomes stagnant and fails to deliver on its promises of scalability, productivity, and consistency, then consumer adoption will decrease.</p> 
+  <p>A multitude of factors, including diversity initiatives, employee productivity, regulations, and revenue implications, can drive an organization's need to provide accessible software. Many consumers, however, are not prepared to build for accessibility. In such cases, couldn't an organization make building accessibility support for applications scalable, productive, and consistent?</p> 
+  <p>The central tenet of this article is that<i> design systems are prime vehicles for delivering accessibility support to consumers.</i> By ensuring that foundations, components, patterns, and guidelines take accessibility into account, consumers can adopt these benefits for "free" and make their own applications more accessible. The method by which the design system builds and deploys accessibility benefits greatly impacts whether accessibility can become a scalable, productive, and consistent initiative within an organization. To this end, this article dives into accessibility and its relation to two design system parts: <i>(1) how to make design system components accessible;</i> and <i>(2)</i> <i>how to document accessibility guidelines that are tailored to consumers of a design system</i>.</p> 
+  <p>The first topic covers accessibility factors that need to be defined in all component specifications. The second focuses on strategies when creating guidelines for accessibility. Both discussions are presented with the Web Content Accessibility Guidelines (WCAG)<sup>9</sup> and Accessible Rich Internet Application (ARIA) specifications<sup>1</sup> in mind.</p> 
+  <p>&nbsp;</p> 
+  <h3>Accessible Components</h3> 
+  <p>Design systems, particularly those tailored to the web, include a wide range of components. Common ones are <i>form elements</i> such as input fields, buttons, and checkboxes; and <i>navigational components</i> such as tabs and accordions. More complex components such as tables, toolbars, and headers may also be included. Table 1 shows the aspects that need to be defined when designing a component.</p> 
+  <style> table, td, th { border: 1px solid; margin:10px; padding:10px; border-collapse: collapse; border-color: #666; } </style> 
+  <h4>TABLE 1: Design system component specifications</h4> 
+  <table> 
+   <tbody>
+    <tr>
+     <th>Component Aspect</th>
+     <th>Description</th>
+    </tr> 
+    <tr>
+     <td>States </td>
+     <td>All the conditions that a component can be in, such as default, hover, focused, disabled, read-only, selected/unselected, opened/closed, and error.</td>
+    </tr> 
+    <tr>
+     <td>Layout and Structure </td>
+     <td>The arrangement of pieces such as labels, icons, and interactive elements, along with their sizing and spacing definitions.</td>
+    </tr> 
+    <tr>
+     <td>Colors </td>
+     <td>The colors used for borders, backgrounds, text, icons, and any other element.</td>
+    </tr> 
+    <tr>
+     <td>Typography </td>
+     <td>The text styles used for any text in the component.</td>
+    </tr> 
+    <tr>
+     <td>Interactions </td>
+     <td>The use of keyboard, mouse, and touch events to activate the component and transition across states.</td>
+    </tr> 
+    <tr>
+     <td>Variations </td>
+     <td>Alternative configurations of the component that may change the layout, structure and interactions by adding, removing, or rearranging elements.</td>
+    </tr> 
+   </tbody>
+  </table> 
+  <p>WCAG and ARIA documentation describe what accessibility factors need to be included in component specifications,<sup>1,9</sup> along with examples.<sup>3</sup> The factors shared here are not meant to be comprehensive but to escalate the most important issues. They apply to components on web platforms, but some will extend to other platforms as well. </p> 
+  <p>&nbsp;</p> 
+  <h4>Color contrast ratios</h4> 
+  <p>WCAG requires appropriate color contrast ratios to ensure something in the foreground can be distinguished from the background. For example, a dark gray is not as noticeable on a black background as a light gray is. This should be kept in mind when defining the colors for the border, background, text, icon, and any other part of a component in any of its states.</p> 
+  <p>&nbsp;</p> 
+  <h4>Font size changes</h4> 
+  <p>Text may need to be enlarged to support reading without any need for assistive technologies—as defined by WCAG. Browsers typically offer default font sizes that can be changed in the settings. Components need to support the ability to display the full text inside them should users choose to enlarge the font size. For example, when text in an input field or a table column header must be enlarged, this could require the size of the component to grow to accommodate the text.</p> 
+  <p>&nbsp;</p> 
+  <h4>Keyboard navigation</h4> 
+  <p>All functionality should be available through a keyboard (with exceptions such as drawing), requiring components to be keyboard accessible. ARIA practices provide examples<sup>1,3</sup> for keys to use. There are expectations about the behaviors of certain keys when navigating components: </p> 
+  <ul> 
+   <li><b>Arrow keys</b> — Move through a list of items (such as in a dropdown or menu) or through a two-dimensional space (such as the dates in a calendar).</li> 
+   <li><b>Home and End keys</b> — Jump to the first or last item in a list.</li> 
+   <li><b>Space and Enter keys</b> — Invoke an action (such as a button) or make a selection (such as a checkbox or dropdown item).</li> 
+   <li><b>Esc key</b> — Close (such as a dropdown) or exit a more complex component (such as a toolbar component made of multiple simpler components).</li> 
+   <li><b>Tab key</b> — Move focus from component to component. The Tab key should not be used to move focus within a component because the expectation is that it will move focus to the next component in accordance with the page's tab sequence.</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>Mouse interactions</h4> 
+  <p>WCAG mentions recovering from accidental or erroneous mouse clicks. Interactions triggered using a click should be invoked on mouse up, allowing a user to move away after a mouse-down event to prevent the action from being invoked. A mouse-down event should be used only for actions that do not commit, such as clicking into an input field to bring focus to type into it.</p> 
+  <p>&nbsp;</p> 
+  <h4>Screen-reader support</h4> 
+  <p>Supporting the use of assistive technologies such as screen readers is key. Components must be fully accessible through screen readers. On the web, semantic HTML achieves this goal. ARIA plays a large part in providing accessibility support when semantic HTML may not be enough. By using semantic HTML or ARIA, a screen reader should be able to do the following:</p> 
+  <ul> 
+   <li><i>Identify the role of a component.</i> A role, such as a button, checkbox, or table, is used to describe the type of component being accessed by a screen reader to the user. Common ARIA roles include button, checkbox, listbox, and table.</li> 
+   <li><i>Say the label of a component.</i> Many components such as inputs, buttons, radio buttons, and checkboxes have visible labels. In cases where a visible label does not exist or is not programmatically associated with the component, the screen reader must still be able to read out a label. ARIA provides properties such as <code>aria-label</code> and <code>aria-labeledby</code> to accomplish this.</li> 
+   <li><i>Indicate the state of a component and any messaging associated with it.</i> A component might have expanded/collapsed or selected/unselected states that can be described using ARIA's like <code>aria-expanded</code> and <code>aria-checked</code>. When an input field is in an error state, a screen reader should relay this and any messages describing the error.</li> 
+   <li><i>Provide dimensional context.</i> With a dropdown or menu, providing the total number of items available and expressing which item is currently in focus lets users understand where they are situated. For a table, ARIA can be leveraged to mention the total number of rows and columns and to which row and column a cell in focus belongs.</li> 
+  </ul> 
+  <h3>Documenting Accessibility Guidelines</h3> 
+  <p>The next part of this article focuses on how to document accessibility guidelines for the design system. Many consumers are not aware of what must be done to build accessible software. Accessibility documentation must be crafted carefully to address the needs of the audience.</p> 
+  <p>WCAG is canon when it comes to accessibility documentation. The guidelines are comprehensive and will take time for a captive audience to digest. To provide some structure, they are based on four distinct principles: <i>perceivable</i>, <i>operable</i>, <i>understandable</i>, and <i>robust</i>. There is value in understanding these principles. Unfortunately, it has been shown that the principles may not be clear enough and the documentation can raise many questions.<sup>8</sup> As a simpler route, some choose to visit sites with WCAG checklists to understand what the requirements are. These generic checklists do not have any connection to the design systems being used.</p> 
+  <p>When in doubt, consumers may choose to use design systems with built-in accessibility support in hopes of becoming accessible. Using such a design system, however, provides a false sense of security. Accessible components provide consumers only a head start in becoming accessible. It does not mean an entire application becomes accessible. Therefore, introducing guidelines for accessibility in a design system is of vital importance. The approach to creating the documentation introduced here focuses on three steps: <i>(1) identifying themes</i>; <i>(2)</i> <i>focusing on accessibility use cases</i>; and <i>(3)</i> <i>assigning responsibility</i>.</p> 
+  <p>&nbsp;</p> 
+  <h4>Three steps to creating accessibility guidelines</h4> 
+  <p>The first step is to identify <i>themes </i>to organize all the guidance. By listening to the consumers and aligning with their needs, a set of themes, such as those shown in table 2, can be developed. The themes can be identified through workshops, conversations, and questions that consumers have among themselves; training objectives; and the breadth of issues covered by WCAG. For example, consider a developer community that is familiar with the need for keyboard navigation and screen reader support but lacks awareness of the particulars on how to provide such support. One could create themes that cover these two topics in particular.</p> 
+  <h4>TABLE 2: Accessibility documentation theme sets</h4> 
+  <table> 
+   <tbody>
+    <tr>
+     <th>Theme</th> 
+     <th>Description</th>
+    </tr> 
+    <tr>
+     <td>Keyboard Navigation </td>
+     <td>Keyboard usage to navigate content, enter information, and invoke actions</td>
+    </tr> 
+    <tr>
+     <td>Screen Readers </td>
+     <td>Allowing users of screen readers to understand content structures, identify content types, listen to content, and navigate</td>
+    </tr> 
+    <tr>
+     <td>Colors </td>
+     <td>Contrast ratios and information encoding through color</td>
+    </tr> 
+    <tr>
+     <td>Textual Information </td>
+     <td>Labels, instructions, headings, and long blocks of text</td>
+    </tr> 
+    <tr>
+     <td>Enlarging and Zooming </td>
+     <td>Controlling the size of content to aid viewing</td>
+    </tr> 
+    <tr>
+     <td>Inputs and Errors </td>
+     <td>Inputs to enter information and error handling</td>
+    </tr> 
+    <tr>
+     <td>Mouse Interactions </td>
+     <td>Invoking mouse actions and handling content that appears as a result</td>
+    </tr> 
+    <tr>
+     <td>Nontextual Information </td>
+     <td>Images, charts, audio, and video content</td>
+    </tr> 
+    <tr>
+     <td>Dynamic Content </td>
+     <td>Content that moves, animates, or changes automatically</td>
+    </tr> 
+    <tr>
+     <td>Page Navigation </td>
+     <td>Navigating within and across pages</td>
+    </tr> 
+    <tr>
+     <td>Language </td>
+     <td>Language used on the page</td>
+    </tr> 
+    <tr>
+     <td>Workflow Design </td>
+     <td>Design of overall page or series of pages</td>
+    </tr> 
+    <tr>
+     <td>Hardware </td>
+     <td>Phone or tablet access</td>
+    </tr> 
+   </tbody>
+  </table> 
+  <p>The second step is to focus on the identification of <i>use cases</i>. Possible use cases in the keyboard navigation theme mentioned in table 2 include navigating within components, navigating across components, and skipping to the main content area of a page. These use cases account for existing WCAG recommendations. Use cases should be created until all accessibility rules in the WCAG are accounted for in at least one use case.</p> 
+  <p>The third step is to carefully determine who is <i>responsible </i>for doing the accessibility work. The responsible party could be the design system (in which case the work may already be done), the consumer, or both. This makes the accessibility value that the design system is bringing even clearer to the consumer, while also making it apparent where the consumer must step in.</p> 
+  <p>When all three steps are done, the documentation for each use case can follow a structure such as those shown in tables 3 and 4. Each use case is tied to a theme. The description of the use case is written to reflect the user's perspective, emphasizing the accessibility value. Associating the use case with the WCAG rule ensures consumers are aware of which guidelines would be satisfied. Additional background information and what should and should not be done provide extra context to consumers so they understand the why and how.</p> 
+  <h4>TABLE 3: navigation where design system assumes responsibility</h4> 
+  <table> 
+   <tbody>
+    <tr>
+     <th>Theme</th> 
+     <th>Keyboard Navigation</th>
+    </tr> 
+    <tr>
+     <td>Use Case </td>
+     <td>I want to use the keyboard within a component.</td>
+    </tr> 
+    <tr>
+     <td>Responsibility </td>
+     <td>This is supported by the design system; the consumer is not responsible.</td>
+    </tr> 
+    <tr>
+     <td>Related WCAG Rules </td>
+     <td><b>Rule 2.1.1:</b> All functionality is available from a keyboard, except for tasks such as drawing.<br /><b>Rule 2.4.7:</b> All page elements have visible focus indicators when focused.<br /><b>Rule 3.2.1:</b> Focus changes do not trigger unexpected actions. Examples include submitting forms and opening new windows.</td>
+    </tr> 
+    <tr>
+     <td>Background </td>
+     <td>—The design system has built-in support for keyboard navigation within components.<br />—All components have visible focus states when using the keyboard.<br />—None of the components invoke actions when they receive focus.</td>
+    </tr> 
+    <tr>
+     <td>Do </td>
+     <td>Use the default keyboard navigation behaviors and focus states.</td>
+    </tr> 
+    <tr>
+     <td>Don't </td>
+     <td>—Override the keyboard navigation behavior of a component.<br />—Override any focus states.</td>
+    </tr> 
+   </tbody>
+  </table> 
+  <p>A design system's intention should be to provide consumer-digestible documentation. Consumers would rather build the accessibility support than spend time understanding which guidelines apply to their products and what needs to be done. With the suggested structure in place, creating a table of contents that showcases the themes and use cases within them aids consumption. A reader can first identify a broad area of accessibility support by scanning through themes—increasing their familiarity with the breadth of accessibility considerations. Within each theme, the specific use cases illustrate the user value they can deliver. Each use case makes it apparent whether or not the reader is responsible for the work. Consumers can avoid the complexities in understanding guidelines organized by WCAG principles and generic checklists that are not related to the design system in use. </p> 
+  <p>&nbsp;</p> 
+  <h4>TABLE 4: Navigation where consumer assumes responsibility</h4> 
+  <table> 
+   <tbody>
+    <tr>
+     <th>Theme</th> 
+     <th>Keyboard Navigation</th>
+    </tr> 
+    <tr>
+     <td>Use Case </td>
+     <td>I want to use the keyboard to move across components.</td>
+    </tr> 
+    <tr>
+     <td>Responsibility </td>
+     <td>The consumer is responsible for determining in what order a user would navigate through all the components.</td>
+    </tr> 
+    <tr>
+     <td>Related WCAG Rules </td>
+     <td><b>Rule 1.3.2:</b> The correct reading sequence and the order of the content in the code is the same.<br /><b>Rule 1.4.13:</b> If content is to appear on mouse hover or keyboard focus, it must be dismissible, hoverable, and persistent.<br /><b>Rule 2.1.2:</b> The user can use the keyboard to move through all page elements without getting trapped.<br /><b>Rule 2.4.3:</b> Users can sequentially navigate (tab) through page elements in a logical order.</td>
+    </tr> 
+    <tr>
+     <td>Background </td>
+     <td>The design system cannot determine an application's tab sequence and, therefore, cannot provide support for this.</td>
+    </tr> 
+    <tr>
+     <td>Do </td>
+     <td>—Use the tab key to move focus to the next component and Shift+Tab to move to the previous component. <br />—Include all interactive elements that should be able to get Tab focus. <br />—Tab orders should start at the top of the page. <br />—When moving focus, try to go left to right and then top to bottom. <br />—Where possible, allow components that are grouped together or within the same area (such as a form or sidebar) to get focus one after another. <br />—When you reach the last component of the page, the next Tab keypress should take you back to the first component.</td>
+    </tr> 
+    <tr>
+     <td>Don't </td>
+     <td>—Jump focus to components on different parts of the page as the user can get lost. <br />—Prevent the user from moving focus to another area of the page or limit the user to a subset of the page. <br />—Reveal new content when a component gets focus; reveal the content only when an action is invoked.</td>
+    </tr> 
+   </tbody>
+  </table> 
+  <h3>Conclusions</h3> 
+  <p>The process of designing components and writing documentation as presented here is the result of a web design system initiative at Bloomberg. The initiative continues to lean on specification <i>factors </i>that help take accessibility into account even as the design system continues to evolve by adding and modifying components.</p> 
+  <p>As mentioned, however, having accessible components is not enough. They must also be supported by guidance tailored to consumers incorporating <i>themes</i>, <i>use cases</i>, and <i>responsibilities</i>. Bloomberg's initiative spends time understanding the accessibility knowledge consumers have to ensure the documentation is highly consumable.</p> 
+  <p>Taking steps in these directions will hopefully create an ecosystem where the accessibility needs of consumers are addressed through the design system, and product adoption increases as a result. This is the mark of accessibility support becoming scalable, productive, and consistent.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. ARIA Authoring Practices Guide. W3C Web Accessibility Initiative; <a href="https://www.w3.org/WAI/ARIA/apg/">https://www.w3.org/WAI/ARIA/apg/</a>.</p> 
+  <p>2. Carbon Design System; <a href="https://carbondesignsystem.com/">https://carbondesignsystem.com/</a>.</p> 
+  <p>3. Combobox Pattern. ARIA Authoring Practices Guide. W3C Web Accessibility Initiative; <a href="https://www.w3.org/WAI/ARIA/apg/patterns/combobox/">https://www.w3.org/WAI/ARIA/apg/patterns/combobox/</a>.</p> 
+  <p>4. Fessenden, T. 2021. Design systems 101. NN/g; <a href="https://www.nngroup.com/articles/design-systems-101/">https://www.nngroup.com/articles/design-systems-101/</a>.</p> 
+  <p>5. Frost, B. 2016. <i>Atomic Design</i>; <a href="https://atomicdesign.bradfrost.com/table-of-contents/">https://atomicdesign.bradfrost.com/table-of-contents/</a>.</p> 
+  <p>6. Lightning Design System; <a href="https://www.lightningdesignsystem.com/">https://www.lightningdesignsystem.com/</a>.</p> 
+  <p>7. Material Design; <a href="https://m3.material.io/">https://m3.material.io/</a>.</p> 
+  <p>8. Snider, S., Scott II, W. L., Trewin, S. 2020. Accessibility information needs in the enterprise. <i>ACM Transactions on Accessible Computing</i> 12(4), Article 16, 1-23; <a href="https://doi.org/10.1145/3368620">https://doi.org/10.1145/3368620</a>.</p> 
+  <p>9. WCAG 2 Overview. W3C Web Accessibility Initiative; <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">https://www.w3.org/WAI/standards-guidelines/wcag/</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Shahtab Wahid</b> is a user experience designer at Bloomberg. He blends his design and research expertise to solve problems in the areas of desktop and web platform design, design systems, and accessibility for the financial industry. He studied Human-Computer Interaction and earned his Ph.D. from Virginia Tech's Department of Computer Science in 2011.</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8eaa7a6c6a4759b5',t:'MTczMjk2NTk0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 5</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3704443">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Vinnie Donati</span> - <a href="detail.cfm?id=3704638"><b>Driving Organizational Accessibility</b></a>
+	  <br />
+	  In this article we'll explore how Microsoft drives accessibility throughout its organization and we'll look closely at essential frameworks and practices that promote an inclusive culture. Through examining aspects like awareness building, strategic development, accessibility maturity modeling, and more, we aim to offer a guide for organizations starting their accessibility journey. The idea is to share what we've learned in the hope that you can take it, tweak it to fit your company's purpose, and nurture accessibility in a way that's not just a checkbox activity but genuinely integrated into your culture.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Juanami Spencer</span> - <a href="detail.cfm?id=3704628"><b>Accessibility Considerations for Mobile Applications</b></a>
+	  <br />
+	  Considering accessibility is essential when creating mobile applications to ensure they are usable and enjoyable for as broad an audience as possible. Mobile accessibility has unique considerations compared with desktop experiences, but it provides immense value to those users who rely on mobile devices in their day-to-day activities. By keeping these considerations in mind, mobile product development teams can better support and enhance the lives of all users. This article explores some of the key accessibility considerations for a mobile application and highlights a few ways the Bloomberg Connects app supports accessibility in both the product and process.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Chris Fleizach, Jeffrey P. Bigham</span> - <a href="detail.cfm?id=3704627"><b>System-class Accessibility</b></a>
+	  <br />
+	  This article illustrates system-class accessibility with our work enabling iPhones to be used nonvisually using the VoiceOver screen reader. We reimagined touchscreen input for nonvisual use, introducing new gestures suitable for control of a screen reader, and for output we added support for synthesized speech and refreshable braille displays (hardware devices that output tactile braille characters). We added new accessibility APIs that applications could adopt and made our user interface frameworks include them by default. Finally, we added an accessibility service to bridge between these new inputs and outputs and the applications.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Stacy M. Branham, Shahtab Wahid, Sheri Byrne-Haber, Jamal Mazrui, Carlos Muncharaz, Carl Myhill</span> - <a href="detail.cfm?id=3704442"><b>The State of Digital Accessibility</b></a>
+	  <br />
+	  If you are new to digital accessibility, and even if you are not, it can be difficult to stay abreast of the big picture, and the tech industry moves fast. So, we asked a team of experts to bring us up to speed. Not only do they have day jobs that involve digital accessibility, but they also have lived experience of disability. We posed the following questions to them: What's the state of accessibility? Key challenges? Why do we need accessible software? How can we make the case for accessibility? Who's leading the way? Where do we go from here?
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

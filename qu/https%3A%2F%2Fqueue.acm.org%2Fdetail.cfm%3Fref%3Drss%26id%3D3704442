@@ -1,0 +1,688 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>The State of Digital Accessibility - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='HCI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3705868" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>November 23, 2024<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3705868">Volume 22, issue 5 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3704442">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">The State of Digital Accessibility</h1> 
+  <h3>Stacy M. Branham, Shahtab Wahid, Sheri Byrne-Haber, Jamal Mazrui, Carlos Muncharaz, and Carl Myhill</h3> 
+  <p>If you are new to digital accessibility, and even if you are not, it can be difficult to stay abreast of the big picture—not least because disability is an expansive category, and the tech industry moves fast. So, we asked a team of experts—Sheri Byrne-Haber, Jamal Mazrui, Carlos Muncharaz, and Carl Myhill—to bring us up to speed. Not only do they have day jobs that involve digital accessibility, but they also have lived experience of disability. We posed the following questions to them:</p> 
+  <ul> 
+   <li>What's the state of accessibility? Key challenges?</li> 
+   <li>Why do we need accessible software?</li> 
+   <li>How can we make the case for accessibility?</li> 
+   <li>Who's leading the way?</li> 
+   <li>Where do we go from here?</li> 
+  </ul> 
+  <p>And this is what they had to say.</p> 
+  <p>&nbsp;</p> 
+  <h3>What's the state of accessibility? Key challenges?</h3> 
+  <p><i>"The state of accessibility in industry today is frankly not good,"</i> says Sheri Byrne-Haber, a global accessibility expert best known for launching digital accessibility programs at McDonald's and VMware. <i>"The number of people identifying as having a disability is vastly outpacing the number of [web]sites that are accessible at or post-launch."</i></p> 
+  <p>Like Byrne-Haber, Carlos Muncharaz—accessibility specialist at Springer Nature with experience in front-end development—agrees, <i>"Today, accessibility remains a serious challenge despite decades of guidelines and progress."</i> Muncharaz also points to web accessibility as a key indicator, citing the WebAIM Million report.<sup>9</sup> Of the top 1 million web pages, a whopping 95.9 percent have accessibility issues, an average of 56.8 errors per page. Muncharaz urges: <i>"But these numbers don't tell the whole story. The report used an automatic evaluation tool that only catches half of the issues." </i>He laments that the Web Content Accessibility Guidelines (WCAG) have been published by the World Wide Web Consortium (W3C) since 1999,<sup>10</sup> <i>"yet, even after 25 years, most pages still don't meet these guidelines well." </i></p> 
+  <p>There is yet another way these numbers overestimate the state of web accessibility, as told by Jamal Mazrui, expert technology usability consultant: <i>"A solution is not sufficient for accessibility if it takes 10 times longer to complete a task with assistive technology. WCAG does not address efficiency directly, thereby missing a critical factor for people with disabilities." </i>So, as if 95.9 percent weren't a concerning enough figure, warnings from Muncharaz and Mazrui make it clear that we have a long way to go.</p> 
+  <p>Carl Myhill, UX designer and accessibility advocate at Bloomberg, offers another perspective on the state of accessibility: "One good statistical indicator is the level of unemployment for people with disabilities. For example, in the UK, the disability unemployment rate was 46.4 percent in Q2 2023, compared to 17.5 percent for nondisabled people." Myhill reminds us that, when technology is inaccessible, it is not a mere inconvenience but a threat to one's livelihood and well-being. When enterprise systems, professional tools, and consumer apps fail to meet basic accessibility guidelines, it becomes difficult or impossible for people with disabilities to earn a living, participate in their communities, or live independently.</p> 
+  <p>Why are things so bad?<i> </i>Consider that most computing courses fail to include accessibility in the curriculum.<sup>7</sup> Another<i> "key challenge is that accessibility is still often seen as something extra, yet another competing requirement, and one that is allowed to be dropped all too easily," </i>says Myhill. Add to this <i>"a lack of enforcement of accessibility standards at the procurement and government levels" </i>(Byrne-Haber), and we have a perfect systemic storm for perpetuating inaccessible tech.</p> 
+  <p>&nbsp;</p> 
+  <h3>Why do we need accessible software?</h3> 
+  <p>Our experts point to three reasons why we need accessible software. In Byrne-Haber's words: "(1) It's the right thing to do; (2) it makes good business sense; and (3) it is required by the law. Inclusion, profits, and compliance, in that specific order."</p> 
+  <p>&nbsp;</p> 
+  <h4>It's the right thing to do</h4> 
+  <p>Muncharaz couches software accessibility as a matter of equality and basic human rights: <i>"Software needs to be accessible because everyone, including people with disabilities, should have equal access. Accessibility is a basic human right."</i> But he's not the only one. He points to Article 9 of the U.N. Convention on the Rights of Persons with Disabilities, which has nearly universal ratification (although not yet adopted by the United States, unfortunately). It states: <i>"Accessibility is essential to enable persons with disabilities to live independently and participate fully in all aspects of life."</i> Further, Muncharaz reminds us that technology is inherently about accessibility: <i>"Its purpose is to make our lives easier, especially for people with disabilities. Software that doesn't meet this goal is simply poor-quality software."</i> As Myhill highlights in his response, even leadership at tech giants like Apple are committed to accessibility as a matter of ethical practice: <i>"It's a shame more CEOs don't take [Apple CEO] Tim Cook's stance, who famously stated, 'When we work on making our devices accessible by the blind, I don't consider the bloody ROI [return on investment]. If that's a hard line for you, then you should get out of the stock.'"</i></p> 
+  <p>&nbsp;</p> 
+  <h4>It makes good business sense</h4> 
+  <p>While customers with disabilities are often presumed to be rare, when we appreciate that 20 percent-plus of the world population has a disability, the business case is hard to ignore. As Byrne-Haber points out: <i>"People with disabilities and their first-degree friends and family have a ton of money to spend. The problem is that they can't always find accessible places to spend it."</i> Muncharaz highlights several additional benefits, <i>"including driving innovation, improving brand image, reaching more customers, and reducing legal risks."</i> This brings us to the third reason for developing accessible software.</p> 
+  <p>&nbsp;</p> 
+  <h4>It's required by the law</h4> 
+  <p>While digital accessibility has long been required by federal, state, and local government-funded entities, new laws have interpreted the Americans with Disabilities Act (ADA) to apply to public places and businesses.<sup>2</sup> According to the 2023 ADA Web Accessibility Lawsuit Statistics Report, demand letters and lawsuits have driven small businesses and large corporations alike to remediate their inaccessible software.<sup>3</sup> Although there has been an "unprecedented surge in legal actions to improve web accessibility," the report predicts a 300 percent surge in ADA claims against mobile apps and SaaS (software as a service) platforms, especially for companies based in New York, California, and Florida.<sup>1</sup> While reducing legal risk is a valid motivation, Byrne-Haber cautions: <i>"Reducing accessibility to a 'compliance' issue results in a product where the minimum that one can legally get away with is always the goal, rather than the best experience for people with disabilities."</i> Therefore, we would do well to remember her mantra:<i> "Inclusion, profits, and compliance, in that specific order."</i></p> 
+  <p>&nbsp;</p> 
+  <h3>How can we make the case for accessibility?</h3> 
+  <p>Our experts universally agree that developers and especially leaders need to listen to disabled users. Mazrui notes that such direct accounts often have the most pull: <i>"Improvements result most from complaints by individual customers, or advocacy groups, which receive more attention than internal suggestions from employees." </i>Further, managers and leaders have a critical role to play: <i>"Consistent manager commitment is also needed to avoid releasing products with accessibility bugs." </i>Myhill agrees and notes the importance of direct observation of user frustrations and challenges: <i>"Another thing that is effective is having senior leadership observe usability testing sessions of people with disabilities using their products. That's always eye-opening for them. Similarly, observing the frustrations and challenges of colleagues and clients with disabilities can also really galvanize action."</i></p> 
+  <p>Byrne-Haber points to the need for internal advocates to counter misguided narratives and make the business case for accessibility: <i>"I hear, 'We don't have customers with disabilities,' a lot, as a genuinely held belief. That narrative needs to be flipped and organizations should be asking themselves, 'Why don't we have customers with disabilities?'" If a website is inaccessible, you might as well have a chain and padlock over the front door that says, 'No disabled customers allowed.' And those disabled people, who are 20 percent-plus of your potential customers, will vote with their pocketbooks and go somewhere else. The organization won't even know the customer was lost unless the customer explains why they went to a competitor."</i></p> 
+  <p>Ultimately, making the case for accessibility requires leadership to take action: <i>"The best way to emphasize the importance of accessibility is by making it a fundamental part of software development,"</i> says Muncharaz. "<i>It should be integrated from the start, not added later. Project leaders should provide clear instructions for everyone to prioritize accessibility, ensuring it's considered essential for a job well done."</i> Mazrui suggests integrating accessibility into automated testing that blocks code commits and product releases: <i>"Automated accessibility testing is generally not used to its potential. Scripts can evaluate web pages efficiently, and these can be executed within software development pipelines. This enables accessibility bugs to block code check-ins by developers and for patterns of bugs to be shown on dynamic dashboards for managers."</i> </p> 
+  <p>Finally, leaders need to equip their employees with the right resources and skills for success. Muncharaz explains: <i>"Of course, prioritizing accessibility requires the right skills. Companies should provide training to raise awareness and equip their staff with necessary skills. They may also need to hire dedicated accessibility professionals."</i></p> 
+  <p>&nbsp;</p> 
+  <h3>Who's leading the way?</h3> 
+  <p>While<i> "the overall state of the industry is disappointing, with lots more work to do,"</i> Myhill shares a few <i>"leading lights,"</i> including Apple and Microsoft. In terms of specific products, when we asked the experts for their favorite examples of software accessibility, here's what bubbled to the top.</p> 
+  <p>&nbsp;</p> 
+  <h4>Myhill's pick: iPhone's Camera app</h4> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3704442/assets/html/byrne-iphone.png" alt="Myhill pick: iPhone Camera app" style="float:right; max-width:10%; padding:10px; margin: 10px;" /> 
+  <p>iPhone's Camera app is exemplary because it "just works out of the box for everyone, even people who are blind." For example, when used with iOS's VoiceOver screen reader—which uses gestural input and audio output—blind users can detect, position, and focus on objects like faces and text; navigate and fluidly access all on-screen buttons; and even peruse the photos in the photo viewer using autogenerated image descriptions.</p> 
+  <br clear="all" /> 
+  <h4>Mazrui's pick: Audible's Alexa Skill</h4> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3704442/assets/html/byrne-audible.png" alt="Mazrui pick: Audible Alexa Skill" style="float:right; max-width:10%; padding:10px; margin: 10px;" /> 
+  <p>Alexa's Audible skill has "excellent accessibility for users with visual or dexterity disabilities," says Mazrui. A little-known fact is that blind individuals invented audiobooks—then known as "talking books"—in the early 1930s, back when vinyl record players were the state of the art. Now, with voice-based smart speaker platforms like Amazon Alexa, books can be accessed via both audio input and audio output, and enjoyed by disabled and nondisabled users alike.</p> 
+  <br clear="all" /> 
+  <h4>Muncharaz's pick: Auto-captions on meeting platforms</h4> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3704442/assets/html/byrne-cc.png" alt="Muncharaz pick: Auto-captions on meeting platforms" style="float:right; max-width:10%; padding:10px; margin: 10px;" /> 
+  <p>Meeting platforms—including Zoom, Google Meet, Microsoft Teams, and Skype—increasingly provide autogenerated closed dialogue-only captions (or, more accurately, subtitles).<sup>11</sup> As a deaf person, Muncharaz calls automatic captions a <i>"game-changer" </i>for him, as "<i>they've completely transformed how well [he] can take part and contribute effectively [in meetings]." </i>A 2015 review of more than 100 research studies on the effects of captions concluded that: "Captioning a video improves comprehension of, memory for, and attention to videos, for children, adolescents, college students, and adults."<sup>6</sup></p> 
+  <br clear="all" /> 
+  <h4>Byrne-Haber's pick: BBC's website</h4> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3704442/assets/html/byrne-bbc.png" alt="Byrne-Haber pick: BBC website" style="float:right; max-width:10%; padding:10px; margin: 10px;" /> 
+  <p>According to Byrne-Haber, the British Broadcasting Corporation (BBC), demonstrates exemplary accessibility for two reasons: <i>"Not only have they done a good job themselves, but they have also provided great guidance for others on how to do the same." </i>BBC's Accessibility site<sup>4</sup> lists accessibility features it provides, resources for designing and building accessible digital media, its corporate values and policies around accessibility, and even programming featuring people with disabilities.</p> 
+  <p>Notably, all these products demonstrate "universal usability," or design that provides access to the widest range of users, regardless of disability or other minority status. </p> 
+  <br clear="all" /> 
+  <h3>Where do we go from here?</h3> 
+  <p>Looking to the future, our experts share words of optimism and words of warning. Chief among reasons to be hopeful is the growing global movement toward digital access. Myhill notes, <i>"For those of us who work in accessibility, there is a global accessibility community that is strong and friendly." </i>More generally, Muncharaz perceives a <i>"growing awareness about inclusion and disability rights, thanks to recent accessibility policies around the world."</i> The tech industry's spirit and culture of progress also promises novel, more equitable solutions. <i>"Fortunately, there's hope because we're in a time of digital transformation and technological innovation,</i>" says Muncharaz. <i>"... All of this should improve accessibility."</i></p> 
+  <p>Yet, when it comes to accessibility, technological progress is often a mixed bag, with some steps forward and some steps back. Most recently, AI technologies have entered the collective dreams and nightmares of the disability community and allies. Mazrui explains: <i>"AI carries potential for raising accessibility (e.g., via object recognition), yet also carries risk (e.g., if machine learning on big data does not represent people with disabilities adequately)." </i></p> 
+  <p>Consider that Microsoft's Copilot improves blind software developers' experiences by streamlining tasks that are tedious to accomplish via screen reader,<sup>8</sup> while simultaneously interacting in discriminatory ways with disabled users (as when it told Chancey Fleet, assistive technology coordinator for the New York Public Library, it was "sorry to hear [she's] blind").<sup>5</sup> One such "backward step" identified by both Myhill and Byrne-Haber is the proliferation of AI-enabled accessibility "overlays" on websites. These are a <i>"claimed single-line code fix that will solve all accessibility problems, which they do not." </i></p> 
+  <p>Those who truly wish to advance accessibility in the software industry should beware of simple fixes to complex problems. Perhaps the most important thing they can do is ensure that people with disabilities are represented at all levels in the industry—from end-user testers, to developers, to corporate leaders. </p> 
+  <p>On this matter, we let Mazrui have the last word: <i>"Almost everyone in the disability-access field is familiar with the statement, 'Nothing about us without us.' Too often, however, it is not practiced in good faith. Periodic focus groups, individual interviews, surveys, and other feedback mechanisms are neglected by product managers. A misguided view believes that well-intended, nondisabled persons can judge what accessibility problems exist, which solutions actually work, and how important a problem is compared to others. The fundamental principle of inclusion is also violated by the dearth of people with disabilities in positions of organizational leadership."</i></p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. ADA Site Compliance. <a href="https://adasitecompliance.com/2023-ada-web-accessibility-lawsuit-statistics-full-report/">https://adasitecompliance.com/2023-ada-web-accessibility-lawsuit-statistics-full-report/</a>.</p> 
+  <p>2. ADA Site Compliance. ADA Title III Requirements. 2021. <a href="https://adasitecompliance.com/ada-title-iii-requirements/">https://adasitecompliance.com/ada-title-iii-requirements/</a>.</p> 
+  <p>3. ADA Site Compliance. 2023 ADA Web Accessibility Lawsuit Statistics: Full Report. 2024. <a href="https://adasitecompliance.com/2023-ada-web-accessibility-lawsuit-statistics-full-report/">https://adasitecompliance.com/2023-ada-web-accessibility-lawsuit-statistics-full-report/</a>.</p> 
+  <p>4. BBC. BBC Accessibility Help. <a href="https://www.bbc.co.uk/accessibility/">https://www.bbc.co.uk/accessibility/</a>.</p> 
+  <p>5. Fleet, C. Keynote Talk by Chancey Fleet, New York Public Library. 2024. <a href="https://www.youtube.com/watch?v=yUTpK_HOGmo">https://www.youtube.com/watch?v=yUTpK_HOGmo</a>.</p> 
+  <p>6. Gernsbacher, M. A. Video Captions Benefit Everyone. 2015. <a href="https://doi.org/10.1177/2372732215602130">https://doi.org/10.1177/2372732215602130</a>.</p> 
+  <p>7. Shinohara, K., Kawas, S., Ko, A. J., Ladner, R. E. Who Teaches Accessibility?: A Survey of U.S. Computing Faculty. SIGCSE '18: Proceedings of the 49th ACM Technical Symposium on Computer Science Education. 2018. <a href="https://dl.acm.org/doi/abs/10.1145/3159450.3159484">https://dl.acm.org/doi/abs/10.1145/3159450.3159484</a>.</p> 
+  <p>8. Stark, J. D. My Exploration Of How Copilot Can Help Blind Users — Part 1. 2024. <a href="https://blog.blackspheretech.com/?p=473">https://blog.blackspheretech.com/?p=473</a>.</p> 
+  <p>9. WebAIM. WebAIM Million Report. 2024. <a href="https://webaim.org/projects/million/">https://webaim.org/projects/million/</a>.</p> 
+  <p>10. W3C. W3C Accessibility Standards Overview. 2024. <a href="https://www.w3.org/WAI/standards-guidelines/">https://www.w3.org/WAI/standards-guidelines/</a>.</p> 
+  <p>11. W3C. W3C Captions (Live). 2023. <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-real-time-captions.html#captionsdef">https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-real-time-captions.html#captionsdef</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Stacy M. Branham</b> is an Associate Professor of Informatics at the University of California, Irvine. Her research investigates how technologies operate in social settings where one or more people are disabled. In 2021, she received the National Science Foundation CAREER Award and was named one of the "Brilliant 10" rising STEM researchers by Popular Science. She earned her Ph.D. in 2014 and her B.S. in 2007, both from Virginia Tech's Department of Computer Science. Branham has a psychosocial disability.</p> 
+  <p><b>Shahtab Wahid</b> is a user experience designer at Bloomberg. He blends his design and research expertise to solve problems in the areas of desktop and web platform design, design systems, and accessibility for the financial industry. He studied Human-Computer Interaction and earned his Ph.D. from Virginia Tech's Department of Computer Science in 2011.</p> 
+  <p><b>Sheri Byrne-Haber</b> is a global disability inclusion expert with several apparent and nonapparent disabilities, best known for launching digital accessibility programs at McDonald's and VMware. She was an early adopter of using ML and GenAI to solve accessibility problems. She is developing an accessible crypto exchange and token called AbleCoin. With degrees in computer science, law, and business, Byrne-Haber has a complete 360-degree view of all the issues impacting people with disabilities and their use of technology.</p> 
+  <p><b>Jamal Mazrui </b>lives with his wife and daughter in Seattle, where he does expert consulting in tech usability. This involves policy analysis, software development, and event management, tackling complex challenges in a systematic and integrated manner. Mazrui earned a bachelor's degree in operations research from Princeton University, and a master's in public policy from Harvard University. He has worked for government, corporate, and nonprofit organizations, bringing a unique combination of policy, developer, and consumer perspectives.</p> 
+  <p><b>Carlos Muncharaz</b> is an Accessibility Specialist at Springer Nature. He is deaf, which means he has firsthand experience with accessibility barriers, driving his motivation to remove them. In the past, he has worked as a front-end developer, graphic designer, and photographer. Originally from Spain, he's currently living in Lisbon, Portugal, with his dear wife, beloved dog, and cherished cat.</p> 
+  <p><b>Carl Myhill</b>, a UX designer for 32 years, works for Bloomberg. Twenty years ago, he built an accessible website for his swimming club. A blind paralympic swimmer liked it, saying, "Nice contrast." This early lesson in not making assumptions triggered Myhill's lifelong interest in accessibility. He is likely dyslexic (although lacking a formal diagnosis). His son has ADHD and autism. Myhill previously led accessibility at Goldman Sachs and Refinitiv, and recently qualified for IAAP CPACC (International Association of Accessibility Professionals Certified Professional in Accessibility Core Competencies).</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8eaa7a88780c0818',t:'MTczMjk2NTk0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 5</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3704442">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Vinnie Donati</span> - <a href="detail.cfm?id=3704638"><b>Driving Organizational Accessibility</b></a>
+	  <br />
+	  In this article we'll explore how Microsoft drives accessibility throughout its organization and we'll look closely at essential frameworks and practices that promote an inclusive culture. Through examining aspects like awareness building, strategic development, accessibility maturity modeling, and more, we aim to offer a guide for organizations starting their accessibility journey. The idea is to share what we've learned in the hope that you can take it, tweak it to fit your company's purpose, and nurture accessibility in a way that's not just a checkbox activity but genuinely integrated into your culture.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Shahtab Wahid</span> - <a href="detail.cfm?id=3704443"><b>Design Systems Are Accessibility Delivery Vehicles</b></a>
+	  <br />
+	  Design systems are infrastructure built for consumers&#8212;the designers and developers&#8212;working on applications. A successful one allows consumers in an organization to quickly scale design and development across applications, increase productivity, and establish consistency. Many consumers, however, are not prepared to build for accessibility. Couldn't an organization make building accessibility support for applications scalable, productive, and consistent? This article explores how a design system becomes an important vehicle to supporting accessibility.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Juanami Spencer</span> - <a href="detail.cfm?id=3704628"><b>Accessibility Considerations for Mobile Applications</b></a>
+	  <br />
+	  Considering accessibility is essential when creating mobile applications to ensure they are usable and enjoyable for as broad an audience as possible. Mobile accessibility has unique considerations compared with desktop experiences, but it provides immense value to those users who rely on mobile devices in their day-to-day activities. By keeping these considerations in mind, mobile product development teams can better support and enhance the lives of all users. This article explores some of the key accessibility considerations for a mobile application and highlights a few ways the Bloomberg Connects app supports accessibility in both the product and process.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Chris Fleizach, Jeffrey P. Bigham</span> - <a href="detail.cfm?id=3704627"><b>System-class Accessibility</b></a>
+	  <br />
+	  This article illustrates system-class accessibility with our work enabling iPhones to be used nonvisually using the VoiceOver screen reader. We reimagined touchscreen input for nonvisual use, introducing new gestures suitable for control of a screen reader, and for output we added support for synthesized speech and refreshable braille displays (hardware devices that output tactile braille characters). We added new accessibility APIs that applications could adopt and made our user interface frameworks include them by default. Finally, we added an accessibility service to bridge between these new inputs and outputs and the applications.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
