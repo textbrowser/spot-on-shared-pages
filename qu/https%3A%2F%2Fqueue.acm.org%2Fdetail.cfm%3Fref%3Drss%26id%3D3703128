@@ -1,0 +1,687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>You Don't Know Jack About AI - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3705868" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>December 2, 2024<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3705868">Volume 22, issue 5 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3703128">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">You Don't Know Jack About AI</h1> 
+  <h2>And ChatGPT probably doesn't either</h2> 
+  <h3>Sonja Johnson-Yu and Sanket Shah</h3> 
+  <p>For a long time, it was hard to pin down what exactly AI was. A few years back, such discussions would devolve into hours-long sessions of sketching out Venn diagrams and trying to map out the different subfields of AI. Fast-forward to 2024, and we all now know exactly what AI is. AI = ChatGPT.</p> 
+  <p>Or not.</p> 
+  <p>For most people, AI doesn't really have a definition. Like the U.S. Supreme Court's definition of pornography, it's more, "You know it when you see it." And this "eyeballing" intuition remarkably recapitulates the logic put forth by Alan Turing in his 1950 article, "<a href="https://redirect.cs.umbc.edu/courses/471/papers/turing.pdf">Computing Machinery and Intelligence</a><u>,</u>" where he proposes "the imitation game" in which a human judge attempts to discriminate between a human and a computer on the basis of their responses to the judge's questions. This is a behavioral<i> </i>test for intelligence commonly known as the Turing test ("if it looks like human intelligence, then it is intelligence").</p> 
+  <p>There are several ways to break the Turing test—for example, by creating a huge lookup table with all possible questions and all possible answers, and then fishing out one of those answers when the question is asked. This algorithm (if you can call it that) is a simple GET query, yet it exhibits the intelligence of the humans involved in the creation of the dataset. ChatGPT isn't exactly creating a huge lookup table, but it is similarly parroting back the work of human intelligence.</p> 
+  <p>&nbsp;</p> 
+  <h3>Remind Me, How Does ChatGPT Work?</h3> 
+  <p>Imagine a seasoned chef. During her training, she encounters thousands of recipes and cooks countless dishes, learning what exactly ratatouille is and developing an intuition about what ingredients go well together. Now, when you ask the chef to prepare ratatouille with a Sichuan flavor profile, she can draw on her experience to create a dish that suits your taste. The chef can also improve by preparing variants of the same dish and then asking for feedback about which one is best. </p> 
+  <p>Similarly, ChatGPT is a neural network trained by looking at trillions of articles. While going through this data, the language model learns which words tend to follow others ("Once upon a..." is usually followed by "time"), much like the chef learning that a combination of sesame oil and white pepper is likely to be complemented by soy sauce. The model learns to prepare a customized answer by producing several responses to a given prompt and receiving feedback from a human, who tells the model which responses are better than the others. This process is repeated over and over again until the model can reliably produce good customized responses to most prompts.</p> 
+  <p>This all sounds fine, but if we're going to be dealing with such big datasets anyway, why spend the GDP of a small island nation to train a model instead of simply using the GET query to look up the answer? The issue with the GET-query approach has to do with creating a database that contains the answers to all the possible questions a user might ask. This is especially hard given that even small changes to the query might necessitate a whole new set of answers (e.g., "How do you bake a cake?" vs. "How do you bake a cake outdoors?"). As a result, this approach requires you either to restrict the set of allowable questions or to create a database with all the answers to Life, the Universe, and Everything.</p> 
+  <p>The key challenge, then, is to find a way to compress the mind-bogglingly large space of questions and answers. One possibility is to develop a system that uses a set of rules to parse and interpret user questions, such as the expert systems developed in the 1970s. For example, "How do you bake a cake outdoors?" would be broken down into the action "bake," the object "cake," and "outdoors" (which might trigger a rule related to outdoor equipment). This type of system could provide specific and accurate responses, but it would need constant updating to deal with new queries. Clearly, this isn't a scalable solution. We need to find another way to extract knowledge that doesn't require writing down every rule by hand. What if there was a way of automatically learning rules from the data already at our disposal? </p> 
+  <p>&nbsp;</p> 
+  <h3>Finding Patterns</h3> 
+  <p>The real power of AI lies in <i>pattern identification</i>—that is, finding patterns (often unseen) in large volumes of data. This is a broad approach since patterns can relate to the "likelihood of the next word" learned by language models, or they can be filters capable of identifying ears and snouts in image data. To answer questions such as "How many cans of Coca-Cola is it OK to drink in a day?", "Is this car insurance claim for $1 billion an anomaly?", or "Does this image need a fig leaf to keep things PG?", the AI system must have a systematic way to extract meaningful insights from the data available.</p> 
+  <p>For this reason, modern AI is best characterized as <i>representation learning</i>, where the goal is to identify a set of "features" that captures the most important patterns and variations in the data. This is like finding a way to convert an hour-long cooking video into the 10-line recipe you actually need. Instead of a summary written in words, however, an AI summarization will be packed into an array of numbers that capture some semantic information about the data, which we call a <i>feature representation</i>.</p> 
+  <p>One way to summarize the data is by finding "building blocks" that can be combined to describe the dataset. This frequently is done in data science by way of PCA (principal component analysis). PCA finds the most important "directions" in which a dataset varies and then uses these directions to reframe the data. It's like tasting a variety of foods to identify the key characteristics by which the foods vary, such as sweetness, spiciness, and texture. By calling out these elements, PCA provides us with a vocabulary for describing how certain foods are similar or different.</p> 
+  <p>This approach works deliciously when the patterns in the data are simple enough, such as when there's a linear relationship between the inputs and the components. Sometimes, however, the patterns are not easily extractable from the data. For example, in image recognition, there are complex, nonlinear relationships between pixels and objects that are difficult to distill.</p> 
+  <p>This is where more advanced representation-learning techniques come into play. Methods such as deep learning with neural networks aim to capture the complex patterns in these datasets. Often these methods learn to capture patterns by learning a representation (i.e., a "transformation" of the data) that is useful for a particular task. </p> 
+  <p>The way methods learn this representation is typically through trial and error. Imagine you want to be able to taste the difference between 1 percent milk and 2 percent milk. You might blindly pour a glass of milk, make a guess—based on richness and sweetness, say—as to whether it's 1 percent or 2 percent, and then look at the milk carton to see if you are correct. Then you could repeat this many times over and refine your representation. With enough taste testing and a strong lactose tolerance, you should gain the ability to distinguish between 1 percent and 2 percent milk, likely by way of a heightened awareness of milk mouthfeel.</p> 
+  <p>This is essentially how neural networks are trained. We might want a neural network to be able to perform a certain task, such as distinguishing between pictures of dogs and cats. Through trial and error, the neural network learns to find patterns that set the two animals apart. For example, the network might learn to identify the shape of the ears, with cat ears often being more pointy and dog ears being more floppy. No one tells the model ahead of time to look at the ears. Yet, through trial and error, the model will start to identify these as distinguishing features. Then, by adjusting its internal representation over time to minimize prediction errors, the neural network will refine its ability to differentiate between the two animals, much as you did with all those milk taste tests.</p> 
+  <p>The type of representation learned will be specific to the task that the model has been trained to perform. If the task is super specific (kind of like tasting the difference between 1 percent and 2 percent milk), the learned representation will probably be good for accomplishing that task—but not necessarily for doing other things (e.g., models that are trained to distinguish between cats and dogs may not be able to tell you whether a given cat is happy or sad). Still, while models sometimes don't transfer well between specific tasks, there are certain tasks that are general enough that a representation can be learned, which proves to be useful for many different things. For example, next-word prediction, which is at the heart of LLMs (large language models), is an incredibly broad task:</p> 
+  <p>&nbsp;</p> 
+  <ul> 
+   <li> "A grown-up kitten is a..." "cat"</li> 
+   <li> "Nine plus thirty-three is...." "forty-two"</li> 
+   <li> "The U.S.'s next president is most likely to be..." ???</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <p>Training large models on the task of next-word prediction using all the text on the Internet allows LLMs to learn incredibly general representations that can be flexibly used for a variety of tasks. In lieu of a more concrete definition of artificial intelligence, we believe that <i>representation learning</i> might serve as a more specific concept that's central to the current AI hype cycle.</p> 
+  <p>&nbsp;</p> 
+  <p><b><i>Main Takeaway #1: </i></b>Right now, it seems like just about everything is AI, but no one has a satisfying answer to what AI actually <b><i>is</i></b>. I hope the next time you think about AI, the first thing that comes to mind is <b><i>representations</i></b>, and not ChatGPT.</p> 
+  <p>So... representations are all you need, right? Unfortunately, not necessarily.</p> 
+  <p>&nbsp;</p> 
+  <h3>Alignment</h3> 
+  <p>Things are fine and dandy when all you want to do is to sort cat images into "cute," "grumpy," or "sleepy." However, these patterns are also being used to accomplish all sorts of other important tasks such as determining bail or loan worthiness. In these instances, the consequences of being wrong are far more dire than what comes from posting the wrong cat meme. This brings us to a crucial question in these high-stakes scenarios: What makes a model "good"?</p> 
+  <p>From a computer's perspective, a model is good if it tends to perform closely to the ideal behavior for some given task. Specifically, the model is trained to minimize a loss function, also known as an objective function. This function guides the model's learning, directing it to make adjustments that reduce errors and improve performance. And it's up to humans to design the right objective.</p> 
+  <p>Defining this objective can be a nuanced matter. When evaluating images of possible skin cancer, is it better to err on the side of caution, flagging borderline images as "potentially cancerous," or to err on the lax side? False positives and false negatives have different implications in different scenarios, so the objective function needs to reflect these tradeoffs appropriately.</p> 
+  <p>Defining good performance becomes even harder whenever the task is more complex. Say a social media giant is trying to increase engagement on its platform, so it trains an algorithm to maximize clicks on articles. Fast-forwarding, you might see high traffic on sensationalist links ("Unseen Footage: Alien Life Confirmed by NASA?"), followed by a general erosion of engagement caused by the propagation of crappy advice. This might indicate that pushing for increasing user engagement at all costs might not be the best objective function (cough, cough... targeted advertising).</p> 
+  <p>So, how do you make sure your model is performing the way you want it to? This is what people mean by <i>alignment</i>, referring to how your goals and your model's outcomes align. Right now, mole-whacking is the most commonly employed strategy for aligning our algorithms—meaning, figure out where errors typically occur and then try to patch that problem. In the social media case, keeping track of metrics on long-term user satisfaction and content quality may have raised flags that the "maximize clicks" algorithm had some issues. In finance applications this might involve audits into whether your found patterns have similar error rates for different demographic groups, followed by an update to the model with a new objective. In ChatGPT this happens by way of RLHF (reinforcement learning with human feedback), which is to say the new sweatshop labor where people rank the values of different ChatGPT outputs. </p> 
+  <p>However, these all amount to Band-Aids rather than systematic solutions. One potential direction toward aligning our models lies in understanding the patterns these models have gleaned. If we are able to interpret the patterns learned by AI and describe them clearly, we can then engage in discourse to decide whether these patterns are indeed aligned with the desired behavior.</p> 
+  <p>&nbsp;</p> 
+  <h3>Understanding Patterns</h3> 
+  <p>Imagine creating a dataset by launching differently weighted rubber ducks with a slingshot and then measuring how quickly they accelerate through the air. From that, an AI model can be created that will accurately predict the acceleration of a 100kg rubber duck (but I don't want to be the one who conducts that experiment!). The fact that we have an accurate prediction model, however, doesn't mean we have a true understanding of physics. What we want to be able to learn from such a model is Newton's second law of motion.</p> 
+  <p>Central to this is understanding what "representations" the model has learned. While it's most intuitive to think about representations in terms of concepts such as "the mouthfeel of 1 percent milk," these representations are actually encoded as extremely large matrices of numbers. The matrices transform the input into features (i.e., other numbers) that assist in making predictions. Usually these are not easily understandable to humans, but they do somehow help the model accomplish the task. As a result, while we have a high-level behavioral understanding of the model's behavior ("it predicts the correct thing 92 percent of the time) and a low-level mechanistic understanding of what matrices a model is learning, we lack an explanation of the model's behavior at the appropriate level of abstraction, which lies somewhere in between.</p> 
+  <p>Nailing this is a tremendously difficult task, and one that remains largely unsolved. As of today, there are a variety of techniques aimed at interpreting models, but none that can help us understand the second law of motion, let alone more complex systems.</p> 
+  <p>So far, we've assumed that training large models on the Internet will allow us to predict everything we want. But what happens when we don't have enough data to find the patterns we're looking for?</p> 
+  <p>&nbsp;</p> 
+  <h3>The Importance of Data</h3> 
+  <p>The dominant AI paradigm is to "find patterns in a <i>lot</i> of data," but in areas where data is scarce we can't expect a silver bullet. The Internet can't eradicate malaria, for example. This mammoth task would require meticulous experimentation and data collection by natural and social scientists. Ironically, the painstaking procurement of data has long been undervalued by AI, a field that eats data for dinner. AI can aid in these scientific efforts, but only so much.</p> 
+  <p>Moreover, intentionally gathering data is hard, and you get what you pay for. Carefully collected data is higher quality than incidentally collected data, though the latter is the workhorse of most large AI systems. This incidental data (sometimes referred to as "data exhaust"), which supplements location data, search queries, and social media interactions, comes as a byproduct of general online activity. AI actually can use this unintentionally created data quite effectively, but there can be consequences, such as copyright infringements or privacy violations. Conversely, sometimes a lack of data exhaust—as in "low-resource" languages such as Twi or Khmer, for example—can lead to less-capable models in these languages.</p> 
+  <p>Learning patterns from data is important if AI is to reach human-level performance. But how do we move beyond simply copying existing behaviors? </p> 
+  <p>&nbsp;</p> 
+  <h3>Beyond Patterns</h3> 
+  <p>At the moment, people are working hard to create AI systems that take a "requirements spec" as input and then spit out the appropriate code. What such systems will not be able to do, however, is to create the requirements doc in the first place. If you ask current AI to do that, you'll likely end up with a generic cookie-cutter spec that doesn't actually capture your use case or reason about your design tradeoffs. The ultimate goal is to be able to use AI to make smarter decisions. To do this, however, we'll first need to figure out what <i>needs to be done</i>.</p> 
+  <p>Making smart decisions often requires context that is currently unavailable to AI systems. How to break a big problem into smaller chunks, how to prioritize tasks effectively, how to manage delays in a project... answering questions such as these requires context on personnel, resources, and organizational goals. Often, the nuances of this context are not captured in available data. We want to build systems that embrace the principle of "know what you don't know" and explicitly encode uncertainty and limitations—something that AI systems are currently unable to do.</p> 
+  <p>Moreover, as people begin to rely more heavily on AI systems for decision-making, weird things can happen. For example, if everyone takes the "fastest route" on Google Maps, then the "fastest route" is no longer the fastest. The future is a function of both your actions and others' actions, and if everyone relies more heavily on the same AI decision-making tools, then the optimal strategy will shift. Current AI systems do not account for these sorts of downstream effects.</p> 
+  <p>To summarize, for all the doomsday proselytizing we hear, the sci-fi image of AI is far removed from the current reality. AI is not going to take your job anytime soon unless your role is devoid of human judgment calls. The AGI (artificial general intelligence) that equals human intelligence is still a faraway mythical milestone. There's still so much work to be done on defining our objectives, understanding just what the heck is going on in these crazy machines we've built, and getting past the idea of thinking about AI as prediction machines.</p> 
+  <p>&nbsp;</p> 
+  <p><b><i>Main Takeaway #2: </i></b>AI can do things but only as well as we can define the goals we want our AI to achieve. And right now, figuring out "what needs to be done" is best left to the humans.</p> 
+  <p><b><i>Advisory: </i></b>this article was <i>mostly human-written<sup>TM</sup></i>, with no more than 15 percent of the content having been produced by ChatGPT.</p> 
+  <p style="margin-bottom:4.0pt">&nbsp;</p> 
+  <hr /> 
+  <p>&nbsp;</p> 
+  <h4>Translation Guide for Talking to LLM Bros</h4> 
+  <p><b><i>Machine learning </i></b>— Field of study concerned with learning patterns from data. Really just statistics with a facelift and now rebranded as "AI."</p> 
+  <p><b><i>Reinforcement learning</i></b> — Focused on training "agents" to accomplish certain tasks by rewarding them, much like you would train your dog to bite the postman.</p> 
+  <p><b><i>Deep learning </i></b>— Machine Learning, but with bigger models and a sexy new name.</p> 
+  <p><b><i>Transformers</i></b> — The hot new architecture for sequential data that made language models wildly successful. Now the favorite toy of every '90s kid.</p> 
+  <p><b><i>Narrow AI&nbsp;</i></b>— AI that works for a problem of interest (e.g., image captioning). This is already beyond the current scope of what models can do.</p> 
+  <p><b><i>AGI (artificial general intelligence)&nbsp;</i></b>— AI that generalizes across tasks, on the level of human intelligence. The Silicon Valley pipe dream.</p> 
+  <p><b><i>ASI (artificial super intelligence)&nbsp;</i></b>— Think Skynet, the antagonistic Terminator film franchise terror. It's apparently just around the corner from AGI. Beyond human intelligence!</p> 
+  <p><b><i>Compute&nbsp;</i></b>—&nbsp;Amount of time and resources used to train a model. Usually measured in the number of FLOPs (floating point operations) or the number of Nvidia GPUs you burned through.</p> 
+  <p><b><i>Soylent</i></b> — A "meal in a bottle" to maximize the time you spend coding and minimize the time you spend enjoying life. Also a measure of engineering effort.</p> 
+  <p><b><i>AI safety&nbsp;</i></b>— Subfield that studies how to prevent the robots from taking over.</p> 
+  <p><b><i>Alignment</i></b>&nbsp;— Ensuring that the AI system's goals are aligned with our intentions, so that it's less Skynet and more Wall-E.</p> 
+  <p><b><i>Mechanistic interpretability&nbsp;</i></b>— Trying to reverse engineer which features neural networks learn (to figure out what the heck they're thinking).</p> 
+  <p><b><i>Singularity</i></b>&nbsp;— A hypothetical future point where tech/AI growth becomes uncontrollable. This is what leads to ASI, and then, eventually, doom.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Sonja Johnson-Yu</b> is a fourth-year computer science PhD student at Harvard, advised by Kanaka Rajan. She uses a cocktail of reinforcement learning and other machine learning techniques to study how animals use signals to achieve their goals and coordinate group behaviors.</p> 
+  <p><b>Sanket Shah</b> is a fifth-year PhD student at Harvard University. His research focuses on Decision-Focused Learning, a way to improve the performance of machine learning models in algorithmic decision-making by tailoring them to their downstream decision-making use cases.</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8f2813bdafffc9b0',t:'MTczNDI4Mjk0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 5</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3703128">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Jim Waldo, Soline Boussard</span> - <a href="detail.cfm?id=3688007"><b>GPTs and Hallucination</b></a>
+	  <br />
+	  The findings in this experiment support the hypothesis that GPTs based on LLMs perform well on prompts that are more popular and have reached a general consensus yet struggle on controversial topics or topics with limited data. The variability in the applications's responses underscores that the models depend on the quantity and quality of their training data, paralleling the system of crowdsourcing that relies on diverse and credible contributions. Thus, while GPTs can serve as useful tools for many mundane tasks, their engagement with obscure and polarized topics should be interpreted with caution.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3676287"><b>Virtual Machinations: Using Large Language Models as Neural Computers</b></a>
+	  <br />
+	  We explore how Large Language Models (LLMs) can function not just as databases, but as dynamic, end-user programmable neural computers. The native programming language for this neural computer is a Logic Programming-inspired declarative language that formalizes and externalizes the chain-of-thought reasoning as it might happen inside a large language model.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Mansi Khemka, Brian Houck</span> - <a href="detail.cfm?id=3675416"><b>Toward Effective AI Support for Developers</b></a>
+	  <br />
+	  The journey of integrating AI into the daily lives of software engineers is not without its challenges. Yet, it promises a transformative shift in how developers can translate their creative visions into tangible solutions. As we have seen, AI tools such as GitHub Copilot are already reshaping the code-writing experience, enabling developers to be more productive and to spend more time on creative and complex tasks. The skepticism around AI, from concerns about job security to its real-world efficacy, underscores the need for a balanced approach that prioritizes transparency, education, and ethical considerations.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Divyansh Kaushik, Zachary C. Lipton, Alex John London</span> - <a href="detail.cfm?id=3639452"><b>Resolving the Human-subjects Status of Machine Learning's Crowdworkers</b></a>
+	  <br />
+	  In recent years, machine learning (ML) has relied heavily on crowdworkers both for building datasets and for addressing research questions requiring human interaction or judgment. The diversity of both the tasks performed and the uses of the resulting data render it difficult to determine when crowdworkers are best thought of as workers versus human subjects. These difficulties are compounded by conflicting policies, with some institutions and researchers regarding all ML crowdworkers as human subjects and others holding that they rarely constitute human subjects. Notably few ML papers involving crowdwork mention IRB oversight, raising the prospect of non-compliance with ethical and regulatory requirements.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

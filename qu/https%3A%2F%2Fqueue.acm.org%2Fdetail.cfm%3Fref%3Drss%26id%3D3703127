@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Building on Shaky Ground - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Security' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3705868" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+		<p style='float:right;'>
+		<a href="https://www.informit.com/store/kollected-kode-vicious-9780136788249?utm_source=referral&utm_medium=acm-queue&utm_campaign=kode-vicious" target=_new2>
+		<img src="/confimg/Kode_Vicious2.jpg" border="0" alt="The Kollected Kode Vicious" style='height:196px;width:150px;padding:5px;'>
+		</a><br />
+		</p>
+		<h3><a href='/listing.cfm?typefilter=Kodevicious&sort=publication_date&order=desc&qc_type=Kodevicious&article_type=&item_topic=all&filter_type=topic&page_title=Kode%20Vicious&filter=all'>Kode Vicious</a> - <a href='https://twitter.com/kode_vicious' target='_new' style='font-size:0.8em'>@kode_vicious </a></h3>
+
+	
+
+<label>December 2, 2024<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3705868">Volume 22, issue 5 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3703127">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Building on Shaky Ground</h1> 
+  <h2>We owe it to the world to make systems work safely and reliably.</h2> 
+  <p><b>Dear KV,</b> By now, I'm sure you've seen the CrowdStrike news, and I can't help but imagine you have opinions about what really went wrong to cause so many problems. The news, both tech and nontech, is full of explanations of what went wrong: poor testing, relying too much on one company for critical infrastructure, allowing a critical module failure to prevent further remote updates... the list goes on. With all that's already been said about this topic, it seems a lot of it is just finger-pointing, and I wonder if anyone has gotten to the heart of the matter, or if they never will and we'll just have to live with these sorts of outages—like mini-Y2Ks, only worse.</p> 
+  <p align="right" style="text-align:right"><b>Missing the Heart</b></p> 
+  <p> <b>Dear Heartless</b><b>, </b>Like anyone else who was not living under a rock, I did see the CrowdStrike issue hit the news, and I'm glad my flight made it out before the systems shut down because it was a lot easier to point and laugh <i>after</i> the flight than it was for others who were stuck on the ground. The flight interruptions were only the most visible component of the failure, because huge queues at airports make for great news coverage. But CrowdStrike didn't just screw up air travel for days; it also affected hospitals and doctors' offices, banks and ATMs, as well as many other systems that people use daily. </p> 
+  <p>For people who work in computer security, it was actually the day we had all been waiting for: a clear example of "I told you so!" that's explainable to nontechnical as well as technical folk. You don't need to understand NULL pointer exceptions to get that when your computer doesn't work, the world doesn't either. And this is probably the best part (if there is a best part) of this disaster: As far as we know, no one died from this, which is good, and everyone now knows that the world we've built rests upon pretty shaky ground. It's the wake-up call a lot of us have been waiting for. The question now is: Will we answer the phone?</p> 
+  <p>A lot of ink has been spilled about how all this came about, from the low-level explanation of the NULL pointer exception to the way that testing missed the issue and how, maybe, we should not allow a remote push of software to prevent a system from booting without manual intervention.</p> 
+  <p>The questions to ask now are not "How do we better lock things down in the current state?" or "How do we have better development practices so we don't push a NULL pointer bug in the lowest level of OS code?" These are good questions, but they aren't the heart of the matter.</p> 
+  <p>That has to do with how systems are built—systems software in particular—with unsafe languages on unsafe hardware that's connected to a network on which nobody can be trusted.</p> 
+  <p>Let's start at the hardware layer and work our way up. Current computer hardware is a wildly complex beast, composed of a diverse set of interconnected elements that, overall, trust each other. </p> 
+  <p>What do I mean by <i>trust</i>? Take the issue of computer memory, from whence our NULL pointer errors arrive.&nbsp;The majority of in-memory software vulnerabilities come from the fact that anyone can do pointer arithmetic. Take a memory address, add or subtract a number, and—voila!—you have another possibly valid memory address. </p> 
+  <p>It is game-playing of this type that is at the heart of most computer viruses and has inspired many types of security protections that have been attempted over the years, such as ASLR (address space layout randomization), no-execute bits in hardware, W^X (write xor execute) permissions, and many others. These protections have had a checkered history, sometimes working for short periods only to be overcome in the course of the arms race that is computer security. The heart of the matter for hardware is that we continue to pretend we're working with a minicomputer from the 1970s and that transistors are at a premium, which they are not.</p> 
+  <p>There are solutions to the pointer arithmetic problem, but they require dedicating more resources to building a safer computer architecture. I'm referring here to <i>capability machines</i>, such as the one built at the University of Cambridge in the 1970s.&nbsp;In a capability machine, there are only capabilities, not just bare addresses, and these are cryptographically protected by the hardware. You can't simply add an integer to a capability to get a different one, because the hardware doesn't allow this kind of math to occur. But capabilities require a larger address space, doubling the size of a native pointer in some cases, which has an effect on memory, the TLB (translation lookaside buffer), and other parts of the computer. In the 1970s, this cost was prohibitive, but now it should not be, certainly not if the benefit is a more reliable and secure system. </p> 
+  <p>Prototypes of such systems have been developed and are part of active research. It's time now to get these into production, especially around critical infrastructure. But then, what isn't critical infrastructure these days? Who knew that you could destroy the world's check-in kiosks with one bad push? When capabilities were first proposed, the world was not run on computers. </p> 
+  <p>Today, it's a different story, and it's time to change our calculus. There surely are also other ways, even beyond capability machines, to use the embarrassment of riches that Moore's law has bestowed upon us to upset the balance in favor of security. It's high time we discovered what those ways are. </p> 
+  <p>One option with an emphasis on security is CHERI (Capability Hardware Enhanced RISC Instructions). For an overview, see "<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">An Introduction to CHERI</a>," by Robert N. M. Watson, Simon W. Moore, Peter Sewell, and Peter G. Neumann (<a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf">https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-941.pdf</a>). </p> 
+  <p>Moving up to software, we confront two main problems. There is now a ton of low-level software, built in C, that's based on a very old understanding of the hardware—models of compute that were appropriate in the 1970s. C is an unsafe language, basically assembler with for loops. C has the advantage of producing efficient code for modern processors. That fact, along with its long and historical use first in Unix and then other systems software, has meant that the lowest levels of nearly every computing system—from Windows, to Linux and Android, to macOS, to the BSDs, as well as nearly every realtime or embedded operating system—are written in C. When a packet comes to a computer from the Internet, it is always processed by code written in C. </p> 
+  <p>And this, coupled with the aforementioned hardware problems, poses a huge security challenge. When C was written, there was no Internet and all the nodes of the ARPANET (for those who even remember that name) could be written down on a dinner napkin.&nbsp;It simply isn't appropriate to write code that will be connected to the Internet in an unsafe language like C. We've tried to make this work, and we can see the results.</p> 
+  <p>The second problem is the systems software itself. Unix was considered a great win over Multics because Unix was simpler, introducing only two domains: the kernel and user space. User-space programs are protected from each other by virtual memory. But the kernel—any kernel—is a huge blob of shared state with millions of lines of code in it. This is true for any operating system now in day-to-day use—Windows, Unix, or whatever tiny embedded OS is running on your WiFi-connected light switches. </p> 
+  <p>What makes up this huge blob? Device drivers! Device drivers of varying—and some might say questionable—quality, any one of which can poke and prod any part of the system for which it can manufacture a valid memory address. Once something breaches the operating system's kernel boundary, the game is over, because the operating system is "shared everything."</p> 
+  <p>A modern approach to systems software suggests that we not only write all new systems in type-safe languages, such as Rust, but also rewrite what we already have in the same way. But this isn't economically practical. Imagine how much it would cost to rewrite any major OS in a new language, test it, deploy it, etc.&nbsp;I mean, KV would take 10 percent of that cost gladly to run the project, but the drinks bill would be stunning.</p> 
+  <p>A multipronged approach is the only way out of the current morass, one in which we leverage type-safe languages such as Rust when possible and decide which hardware is actually critical and <i>must </i>be replaced. (Do you wanna bet some dam-control software somewhere runs Windows? I'll lay real money that it does.)</p> 
+  <p>The whole CrowdStrike catastrophe happened because of architectural issues in hardware and in systems software.</p> 
+  <p>We should be building systems that make writing a virus difficult, not child's play. But that's an expensive proposition now.</p> 
+  <p>We conned humanity into using computers for everything. Now we owe it to the world to make those systems work safely and reliably.</p> 
+  <p align="right" style="text-align:right"><b>KV</b></p> 
+  <p><b>&nbsp;</b></p> 
+  <p><b>George V. Neville-Neil</b> works on networking and operating-system code for fun and profit. He also teaches courses on various subjects related to programming. His areas of interest are computer security, operating systems, networking, time protocols, and the care and feeding of large codebases. He is the author of <i>The Kollected Kode Vicious</i> and co-author with Marshall Kirk McKusick and Robert N. M. Watson of <i>The Design and Implementation of the FreeBSD Operating System</i>. For nearly 20 years, he has been the columnist better known as Kode Vicious. Since 2014, he has been an industrial visitor at the University of Cambridge, where he is involved in several projects relating to computer security. He earned his bachelor's degree in computer science at Northeastern University in Boston, Massachusetts, and is a member of ACM, the Usenix Association, and IEEE. His software not only runs on Earth, but also has been deployed as part of VxWorks in NASA's missions to Mars. He is an avid bicyclist and traveler who currently lives in New York City.</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p> 
+  <p>&nbsp;</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8f2813cede8620d6',t:'MTczNDI4Mjk0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 5</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3703127">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Jinnan Guo, Peter Pietzuch, Andrew Paverd, Kapil Vaswani</span> - <a href="detail.cfm?id=3665220"><b>Trustworthy AI using Confidential Federated Learning</b></a>
+	  <br />
+	  The principles of security, privacy, accountability, transparency, and fairness are the cornerstones of modern AI regulations. Classic FL was designed with a strong emphasis on security and privacy, at the cost of transparency and accountability. CFL addresses this gap with a careful combination of FL with TEEs and commitments. In addition, CFL brings other desirable security properties, such as code-based access control, model confidentiality, and protection of models during inference. Recent advances in confidential computing such as confidential containers and confidential GPUs mean that existing FL frameworks can be extended seamlessly to support CFL with low overheads.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Raluca Ada Popa</span> - <a href="detail.cfm?id=3664295"><b>Confidential Computing or Cryptographic Computing?</b></a>
+	  <br />
+	  Secure computation via MPC/homomorphic encryption versus hardware enclaves presents tradeoffs involving deployment, security, and performance. Regarding performance, it matters a lot which workload you have in mind. For simple workloads such as simple summations, low-degree polynomials, or simple machine-learning tasks, both approaches can be ready to use in practice, but for rich computations such as complex SQL analytics or training large machine-learning models, only the hardware enclave approach is at this moment practical enough for many real-world deployment scenarios.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Matthew A. Johnson, Stavros Volos, Ken Gordon, Sean T. Allen, Christoph M. Wintersteiger, Sylvan Clebsch, John Starks, Manuel Costa</span> - <a href="detail.cfm?id=3664293"><b>Confidential Container Groups</b></a>
+	  <br />
+	  The experiments presented here demonstrate that Parma, the architecture that drives confidential containers on Azure container instances, adds less than one percent additional performance overhead beyond that added by the underlying TEE. Importantly, Parma ensures a security invariant over all reachable states of the container group rooted in the attestation report. This allows external third parties to communicate securely with containers, enabling a wide range of containerized workflows that require confidential access to secure data. Companies obtain the advantages of running their most confidential workflows in the cloud without having to compromise on their security requirements.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Charles Garcia-Tobin, Mark Knight</span> - <a href="detail.cfm?id=3664291"><b>Elevating Security with Arm CCA</b></a>
+	  <br />
+	  Confidential computing has great potential to improve the security of general-purpose computing platforms by taking supervisory systems out of the TCB, thereby reducing the size of the TCB, the attack surface, and the attack vectors that security architects must consider. Confidential computing requires innovations in platform hardware and software, but these have the potential to enable greater trust in computing, especially on devices that are owned or controlled by third parties. Early consumers of confidential computing will need to make their own decisions about the platforms they choose to trust.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
