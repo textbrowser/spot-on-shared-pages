@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Retrofitting: Principles and Practice - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3714453" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+		<h3><a href='/listing.cfm?typefilter=Drillbits&sort=publication_date&order=desc&qc_type=Drillbits&article_type=&item_topic=all&filter_type=topic&page_title=Drill%20Bits&filter=all'>Drill Bits</a></h3>
+
+	
+
+<label>January 20, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3714453">Volume 22, issue 6 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3711673">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <style> code {color:#333;font-size:1.1em;} li {padding-bottom:10px;} </style> 
+  <h1 class="hidetitle">Retrofitting: Principles and Practice</h1> 
+  <h3>Terence Kelly<br />with Special Guest Borer Ziheng (Aaron) Su</h3> 
+  <p>Saddling time-tested workhorse software with unexpected new burdens is often the best way to seize an opportunity or trounce a perennial annoyance, but adding radically new functionality to production code isn't easy. A practical case study spotlights principles that help us bolt new tricks onto old dogs.</p> 
+  <p>&nbsp;</p> 
+  <h3>Practice for Practitioners</h3> 
+  <p><i>Retrofitting </i>means adding major new features to deployed artifacts that were not designed with those features in mind. Adding a trailer hitch to the family minivan doesn't count; replacing the rear seats with a jacuzzi does.</p> 
+  <p>Retrofitting is difficult for several reasons. It begins with reading and understanding other people's code, which is much harder than writing your own. Then it requires designing and implementing major new features to harmonize with what's already there. By analogy, builders adding a wing to a house must uphold numerous invariants (building codes) and ensure that the final product looks like part of the original architect's vision, not like a collision with a shantytown. The existing structure might resist the retrofit, and it certainly won't assist.</p> 
+  <p>Large retrofits happen infrequently in most coding shops, which is bad news for programmers striving to hone their skills. There's not enough practice on the job. Fortunately, it's easy to practice the art of retrofitting in the vast world of open-source software. Find a widely used, actively maintained program that would benefit from a medium-sized new feature <i>that you would use.</i> Scratch your own itch. If you implement the feature well, the maintainer might incorporate it into the official distribution.</p> 
+  <blockquote> <b>Zawinski's Law:</b> 
+   <br /> Every program attempts to expand until it can read mail. Those programs which cannot so expand are replaced by ones which can. 
+  </blockquote> 
+  <p>This episode of Drill Bits walks through such an exercise. The itch is a common data-analytics chore. Our scratching exposes general principles to guide retrofit projects. In the end, we deliver a powerful and general new feature for a venerable open-source utility.</p> 
+  <p>&nbsp;</p> 
+  <h3>Streams, Precision, and Recall</h3> 
+  <p>Modern analytics crunches infinite streams of event-driven data that arrive piecemeal. Examples include datacenter telemetry, financial data from stock exchanges, and sensor readings from the Internet of Things. The first stage of analytics often involves smoothing incoming data, for example, by maintaining windowed averages over the latest arrivals on each of myriad streams. Getting stream analytics right requires rock-solid arithmetic, which leads to the starting line of our retrofit project.</p> 
+  <p>Conventional fixed-width binary floating-point arithmetic is ill-suited to stream analytics for two reasons. First, many serious applications require <i>decimal </i>arithmetic. Mundane decimal numbers such as 0.1 do not admit exact binary representation,<sup>8</sup> which isn't a mere curiosity or minor annoyance. Binary causes unacceptable errors in finance, accounting, and other domains where decimal inputs must yield correct decimal outputs. In figure 1, for example, C <code>double</code> arithmetic botches the computation of a 5% tax on a 70¢ purchase.<sup>5</sup> Mathematically, $0.70×1.05 = $0.735, which conventionally rounds to $0.74. The rounding in figure 1 is wrong because in binary the result before rounding is 0.734999.... Misplacing a penny per transaction can lead to multimillion-dollar annual errors for real firms.<sup>5</sup> Demanding financial applications have therefore long employed arbitrary-precision arithmetic.<sup>9</sup></p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711673/assets/html/kelly1.png" alt="Drill Bits: Retrofitting: Principles and Practice" /> 
+  <br /> <span>Figure 1: Binary floating-point rounding surprise</span> 
+  <p>&nbsp;</p> 
+  <p>The second problem with fixed-width arithmetic is that high-volume data streams can trigger snowballing numerical errors. During the Gulf War of 1991, cumulative snafus in fixed-width arithmetic confused an air-defense system, allowing an Iraqi Scud missile to kill 28 Americans.<sup>1</sup> Our example code tarball illustrates similar pitfalls that can afflict practical calculations involving compound interest and polynomial evaluation.</p> 
+  <p>A calculator utility bundled with Linux distributions, GNU <code>bc</code>, offers arbitrary-precision decimal arithmetic behind an ergonomic no-nonsense interface.<sup>16</sup> It's hard to beat for quick interactive calculations at the command line, and it supports non-interactive scripts as well. The previous episode of Drill Bits used <code>bc</code> extensively for combinatorial calculations over enormous integers begat by factorials.<sup>13</sup> For arithmetic with fractions, <code>bc</code> computes results to any desired precision. </p> 
+  <p>Python and other scripting languages have arbitrary-precision decimal arithmetic libraries, but <code>bc</code> scripts are clearer, smaller, and more convenient for simple chores. The lean <code>bc</code> interpreter is also noticeably faster than Python and has a much smaller memory footprint, which are important advantages where performance is a concern.</p> 
+  <p>A <code>bc</code> script can easily compute a windowed average over a data stream. The script in figure 2 reads non-negative input numbers into variable <code>x</code>, holds the most recent window of <code>w=3</code> inputs in array <code>a</code>, counts the total number of inputs received in <code>n</code>, and maintains the <code>sum</code> over the window's contents. The <code>if/else</code> line ensures that the denominator used to compute the windowed average, <code>d</code>, is correct both before and after the window fills; this line also subtracts from the <code>sum</code> numbers that "age out" of a full window. Below the script itself, shell variables <code>IN1</code> and <code>IN2</code> contain sample inputs. Piping these inputs into the script followed by a negative number yields output to the precision specified by the <code>scale</code> parameter. The script's <code>mod()</code> function is necessary because <code>bc</code>'s modulus operator doesn't do what we want when <code>scale</code> is nonzero; <code>auto</code> designates <code>p</code> and <code>r</code> as local variables.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711673/assets/html/kelly2.png" alt="Drill Bits: Retrofitting: Principles and Practice" /> 
+  <br /> <span>Figure 2: Windowed average with <code>bc</code></span> 
+  <p>&nbsp;</p> 
+  <p>The script in figure 2 is adequate if all inputs are available at once, but it can't handle an infinite stream of data that arrives piecemeal. In figure 3, the script ingests the two input sequences separately and emits incorrect output as the window fills for the second time. The problem, of course, is that the window vanishes when the first invocation of the script terminates.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711673/assets/html/kelly3.png" alt="Drill Bits: Retrofitting: Principles and Practice" /> 
+  <br /> <span>Figure 3: Intermittent arrivals cause trouble</span> 
+  <p>&nbsp;</p> 
+  <p>A bad solution would be to modify the script in figure&nbsp;2 to dump the window to persistent storage as the script terminates and read the window back in when the script is next invoked. This approach suffers two shortcomings. First, it can be a gratuitous performance disaster. If input numbers arrive one at a time, it would perform work proportional to the window size for every input number, whereas the inherent computational burden of the task at hand is only constant work per input (<i>O</i>(windowsize)<i> </i>vs. <i>O</i>(1)). A timeless universal principle steers us away from trouble here: <i>Strongly prefer asymptotically efficient solutions</i>.</p> 
+  <p>The second problem with the bad solution is that modifying every script with the same fundamental problem—amnesia—is a gratuitous <i>programming </i>disaster. Innumerable scripts would bloat with different homebrew Band-Aids for a single root problem. A second principle points toward a better solution: <i>Solve a general class of problems exactly once, in the right place</i>.</p> 
+  <p>&nbsp;</p> 
+  <h3>Keep State and Carry On</h3> 
+  <p>It's best to solve the amnesia problem once, efficiently and well, by retrofitting a new capability onto the <code>bc</code><i> interpreter</i>: Enable the interpreter to save sufficient script-execution state between invocations so that scripts can simply pick up where they left off. This new capability will be a pure opt-in: If the user who invokes <code>bc</code> doesn't request it, <code>bc</code> will behave in its traditional forgetful fashion. Scripts themselves will include no code whatsoever to enjoy the new pause<i>/</i>resume capability; the interpreter will do all of the work, and users will activate the new feature (or not) at runtime. Finally, pause<i>/</i>resume won't be for scripts alone; it will also work for interactive <code>bc</code> sessions.</p> 
+  <p>All of which, of course, is easier said than done. The new feature's description might be concise and clear, but the retrofit code might get hairy. Furthermore, an efficient design that performs only the minimum necessary work might be elusive. Fortunately, the <code>bc</code> codebase is reasonably small and tidy, so we weren't too intimidated to dive in and start contemplating different retrofit strategies.</p> 
+  <p>We identified a set of variables that collectively represent the execution state of a <code>bc</code> script or interactive session. Preserving these variables across invocations is both necessary and sufficient to support our new pause<i>/</i>resume capability. Conveniently, the declarations and definitions of the crucial variables were already consolidated in <code>global.h</code> and <code>global.c</code>, but many other source files accessed the variables.</p> 
+  <p>We rejected the blunt expedient of writing the execution-state variables to persistent storage when <code>bc</code> is about to terminate and then reading them back into memory at the next invocation, which suffers the same asymptotic inefficiency noted earlier for the windowed-average script: <i>O</i>(datasize) vs. <i>O</i>(deltasize)<i>.</i> The less ham-fisted alternative of explicitly saving only <i>changes </i>to interpreter state would be difficult and error-prone; this approach would scatter change-tracking logic all over the <code>bc</code> code, violating the "solve-once<i>/</i>right-place" principle.</p> 
+  <p>So, where in the <code>bc</code> code should we retrofit pause<i>/</i>resume? A roundabout answer springs from a third general principle: <i>Respect the existing software architecture</i>. The interpreter must somehow persist and later restore enough state to resume execution. Respecting the architecture means doing so in the place where <code>bc</code> already manages persistent state.</p> 
+  <p>But there is no such place! The <code>bc</code> interpreter has no module, no software layer, no location where it manages persistent state. Instead, <code>bc</code> simply manipulates ordinary data structures (C variables and <code>struct</code>s) in conventional anonymous<i>/</i>ephemeral DRAM-backed memory, as we would expect in a calculator. Respecting the architecture means that we can't clutter the code that manipulates in-memory data with new persistence logic, and we can't shoehorn a new persistent storage module into an architecture that has nothing of the kind.</p> 
+  <p>We can, however, swap an existing software layer for a drop-in replacement without dissing the architecture.</p> 
+  <p>&nbsp;</p> 
+  <h3>Outpatient Layer-Cake Surgery</h3> 
+  <p>The right layer to swap lies immediately below the <code>bc</code> interpreter: the memory allocator. Most of the crucial execution state that must be preserved across invocations resides on the conventional heap managed by standard <code>malloc</code> and <code>free</code>; the exceptions can easily be moved onto the heap. Then, in principle, all that's necessary to retrofit pause<i>/</i>resume onto the interpreter is to replace the conventional ephemeral heap with a <i>persistent heap</i>.</p> 
+  <p>Easier said than done? Yes, but not much.</p> 
+  <p>Our retrofit uses a persistent memory allocator, <code>pma</code>, that has been deployed for several years in widely used software.<sup>11,12,14</sup> The <code>pma</code> library provides drop-in <code>pma_*</code> replacements for standard <code>malloc</code> and <code>free</code>. We swap in the new persistent allocator by <code>#define</code>-ing <code>malloc</code> and <code>free</code> to their <code>pma_</code> counterparts in a header <code>#include</code>d in all source modules. Under the hood, <code>pma</code> allocates memory from a file-backed memory mapping. The backing file containing <code>pma</code>'s persistent heap is called the <i>heap file</i>.</p> 
+  <p>To activate persistent-memory mode in our retrofitted <code>bc</code> interpreter, the user sets a special new environment variable, <code>BC_PM_HEAP_FILE</code>, to the name of a heap file. If this envar is set, the <code>pma</code> initialization routine maps the given heap file into memory and prepares for persistent-memory mode. If the envar is not set, the initialization routine places the <code>pma</code> library in "fall-back-to-<code>malloc</code>" mode, which means that <code>pma_malloc</code> passes the buck to conventional <code>malloc</code> and <code>pma_free</code> similarly calls ordinary <code>free</code>. In other words, if the special new envar is not set, <code>bc</code> behaves as though our persistence retrofit had never happened.</p> 
+  <p>The trickiest aspect of the retrofit is enabling the existing <code>bc</code> code to access data on the persistent heap. Like all modern persistent heaps, <code>pma</code> requires applications to ensure that all allocated persistent memory is reachable from the persistent heap's <i>root pointer</i>. So, if the existing <code>bc</code> code manipulates a variable named "<code>foo</code>," which now resides on the persistent heap, how does the <code>bc</code> code find <code>foo</code>?</p> 
+  <p>A two-step change tackles the problem of access via the root pointer. We first allocate on the persistent heap a new structure to contain all variables that must persist across invocations. The persistent heap's root pointer always points to this new <code>struct</code>. Second, we <code>#include</code> in all <code>bc</code> source files a new header that replaces straightforward accesses to formerly ephemeral variables with indirect accesses to retrofitted persistent variables:</p> 
+  <p align="center" style="text-align:center"><code>#define foo root_pointer-&gt;foo </code></p> 
+  <p>When <code>pma</code> operates in fall-back-to-<code>malloc</code> mode, the new <code>struct</code> ends up on the conventional heap and everything Just Works. </p> 
+  <p>The net result is that the existing <code>bc</code> source code scarcely changes at all. One of the few changes to the existing code involves the standard library function <code>strdup</code>, which allocates memory on the conventional heap. We replace the handful of <code>strdup</code>s with a code snippet that calls <code>pma_malloc</code> and <code>strcpy</code>. In total, the retrofit adds roughly 110 lines of code to <code>bc</code> and modifies roughly 50 lines in an original code base of ≈6 KLOC.</p> 
+  <p>Arbiters of style might wince at the use of C preprocessor <code>#define</code>s to redirect function calls and variable accesses. For our <code>bc</code> retrofit, however, macros minimize disturbance to the original code and thereby preserve its clarity. They also make it easy to rip out the retrofit later if we don't like it. Over-thinking the problem or over-engineering a solution would not yield superior results for our midsize project.</p> 
+  <p>&nbsp;</p> 
+  <h3>Persistent-Memory <code>bc</code></h3> 
+  <p>Returning to windowed averages, figure 4 shows that persistent-memory <code>bc</code> <code>(pm-bc)</code> correctly handles piecemeal inputs by preserving script execution state, including the window of recent arrivals, across invocations. The user activates persistence by making a heap file—initially a big file of zero bytes created by the <code>truncate</code> utility—and passing its name to <code>pm-bc</code> via a special new environment variable. An alternative way to pass the envar is to <code>export</code> it once prior to running <code>pm-bc</code> rather than at each invocation. Users who forget that they have <code>export</code>ed the envar, however, may suffer astonishment when <code>pm-bc</code> preserves state across invocations.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711673/assets/html/kelly4.png" alt="Drill Bits: Retrofitting: Principles and Practice" /> 
+  <br /> <span>Figure 4: <code>pm-bc</code> correctly handles intermittent arrivals</span> 
+  <p>&nbsp;</p> 
+  <p>Persistent-memory <code>bc</code> is asymptotically efficient because the <code>pma</code> allocator lays out persistent heaps in memory-mapped files.<sup>11</sup> When <code>pm-bc</code> updates its persistent heap, the underlying OS performs work proportional to the number of memory pages that change rather than the size of the persistent heap. More concisely, it performs <i>O</i>(deltasize) work, not <i>O</i>(datasize). And of course the persistence retrofit imposes no overhead whatsoever if the user does not explicitly activate persistence.</p> 
+  <p>Our <code>pm-bc</code> retrofit showcases the power of principles. A junior programmer with no prior exposure to <code>bc</code> or persistent memory (Su) pulled off the entire retrofit in a few weeks with minimal guidance from a persistent memory veteran (Kelly) and the <code>bc</code> maintainer (Phil Nelson). The maintainer plans to include persistence in a forthcoming official release of GNU <code>bc</code>. The key to success was the thoughtful application of a handful of timeless principles: Seek asymptotic efficiency, solve problems in the right place with minimal effort, and respect the architecture of existing software. Consider these principles for your own retrofit projects.</p> 
+  <p>&nbsp;</p> 
+  <h3>Drilling Deeper</h3> 
+  <p>Retrofitting creates new functionality by adding to existing code. An alternative strategy is to innovate by <i>deleting </i>code. For example, Ken Thompson created the non-interactive <code>grep</code> utility by stripping down an interactive text editor, <code>ed</code>.<sup>18</sup> For some years, Brian Kernighan required students in his advanced programming course at Princeton to replicate Thompson's creation of <code>grep</code> from <code>ed</code>, though starting with a C version, not the original assembly language.<sup>15</sup></p> 
+  <blockquote>
+    Perfection is attained not when there is nothing more to add, but when there is nothing more to remove. 
+   <br /> — <i><a href="https://en.wikiquote.org/wiki/Antoine_de_Saint_Exup%C3%A9ry">Antoine de Saint Exupéry</a></i> 
+  </blockquote> 
+  <p>Persistent memory isn't the only way to implement pause<i>/</i>resume. Alternatives range from good old-fashioned <code>SIGSTOP/SIGCONT</code> to more modern options such as CRIU (Checkpoint<i>/</i>Restore In Userspace)<sup>6</sup> and DMTCP (Distributed MultiThreaded Checkpointing).<sup>7</sup> Unfortunately, these alternatives are ill-suited to persistent <i>scripting </i>because they make it difficult for a resurrected interpreter to handle new inputs.<sup>17</sup></p> 
+  <p>Goldberg's classic survey catalogs the virtues and limitations of conventional fixed-width binary floating-point arithmetic.<sup>8</sup> Demanding applications that can't accept the tradeoffs of conventional arithmetic might instead employ Boehm's uncompromising library, which evaluates expressions by computing intermediate results to whatever precision is needed to guarantee a desired precision in the final result.<sup>2,3</sup> If fixed width isn't a problem but decimal arithmetic is required, the recently standardized decimal floating-point types in C23 might fit the bill.<sup>4</sup></p> 
+  <p>&nbsp;</p> 
+  <h4>Bits</h4> 
+  <p>Grab the example code tarball at <a href="https://queue.acm.org/downloads/2024/Drill_Bits_14_example_code.tar.gz">https://queue.acm.org/downloads/2024/Drill_Bits_14_example_code.tar.gz</a>. You get an inner tarball containing <code>pm-bc</code>, the <code>winavg.bc</code> script of figure 2, an equivalent Python script, a shell script to compare the performance of the <code>.bc</code> and <code>.py</code> scripts, and a PDF document describing another gotcha of fixed-width floating-point arithmetic.</p> 
+  <p>&nbsp;</p> 
+  <h4>Drills</h4> 
+  <ol> 
+   <li> Compare the running times and memory footprints of <code>bc</code>, Python, and Perl scripts. On Unix-like systems, the quick and dirty approach is:<br /> <code>/usr/bin/time python3 -c 'print(f"hello")'</code><br />Think about the implications for multiple scripts running in parallel on a multicore processor.</li> 
+   <li> Use persistent heaps to transfer data structures between unrelated <code>bc</code> scripts.</li> 
+   <li> Add crash tolerance to persistent-memory <code>bc</code>. Consider <code>gdbm</code>'s mechanism.<sup>10</sup></li> 
+   <li> Retrofit persistence onto another scripting language interpreter (e.g., Python or Perl).</li> 
+   <li> Use preprocessor macros to help Millennial<i>/</i>GenZ programmers feel at home in Boomer<i>/</i>GenX languages, e.g., <code>#define YEET throw</code></li> 
+  </ol> 
+  <p>&nbsp;</p> 
+  <h4>Acknowledgments</h4> 
+  <p>We thank <code>bc</code> maintainer Phil Nelson for valuable advice; Jon Bentley, John Dilley, Alan Karp, and Kevin O'Malley for brainstorming; and Brian Kernighan for historical information about <code>ed</code> and <code>grep</code>. Bentley, Dilley, Karp, Nelson, O'Malley, and Charlotte Zhuang reviewed drafts and provided valuable feedback. Dilley and O'Malley reviewed our code, and Lucas Stevenson re-implemented our "<code>winavg.bc</code>" script in Python.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <ol> 
+   <li> Arnold, D. N. 2000. The Patriot missile failure; <a href="http://www.ima.umn.edu/~arnold/disasters/patriot.html">http://www.ima.umn.edu/~arnold/disasters/patriot.html</a>.</li> 
+   <li> Boehm, H.-J. 2017. Small-data computing: correct calculator arithmetic. <i>Communications of the ACM </i>60(8), 44–49; <a href="https://dl.acm.org/doi/pdf/10.1145/2911981">https://dl.acm.org/doi/pdf/10.1145/2911981</a>.</li> 
+   <li> Boehm, H.-J. 2020. Towards an API for the real numbers. In <i>Proceedings of the 41st ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)</i>; <a href="https://dl.acm.org/doi/pdf/10.1145/3385412.3386037">https://dl.acm.org/doi/pdf/10.1145/3385412.3386037</a>.</li> 
+   <li> C23 Standard (draft n3054). <a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf">https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf</a>.</li> 
+   <li> Cowlishaw, M. 2007. Decimal arithmetic FAQ part 1 — general questions. IBM Corp.; <a href="https://speleotrove.com/decimal/decifaq1.html">https://speleotrove.com/decimal/decifaq1.html</a>.</li> 
+   <li> CRIU (Checkpoint/Restore In Userspace); <a href="https://criu.org/Main_Page">https://criu.org/Main_Page</a>.</li> 
+   <li> DMTCP (Distributed MultiThreaded Checkpointing); <a href="https://dmtcp.sourceforge.io/">https://dmtcp.sourceforge.io/</a>.</li> 
+   <li> Goldberg, D. 1991. What every computer scientist should know about floating-point arithmetic. <i>ACM Computing Surveys</i> 23(1), 5–48; <a href="https://dl.acm.org/doi/pdf/10.1145/103162.103163">https://dl.acm.org/doi/pdf/10.1145/103162.103163</a>.</li> 
+   <li> Hanson, D. R. 1997. <i>C Interfaces and Implementations</i>. Addison-Wesley. See page 323 for high-precision price tracking.</li> 
+   <li> Kelly, T. 2021. Crashproofing the original NoSQL data store. <i>acmqueue</i> 18(4); <a href="https://dl.acm.org/doi/pdf/10.1145/3487019.3487353">https://dl.acm.org/doi/pdf/10.1145/3487019.3487353</a>.</li> 
+   <li> Kelly, T. 2022. The <code>pm-gawk</code> user manual. Available at reference [12]. See Section 4.1 for asymptotic efficiency.</li> 
+   <li> Kelly, T. 2022 <code>pma</code>: A persistent memory allocator; <a href="http://web.eecs.umich.edu/~tpkelly/pma/">http://web.eecs.umich.edu/~tpkelly/pma/</a>.</li> 
+   <li> Kelly, T. 2024. Zero tolerance for bias. <i>acmqueue</i> 22(2), 19–38; <a href="https://dl.acm.org/doi/pdf/10.1145/3664645">https://dl.acm.org/doi/pdf/10.1145/3664645</a>.</li> 
+   <li> Kelly, T., Tan, Z. F. Li, J., Volos, H. 2022. Persistent memory allocation: Leverage to move a world of software. <i>acmqueue</i> 20(2), 16–30; <a href="https://dl.acm.org/doi/pdf/10.1145/3534855">https://dl.acm.org/doi/pdf/10.1145/3534855</a>.</li> 
+   <li> Kernighan, B. 2024. Personal communication.</li> 
+   <li> Nelson, P. 2024. GNU <code>bc</code> arbitrary-precision calculator; <a href="https://www.gnu.org/software/bc/">https://www.gnu.org/software/bc/</a>.</li> 
+   <li> Tan, Z. F., Li, J., Volos, H., Kelly, T. 2022. Persistent scripting. In <i>Proceedings of the Non-Volatile Memory Workshop (NVMW)</i>; <a href="http://nvmw.ucsd.edu/nvmw2022-program/nvmw2022-data/nvmw2022-paper35-final_version_%20your_extended_abstract.pdf">http://nvmw.ucsd.edu/nvmw2022-program/nvmw2022-data/nvmw2022-paper35-final_version_your_extended_abstract.pdf</a>.</li> 
+   <li> Wikipedia. 2024. <code>grep</code>; <a href="https://en.wikipedia.org/wiki/Grep">https://en.wikipedia.org/wiki/Grep</a>.</li> 
+  </ol> 
+  <p>&nbsp;</p> 
+  <p><b>Terence Kelly</b> (<a href="/cdn-cgi/l/email-protection#13676378767f7f6a5372707e3d7c6174"><span class="__cf_email__" data-cfemail="98ece8f3fdf4f4e1d8f9fbf5b6f7eaff">[email&#160;protected]</span></a>) enjoys splashing around in his minivan's jacuzzi. </p> 
+  <p><b>Ziheng (Aaron) Su</b> enjoys bolting new tricks onto old dogs.</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'90778e5aaae92d10',t:'MTczNzgwMDY5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3711673">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
