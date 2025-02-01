@@ -1,0 +1,716 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Simulationan Underutilized Tool in Distributed Systems - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Distributed Computing' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3714453" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>January 27, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3714453">Volume 22, issue 6 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3711677">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Simulation: An Underutilized Tool in Distributed Systems</h1> 
+  <h2>Not easy but not impossible, and worth it for the insights it can provide</h2> 
+  <h3>David R. Morrison</h3> 
+  <p>The mass shift to cloud-based infrastructure in the latter half of the 2010s, spurred by technologies like Kubernetes and the ease of access to cloud-computing resources, promised huge benefits for organizations both in and out of traditional software development spaces. The cloud would make it cheap to deploy applications; Kubernetes would make it easy to deploy applications; and the DevOps movement would make it simple to operate those applications. Indeed, many of these predictions have come true: Software is now being run and deployed in the cloud on top of Kubernetes by organizations in and out of Silicon Valley; across industries like farming and construction; state, federal, and local governments; nonprofits; and more. </p> 
+  <p>The explosive growth of these technologies has provided a common language for infrastructure engineers to build and deploy an extremely diverse set of tools and applications; and yet, the flip side of the incredible flexibility available is a nearly impossible-to-comprehend amount of complexity. Engineers in historically non-software-based industries, who may never even have heard of the CAP theorem, are now being asked to grapple with all the bugbears that distributed computing brings along.</p> 
+  <p>When things break in these systems, as they inevitably do, engineers struggle to answer basic questions: What went wrong and why? A plethora of observability tooling is available—for monitoring metrics, scraping logs, and analyzing traces—but often these tools aren't enough to understand the underlying issues when something breaks. Standard software-development techniques such as unit and integration testing, validation in staging environments, and automated canary analysis also aren't sufficient to catch issues before they occur in production. </p> 
+  <p>One reason is because errors in production systems often are one-in-a-billion events that occur only when your system is handling a billion events every day. In other words, they happen only at scale and aren't easy to reason about ahead of time.</p> 
+  <p>This article looks at an underutilized tool that computer scientists and infrastructure engineers can use to reason about their systems at scale <i>before</i> problems occur. That tool is <i>simulation</i>. The article describes some different methods and tools that engineers can use to simulate their clusters and what knowledge they can gain from it, and it presents a case study using SimKube, the Kubernetes simulator developed by Applied Computing Research Labs in 2024.</p> 
+  <p>&nbsp;</p> 
+  <h3>Why (Not) Simulation?</h3> 
+  <p>Simulation has been used in various engineering disciplines for decades. Civil engineers use simulation to make sure their bridges are safe; aerospace engineers use it to make sure their rocket engines work; climate scientists use it to understand weather patterns. Why isn't simulation a tool that DevOps engineers reach for in their infrastructure?</p> 
+  <p>There are a few reasons for this: First, it is simply hard to do. Maintaining a simulator requires a parallel implementation of (some portion of) the system under test, and as the system under test changes, the simulation environment has to change as well. Depending on the complexity of the system under study, as well as the desired fidelity of the simulator, this effort can require an entirely separate team of people just to maintain the simulator and keep it operational.</p> 
+  <p>This is particularly applicable in today's fast-moving tech industry. Kubernetes, for example, releases new versions three times per year, and each version includes significant new features that change the behavior of the system. Keeping a simulator up to date with Kubernetes features is a daunting task to say the least.</p> 
+  <p>A second reason simulation isn't used in more distributed-computing settings is that many infrastructure engineers don't have the statistical training or expertise to develop, run, and analyze simulation results. This is not meant to disparage infrastructure engineers. The infra teams I've been a part of in the past have been filled with smart and talented people who do good work. My point here is simply that running simulations <i>correctly</i> is time-consuming, and the results are often challenging to interpret. Without the right tools and training, it's understandable that more engineers don't try to simulate their systems.</p> 
+  <p>The last reason simulation is not a common tool for infra teams is that the cost-benefit tradeoff is not well understood, particularly by those in management. Returning to the civil engineering analogy for a moment, you can see the costs of building a bridge are extremely high, and the costs if the bridge fails are significantly higher. So, it is easy to make the argument that subjecting a simulated bridge to extreme conditions and stresses before building the real thing is worthwhile.</p> 
+  <p>On the other hand, the advent of cloud computing has somewhat separated computer engineers from the physical hardware they are running on. If a cloud VM (virtual machine) is broken, you can just shut it down and spin up another one. Moreover, the agile mindset of "moving fast and breaking things" encourages engineers just to "try something and see what happens," and if it breaks, well, it's easy to fix. Given that headcount is limited, and teams are being asked to do more with less, it's easy to see why staffing an entirely separate team just to run simulations is not an appealing prospect to engineering leadership.</p> 
+  <p>None of these obstacles is insurmountable, as this article argues. Simulation can be used in day-to-day engineering efforts, and the benefits outweigh the costs. So, what are those benefits?</p> 
+  <p>&nbsp;</p> 
+  <h3>Why Simulation?</h3> 
+  <p>There are (at least) four benefits to using simulation analysis regularly (if not daily) on infrastructure teams: postmortem analysis, regression testing, capacity planning, and feature design. Let's look at each of those.</p> 
+  <p>&nbsp;</p> 
+  <h4>Postmortem analysis</h4> 
+  <p>We've all been there: it's 3 am, something in the production cluster is broken, you just got paged. You groggily log on to the VPN and start poking around the logs and metrics. It's clear that <i>something</i> is wrong, you're just not sure what. As a few other folks start signing on, you hop on a Zoom call and start discussing remediation options. You make a few small tweaks, look for recent changes that might need to be reverted, and then—just as soon as it started—the problem goes away. The page resolves, all the metrics go back to normal, and you're all looking at each other like, "What just happened?" You spend a bit of time investigating, but you can't find anything, and everyone is tired so you go back to bed with a plan to investigate further in the morning.</p> 
+  <p>Morning comes and already the details are starting to fade. The most accurate, finest-grained metrics have been aggregated away; the affected hosts have been shut down and cycled out of the fleet; you still have your logs in ElasticSearch, but you know the clock is ticking because those will get cycled out after a week. After a few days of investigation, you come up empty-handed, and the only thing you can really do is wait to see if it happens again.</p> 
+  <p>What if, instead, you could exactly replay the events from the previous night, over and over again, in an isolated environment? You could make changes to the environment and see if that makes the problem better or worse. Maybe there's some metric that you don't normally collect, which you could start collecting in your simulated world, that might supply the answer. Then, once you've identified the problem, you can validate the fix, again in your test environment, without needing to "test in production." That sounds great, right?</p> 
+  <p>This is exactly the capability that simulation provides for distributed systems and infrastructure teams. By collecting a "detailed-enough" <i>trace</i> of the events that happened in the production environment during the time of the incident, you can save that trace in long-term storage and replay the events as many times as needed until the problem has been identified and a full remediation can be developed. (The question of what "detailed-enough" means is left as an exercise for the reader.)</p> 
+  <p>&nbsp;</p> 
+  <h4>Regression testing</h4> 
+  <p>Your infrastructure is changing constantly. New product features are developed that require new types of hardware, or new ways of deploying existing software. New tooling comes along that promises to resolve one pain point or another in your infrastructure. Tech debt gets cleaned up. And all these changes have the potential to introduce, or even worse, <i>re</i>introduce problems that you've encountered in the past—even if your changes have had multiple sets of code review and good test coverage. How can you gain further confidence that things won't break when you deploy to production?</p> 
+  <p>Common techniques used in many organizations include a <i>staging environment</i> (which mimics exactly your production environment but doesn't serve production traffic); <i>progressive deployment</i> (which deploys changes to a small fraction of your infrastructure and then gradually rolls them out to larger and larger percentages); or <i>automated canary analysis</i> (which looks for anomalies in your metrics and rolls back recent changes if they are detected). All these techniques are good and useful, particularly in combination, but they all have one common flaw: They're expensive. </p> 
+  <p>Many problems in distributed systems don't reveal themselves until the system is "large enough" and under "significant load." Maintaining a staging environment that is the same size as the production environment is cost-prohibitive, and a graduated rollout scheme won't catch problems that occur only when the change is deployed to 90 percent of the fleet.</p> 
+  <p>Once again, simulation can help. Over time, you can create a collection of traces of your production infrastructure that represent both "normal" operations and specific outages or incidents encountered in the past. Then, in your CI (continuous integration) pipeline, before a change ever hits your staging environment, you can simulate all these scenarios and surface any errors to the developer for investigation. And you can do this on every single merge to your main branch as a form of end-to-end testing on steroids—in a sense, you're "<a href="https://en.wikipedia.org/wiki/Shift-left_testing">shifting left</a>" the identification of issues that can be identified only at scale.</p> 
+  <p>&nbsp;</p> 
+  <h4>Capacity planning</h4> 
+  <p>Speaking of scale, I think every engineer on an infra team has at one point been asked the question, "What would happen to our infrastructure if our traffic 10x'ed tomorrow?" Or they've been asked the related question, "Our traffic is going to 10x tomorrow because of this new feature, so how much extra compute do we need?"</p> 
+  <p>The era of cloud computing has pushed capacity planning into the background for many organizations. After all, if you can just spin up some new hardware whenever it's needed, why bother planning for it? Except that this isn't the reality for many types of workloads. Modern AI workloads require tremendous amounts of GPU hardware, which is often in short supply, and even more ordinary compute resources can be difficult to acquire, depending on the quantities needed and the time of day or season.</p> 
+  <p>Simulation provides an answer here as well. You can simulate the cloud resources that you need right now, or you can modify the simulation inputs (for example, by taking an existing trace and scaling it 10 times) to try to understand what you will need in the future and how much that's going to cost. By tweaking the parameters of the simulation, engineers can generate a range of different scenarios with different confidence levels to be used in planning and forecasting.</p> 
+  <p>&nbsp;</p> 
+  <h4>Feature design</h4> 
+  <p>This article has been moving on a scale from "least specialized" to "most specialized," and this last category probably applies to the smallest number of distributed-systems engineers but an extremely important set nonetheless: the designers and builders of the systems themselves. As discussed, it can be extremely hard to reason about distributed systems at scale, particularly when new features are constantly being added to the system. How will those features interact? What happens when two seemingly unrelated features implemented by two engineers who may not even know about each other clash in unexpected ways?</p> 
+  <p>As with regression testing, the designers of distributed systems like Kubernetes can use simulation to validate their proposed features. What if implementers of every feature who wanted to graduate from alpha to beta status in the Kubernetes ecosystem had to present simulation results showing the proposed feature running on a production-scale Kubernetes cluster? This sounds like a pipe dream, but it's not—we just need to invest in the tooling to make it possible and easy to do.</p> 
+  <p>&nbsp;</p> 
+  <h4>Bonus application: AI training</h4> 
+  <p>Before examining those tools in more detail, let me highlight one potential application for simulation of distributed systems that has an uncertain but potentially high value proposition: training of AI models for distributed systems. Today's AI systems require enormous training sets and tremendous amounts of computational resources to learn; to build an AI infrastructure engineer, that AI would have to be trained on hundreds of thousands of production-like systems, and this would be almost impossible to do without some sort of simulated environment. I'm hedging my bets here a little bit, because even then it's uncertain whether the system would be able to reason about distributed-systems infrastructure to the same degree that a skilled senior engineer can today, but it's certainly an exciting area to explore further.</p> 
+  <p>&nbsp;</p> 
+  <h3>HOW-TO: Run a Simulation</h3> 
+  <p>Any simulation has to decide which components of the simulated environment are going to be real and which will be fake, or simulated. The name of the game for the simulation designer is to pick the "right" set of simulated components. This section briefly covers a few axes of design to think about in your simulation environment (these design axes, and several others, are covered in greater detail by Sulistio, Yeo, and Buyya<sup>4</sup>).</p> 
+  <p>&nbsp;</p> 
+  <h4>Which components of your system are simulated? </h4> 
+  <p>In a traditional engineering simulation (for example, a bridge), the entire simulation is a fabrication. There are no "real" steel beams anywhere in the process; it's all just numbers in a computer. In contrast, some simulations (for example, in racing) use a hardware-in-the-loop approach, where the real system is being put through a simulated external environment. Distributed systems can instead use a <i>software-in-the-loop</i> approach, where some or all the real system components interact with a simulated external environment.<sup>1</sup> </p> 
+  <p>Both approaches have pros and cons: When I worked at Yelp, I built a completely fake simulation environment for Apache Mesos, which was used for testing changes to a cluster configuration. It worked well, but it was tough to keep in sync with changes to the real system. On the other hand, my current project, SimKube (discussed in the next section), uses a software-in-the-loop approach, which means it's always able to stay up to date with the most recent Kubernetes version, at the expense of simulation playback speed (SimKube has to wait for the Kubernetes control plane to react in realtime, regardless of the rest of the simulation).</p> 
+  <p>&nbsp;</p> 
+  <h4>Is time an input to your simulation? </h4> 
+  <p>This is an extension of the previous question, but it deserves a special callout because time makes everything harder. In most cases, you need to include some notion of time in your simulation. You <i>could</i> run a point-in-time simulation. For example, with a bridge, you can compute all of the forces that are instantaneously applied when a heavy weight is placed on the bridge to see if it breaks, but it is generally more useful to consider how the system evolves over time: What happens as a heavy car drives over the bridge? </p> 
+  <p>In a distributed system, you could likewise compute a snapshot of your system at a point in time, but most of the interesting emergent behavior occurs as the system evolves. So, as a simulation builder, you need to understand how you represent time in your simulation. Does your simulation have to run in realtime, or is time a discrete input to your simulator? Can you accelerate or skip over time periods where nothing "interesting" happens? How does that affect the fidelity of your simulation?</p> 
+  <p>&nbsp;</p> 
+  <h4>What kinds of events do you want to simulate? </h4> 
+  <p>To build a simulator that can answer the types of questions you want to answer, you need to understand what the inputs to your simulation are. There are lots of ways to answer or categorize these inputs, but here are two: (1) Are the inputs to your simulation <i>discrete events</i> or <i>continuous flows</i>? In a physics simulation, you can consider a discrete event at time <i>t</i> where a heavy object is placed on the bridge, or you can consider a continuous gust of wind that various from one rate to the next over a time period (<i>t<sub>0, </sub>t<sub>1</sub></i>). (2) Likewise, for a distributed system, you can consider the discrete event where a Kubernetes Deployment scales from <i>A</i> replicas to <i>B</i> at time <i>t</i>, or you could consider a rate of traffic flow hitting a particular endpoint that varies continuously over some time period. Perhaps it's obvious by now, but the choices you make here will dramatically impact the types of simulations that you can run.</p> 
+  <h4>What do you do when your simulation diverges from reality? </h4> 
+  <p>The entire point of running a simulation is to create an abstraction of reality; in particular, this means that every simulation you run will be lossy. The important question is whether you can still glean useful information from the lossy simulation. The most challenging question is: How do you make progress when your simulation no longer reflects what actually happened? </p> 
+  <p>Consider a real Kubernetes cluster, on which a Deployment scales from 10 to 15 replicas. Perhaps this scaling activity was the result of a bug in an autoscaler. You, the infrastructure engineer in charge of this system, fix the bug in the autoscaler and want to rerun the simulation. Your change causes the Deployment to scale <i>down</i> from 10 to 5 replicas. What do you do with the information about the five pods that scaled up in the original scenario? Do you throw it away and just let the simulation evolve organically from that point? Do you keep that information and apply it the next time the simulated Deployment needs to scale up? There are no right answers here, and everything you do will involve a bit of make-believe. At this point you need to turn to statistics: Can you compute probabilities for the different actions that might occur? Can you create confidence intervals for the output of your simulations? Then you can still get some useful information out of the make-believe scenario that you've constructed.</p> 
+  <p>There are, of course, many other aspects of design that you could consider in your simulation; the goal here is not to provide a comprehensive guide to running every possible simulation but, instead, provide the tools you need to think about simulations in <i>your</i> environment, and how you can use them to get the answers that you need.</p> 
+  <p>&nbsp;</p> 
+  <h3>Case Study: SimKube</h3> 
+  <p>SimKube is a project that I've been working on for the past year at Applied Computing for running simulations of Kubernetes clusters. It was built out of a desire to understand and improve the Kubernetes scheduler, but I've since realized it has numerous other applications as well. Using the taxonomy from the previous section, SimKube is a discrete-event, realtime, software-in-the-loop simulation environment (note that there are several other Kubernetes simulator offerings out there, including K8sSim,<sup>5</sup> Kubernetes-in-the-Loop,<sup>3</sup> and the <a href="https://github.com/kubernetes-sigs/kube-scheduler-simulator">Kubernetes scheduler simulator</a>; but these simulator environments all differ in scope or capability from SimKube). </p> 
+  <p>SimKube runs a real Kubernetes control plane (including, potentially, any ancillary controllers such as Cluster Autoscaler or Karpenter, Apache YuniKorn, or even internal custom Kubernetes operators) atop a mocked-out "data plane" of compute nodes. The data plane is implemented via <a href="https://kwok.sigs.k8s.io/">KWOK (Kubernetes WithOut Kubelet)</a>, which provides a host of mechanisms for simulating compute nodes and the pods that are scheduled on those nodes without requiring an expensive cloud environment for testing.</p> 
+  <p>Following is a brief walk-through of how I used SimKube to run a set of simulations comparing the <a href="https://github.com/kubernetes/autoscaler">KCA (Kubernetes Cluster Autoscaler)</a> and <a href="https://karpenter.sh/">Karpenter</a>. Both KCA and Karpenter (as the name suggests) are cluster autoscaling engines: They analyze the workloads running on a Kubernetes cluster and determine whether the cluster needs more or fewer compute resources based on a set of predefined rules and conditions. KCA was developed first and supports a wide array of different cluster configurations and external cloud providers; Karpenter was developed more recently by AWS (it reached its 1.0 milestone earlier this year) and is generally considered to be "faster and more effective" by cluster operators, but it currently supports only AWS and Microsoft Azure. I wanted to use SimKube to put this claim to the test.</p> 
+  <p>To set up my simulation, I first needed some real data to simulate. For this experiment, I used DSB (DeathStarBench), which is a popular collection of microservice-based applications used in a variety of different distributed systems research.<sup>2</sup> I configured the "social network" application DSB to run on a Kubernetes cluster and induced some load on the application so that the various pods would scale up and down. The "production" cluster on which this application ran was a single-node Kubernetes cluster running on an AWS c6i.8xlarge EC2 instance, with no autoscaling configured. Figures 1 and 2 show the number of running and pending (i.e., unscheduled) pods over the time period of the experiment (approximately 20 minutes). Figure 1 is a graph showing the running pods count for the DSB social network application on a single-node Kubernetes cluster.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison1.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison2.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <p>These graphs show the effects of the lack of autoscaling: After 32 pods are scheduled on the node, it is full, and all future pods are unschedulable and marked pending. If this were a real application, this would potentially be a full site outage, as the running pods would likely be overwhelmed by traffic and there is no space for scaling up the new pods. Figure 2 is a graph showing the pending pods count for the DSB social network application on a single-node Kubernetes cluster.</p> 
+  <p>Next, to simulate the performance of KCA and Karpenter, I ran 10 iterations of the trace I collected from the cluster to see how each of these autoscaling engines performed. These simulations were also run on an AWS c6i.8xlarge EC2 instance—not because the simulation itself required that many resources (the simulation easily runs on my laptop), but because I was collecting simulation data at a one-second granularity from Prometheus and saving it into Parquet files on Amazon S3, which required a significant amount of host memory. (Note that this raises another significant issue around distributed systems in general and simulation specifically: The quantity of metrics required to get an "accurate" representation of the whole is astronomical.) </p> 
+  <p>Here are the results. The graphs in figure 3 show the running and pending pod counts for 10 simulated replays of the DSB social network trace, with autoscaling provided by the Kubernetes Cluster Autoscaler. The graphs in figure 4 show the running and pending pod counts for 10 simulated replays of the DSB social network trace, with autoscaling provided by Karpenter.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison3.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison4.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <p>As can be seen from these graphs, all the pods are now getting scheduled correctly. This shows that (were this a real production system) having a cluster-level autoscaler would prevent an incident. Next let's look at the nodes that were launched by each. Table 1 shows the maximum number of instances of each type launched by Cluster Autoscaler over the course of each of 10 simulations. Table 2 shows the maximum number of instances of each type launched by Karpenter over the course of each of 10 simulations.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison-t1.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison-t2.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <p>These tables highlight one of the significant differences between KCA and Karpenter: Out of the box, KCA uses a random node selection algorithm, which doesn't consider cost or the appropriateness of the node for the workload. It is possible to configure KCA to take this information into account, but it requires quite a bit more work on the part of the cluster operator. Karpenter, on the other hand, attempts to be smarter about instance selection, and so it behaves more predictably in this experiment.</p> 
+  <p>The size of this experiment, however, is too small to really capture the performance characteristics between the two autoscalers (we are running only about 60 pods at peak), so for the final set of simulations, I scaled the simulation up by 100 times to see how KCA and Karpenter would behave under significant load.</p> 
+  <p>Comparing performance on this axis is tricky, since the internals of KCA and Karpenter are quite different. Briefly, KCA uses a single "scaling" loop, where it first determines if any pods are pending and if they could be scheduled were a node to be scaled up. This loop operates by default once per minute. On the other hand, Karpenter uses a set of controllers to watch for unschedulable pods and act on them appropriately. Karpenter has 23 different controllers, but for the purposes of this discussion there are two important ones: The "fast" controller is notified immediately when new pods appear and take action as soon as possible; and the "slow" controller operates independently to try to determine the best scheduling decisions and "defragment" the cluster. This bilevel approach is how Karpenter is able to achieve better scaling performance, as illustrated in figures 5 and 6. Figure 5 is a histogram showing the wall-clock time for the Kubernetes cluster autoscaler on scale-up. Figure 6 is a histogram showing the wall-clock time for the Karpenter autoscaler on provisioning (scaling up).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison5.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison6.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <p>These histograms compare the length of time a pod sits pending before it is scheduled for each of the two systems. They show clearly that Karpenter is able to schedule pods <i>significantly</i> faster than KCA, handling most of its provisioning cycles in a couple of seconds, compared with the 10 seconds or so that KCA takes.</p> 
+  <p>Before you run off announcing that "Karpenter is clearly better than KCA on every axis," however, remember this was a highly contrived example case study to demonstrate the capabilities of SimKube. You shouldn't necessarily base any technical decisions on these results; it's interesting to note, though, that even in a contrived example like this, we are able to glean some useful information about the behavior of two complicated subsystems of the Kubernetes ecosystem. </p> 
+  <p>On the other hand, if you are interested in seeing how autoscaling might improve your Kubernetes cluster performance, what you <i>should</i> do is use SimKube to collect a trace of your production workloads and repeat these experiments with this data so that you can make an informed decision about what's best for your environments.</p> 
+  <p>&nbsp;</p> 
+  <h3>Wrapping Up</h3> 
+  <p>The goal of this article is to provide some ideas for how to use simulation to improve the distributed systems that you manage, or at the very least to convince you that simulating distributed systems is not impossible and can provide useful insights. The raw data for these experiments is available in the ACRL (<a href="https://appliedcomputing.io/">Applied Computing Research Labs</a>) public data repository, and a more detailed write-up of the results is on the <a href="https://blog.appliedcomputing.io/p/announcing-simkube-v10">Applied Computing Research Labs blog</a>. Figure 7 shows a (hypothetical) graph that could be generated by simulation to analyze the cost of running an application given a variety of parameter values for <i>replica count</i> (aka, number of running pods) and <i>resource requests</i> (aka, CPU, memory).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3711677/assets/html/morrison7.png" alt="Simulationan Underutilized Tool in Distributed Systems" /> 
+  <p>&nbsp;</p> 
+  <p>There is a ton of future work to be done in this space: If we can build the right tooling, we can start using simulation in a host of different settings to answer questions about cost, reliability, and ease of use for distributed systems. I'd like to see a tool that, given a small set of parameters and a range of "acceptable" values for those parameters, explores the entire space using dozens or hundreds of simulations, and is able to produce a kind of Pareto-efficient curve that engineers can use to make decisions about their infrastructure (see figure 7). </p> 
+  <p>Simulation has a huge role to play in the advent of AI systems: We need an efficient, fast, and cost-effective way to train AI agents to operate in our infrastructure, and simulation absolutely provides that capability. </p> 
+  <p>Finally, better tools are needed for understanding and analyzing the results of these simulations. There are a lot of <i>monitoring</i> tools in the infrastructure space but comparatively few <i>data analytics</i> tools. That makes it significantly harder for engineers to make informed decisions about the systems they manage.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Demers, S., Gopalakrishnan, P., Kant, L. 2007. A generic solution to software-in-the-loop. In <i>IEEE Military Communications Conference</i>, 1–6; <a href="https://ieeexplore.ieee.org/document/4455268">https://ieeexplore.ieee.org/document/4455268</a>. </p> 
+  <p>2. Gan, Y., Zhang, Y., Cheng, D., Shetty, A., Rathi, P., Katarki, N., Bruno, A., et al. 2019. An open-source benchmark suite for microservices and their hardware-software implications for cloud &amp; edge systems. In <i>Proceedings of the 24th International Conference on Architectural Support for Programming Languages and Operating Systems</i>, 3–18; <a href="https://dl.acm.org/doi/10.1145/3297858.3304013">https://dl.acm.org/doi/10.1145/3297858.3304013</a>. </p> 
+  <p>3. Straesser, M., Haas, P., Frank, S., Hakamian, A., van Hoorn, A., Kounev, S. 2024. Kubernetes-in-the-Loop: enriching microservice simulation through authentic container orchestration. In <i>Performance Evaluation Methodologies and Tools</i>, ed., E. Kalyvianaki and M. Paolieri, 82–98. Cham: Springer Nature Switzerland; <a href="https://link.springer.com/chapter/10.1007/978-3-031-48885-6_6">https://link.springer.com/chapter/10.1007/978-3-031-48885-6_6</a>.</p> 
+  <p>4. Sulistio, A., Yeo, C. S., Buyya, R. 2004. A taxonomy of computer-based simulations and its mapping to parallel and distributed systems simulation tools. <i>Software: Practice and Experience</i> 34(7). 653–73; <a href="https://dl.acm.org/doi/abs/10.1002/spe.585">https://dl.acm.org/doi/abs/10.1002/spe.585</a>.</p> 
+  <p>5. Wen, S., Han, R., Qiu, K., Ma, X., Li, Z., Deng, H., Liu, C. H. 2023. K8sSim: a simulation tool for Kubernetes schedulers and its applications in scheduling algorithm optimization. <i>Micromachines</i> 14(3), 651; <a href="https://www.mdpi.com/2072-666X/14/3/651">https://www.mdpi.com/2072-666X/14/3/651</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>David R. Morrison</b> is the founder of Applied Computing Research Labs, a private independent research organization focused on distributed systems, scheduling, and optimization.&nbsp;He received his Ph.D. from the University of Illinois, Urbana-Champaign in 2014 and has more than a decade of industry experience (at companies like Airbnb and Yelp) as well as a strong background in academic research. In his spare time, he builds Legos, plays board games, and writes fiction.&nbsp;Connect with him on Mastodon at @<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2044524d4f52526048414348594445524d0e494f">[email&#160;protected]</a>.</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'90b130db1bd81ff2',t:'MTczODQwNTAzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3711677">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Matt Fata, Philippe-Joseph Arida, Patrick Hahn, Betsy Beyer</span> - <a href="detail.cfm?id=3264508"><b>Corp to Cloud: Google&#8217;s Virtual Desktops</b></a>
+	  <br />
+	  Over one-fourth of Googlers use internal, data-center-hosted virtual desktops. This on-premises offering sits in the corporate network and allows users to develop code, access internal resources, and use GUI tools remotely from anywhere in the world. Among its most notable features, a virtual desktop instance can be sized according to the task at hand, has persistent user storage, and can be moved between corporate data centers to follow traveling Googlers. Until recently, our virtual desktops were hosted on commercially available hardware on Google&#8217;s corporate network using a homegrown open-source virtual cluster-management system called Ganeti. Today, this substantial and Google-critical workload runs on GCP (Google Compute Platform).
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Pat Helland</span> - <a href="detail.cfm?id=3025012"><b>Life Beyond Distributed Transactions</b></a>
+	  <br />
+	  This article explores and names some of the practical approaches used in the implementation of large-scale mission-critical applications in a world that rejects distributed transactions. Topics include the management of fine-grained pieces of application data that may be repartitioned over time as the application grows. Design patterns support sending messages between these repartitionable pieces of data.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Ivan Beschastnikh, Patty Wang, Yuriy Brun, Michael D, Ernst</span> - <a href="detail.cfm?id=2940294"><b>Debugging Distributed Systems</b></a>
+	  <br />
+	  Distributed systems pose unique challenges for software developers. Reasoning about concurrent activities of system nodes and even understanding the system&#8217;s communication topology can be difficult. A standard approach to gaining insight into system activity is to analyze system logs. Unfortunately, this can be a tedious and complex process. This article looks at several key features and debugging challenges that differentiate distributed systems from other kinds of software. The article presents several promising tools and ongoing research to help resolve these challenges.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Sachin Date</span> - <a href="detail.cfm?id=2933408"><b>Should You Upload or Ship Big Data to the Cloud?</b></a>
+	  <br />
+	  It is accepted wisdom that when the data you wish to move into the cloud is at terabyte scale and beyond, you are better off shipping it to the cloud provider, rather than uploading it. This article takes an analytical look at how shipping and uploading strategies compare, the various factors on which they depend, and under what circumstances you are better off shipping rather than uploading data, and vice versa. Such an analytical determination is important to make, given the increasing availability of gigabit-speed Internet connections, along with the explosive growth in data-transfer speeds supported by newer editions of drive interfaces such as SAS and PCI Express.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
