@@ -1,0 +1,2847 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="095b91a6-f087-4380-b01d-e44b1c2af358" data-blockingmode="auto" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYTVD2CXR4"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-XYTVD2CXR4');
+</script>
+
+	<title>21st Century C++ &#8211; Communications of the ACM</title>
+<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel='dns-prefetch' href='//cdn.parsely.com' />
+<link rel='dns-prefetch' href='//stats.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Communications of the ACM &raquo; Feed" href="https://cacm.acm.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Communications of the ACM &raquo; Comments Feed" href="https://cacm.acm.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Communications of the ACM &raquo; 21st Century C++ Comments Feed" href="https://cacm.acm.org/blogcacm/21st-century-c/feed/" />
+<style class="wp-asset-manager cacm-global-critical" type="text/css">@font-face{font-display:swap;font-family:Inter;font-style:normal;src:url(../be7cb18dc7caf47cf7e9.woff2) format("woff2"),url(../817c4274293e221c5076.woff) format("woff")}@font-face{font-display:swap;font-family:Inter;font-style:normal;font-weight:700;src:url(../54321e26b8bf4739a16d.woff2) format("woff2"),url(../7ad0df5561cc0933cead.woff) format("woff")}@font-face{font-display:swap;font-family:Work Sans;font-style:normal;font-weight:500;src:url(../2dd7c3c79fd1aa1d85ca.woff2) format("woff2"),url(../9a8cbe3b3bec955df411.woff) format("woff")}@font-face{font-display:swap;font-family:Work Sans;font-style:normal;font-weight:700;src:url(../ab8702255905c24de1c1.woff2) format("woff2"),url(../9ab52d2504cfe145b9bd.woff) format("woff")}@font-face{font-display:swap;font-family:Work Sans;font-style:normal;font-weight:800;src:url(../cef488e4e9f273a0a1e3.woff2) format("woff2"),url(../a99bf2b51c426338ae2c.woff) format("woff")}html{box-sizing:border-box}html *,html :after,html :before{box-sizing:inherit}a,abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,menu,nav,section{display:block}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}fieldset{border:none;margin:0;padding:0}button,input,select,textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;border-radius:0;font:inherit;margin:0}button{background-color:transparent;padding:0}body,html{font-family:var(--wp--preset--font-family--inter);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}html{scroll-padding-top:var(--wp--custom--siteheader-height)!important}body{overflow-x:hidden}a img{display:block}img{height:auto;max-width:100%}svg{display:block}.container{margin-left:auto;margin-right:auto;width:calc(min(100%,var(--wp--style--global--wide-size) + var(--wp--custom--site-edge)*2) - var(--wp--custom--site-edge)*2)}.screen-reader-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;padding:0;width:1px}.screen-reader-only,.skip-link{overflow:hidden;position:absolute}.skip-link{margin-left:auto;margin-right:auto;background-color:var(--wp--preset--color--white);color:inherit;left:0;opacity:0;padding:.625rem;right:0;text-align:center;text-decoration:none;top:0;transform:translateY(-100%);width:-moz-max-content;width:max-content;z-index:-1}.skip-link:focus{opacity:1;transform:translateY(0);z-index:2147483647}.site-content{padding-top:var(--wp--custom--siteheader-height)}@media(min-width:48rem){.site-content{padding-top:var(--wp--custom--siteheader-height)}}.site-header-hamburger-menu[aria-hidden=true]{display:none}.site-header-membership-nav{align-self:stretch;display:flex;position:relative}.site-header--expanded .site-header-membership-nav,.site-header:not(.site-header--member-logged-in) .site-header-membership-nav{display:none}.site-header{position:fixed;width:100%;z-index:7}.site-header--expanded{height:100%}.site-header--no-js{opacity:0}.site-header.headroom{transition:transform .2s linear;will-change:transform}.site-header.headroom--pinned{transform:translateY(0)}.site-header.headroom--unpinned{height:auto;transform:translateY(-100%)}.site-header-container{align-items:center;background-color:var(--wp--preset--color--white);border-bottom:var(--wp--custom--border-gray);display:flex;gap:1rem;height:var(--wp--custom--siteheader-height);justify-content:space-between;padding:0 1rem}.site-header-container a{text-decoration:none}.site-header-container a:active,.site-header-container a:focus,.site-header-container a:hover{text-decoration:underline;text-decoration-color:inherit;text-decoration-thickness:1px;text-underline-offset:2.5px}@media(min-width:37.5rem){.site-header-container{padding:0 1.5rem}}@media(min-width:48rem){.site-header-container{padding:0 0 0 1rem}}@media(min-width:64rem){.site-header-container{gap:2.25rem}}@media(min-width:80rem){.site-header-container{gap:3rem}}.site-header--member-logged-in .site-header-container{padding:0 0 0 1rem}@media(min-width:37.5rem){.site-header--member-logged-in .site-header-container{padding:0 0 0 1.5rem}}.site-header--expanded .site-header-container{background-color:var(--wp--preset--color--cacm-darker-blue)}@media(max-width:47.9375rem){.site-header-logo,.site-header-search{margin-left:auto}}.site-header-member-login-link{font-weight:var(--wp--custom--font-weight-bold)}.site-header-member-login-link[aria-hidden=true]{visibility:hidden}@media(max-width:47.9375rem){.site-header-member-login-link{display:none}}.site-header--member-logged-in .site-header-member-login-link{display:none}.site-header-magazine-menu,.site-header-topics-menu{position:relative}.site-header-magazine-menu-toggle,.site-header-topics-menu-toggle{font-size:.9375rem;font-weight:var(--wp--custom--font-weight-regular);line-height:1.21;align-items:center;cursor:pointer;display:flex;gap:.3333333333rem}@media(min-width:80rem){.site-header-magazine-menu-toggle,.site-header-topics-menu-toggle{font-size:1rem;font-weight:var(--wp--custom--font-weight-regular);line-height:1.21;gap:.65625rem}}.site-header-magazine-menu-toggle[aria-hidden=true],.site-header-topics-menu-toggle[aria-hidden=true]{visibility:hidden}.site-header-magazine-menu-toggle[aria-expanded=true]>svg,.site-header-topics-menu-toggle[aria-expanded=true]>svg{transform:rotate(180deg)}.site-header-magazine-menu-toggle:focus,.site-header-magazine-menu-toggle:hover,.site-header-topics-menu-toggle:focus,.site-header-topics-menu-toggle:hover{text-decoration:underline}.site-header-magazine-menu-expanded,.site-header-topics-menu-expanded{background-color:var(--wp--preset--color--white);border-radius:.3125rem;box-shadow:0 .125rem .25rem -.125rem rgba(24,39,75,.12),0 .25rem .25rem -.125rem rgba(24,39,75,.08);display:flex;gap:1.875rem;justify-content:space-between;padding:1.75rem 1.875rem 1.5rem;position:absolute;right:0;text-align:left;top:2.28125rem;white-space:nowrap;z-index:4}.site-header-magazine-menu-expanded[aria-hidden=true],.site-header-topics-menu-expanded[aria-hidden=true]{display:none}@media(max-width:47.9375rem){.site-header-magazine-menu,.site-header-topics-menu{display:none}}.site-header:not(.site-header--member-logged-in) .site-header-topics-menu-expanded{left:0;right:auto}</style><style class="wp-asset-manager cacm-article-critical" type="text/css">.article-header{left:50%;margin-left:-50vw;margin-right:-50vw;position:relative;right:50%;width:100vw;background-color:var(--cacm--article-header--background-color);border-bottom:1px solid var(--cacm--article-header--border-color);color:var(--cacm--article-header--text-color);margin-bottom:var(--wp--custom--gap)}@media(min-width:48rem){.article-header{grid-area:header;margin-bottom:1.5rem}}.article-header__inner{--wp--custom--vertical-block-rhythm:0.5rem;padding:2rem 0 0}@media(min-width:48rem){.article-header__inner{--wp--custom--vertical-block-rhythm:0.625rem;display:grid;gap:0 var(--cacm--article--gap);grid-template-columns:auto 1fr;padding:var(--cacm--article--gap) 0}}@media(min-width:64rem){.article-header__inner{grid-template-columns:var(--cacm--article--sidebarleft--width) 1fr}}.article-header__section{margin-bottom:var(--wp--custom--vertical-block-rhythm);display:inline-block}.article-header__section:last-child{margin-bottom:0}.article-header__section a{text-decoration:none}.article-header__section a:active,.article-header__section a:focus,.article-header__section a:hover{text-decoration:underline;text-decoration-color:inherit;text-decoration-thickness:1px;text-underline-offset:2.5px}@media(max-width:47.9375rem){.article-header__section{margin-right:.625rem}}@media(min-width:48rem){.article-header__section{grid-column:1/1;text-align:right}}.article-header__section>a{font-size:.875rem;font-weight:700;line-height:1.2142857143;background-color:var(--cacm--article-header--button--background-color);color:var(--cacm--article-header--button--text-color);display:inline-block;padding:.3125rem .625rem;text-transform:uppercase}@media(min-width:48rem){.article-header__figure,.article-header__meta,.article-header__share,.article-header__subtitle,.article-header__title,.article-header__topic-and-issue-section{grid-column:2/2}}.article-header__topic-and-issue-section{--wp--custom--vertical-block-rhythm:0.5rem;margin-bottom:var(--wp--custom--vertical-block-rhythm);font-size:.9375rem;line-height:1.5333333333;font-family:var(--wp--preset--font-family--inter);display:flex;flex-direction:column}.article-header__topic-and-issue-section:last-child{margin-bottom:0}@media(min-width:48rem){.article-header__topic-and-issue-section{--wp--custom--vertical-block-rhythm:1.25rem;align-items:center;flex-direction:row;gap:2rem}}.article-header__issue-section{color:var(--cacm--article-header--text-color)}.article-header__title{margin-bottom:var(--wp--custom--vertical-block-rhythm);font-family:var(--wp--preset--font-family--work-sans);font-size:var(--wp--preset--font-size--work-md);line-height:32.2px;font-weight:var(--wp--custom--font-weight-extrabold)}.article-header__title:last-child{margin-bottom:0}@media(min-width:48rem){.article-header__title{font-size:var(--wp--preset--font-size--work-xxxl);line-height:50.4px;font-weight:var(--wp--custom--font-weight-extrabold)}}@media(min-width:64rem){.article-header__title{font-size:var(--wp--preset--font-size--work-xxl);line-height:44.28px;font-weight:var(--wp--custom--font-weight-extrabold)}}.article-header__subtitle{font-family:var(--wp--preset--font-family--work-sans);font-size:var(--wp--preset--font-size--work-xxs);line-height:22.5px;font-weight:var(--wp--custom--font-weight-bold);font-size:1.3125rem;line-height:1.2380952381;letter-spacing:-.08px;font-weight:var(--wp--custom--font-weight-medium);letter-spacing:-.03125rem;margin-bottom:.125rem}.article-header__subtitle:last-child{margin-bottom:0}.article-header__subtitle a{word-break:break-word}.article-header__subtitle b,.article-header__subtitle strong{font-weight:var(--wp--custom--font-weight-bold)}.article-header__subtitle em,.article-header__subtitle i{font-style:italic}.article-header__subtitle del,.article-header__subtitle strike{text-decoration:line-through}.article-header__subtitle sub,.article-header__subtitle sup{font-size:75%;line-height:0;position:relative}.article-header__subtitle sub{bottom:-.25em}.article-header__subtitle sup{top:-.5em}.article-header__subtitle .monospace,.article-header__subtitle p code{font:var(--wp--custom--font-weight-regular) 90%/1.6 Courier,monospace}@media(min-width:48rem){.article-header__subtitle{--wp--custom--vertical-block-rhythm:1.25rem;font-family:var(--wp--preset--font-family--work-sans);font-size:var(--wp--preset--font-size--work-xs);line-height:25.2px;font-weight:var(--wp--custom--font-weight-bold);font-size:1.5625rem;line-height:1.2;letter-spacing:-.1px;font-weight:var(--wp--custom--font-weight-medium);letter-spacing:-.03125rem;margin:.5rem 0 .625rem}.article-header__subtitle:last-child{margin-bottom:0}}.article-header__meta{margin-bottom:var(--wp--custom--vertical-block-rhythm);font-size:.9375rem;line-height:1.5333333333;font-family:var(--wp--preset--font-family--inter);display:flex;flex-direction:column}.article-header__meta:last-child{margin-bottom:0}.article-header__meta>*{margin-bottom:var(--wp--custom--vertical-block-rhythm)}.article-header__meta>:last-child{margin-bottom:0}.article-header__byline{margin-top:.625rem}.article-header__byline>a{border-bottom:1px dotted var(--cacm--article-header--byline--text-color);color:var(--cacm--article-header--byline--text-color);text-decoration:none}@media(max-width:47.9375rem){.article-header__figure{left:50%;margin-left:-50vw;margin-right:-50vw;position:relative;right:50%;width:100vw}}@media(min-width:48rem){.article-header__figure{display:flex;flex-direction:column}}.article-header__figure .image-wrapper{margin-bottom:var(--wp--custom--vertical-block-rhythm)}.article-header__figure .image-wrapper:last-child{margin-bottom:0}@media(min-width:64rem){.article-header__figure .image-wrapper{grid-column:1/1}}.article-header__figure .image-wrapper>img{-o-object-fit:cover;object-fit:cover}.article-header__figure .video-wrapper{height:100%;overflow:hidden;position:relative;width:100%;padding-bottom:56.25%}.article-header__figure .video-wrapper>iframe{height:100%;left:0;-o-object-fit:contain;object-fit:contain;position:absolute;top:0;width:100%}.article-header__figure .video-wrapper>:not(iframe){display:none}.article-header__figure figcaption{font-size:.9375rem;line-height:1.4666666667;font-family:var(--wp--preset--font-family--inter);color:var(--cacm--article-header--caption--text-color)}@media(max-width:47.9375rem){.article-header__figure figcaption{margin:0 var(--wp--custom--site-edge)}}@media(min-width:64rem){.article-header__figure figcaption{grid-column:2/2;margin:0}}.article-header__figure figcaption>p.article-header--credit{font-style:italic}</style><link rel="preload" href="https://cacm.acm.org/wp-content/themes/cacm/client/src/fonts/inter-v12-latin-regular.woff2" class="wp-asset-manager cacm-font-inter-regular-woff2" as="font" media="all" type="font/woff2" crossorigin /><link rel="preload" href="https://cacm.acm.org/wp-content/themes/cacm/client/src/fonts/inter-v12-latin-700.woff2" class="wp-asset-manager cacm-font-inter-700-woff2" as="font" media="all" type="font/woff2" crossorigin /><link rel="preload" href="https://cacm.acm.org/wp-content/themes/cacm/client/src/fonts/work-sans-bold.woff2?ver=1.0.0" class="wp-asset-manager cacm-font-work-sans-700-woff2" as="style" media="all" type="font/woff2" /><link rel="preload" href="https://cacm.acm.org/wp-content/themes/cacm/client/src/fonts/work-sans-extrabold.woff2?ver=1.0.0" class="wp-asset-manager cacm-font-work-sans-800-woff2" as="style" media="all" type="font/woff2" /><script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15.0.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/cacm.acm.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.7.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83d\udc26\u200d\u2b1b","\ud83d\udc26\u200b\u2b1b")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://cacm.acm.org/wp-includes/css/dist/block-library/style.min.css?ver=6.7.1' type='text/css' media='all' />
+<style id='wp-parsely-recommendations-style-inline-css' type='text/css'>
+.parsely-recommendations-list-title{font-size:1.2em}.parsely-recommendations-list{list-style:none;padding:unset}.parsely-recommendations-cardbody{overflow:hidden;padding:.8em;text-overflow:ellipsis;white-space:nowrap}.parsely-recommendations-cardmedia{padding:.8em .8em 0}
+
+</style>
+<link rel='stylesheet' id='mediaelement-css' href='https://cacm.acm.org/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css' href='https://cacm.acm.org/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.7.1' type='text/css' media='all' />
+<style id='jetpack-sharing-buttons-style-inline-css' type='text/css'>
+.jetpack-sharing-buttons__services-list{display:flex;flex-direction:row;flex-wrap:wrap;gap:0;list-style-type:none;margin:5px;padding:0}.jetpack-sharing-buttons__services-list.has-small-icon-size{font-size:12px}.jetpack-sharing-buttons__services-list.has-normal-icon-size{font-size:16px}.jetpack-sharing-buttons__services-list.has-large-icon-size{font-size:24px}.jetpack-sharing-buttons__services-list.has-huge-icon-size{font-size:36px}@media print{.jetpack-sharing-buttons__services-list{display:none!important}}.editor-styles-wrapper .wp-block-jetpack-sharing-buttons{gap:0;padding-inline-start:0}ul.jetpack-sharing-buttons__services-list.has-background{padding:1.25em 2.375em}
+</style>
+<style id='elasticpress-facet-style-inline-css' type='text/css'>
+.widget_ep-facet input[type=search],.wp-block-elasticpress-facet input[type=search]{margin-bottom:1rem}.widget_ep-facet .searchable .inner,.wp-block-elasticpress-facet .searchable .inner{max-height:20em;overflow:scroll}.widget_ep-facet .term.hide,.wp-block-elasticpress-facet .term.hide{display:none}.widget_ep-facet .empty-term,.wp-block-elasticpress-facet .empty-term{opacity:.5;position:relative}.widget_ep-facet .empty-term:after,.wp-block-elasticpress-facet .empty-term:after{bottom:0;content:" ";display:block;left:0;position:absolute;right:0;top:0;width:100%;z-index:2}.widget_ep-facet .level-1,.wp-block-elasticpress-facet .level-1{padding-left:20px}.widget_ep-facet .level-2,.wp-block-elasticpress-facet .level-2{padding-left:40px}.widget_ep-facet .level-3,.wp-block-elasticpress-facet .level-3{padding-left:60px}.widget_ep-facet .level-4,.wp-block-elasticpress-facet .level-4{padding-left:5pc}.widget_ep-facet .level-5,.wp-block-elasticpress-facet .level-5{padding-left:75pt}.widget_ep-facet input[disabled],.wp-block-elasticpress-facet input[disabled]{cursor:pointer;opacity:1}.widget_ep-facet .term a,.wp-block-elasticpress-facet .term a{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;position:relative}.widget_ep-facet .term a:hover .ep-checkbox,.wp-block-elasticpress-facet .term a:hover .ep-checkbox{background-color:#ccc}.ep-checkbox{-webkit-box-align:center;-ms-flex-align:center;-ms-flex-negative:0;-webkit-box-pack:center;-ms-flex-pack:center;align-items:center;background-color:#eee;display:-webkit-box;display:-ms-flexbox;display:flex;flex-shrink:0;height:1em;justify-content:center;margin-right:.25em;width:1em}.ep-checkbox:after{border:solid #fff;border-width:0 .125em .125em 0;content:"";display:none;height:.5em;-webkit-transform:rotate(45deg);transform:rotate(45deg);width:.25em}.ep-checkbox.checked{background-color:#5e5e5e}.ep-checkbox.checked:after{display:block}
+
+</style>
+<link rel='stylesheet' id='elasticpress-related-posts-block-css' href='https://cacm.acm.org/wp-content/mu-plugins/search/elasticpress/dist/css/related-posts-block-styles.min.css?ver=4.2.2' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--cacm-blue: #337AB5;--wp--preset--color--cacm-link-blue: #015FAC;--wp--preset--color--cacm-dark-blue: #1E4A88;--wp--preset--color--cacm-darker-blue: #29303C;--wp--preset--color--cacm-light-blue: #B6DEFF;--wp--preset--color--cacm-peach: #F7ACA5;--wp--preset--color--cacm-beige: #F5F2DC;--wp--preset--color--cacm-brown: #8C6A54;--wp--preset--color--cacm-green: #5F7D05;--wp--preset--color--cacm-light-green: #EFF7F1;--wp--preset--color--cacm-black: #141414;--wp--preset--color--cacm-gray-100: #FBFCFC;--wp--preset--color--cacm-gray-200: #F8F9FA;--wp--preset--color--cacm-gray-300: #EBEDEF;--wp--preset--color--cacm-gray-500: #A9ACB1;--wp--preset--color--cacm-gray-600: #5A6875;--wp--preset--color--cacm-gray-700: #3D4550;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--gradient--primary-gradient: linear-gradient(90deg, #80C2EF 0%, #337AB5 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--work-xxxs: 16px;--wp--preset--font-size--work-xxs: 18px;--wp--preset--font-size--work-xs: 21px;--wp--preset--font-size--work-sm: 25px;--wp--preset--font-size--work-md: 28px;--wp--preset--font-size--work-lg: 33px;--wp--preset--font-size--work-xl: 37px;--wp--preset--font-size--work-xxl: 41px;--wp--preset--font-size--work-xxxl: 48px;--wp--preset--font-size--inter-xxxs: 15px;--wp--preset--font-size--inter-xxs: 18px;--wp--preset--font-size--inter-xs: 21px;--wp--preset--font-size--inter-sm: 24px;--wp--preset--font-size--inter-md: 28px;--wp--preset--font-size--inter-lg: 32px;--wp--preset--font-size--inter-xl: 36px;--wp--preset--font-size--inter-xxl: 41px;--wp--preset--font-size--inter-xxxl: 47px;--wp--preset--font-family--inter: 'Inter', helvetica, arial, sans-serif;--wp--preset--font-family--work-sans: 'Work Sans', helvetica, arial, sans-serif;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);--wp--custom--adminbar-height: 0px;--wp--custom--siteheader-height: 72px;--wp--custom--site-edge: 20px;--wp--custom--gap: 40px;--wp--custom--gap-half: calc(var(--wp--custom--gap) / 2);--wp--custom--section-background-color: transparent;--wp--custom--placeholder-background-color: var(--wp--preset--color--cacm-gray-200);--wp--custom--vertical-block-rhythm: 40px;--wp--custom--border-gray: 1px solid var(--wp--preset--color--cacm-gray-300);--wp--custom--font-weight-regular: 400;--wp--custom--font-weight-medium: 500;--wp--custom--font-weight-bold: 700;--wp--custom--font-weight-extrabold: 900;}.wp-block-heading{--wp--preset--font-size--work-xxs: 18px;--wp--preset--font-size--work-xs: 21px;--wp--preset--font-size--work-sm: 25px;--wp--preset--font-size--work-md: 28px;--wp--preset--font-size--work-lg: 33px;--wp--preset--font-size--work-xl: 41px;}:root { --wp--style--global--content-size: 1280px;--wp--style--global--wide-size: 1280px; }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: underline;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;line-height: inherit;padding: calc(0.667em + 2px) calc(1.333em + 2px);text-decoration: none;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-cacm-blue-color{color: var(--wp--preset--color--cacm-blue) !important;}.has-cacm-link-blue-color{color: var(--wp--preset--color--cacm-link-blue) !important;}.has-cacm-dark-blue-color{color: var(--wp--preset--color--cacm-dark-blue) !important;}.has-cacm-darker-blue-color{color: var(--wp--preset--color--cacm-darker-blue) !important;}.has-cacm-light-blue-color{color: var(--wp--preset--color--cacm-light-blue) !important;}.has-cacm-peach-color{color: var(--wp--preset--color--cacm-peach) !important;}.has-cacm-beige-color{color: var(--wp--preset--color--cacm-beige) !important;}.has-cacm-brown-color{color: var(--wp--preset--color--cacm-brown) !important;}.has-cacm-green-color{color: var(--wp--preset--color--cacm-green) !important;}.has-cacm-light-green-color{color: var(--wp--preset--color--cacm-light-green) !important;}.has-cacm-black-color{color: var(--wp--preset--color--cacm-black) !important;}.has-cacm-gray-100-color{color: var(--wp--preset--color--cacm-gray-100) !important;}.has-cacm-gray-200-color{color: var(--wp--preset--color--cacm-gray-200) !important;}.has-cacm-gray-300-color{color: var(--wp--preset--color--cacm-gray-300) !important;}.has-cacm-gray-500-color{color: var(--wp--preset--color--cacm-gray-500) !important;}.has-cacm-gray-600-color{color: var(--wp--preset--color--cacm-gray-600) !important;}.has-cacm-gray-700-color{color: var(--wp--preset--color--cacm-gray-700) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-cacm-blue-background-color{background-color: var(--wp--preset--color--cacm-blue) !important;}.has-cacm-link-blue-background-color{background-color: var(--wp--preset--color--cacm-link-blue) !important;}.has-cacm-dark-blue-background-color{background-color: var(--wp--preset--color--cacm-dark-blue) !important;}.has-cacm-darker-blue-background-color{background-color: var(--wp--preset--color--cacm-darker-blue) !important;}.has-cacm-light-blue-background-color{background-color: var(--wp--preset--color--cacm-light-blue) !important;}.has-cacm-peach-background-color{background-color: var(--wp--preset--color--cacm-peach) !important;}.has-cacm-beige-background-color{background-color: var(--wp--preset--color--cacm-beige) !important;}.has-cacm-brown-background-color{background-color: var(--wp--preset--color--cacm-brown) !important;}.has-cacm-green-background-color{background-color: var(--wp--preset--color--cacm-green) !important;}.has-cacm-light-green-background-color{background-color: var(--wp--preset--color--cacm-light-green) !important;}.has-cacm-black-background-color{background-color: var(--wp--preset--color--cacm-black) !important;}.has-cacm-gray-100-background-color{background-color: var(--wp--preset--color--cacm-gray-100) !important;}.has-cacm-gray-200-background-color{background-color: var(--wp--preset--color--cacm-gray-200) !important;}.has-cacm-gray-300-background-color{background-color: var(--wp--preset--color--cacm-gray-300) !important;}.has-cacm-gray-500-background-color{background-color: var(--wp--preset--color--cacm-gray-500) !important;}.has-cacm-gray-600-background-color{background-color: var(--wp--preset--color--cacm-gray-600) !important;}.has-cacm-gray-700-background-color{background-color: var(--wp--preset--color--cacm-gray-700) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-cacm-blue-border-color{border-color: var(--wp--preset--color--cacm-blue) !important;}.has-cacm-link-blue-border-color{border-color: var(--wp--preset--color--cacm-link-blue) !important;}.has-cacm-dark-blue-border-color{border-color: var(--wp--preset--color--cacm-dark-blue) !important;}.has-cacm-darker-blue-border-color{border-color: var(--wp--preset--color--cacm-darker-blue) !important;}.has-cacm-light-blue-border-color{border-color: var(--wp--preset--color--cacm-light-blue) !important;}.has-cacm-peach-border-color{border-color: var(--wp--preset--color--cacm-peach) !important;}.has-cacm-beige-border-color{border-color: var(--wp--preset--color--cacm-beige) !important;}.has-cacm-brown-border-color{border-color: var(--wp--preset--color--cacm-brown) !important;}.has-cacm-green-border-color{border-color: var(--wp--preset--color--cacm-green) !important;}.has-cacm-light-green-border-color{border-color: var(--wp--preset--color--cacm-light-green) !important;}.has-cacm-black-border-color{border-color: var(--wp--preset--color--cacm-black) !important;}.has-cacm-gray-100-border-color{border-color: var(--wp--preset--color--cacm-gray-100) !important;}.has-cacm-gray-200-border-color{border-color: var(--wp--preset--color--cacm-gray-200) !important;}.has-cacm-gray-300-border-color{border-color: var(--wp--preset--color--cacm-gray-300) !important;}.has-cacm-gray-500-border-color{border-color: var(--wp--preset--color--cacm-gray-500) !important;}.has-cacm-gray-600-border-color{border-color: var(--wp--preset--color--cacm-gray-600) !important;}.has-cacm-gray-700-border-color{border-color: var(--wp--preset--color--cacm-gray-700) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-primary-gradient-gradient-background{background: var(--wp--preset--gradient--primary-gradient) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-work-xxxs-font-size{font-size: var(--wp--preset--font-size--work-xxxs) !important;}.has-work-xxs-font-size{font-size: var(--wp--preset--font-size--work-xxs) !important;}.has-work-xs-font-size{font-size: var(--wp--preset--font-size--work-xs) !important;}.has-work-sm-font-size{font-size: var(--wp--preset--font-size--work-sm) !important;}.has-work-md-font-size{font-size: var(--wp--preset--font-size--work-md) !important;}.has-work-lg-font-size{font-size: var(--wp--preset--font-size--work-lg) !important;}.has-work-xl-font-size{font-size: var(--wp--preset--font-size--work-xl) !important;}.has-work-xxl-font-size{font-size: var(--wp--preset--font-size--work-xxl) !important;}.has-work-xxxl-font-size{font-size: var(--wp--preset--font-size--work-xxxl) !important;}.has-inter-xxxs-font-size{font-size: var(--wp--preset--font-size--inter-xxxs) !important;}.has-inter-xxs-font-size{font-size: var(--wp--preset--font-size--inter-xxs) !important;}.has-inter-xs-font-size{font-size: var(--wp--preset--font-size--inter-xs) !important;}.has-inter-sm-font-size{font-size: var(--wp--preset--font-size--inter-sm) !important;}.has-inter-md-font-size{font-size: var(--wp--preset--font-size--inter-md) !important;}.has-inter-lg-font-size{font-size: var(--wp--preset--font-size--inter-lg) !important;}.has-inter-xl-font-size{font-size: var(--wp--preset--font-size--inter-xl) !important;}.has-inter-xxl-font-size{font-size: var(--wp--preset--font-size--inter-xxl) !important;}.has-inter-xxxl-font-size{font-size: var(--wp--preset--font-size--inter-xxxl) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-work-sans-font-family{font-family: var(--wp--preset--font-family--work-sans) !important;}.wp-block-heading.has-work-xxs-font-size{font-size: var(--wp--preset--font-size--work-xxs) !important;}.wp-block-heading.has-work-xs-font-size{font-size: var(--wp--preset--font-size--work-xs) !important;}.wp-block-heading.has-work-sm-font-size{font-size: var(--wp--preset--font-size--work-sm) !important;}.wp-block-heading.has-work-md-font-size{font-size: var(--wp--preset--font-size--work-md) !important;}.wp-block-heading.has-work-lg-font-size{font-size: var(--wp--preset--font-size--work-lg) !important;}.wp-block-heading.has-work-xl-font-size{font-size: var(--wp--preset--font-size--work-xl) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='qm-object-cache-style-css' href='https://cacm.acm.org/wp-content/mu-plugins/qm-plugins/qm-object-cache/css/style.css?ver=0.2' type='text/css' media='all' />
+<link rel='stylesheet' id='cacm-global-css' href='https://cacm.acm.org/wp-content/themes/cacm/client/build/css/global.min.css?ver=2e69cf06aaa18696d381' type='text/css' media='all' />
+<link rel='stylesheet' id='cacm-article-css' href='https://cacm.acm.org/wp-content/themes/cacm/client/build/css/article.min.css?ver=34500f5fcb3e83888a6c' type='text/css' media='all' />
+<link rel="https://api.w.org/" href="https://cacm.acm.org/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://cacm.acm.org/wp-json/wp/v2/posts/764651" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://cacm.acm.org/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.7.1" />
+<link rel="canonical" href="https://cacm.acm.org/blogcacm/21st-century-c/" />
+<link rel='shortlink' href='https://cacm.acm.org/?p=764651' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://cacm.acm.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcacm.acm.org%2Fblogcacm%2F21st-century-c%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://cacm.acm.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcacm.acm.org%2Fblogcacm%2F21st-century-c%2F&#038;format=xml" />
+        <style>
+        .getty.aligncenter {
+            text-align: center;
+        }
+        .getty.alignleft {
+            float: none;
+            margin-right: 0;
+        }
+        .getty.alignleft > div {
+            float: left;
+            margin-right: 5px;
+        }
+        .getty.alignright {
+            float: none;
+            margin-left: 0;
+        }
+        .getty.alignright > div {
+            float: right;
+            margin-left: 5px;
+        }
+        </style>
+        	<style>img#wpstats{display:none}</style>
+		<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"NewsArticle","headline":"21st Century C++","url":"http:\/\/cacm.acm.org\/blogcacm\/21st-century-c\/","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/cacm.acm.org\/blogcacm\/21st-century-c\/"},"thumbnailUrl":"https:\/\/cacm.acm.org\/wp-content\/uploads\/2025\/01\/012225.BLOG_.21st-Century-C-G.jpg?w=150&h=150&crop=1","image":{"@type":"ImageObject","url":"https:\/\/cacm.acm.org\/wp-content\/uploads\/2025\/01\/012225.BLOG_.21st-Century-C-G.jpg"},"articleSection":"Architecture and Hardware","author":[{"@type":"Person","name":"Lawrence Fisher"}],"creator":["Lawrence Fisher"],"publisher":{"@type":"Organization","name":"Communications of the ACM","logo":""},"keywords":[],"dateCreated":"2025-02-04T14:22:06Z","datePublished":"2025-02-04T14:22:06Z","dateModified":"2025-02-04T17:55:19Z"}</script><link rel="icon" href="https://cacm.acm.org/wp-content/uploads/2023/11/cropped-cropped-cacm_favicon-1.png?w=32" sizes="32x32" />
+<link rel="icon" href="https://cacm.acm.org/wp-content/uploads/2023/11/cropped-cropped-cacm_favicon-1.png?w=192" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://cacm.acm.org/wp-content/uploads/2023/11/cropped-cropped-cacm_favicon-1.png?w=180" />
+<meta name="msapplication-TileImage" content="https://cacm.acm.org/wp-content/uploads/2023/11/cropped-cropped-cacm_favicon-1.png?w=270" />
+</head>
+
+<body class="post-template-default single single-post postid-764651 single-format-standard">
+<svg xmlns="http://www.w3.org/2000/svg" focusable="false" height="0" role="none" style="left:-9999px;overflow:hidden;position:absolute" viewBox="0 0 0 0" width="0"><symbol id="am-symbol-icon-arrow-left" viewBox="0 0 18 12"><path clip-rule="evenodd" d="M18 6a.643.643 0 0 1-.643.643H2.196l4.046 4.044a.644.644 0 0 1-.91.91L.188 6.456a.643.643 0 0 1 0-.91L5.33.402a.644.644 0 1 1 .91.91L2.197 5.358h15.161A.643.643 0 0 1 18 6Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-arrow-right" viewBox="0 0 14 9"><path clip-rule="evenodd" d="M0 4.5A.5.5 0 0 1 .5 4h11.793L9.146.854a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L12.293 5H.5a.5.5 0 0 1-.5-.5Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-comment" viewBox="0 0 19 20"><path clip-rule="evenodd" d="M1.781 1.542a.693.693 0 0 0-.693.693v11.876a.693.693 0 0 0 .693.693h2.375c.273 0 .494.221.494.494v2.574l3.96-2.97a.494.494 0 0 1 .296-.098h8.313a.693.693 0 0 0 .693-.694V2.236a.693.693 0 0 0-.693-.693H1.78ZM.592 1.046a1.681 1.681 0 0 1 1.19-.492h15.437A1.681 1.681 0 0 1 18.9 2.235v11.876a1.681 1.681 0 0 1-1.681 1.681H9.07l-4.618 3.464a.494.494 0 0 1-.79-.396v-3.068H1.78A1.682 1.682 0 0 1 .1 14.111V2.235c0-.446.177-.873.492-1.189Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-digital-library" viewBox="43 0 40 40"><g clip-path="url(#a)">
+    <path d="m95.468 15.585-1.58 1.579c-.262.263-.584.41-.964.41h-6.813V4.707h6.813c.38 0 .702.146.965.409l1.579 1.579c.263.263.41.585.41.965v6.959c0 .38-.118.702-.41.965zm-1.9-7.544c0-.088-.03-.205-.118-.263l-.76-.76c-.088-.088-.146-.117-.263-.117H88.42v8.45h4.006c.117 0 .205-.03.263-.117l.76-.76a.357.357 0 0 0 .117-.264V8.04zm5.877 9.532v-2.047h2.309V6.754h-2.31V4.708h6.93v2.046h-2.31v8.772h2.31v2.047h-6.93zm19.853 0-.292-1.637-1.228 1.228c-.263.263-.585.41-.965.41h-3.918c-.38 0-.702-.147-.965-.41l-1.579-1.58a1.326 1.326 0 0 1-.409-.964V7.66c0-.38.146-.7.409-.964l1.579-1.579c.263-.263.585-.41.965-.41h5c.38 0 .701.147.965.41l1.666 1.667-1.549 1.55-1.316-1.316c-.088-.088-.146-.117-.263-.117h-4.006c-.117 0-.205.029-.263.117l-.761.76a.36.36 0 0 0-.117.263v6.199c0 .088.03.204.117.263l.761.76c.087.088.146.117.263.117h3.041c.117 0 .204-.03.263-.117l1.754-1.754c.088-.088.117-.146.117-.263v-.995h-3.187V10.06h5.497v4.97l.497 2.573h-2.076v-.029zm5.38 0v-2.047h2.31V6.754h-2.31V4.708h6.93v2.046h-2.31v8.772h2.31v2.047h-6.93zM140.029 6.9v10.644h-2.31V6.9h-3.713V4.708h9.737V6.9h-3.714zm14.299 10.673-1.229-3.216h-5.117l-1.228 3.216h-2.31l4.767-12.865h2.748l4.708 12.865h-2.339zm-3.772-10.38-1.784 5.088h3.567l-1.783-5.088zM160 17.573V4.708h2.31V15.35h6.316v2.193H160v.03zM86.111 35.41V22.543h2.31v10.643h6.316v2.193H86.11v.03zm11.813 0v-2.047h2.31V24.59h-2.31v-2.047h6.93v2.047h-2.31v8.772h2.31v2.046h-6.93zm20.497-1.638-1.257 1.257a1.28 1.28 0 0 1-.936.38h-7.164V22.544h7.164c.38 0 .673.146.936.38l1.257 1.257c.263.263.409.585.409.965v1.755c0 .38-.146.701-.409.965l-1.111 1.11 1.111 1.112c.263.263.409.584.409.965v1.783c0 .322-.146.673-.409.936zm-1.901-8.216c0-.117-.029-.205-.116-.264l-.439-.438c-.088-.088-.146-.117-.263-.117h-4.328v3.129h3.86c.088 0 .205-.03.263-.117l.877-.878c.088-.087.117-.146.117-.263v-1.052h.029zm0 5.789c0-.117-.029-.205-.116-.263l-.936-.936c-.088-.088-.146-.117-.263-.117h-3.831v3.158h4.328c.087 0 .204-.03.263-.117l.439-.438c.087-.088.116-.147.116-.264v-1.023zm14.65 4.065-3.802-4.884a.402.402 0 0 0-.321-.175h-1.404v5.058h-2.31V22.544h7.164c.38 0 .673.146.936.38l1.257 1.257c.263.263.409.585.409.965v2.544c0 .38-.146.702-.409.965l-1.257 1.257c-.263.263-.556.38-.936.38h-.468l3.977 5.059h-2.836v.058zm-.381-9.854c0-.117-.029-.205-.116-.264l-.439-.438c-.088-.088-.146-.117-.263-.117h-4.328v3.392h4.328c.117 0 .204-.03.263-.117l.439-.41c.087-.087.116-.146.116-.263v-1.783zm15.117 9.854-1.228-3.217h-5.117l-1.228 3.216h-2.31l4.766-12.865h2.749l4.708 12.865h-2.34zm-3.772-10.38-1.783 5.087h3.538l-1.755-5.088zm17.106 10.38-3.801-4.884a.405.405 0 0 0-.322-.175h-1.404v5.058h-2.309V22.544h7.163c.38 0 .673.146.936.38l1.257 1.257c.263.263.41.585.41.965v2.544c0 .38-.147.702-.41.965l-1.257 1.257c-.263.263-.556.38-.936.38h-.468l3.977 5.059h-2.836v.058zm-.41-9.854c0-.117-.029-.205-.117-.264l-.438-.438c-.088-.088-.146-.117-.263-.117h-4.328v3.392h4.328c.117 0 .204-.03.263-.117l.438-.41c.088-.087.117-.146.117-.263v-1.783zm11.696 4.152v5.672h-2.31v-5.672l-4.356-7.164h2.514l3.012 5 2.982-5h2.486l-4.328 7.164zM12.193 26.199 7.485 13.363H4.737L0 26.199h2.31l1.199-3.216h5.117l1.199 3.216h2.368zm-4.327-5.263h-3.54l1.784-5.088 1.755 5.088zm15.818 3.187-1.55-1.55-1.315 1.316c-.088.088-.146.117-.263.117h-3.188c-.116 0-.204-.03-.263-.117l-.76-.76a.357.357 0 0 1-.117-.264v-6.17c0-.087.03-.204.117-.262l.76-.76c.088-.088.146-.117.263-.117h3.188c.116 0 .204.029.263.117l1.316 1.315 1.55-1.55-1.668-1.666a1.326 1.326 0 0 0-.964-.41H16.87c-.38 0-.701.147-.965.41l-1.579 1.579a1.326 1.326 0 0 0-.409.965v6.959c0 .38.146.702.41.965l1.578 1.579c.264.263.585.41.965.41h4.182c.38 0 .701-.147.964-.41l1.667-1.696zm15.79 2.076V13.363h-3.538l-3.041 9.941-3.041-9.941h-3.538v12.836h2.251V15.994L31.696 26.2h2.398l3.128-10.205V26.2h2.252zM58.246 3.421l-5.351-1.403-1.404 5.35 3.86-1.052 2.895-2.895zm-4.474 4.532-7.72 2.106 1.17 4.385 6.55-6.49zm26.17 6.988 1.432-5.467-5.35-1.375 1.081 4.065 2.837 2.777zm-33.1 10.205-1.433 5.38 5.351 1.375-1.052-3.89-2.866-2.865zM73.333 2.66 68.89 3.89l6.579 6.579-2.135-7.807zm-.409 29.416 7.836-2.134-1.228-4.474-6.608 6.608zM68.45 36.55l5.468 1.433 1.404-5.351-4.065 1.081-2.807 2.837zm-15 .79 4.386-1.17-6.462-6.492 2.076 7.661zm26.2-13.656L83.332 20 71.637 8.304l-4.561-4.561L63.333 0l-6.52 6.52-9.708 9.708L43.333 20l6.58 6.579 9.707 9.707L63.333 40l6.492-6.491 9.824-9.825zm-16.434-.643c0 .35-.117.672-.38.906l-1.491 1.492c-.263.263-.556.38-.906.38h-6.462V13.626h6.462c.35 0 .672.117.906.38l1.491 1.491c.263.263.38.556.38.907v6.637zm3.597-9.415h2.193v10.117H75v2.076h-8.187V13.626z"></path>
+    <path d="M60.205 15.819a.37.37 0 0 0-.264-.117h-3.8v8.04h3.8c.117 0 .176-.029.264-.116l.701-.702c.059-.088.117-.175.117-.263v-5.877a.357.357 0 0 0-.117-.264l-.701-.701z"></path>
+  </g><defs>
+    <clipPath id="a">
+      <path d="M0 0h174.854v40H0z"></path>
+    </clipPath>
+  </defs></symbol><symbol id="am-symbol-icon-pdf-download" viewBox="0 0 19 20"><path clip-rule="evenodd" d="M1.781 1.542a.693.693 0 0 0-.693.693v13.063a.693.693 0 0 0 .693.694h4.75a.494.494 0 1 1 0 .988h-4.75A1.682 1.682 0 0 1 .1 15.298V2.235A1.681 1.681 0 0 1 1.78.554h8.415c.446 0 .873.177 1.188.492l2.274 2.274c.315.315.492.743.492 1.188v2.477a.494.494 0 1 1-.988 0V4.508a.694.694 0 0 0-.203-.49m0 0-2.273-2.273a.694.694 0 0 0-.49-.203H1.78m11.875 8.312a4.256 4.256 0 1 0 0 8.512 4.256 4.256 0 0 0 0-8.512Zm-5.244 4.257a5.244 5.244 0 1 1 10.488 0 5.244 5.244 0 0 1-10.488 0Zm5.244-2.87c.273 0 .494.222.494.495v3.557l.938-.938a.494.494 0 0 1 .699.698l-1.782 1.782a.494.494 0 0 1-.698 0l-1.781-1.782a.494.494 0 0 1 .698-.698l.938.938v-3.557c0-.273.221-.495.494-.495Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-print" viewBox="0 0 19 20"><path clip-rule="evenodd" d="M5.344 1.541a.693.693 0 0 0-.694.693v3.069h9.7V2.234a.693.693 0 0 0-.694-.693H5.344Zm9.994 3.762V2.234A1.681 1.681 0 0 0 13.656.553H5.344a1.681 1.681 0 0 0-1.682 1.681v3.069h-1.88A1.682 1.682 0 0 0 .1 6.984v5.938a1.682 1.682 0 0 0 1.681 1.681h1.881v4.257c0 .272.221.494.494.494h10.688a.494.494 0 0 0 .494-.494v-4.256h1.88a1.682 1.682 0 0 0 1.682-1.682V6.984a1.681 1.681 0 0 0-1.681-1.681h-1.881ZM1.78 6.291a.693.693 0 0 0-.693.693v5.938a.694.694 0 0 0 .693.694h1.881v-3.069c0-.273.221-.494.494-.494h10.688c.273 0 .494.221.494.494v3.069h1.88a.694.694 0 0 0 .694-.694V6.984a.693.693 0 0 0-.693-.693H1.78Zm12.569 4.75h-9.7v7.325h9.7V11.04ZM2.475 8.172c0-.273.22-.494.494-.494h1.187a.494.494 0 1 1 0 .988H2.97a.494.494 0 0 1-.494-.494Zm3.562 4.75c0-.273.221-.494.494-.494h5.938a.494.494 0 1 1 0 .988H6.53a.494.494 0 0 1-.494-.494Zm0 2.375c0-.273.221-.494.494-.494h4.157a.494.494 0 1 1 0 .988H6.53a.494.494 0 0 1-.494-.494Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-share" viewBox="0 0 19 18"><path clip-rule="evenodd" d="M14.844 1.73a2.475 2.475 0 1 0 0 4.949 2.475 2.475 0 0 0 0-4.95ZM11.38 4.203a3.463 3.463 0 1 1 .447 1.703L7.531 7.58a3.473 3.473 0 0 1-.087 1.873l4.555 2.278a3.463 3.463 0 1 1-.442.883L7 10.335a3.463 3.463 0 1 1 .171-3.677l4.298-1.671a3.473 3.473 0 0 1-.089-.783Zm1.242 8.407a2.475 2.475 0 1 0 4.441 2.187 2.475 2.475 0 0 0-4.44-2.187ZM4.156 5.886a2.475 2.475 0 1 0 0 4.95 2.475 2.475 0 0 0 0-4.95Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-bookmark" viewBox="0 0 13 19"><path clip-rule="evenodd" d="M12.05.948c-.293-.32-.7-.494-1.114-.494H2.007c-.421 0-.821.175-1.121.494a1.73 1.73 0 0 0-.457 1.186v15.488c0 .198.05.388.142.563.1.167.236.304.408.395a.89.89 0 0 0 .535.122.956.956 0 0 0 .522-.19l2.464-1.84h.007l1.964-1.459 1.958 1.46h.014l2.464 1.839c.15.114.329.182.522.19a.89.89 0 0 0 .535-.122 1.03 1.03 0 0 0 .4-.395c.1-.175.15-.365.15-.563V2.134c0-.449-.164-.874-.464-1.186ZM3.771 16.011 1.5 17.7s-.029.015-.05.022c-.014 0-.029-.007-.043-.015-.021-.008-.028-.023-.043-.038-.007-.015-.007-.03-.007-.053V2.134a.74.74 0 0 1 .186-.494.639.639 0 0 1 .464-.198h1.764v14.57Zm4.465-.691-1.5-1.125a.462.462 0 0 0-.536 0L4.7 15.32V1.442h3.536V15.32Zm3.35 2.378v-.053s-.015.015-.015.023a.089.089 0 0 1-.035.038c-.015 0-.036.015-.05.015-.015-.007-.036-.007-.05-.023l-2.272-1.687V1.442h1.772c.171 0 .335.069.457.198a.747.747 0 0 1 .193.494v15.564Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-bookmarked" viewBox="0 0 17 25"><path clip-rule="evenodd" d="M16.27.65C15.86.23 15.29 0 14.71 0H2.21A2.201 2.201 0 0 0 0 2.21v20.38c0 .26.07.51.2.74.14.22.33.4.57.52.23.13.49.18.75.16.26-.01.51-.1.73-.25l3.45-2.42h.01l1.15-.8 1.6-1.12 1.6 1.12 1.14.8h.02l3.45 2.42c.21.15.46.24.73.25.26.02.52-.03.75-.16.23-.12.43-.3.56-.52.14-.23.21-.48.21-.74V2.21c0-.59-.23-1.15-.65-1.56ZM4.68 20.47 1.5 22.69s-.04.02-.07.03c-.02 0-.04-.01-.06-.02-.03-.01-.04-.03-.06-.05V2.21c0-.24.09-.47.26-.65.17-.17.41-.26.65-.26h2.47v19.17h-.01Zm10.94 2.22v-.07s-.02.02-.02.03a.12.12 0 0 1-.05.05c-.02 0-.05.02-.07.02-.02-.01-.05-.01-.07-.03l-3.18-2.22V1.3h2.48a.9.9 0 0 1 .64.26c.17.18.27.41.27.65v20.48Z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-chevron-down" viewBox="0 0 16 16"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" fill-rule="evenodd"></path></symbol><symbol id="am-symbol-icon-search" viewBox="0 0 24 24"><path d="m23 21.85-6.145-6.146a8.966 8.966 0 1 0-1.151 1.15L21.849 23 23 21.85ZM2.656 9.98a7.324 7.324 0 1 1 7.324 7.324A7.332 7.332 0 0 1 2.656 9.98Z" fill="#015FAC"></path></symbol><symbol id="am-symbol-cacm-logo-small"><path d="M48.75 24c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24Z" fill="#fff"></path><path d="m24.998 9-15 15 15 15 15-15-15-15Z" fill="#027BA3"></path><path d="M34.196 24A9.195 9.195 0 0 1 25 33.196 9.195 9.195 0 0 1 15.804 24 9.195 9.195 0 0 1 25 14.804 9.195 9.195 0 0 1 34.196 24Z" fill="#fff"></path><path d="M33.28 24A8.275 8.275 0 0 1 25 32.275 8.275 8.275 0 0 1 16.72 24c0-4.57 3.705-8.28 8.28-8.28A8.276 8.276 0 0 1 33.28 24Z" fill="#027BA3"></path><path d="M20.18 25.613c-.084.07-.163.133-.23.191a1.641 1.641 0 0 1-.596.292c-.104.025-.25.041-.441.041-.35 0-.642-.116-.875-.354a1.219 1.219 0 0 1-.35-.891c0-.296.058-.534.175-.717.116-.183.287-.325.508-.433.225-.109.492-.184.804-.225.313-.042.646-.075 1.004-.1v-.021c0-.221-.083-.371-.241-.454-.163-.084-.405-.125-.73-.125-.145 0-.316.025-.512.079s-.388.12-.571.204h-.104v-.967c.12-.037.32-.079.596-.125.275-.05.55-.075.829-.075.687 0 1.187.117 1.5.342.312.23.47.575.47 1.046v2.712h-1.241v-.42h.004Zm0-.621v-.825c-.21.02-.38.041-.505.054-.13.017-.258.046-.38.091a.561.561 0 0 0-.253.171.488.488 0 0 0-.088.305c0 .187.05.312.15.383.1.07.246.104.442.104a.802.802 0 0 0 .329-.075c.113-.05.212-.12.304-.208ZM24.154 26.137c-.329 0-.633-.041-.904-.125a1.897 1.897 0 0 1-.712-.383c-.2-.17-.355-.387-.467-.65a2.336 2.336 0 0 1-.167-.925c0-.379.058-.704.183-.97.121-.267.284-.488.492-.659.2-.167.433-.288.7-.367a2.98 2.98 0 0 1 1.504-.046c.221.05.442.134.667.242v1.067h-.158c-.05-.046-.113-.1-.184-.154a1.673 1.673 0 0 0-.237-.159 1.349 1.349 0 0 0-.683-.175c-.317 0-.563.109-.738.33-.175.22-.262.516-.262.891 0 .4.091.696.279.892.187.196.433.296.741.296.155 0 .296-.017.413-.055a1.27 1.27 0 0 0 .517-.28c.058-.049.112-.099.154-.14h.158v1.062l-.246.108a2.925 2.925 0 0 1-.629.175 2.776 2.776 0 0 1-.417.026h-.004ZM30.867 26.033v-1.991c0-.196 0-.363-.013-.496a1.102 1.102 0 0 0-.062-.33.386.386 0 0 0-.167-.187.715.715 0 0 0-.317-.058.665.665 0 0 0-.279.062 1.99 1.99 0 0 0-.304.175v2.83h-1.242v-1.992c0-.192 0-.358-.012-.496a1 1 0 0 0-.067-.333.386.386 0 0 0-.166-.188.707.707 0 0 0-.313-.058c-.1 0-.2.025-.3.07-.096.05-.192.105-.283.167v2.83H26.1v-3.984h1.242v.438c.204-.175.396-.309.575-.405a1.27 1.27 0 0 1 .604-.145c.246 0 .458.058.642.175.183.116.325.287.42.516.238-.22.467-.391.675-.512.213-.121.425-.18.642-.18.183 0 .35.03.496.088.146.058.27.146.37.267.113.129.197.279.25.454.055.175.084.408.084.692v2.596h-1.242l.009-.005Z" fill="#fff"></path></symbol><symbol id="am-symbol-cacm-logo" viewBox="30.79 34.55 548.86 88.05"><path d="M54.75 71.41c-.8.8-1.77 1.2-2.85 1.2H39.52c-1.08 0-2.05-.4-2.85-1.2l-4.68-4.68c-.8-.8-1.2-1.77-1.2-2.85v-20.6c0-1.08.4-2.05 1.2-2.85l4.68-4.68c.8-.8 1.77-1.2 2.85-1.2H51.9c1.08 0 2.05.4 2.85 1.2l4.96 4.96-4.62 4.56-3.88-3.88c-.23-.23-.46-.34-.8-.34H41c-.34 0-.57.11-.8.34l-2.23 2.23c-.23.23-.34.51-.34.8v18.31c0 .29.11.57.34.8l2.23 2.23c.23.23.46.34.8.34h9.41c.34 0 .57-.11.8-.34l3.88-3.88 4.62 4.56-4.96 4.97zm44.5-4.68-4.68 4.68c-.8.8-1.77 1.2-2.85 1.2H76.83c-1.08 0-2.05-.4-2.85-1.2l-4.68-4.68c-.8-.8-1.2-1.77-1.2-2.85v-20.6c0-1.08.4-2.05 1.2-2.85l4.68-4.68c.8-.8 1.77-1.2 2.85-1.2h14.89c1.08 0 2.05.4 2.85 1.2l4.68 4.68c.8.8 1.2 1.77 1.2 2.85v20.6c0 1.08-.4 2.05-1.2 2.85zM93.6 44.42c0-.29-.11-.57-.34-.8l-2.23-2.23c-.23-.23-.46-.34-.8-.34H78.31c-.34 0-.57.11-.8.34l-2.23 2.23c-.23.23-.34.51-.34.8v18.31c0 .29.11.57.34.8l2.23 2.23c.23.23.46.34.8.34h11.92c.34 0 .57-.11.8-.34l2.23-2.23c.23-.23.34-.51.34-.8V44.42zm50.44 28.19V42.37l-9.3 30.24h-7.07l-9.3-30.24v30.24h-6.68V34.55h10.5l9.01 29.5 9.01-29.5h10.5V72.6h-6.67zm52.65 0V42.37l-9.3 30.24h-7.07l-9.3-30.24v30.24h-6.68V34.55h10.5l9.01 29.5 9.01-29.5h10.5V72.6h-6.67zm46.66-5.88-4.68 4.68c-.8.8-1.77 1.2-2.85 1.2h-11.47c-1.08 0-2.05-.4-2.85-1.2l-4.68-4.68c-.8-.8-1.2-1.77-1.2-2.85V34.55h6.85v28.18c0 .29.11.57.34.8l2.23 2.23c.23.23.46.34.8.34h8.5c.34 0 .57-.11.8-.34l2.23-2.23c.23-.23.34-.51.34-.8V34.55h6.85v29.33c-.01 1.08-.41 2.05-1.21 2.85zm32.69 5.88-12.55-29.5v29.5h-6.67V34.55h9.7l12.55 29.5v-29.5h6.67V72.6h-9.7zm20.82 0v-6.05h6.85V40.6h-6.85v-6.05h20.54v6.05h-6.85v25.96h6.85v6.05h-20.54zm53.46-1.2c-.8.8-1.77 1.2-2.85 1.2h-12.38c-1.08 0-2.05-.4-2.85-1.2l-4.68-4.68c-.8-.8-1.2-1.77-1.2-2.85v-20.6c0-1.08.4-2.05 1.2-2.85l4.68-4.68c.8-.8 1.77-1.2 2.85-1.2h12.38c1.08 0 2.05.4 2.85 1.2l4.96 4.96-4.62 4.56-3.88-3.88c-.23-.23-.46-.34-.8-.34h-9.41c-.34 0-.57.11-.8.34l-2.22 2.23c-.23.23-.34.51-.34.8v18.31c0 .29.11.57.34.8l2.22 2.23c.23.23.46.34.8.34h9.41c.34 0 .57-.11.8-.34l3.88-3.88 4.62 4.56-4.96 4.97zm39.47 1.2-3.59-9.53h-15.18l-3.6 9.53h-6.85l14.09-38.05h8.1l13.98 38.05h-6.95zm-11.18-30.7-5.25 15.06h10.5l-5.25-15.06zm35.94-.85v31.55h-6.85V41.06h-11.01v-6.5h28.87v6.5h-11.01zm19.27 31.55v-6.05h6.85V40.6h-6.85v-6.05h20.54v6.05h-6.85v25.96h6.85v6.05h-20.54zm61.89-5.88-4.68 4.68c-.8.8-1.77 1.2-2.85 1.2h-14.89c-1.08 0-2.05-.4-2.85-1.2l-4.68-4.68c-.8-.8-1.2-1.77-1.2-2.85v-20.6c0-1.08.4-2.05 1.2-2.85l4.68-4.68c.8-.8 1.77-1.2 2.85-1.2h14.89c1.08 0 2.05.4 2.85 1.2l4.68 4.68c.8.8 1.2 1.77 1.2 2.85v20.6c0 1.08-.4 2.05-1.2 2.85zm-5.64-22.31c0-.29-.11-.57-.34-.8l-2.22-2.23c-.23-.23-.46-.34-.8-.34h-11.92c-.34 0-.57.11-.8.34l-2.22 2.23c-.23.23-.34.51-.34.8v18.31c0 .29.12.57.34.8l2.22 2.23c.23.23.46.34.8.34h11.92c.34 0 .57-.11.8-.34l2.22-2.23c.23-.23.34-.51.34-.8V44.42zm37.65 28.19-12.55-29.5v29.5h-6.68V34.55h9.7l12.55 29.5v-29.5h6.68V72.6h-9.7zm50.72-5.88-4.68 4.68c-.8.8-1.77 1.2-2.85 1.2h-15.92c-1.08 0-2.05-.4-2.85-1.2l-4.85-4.85 4.56-4.62 3.82 3.82c.23.23.46.34.8.34h12.95c.34 0 .57-.11.8-.34l2.22-2.23c.23-.23.34-.51.34-.8v-3.65c0-.57-.51-1.08-1.08-1.14l-20.48-2.74c-2.23-.29-3.94-2.28-3.94-4.45v-7.47c0-1.08.4-2.05 1.2-2.85l4.68-4.68c.8-.8 1.77-1.2 2.85-1.2h15.92c1.08 0 2.05.4 2.85 1.2l4.85 4.85-4.56 4.62-3.82-3.82c-.23-.23-.46-.34-.8-.34H557.5c-.34 0-.57.11-.8.34l-2.22 2.23c-.23.23-.34.51-.34.8v3.65c0 .57.46 1.08 1.03 1.14l20.54 2.74c2.22.29 3.94 2.28 3.94 4.45v7.47c-.01 1.08-.41 2.05-1.21 2.85zM263.05 90.51l-.88.88c-.15.15-.33.22-.54.22h-2.79a.79.79 0 0 1-.54-.22l-.88-.88a.732.732 0 0 1-.22-.54v-3.86c0-.2.07-.38.22-.54l.88-.88c.15-.15.33-.22.54-.22h2.79c.2 0 .39.07.54.22l.88.88c.15.15.22.33.22.54v3.86c0 .2-.07.39-.22.54zm-1.06-4.19a.22.22 0 0 0-.06-.15l-.42-.42a.204.204 0 0 0-.15-.06h-2.24c-.06 0-.11.02-.15.06l-.42.42a.22.22 0 0 0-.06.15v3.43c0 .05.02.11.06.15l.42.42c.04.04.09.06.15.06h2.24c.06 0 .11-.02.15-.06l.42-.42c.04-.04.06-.1.06-.15v-3.43zm5.41 2.33v2.96h-1.28v-7.13h4.78v1.22h-3.5v1.73h3.5v1.22h-3.5zm12.04-2.96v5.92h-1.28v-5.92h-2.06v-1.22h5.41v1.22h-2.07zm8.45 5.92v-2.96h-2.86v2.96h-1.28v-7.13h1.28v2.95h2.86v-2.95h1.28v7.13h-1.28zm4.43 0v-7.13h4.78v1.22h-3.5v1.73h3.5v1.22h-3.5v1.74h3.5v1.22h-4.78zm30.16 30.99-3.59-9.53h-15.18l-3.59 9.53h-6.85l14.09-38.05h8.1l13.98 38.05h-6.96zM311.3 91.91l-5.25 15.06h10.5l-5.25-15.06zm49.12 29.49c-.8.8-1.77 1.2-2.85 1.2h-12.38c-1.08 0-2.05-.4-2.85-1.2l-4.68-4.68c-.8-.8-1.2-1.77-1.2-2.85v-20.6c0-1.08.4-2.05 1.2-2.85l4.68-4.68c.8-.8 1.77-1.2 2.85-1.2h12.38c1.08 0 2.05.4 2.85 1.2l4.96 4.96-4.62 4.56-3.88-3.88c-.23-.23-.46-.34-.8-.34h-9.41c-.34 0-.57.11-.8.34l-2.22 2.23c-.23.23-.34.51-.34.8v18.31c0 .29.12.57.34.8l2.22 2.23c.23.23.46.34.8.34h9.41c.34 0 .57-.12.8-.34l3.88-3.88 4.62 4.56-4.96 4.97zm47.51 1.2V92.36l-9.3 30.24h-7.07l-9.3-30.24v30.24h-6.68V84.55h10.5l9.01 29.5 9.01-29.5h10.5v38.05h-6.67z"></path></symbol><symbol id="am-symbol-icon-social-facebook"><path d="m22.723 20 .445-2.896h-2.779v-1.879c0-.792.388-1.564 1.633-1.564h1.263v-2.465S22.139 11 21.043 11c-2.289 0-3.784 1.387-3.784 3.898v2.206h-2.544V20h2.544v7h3.13v-7h2.334Z"></path></symbol><symbol id="am-symbol-icon-social-twitter"><path d="M27.613 13.657a7.057 7.057 0 0 1-2.03.557 3.54 3.54 0 0 0 1.555-1.955 7.08 7.08 0 0 1-2.245.857A3.53 3.53 0 0 0 22.313 12c-2.282 0-3.958 2.13-3.442 4.34a10.033 10.033 0 0 1-7.285-3.694 3.54 3.54 0 0 0 1.093 4.72 3.52 3.52 0 0 1-1.6-.442c-.038 1.637 1.135 3.169 2.835 3.51a3.542 3.542 0 0 1-1.596.06 3.538 3.538 0 0 0 3.301 2.454 7.106 7.106 0 0 1-5.232 1.465A10.006 10.006 0 0 0 15.804 26c6.562 0 10.27-5.542 10.046-10.513a7.195 7.195 0 0 0 1.763-1.83Z"></path></symbol><symbol id="am-symbol-icon-social-linkedin"><path d="M14.117 12.74c0 .96-.773 1.738-1.726 1.738a1.732 1.732 0 0 1-1.725-1.739c0-.96.772-1.739 1.725-1.739.953 0 1.726.78 1.726 1.74Zm.013 3.13h-3.478V27h3.479V15.87Zm5.553 0h-3.456V27h3.457v-5.843c0-3.248 4.194-3.514 4.194 0V27h3.47v-7.048c0-5.481-6.207-5.282-7.665-2.583v-1.5Z"></path></symbol><symbol id="am-symbol-icon-social-reddit"><path d="M27.764 21.071v.613c0 3.368-3.879 6.022-8.676 6.022-4.797 0-8.676-2.654-8.676-6.022v-.613c-1.122-.51-1.53-1.735-1.122-2.857.306-.817 1.123-1.327 1.939-1.225.612 0 1.123.204 1.531.612 1.735-1.122 3.776-1.837 5.818-1.837l1.122-5.103c0-.102.102-.204.102-.204.102-.102.205-.102.307-.102l3.572.816c.408-.714 1.327-1.123 2.041-.714.715.408 1.123 1.326.715 2.04-.409.715-1.327 1.124-2.042.715-.51-.204-.816-.714-.816-1.326l-3.164-.715-1.02 4.593c2.245.102 4.286.817 5.715 1.837.816-.816 2.245-.816 3.062 0 .408.408.612.919.612 1.531.306.919-.306 1.633-1.02 1.94Zm-11.942 1.123c.816 0 1.53-.714 1.53-1.53 0-.817-.714-1.532-1.53-1.532-.817 0-1.531.715-1.531 1.531 0 .817.612 1.531 1.53 1.531Zm7.042 1.94c-.204-.205-.408-.205-.51 0-.612.714-2.041.918-3.062.918-1.02 0-2.45-.204-3.062-.919-.204-.204-.408-.204-.51 0-.204.204-.204.409 0 .51 1.02 1.021 3.062 1.123 3.674 1.123.613 0 2.552-.102 3.675-1.122-.102-.102-.102-.306-.205-.51Zm1.225-3.47c0-.817-.714-1.532-1.53-1.532-.817 0-1.532.715-1.532 1.531 0 .817.715 1.531 1.531 1.531.817 0 1.531-.714 1.531-1.53Z"></path></symbol><symbol id="am-symbol-cacm-avatar-blank" viewBox="0 0 40 40"><g>
+		<circle cx="20" cy="20" fill="var(--wp--preset--color--cacm-link-blue)" r="19" stroke="var(--wp--preset--color--cacm-link-blue)" stroke-width="2"></circle>
+		<path clip-rule="evenodd" d="M5 33.23v-.73c0-4.987 9.994-7.5 15-7.5s15 2.513 15 7.5v.73A19.952 19.952 0 0 1 20 40a19.952 19.952 0 0 1-15-6.77ZM20 8.333a7.498 7.498 0 0 0-7.5 7.5c0 4.143 3.356 7.5 7.5 7.5s7.5-3.357 7.5-7.5c0-4.144-3.356-7.5-7.5-7.5Z" fill="var(--wp--preset--color--cacm-gray-200)" fill-rule="evenodd"></path>
+	</g></symbol></svg><div id="page" class="site">
+	<a class="skip-link" href="#content">Skip to content</a>
+
+	<div class="site-header-wrapper" data-component="siteHeader">
+		<header id="masthead" class="site-header site-header--no-js">
+			<div class="site-header-container">
+				
+<button class="site-header-hamburger" aria-label="Main Menu">
+	<span class="site-header-hamburger-closed">
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 25 25">
+	<path d="M.2.2h24.6v2.6H.2zm0 11h24.6v2.7H.2zm0 11h24.6v2.6H.2z" style="fill:#1a1a1a"/>
+</svg>
+ 
+	</span>
+	<span class="site-header-hamburger-open">
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.2" viewBox="0 0 25 25">
+	<path d="M1.7.9 24 23.8m-23 0L23.3.9" style="fill:none;stroke:#fff;stroke-width:1.3"/>
+</svg>
+ 
+	</span>
+</button>
+				<a class="site-header-logo" aria-label="Home" href="https://cacm.acm.org">
+					<svg aria-hidden="true" focusable="false" width="548" height="88" fill="#000"><use href="#am-symbol-cacm-logo"></use></svg>					<svg aria-hidden="true" focusable="false" width="548" height="88" fill="#FFF"><use href="#am-symbol-cacm-logo"></use></svg>				</a>
+				
+<div class="site-header-topics-menu">
+	<button class="site-header-topics-menu-toggle">
+		Explore Topics		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" fill="none">
+	<path stroke="#1A1A1A" stroke-width="1.5" d="m1.5 1.5 5.5 5 5.5-5"/>
+</svg>
+ 
+	</button>
+	<nav role="navigation" aria-label="Topics Menu" class="site-header-topics-menu-expanded" aria-hidden="true">
+		<ul class="site-header-topics-menu-list">
+																<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/architecture-and-hardware/">
+							Architecture and Hardware						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/artificial-intelligence-machine-learning/">
+							Artificial Intelligence and Machine Learning						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/computer-history/">
+							Computer History						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/computing-applications/">
+							Computing Applications						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/computing-profession/">
+							Computing Profession						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/data-and-information/">
+							Data and Information						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/education/">
+							Education						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/hci/">
+							HCI						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/philosophy-of-computing/">
+							Philosophy of Computing						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/security-and-privacy/">
+							Security and Privacy						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/society/">
+							Society						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/software-engineering-and-programming-languages/">
+							Software Engineering and Programming Languages						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/systems-and-networking/">
+							Systems and Networking						</a>
+					</li>
+																				<li class="site-header-topics-menu-list-item">
+						<a href="https://cacm.acm.org/category/theory/">
+							Theory						</a>
+					</li>
+									</ul>
+	</nav>
+</div>
+				
+<div class="site-header-magazine-menu">
+	<button class="site-header-magazine-menu-toggle">
+		Latest Issue		<svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" fill="none">
+	<path stroke="#1A1A1A" stroke-width="1.5" d="m1.5 1.5 5.5 5 5.5-5"/>
+</svg>
+	</button>
+	<nav role="navigation" aria-label="Magazine Menu" class="site-header-magazine-menu-expanded" aria-hidden="true">
+					<a href="https://cacm.acm.org/issue/february-2025/">
+				<figure class="site-header-magazine-menu-expanded-image">
+					<div class="image-wrapper"><img width="1000" height="1338" src="https://cacm.acm.org/wp-content/uploads/2025/01/February.2025-Cover-1000x1338-1.jpg?w=1000" class="attachment-original size-original" alt="February 2025 cover" loading="lazy" decoding="async" srcset="https://cacm.acm.org/wp-content/uploads/2025/01/February.2025-Cover-1000x1338-1.jpg 1000w, https://cacm.acm.org/wp-content/uploads/2025/01/February.2025-Cover-1000x1338-1.jpg?resize=224,300 224w, https://cacm.acm.org/wp-content/uploads/2025/01/February.2025-Cover-1000x1338-1.jpg?resize=768,1028 768w, https://cacm.acm.org/wp-content/uploads/2025/01/February.2025-Cover-1000x1338-1.jpg?resize=765,1024 765w" sizes="auto, (max-width: 1000px) 100vw, 1000px" /></div>				</figure>
+			</a>
+				<div class="site-header-magazine-menu-expanded-text">
+							<div class="site-header-magazine-menu-expanded-current">
+					<h2 class="site-header-magazine-menu-expanded-heading">
+						Latest Issue					</h2>
+					<a href="https://cacm.acm.org/issue/february-2025/" class="site-header-magazine-menu-expanded-issue"><b>February 2025</b>, Vol. 68 No. 2</a>
+				</div>
+										<div class="site-header-magazine-menu-expanded-previous">
+					<h2 class="site-header-magazine-menu-expanded-heading">
+						Previous Issue					</h2>
+					<a href="https://cacm.acm.org/issue/january-2025/" class="site-header-magazine-menu-expanded-issue"><b>January 2025</b>, Vol. 68 No. 1</a>
+				</div>
+						<a href="https://cacm.acm.org/issues" class="site-header-magazine-menu-expanded-link">
+				Explore the archive				<svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" fill="none" aria-hidden="true" tabindex="-1">
+	<path fill="#000" d="m7 0-.715.697 3.79 3.803H0v1h10.075l-3.79 3.787L7 10l5-5-5-5Z"/>
+</svg>
+			</a>
+		</div>
+	</nav>
+</div>
+				
+<a href="https://cacm.acm.org/?s=" aria-label="Search" class="site-header-search">
+	<span class="site-header-search-text">
+		Search	</span>
+	<svg aria-hidden="true" focusable="false" width="24" height="24" class="site-header-search-icon"><use href="#am-symbol-icon-search"></use></svg></a>
+				<nav class="site-header-membership-nav">
+	<button class="site-header-membership-nav__button">
+		<span
+			class="site-header-membership-nav__button-text">Open Membership Navigation</span>
+		<span class="site-header-membership-nav__button-icon">
+			<svg aria-hidden="true" focusable="false" width="40" height="40" tabindex="-1"><use href="#am-symbol-cacm-avatar-blank"></use></svg>		</span>
+	</button>
+	<div class="site-header-membership-nav__menu-container" aria-hidden="true">
+		<ul class="site-header-membership-nav__menu">
+			<li class="site-header-membership-nav__menu-item">
+				<a href="https://cacm.acm.org/account/settings">Settings</a>
+			</li>
+						<li class="site-header-membership-nav__menu-item">
+				<a href="https://cacm.acm.org/logout/">Sign Out</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<a class="site-header-member-login-link" href="https://cacm.acm.org/wp-login.php?saml_sso">Sign In</a>
+<a href="https://cacm.acm.org/join-acm" class="site-header-cta-membership">
+	<div class="site-header-cta-membership-container">
+		<div class="site-header-cta-membership-text">
+			Join ACM			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="10" fill="none" aria-hidden="true" tabindex="-1">
+	<path fill="#000" d="m7 0-.715.697 3.79 3.803H0v1h10.075l-3.79 3.787L7 10l5-5-5-5Z"/>
+</svg>
+		</div>
+		<div class="site-header-cta-membership-logo">
+			<svg aria-hidden="true" focusable="false" width="48" height="48"><use href="#am-symbol-cacm-logo-small"></use></svg>		</div>
+	</div>
+</a>
+			</div>
+			
+<nav role="navigation" aria-label="Main Menu" class="site-header-hamburger-menu" aria-hidden="true">
+
+	<!-- Search bar -->
+	<form role="search" action="https://cacm.acm.org" method="get" class="site-header-hamburger-menu-search">
+		<label for="site-navigation-expanded-search">
+			<span class="site-header-hamburger-menu-search-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none">
+		<path fill="#4C4C4C" d="m21 19.902-5.866-5.867a8.558 8.558 0 1 0-1.099 1.099L19.902 21 21 19.902ZM1.581 8.572a6.99 6.99 0 1 1 6.99 6.99 6.999 6.999 0 0 1-6.99-6.99Z"/>
+	</svg>
+			</span>
+			<input type="text" name="s" id="site-navigation-expanded-search" class="site-header-hamburger-menu-search-input" placeholder="Search" value="" />
+		</label>
+	</form>
+
+	<!-- Topics menu -->
+	<div class="site-header-hamburger-menu-topics site-header-hamburger-menu-topics--expanded">
+					<h2 class="site-header-hamburger-menu-heading">
+				Topics				<span class="site-header-hamburger-menu-accordion-icon">
+					<svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#am-symbol-icon-chevron-down"></use></svg>				</span>
+			</h2>
+			<ul class="site-header-hamburger-menu-topics-menu">
+																<li>
+						<a href="https://cacm.acm.org/category/architecture-and-hardware/">
+							Architecture and Hardware						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/artificial-intelligence-machine-learning/">
+							Artificial Intelligence and Machine Learning						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/computer-history/">
+							Computer History						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/computing-applications/">
+							Computing Applications						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/computing-profession/">
+							Computing Profession						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/data-and-information/">
+							Data and Information						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/education/">
+							Education						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/hci/">
+							HCI						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/philosophy-of-computing/">
+							Philosophy of Computing						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/security-and-privacy/">
+							Security and Privacy						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/society/">
+							Society						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/software-engineering-and-programming-languages/">
+							Software Engineering and Programming Languages						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/systems-and-networking/">
+							Systems and Networking						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/category/theory/">
+							Theory						</a>
+					</li>
+										</ul>
+			</div>
+
+	<!-- Sections menu -->
+	<div class="site-header-hamburger-menu-sections">
+					<h2 class="site-header-hamburger-menu-heading">
+				Sections				<span class="site-header-hamburger-menu-accordion-icon">
+					<svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#am-symbol-icon-chevron-down"></use></svg>				</span>
+			</h2>
+			<ul class="site-header-hamburger-menu-sections-menu">
+																<li>
+						<a href="https://cacm.acm.org/section/research/">
+							Research and Advances						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/section/opinion/">
+							Opinion						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/section/practice/">
+							Practice						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/section/news/">
+							News						</a>
+					</li>
+																				<li>
+						<a href="https://cacm.acm.org/section/careers/">
+							Careers						</a>
+					</li>
+										</ul>
+			</div>
+
+	<!-- Magazine menu -->
+	<div class="site-header-hamburger-menu-magazine">
+		<h2 class="site-header-hamburger-menu-heading">
+			Magazine			<span class="site-header-hamburger-menu-accordion-icon">
+				<svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#am-symbol-icon-chevron-down"></use></svg>			</span>
+		</h2>
+		<ul id="menu-magazine-header" class="site-header-hamburger-menu-magazine-menu"><li id="menu-item-217988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217988"><a href="/issue/latest/" id="menu-link-1">Latest Issue</a></li>
+<li id="menu-item-217989" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217989"><a href="/issues/" id="menu-link-2">Magazine Archive</a></li>
+<li id="menu-item-224644" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224644"><a href="https://cacm.acm.org/editorial-staff-board/" id="menu-link-3">Editorial Staff and Board</a></li>
+<li id="menu-item-751386" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-751386"><a href="https://cacm.acm.org/author-guidelines#CACMsubmission" id="menu-link-4">Submit an Article</a></li>
+<li id="menu-item-224585" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224585"><a href="https://cacm.acm.org/feeds-2/" id="menu-link-5">Alerts &#038; Feeds</a></li>
+<li id="menu-item-224645" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224645"><a href="https://cacm.acm.org/author-guidelines/" id="menu-link-6">Author Guidelines</a></li>
+</ul>	</div>
+
+	<div class="site-header-hamburger-menu-membership">
+		<span class="site-header-hamburger-menu-membership-logo">
+			<svg aria-hidden="true" focusable="false" width="49" height="48"><use href="#am-symbol-cacm-logo-small"></use></svg>		</span>
+		<h2 class="site-header-hamburger-menu-heading site-header-hamburger-menu-membership-heading">
+			CACM Web Account		</h2>
+		<p class="site-header-hamburger-menu-membership-text">Membership in ACM includes a subscription to Communications of the ACM (CACM), the computing industry&#039;s most trusted source for staying connected to the world of advanced computing.</p>
+		<div class="site-header-hamburger-menu-membership-buttons">
+			<a href="https://cacm.acm.org/wp-login.php?saml_sso" class="site-header-hamburger-menu-membership-buttons-log-in">
+				Sign In			</a>
+			<a href="https://accounts.acm.org/" class="site-header-hamburger-menu-membership-buttons-sign-up">
+				Sign Up			</a>
+		</div>
+	</div>
+
+	<!-- Communications menu -->
+	<div class="site-header-hamburger-menu-communications">
+		<h2 class="site-header-hamburger-menu-heading">
+			Communications of the ACM			<span class="site-header-hamburger-menu-accordion-icon">
+				<svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#am-symbol-icon-chevron-down"></use></svg>			</span>
+		</h2>
+		<ul id="menu-communications-header" class="site-header-hamburger-menu-communications-menu"><li id="menu-item-224641" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224641"><a href="https://cacm.acm.org/about-us/" id="menu-link-7">About Us</a></li>
+<li id="menu-item-224663" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224663"><a href="https://cacm.acm.org/faq/" id="menu-link-8">Frequently Asked Questions</a></li>
+<li id="menu-item-224640" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224640"><a href="https://cacm.acm.org/contact-us/" id="menu-link-9">Contact Us</a></li>
+</ul>	</div>
+
+	<div class="site-header-hamburger-menu-social">
+		<h2 class="site-header-hamburger-menu-heading">
+			Follow Us		</h2>
+		<ul class="site-header-hamburger-menu-social-menu">
+			<li>
+				<a href="https://twitter.com/cacmmag">
+					<span class="screen-reader-only">CACM on Twitter</span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="none">
+	<path fill="#1DA1F2" d="M27.613 13.657a7.057 7.057 0 0 1-2.03.557 3.54 3.54 0 0 0 1.555-1.955 7.08 7.08 0 0 1-2.245.857A3.53 3.53 0 0 0 22.313 12c-2.282 0-3.958 2.13-3.442 4.34a10.033 10.033 0 0 1-7.285-3.694 3.54 3.54 0 0 0 1.093 4.72 3.52 3.52 0 0 1-1.6-.442c-.038 1.637 1.135 3.169 2.835 3.51a3.542 3.542 0 0 1-1.596.06 3.538 3.538 0 0 0 3.301 2.454 7.106 7.106 0 0 1-5.232 1.465A10.006 10.006 0 0 0 15.804 26c6.562 0 10.27-5.542 10.046-10.513a7.195 7.195 0 0 0 1.763-1.83Z"/>
+	<path fill="#000" d="M27.613 13.657a7.057 7.057 0 0 1-2.03.557 3.54 3.54 0 0 0 1.555-1.955 7.08 7.08 0 0 1-2.245.857A3.53 3.53 0 0 0 22.313 12c-2.282 0-3.958 2.13-3.442 4.34a10.033 10.033 0 0 1-7.285-3.694 3.54 3.54 0 0 0 1.093 4.72 3.52 3.52 0 0 1-1.6-.442c-.038 1.637 1.135 3.169 2.835 3.51a3.542 3.542 0 0 1-1.596.06 3.538 3.538 0 0 0 3.301 2.454 7.106 7.106 0 0 1-5.232 1.465A10.006 10.006 0 0 0 15.804 26c6.562 0 10.27-5.542 10.046-10.513a7.195 7.195 0 0 0 1.763-1.83Z"/>
+	<rect width="37" height="37" x=".5" y=".5" stroke="#D8D8D8" rx="18.5"/>
+</svg>
+				</a>
+			</li>
+			<li>
+				<a href="https://www.reddit.com/user/TheOfficialACM">
+					<span class="screen-reader-only">CACM on Reddit</span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="none">
+	<path fill="#FF4500" d="M27.764 21.071v.613c0 3.368-3.879 6.022-8.676 6.022-4.797 0-8.676-2.654-8.676-6.022v-.613c-1.122-.51-1.53-1.735-1.122-2.857.306-.817 1.123-1.327 1.939-1.225.612 0 1.123.204 1.531.612 1.735-1.122 3.776-1.837 5.818-1.837l1.122-5.103c0-.102.102-.204.102-.204.102-.102.205-.102.307-.102l3.572.816c.408-.714 1.327-1.123 2.041-.714.715.408 1.123 1.326.715 2.04-.409.715-1.327 1.124-2.042.715-.51-.204-.816-.714-.816-1.326l-3.164-.715-1.02 4.593c2.245.102 4.286.817 5.715 1.837.816-.816 2.245-.816 3.062 0 .408.408.612.919.612 1.531.306.919-.306 1.633-1.02 1.94Zm-11.942 1.123c.816 0 1.53-.714 1.53-1.53 0-.817-.714-1.532-1.53-1.532-.817 0-1.531.715-1.531 1.531 0 .817.612 1.531 1.53 1.531Zm7.042 1.94c-.204-.205-.408-.205-.51 0-.612.714-2.041.918-3.062.918-1.02 0-2.45-.204-3.062-.919-.204-.204-.408-.204-.51 0-.204.204-.204.409 0 .51 1.02 1.021 3.062 1.123 3.674 1.123.613 0 2.552-.102 3.675-1.122-.102-.102-.102-.306-.205-.51Zm1.225-3.47c0-.817-.714-1.532-1.53-1.532-.817 0-1.532.715-1.532 1.531 0 .817.715 1.531 1.531 1.531.817 0 1.531-.714 1.531-1.53Z"/>
+	<path fill="#000" d="M27.764 21.071v.613c0 3.368-3.879 6.022-8.676 6.022-4.797 0-8.676-2.654-8.676-6.022v-.613c-1.122-.51-1.53-1.735-1.122-2.857.306-.817 1.123-1.327 1.939-1.225.612 0 1.123.204 1.531.612 1.735-1.122 3.776-1.837 5.818-1.837l1.122-5.103c0-.102.102-.204.102-.204.102-.102.205-.102.307-.102l3.572.816c.408-.714 1.327-1.123 2.041-.714.715.408 1.123 1.326.715 2.04-.409.715-1.327 1.124-2.042.715-.51-.204-.816-.714-.816-1.326l-3.164-.715-1.02 4.593c2.245.102 4.286.817 5.715 1.837.816-.816 2.245-.816 3.062 0 .408.408.612.919.612 1.531.306.919-.306 1.633-1.02 1.94Zm-11.942 1.123c.816 0 1.53-.714 1.53-1.53 0-.817-.714-1.532-1.53-1.532-.817 0-1.531.715-1.531 1.531 0 .817.612 1.531 1.53 1.531Zm7.042 1.94c-.204-.205-.408-.205-.51 0-.612.714-2.041.918-3.062.918-1.02 0-2.45-.204-3.062-.919-.204-.204-.408-.204-.51 0-.204.204-.204.409 0 .51 1.02 1.021 3.062 1.123 3.674 1.123.613 0 2.552-.102 3.675-1.122-.102-.102-.102-.306-.205-.51Zm1.225-3.47c0-.817-.714-1.532-1.53-1.532-.817 0-1.532.715-1.532 1.531 0 .817.715 1.531 1.531 1.531.817 0 1.531-.714 1.531-1.53Z"/>
+	<rect width="37" height="37" x=".5" y=".5" stroke="#D8D8D8" rx="18.5"/>
+</svg>
+				</a>
+			</li>
+			<li>
+				<a href="https://www.linkedin.com/groups/36836/">
+					<span class="screen-reader-only">CACM on LinkedIn</span>
+					<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" fill="none">
+	<path fill="#000" d="M14.117 12.74c0 .96-.773 1.738-1.726 1.738a1.732 1.732 0 0 1-1.725-1.739c0-.96.772-1.739 1.725-1.739.953 0 1.726.78 1.726 1.74Zm.013 3.13h-3.478V27h3.479V15.87Zm5.553 0h-3.456V27h3.457v-5.843c0-3.248 4.194-3.514 4.194 0V27h3.47v-7.048c0-5.481-6.207-5.282-7.665-2.583v-1.5Z"/>
+	<rect width="37" height="37" x=".5" y=".5" stroke="#D8D8D8" rx="18.5"/>
+</svg>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+</nav>
+		</header>
+	</div>
+
+	<div id="content" class="site-content container">
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main">
+
+				
+<article id="post-764651" class="post-764651 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture-and-hardware category-software-engineering-and-programming-languages section-blogcacm">
+
+			
+<header class="article-header article-header--default">
+	<div class="article-header__inner container">
+		<div class="article-header__section"><a href="https://cacm.acm.org/section/blogcacm/">BLOG@CACM</a></div>
+		<div class="article-header__topic-and-issue-section">
+			<span class="article-header__topic">
+			<a href="https://cacm.acm.org/category/architecture-and-hardware/">Architecture and Hardware</a>			</span>
+			<span class="article-header__issue-section">
+							</span>
+		</div>
+		<h1 class="article-header__title">21st Century C++</h1>
+					<div class="article-header__subtitle"><p>Presenting the key contemporary C++ mechanism designed to maintain compatibility over decades.</p></div>
+		
+		<div class="article-header__meta">
+			<div class="article-header__byline">
+				By <a href="https://cacm.acm.org/author/bjarne-stroustrup/" title="Posts by Bjarne Stroustrup" class="author url fn" rel="author">Bjarne Stroustrup</a>			</div>
+			<div class="article-header__posted-on">
+				<span class="posted-on">Posted <time datetime="2025-02-04T09:22:06-05:00">Feb 4 2025</time></span>			</div>
+		</div>
+
+			<figure class="article-header__figure">
+			<div class="image-wrapper image-wrapper--widescreen"><img width="1024" height="576" src="https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg" class="attachment-full size-full" alt="C++ code on dark background and the word C++" loading="eager" decoding="async" srcset="https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg 2400w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=300,169 300w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=768,432 768w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=1024,576 1024w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=1536,864 1536w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=2048,1152 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></div>		</figure>
+
+		<div class="article-header__share">
+			
+<ul class="share">
+	
+<li class="share-link" data-component="share">
+	<a href="#" class="share-toggle">
+		<svg aria-hidden="true" focusable="false" width="19" height="18" fill="var(--cacm--symbol--fill)"><use href="#am-symbol-icon-share"></use></svg>		<span class="share-link-text">
+			Share		</span>
+	</a>
+	<ul class="share-menu" aria-hidden="true">
+		<li>
+			<a href="https://twitter.com/intent/tweet?url=https://cacm.acm.org/blogcacm/21st-century-c/&#038;text=21st%20Century%20C++" target="_blank">
+				Twitter			</a>
+		</li>
+		<li>
+			<a href="http://www.reddit.com/submit?url=https://cacm.acm.org/blogcacm/21st-century-c/&#038;title=21st%20Century%20C++" target="_blank">
+				Reddit			</a>
+		</li>
+		<li>
+			<a href="https://news.ycombinator.com/submitlink?u=https://cacm.acm.org/blogcacm/21st-century-c/&#038;t=21st%20Century%20C++" target="_blank">
+				Hacker News			</a>
+		</li>
+	</ul>
+</li>
+		
+<li class="share-link share-link-print" data-component="print">
+	<a href="#" class="print">
+		<svg aria-hidden="true" focusable="false" width="19" height="20" fill="var(--cacm--symbol--fill)"><use href="#am-symbol-icon-print"></use></svg>		<span class="share-link-text">
+			Print		</span>
+	</a>
+</li>
+		
+	<li class="share-link share-link-discussion" data-component="share">
+		<a class="share-link-comments" href="#comments">
+			<svg aria-hidden="true" focusable="false" width="19" height="20" fill="var(--cacm--symbol--fill)"><use href="#am-symbol-icon-comment"></use></svg>			<span class="share-link-text">Join the Discussion</span>
+		</a>
+	</li>
+	</ul>
+		</div>
+	</div>
+</header>
+
+<section class="article-table-of-contents" data-component="articleToc">
+	</section>
+		<div class="article-contents">
+			
+<div class="article-content entry-content">
+		
+<p>It is now 45+ years since C++ was first conceived. As planned, it evolved to meet challenges, but many developers use C++ as if it was still the previous millennium. This is suboptimal from the perspective of ease of expressing ideas, performance, reliability, and maintainability. Here, I present the key concepts on which performant, type safe, and flexible C++ software can be built: resource management, life-time management, error-handling, modularity, and generic programming. At the end, I present ways to ensure that code is contemporary, rather than relying on outdated, unsafe, and hard-to-maintain techniques: guidelines and profiles.</p>
+
+
+
+<ol class="wp-block-list">
+<li><a href="#intro">Introduction</a></li>
+
+
+
+<li><a href="#ideals">C++ Ideals</a></li>
+
+
+
+<li><a href="#resource">Resource Management</a></li>
+
+
+
+<li><a href="#modular">Modularity</a></li>
+
+
+
+<li><a href="#generic">Generic Programming</a></li>
+
+
+
+<li><a href="#guide">Guidelines and Enforcement</a></li>
+
+
+
+<li><a href="#future">The Future</a></li>
+
+
+
+<li><a href="#summary">Summary</a></li>
+
+
+
+<li><a href="#refer">References</a></li>
+</ol>
+
+
+
+<p></p>
+
+
+
+<h1 class="wp-block-heading"><a id="intro"></a>1.&nbsp;Introduction</h1>
+
+
+
+<p>C++ is a language with a long history. This leads many developers, teachers, and academics to overlook decades of progress and describe C++ as if today was still the second millennium where phones had to be plugged into walls and most code was short, low-level, and slow.</p>
+
+
+
+<p>If your operating system has maintained compatibility over decades, you can run C++ programs written in 1985 today on a modern computer. Stability – compatibility with earlier versions of C++ – is immensely important, especially for organizations that maintain software systems for decades. However, in essentially all cases, contemporary C++<strong><sup>27</sup></strong> can express the ideas embodied in such old-style code far simpler, with much better type-safety guarantees, and have them run faster using less memory.</p>
+
+
+
+<p>This post presents the key contemporary C++ mechanism designed to enable that. At the end (§6), it describes techniques for enforcing such modern use of C++.</p>
+
+
+
+<p>Consider a simple program that writes every unique line from input to output:</p>
+
+
+
+<p class="has-text-align-left">     <strong>import std;</strong><br>     <strong>using namespace std;</strong>    <strong>// </strong><em>make all of the  standard library available</em></p>
+
+
+
+<p class="has-text-align-right"><strong>int main() &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // </strong><em>print unique lines from input</em></p>
+
+
+
+<p></p>
+
+
+
+<p><strong>{</strong></p>
+
+
+
+<p></p>
+
+
+
+<p></p>
+
+
+
+<p class="has-text-align-right"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unordered_map&lt;string,int&gt; m;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; // </strong><em>hash table</em></p>
+
+
+
+<p></p>
+
+
+
+<p></p>
+
+
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>for (string line; getline(cin,line); )</a></strong></p>
+
+
+
+<p></p>
+
+
+
+<p></p>
+
+
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (m[line]++ == 0)</strong></p>
+
+
+
+<p></p>
+
+
+
+<p></p>
+
+
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; line &lt;&lt; &#8216;\n&#8217;;</strong></p>
+
+
+
+<p></p>
+
+
+
+<p></p>
+
+
+
+<p><strong>}</strong></p>
+
+
+
+<p>Connoisseurs will recognize this as the AWK program <strong>(!a[$0]++)</strong>. <br>It uses an <strong>unordered_map</strong>, the C++ standard library version of a hash table, to hold unique lines and output only when a line is seen the first time.</p>
+
+
+
+<p>The <strong>for</strong>-statement is used to limit the scope of the loop variable (<strong>line</strong>) to the loop.</p>
+
+
+
+<p>Compared to older C++ styles, what is notable is the absence of explicit:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Allocation/deallocation</li>
+
+
+
+<li>Sizes</li>
+
+
+
+<li>Error handling</li>
+
+
+
+<li>Type conversions (casts)</li>
+
+
+
+<li>Pointers</li>
+
+
+
+<li>Unsafe subscripting</li>
+
+
+
+<li>Preprocessor use (in particular, no <strong>#include</strong>).</li>
+</ul>
+
+
+
+<p>Still, this program is quite efficient compared to older styles, more efficient than most programmers could write given a reasonable amount of time. If more performance is needed, it can be tuned. One important aspect of C++ is that code with a reasonable interface can be tuned to specific needs, and even use specialized hardware. This can be done without disturbing other code and often without modifying compilers.</p>
+
+
+
+<p>Consider a variant of that program that collects unique lines for later use:</p>
+
+
+
+<p>     <strong>import std;                               </strong><br><strong>     using namespace std;            // </strong><em>make all of the standard library available</em><br>     <strong>vector&lt;string> collect_lines(istream&amp; is) // </strong><em>collect unique lines from input</em><br><strong>{</strong></p>
+
+
+
+<p><strong>          unordered_set s;                                            // </strong><em>hash table</em><br><strong>          for (string line; getline(is,line); )</strong><br><strong>               s.insert(line);</strong><br>           <strong>return vector{from_range, s};     // </strong><em>copy set elements into a vector</em></p>
+
+
+
+<p><strong>          }</strong></p>
+
+
+
+<p>          <strong>auto lines = collect_lines(cin);</strong></p>
+
+
+
+<p>Since I didn’t need a count, I used a set, rather than a map. I returned a <strong>vector</strong> rather than a <strong>set</strong> because <strong>vector</strong> is the most widely used container. &nbsp;I didn’t have to specify the <strong>vector</strong>’s element type because the compiler deduced it from the <strong>set</strong>’s element type.</p>
+
+
+
+<p>I used the <strong>from_range</strong> argument to tell the compiler and a human reader that a range is used, rather than other possible ways of initializing the <strong>vector</strong>. I would have preferred to use the logically minimal <strong>vector{m}</strong> but the standards committee decided that requiring <strong>from_range</strong> would be a help to many.</p>
+
+
+
+<p>Experienced programmers will notice that this<strong> collect_lines() </strong>copies the characters read. That could be a performance problem, so in §3.2, I show how to tune <strong>collect_lines()</strong> to avoid that.</p>
+
+
+
+<p>What’s the point of these small examples? To show some contemporary C++ before going into technical details and hopefully to shake some people out of their decades-old complacent miscomprehensions. <!-- END BODY-1 --></p>
+
+
+
+<p><a href="#">Back to Top</a></p>
+
+
+
+<ol start="2" class="wp-block-list"></ol>
+
+
+
+<p><strong>2. C++ Ideals </strong></p>
+
+
+
+<p>My aims for C++ can be summarized as</p>
+
+
+
+<ul class="wp-block-list">
+<li>Direct expression of ideas</li>
+
+
+
+<li>Static type safety</li>
+
+
+
+<li>Resource safety (aka “no leaks”)</li>
+
+
+
+<li>Direct access to hardware</li>
+
+
+
+<li>Performance (aka efficiency)</li>
+
+
+
+<li>Affordable extendibility (aka Zero-overhead abstraction)</li>
+
+
+
+<li>Maintainability (aka comprehensible code)</li>
+
+
+
+<li>Platform independence (aka portability)</li>
+
+
+
+<li>Stability (aka compatibility)</li>
+</ul>
+
+
+
+<p>This has not changed since the earliest days [BS1994], but C++ was meant to evolve, and contemporary C++ can deliver such properties in code much better than earlier versions of C++.</p>
+
+
+
+<p>C++ code embodying these ideals is not achieved simply by applying all the latest features and only those. Some key features and techniques are old</p>
+
+
+
+<ul class="wp-block-list">
+<li>Classes with constructors and destructors</li>
+
+
+
+<li>Exceptions</li>
+
+
+
+<li>Templates</li>
+
+
+
+<li>std::vector</li>
+
+
+
+<li>…</li>
+</ul>
+
+
+
+<p>Other key features are more recent</p>
+
+
+
+<ul class="wp-block-list">
+<li>Modules (§4)</li>
+
+
+
+<li>Concepts (for specifying generic interfaces; §5.1)</li>
+
+
+
+<li>Lambda expressions (for generating function objects; §5.1)</li>
+
+
+
+<li>Ranges (§5.1)</li>
+
+
+
+<li>Constexpr and consteval (for compile-time computation; §5.2)</li>
+
+
+
+<li>Concurrency support and parallel algorithms</li>
+
+
+
+<li>Coroutines (missing for decades thought they were an essential part of early C++)</li>
+
+
+
+<li><strong>std::shared_ptr</strong></li>
+
+
+
+<li>…</li>
+</ul>
+
+
+
+<p>What matters is to use the language and library features as a coherent whole in ways that suits the problem to be solved.</p>
+
+
+
+<p>The value of a programming language is in the range and quality of its applications. For C++, the evidence is its amazing range of application areas: foundational software, graphics, scientific application, movies, games, automobiles, language implementation (and not just C++ implementation), flight controls, search engines, browsers, semiconductor design and manufacture, space probes, finance, AI, and much, much more. Given the billions of lines of C++, we cannot change the C++ language incompatibly. However, we can change the way C++ is used.</p>
+
+
+
+<p>In the rest of this paper, I focus on</p>
+
+
+
+<ul class="wp-block-list">
+<li>Resource management (including control of lifetime and error handling)</li>
+
+
+
+<li>Modules (including eliminating the preprocessor)</li>
+
+
+
+<li>Generic programming (including concepts)</li>
+
+
+
+<li>Guidelines and enforcement (How can we guarantee that what we write really is “21st Century C++”?)</li>
+</ul>
+
+
+
+<p>Naturally, that is not all C++ offers, and much good code is written in ways not listed here. For example, I left out object-oriented programming because many developers know how to do that well in C++. Also, very high-performance code and code manipulating hardware directly require special attention and techniques. The extensive C++ concurrency support deserves at least a separate paper. However, the key to most good software is type-safe interfaces that contains sufficient information to allow optimization and run-time checking of properties that cannot be guaranteed at compile-time. </p>
+
+
+
+<p><strong>3. Resource Management</strong></p>
+
+
+
+<p>A resource is anything we must acquire and later release (give back) explicitly or implicitly. For example, memory, locks, file handles, sockets, thread handles, transactions, and shaders. To avoid resource leaks, we must avoid manual/explicit release. People – even programmers – are notoriously bad at remembering to return what they borrowed.</p>
+
+
+
+<p>The basic C++ technique for managing a resource is to root it in a handle that is guaranteed to release the resource when the handle’s scope is left. For reliability, we cannot rely on explicit <strong>delete</strong>, <strong>free()</strong>, <strong>unlock()</strong>, etc. in application code. Such operations belong in resource handles. Consider:</p>
+
+
+
+<p>     <strong>template&lt;typename T></strong></p>
+
+
+
+<p>     <strong>class Vector { // </strong><em>vector of elements of type T</em></p>
+
+
+
+<p>     <strong>public:</strong></p>
+
+
+
+<p>          <strong>Vector(initializer_list&lt;T>); // </strong><em>constructor: acquire memory; initialize elements</em></p>
+
+
+
+<p>          <strong>~Vector(); // </strong><em>destructor: destroy elements; release memory</em></p>
+
+
+
+<p>// …</p>
+
+
+
+<p>     <strong>private:</strong></p>
+
+
+
+<p>          <strong>T* elem; // </strong><em>pointer to elements</em></p>
+
+
+
+<p>          <strong>int sz; // </strong><em>number of elements</em></p>
+
+
+
+<p>     <strong>};</strong></p>
+
+
+
+<p>Here, <strong>Vector </strong>is a resource handle. It raises the level of abstraction from the machine-near pointer plus a count of elements to a proper type with guaranteed initialization (the constructor) and clean-up (the destructor). The standard-library <strong>vector </strong>that this <strong>Vector </strong>is meant to illustrate also provides comparisons, assignments, more ways of initializing, resizing, support for iteration, etc. That provides the programmer with a <strong>vector </strong>that from a language-technical point of view behaves much like a built-in integer type despite being a (standard-library) resource handle and having very different semantics. We can use it like this:</p>
+
+
+
+<p>     <strong>void fct()</strong></p>
+
+
+
+<p>     <strong>{ </strong> </p>
+
+
+
+<p>         <strong> Vector&lt;double> constants {1, 1.618, 3.14, 2.99e8};</strong></p>
+
+
+
+<p>   <strong>       Vector&lt;string> designers {&#8220;Strachey&#8221;, &#8220;Richards&#8221;, &#8220;Ritchie&#8221;};</strong></p>
+
+
+
+<p><strong>          // …</strong></p>
+
+
+
+<p> <strong>         Vector&lt;pair&lt;string,jthread>> vp { {&#8220;producer&#8221;,prod}, {&#8220;consumer&#8221;,cons}};</strong></p>
+
+
+
+<p><strong>     } </strong></p>
+
+
+
+<p>Here, <strong>constants </strong>is initialized by four mathematical and physical values, <strong>designers </strong>by three hopefully well-known programming language designers, and <strong>vp </strong>by a producer-consumer pair. All are initialized by the appropriate constructors and released upon scope exit by the appropriate destructors. The initialization and release done by constructors and destructors is recursive. For example, the construction and destruction of <strong>vp </strong>is non-trivial since it involves a <strong>Vector</strong>, a <strong>pair</strong>, <strong>string</strong>s (handles to characters), and <strong>jthread</strong>s (handles to operating system threads). However, it is all handled implicitly.</p>
+
+
+
+<p>This use of constructor-destructor pairs (often called RAII – “Resource Acquisition Is Initialization”) doesn’t just guarantee release of resources, it also minimizes resource retention, thus providing a significant performance advantage compared to many other techniques, such as memory management relying on a garbage collector.</p>
+
+
+
+<p><strong>3.1. Control of lifetime</strong></p>
+
+
+
+<p>Controlling the lifetime of objects representing resources is necessary for simple and efficient resource management. C++ offers 4 points of control defined as operations on a class (here named <strong>X</strong>):</p>
+
+
+
+<ul class="wp-block-list">
+<li>Construction: Invoked before first use: establish the class invariant (if any). Name: constructor, <strong>X(</strong>optional_arguments<strong>)</strong></li>
+
+
+
+<li>Destruction: Invoked after last use: release every resource (if any). Name: destructor, <strong>~X()</strong></li>
+
+
+
+<li>Copy: make a new object with the same value as another; <strong>a=b </strong>implies <strong>a==b </strong>(for regular types). Names: copy constructor, <strong>X(const X&amp;) </strong>and copy assignment, <strong>X::operator=(const X&amp;)</strong></li>
+
+
+
+<li>Move: Move resources from object to object, often between scopes. Names: move constructor, <strong>X(X&amp;&amp;) </strong>and move assignment, <strong>X::operator=(X&amp;&amp;)</strong></li>
+</ul>
+
+
+
+<p>For example, we might elaborate our <strong>Vector </strong>like this:</p>
+
+
+
+<p>     <strong>template&lt;typename T></strong></p>
+
+
+
+<p>     <strong>class Vector { // </strong>vector of elements of type T</p>
+
+
+
+<p>     <strong>public:</strong></p>
+
+
+
+<p>          <strong>Vector(); // </strong><em>default constructor: make an empty vector</em></p>
+
+
+
+<p>          <strong>Vector(initializer_list&lt;T>); // </strong><em>constructor: acquire memory; initialize elements</em></p>
+
+
+
+<p>          <strong>Vector(const Vector&amp; a); // </strong><em>copy constructor: copy a into *this</em></p>
+
+
+
+<p>          <strong>Vector&amp; operator=(const Vector&amp; a); // </strong><em>copy assignment: copy a into *this</em></p>
+
+
+
+<p>          <strong>Vector(Vector&amp;&amp; a); // </strong><em>move constructor: move a into *this</em></p>
+
+
+
+<p>          <strong>Vector&amp; operator=(Vector&amp;&amp; a); // </strong><em>move assignment: move a into *this</em></p>
+
+
+
+<p>          <strong>~Vector(); // </strong><em>destructor: destroy elements; release memory</em></p>
+
+
+
+<p>          <strong>// …</strong></p>
+
+
+
+<p>          <strong>};</strong></p>
+
+
+
+<p>Assignment operators must release any resources owned by the target object. Move operations must transfer all resources to the target and ensure that they are no longer in the source. </p>
+
+
+
+<p><strong>3.2. Eliminating redundant copies</strong></p>
+
+
+
+<p>Given that framework, let’s have another look at the <strong>collect_lines </strong>example from §1. First, we can simplify it a bit:</p>
+
+
+
+<p>     <strong>vector&lt;string> collect_lines(istream&amp; is) // </strong><em>collect unique lines from input</em></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p>     <strong>unordered_set s {from_range,istream_iterator&lt;string>{is}); // </strong><em>initialize s from is</em></p>
+
+
+
+<p><strong>     return vector{from_range,s};</strong></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p>     <strong>auto lines = collect_lines(cin);</strong></p>
+
+
+
+<p>The <strong>istream_iterator&lt;string&gt;{is} </strong>allows us to treat the input from <strong>is </strong>as a range of elements, rather than laboriously explicitly apply input operations to the stream.</p>
+
+
+
+<p>Here, the <strong>vector </strong>is moved out of <strong>collect_lines() </strong>rather than copied. The worst-case cost of a <strong>vector</strong>’s move constructor is 6 word copies, three to copy the representation and three to zero-out the original representation. This is still the case if the vector has a million elements.</p>
+
+
+
+<p>Even this small cost is eliminated in many cases. Since 1983 or so, compilers have known to construct the returned value (here,<strong>vector{from_range,s};</strong>) in the target (here, <strong>lines</strong>). This is referred to as “copy elision.”</p>
+
+
+
+<p>However, the strings are still copied from the set into the vector. That could be costly. In principle, the compiler could deduce that we don’t use <strong>s </strong>again after making the <strong>vector </strong>and just move the <strong>string </strong>elements, but today’s compilers are not that smart, so we must explicitly ask for a move:</p>
+
+
+
+<p>     <strong>vector&lt;string> collect_lines(istream&amp; is) // </strong><em>collect unique lines from input</em></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p><strong>          unordered_set s {from_range,istream_iterator&lt;string>{is}); // </strong><em>initialize s from is</em></p>
+
+
+
+<p><strong>          return vector{from_range,std::move(s)}; // </strong><em>move elements</em></p>
+
+
+
+<p><strong>     }</strong></p>
+
+
+
+<p>This still leaves one redundant copy, the copy of characters from the input buffer into the set’s string elements. If that’s a problem, we can eliminate that also. However, doing so involves only conventional low-level techniques, so it is beyond the scope of this paper. Such code is messier but, as aways, C++ code with well-specified interfaces is tunable. Also please remember: never optimize without measurement showing the need to. </p>
+
+
+
+<p><strong>3.3. Resources and errors</strong></p>
+
+
+
+<p>One of the key aims of C++ is resource safety: no resource is leaked. This implies that we must prevent resource leaks in error conditions. The basic rules are:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Don’t leak a resource</li>
+
+
+
+<li>Don’t leave a resource in an invalid state</li>
+</ul>
+
+
+
+<p>So, when an error that cannot be handled locally is detected, before exiting a function we must:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Put every object accessed into a valid state</li>
+
+
+
+<li>Release every object that the function is responsible for</li>
+
+
+
+<li>Leave it to some function up the call chain to deal with resource-related problems </li>
+</ul>
+
+
+
+<p>This implies that “raw pointers” cannot reliably be used as resource handles. Consider a type <strong>Gadget </strong>that may hold resources such as memory, locks, and file handles:</p>
+
+
+
+<p>     <strong>void f(int n, int x)</strong></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p>   <strong>       Gadget g {n};</strong></p>
+
+
+
+<p>          <strong>Gadget* pg = new Gadget{n}; // </strong><em>explicit new: don’t!</em></p>
+
+
+
+<p>          <strong>// …</strong></p>
+
+
+
+<p>          <strong>if (x&lt;100) throw std::runtime_error{&#8220;Weird!&#8221;}; // </strong><em>leaks *pg; but not g</em></p>
+
+
+
+<p><strong>          if (x&lt;200) return; // </strong><em>leaks *pg; but not g</em></p>
+
+
+
+<p>          <strong>// …</strong></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p>The explicit use of <strong>new </strong>to place the <strong>Gadget </strong>on the heap is a problem the picosecond its result is stored in a “raw pointer” rather than in a resource handle with a suitable destructor. Local objects are simpler and typically faster than use of explicit <strong>new</strong>.</p>
+
+
+
+<p>For a reliable system, we need an articulated policy for handling errors. The best way to do that in general is to distinguish errors that can be handled locally by an immediate caller, from errors that can be handled only far up a call chain.</p>
+
+
+
+<p>Use error codes and tests for failures that are common and can be handled locally</p>
+
+
+
+<p>Use exceptions for failures that are rare (“exceptional”) and cannot be handled locally </p>
+
+
+
+<ul class="wp-block-list">
+<li>The alternative is expensive “error-code hell” where every caller up the call stack must remember to test</li>
+
+
+
+<li>Failure to check for an exception gives termination, not wrong results</li>
+</ul>
+
+
+
+<p>In some important applications, unconditional immediate termination isn’t an option. Then, we must either remember to test every error return code and catch every exceptions somewhere (e.g., in <strong>main()</strong>) and do whatever appropriate response is required.</p>
+
+
+
+<p>To the surprise of many, exceptions can be cheaper and faster than consistent use of error codes even for small systems [KE2024; GCC2024].</p>
+
+
+
+<p>Error handling based on exceptions doesn’t work with pointers used as resource handles. To get simple, reliable, and maintainable error-handling, we must rely on exceptions and RAII as well error-codes for errors that should be handled locally. Consider:</p>
+
+
+
+<p>     <strong>void fct(jthread&amp; prod, jthread&amp; cons, string name)</strong></p>
+
+
+
+<p>          <strong>{</strong></p>
+
+
+
+<p>          <strong>ifstream in { name };</strong></p>
+
+
+
+<p>          <strong>if (!in) { /* </strong><em>… </em><strong>*/ } // </strong>possible failure expected</p>
+
+
+
+<p>          <strong>// …</strong></p>
+
+
+
+<p>          <strong>vector&lt;double> constants {1, 1.618, 3.14, 2.99e8};</strong></p>
+
+
+
+<p>          <strong>vector&lt;string> designers {&#8220;Strachey&#8221;, &#8220;Richards&#8221;, &#8220;Ritchie&#8221;};</strong></p>
+
+
+
+<p>          <strong>auto dmr = &#8220;Dennis M. &#8221; + designers[2];</strong></p>
+
+
+
+<p>          <strong>// …</strong></p>
+
+
+
+<p>          <strong>pair&lt;string,jthread&amp;> pipeline[] { {&#8220;producer&#8221;, prod}, {&#8220;consumer&#8221;, cons}};</strong></p>
+
+
+
+<p>          <strong>// …</strong></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p>How many tests would we need for this (artificial, but not unrealistic) small example if we couldn’t rely on exceptions? The example involves memory allocation, nested construction, an overloaded operator, and acquisition of a system resource. </p>
+
+
+
+<p>Unfortunately, exceptions have not been universally appreciated and used everywhere they would have appropriate. In additions to overuse of “naked” pointers, it has been a problem hat many developers insist to use a single technique for reporting all errors. That is, all reported by throwing or all reported by returning an error code. That doesn’t match the needs of real-world code.</p>
+
+
+
+<p><strong>4. Modularity</strong></p>
+
+
+
+<p>The preprocessor that C++ inherited from C is essentially universally used, but it is a major obstacle to tool development and compiler performance. In contemporary C++, macros used to express constants, functions, and types have been replaced with properly typed and scoped constants, compile-time evaluated functions, and templates [BS2022]. However, the preprocessor has been essential for expressing a weak form of modularity. Interfaces to libraries and other separately compiled code is represented as files containing C++ source text and <strong>#include</strong>d.</p>
+
+
+
+<p><strong>4.1. Header files</strong></p>
+
+
+
+<p>An <strong>#include </strong>directive copies the source text from such a “header file” into the current translation unit. Unfortunately, this implies that</p>
+
+
+
+<p>     <strong>#include &#8220;a.h&#8221;</strong></p>
+
+
+
+<p>     <strong>#include &#8220;b.h&#8221;</strong></p>
+
+
+
+<p>Might have a different meaning than</p>
+
+
+
+<p>     <strong>#include &#8220;b.h&#8221;</strong></p>
+
+
+
+<p>     <strong>#include &#8220;a.h&#8221;</strong></p>
+
+
+
+<p>This is the source of subtle bugs.</p>
+
+
+
+<p>An <strong>#include </strong>is transitive. That is, if <strong>a.h </strong>contains an <strong>#include &#8220;c.h&#8221; </strong>the text of <strong>c.h </strong>also becomes part of every source file that use <strong>#include &#8220;a.h&#8221;</strong>. This is a source of subtle bugs. Since a header file is often <strong>#include</strong>d in dozens or hundreds of source files, this also implies much repeated compilation.</p>
+
+
+
+<p><strong>4.2. Modules</strong></p>
+
+
+
+<p>These problems with the use of header files to fake modularity have been known from before C++ was born, but defining an alternative and introducing it into billions of lines of code is not trivial. However, C++ now offers modules that deliver proper modularity. Importing modules is order independent, so</p>
+
+
+
+<p>     <strong>import a;</strong><br>     <strong>import b;</strong></p>
+
+
+
+<p>means the same as</p>
+
+
+
+<p>     <strong>import b;</strong><br>     <strong>import a;</strong></p>
+
+
+
+<p>The mutual independence of modules implies improved code hygiene. It makes the subtle dependency bugs impossible.</p>
+
+
+
+<p>Here is a very simple example of a module definition: </p>
+
+
+
+<p>     <strong>export module map_printer; // </strong><em>we are defining a mod</em>ule<br>     <strong>import iostream; // </strong><em>we import modules needed for the implementation</em>\<br><strong>     import containers;</strong><br><strong>     using namespace std;</strong><br><strong>     export // </strong><em>this template is the only entity exported</em><br><strong>     template&lt;Sequence S></strong><br><strong>     void print_map(const S&amp; m) {</strong><br>     <strong>for (const auto&amp; [key,val] : m) // </strong><em>access key and value pair from m</em><br><strong>     cout &lt;&lt; key &lt;&lt; &#8221; -> &#8221; &lt;&lt; val &lt;&lt; &#8216;\n&#8217;;</strong><br><strong>     }</strong></p>
+
+
+
+<p>Because <strong>import </strong>is not transitive, users of <strong>map_printer </strong>do not gain access to the implementation details needed for <strong>print_map</strong>.</p>
+
+
+
+<p>A <strong>module </strong>needs to be compiled once only, independently of how many times it is <strong>import</strong>ed. This implies very significant improvements in compile time. A user reports [DE2021]:</p>
+
+
+
+<p>     <strong>#include &lt;libgalil/DmcDevice.h> // </strong><em>457440 lines after preprocessing</em></p>
+
+
+
+<p><strong>     int main() { // </strong><em>151268 non-blank lines</em></p>
+
+
+
+<p><strong>     Libgalil::DmcDevice(&#8220;192.168.55.10&#8221;); // </strong><em>1546 milliseconds to compile</em></p>
+
+
+
+<p><strong>     }</strong></p>
+
+
+
+<p>That’s 1.5 seconds to compile almost ½ million lines of code. That’s fast! However, the compiler is doing far too much work.</p>
+
+
+
+<p>     <strong>import libgalil; // </strong><em>5 lines after preprocessing</em></p>
+
+
+
+<p>     <strong>int main() { // </strong><em>4 non-blank lines</em></p>
+
+
+
+<p>     <strong>Libgalil::DmcDevice(&#8220;192.168.55.10&#8221;); // </strong><em>62 milliseconds to compile</em></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p>That’s a 25 times speedup. We cannot expect that in all cases, but a 7-to-10 times advantage to <strong>import </strong>over <strong>#include </strong>is common. If you <strong>#include</strong>d that library in 25 source files. That would cost 1.5 seconds 25 times where the <strong>import </strong>would clock in at 1.5 seconds in total.</p>
+
+
+
+<p>The complete standard library has been made into a module. Look at the traditional “hello world!” program [BS2021]:</p>
+
+
+
+<p>     <strong>#include &lt;iostream></strong><br>     <strong>int main()</strong><br>     <strong>{</strong><br>          <strong>std::cout &lt;&lt; &#8220;Hello, World!\n&#8221;;</strong><br>     <strong>}</strong></p>
+
+
+
+<p>On my laptop, it compiled in 0.87 seconds. Replace the <strong>#include&lt;iostream.h&gt; </strong>with <strong>import std; </strong>and the compile time dropped to 0.08 seconds despite that at least 10 times as much information was made available.</p>
+
+
+
+<p>Reorganizing significant amount of code isn’t easy or cheap, but in the case of modules, the benefits are significant in terms of code quality and massive in terms of compile time.</p>
+
+
+
+<p>Why do I – in this sole case – bother to explain “the bad old way?” Because <strong>#include</strong>s are pervasive, as they have been almost from the birth of C, and many developers find it hard to imagine C++ without it.</p>
+
+
+
+<h1 class="wp-block-heading" id="generic">5. Generic Programming</h1>
+
+
+
+<p>Generic programming is a key foundation of contemporary C++. It has been so since before “C with Classes“ was renamed “C++” but only recently (C++20) has the language support approximated the ideals.<strong><sup>27</sup></strong></p>
+
+
+
+<p>Generic programming, that is, programming with types and functions parameterized by types, offers</p>
+
+
+
+<ul class="wp-block-list">
+<li>Terser and more readable code</li>
+
+
+
+<li>More direct expression of ideas</li>
+
+
+
+<li>Zero-overhead abstraction</li>
+
+
+
+<li>Type safety</li>
+</ul>
+
+
+
+<p>Templates, the C++ language support for generic programming, are pervasive in the standard library:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Containers and algorithms</li>
+
+
+
+<li>Concurrency support: threads, locks, …</li>
+
+
+
+<li>Memory management: allocators, resource handles (e.g., <strong>vector </strong>and <strong>list</strong>), resource-management pointers, …</li>
+
+
+
+<li>I/O</li>
+
+
+
+<li>Strings and regular expressions</li>
+
+
+
+<li>And much more</li>
+</ul>
+
+
+
+<p>We can write code that works for all suitable argument types. For example, here is a <strong>sort </strong>function that accepts all types that meet the ISO C++ standard’s definition of a sortable range:</p>
+
+
+
+<p>          <strong>void sort(Sortable_range auto&amp; r);</strong></p>
+
+
+
+<p>          <strong>vector&lt;string> vs;</strong></p>
+
+
+
+<p>          <strong>// </strong>… fill vs …</p>
+
+
+
+<p>          <strong>sort(vs);</strong></p>
+
+
+
+<p></p>
+
+
+
+<p>          <strong>array&lt;int,128> ai;</strong></p>
+
+
+
+<p>          <strong>// </strong>… fill ai …</p>
+
+
+
+<p>          <strong>sort(ai);</strong></p>
+
+
+
+<p></p>
+
+
+
+<p>The compiler has enough information to verify that the types of <strong>vs</strong> and <strong>ai</strong> have what <strong>Sortable_range</strong> requires; that is, a random-access range of values of types that can be compared and swapped as needed for sorting. If the arguments are not suitable, the error is caught by the compiler at the point of use. For example:</p>
+
+
+
+<p>          <strong>list&lt;int> lsti;</strong></p>
+
+
+
+<p>   <strong>        // <em>… fill lsti …</em></strong></p>
+
+
+
+<p>          <strong>sort(lsti);            </strong>// <em>error: a list doesn’t offer random access</em></p>
+
+
+
+<p>According to the C++ standard, a <strong>list</strong> isn’t a sortable range because it doesn’t offer random access.</p>
+
+
+
+<h2 class="wp-block-heading">5.1. Concepts</h2>
+
+
+
+<p>A concept is a compile-time predicate. That is, a function to be executed by the compiler, yielding a Boolean. It is mostly used to express requirements for the parameters of a template. A concept is often built from other concepts. For example, here is the <strong>Sortable_range </strong>required by the <strong>sort </strong>above:</p>
+
+
+
+<p>     <strong>template&lt;typename R></strong><br>     <strong>concept Sortable_range =</strong><br>          <strong>random_access_range&lt;R> // </strong><em>has begin()/end(), ++, [], +, …</em><br>          <strong>&amp;&amp; sortable&lt;iterator_t&lt;R>>; // </strong><em>can compare and swap elements</em></p>
+
+
+
+<p>This says that a type <strong>R </strong>is a <strong>Sortable_range </strong>if it is a <strong>random_access_range </strong>and has an iterator type that is <strong>sortable</strong>. The <strong>random_access_range </strong>and <strong>sortable </strong>are <strong>concept</strong>s defined in the standard library. </p>
+
+
+
+<p>A concept can take one or more arguments and can be built from fundamental language properties. To specify a property of a type directly in terms of the language (as opposed in terms of other concepts), we use “use patterns” [GDR2006]. For example:</p>
+
+
+
+<p>     <strong>template&lt;typename T, typename U = T></strong><br>     <strong>concept equality_comparable = requires(T a, U b) {.</strong>    <br>          <strong>{a==b} -> Boolean;</strong><br>          <strong>{a!=b} -> Boolean;</strong><br><strong>          {b==a} -> Boolean;</strong><br><strong>{b!=a} -> Boolean;</strong></p>
+
+
+
+<p><strong>     }</strong></p>
+
+
+
+<p>The constructs in the <strong>{</strong>…<strong>} </strong>must be valid and return something that matches the concept specified after <strong>-&gt;</strong>. So here, the listed use-patterns (e.g<strong>.</strong>, <strong>a==b</strong>) must return something that can be used as a <strong>bool</strong>.</p>
+
+
+
+<p>Usually, as in the <strong>sort </strong>example, checking that a type matches a concept is done implicitly, but we can also be explicit using <strong>static_assert</strong>:</p>
+
+
+
+<p>     <strong>static_assert(equality_comparable&lt;int,double>); // </strong><em>succeeds</em><br>     <strong>static_assert(equality_comparable&lt;int>); // </strong><em>succeeds (T2 is defaulted to int)</em><br>     <strong>static_assert(equality_comparable&lt;int,string>); // </strong><em>fails</em></p>
+
+
+
+<p>The <strong>equality_comparable </strong>concept is defined in the standard library. We don’t have to define it ourselves, but it’s a good example.</p>
+
+
+
+<p>We want to write code that works for all suitable argument types. However, many (probably most) algorithms take more than one template argument type. The means that we need to express relationships among those template arguments. For example:</p>
+
+
+
+<p>     <strong>template&lt;input_range R, indirect_unary_predicate&lt;iterator_t&lt;R> Pred> </strong><br>     <strong>Iterator_t&lt;R> find_if(R&amp;&amp; r, Pred p);</strong></p>
+
+
+
+<p>This says that <strong>find_if </strong>takes an input range <strong>r </strong>and a predicate <strong>p </strong>that can be applied to the result of an indirection through <strong>r</strong>’s iterator. For example:</p>
+
+
+
+<p>     <strong>vector&lt;string> numbers; // </strong><em>strings representing numbers; e.g., “13” and “123.45”</em><br>     <strong>// … fill numbers …</strong><br>     <strong>auto q = find_if(numbers, [](const string&amp; s) { return stoi(s)&lt;42; });</strong></p>
+
+
+
+<p>The second parameter of the call of <strong>find_if </strong>is a lambda expression. It generates a function object that executes <strong>stoi(s)&lt;42 </strong>when invoked in the implementation of <strong>find_if </strong>for an argument <strong>s. </strong>Lambda expressions (typically just called “lambdas”) have proven immensely useful and popular in contemporary C++. </p>
+
+
+
+<p>We have always had concepts. Every successful generic library has some form of concepts: in the designer’s head, in the documentation, or in comments. Such concepts often represent fundamental concepts of an application area. For example:</p>
+
+
+
+<ul class="wp-block-list">
+<li>C/C++ built-in types: arithmetic and floating [K&amp;R1978]</li>
+
+
+
+<li>The C++ standard-library: iterators, sequences, and containers</li>
+
+
+
+<li>Mathematics: monad, group, ring, and field</li>
+
+
+
+<li>Graphs: edges and vertices, graph, DAG, &#8230;</li>
+</ul>
+
+
+
+<p>C++20 didn’t introduce the idea of concepts; it just added direct language for concepts. A <strong>concept </strong>is a compile-time predicate. Using <strong>concept</strong>s is easier than not using them. However, like for every novel construct, we must learn to use them effectively.</p>
+
+
+
+<p><strong>5.2. Compile-time evaluation</strong></p>
+
+
+
+<p>A concept is an example of a compile-time function. In contemporary C++, any sufficiently simple function can be evaluated at compile time:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>constexpr</strong>: can be evaluated at compile time</li>
+
+
+
+<li><strong>consteval</strong>: must be evaluated at compile time</li>
+
+
+
+<li><strong>concept</strong>: evaluated at compile time, can take types as arguments</li>
+</ul>
+
+
+
+<p>This applies to both built-in and user-defined types. For example:</p>
+
+
+
+<p>     <strong>constexpr auto jul = weekday(December/24/2024); // </strong><em>Tuesday</em></p>
+
+
+
+<p>To allow <strong>consteval </strong>and <strong>constexpr </strong>functions and <strong>concept</strong>s to be evaluated at compile time, they cannot</p>
+
+
+
+<ul class="wp-block-list">
+<li>have side effects</li>
+
+
+
+<li>access non-local data</li>
+
+
+
+<li>have undefined behavior (UB)</li>
+</ul>
+
+
+
+<p>However, they can use extensive facilities, incl. much of the standard library</p>
+
+
+
+<p>Thus, such functions are the C++ version of the idea of a pure function and a contemporary C++ compiler contains an almost complete C++ interpreter. Compile-time evaluation is also a boon to performance.</p>
+
+
+
+<p><strong>6. Guidelines and enforcement</strong></p>
+
+
+
+<p>Contemporary styles yield major benefits. However, upgrading code is hard and often expensive. How can we modernize existing code? Avoiding sub-optimal techniques is difficult. Old habits die hard. Familiarity is often mistaken for simplicity. Much confusing and outdated information is circulated on the web and in teaching material. Also, old code often offer outdated-style interfaces, thus encouraging the use of older styles of use. We need help to guide us to better styles of code.</p>
+
+
+
+<p>Stability/compatibility is a major feature. Also, given the billions of lines of C++ code, only gradual adoption of novel features and techniques is feasible. So, we can’t change the language, but we can change the way it is used. People (quite reasonably) want a simpler C++, but also new features, and insist that their existing code must continue to run.</p>
+
+
+
+<p>To help developers focus on effective use of contemporary C++ and avoid outdated “dark corners” of the language, sets of guidelines have been developed. Here I focus on the C++ Core guidelines that I consider the most ambitious [GC].</p>
+
+
+
+<p>A set of guidelines must represent a coherent philosophy of the language relative to a given use. My principal aim is a type-safe and resource-safe use of ISO standard C++. That is</p>
+
+
+
+<ul class="wp-block-list">
+<li>Every object is exclusively used according to its definition</li>
+
+
+
+<li>No resource is leaked</li>
+</ul>
+
+
+
+<p>This encompasses what people refer to as memory safety and much more. It is not a new goal for C++ [BS1994]. Obviously, it cannot be achieved for every use of C++, but by now we have years of experience showing that it can be done for modern code, though so far enforcement has been incomplete.</p>
+
+
+
+<p>A set of guidelines has strengths and weaknesses:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Is available now (e.g., The C++ Core Guidelines [CG])</li>
+
+
+
+<li>Individual rules can be enforced or not</li>
+
+
+
+<li>Enforcement is incomplete</li>
+</ul>
+
+
+
+<p>Building on guidelines, we need enforcement:</p>
+
+
+
+<ul class="wp-block-list">
+<li>A profile is an enforced coherent sets of guidelines rules [CG,BS2022]</li>
+
+
+
+<li>Being worked on in WG21 and elsewhere [BS2022b, HS2024b]</li>
+
+
+
+<li>Are not yet available, except for experimental and partial versions [KR2019, Google2024, KV2024]</li>
+</ul>
+
+
+
+<p>When thinking about C++, it is important to remember that C++ is not just a language but part of an ecosystem consisting of implementations, libraries, tools, teaching, and more. In particular, developers using C++ rely on facilities far beyond what is available in C. </p>
+
+
+
+<p><strong>6.1. Guidelines</strong></p>
+
+
+
+<p>Simple subsetting of C++ doesn’t work: We need the low-level, tricky, close-to-the-hardware, error-prone, and expert-only features to implement higher-level facilities efficiently and to enable low-level features where needed. The C++ Core Guidelines use a strategy known as subset-of-superset [BS2005]:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>First</strong>: extend the language with a few library abstractions: use parts of the standard library and add a tiny library to make use of the guidelines convenient and efficient (the Guidelines Support Library, GSL).</li>
+
+
+
+<li><strong>Next</strong>: subset: ban the use of low-level, inefficient, and error-prone features.</li>
+</ul>
+
+
+
+<p>What we get is <em>“C++ on steroids”: </em>Something simple, safe, flexible, and fast; rather than an impoverished subset or something relying on massive run-time checking. Nor do we create a language with novel and/or incompatible features. The result is 100% ISO standard C++. Messy, dangerous, low-level features can still be enabled and used when needed.</p>
+
+
+
+<p>Different application domains have different needs and thus need different sets of guidelines, but initially the focus is on “The core or the C++ Core Guidelines.” The rules we hope that everyone eventually could benefit from</p>
+
+
+
+<ul class="wp-block-list">
+<li>No uninitialized variables</li>
+
+
+
+<li>No range or nullptr violations</li>
+
+
+
+<li>No resource leaks</li>
+
+
+
+<li>No dangling pointers</li>
+
+
+
+<li>No type violations</li>
+
+
+
+<li>No invalidation</li>
+</ul>
+
+
+
+<p>Two books describe C++ following these guidelines except when illustrating errors: “A tour of C++” for experienced programmers [BS2022] and “Programming: Principles and Practice using C++” for novices [BS2024]. Two more books explore aspects of the C++ Core Guidelines [JD2021; RG2022].</p>
+
+
+
+<p><strong>6.2. Example rule: Don’t subscript pointers</strong></p>
+
+
+
+<p>A pointer doesn’t have the associated information needed to allow range checking. However, range checking is a must for memory safety and also for type safety because we cannot allow application code to read or overwrite objects beyond the range of the objects pointed to. Instead, we must use an abstraction with enough information to range check, such an array, a <strong>vector</strong>, or a <strong>span</strong>. </p>
+
+
+
+<p>Consider a common style: a pointer plus an integer supposedly indicating the number of elements pointed to:</p>
+
+
+
+<p>     <strong>void f(int* p, int n)</strong></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p>          <strong>for (int i = 0; i&lt;n; i++)</strong></p>
+
+
+
+<p>               <strong>do_something_with(p[n]);</strong></p>
+
+
+
+<p><strong>     } </strong></p>
+
+
+
+<p><strong>     int a[100];</strong></p>
+
+
+
+<p><strong>     // …</strong></p>
+
+
+
+<p><strong>     f(a,100); // </strong><em>OK? (depends on the meaning of n in the called function)</em></p>
+
+
+
+<p><strong>     f(a,1000); // </strong><em>likely disaster</em></p>
+
+
+
+<p>This is a very simple example using an array to show the size. Since the size is present, checking at the point of call is possible (though hardly ever done) and typically a (pointer,integer) pair is passed through a longer call chain making verification difficult or impossible.</p>
+
+
+
+<p>The solution to this problem is to tie the size firmly to the pointer (like in <strong>Vector</strong>; §3.1). That’s what a <strong>span </strong>does:</p>
+
+
+
+<p>     <strong>void f(span&lt;int> a) // </strong><em>a span holds a pointer and the number of elements pointed to</em></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p>          <strong>for (int&amp; x: s) // </strong><em>now we can use a range-for</em></p>
+
+
+
+<p>                <strong>do_something_with(x);</strong></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p><strong>       int a[100];</strong></p>
+
+
+
+<p><strong>     // …</strong></p>
+
+
+
+<p><strong>     f(a); // </strong><em>type and element count deduced</em></p>
+
+
+
+<p><strong>     f({a,1000}); // </strong><em>asking for trouble, but marked syntactically and easily checkable</em></p>
+
+
+
+<p>Using <strong>span i</strong>s a good example of “Make simple things simple” principle. Code using it is simpler than the “old style”: shorter, safer, and often faster.</p>
+
+
+
+<p>The <strong>span </strong>type was introduced in the Core Guidelines support library as a range-checked type. Unfortunately, when it was added to standard library, the guarantee for range checking was removed. Obviously, a profile (§6.4) enforcing this rule must range check. Every major C++ implementation has ways to ensure this (e.g., GCC standard library hardening [KV2024], Google Spatial safety [Google2024], and Microsoft Visual Studio’s static analyzer [KR2019]). Unfortunately, there isn’t yet a standard and portable way of requiring it. </p>
+
+
+
+<p><strong>6.3. Example rule: Don’t use an invalidated pointer</strong></p>
+
+
+
+<p>Some containers, notably <strong>vector</strong>, can relocate their elements. If someone outside the container obtain a pointer to an element and use it after relocation, disaster can happen. Consider:</p>
+
+
+
+<p>     <strong>void f(vector&lt;int>&amp; vi)</strong></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p>          <strong>vi.push_back(9); // </strong><em>may relocate vi’s elements</em></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p>     <strong>void g()</strong></p>
+
+
+
+<p>     <strong>{</strong></p>
+
+
+
+<p>         <strong> vector&lt;int> vi { 1,2 };</strong></p>
+
+
+
+<p>          <strong>auto p = vi.begin(); // </strong><em>point to first element of vi</em></p>
+
+
+
+<p>f<strong>(vi);</strong></p>
+
+
+
+<p>          <strong>*p = 7; // </strong><em>error: p is invalid</em></p>
+
+
+
+<p>     <strong>}</strong></p>
+
+
+
+<p>Given appropriate rules for the use of C++ (§6.1), local static analysis can prevent invalidation. In fact, implementations of Core Guidelines lifetime checks have done that since 2019 [KR2019]. Prevention of invalidation and the use of dangling pointers in general is completely static (compile time). No run-time checking is involved.</p>
+
+
+
+<p>This is not the place for a detailed description of how this analysis is done. For that see [BS2015; HS2019; BS2024]. However, here is an outline of the model:</p>
+
+
+
+<p>The rules apply to every entity that directly point to an object, such as pointers, resource-management pointers, references, and containers of pointers. Examples are an <strong>int*</strong>, an <strong>int&amp;</strong>, a <strong>vector&lt;int*&gt;</strong>, a <strong>unique_ptr&lt;int&gt;</strong>, a <strong>jthread </strong>holding an <strong>int*</strong>, and a lambda that has captured an <strong>int </strong>by reference.</p>
+
+
+
+<ul class="wp-block-list">
+<li>Ban use after <strong>delete </strong>(obviously) and rely on RAII (§3).</li>
+
+
+
+<li>Don’t allow a pointer to escape the scope of what it points to. This means that a pointer can be returned from a function only if it points to something static, points to something on the free store (aka heap and dynamic memory), or was passed in as an argument.</li>
+
+
+
+<li>Assume that a function (e.g., <strong>vector::push_back()</strong>) that take non-<strong>const </strong>arguments invalidate. If a pointer to one of its elements has been taken, we ban calls to it. Functions taking only <strong>const </strong>arguments cannot invalidate, and to avoid massive false positives and preserving local analysis, we can annotate function declarations with <strong>[[profiles::non_invalidating]]</strong>. This annotation can be validated when we see the function’s definition. Thus, it is a safe annotation rather than a “trust me” annotation.</li>
+</ul>
+
+
+
+<p>Naturally, there are many details to address, but they have been tried out in experimental as well as currently shipping implementations.</p>
+
+
+
+<p><strong>6.4. Enforcement: Profiles</strong></p>
+
+
+
+<p>Guidelines are fine and useful, but it is essentially impossible to follow them consistently in a large code base. Thus, enforcement is essential. Enforcement of rules preventing missing initialization, range errors, nullptr dereferences, and the use of dangling pointers is currently available and have been demonstrated to be affordable in large code bases [KR2019, Google2024, KV2024].</p>
+
+
+
+<p>However, key foundational rules must be standard – part of the definition of C++ – with a standard way of requesting them in code to enable interoperability between code developed by different organizations and running on multiple platforms and teaching.</p>
+
+
+
+<p>We call an enforced coherent set of guideline rules providing a guarantee a “profile.” As currently planned for the standard, the initial set of profiles (based on Core Guidelines profiles as used for years) are [HS2024b; CG]:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>type </strong>– every object initialized; no casts; no unions</li>
+
+
+
+<li><strong>lifetime </strong>– no access through dangling pointers; pointer dereference checked for nullptr; no explicit <strong>new</strong>/<strong>delete</strong></li>
+
+
+
+<li><strong>bounds </strong>– all subscriping is range checked; no pointer arithmetic.</li>
+
+
+
+<li><strong>arithmetic </strong>– no overflow or underflow; no value-changing signed/unsigned conversions</li>
+</ul>
+
+
+
+<p>This is essentially “the core of the core” described in §6.1. More profiles will follow given time and experimentation [BS2024b]. For example:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>algorithms </strong>– all ranges, no dereferences of <strong>end() </strong>iterators</li>
+
+
+
+<li><strong>concurrency </strong>– eliminate deadlocks and data races (hard to do)</li>
+
+
+
+<li><strong>RAII </strong>– every resource owned by a handle (not just resources managed with <strong>new</strong>/<strong>delete</strong>).</li>
+</ul>
+
+
+
+<p>Not all profiles will be ISO standard. I expect to see profiles defined for specific application areas, e.g., for animation, flight software, and scientific computation.</p>
+
+
+
+<p>Enforcement is primarily static (compile-time) but a few important checks must be run-time, (e.g., subscripting and pointer dereferencing).</p>
+
+
+
+<p>A profile must be explicitly requested for a translation unit. For example,</p>
+
+
+
+<p>     <strong>[[profile::enforce(type)]] // </strong>no casts or uninitialized objects in this TU</p>
+
+
+
+<p>Where necessary, a profile can be suppressed for a statement (including compound statements) where needed. For example: </p>
+
+
+
+<p>     <strong>[[profile::suppress(lifetime))] this->succ = this->succ->succ;</strong></p>
+
+
+
+<p>The need to suppress verification of guarantees is primarily for the implementation of the abstractions needed to provide guarantees (e.g., <strong>span</strong>, <strong>vector</strong>, and <strong>string_view</strong>), to guarantee range checking, and to directly access hardware. Because C++ needs to manipulate hardware directly, we cannot “outsource” the implementation of fundamental abstractions to some other language. Nor – because of its wide range of applications and multiple independent implementations – can we simply leave the implementation of all foundational abstractions (e.g., all abstractions involving linked structures) to the compiler.</p>
+
+
+
+<p><strong>7. The Future</strong></p>
+
+
+
+<p>I am reluctant to make predictions about the future, partly because that’s inherently hazardous, and in particular because the definition of C++ is controlled by a huge ISO standards committee operating on consensus. Last I checked, the membership list had 527 entries. That indicates enthusiasm, wide interest, and provides broad expertise, but it is not ideal for programming language design and ISO rules cannot be dramatically modified. Among other subjects, there is work in progress on</p>
+
+
+
+<ul class="wp-block-list">
+<li>A general model for asynchronous computing [LB2024]</li>
+
+
+
+<li>Static reflection [WC2014]</li>
+
+
+
+<li>SIMD [MK2024]</li>
+
+
+
+<li>A contract system [JB2024]</li>
+
+
+
+<li>Functional-programming style pattern matching [HSPM,PMPM]</li>
+
+
+
+<li>A general unit system (e.g., the SI system) [MP2024]</li>
+</ul>
+
+
+
+<p>Experimental versions of all of these are available.</p>
+
+
+
+<p>One serious concern is how to integrate diverse ideas into a coherent whole. Language design involves making decisions in a space where not all relevant factors can be known, and where accepted results cannot be significantly changed for decades. That differs from most software product development and most computer science academic pursuits. The fact that almost all language design efforts over the decades have failed demonstrates the seriousness of this problem.</p>
+
+
+
+<p><strong>8. Summary</strong></p>
+
+
+
+<p>C++ was designed to evolve. When I started, not only didn’t I have the resources to design and implement my ideal language, but I also understood that I needed the feedback from use to turn my ideals into practical reality. And evolve it did while staying true to its fundamental aims [BS1994]. Contemporary C++ (C++23) is a much better approximation to the ideals than any earlier version, including support for better code quality, type safety, expressive power, performance, and for a much wider range of application areas.</p>
+
+
+
+<p>However, the evolutionary approach caused some serious problems. Many people got stuck with an outdated view of what C++ is. Today, we still see endless mentions of the mythical language C/C++, usually implying a view of C++ as a minor extension of C embodying all the worst aspects of C together with grotesque misuses of complex C++ features. Other sources describe C++ as a failed attempt to design Java. Also, tool support in areas such as package management and build systems have lagged because of a community focus on older styles of use.</p>
+
+
+
+<p>The C++ model can be summarized as</p>
+
+
+
+<ul class="wp-block-list">
+<li>Static type system <br>     Equal support for built-in types and user-defined types<br>     Value and reference semantics </li>
+
+
+
+<li>Systematic and general resource management (RAII)Efficient object-oriented programming</li>
+
+
+
+<li>Flexible and efficient generic programming</li>
+
+
+
+<li>Compile-time programming</li>
+
+
+
+<li>Direct use of machine and operating system resources</li>
+
+
+
+<li>Concurrency support through libraries (supported by intrinsics)</li>
+</ul>
+
+
+
+<p>The C++ language and standard library are the concrete expression of this model and a critical part of the ecosystems used to develop software. The value of a programming language is in the quality of its applications.</p>
+
+
+
+<p><strong>9. References</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>[CG] B. Stroustrup and H. Sutter (editors): C++ Core Guidelines.</li>
+
+
+
+<li>[WF2024] W. Childers et al: Reflection for C++26 . WG21 P2996R6. 2024.</li>
+
+
+
+<li>[DE2021] D. Engert: A (Short) Tour of C++ Modules . CppCon 2021.</li>
+
+
+
+<li>[DE2022] D. Engert: Contemporary C++ in Action. CppCon 2022.</li>
+
+
+
+<li>[GCC2024] GCC exception performance .</li>
+
+
+
+<li>[GDR2006] G. Dos Reis and B. Stroustrup: Specifying C++ Concepts. POPL06. 2006.</li>
+
+
+
+<li>[Google2024] A. Rebert et al: Retrofitting spacial safety to hundreds of millions of lines of C++. 2024.</li>
+
+
+
+<li>[HS2019] H. Sutter: Lifetime safety: Preventing common dangling. WG21 P1179.</li>
+
+
+
+<li>[HS2024] H. Sutter: Pattern matching using is and as. WG P392R3. 2024.</li>
+
+
+
+<li>[HS2024b] H. Sutter: Core safety profiles for C++26. WG21 D3081R1. 2024.</li>
+
+
+
+<li>P1179R1. 2019-11-22.</li>
+
+
+
+<li>[JB2024] J. Berne, T. Doumler, and A. Krzemieński: Contracts for C++. P2900R9. 2024.</li>
+
+
+
+<li>[JD2021] J. Davidson and K. Gregory Beautiful C++: 30 Core Guidelines for Writing Clean, Safe, and Fast Code. 2021. ISBN 978-0137647842.</li>
+
+
+
+<li>[KE2024] K. Estell: C++ Exceptions for Smaller Firmware. CppCon 2024. [K&amp;R1978] B.W. Kernighan and D.M. Ritchie: The C Programming Language. Prentice-Hall. 1978. ISBN 01-13-110163-3.</li>
+
+
+
+<li>[KV2024] K.Varlamov and L Dionne: Standard library hardening. WG21 P3471R0. 2024.</li>
+
+
+
+<li>[KR2019] K. Reed: Lifetime Profile Update in Visual Studio 2019 Preview 2. 2019.</li>
+
+
+
+<li>[LB2024] L. Baker et al: A plan for std::execution for C++26. WG21 P3109R0. [MK2024] M. Kretz: std::simd — data-parallel types. WG21 P21928R9. 2024.</li>
+
+
+
+<li>[MPPM] M. Park: Pattern Matching: match Expression. WG21 P2688R2. 2024.</li>
+
+
+
+<li>[MP2024] M. Pusz et al: Quantities and units library. WG21 P3045R2. 2024.</li>
+
+
+
+<li>[RG2022] R. Grimm: C++ Core Guidelines Explained. Addison-Wesley. 2022. ISBN 978-0136875673.</li>
+
+
+
+<li>[BS1982] B. Stroustrup: Classes: An Abstract Data Type Facility for the C Language. SIGPLAN Notices, January 1982.</li>
+
+
+
+<li>[BS1993] B. Stroustrup: A History of C++: 1979-1991. ACM SIGPLAN. March 1993.</li>
+
+
+
+<li>[BS1994] B. Stroustrup: The Design and Evolution of C++. Addison Wesley, ISBN 0-201-54330-3. 1994.</li>
+
+
+
+<li>[BS2005] B. Stroustrup: A rationale for semantically enhanced library languages. LCSD05. October 2005.</li>
+
+
+
+<li>[BS2007] B. Stroustrup: Evolving a language in and for the real world: C++ 1991-2006. ACM SIGPLAN. June 2007.</li>
+
+
+
+<li>[BS2015] B. Stroustrup, H. Sutter, and G. Dos Reis: A brief introduction to C++&#8217;s model for type- and resource-safety. Isocpp.org. October 2015. Revised December 2015.</li>
+
+
+
+<li>[BS2020] B. Stroustrup: Thriving in a Crowded and Changing World: C++ 2006–2020. ACM SIGPLAN. June 2020.</li>
+
+
+
+<li>[BS2021] B. Stroustrup: Minimal module support for the standard library. WG21 P2412r0. 2021.</li>
+
+
+
+<li>[BS2022] B. Stroustrup: A Tour of C++ (3rd Edition). Addison-Wesley. 2022. ISBN 978-0-13-681648-5.</li>
+
+
+
+<li>[BS2022b] B. Stroustrup and G. Dos Reis: Design Alternatives for Type-and-Resource Safe C++. WG21 P2687R0. 2022.</li>
+
+
+
+<li>[BS2024] B. Stroustrup: Programming: Principle and Practice using C++. Addison-Wesley. 2024.ISBN 978-0-13-830868-1.</li>
+
+
+
+<li>[BS2024b] B. Stroustrup: A framework for Profiles development. WG21 P3274R0. 2024.</li>
+
+
+
+<li>[BS2024c] B. Stroustrup: Profile invalidation &#8211; eliminating dangling pointers . WG21 P3346R0.</li>
+</ul>
+
+
+
+<figure class="wp-block-image"><a href="https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg">
+			<a data-fslightbox="https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg" data-type="image" data-caption="" href="https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg">
+				<img decoding="async" width="350" height="350" src="https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg" alt="Bjarne Stroustrup" class="wp-image-764672" srcset="https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg 350w, https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg?resize=150,150 150w, https://cacm.acm.org/wp-content/uploads/2025/01/012125.BLOG_.Bjarne-Stroustrup-350.jpg?resize=300,300 300w" sizes="(max-width: 350px) 100vw, 350px" />
+			</a>
+		</a></figure>
+
+
+
+<p><strong>Bjarne Stroustrup </strong>is the designer and original implementer of C++. He also is a professor of Computer Science at Columbia University, and was the recipient of the <a href="https://en.wikipedia.org/wiki/Charles_Stark_Draper_Prize&nbsp;www.stroustrup.com">NAE Charles Stark Draper Prize</a> for 2018 for conceptualizing and developing the C++ programming language.</p>
+
+</div>
+		</div>
+		<footer class="article-footer">
+			
+<ul class="share">
+	
+<li class="share-link" data-component="share">
+	<a href="#" class="share-toggle">
+		<svg aria-hidden="true" focusable="false" width="19" height="18" fill="var(--cacm--symbol--fill)"><use href="#am-symbol-icon-share"></use></svg>		<span class="share-link-text">
+			Share		</span>
+	</a>
+	<ul class="share-menu" aria-hidden="true">
+		<li>
+			<a href="https://twitter.com/intent/tweet?url=https://cacm.acm.org/blogcacm/21st-century-c/&#038;text=21st%20Century%20C++" target="_blank">
+				Twitter			</a>
+		</li>
+		<li>
+			<a href="http://www.reddit.com/submit?url=https://cacm.acm.org/blogcacm/21st-century-c/&#038;title=21st%20Century%20C++" target="_blank">
+				Reddit			</a>
+		</li>
+		<li>
+			<a href="https://news.ycombinator.com/submitlink?u=https://cacm.acm.org/blogcacm/21st-century-c/&#038;t=21st%20Century%20C++" target="_blank">
+				Hacker News			</a>
+		</li>
+	</ul>
+</li>
+		
+<li class="share-link share-link-print" data-component="print">
+	<a href="#" class="print">
+		<svg aria-hidden="true" focusable="false" width="19" height="20" fill="var(--cacm--symbol--fill)"><use href="#am-symbol-icon-print"></use></svg>		<span class="share-link-text">
+			Print		</span>
+	</a>
+</li>
+		
+	<li class="share-link share-link-discussion" data-component="share">
+		<a class="share-link-comments" href="#comments">
+			<svg aria-hidden="true" focusable="false" width="19" height="20" fill="var(--cacm--symbol--fill)"><use href="#am-symbol-icon-comment"></use></svg>			<span class="share-link-text">Join the Discussion</span>
+		</a>
+	</li>
+	</ul>
+		</footer>
+		<div class="article-authors-digital-library">
+			<section class="article-submission">
+	<div class="article-submission__cta">
+		<div class="article-submission__cta-container">
+			<p class="article-submission__cta-title">
+				Submit an Article to CACM			</p>
+			<p class="article-submission__cta-text">
+				CACM welcomes unsolicited <a href="https://cacm.acm.org/author-guidelines/#CACMsubmission">submissions</a> on topics of relevance and value to the computing community.			</p>
+		</div>
+	</div>
+</section>
+
+<section class="article-digital-library">
+	<div class="article-digital-library__article-info">
+		<p class="article-digital-library__intro-text">
+			You Just Read		</p>
+		<h4 class="article-digital-library__title">
+			21st Century C++		</h4>
+	</div>
+	<div class="article-digital-library__copyright-info">
+			</div>
+</section>
+		</div>
+		<div class="article-sidebar">
+			
+<section class="article-related">
+	<div class="article-related-content">
+		<h3 class="article-related__heading">Related Reading</h3>
+		<!-- Related reading post list -->
+		<ul>
+							<li class="article-related-item">
+					<p class="article-related-section">
+						<a href="https://cacm.acm.org/section/opinion/">Opinion</a>					</p>
+					<p class="article-related-title">
+						<a href="https://cacm.acm.org/opinion/20th-century-vs-21st-century-cc/">
+							20th Century vs. 21st Century C&#038;c: the Spur Manifesto						</a>
+					</p>
+					<p class="article-related-topic">
+						<a href="https://cacm.acm.org/category/architecture-and-hardware/">Architecture and Hardware</a>					</p>
+				</li>
+							<li class="article-related-item">
+					<p class="article-related-section">
+						<a href="https://cacm.acm.org/section/opinion/">Opinion</a>					</p>
+					<p class="article-related-title">
+						<a href="https://cacm.acm.org/opinion/forum-29/">
+							Forum						</a>
+					</p>
+					<p class="article-related-topic">
+						<a href="https://cacm.acm.org/category/computing-applications/">Computing Applications</a>					</p>
+				</li>
+							<li class="article-related-item">
+					<p class="article-related-section">
+						<a href="https://cacm.acm.org/section/opinion/">Opinion</a>					</p>
+					<p class="article-related-title">
+						<a href="https://cacm.acm.org/opinion/tonys-law/">
+							Tony&#8217;s Law						</a>
+					</p>
+					<p class="article-related-topic">
+						<a href="https://cacm.acm.org/category/computing-applications/">Computing Applications</a>					</p>
+				</li>
+							<li class="article-related-item">
+					<p class="article-related-section">
+						<a href="https://cacm.acm.org/section/opinion/">Opinion</a>					</p>
+					<p class="article-related-title">
+						<a href="https://cacm.acm.org/opinion/the-state-of-funding-for-new-initiatives-in-computer-science-and-engineering/">
+							The State of Funding For New Initiatives in Computer Science and Engineering						</a>
+					</p>
+					<p class="article-related-topic">
+						<a href="https://cacm.acm.org/category/architecture-and-hardware/">Architecture and Hardware</a>					</p>
+				</li>
+					</ul>
+	</div>
+</section>
+
+<div class="ad ad-mobile ad--is-loading" data-component="ad" data-platform="mobile" data-show-ad="false">
+		<div class="cacm-ad-unit">
+		<p class="ad-label">Advertisement</p>
+		<div class="ad-unit" data-pipeline-id="684700" data-dimension-id="599027"></div>
+		<noscript><a href="https://acm.nui.media/pipeline/684700/0/cc?z=acm"><img src="https://acm.nui.media/pipeline/684700/0/vc?z=acm&#038;dim=599027&#038;kw=&#038;click=&#038;abr=$imginiframe" alt="" ></a></noscript>
+	</div>
+	</div>
+
+<div class="ad ad-desktop ad--is-loading" data-component="ad" data-platform="desktop" data-show-ad="false">
+		<div class="cacm-ad-unit">
+		<p class="ad-label">Advertisement</p>
+		<div class="ad-unit" data-pipeline-id="684700" data-dimension-id="599027"></div>
+		<noscript><a href="https://acm.nui.media/pipeline/684700/0/cc?z=acm"><img src="https://acm.nui.media/pipeline/684700/0/vc?z=acm&#038;dim=599027&#038;kw=&#038;click=&#038;abr=$imginiframe" alt="" ></a></noscript>
+	</div>
+	</div>
+		</div>
+		
+<section class="article-comments">
+	<div class="article-comments__inner container">
+		<h3 class="article-comments__heading">
+			Join the Discussion (0)		</h3>
+		
+<section class="cta-join-the-discussion" id="article-discussion">
+	<div class="cta-join-the-discussion__box">
+		<h4 class="cta-join-the-discussion__heading">Become a Member or Sign In to Post a Comment</h4>
+		<div class="cta-join-the-discussion__button-group">
+			<a class="cta-join-the-discussion__button cta-join-the-discussion__button--login" href="https://cacm.acm.org/wp-login.php?saml_sso">Sign In</a>
+			<a class="cta-join-the-discussion__button cta-join-the-discussion__button--signup" href="https://accounts.acm.org/">Sign Up</a>
+		</div>
+	</div>
+</section>
+		
+<div id="comments" class="comments-area">
+
+	
+		<div id="respond" class="auth-comment-form" data-component="authCommentForm" data-replytocom="0">
+		<div class="auth-comment-form__contents">
+			<span class="auth-comment-form__loader">
+				<svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+					<path fill="var(--wp--preset--color--cacm-blue)" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+						<animateTransform
+							attributeName="transform"
+							attributeType="XML"
+							type="rotate"
+							dur="1s"
+							from="0 50 50"
+							to="360 50 50"
+							repeatCount="indefinite" />
+					</path>
+				</svg>
+			</span>
+		</div>
+	</div>
+
+</div><!-- #comments -->
+	</div>
+</section>
+
+		<section
+			class="post-list the-latest"
+			data-layout="grid-three-up"
+			data-component="postList"
+		>
+							
+		<header class="section-header ">
+			<h3				class="section-header__heading"
+			>
+									<a class="section-header__heading-link" href="/?s=">
+						The Latest from CACM					</a>
+							</h3>
+							<div class="section-header__readmore">
+					<a class="section-header__readmore-link" href="/?s=" aria-label="
+						Explore more from The Latest from CACM					">
+						<span class="section-header__readmore-text">Explore More</span>
+						<span class="section-header__readmore-icon"><svg aria-hidden="true" focusable="false" width="14" height="9"><use href="#am-symbol-icon-arrow-right"></use></svg></span>
+					</a>
+				</div>
+								</header>
+
+					
+			<div class="">
+				<div class="post-list__content"><div class="post-list__item">
+	<article id="post-764651" class="post-list__post post-764651 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture-and-hardware category-software-engineering-and-programming-languages section-blogcacm">
+		<div class="post-list__post-content">
+			<div class="post-list__post-text">
+									<div class="post-list__post-eyebrow">
+						<a href="https://cacm.acm.org/section/blogcacm/">BLOG@CACM</a>																			<span class="post-list__post-timestamp"><span class="posted-on"> Feb 4 2025</span></span>
+																	</div>
+													<p class="post-list__post-heading">
+						<a href="https://cacm.acm.org/blogcacm/21st-century-c/">21st Century C++</a>
+					</p>
+												<div class="post-list__post-meta-group">
+											<div class="post-list__post-byline">
+							 <a href="https://cacm.acm.org/author/bjarne-stroustrup/" title="Posts by Bjarne Stroustrup" class="author url fn" rel="author">Bjarne Stroustrup</a>						</div>
+																<span class="post-list__post-topic"><a href="https://cacm.acm.org/category/architecture-and-hardware/">Architecture and Hardware</a></span>
+									</div>
+			</div>
+							<figure class="post-list__post-figure">
+					<a href="https://cacm.acm.org/blogcacm/21st-century-c/" aria-label="21st Century C++" aria-hidden="true" tabindex="-1">
+													<div class="image-wrapper image-wrapper--widescreen"><img width="1024" height="576" src="https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg" class="attachment-full size-full" alt="C++ code on dark background and the word C++" decoding="async" srcset="https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg 2400w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=300,169 300w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=768,432 768w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=1024,576 1024w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=1536,864 1536w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.21st-Century-C-G.jpg?resize=2048,1152 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></div>											</a>
+				</figure>
+					</div>
+	</article>
+</div>
+
+<div class="post-list__item">
+	<article id="post-764636" class="post-list__post post-764636 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture-and-hardware category-artificial-intelligence-machine-learning category-security-and-privacy section-blogcacm">
+		<div class="post-list__post-content">
+			<div class="post-list__post-text">
+									<div class="post-list__post-eyebrow">
+						<a href="https://cacm.acm.org/section/blogcacm/">BLOG@CACM</a>																			<span class="post-list__post-timestamp"><span class="posted-on"> Jan 31 2025</span></span>
+																	</div>
+													<p class="post-list__post-heading">
+						<a href="https://cacm.acm.org/blogcacm/ai-agents-automation-is-not-enough/">AI Agents: Automation is Not Enough</a>
+					</p>
+												<div class="post-list__post-meta-group">
+											<div class="post-list__post-byline">
+							 Shanmugam Sudalaimuthu						</div>
+																<span class="post-list__post-topic"><a href="https://cacm.acm.org/category/architecture-and-hardware/">Architecture and Hardware</a></span>
+									</div>
+			</div>
+							<figure class="post-list__post-figure">
+					<a href="https://cacm.acm.org/blogcacm/ai-agents-automation-is-not-enough/" aria-label="AI Agents: Automation is Not Enough" aria-hidden="true" tabindex="-1">
+													<div class="image-wrapper image-wrapper--widescreen"><img width="1024" height="576" src="https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg" class="attachment-full size-full" alt="gold pyramids" decoding="async" srcset="https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg 2400w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg?resize=300,169 300w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg?resize=768,432 768w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg?resize=1024,576 1024w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg?resize=1536,864 1536w, https://cacm.acm.org/wp-content/uploads/2025/01/012225.BLOG_.AI-Agents-S.jpg?resize=2048,1152 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></div>											</a>
+				</figure>
+					</div>
+	</article>
+</div>
+
+<div class="post-list__item">
+	<article id="post-763620" class="post-list__post post-763620 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture-and-hardware category-security-and-privacy section-news">
+		<div class="post-list__post-content">
+			<div class="post-list__post-text">
+									<div class="post-list__post-eyebrow">
+						<a href="https://cacm.acm.org/section/news/">News</a>																			<span class="post-list__post-timestamp"><span class="posted-on"> Jan 31 2025</span></span>
+																	</div>
+													<p class="post-list__post-heading">
+						<a href="https://cacm.acm.org/news/the-infamous-infostealer/">The Infamous Infostealers</a>
+					</p>
+												<div class="post-list__post-meta-group">
+											<div class="post-list__post-byline">
+							 <a href="https://cacm.acm.org/author/david-geer/" title="Posts by David Geer" class="author url fn" rel="author">David Geer</a>						</div>
+																<span class="post-list__post-topic"><a href="https://cacm.acm.org/category/architecture-and-hardware/">Architecture and Hardware</a></span>
+									</div>
+			</div>
+							<figure class="post-list__post-figure">
+					<a href="https://cacm.acm.org/news/the-infamous-infostealer/" aria-label="The Infamous Infostealers" aria-hidden="true" tabindex="-1">
+													<div class="image-wrapper image-wrapper--widescreen"><img width="1024" height="576" src="https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg" class="attachment-full size-full" alt="hand reaching towards computer display, hacker concept" decoding="async" loading="lazy" srcset="https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg 2295w, https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg?resize=300,169 300w, https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg?resize=768,432 768w, https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg?resize=1024,576 1024w, https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg?resize=1536,864 1536w, https://cacm.acm.org/wp-content/uploads/2025/01/013125.News_.The-Infamous-S.jpg?resize=2048,1152 2048w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></div>											</a>
+				</figure>
+					</div>
+	</article>
+</div>
+
+</div>			</div>
+
+		</section>
+
+		
+<div class="cta-membership cta-membership--no-js" data-component="ctaMembership">
+	
+		<section class="cta-become-a-member">
+			<div class="cta-become-a-member__inner container">
+				<h3					class="cta-become-a-member__heading">
+					Shape the Future of Computing				</h3>
+									<p class="cta-become-a-member__description">
+						ACM encourages its members to take a direct hand in shaping the future of the association. There are more ways than ever to get involved.					</p>
+													<a class="cta-become-a-member__link" href="https://www.acm.org/about-acm/get-involved">
+						Get Involved											</a>
+							</div>
+		</section>
+
+		
+		<section class="cta-open-access">
+			<div class="cta-open-access__inner container">
+				<h3					class="cta-open-access__heading">
+					Communications of the ACM (CACM) is now a fully Open Access publication.				</h3>
+									<p class="cta-open-access__description">
+						By opening CACM to the world, we hope to increase engagement among the broader computer science community and encourage non-members to discover the rich resources ACM has to offer.					</p>
+													<a class="cta-open-access__link" href="https://cacm.acm.org/news/cacm-is-becoming-open-access">
+						Learn More											</a>
+							</div>
+		</section>
+
+		</div>
+
+	
+</article><!-- #post-## -->
+
+			</main>
+		</div>
+	</div><!-- #content -->
+
+	<footer id="colophon" class="site-footer">
+		<div class="site-footer__inner container">
+			<div class="site-footer__columns">
+				<div class="site-footer__column site-footer__column-branding">
+					<a class="site-footer__logo" aria-label="Home" href="https://cacm.acm.org">
+						<svg aria-hidden="true" focusable="false" width="548" height="88" fill="#FFF"><use href="#am-symbol-cacm-logo"></use></svg>					</a>
+					<nav class="social-navigation">
+		<ul class="social-navigation__list">
+		<li>
+			<a href="https://twitter.com/cacmmag">
+				<span class="screen-reader-only">CACM on Twitter</span>
+				<svg aria-hidden="true" focusable="false" width="38" height="38" fill="#fff"><use href="#am-symbol-icon-social-twitter"></use></svg>			</a>
+		</li>
+		<li>
+			<a href="https://www.reddit.com/user/TheOfficialACM">
+				<span class="screen-reader-only">CACM on Reddit</span>
+				<svg aria-hidden="true" focusable="false" width="38" height="38" fill="#fff"><use href="#am-symbol-icon-social-reddit"></use></svg>			</a>
+		</li>
+		<li>
+			<a href="https://www.linkedin.com/groups/36836/">
+				<span class="screen-reader-only">CACM on LinkedIn</span>
+				<svg aria-hidden="true" focusable="false" width="38" height="38" fill="#fff"><use href="#am-symbol-icon-social-linkedin"></use></svg>			</a>
+		</li>
+	</ul>
+</nav>
+				</div>
+				<div class="site-footer__column site-footer__column-topics">
+					
+<div class="site-footer__topics-menu">
+			<p class="site-footer__heading">
+			Topics		</p>
+		<ul class="site-footer__topics-menu__list">
+												<li>
+					<a href="https://cacm.acm.org/category/architecture-and-hardware/">
+						Architecture and Hardware					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/artificial-intelligence-machine-learning/">
+						Artificial Intelligence and Machine Learning					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/computer-history/">
+						Computer History					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/computing-applications/">
+						Computing Applications					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/computing-profession/">
+						Computing Profession					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/data-and-information/">
+						Data and Information					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/education/">
+						Education					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/hci/">
+						HCI					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/philosophy-of-computing/">
+						Philosophy of Computing					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/security-and-privacy/">
+						Security and Privacy					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/society/">
+						Society					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/software-engineering-and-programming-languages/">
+						Software Engineering and Programming Languages					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/systems-and-networking/">
+						Systems and Networking					</a>
+				</li>
+															<li>
+					<a href="https://cacm.acm.org/category/theory/">
+						Theory					</a>
+				</li>
+							</ul>
+	</div>
+				</div>
+				<div class="site-footer__column site-footer__column-about">
+					<div class="site-footer__menu-magazine">
+						<p class="site-footer__heading">Magazine</p>
+						<ul id="menu-magazine-footer" class="site-footer__menu-magazine-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217988"><a href="/issue/latest/" id="menu-link-10">Latest Issue</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217989"><a href="/issues/" id="menu-link-11">Magazine Archive</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224644"><a href="https://cacm.acm.org/editorial-staff-board/" id="menu-link-12">Editorial Staff and Board</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-751386"><a href="https://cacm.acm.org/author-guidelines#CACMsubmission" id="menu-link-13">Submit an Article</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224585"><a href="https://cacm.acm.org/feeds-2/" id="menu-link-14">Alerts &#038; Feeds</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224645"><a href="https://cacm.acm.org/author-guidelines/" id="menu-link-15">Author Guidelines</a></li>
+</ul>					</div>
+					<div class="site-footer__menu-communications">
+						<p class="site-footer__heading">Communications of the ACM</p>
+						<ul id="menu-communications-footer" class="site-footer-communications-menu"><li id="menu-item-224637" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224637"><a href="https://cacm.acm.org/about-us/" id="menu-link-16">About Us</a></li>
+<li id="menu-item-224664" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224664"><a href="https://cacm.acm.org/faq/" id="menu-link-17">Frequently Asked Questions</a></li>
+<li id="menu-item-224638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224638"><a href="https://cacm.acm.org/contact-us/" id="menu-link-18">Contact Us</a></li>
+<li id="menu-item-217972" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217972"><a href="https://www.acm.org/publications/advertising" id="menu-link-19">For Advertisers</a></li>
+<li id="menu-item-224639" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224639"><a href="https://cacm.acm.org/join-acm/" id="menu-link-20">Join ACM</a></li>
+</ul>					</div>
+				</div>
+			</div>
+			<div class="site-footer__info">
+				<div class="site-footer__info__inner">
+					<p class="site-footer__info-copyright"><small>
+						&copy; 2025 Communications of the ACM. All Rights Reserved. 						</small></p>
+					<div class="menu-policy-menu-container"><ul id="menu-policy-footer" class="site-footer__info-policy-list"><li id="menu-item-217993" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217993"><a href="https://www.acm.org/cookie-notice" id="menu-link-21">Cookie Notice</a></li>
+<li id="menu-item-217994" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217994"><a href="https://www.acm.org/about-acm/privacy-policy" id="menu-link-22">Privacy Policy</a></li>
+</ul></div>				</div>
+			</div>
+		</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type="text/javascript" src="https://cacm.acm.org/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+<script type="text/javascript" src="https://cacm.acm.org/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6" id="wp-i18n-js"></script>
+<script type="text/javascript" id="wp-i18n-js-after">
+/* <![CDATA[ */
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+/* ]]> */
+</script>
+<script type="text/javascript" id="wp-parsely-loader-js-before">
+/* <![CDATA[ */
+window.wpParselySiteId = 'acm.org';
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://cacm.acm.org/wp-content/mu-plugins/wp-parsely-3.17/build/loader.js?ver=b681bb9905652ac12735" id="wp-parsely-loader-js"></script>
+<script type="text/javascript" data-parsely-site="acm.org" src="https://cdn.parsely.com/keys/acm.org/p.js?ver=3.17.0" id="parsely-cfg"></script>
+<script type="text/javascript" src="https://cacm.acm.org/wp-content/themes/cacm/client/build/js/global.bundle.min.js?ver=e97a984b44ccc756957f" id="cacm-global-js"></script>
+<script type="text/javascript" id="cacm-article-js-extra">
+/* <![CDATA[ */
+var cacmLocalVars = {"restCommentsUrl":"https:\/\/cacm.acm.org\/wp-json\/wp\/v2\/comments","restCommentFormUrl":"https:\/\/cacm.acm.org\/wp-json\/cacm-plugin\/v1\/comment\/form\/764651"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://cacm.acm.org/wp-content/themes/cacm/client/build/js/article.bundle.min.js?ver=237e66042b6c917cfd09" id="cacm-article-js"></script>
+<script type="text/javascript" src="https://cacm.acm.org/wp-includes/js/comment-reply.min.js?ver=6.7.1" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" src="https://stats.wp.com/e-202506.js" id="jetpack-stats-js" data-wp-strategy="defer"></script>
+<script type="text/javascript" id="jetpack-stats-js-after">
+/* <![CDATA[ */
+_stq = window._stq || [];
+_stq.push([ "view", JSON.parse("{\"v\":\"ext\",\"blog\":\"212686646\",\"post\":\"764651\",\"tz\":\"-5\",\"srv\":\"cacm.acm.org\",\"hp\":\"vip\",\"j\":\"1:14.2.1\"}") ]);
+_stq.push([ "clickTrackerInit", "212686646", "764651" ]);
+/* ]]> */
+</script>
+
+
+<!-- Mopinion Pastea.se  start --><script type="text/javascript">(function(){var id="Sh2m7XRvbVWoA8uJG6g2wIBNDLfpsOxFx1ciwKwo";var js=document.createElement("script");js.setAttribute("type","text/javascript");js.setAttribute("src","//deploy.mopinion.com/js/pastease.js");js.async=true;document.getElementsByTagName("head")[0].appendChild(js);var t=setInterval(function(){try{Pastease.load(id);clearInterval(t)}catch(e){}},50)})();</script> <!-- Mopinion Pastea.se end -->
+
+</body>
+</html>
