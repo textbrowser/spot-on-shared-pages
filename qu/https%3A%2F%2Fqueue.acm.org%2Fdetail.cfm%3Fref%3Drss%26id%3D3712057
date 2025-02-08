@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Systems Correctness Practices at AWS - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Distributed Computing' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3714453" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>February 4, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3714453">Volume 22, issue 6 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3712057">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Systems Correctness Practices at AWS</h1> 
+  <h2>Leveraging Formal and Semi-formal Methods</h2> 
+  <h3>Marc Brooker and Ankush Desai</h3> 
+  <p>AWS (Amazon Web Services) strives to deliver reliable services that customers can trust completely. This demands maintaining the highest standards of security, durability, integrity, and availability—with systems correctness serving as the cornerstone for achieving these priorities. An April 2015 paper published in <i>Communications of the ACM</i>, titled "How Amazon Web Services Uses Formal Methods," highlighted the approach for ensuring the correctness of critical services that have since become among the most widely used by AWS customers.<sup>21</sup> </p> 
+  <p>Central to this approach was TLA+,<sup>14</sup> a formal specification language developed by Leslie Lamport. Our experience at AWS with TLA+ revealed two significant advantages of applying formal methods in practice. First, we could identify and eliminate subtle bugs early in development—bugs that would have eluded traditional approaches like testing. Second, we gained the deep understanding and confidence needed to implement aggressive performance optimizations while maintaining systems correctness. </p> 
+  <p>Moreover, 15 years ago, AWS's software testing practice relied primarily on build-time unit testing, often against mocks, and limited deployment-time integration testing. Since then, we have significantly evolved our correctness practices, integrating both formal and semi-formal approaches into the development process. As AWS has grown, formal methods have become increasingly valuable—not only for ensuring correctness but also for performance improvements, particularly in verifying the correctness of both low- and high-level optimizations. This systematic approach toward systems correctness has become a force multiplier at AWS's scale, enabling faster development cycles through improved developer velocity while delivering more cost-effective services to customers.</p> 
+  <p>This article surveys the portfolio of formal methods used across AWS to deliver complex services with high confidence in its correctness. We consider an umbrella definition of formal methods that encompasses these rigorous techniques—from traditional formal approaches such as theorem proving,<sup>7,10</sup> deductive verification,<sup>18</sup> and model checking<sup>8,14</sup> to more lightweight semi-formal approaches such as property-based testing,<sup>6,19</sup> fuzzing,<sup>9</sup> and runtime monitoring.<sup>11</sup></p> 
+  <p>&nbsp;</p> 
+  <h3>The P Programming Language</h3> 
+  <p>As the use of formal methods was expanded beyond the initial teams at AWS in the early 2010s, we discovered that many engineers struggled to learn and become productive with TLA+. This difficulty seemed to stem from TLA+'s defining feature: It is a high-level, abstract language that more closely resembles mathematics than the imperative programming languages most developers are familiar with. While this mathematical nature is a significant strength of TLA+, and we continue to agree with Lamport's views on the benefits of mathematical thinking,<sup>15</sup> we also sought a language that would allow us to model check (and later prove) key aspects of systems designs while being more approachable to programmers.</p> 
+  <p>We found this balance in the P programming language.<sup>8</sup> P is a state-machine-based language for modeling and analysis of distributed systems. Using P, developers model their system designs as communicating state machines, a mental model familiar to Amazon's developer population, most of whom develop systems based on microservices and SOAs (service-oriented architectures). P has been developed at AWS since 2019 and is maintained as a strategic open-source project.<sup>22</sup> Teams across AWS that build some of its flagship products—from storage (e.g., Amazon S3, EBS), to databases (e.g., Amazon DynamoDB, MemoryDB, Aurora), to compute (e.g., EC2, IoT)—have been using P to reason about the correctness of their system designs.</p> 
+  <p>For example, P was used in migrating S3 (Simple Storage Service) from eventual to strong read-after-write consistency.<sup>1</sup> A key component of S3 is its index subsystem, an object metadata store that enables fast data lookups. To achieve strong consistency, the S3 team had to make several nontrivial changes to the S3 index protocol stack.<sup>25</sup> Because these changes were difficult to get right at S3 scale, and the team wanted to deliver strong consistency with high confidence in correctness, they used P to formally model and validate the protocol design. P helped eliminate several design-level bugs early in the development process and allowed the team to deliver risky optimizations with confidence, as they could be validated using model checking.</p> 
+  <p>In 2023, the P team at AWS built PObserve, which provides a new tool for validating the correctness of distributed systems both during testing and in production. With PObserve, we take structured logs from the execution of distributed systems and validate post-hoc that they match behaviors allowed by the formal P specification of the system. This allows for bridging the gap between the P specification of the system design and the production implementation (typically in languages like Rust or Java). While there are significant benefits from verifying protocols at design time, runtime monitoring of the same properties for the implementation makes the investment in formal specification much more valuable and addresses classic concerns with the deployment of formal methods in practice (i.e., connecting design-time validation with system implementation).</p> 
+  <p>&nbsp;</p> 
+  <h3>Lightweight Formal Methods</h3> 
+  <p>Another way that AWS has brought formal methods closer to its engineering teams is through the adoption of <i>lightweight formal methods</i>.</p> 
+  <p>&nbsp;</p> 
+  <h4>Property-based testing</h4> 
+  <p>The most notable single example of leveraging light-weight formal method is in Amazon S3's ShardStore, where the team used property-based testing throughout the development cycle both to test correctness and to speed up the development (described in detail by Bornholt, et al.<sup>4</sup>). The key idea in their approach was combining property-based testing with developer-provided correctness specifications, coverage-guided fuzzing (an approach where the distribution of inputs is guided by code coverage metrics), failure injection (where hardware and other system failures are simulated during testing), and minimization (where counterexamples are automatically reduced to aid human-guided debugging).</p> 
+  <p>&nbsp;</p> 
+  <h4>Deterministic simulation </h4> 
+  <p>Another lightweight method widely used at AWS is deterministic simulation testing, in which a distributed system is executed on a single-threaded simulator with control over all sources of randomness such as thread scheduling, timing, and message delivery order. Tests are then written for particular failure or success scenarios, such as the failure of a participant at a particular stage in a distributed protocol. The nondeterminism in the system is controlled by the test framework, allowing developers to specify orderings that they believe are interesting (such as ones that have caused bugs in the past). The scheduler in the testing framework can also be extended for fuzzing of orderings or exploring all possible orderings to be tested. </p> 
+  <p>Deterministic simulation testing moves testing of system properties, like behavior under delay and failure, closer to build time instead of integration testing. This accelerates development and provides for more complete behavioral coverage during testing. Some of the work done at AWS on build-time testing of thread ordering and systems failures has been open-sourced as part of the shuttle (<a href="https://github.com/awslabs/shuttle">https://github.com/awslabs/shuttle</a>) and turmoil (<a href="https://github.com/tokio-rs/turmoil">https://github.com/tokio-rs/turmoil</a>) projects.</p> 
+  <p>&nbsp;</p> 
+  <h4>Continuous fuzzing or random test-input generation</h4> 
+  <p>Continuous fuzzing, especially coverage-guided scalable test-input generation, is also effective for testing systems correctness at integration time. During the development of Amazon Aurora's data-sharding feature (Aurora Limitless Database<sup>3),</sup> for example, we made extensive use of fuzzing to test two key properties of the system. First, by fuzzing SQL queries (and entire transactions), we validated that the logic partitioning SQL execution over shards is correct. Large volumes of random SQL schemas, datasets, and queries are synthesized and run through the engines under test, and the results compared with an oracle based on the nonsharded version of the engine (as well as other approaches to validation, like those pioneered by SQLancer<sup>23</sup>). </p> 
+  <p>Fuzzing, combined with fault injection testing, is also useful for testing other aspects of database correctness such as atomicity, consistency, and isolation. In database testing, transactions are automatically generated, their correct behavior is defined using a formally specified correctness oracle, and then all possible interleaving of transactions and statements within the transaction are executed against the system under test. We also use post-hoc validation of properties like isolation (following approaches such as Elle<sup>13).</sup></p> 
+  <p>&nbsp;</p> 
+  <h3>Fault Injection as a Service</h3> 
+  <p>In early 2021 AWS launched FIS (Fault Injection Service)<sup>2</sup> with the goal of making testing based on fault injection accessible to a wide range of AWS customers. FIS allows customers to inject simulated faults, from API errors to I/O pauses and failed instances, into test or production deployments of their infrastructure on AWS. Injecting faults allows customers to validate that the resiliency mechanisms they have built into their architectures (such as failovers and health checks) actually work to improve availability and do not introduce correctness problems. Fault-injection testing based on FIS is widely used by AWS customers, and internally within Amazon. For example, Amazon.com ran 733 FIS-based fault-injection experiments in preparation for Prime Day 2024.</p> 
+  <p>In 2014, Yuan, et al. found that 92 percent of catastrophic failures in tested distributed systems were triggered by incorrect handling of nonfatal errors. Many distributed-systems practitioners who were told about this research were surprised the percentage wasn't higher. Happy-case catastrophic failures are rare simply because the happy case of systems is executed often, tested better (both implicitly and explicitly), and is significantly simpler than the error cases. Fault-injection testing and FIS make it much easier for practitioners to test the behavior of their systems under faults and failures, closing the gap between happy-case and error-case bug density.</p> 
+  <p>While fault injection is not considered a formal method, it can be combined with formal specifications. Defining the expected behavior using a formal specification, and then comparing results during and after fault injection to the specified behavior, allows for catching a lot more bugs than simply checking for errors in metrics and logs (or having a human look and say, "Yup, that looks about right").</p> 
+  <p>&nbsp;</p> 
+  <h3>Metastability and Emergent System Behavior</h3> 
+  <p>Over the past decade, there has been an emerging interest in a particular class of systems failure: those where some triggering event (like an overload or a cache emptying) causes a distributed system to enter a state where it doesn't recover without intervention (such as reducing load below normal). This class of failures, dubbed <i>metastable failures</i>,<sup>5</sup> is one of the most important contributors to unavailability in cloud systems. Figure 1 (adapted from Bronson, et al.<sup>5</sup>) illustrates a common type of metastable behavior: Load increases on the system are initially met with increasing goodput, followed by saturation, followed by congestion and goodput dropping to zero (or near zero). From there, the system cannot return to healthy state by slightly reducing load. Instead, it must follow the dotted line and may not recover until load is significantly reduced. This type of behavior is present in even simple systems. For example, it can be triggered in most systems with timeout-and-retry client logic.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3712057/assets/html/brooker1.png" alt="Systems Correctness Practices at AWS" /> 
+  <p>&nbsp;</p> 
+  <p>Traditional formal approaches to modeling distributed systems typically focus on <i>safety</i> (nothing bad happens) and <i>liveness</i> (something good eventually happens), but metastable failures remind us that systems have a variety of behaviors that cannot be neatly categorized this way. We have increasingly turned to discrete-event simulation to understand the emergent behavior of systems, investing both in custom-built systems simulations and tooling that allow the use of existing system models (built in languages like TLA+ and P) to simulate system behavior. Extending exhaustive model checkers, like TLA+'s TLC with probabilistic simulations, also allows for the generation of statistical results such as posterior latency distributions, making model checking useful for tasks like understanding the achievability of latency SLAs (service-level agreements).</p> 
+  <p>&nbsp;</p> 
+  <h3>Formal Proof</h3> 
+  <p>In some cases, the formal methods enumerated so far in this article are not sufficient. For critical security boundaries such as authorization and virtualization, for example, proofs of correctness can be both desirable and worth the significant investment needed to create them.</p> 
+  <p>In 2023, AWS introduced the Cedar authorization policy language for writing policies that specify fine-grained permissions. Cedar was designed for automated reasoning and formal proof.<sup>12,24</sup> The language was designed to be well-suited for proof, and the implementation was built in the verification-aware programming language Dafny. Using Dafny, the team was able to prove that the implementation satisfies a variety of security properties. This type of proof goes beyond testing. It is a proof in the mathematical sense. The team also applied a differential testing approach using the Dafny code as a correctness oracle to verify the correctness of the production-ready Rust implementation. Publishing the Dafny code and test procedures as open source, along with the Cedar implementation, allows Cedar users to check the team's work on correctness.</p> 
+  <p>Another example is the Firecracker VMM (virtual machine monitor). Firecracker uses a low-level protocol called <i>virtio</i> to expose emulated hardware devices (such as a network card or solid-state drive) to guest kernels running inside the VM. This emulated device is a critical security boundary because it is the most complex interaction between the untrusted guest and trusted host. The Firecracker team used a tool called Kani<sup>20</sup> that is able to reason formally about Rust code to prove key properties of this security boundary. Again, proof here goes beyond testing and ensures that the critical properties of this boundary are held no matter what the guest attempts to do.</p> 
+  <p>Proofs around the behaviors of programs are an important part of AWS's software correctness program, and so we support development on tools such as Kani, Dafny,<sup>18</sup> and Lean,<sup>16</sup> and the underlying tools—like SMT (satisfiability modulo theories) solvers—that power them.</p> 
+  <p>The ability to use formal models and specifications—for model-checking systems at design time, for validating in-production behavior using runtime monitoring by serving as a correctness oracle, for simulating emergent systems behavior, and for building proofs of critical properties—allows AWS to amortize the engineering effort of developing these specifications over a larger amount of business and customer value.</p> 
+  <p>&nbsp;</p> 
+  <h3>Benefits Beyond Correctness</h3> 
+  <p>Finally, as discussed in the aforementioned 2015 paper, formal methods are a crucial part of safely improving the performance of cloud systems. Modeling a key commit protocol for the Aurora relational database engine in P and TLA+ allowed us to identify an opportunity to reduce the cost of distributed commits from two to 1.5 network roundtrips without sacrificing any safety properties. These kinds of stories are usual for teams that adopt formal methods, driven by at least two different dynamics. </p> 
+  <p>First, the act of deeply thinking about and formally writing down distributed protocols forces a structured way of thinking that leads to deeper insights about the structure of protocols and the problem to be solved. </p> 
+  <p>Second, having the ability to formally check (and, in some cases, prove) that proposed design optimizations are correct allows naturally conservative distributed-systems engineers to be bolder in their protocol design choices without increasing risk and boosting the developer velocity toward delivering reliable services.</p> 
+  <p>These productivity and cost benefits are limited not only to high-level design optimizations but also to low-level code that normally gets ignored. In one example, the AWS team identified optimizations to the implementation of the RSA (Rivest-Shamir-Adleman) public-key encryption scheme on our ARM-based Graviton 2 processor, which could improve throughput by up to 94 percent.<sup>17</sup> </p> 
+  <p>Using the HOL Light interactive theorem prover, the team was able to prove the correctness of these optimizations. Given the high percentage of cloud CPU cycles spent on cryptography, this type of optimization can significantly reduce infrastructure costs and aid sustainability while at the same time improving customer-visible performance.</p> 
+  <p>&nbsp;</p> 
+  <h3>Challenges and Opportunities for the Future</h3> 
+  <p>Despite significant success in scaling formal and semi-formal testing methods across AWS over the past 15 years, several challenges persist, particularly in industrial adoption of formal methods. The primary barriers for formal methods tools include their steep learning curve and the specialized domain expertise required. Additionally, many of these tools remain academic in nature and lack user-friendly interfaces.</p> 
+  <p>Even well-established semi-formal approaches face adoption challenges. For example, deterministic simulation, a key distributed-systems testing technique used successfully at AWS and in projects like FoundationDB, remains unfamiliar to many experienced distributed-systems developers joining AWS. Similar gaps exist in the adoption of other proven methodologies such as fault-injection testing, property-based testing, and fuzzing. The challenge is educating distributed-systems developers about these testing methods and tools, teaching the art of rigorous thinking.</p> 
+  <p>The education gap begins at the academic level, where even basic formal reasoning approaches are rarely taught, making it difficult for graduates from top institutions to adopt these tools. Although formal methods and automated reasoning are crucial for industry applications, they continue to be viewed as niche fields. We anticipate that increased industry adoption of formal methods and automated reasoning will attract more talent to this domain.</p> 
+  <p>Metastability and other emergent properties of large-scale systems represent another critical research area facing similar awareness challenges. Common practices that lead to metastable system behavior, such as "retry N times on timeout," continue to be widely recommended despite their known issues. Current tools and techniques for understanding emergent system behavior are still in their early stages, making system stability modeling both expensive and complex. The ongoing research in this area holds promising potential for advancement.</p> 
+  <p>Looking ahead, we believe large language models and AI assistants will significantly help address the adoption challenges of formal methods in practice. Just as AI-assisted unit testing has gained popularity, these tools are expected soon to help developers create formal models and specifications, making these advanced techniques more accessible to the broader developer community.</p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>Building reliable and secure software requires a range of approaches to reason about systems correctness. Alongside industry-standard testing methods (such as unit and integration testing), AWS has adopted model checking, fuzzing, property-based testing, fault-injection testing, deterministic simulation, event-based simulation, and runtime validation of execution traces. Formal methods have been an important part of the development process—perhaps most importantly, formal specifications as test oracles that provide the correct answers for many of AWS's testing practices. Correctness testing and formal methods remain key areas of investment at AWS, accelerated by the excellent returns seen on investments in these areas already.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Amazon Web Services. 2020. Amazon S3 now delivers strong read-after-write consistency automatically for all applications; <a href="https://aws.amazon.com/about-aws/whats-new/2020/12/amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications">https://aws.amazon.com/about-aws/whats-new/2020/12/amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications</a>. (Announces automatic strong read-after-write consistency for all S3 operations across all AWS regions.)</p> 
+  <p>2. Amazon Web Services. 2021. Announcing general availability of AWS Fault Injection Simulator, a fully managed service to run controlled experiments; <a href="https://aws.amazon.com/about-aws/whats-new/2021/03/aws-announces-service-aws-fault-injection-simulator/">https://aws.amazon.com/about-aws/whats-new/2021/03/aws-announces-service-aws-fault-injection-simulator/</a>.</p> 
+  <p>3. Amazon Web Services. 2023. Announcing Amazon Aurora Limitless Database; <a href="https://aws.amazon.com/about-aws/whats-new/2023/11/amazon-aurora-limitless-database/">https://aws.amazon.com/about-aws/whats-new/2023/11/amazon-aurora-limitless-database/</a>.</p> 
+  <p>4. Bornholt, J., Joshi, R., Astrauskas, V., Cully, B., Kragl, B., Markle, S., Sauri, K., Schleit, D., Slatton, G., Tasiran, S., Van Geffen, J., Warfield, A. 2021. Using lightweight formal methods to validate a key-value storage node in Amazon S3. In <i>Proceedings of the ACM SIGOPS 28th Symposium on Operating Systems Principles</i>, 836–850; <a href="https://dl.acm.org/doi/10.1145/3477132.3483540">https://dl.acm.org/doi/10.1145/3477132.3483540</a>.</p> 
+  <p>5. Bronson, N., Aghayev, A., Charapko, A., Zhu, T. 2021. Metastable failures in distributed systems. In <i>Proceedings of the Workshop on Hot Topics in Operating Systems</i>, 221–227; <a href="https://dl.acm.org/doi/10.1145/3458336.3465286">https://dl.acm.org/doi/10.1145/3458336.3465286</a>.</p> 
+  <p>6. Claessen, K., Hughes, J. 2000. QuickCheck: A lightweight tool for random testing of Haskell programs. In <i>Proceedings of the Fifth ACM SIGPLAN International Conference on Functional Programming</i>, 268–279; <a href="https://dl.acm.org/doi/10.1145/351240.351266">https://dl.acm.org/doi/10.1145/351240.351266</a>. </p> 
+  <p>7. de Moura, L., Ullrich, S. 2021. The Lean 4 theorem prover and programming language. In <i>Automated Deduction – CADE 28</i> (28th International Conference on Automated Deduction, volume 12699 of <i>Lecture Notes in Computer Science</i>, 625–635. Springer; <a href="https://dl.acm.org/doi/10.1007/978-3-030-79876-5_37">https://dl.acm.org/doi/10.1007/978-3-030-79876-5_37</a>.</p> 
+  <p>8. Desai, A., Gupta, V., Jackson, E., Qadeer, S., Rajamani, S., Zufferey, D. 2013. P: safe asynchronous event-driven programming. <i>ACM SIGPLAN Notices</i> 48(6), 321–332; <a href="https://dl.acm.org/doi/10.1145/2499370.2462184">https://dl.acm.org/doi/10.1145/2499370.2462184</a>.</p> 
+  <p>9. Fioraldi, A., Maier, D., Eißfeldt, H., Heuse, M. 2020. AFL++: Combining incremental steps of fuzzing research. In <i>14th Usenix Workshop on Offensive Technologies</i>; <a href="https://www.usenix.org/conference/woot20/presentation/fioraldi">https://www.usenix.org/conference/woot20/presentation/fioraldi</a>.</p> 
+  <p>10. Harrison, J. 2009. HOL Light: an overview. In <i>Proceedings of the 22nd International Conference on Theorem Proving in Higher Order Logics</i>, Munich, Germany, ed., S. Berghofer, T. Nipkow, C. Urban, and M. Wenzel, 60–66, volume 5674 of <i>Lecture Notes in Computer Science</i>. Springer-Verlag; <a href="https://link.springer.com/chapter/10.1007/978-3-642-03359-9_4">https://link.springer.com/chapter/10.1007/978-3-642-03359-9_4</a>.</p> 
+  <p>11. Havelund, K., Rosu, G. 2019. Runtime verification – 17 years later. In <i>Runtime Verification</i>, 18th International Conference, RV 2018, Limassol, Cyprus, ed., C. Colombo and M. Leucker, 3–17, volume 11237 of <i>Lecture Notes in Computer Science</i>. Springer; <a href="https://link.springer.com/book/10.1007/978-3-030-03769-7">https://link.springer.com/book/10.1007/978-3-030-03769-7</a>.</p> 
+  <p>12. Hicks, M. 2023. How we built Cedar with automated reasoning and differential testing. Amazon Science; <a href="https://www.amazon.science/blog/how-we-built-cedar-with-automated-reasoning-and-differential-testing">https://www.amazon.science/blog/how-we-built-cedar-with-automated-reasoning-and-differential-testing</a>.</p> 
+  <p>13. Kingsbury, K., Alvaro, P. 2020. Elle: inferring isolation anomalies from experimental observations. <i>Proceedings of the VLDB Endowment</i> 14(3), 268–280; <a href="https://dl.acm.org/doi/10.14778/3430915.3430918">https://dl.acm.org/doi/10.14778/3430915.3430918</a>.</p> 
+  <p>14. Lamport, L. 2002. <i>Specifying Systems: The TLA+ Language and Tools for Hardware and Software Engineers</i>. Addison-Wesley Professional.</p> 
+  <p>15. Lamport, L. 2015. Who builds a house without drawing blueprints? <i>Communications of the ACM</i> 58(4), 38–41; <a href="https://dl.acm.org/doi/10.1145/2736348">https://dl.acm.org/doi/10.1145/2736348</a>.</p> 
+  <p>16. Lean Prover Community. 2024. Lean 4. GitHub; <a href="https://github.com/leanprover/lean4">https://github.com/leanprover/lean4</a>.</p> 
+  <p>17. Lee, J., Becker, H., Harrison, J. 2024. Formal verification makes RSA faster—and faster to deploy. Amazon Science; <a href="https://www.amazon.science/blog/formal-verification-makes-rsa-faster-and-faster-to-deploy">https://www.amazon.science/blog/formal-verification-makes-rsa-faster-and-faster-to-deploy</a>.</p> 
+  <p>18. Leino, K. R. M. 2010. Dafny: an automatic program verifier for functional correctness. In <i>Proceedings of the 16th International Conference on Logic for Programming, Artificial Intelligence, and Reasoning</i>, 348–370. Springer-Verlag; <a href="https://dl.acm.org/doi/10.5555/1939141.1939161">https://dl.acm.org/doi/10.5555/1939141.1939161</a>.</p> 
+  <p>19. MacIver, D. R., Hatfield-Dodds, Z., et al. 2019. Hypothesis: a new approach to property-based testing. <i>Journal of Open Source Software</i> 4(43), 1891; <a href="https://joss.theoj.org/papers/10.21105/joss.01891.pdf">https://joss.theoj.org/papers/10.21105/joss.01891.pdf</a>.</p> 
+  <p>20. Monteiro, F., Roy, P. 2023. Using Kani to validate security boundaries in AWS Firecracker. Technical report, Amazon Web Services; <a href="https://model-checking.github.io/kani-verifier-blog/2023/08/31/using-kani-to-validate-security-boundaries-in-aws-firecracker.html">https://model-checking.github.io/kani-verifier-blog/2023/08/31/using-kani-to-validate-security-boundaries-in-aws-firecracker.html</a>.</p> 
+  <p>21. Newcombe, C., Rath, T., Zhang, F., Munteanu, B., Brooker, M., Deardeuff, M. 2015. How Amazon Web Services uses formal methods. <i>Communications of the ACM </i>58(4), 66–73. <a href="https://dl.acm.org/doi/10.1145/2699417">https://dl.acm.org/doi/10.1145/2699417</a>.</p> 
+  <p>22. P Team. 2024. P: a programming language for formal specification of distributed systems. <a href="https://github.com/p-org/P">https://github.com/p-org/P</a>. (Used extensively in AWS and Microsoft for formal verification of distributed systems.)</p> 
+  <p>23. Rigger, M., Su, Z. 2020. Testing database engines via pivoted query synthesis. In 14th Usenix Symposium on Operating Systems Design and Implementation, Article 38, 667–682; <a href="https://dl.acm.org/doi/10.5555/3488766.3488804">https://dl.acm.org/doi/10.5555/3488766.3488804</a>. </p> 
+  <p>24. Rungta, N. 2024. Trillions of formally verified authorizations a day! Splash keynote; <a href="https://2024.splashcon.org/details/splash-2024-keynotes/3/Trillions-of-Formally-Verified-Authorizations-a-day-">https://2024.splashcon.org/details/splash-2024-keynotes/3/Trillions-of-Formally-Verified-Authorizations-a-day-</a>.</p> 
+  <p>25. Vogels, W. 2021. Diving deep on S3 consistency. All Things Distributed; <a href="https://www.allthingsdistributed.com/2021/04/s3-strong-consistency.html">https://www.allthingsdistributed.com/2021/04/s3-strong-consistency.html</a>. (Blog post describing the implementation of strong consistency in Amazon S3.)</p> 
+  <p>&nbsp;</p> 
+  <p><b>Marc&nbsp;Brooker&nbsp;</b>is a Distinguished Engineer at Amazon Web Services, where he focusses on AI and databases. He's interested in distributed systems, serverless, systems correctness, and formal methods. Marc holds a Ph.D. in Electrical Engineering from the University of Cape Town.</p> 
+  <p><b>Ankush Desai </b>is a Principal Applied Scientist at Amazon Web Services, where he focusses on building tools and techniques that help developers deliver distributed services with high assurance of correctness. He's interested in improving developer productivity, formal methods, systematic testing, fuzzing, and distributed systems. Ankush holds a PhD in Computer Science from the University of California, Berkeley.</p> 
+  <p>Copyright © 2024 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'90eb0f385dccf273',t:'MTczOTAxMTgzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 22, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3712057">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Achilles Benetopoulos</span> - <a href="detail.cfm?id=3712258"><b>Intermediate Representations for the Datacenter Computer</b></a>
+	  <br />
+	  We have reached a point where distributed computing is ubiquitous. In-memory application data size is outstripping the capacity of individual machines, necessitating its partitioning over clusters of them; online services have high availability requirements, which can be met only by deploying systems as collections of multiple redundant components; high durability requirements can be satisfied only through data replication, sometimes across vast geographical distances.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>David R. Morrison</span> - <a href="detail.cfm?id=3711677"><b>Simulation: An Underutilized Tool in Distributed Systems</b></a>
+	  <br />
+	  Simulation has a huge role to play in the advent of AI systems: We need an efficient, fast, and cost-effective way to train AI agents to operate in our infrastructure, and simulation absolutely provides that capability.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Matt Fata, Philippe-Joseph Arida, Patrick Hahn, Betsy Beyer</span> - <a href="detail.cfm?id=3264508"><b>Corp to Cloud: Google&#8217;s Virtual Desktops</b></a>
+	  <br />
+	  Over one-fourth of Googlers use internal, data-center-hosted virtual desktops. This on-premises offering sits in the corporate network and allows users to develop code, access internal resources, and use GUI tools remotely from anywhere in the world. Among its most notable features, a virtual desktop instance can be sized according to the task at hand, has persistent user storage, and can be moved between corporate data centers to follow traveling Googlers. Until recently, our virtual desktops were hosted on commercially available hardware on Google&#8217;s corporate network using a homegrown open-source virtual cluster-management system called Ganeti. Today, this substantial and Google-critical workload runs on GCP (Google Compute Platform).
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Pat Helland</span> - <a href="detail.cfm?id=3025012"><b>Life Beyond Distributed Transactions</b></a>
+	  <br />
+	  This article explores and names some of the practical approaches used in the implementation of large-scale mission-critical applications in a world that rejects distributed transactions. Topics include the management of fine-grained pieces of application data that may be repartitioned over time as the application grows. Design patterns support sending messages between these repartitionable pieces of data.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
