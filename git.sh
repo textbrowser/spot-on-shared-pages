@@ -13,11 +13,11 @@ then
     exit 1
 fi
 
-cd ~/spot-on-shared-pages
+cd ~/spot-on-shared-pages.d 2>/dev/null
 
 if [ ! $? -eq 0 ]
 then
-    echo "Cannot set spot-on-shared-pages as the current directory."
+    echo "Cannot set spot-on-shared-pages.d as the current directory."
     exit 1
 fi
 
