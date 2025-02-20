@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#" class="h-100">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        'event' : 'contentView',
+        'tags': 'INI,Newton Gateway,quantum computing,cryptography',
+        'content_type': 'article',
+      });
+    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WVSM3WTQ');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8" />
+<meta name="description" content="Our digital, networked lives are only possible thanks to cryptography  – the science of keeping information secret. It is used in our web browsers when we shop online to protect our credit card details from thieves.  The banking network needs cryptography to keep financial systems secure so that someone can&#039;t hack in and edit your transaction history to change the £2.50 you spent on your morning coffee to £2.5 million." />
+<link rel="canonical" href="https://plus.maths.org/content/post-quantum-cryptography" />
+<link rel="image_src" href="https://plus.maths.org/content/sites/plus.maths.org/files/styles/social_sharing/public/2025-02/WheatPennsylvania1943_crop.jpg?itok=nThmcXQm" />
+<meta property="og:site_name" content="Plus Maths" />
+<meta property="og:type" content="Article" />
+<meta property="og:url" content="https://plus.maths.org/content/post-quantum-cryptography" />
+<meta property="og:title" content="Post-quantum cryptography" />
+<meta property="og:description" content="Ingenious uses of maths have provided the key to internet security, but how can we secure our digital lives in the face of quantum computing?" />
+<meta property="og:image" content="https://plus.maths.org/content/sites/plus.maths.org/files/styles/social_sharing/public/2025-02/WheatPennsylvania1943_crop.jpg?itok=nThmcXQm" />
+<meta property="article:publisher" content="https://www.facebook.com/plusmagazine/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Ingenious uses of maths have provided the key to internet security, but how can we secure our digital lives in the face of quantum computing?" />
+<meta name="twitter:title" content="Post-quantum cryptography" />
+<meta name="twitter:site" content="@plusmathsorg" />
+<meta name="twitter:image" content="https://plus.maths.org/content/sites/plus.maths.org/files/styles/social_sharing/public/2025-02/WheatPennsylvania1943_crop.jpg?itok=nThmcXQm" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/content/themes/custom/bootplus5/favicon.ico" type="image/vnd.microsoft.icon" />
+
+    <title>Post-quantum cryptography | plus.maths.org</title>
+    <meta name="theme-color" content="#9A7A9F">
+    <link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/core/components/progress.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/core/components/ajax-progress.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/align.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/fieldgroup.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/container-inline.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/clearfix.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/details.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/hidden.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/item-list.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/js.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/nowrap.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/position-container.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/reset-appearance.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/resize.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/system-status-counter.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/system-status-report-counters.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/system-status-report-general-info.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/system/components/tablesort.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/filter/filter.caption.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/media/filter.caption.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/modules/custom/plusblocks/css/plusblocks.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/views/views.module.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/core/themes/stable9/css/core/assets/vendor/normalize-css/normalize.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/action-links.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/breadcrumb.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/container-inline.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/details.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/exposed-filters.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/field.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/form.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/icons.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/inline-form.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/item-list.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/links.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/menu.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/more-link.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/pager.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/tabledrag.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/tableselect.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/tablesort.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/textarea.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/ui-dialog.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/messages.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/classy/css/components/node.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/components/progress.css?srmavc" />
+<link rel="stylesheet" media="all" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+<link rel="stylesheet" media="all" href="/content/themes/custom/bootplus5/css/tabs.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/custom/bootplus5/css/style.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/css/style.css?srmavc" />
+<link rel="stylesheet" media="all" href="/content/themes/contrib/bootstrap5/dist/icons/1.11.0/font/bootstrap-icons.css?srmavc" />
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/content\/","pathPrefix":"","currentPath":"node\/8008","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"gtag":{"tagId":"","consentMode":false,"otherIds":[],"events":[],"additionalConfigInfo":[]},"ajaxPageState":{"libraries":"eJxtj9sOwjAMQ3-oW5_4HpR2oRTSpaozYHw94yLuL5btIyVyULUqE1Y-iQaSDrHlanDhB9gseUxvAFXywLcC1qiufCB85qftduiEjGHv_M_pBykMUGK4KATMftTlU9TGi2uFJJ_ZJdUkvDZKPi3ynXva0emzLK6QbZfag22qrvCQyW-yGLc-UrWso7uOC6JxD_-yDjOMy33hIfMR_qZ90WESvgDYJn5f","theme":"bootplus5","theme_token":null},"ajaxTrustedUrl":[],"gtm":{"tagId":null,"settings":{"data_layer":"dataLayer","include_environment":false},"tagIds":["GTM-WVSM3WTQ"]},"mathjax":{"config_type":1,"config":{"loader":{"load":["[tex]\/textmacros"]},"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"packages":{"[+]":["textmacros"]}}}},"user":{"uid":0,"permissionsHash":"22948a06f4f2b4b4b2606d02e8cda421465e7a16de30448a6d3c360c08e68696"}}</script>
+<script src="/content/sites/plus.maths.org/files/js/js_MxNwkG4uuw3wJhDKHJ8OH2U0iLOzg8Eo3puvmPJbPQ0.js?scope=header&amp;delta=0&amp;language=en&amp;theme=bootplus5&amp;include=eJxdjUEOgzAMBD-U4BPvqZw0cqFGtrJG4vnQHkBwWc3OHraYheuKkUStsGbUPnkglXOA6_Ruf4Ho7CNdmGdk5WiIJGai7RUsJEc8-8Azb3e5pIXjc2hCi9XT766o1S_owh2rUD5i"></script>
+<script src="/content/modules/contrib/google_tag/js/gtag.js?srmavc"></script>
+<script src="/content/modules/contrib/google_tag/js/gtm.js?srmavc"></script>
+
+
+    
+    </head>
+  <body class="path-node page-node-type-article   d-flex flex-column h-100">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVSM3WTQ"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+        <a href="#main-content" class="ypkmf visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVSM3WTQ"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+      <div class="dialog-off-canvas-main-canvas d-flex flex-column h-100" data-off-canvas-main-canvas>
+    
+
+<header>
+  
+  <div class="navbar navbar-expand-lg navbar-light text-dark ">
+    <div class="container container-page-title-header">
+      <div class="row">
+        <h1 class="page-title d-none">Plus.Maths.org</h1>
+        <div class="col-xl-5 col-lg-5 col-sm-10 col-md-10 col-10 page-title-header">
+          <a href="/"><img src="/content/themes/custom/bootplus5/pluslogo.svg" alt="plus logo" class="page-logo"></a>
+        </div>
+        <div class="d-block d-lg-none col-sm-2 col-md-2 col-2 page-title-header-menu-button">
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#main-navbar" aria-controls="#main-navbar"
+                  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="d-none d-lg-block col-xl-7 col-lg-7 col-sm-12">
+            <div class="region region-nav-first">
+    <nav aria-labelledby="block-bootplus-menu-secondary-menu-menu" id="block-bootplus-menu-secondary-menu" class="block block-menu navigation menu--secondary-menu">
+            
+  <h5 class="visually-hidden" id="block-bootplus-menu-secondary-menu-menu"></h5>
+  
+
+        
+        <ul data-block="nav_first" class="nav navbar-nav secondary-menu">
+            <li class="nav-item">
+      <a href="/content/search" class="nav-link" data-drupal-link-system-path="search">Search</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/about-plus" class="nav-link" data-drupal-link-system-path="node/5184">About</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/support-plus" class="nav-link" data-drupal-link-system-path="node/5185">Support</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/plus-sponsors" class="nav-link" data-drupal-link-system-path="node/5186">Sponsors</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/subscribe-plus" class="nav-link" data-drupal-link-system-path="node/5187">Subscribe</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/terms-use-and-notices" class="nav-link" data-drupal-link-system-path="node/5188">Terms of use</a>
+          </li>
+  </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+        </div>
+      </div>
+  </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+          <div class="region region-nav-main">
+    
+<div class="" id="navbarSupportedContent">
+  
+  <nav aria-labelledby="block-bootplus5-main-navigation-menu" id="block-bootplus5-main-navigation" class="block block-menu navigation menu--main">
+                      
+    <h5 class="visually-hidden" id="block-bootplus5-main-navigation-menu">Main navigation</h5>
+    
+
+              
+            <ul data-block="nav_main" class="navbar-nav mr-auto">
+                        <li class="nav-item">
+          <a href="/content/" title="" class="nav-item nav-link home" data-drupal-link-system-path="&lt;front&gt;">Home</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/articles" title="news features columns and opinions" class="nav-item nav-link articles" data-drupal-link-system-path="articles">Articles</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/collections" title="Packages" class="nav-item nav-link collections" data-drupal-link-system-path="collections">Collections</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/podcasts" title="Podcasts" class="nav-item nav-link podcasts" data-drupal-link-system-path="podcasts">Podcasts</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/puzzle" title="" class="nav-item nav-link puzzles" data-drupal-link-system-path="puzzle">Puzzles</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/review" title="Book film and other reviews" class="nav-item nav-link discover" data-drupal-link-system-path="review">Discover</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/tags/video" class="nav-item nav-link videos" data-drupal-link-system-path="taxonomy/term/1591">Videos</a>
+      </li>
+
+                    <li class="nav-item">
+          <a href="/content/user/login" class="nav-item nav-link login" data-drupal-link-system-path="user/login">Login</a>
+      </li>
+
+        </ul>
+  
+
+
+
+      </nav>
+</div>
+<nav aria-labelledby="block-secondarymenu-2-menu" id="block-secondarymenu-2" class="phone-only block block-menu navigation menu--secondary-menu">
+            
+  <h5 class="visually-hidden" id="block-secondarymenu-2-menu">Secondary menu</h5>
+  
+
+        
+        <ul data-block="nav_main" class="nav navbar-nav secondary-menu">
+            <li class="nav-item">
+      <a href="/content/search" class="nav-link" data-drupal-link-system-path="search">Search</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/about-plus" class="nav-link" data-drupal-link-system-path="node/5184">About</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/support-plus" class="nav-link" data-drupal-link-system-path="node/5185">Support</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/plus-sponsors" class="nav-link" data-drupal-link-system-path="node/5186">Sponsors</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/subscribe-plus" class="nav-link" data-drupal-link-system-path="node/5187">Subscribe</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/terms-use-and-notices" class="nav-link" data-drupal-link-system-path="node/5188">Terms of use</a>
+          </li>
+  </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+    </div>
+  </div>
+</header>
+
+<main role="main">
+  <a id="main-content" tabindex="-1"></a>
+      
+  
+  <div class="container">
+
+    
+    <div class="main">
+        <div class="region region-content">
+    <div data-drupal-messages-fallback class="hidden"></div>
+    <div id="block-bootplus5-page-title" class="block block-core block-page-title-block">
+  
+    
+      <div class="container page-title-container">
+  <div class="row">
+                    <div class="col-md-12 col-sm-12">
+            
+              <h1 class="page-title"><span class="field field--name-title field--type-string field--label-hidden">Post-quantum cryptography</span>
+</h1>
+            
+              
+                      <a href="/content/list-by-author/Rachel+Thomas">Rachel Thomas</a>                <a class="plus-share-button" data-bs-toggle="tooltip" data-bs-placement="top" title="Share this page!"
+           data-title="Post-quantum cryptography" data-url="https://plus.maths.org/post-quantum-cryptography" data-description="Article from Plus">Share this page</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+    <div id="block-bootplus-system-main" class="block block-system block-system-main-block">
+  
+    
+      
+<article data-history-node-id="8008" class="node node--type-article node--promoted node--view-mode-full"
+  data-type="article"
+  data-view-mode="full">
+
+  <header>
+    <figure>
+              
+            <div class="field field--name-field-media-image field--type-entity-reference field--label-hidden field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/small_square/public/2025-02/WheatPennsylvania1943_crop.jpg?h=7e9e859f&amp;itok=K-XYK_Pp" width="200" height="200" alt="Wheat in Pennsylvania in 1943 – Image in public domain" class="img-fluid image-style-small-square" />
+
+
+</div>
+      
+          </figure>
+
+    <div class="tell">
+      
+      <h1>
+        <span class="field field--name-title field--type-string field--label-hidden">Post-quantum cryptography</span>
+
+      </h1>
+      
+      
+            <div class="field field--name-field-subtitle field--type-string field--label-hidden field__item">Making the world&#039;s networks quantum safe</div>
+      
+
+      <a href="/content/list-by-author/Rachel+Thomas">
+        
+      <div class="field field--name-field-author field--type-string field--label-hidden field__items">
+              <div class="field__item">Rachel Thomas</div>
+          </div>
+  </a>
+    </div>
+  </header>
+
+      <footer class="node__meta">
+      
+      <div class="node__submitted">
+        Submitted by <span class="field field--name-uid field--type-entity-reference field--label-hidden"><span>Rachel</span></span>
+ on <span class="field field--name-created field--type-created field--label-hidden"><time datetime="2025-02-19T18:42:35+00:00" title="Wednesday, February 19, 2025 - 18:42" class="datetime">19  February,  2025</time>
+</span>
+        
+      </div>
+    </footer>
+  
+  <div class="node__content">
+    
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p dir="ltr">Our digital, networked lives are only possible thanks to&nbsp;<em>cryptography</em>&nbsp;<em>&nbsp;–&nbsp;</em>the science of keeping information secret. It is used in our web browsers when we shop online to protect our credit card details from thieves.&nbsp; The banking network needs cryptography to keep financial systems secure so that someone can't hack in and edit your transaction history to change the £2.50 you spent on your morning coffee to £2.5 million. Even the mobile phone network uses cryptography to stop your phone from interfering with the radio frequencies of other phones and devices around you.&nbsp;</p><figure role="group" class="caption caption-drupal-media image_resized align-right">
+<div class="media media--type-image media--view-mode-default media-embed-resized" style="width:241px;" data-view-mode="cke_media_resize_medium">
+  
+      
+  <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
+    <div class="field__label visually-hidden">Image</div>
+              <div class="field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/large/public/2025-02/laptop.jpg?itok=46ZHisL7" width="350" height="276" alt="Laptop secured by a padlock - image purchased from Fotalia" class="img-fluid image-style-large">
+
+
+</div>
+          </div>
+
+  </div>
+
+<figcaption>Our digital, networked lives are only possible thanks to cryptography.</figcaption>
+</figure>
+<p dir="ltr">Ingenious uses of maths have provided the key to cryptography so far, but&nbsp;<a href="/content/maths-minute-quantum-computing-0" target="_blank">quantum computing</a> could make our current techniques useless. How can we prepare for this quantum future and ensure we can continue to live our digital lives?</p><p dir="ltr">This was one of the key questions being discussed at an event&nbsp;<a href="https://gateway.newton.ac.uk/event/OFBW71" target="_blank"><em>Quantum Computing: Applications and Challenges</em></a> organised by the Newton Gateway to Mathematics, held as part of a&nbsp;<a href="https://www.newton.ac.uk/event/qia/" target="_blank">longer research programme</a> at the Isaac Newton Institute for Mathematical Sciences in Cambridge.</p><h3 dir="ltr">Quantum danger</h3><p dir="ltr">The foundation of all internet security is something called&nbsp; <em>public-key cryptography</em>.&nbsp; (You can read an easy introduction to this idea&nbsp;<a href="/content/maths-minute-cryptography" target="_blank">here</a>.) The public-key cryptography systems used today are currently secure, even when attacked by the fastest computers. This is because the cryptographic standards get strengthened as computing power increases.&nbsp; For example the&nbsp;<a href="/content/maths-minute-cryptography" target="_blank">RSA</a> system relies on the fact that it is very hard to factor very large numbers.&nbsp; In 2007, to maintain security despite the advances in computing power,&nbsp;<a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/security/encryption/how-should-we-implement-encryption/" target="_blank">the recommended standard for RSA</a> moved from using numbers with over 300 digits to numbers with over 600 digits.</p><p dir="ltr">But current cryptographic techniques will be at risk when quantum computers become more useful and more available, said&nbsp; <a href="https://www.linkedin.com/in/zygmuntlozinski/?originalSubdomain=uk" target="_blank">Zygmunt Lozinski</a> from IBM Research, one of the speakers at the event.&nbsp; "Suppose we had a large scale quantum computer – what are the implications for that for our networks?"&nbsp;</p><p dir="ltr">The problem is that quantum computers operate in a very different way to classical computers, which means that you can write very different algorithms for solving mathematical problems on quantum computers. In 1994, seemingly out of the blue, the American mathematician&nbsp;<a href="https://en.wikipedia.org/wiki/Shor%27s_algorithm" target="_blank">Peter Shor</a> came up with a&nbsp;<a href="https://scottaaronson.blog/?p=208" target="_blank">famous algorithm</a> which can in theory break the RSA system.&nbsp; "I don't know how he did it," Lozinski said.&nbsp; "He came up with the idea that if you had a quantum computer, which didn't exist in 1994, it would allow you to break RSA really quickly."</p><p dir="ltr">Even though there aren't quantum computers capable of running Shor's algorithm yet, protecting our networks against this potential quantum danger is already important.&nbsp; "It takes a long time to update technology and networks – 10, 20, even 50 years," Lozinski said.&nbsp; And as well as protecting future networks against attacks by quantum computers, the data in our networks today is already at risk.&nbsp;&nbsp;</p><p dir="ltr">If data is valuable it could be stolen now in its encrypted form, with the intention of holding onto the data until it is possible to decrypt it in the future when quantum computers are available, explained Lozinski.&nbsp; (This is something called a&nbsp;<a href="https://en.wikipedia.org/wiki/Harvest_now,_decrypt_later" target="_blank"><em>harvest now - decrypt later</em></a> attack.)&nbsp; For example the encrypted details of a drug in development today or the design of a new aircraft engine might be worth billions of pounds if it can be decrypted and used by competitors in the future.&nbsp;</p><p dir="ltr">Of course some information is always publicly available, but we rely on cryptographic techniques to keep it secure against any interference. "If you own a house or flat that exists as a record in the land registry database in Plymouth and that is secured by public key cryptography," Lozinski said.&nbsp; "If I could change that record that would be a tragedy for you.&nbsp; But if I can change that record for [thousands of] people that could cause a global infrastructure crisis."</p><p dir="ltr">But not all hope is lost. The good news is that maths can provide a cryptographic system that can't be broken, even by quantum computers.</p><h3 dir="ltr">Lattice-based cryptography is the key</h3><p dir="ltr">The public-key cryptography of RSA and elliptic cryptography rely on having a mathematical problem that is easy to calculate in one direction but hard to solve in the other.&nbsp; For RSA cryptography the easy to calculate problem is multiplying two numbers together – this is the part of RSA that metaphorically snaps the padlock shut on your message.&nbsp; And the hard to solve problem is factoring a large number – the prime factors providing the key to unlock the mathematical padlock.</p><p dir="ltr">For&nbsp;<em>post-quantum cryptography</em> we need a mathematical problem that even a quantum computer cannot solve (to the best of our knowledge).&nbsp; And the top current candidate is based on the mathematics of&nbsp;<em>lattices</em>.&nbsp;</p><p dir="ltr">This time the mathematical padlock is a bit harder to describe than it was for the RSA system.&nbsp; You can think of a two-dimensional lattice as a grid of dots on an infinitely large page.&nbsp; Now rather than a 2D grid on a page, mathematics gives you a way to work with very high-dimensional lattices.&nbsp; These high-dimensional&nbsp; lattices might have hundreds, or even thousands, of dimensions. (You can read an introduction to lattices&nbsp;<a href="/content/maths-minute-lattices" target="_blank">here</a>, and an introduction to the idea of higher dimensions&nbsp;<a href="/content/maths-minute-higher-dimensions" target="_blank">here</a>.) Lozinski described lattice based cryptography as "finding a needle in a haystack".&nbsp; You encrypt your message by putting it within the high-dimensional lattice – the haystack.&nbsp; Then your message is as hard to find as the proverbial needle, unless you have some key piece of information. (You can find out more in our introduction to lattice-based cryptography&nbsp;<a href="/content/lattice-based-cryptograph" target="_blank">here</a>.)</p><figure role="group" class="caption caption-drupal-media image_resized align-center">
+<div class="media media--type-image media--view-mode-default media-embed-resized" style="width:361px;" data-view-mode="cke_media_resize_medium">
+  
+      
+  <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
+    <div class="field__label visually-hidden">Image</div>
+              <div class="field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/large/public/2025-02/WheatPennsylvania1943_crop.jpg?itok=ZS0fcQiA" width="800" height="605" alt="Wheat in Pennsylvania in 1943 – Image in public domain" class="img-fluid image-style-large">
+
+
+</div>
+          </div>
+
+  </div>
+
+<figcaption>Can you find the needle in this high dimensional lattice?</figcaption>
+</figure>
+<p dir="ltr">Lattice based cryptography is currently one of the best candidates for keeping our information safe in the age of quantum computing.&nbsp; Three of the four algorithms that&nbsp;<a href="https://www.nist.gov/" target="_blank">NIST</a> (the US National Institute of Standards and Technology) are standardising for use in post-quantum cryptography are lattice based. &nbsp; (You can find the technical details on the&nbsp;<a href="https://csrc.nist.gov/projects/post-quantum-cryptography" target="_blank">NIST website</a>, where they also have this&nbsp;<a href="https://www.nist.gov/cybersecurity/what-post-quantum-cryptography" target="_blank">excellent plain language summary</a> of this work.) "But there are no guarantees", said&nbsp;<a href="https://www.quantumsoftwarelab.com/qsl-board/petros-wallden" target="_blank">Petros Wallden</a>, from the Quantum Software Lab at the University of Edinburgh. "Post-quantum cryptography needs the same scrutiny as classical cryptography."</p><h3 dir="ltr">Cryptographic agility</h3><p dir="ltr">The reason we trusted classical cryptography such as RSA is that a community of experts and researchers keep trying to break it.&nbsp; But despite years of work and increases in (classical) computing power, only small advances have been made in cracking these classical cryptographic systems.&nbsp; "To establish the same confidence in quantum cryptography we need the cryptanalysis community to do the same thing," said Wallden, in his talk at the&nbsp;<a href="https://gateway.newton.ac.uk/event/OFBW71" target="_blank">Newton Gateway event</a>.&nbsp; "We need expertise in quantum algorithms and cryptography to scrutinise post-quantum cryptography."&nbsp;&nbsp;</p><p dir="ltr">Currently, though, there are not many people with all the necessary skills.&nbsp; Many of the speakers hoped that this event, and&nbsp; the longer&nbsp;<a href="https://www.newton.ac.uk/event/qia/" target="_blank">INI programme</a>, would encourage more researchers into the area.&nbsp; As well as being fascinating mathematically and technically, it is also a chance to have a huge impact on our society and the way it works.&nbsp;</p><p dir="ltr">But having the right mathematical tools for post-quantum cryptography isn't enough.&nbsp; We can't change the locks on the world's networks overnight.&nbsp; The US is leading the effort so far, with funding and national plans including the work done at NIST.&nbsp; Now European countries are aiming to have their own plans and be&nbsp;<a href="https://digital-strategy.ec.europa.eu/en/library/recommendation-coordinated-implementation-roadmap-transition-post-quantum-cryptography" target="_blank">ready to start work in 2026</a>. And Lozinski and Wallden are part of the community in the UK moving things forward.</p><figure role="group" class="caption caption-drupal-media image_resized align-right">
+<div class="media media--type-image media--view-mode-default media-embed-resized" style="width:314px;" data-view-mode="cke_media_resize_medium">
+  
+      
+  <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
+    <div class="field__label visually-hidden">Image</div>
+              <div class="field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/large/public/2025-02/ibm-quantum-system-one-ces-2020_50252942522_o_0.jpg?itok=IvU98AGn" width="800" height="533" alt="Inside the IBM Quantum System One installed in 2023 at the Cleveland Clinic for use in medical research (Image: IBM)" class="img-fluid image-style-large">
+
+
+</div>
+          </div>
+
+  </div>
+
+<figcaption>Inside a quantum computer: inside the IBM Quantum System One installed in 2023 at the&nbsp;<a href="https://newsroom.clevelandclinic.org/2023/03/20/cleveland-clinic-and-ibm-unveil-first-quantum-computer-dedicated-to-healthcare-research">Cleveland Clinic</a> for use in medical research (Image:&nbsp;<a href="https://newsroom.clevelandclinic.org/2023/03/20/cleveland-clinic-and-ibm-unveil-first-quantum-computer-dedicated-to-healthcare-research">IBM</a>)</figcaption>
+</figure>
+<p dir="ltr">&nbsp;"Luckily there will not be a single 'Q-Day' where everything suddenly becomes vulnerable," Lozinski said.&nbsp; Large-scale quantum computers may start coming online in the next decades, but only a few at a time. And these initial quantum computers will probably be focussed on very high-value research that can't be feasibly done in other ways, such as&nbsp; modeling the reactions inside electric vehicle batteries or folding proteins.&nbsp; But the consensus is that quantum computers capable of breaking classical cryptography will eventually become available in the future.&nbsp; "We need policy makers and industry not to kick the can down the road, and identify what interventions are needed today. There's a huge amount of work to be done."</p><p>Ultimately, Lozinski said, we need to move towards&nbsp;<em>cryptographic agility</em>: "Just as you can replace the batteries in a torch, or plug in a new pair of headphones, we need pluggable cryptographic components in our systems."&nbsp; We need to learn the lessons from first implementing public-key cryptography, then realising we need to move to post-quantum cryptography, to change the way we think about keeping the world's networks safe.&nbsp; As Lozinski said: "It's now longer a case of do it once and it's done."&nbsp;</p><h3 dir="ltr">About this article</h3><p dir="ltr">This article was based on talks by Zygmunt Lozinski and Petros Wallden at&nbsp;<a href="https://gateway.newton.ac.uk/event/OFBW71" target="_blank"><em>Quantum Computing: Applications and Challenges</em></a>, an event organised by the&nbsp;<a href="https://gateway.newton.ac.uk/" target="_blank">Newton Gateway to Mathematics</a> as part of the&nbsp;<a href="https://www.newton.ac.uk/event/qia/" target="_blank">Quantum information, quantum groups and operator algebras</a> programme at the Isaac Newton Institute for Mathematical Sciences in Cambridge.</p><p dir="ltr"><a href="https://www.linkedin.com/in/zygmuntlozinski/?originalSubdomain=uk" target="_blank">Zygmunt Lozinski</a> is a Senior Technical Staff Member in IBM Research, where he is responsible for making the world’s networks quantum-safe.</p><p dir="ltr"><a href="https://www.quantumsoftwarelab.com/qsl-board/petros-wallden" target="_blank">Petros Wallden</a> is an associate professor at the Quantum Software Lab at the University of Edinburgh.</p><p dir="ltr"><a href="https://plus.maths.org/content/people/index.html#rachel">Rachel Thomas</a> is Editor of Plus</p><hr><p dir="ltr"><em>This article was produced as part of our collaborations with the&nbsp;</em><a href="https://www.newton.ac.uk/"><em>Isaac Newton Institute</em></a><em> for Mathematical Sciences (INI) and the&nbsp;</em><a href="https://gateway.newton.ac.uk/"><em>Newton Gateway to Mathematics</em></a><em>.</em></p><p dir="ltr"><em>The INI is an international research centre and our neighbour here on the University of Cambridge's maths campus. The Newton Gateway is the impact initiative of the INI, which engages with users of mathematics. You can find all the content from the collaboration&nbsp;</em><a href="https://plus.maths.org/content/ini"><em>here</em></a><em>.</em></p><p dir="ltr">&nbsp;</p><figure role="group" class="caption caption-drupal-media align-center">
+<div class="media media--type-image media--view-mode-default">
+  
+      
+  <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
+    <div class="field__label visually-hidden">Image</div>
+              <div class="field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/large/public/2025-02/ini_logo_green.jpg?itok=nU2zS7YB" width="400" height="51" alt="INI logo" class="img-fluid image-style-large">
+
+
+</div>
+          </div>
+
+  </div>
+
+<figcaption>&nbsp;</figcaption>
+</figure>
+<figure role="group" class="caption caption-drupal-media align-center">
+<div class="media media--type-image media--view-mode-default">
+  
+      
+  <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
+    <div class="field__label visually-hidden">Image</div>
+              <div class="field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/large/public/2025-02/ngm%20logotype%20purple%20rgb%5B86%5D.png?itok=QNZjrQ-y" width="320" height="45" alt="Gateway logo" class="img-fluid image-style-large">
+
+
+</div>
+          </div>
+
+  </div>
+
+<figcaption>&nbsp;</figcaption>
+</figure>
+</div>
+      
+  <div class="field field--name-taxonomy-vocabulary-1 field--type-entity-reference field--label-above">
+    <div class="field__label">Read more about...</div>
+          <div class="field__items">
+              <div class="field__item"><a href="/content/tags/ini" hreflang="en">INI</a></div>
+          <div class="field__item"><a href="/content/tags/newton-gateway" hreflang="en">Newton Gateway</a></div>
+          <div class="field__item"><a href="/content/tags/quantum-computing" hreflang="en">quantum computing</a></div>
+          <div class="field__item"><a href="/content/tags/cryptography" hreflang="en">cryptography</a></div>
+              </div>
+      </div>
+  <div class="node__links">
+    <ul class="links inline"><li><a href="/content/user/login?destination=/content/comment/reply/node/8008/comment_node_article%23comment-form">Log in</a> or <a href="/content/user/register?destination=/content/comment/reply/node/8008/comment_node_article%23comment-form">register</a> to post comments</li></ul>  </div>
+<section class="field field--name-comment-node-article field--type-comment field--label-above comment-wrapper">
+  
+  
+
+  
+</section>
+
+  </div>
+</article>
+
+  </div>
+
+  </div>
+
+    </div>
+
+          <aside>
+          <div class="region region-sidebar-second">
+        <div id="block-iniblock" class="block block-plusblocks block-ini-block">
+  
+    
+      <div class="ini-block">
+   <div class="view-content">
+      <div class="item-list">
+         <ul>
+           <li class="views-row views-row-2 views-row-even">
+              <div class="views-field views-field-title">
+                 <span class="field-content"><a href="/content/ini"> </a>
+                 </span>
+              </div>
+              <div class="views-field views-field-field-promo-img">
+                   <div class="field-content">
+                      <a href="/content/ini">
+<img class="img-responsive" src="https://plus.maths.org/content/sites/plus.maths.org/files/ini-logo-tr.png" width="205" alt="">
+                       </a>
+                   </div>
+              </div>
+              <div class="views-field views-field-field-abs-txt">
+                    <div class="field-content"><p><a href="/content/ini">This content is part of our collaboration with the Isaac Newton Institute.  Find out more about their pioneering work!</a></p>
+               </div>
+              </div>
+           </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div> </div>
+  </div>
+    <div id="block-apracticalguidetowritingaboutanythingforanyone" class="block block-block-content block-block-content42e586d4-128f-4ba8-b820-b953d13be476">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="tex2jax_process"><div class="sidebar-card">
+    <div class="title">
+        <a href="/content/practical-guide-writing-about-anything-anyone">
+            A practical guide to writing about anything for anyone!</a>
+    </div>
+    <a href="/content/practical-guide-writing-about-anything-anyone">
+        <img src="/content/sites/plus.maths.org/files/articles/2023/writingguide/adobe_homeworkdog_web.jpg" width="300" height="229" alt="A dog has eaten someone's homework">
+    </a>
+    <div class="subtitle">
+        <p>Some practical tips to help you when you need it most!</p>
+    </div>
+</div></div></div>
+      
+  </div>
+    <div class="views-element-container block block-views block-views-blockrelated-content-block-1" id="block-views-block-related-content">
+  
+      <h2>You might also like</h2>
+    
+      <div data-block="sidebar_second"><div class="view view-related-content view-id-related_content view-display-id-block_1 js-view-dom-id-0c0aa0ad628dfae41ee79fad5f3a44ad5184b7916984a95824afcb87ab3ab261">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row">
+<article data-history-node-id="8007" class="node node--type-article node--promoted node--view-mode-sidebar-card"
+  data-type="article"
+  data-view-mode="sidebar-card">
+
+  <span class="type">article</span>
+
+  <header>
+    <figure>
+              
+            <div class="field field--name-field-media-image field--type-entity-reference field--label-hidden field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/small_square/public/2025-02/Haystack.png?h=eb3b73d7&amp;itok=Ir5bVCzW" width="200" height="200" alt="A Haystack in Nainital (Image by Perplexus – CC-BY-SA-4.0)" class="img-fluid image-style-small-square" />
+
+
+</div>
+      
+          </figure>
+
+    
+          <h3 >
+        <a href="/content/lattice-based-cryptograph" rel="bookmark"><span class="field field--name-title field--type-string field--label-hidden">Lattice-based cryptography</span>
+</a>
+      </h3>
+        
+  </header>
+
+  
+  <div class="node__content">
+    
+            <div class="clearfix text-formatted field field--name-field-abs-txt field--type-text field--label-hidden field__item"><p>Find out about <em>lattice-based</em> <em>cryptography – </em>the best candidate for keeping our networks safe in the face of attacks by quantum computers – in this brief introduction.</p></div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="views-row">
+<article data-history-node-id="8005" class="node node--type-article node--promoted node--view-mode-sidebar-card"
+  data-type="article"
+  data-view-mode="sidebar-card">
+
+  <span class="type">article</span>
+
+  <header>
+    <figure>
+              
+            <div class="field field--name-field-media-image field--type-entity-reference field--label-hidden field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/small_square/public/2025-02/ibm-quantum-system-one-ces-2020_50252942522_o_0.jpg?h=56d0ca2e&amp;itok=1-MBiYrk" width="200" height="200" alt="Inside the IBM Quantum System One installed in 2023 at the Cleveland Clinic for use in medical research (Image: IBM)" class="img-fluid image-style-small-square" />
+
+
+</div>
+      
+          </figure>
+
+    
+          <h3 >
+        <a href="/content/maths-minute-quantum-computing-0" rel="bookmark"><span class="field field--name-title field--type-string field--label-hidden">Maths in a minute: Quantum computing</span>
+</a>
+      </h3>
+        
+  </header>
+
+  
+  <div class="node__content">
+    
+            <div class="clearfix text-formatted field field--name-field-abs-txt field--type-text field--label-hidden field__item"><p><em><span style="background-color:transparent;color:#000000;font-family:Arial,sans-serif;font-size:11pt;font-variant:normal;font-weight:400;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;">Quantum computing</span></em><span style="background-color:transparent;color:#000000;font-family:Arial,sans-serif;font-size:11pt;font-style:normal;font-variant:normal;font-weight:400;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;"> often grabs the headlines. The word "quantum" itself is intriguing enough, but what exactly is quantum computing?</span></p></div>
+      
+  </div>
+
+</article>
+</div>
+    <div class="views-row">
+<article data-history-node-id="8003" class="node node--type-article node--promoted node--view-mode-sidebar-card"
+  data-type="article"
+  data-view-mode="sidebar-card">
+
+  <span class="type">article</span>
+
+  <header>
+    <figure>
+              
+            <div class="field field--name-field-media-image field--type-entity-reference field--label-hidden field__item">  <img loading="lazy" src="/content/sites/plus.maths.org/files/styles/small_square/public/2025-02/Firefly%20a%20padlock%20on%20a%20laptop%2C%20light%20background%3B%20internet%20security%20and%20data%20protection%2053816.jpg?h=a7ffc51c&amp;itok=8CstDuDe" width="200" height="200" alt="laptop with padlock" class="img-fluid image-style-small-square" />
+
+
+</div>
+      
+          </figure>
+
+    
+          <h3 >
+        <a href="/content/maths-minute-cryptography" rel="bookmark"><span class="field field--name-title field--type-string field--label-hidden">Maths in a minute: Cryptography</span>
+</a>
+      </h3>
+        
+  </header>
+
+  
+  <div class="node__content">
+    
+            <div class="clearfix text-formatted field field--name-field-abs-txt field--type-text field--label-hidden field__item"><p>Ingenious maths keeps your credit card details safe when you shop online and underlies the security of the internet. &nbsp;Find out how in this easy introduction.</p></div>
+      
+  </div>
+
+</article>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+    <div class="views-element-container block block-views block-views-blockrelated-tags-block-1" id="block-views-block-related-tags">
+  
+      <h2>Read more about...</h2>
+    
+      <div data-block="sidebar_second"><div class="view view-related-tags view-id-related_tags view-display-id-block_1 js-view-dom-id-2186c8ae6d64faa7c47aa6c9f8ef891b0e754177bb90a3b3b61ed1908041d851">
+  
+    
+      
+      <div class="view-content">
+          <div class="views-row"><div class="views-field views-field-name"><span class="field-content"><a href="/content/tags/ini" hreflang="en">INI</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-name"><span class="field-content"><a href="/content/tags/newton-gateway" hreflang="en">Newton Gateway</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-name"><span class="field-content"><a href="/content/tags/quantum-computing" hreflang="en">quantum computing</a></span></div></div>
+    <div class="views-row"><div class="views-field views-field-name"><span class="field-content"><a href="/content/tags/cryptography" hreflang="en">cryptography</a></span></div></div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+  </div>
+
+      </aside>
+    
+  </div>
+</main>
+
+<footer class="mt-auto     ">
+  <div class="container">
+      <div class="region region-footer">
+        <div id="block-camfooterblock" class="block block-plusblocks block-camfoot-block">
+  
+    
+      <div id="plus-camfooter" class="row">
+<div class="plus-caminfo col-sm-3">
+  <a href="http://www.cam.ac.uk"><img class="camlogo" src="/content/themes/custom/bootplus5/cam-logo-small-trans.png" alt="Cambridge University logo"></a>
+</div>
+<div class="copyright-text col-sm-9">
+Copyright © 1997 - 2025. University of Cambridge. All rights reserved.<br>
+Plus Magazine is part of the family of activities in the Millennium Mathematics Project.
+</div>
+</div>
+  </div>
+<nav aria-labelledby="block-secondarymenu-menu" id="block-secondarymenu" class="block block-menu navigation menu--secondary-menu">
+            
+  <h5 class="visually-hidden" id="block-secondarymenu-menu">Secondary menu</h5>
+  
+
+        
+        <ul data-block="footer" class="nav navbar-nav secondary-menu">
+            <li class="nav-item">
+      <a href="/content/search" class="nav-link" data-drupal-link-system-path="search">Search</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/about-plus" class="nav-link" data-drupal-link-system-path="node/5184">About</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/support-plus" class="nav-link" data-drupal-link-system-path="node/5185">Support</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/plus-sponsors" class="nav-link" data-drupal-link-system-path="node/5186">Sponsors</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/subscribe-plus" class="nav-link" data-drupal-link-system-path="node/5187">Subscribe</a>
+          </li>
+          <li class="nav-item">
+      <a href="/content/terms-use-and-notices" class="nav-link" data-drupal-link-system-path="node/5188">Terms of use</a>
+          </li>
+  </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+  </div>
+</footer>
+
+  </div>
+
+    
+    <script src="/content/sites/plus.maths.org/files/js/js_A2UFU6NZ7-sRFNwK1V57WomIPTdXzKocyvuEPyJDG3A.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=bootplus5&amp;include=eJxdjUEOgzAMBD-U4BPvqZw0cqFGtrJG4vnQHkBwWc3OHraYheuKkUStsGbUPnkglXOA6_Ruf4Ho7CNdmGdk5WiIJGai7RUsJEc8-8Azb3e5pIXjc2hCi9XT766o1S_owh2rUD5i"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<script src="/content/sites/plus.maths.org/files/js/js_JbIxHYCufvWqMaHV3jKIap_qJZ3oIZFdsKnVT9XWnYU.js?scope=footer&amp;delta=2&amp;language=en&amp;theme=bootplus5&amp;include=eJxdjUEOgzAMBD-U4BPvqZw0cqFGtrJG4vnQHkBwWc3OHraYheuKkUStsGbUPnkglXOA6_Ruf4Ho7CNdmGdk5WiIJGai7RUsJEc8-8Azb3e5pIXjc2hCi9XT766o1S_owh2rUD5i"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="/content/sites/plus.maths.org/files/js/js_cCwCqpTNU0UhauQDjqF_20Q0V7QXBrSuTKpzK76HiP8.js?scope=footer&amp;delta=4&amp;language=en&amp;theme=bootplus5&amp;include=eJxdjUEOgzAMBD-U4BPvqZw0cqFGtrJG4vnQHkBwWc3OHraYheuKkUStsGbUPnkglXOA6_Ruf4Ho7CNdmGdk5WiIJGai7RUsJEc8-8Azb3e5pIXjc2hCi9XT766o1S_owh2rUD5i"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+
+  </body>
+</html>
