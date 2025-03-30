@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>String Matching at Scale - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3727151" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>March 26, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3727151">Volume 23, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3723152">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">String Matching at Scale</h1> 
+  <h2>A call for interdisciplinary collaboration and better-directed resources</h2> 
+  <h3>Dennis Roellke</h3> 
+  <p>Freshly brewed coffee steaming from my favorite mug and an open newspaper in my hands, I am ready to enjoy this beautiful Sunday. I take a bite from my croissant and flip to the next page.</p> 
+  <p>Excuse me? Did they recall thousands of cars? What model? My model! The one I just leased for the upcoming three years—great! I had convinced my wife that this car would be the better option for us, but now it may cause us trouble before we even venture on our first trip.</p> 
+  <p>My lazy Sunday is over in a blink. I grab the car keys from the kitchen drawer, jump in the driver seat, and jet down the newly paved road, heading to our car dealership of trust. Annoyed but also excited—will I get some money back?</p> 
+  <p>At the dealership, the mechanic shares his surprising diagnosis: NOT AFFECTED! </p> 
+  <p>How is that possible? I'm driving the exact model they describe in the recall campaign.</p> 
+  <p>Well, as I learned later, the subsidiary of a particular manufacturing plant was supplied with a brittle component because a contractor had used expired adhesives. Not every vehicle in a model line is assembled at the same plant, though. Two cars of the exact same model may have two different components installed—if both comply with the approved specification. My car was fine, and I drove home with a smile. </p> 
+  <p>This endeavor taught me a new appreciation for the strongly process-driven mechanical engineering industry that is surgically building reliable systems and meticulously tracking contributors, components, and materials.</p> 
+  <p>&nbsp;</p> 
+  <h3>If only we were able to do this for software. </h3> 
+  <p>If only I knew what applications are deployed where in which datacenter, and what libraries they each depend on. As a threat analyst, all I'd need to do is read my favorite vulnerability feed and perform string matching between the vulnerabilities and components. </p> 
+  <p>String matching can't be that difficult. But what are we matching on? What is the intrinsic identity of a software component? Does it change when developers copy and paste the source code instead of fetching it from a package manager? Is every package-manager request fetching the same artifact from the same upstream repository mirror? Can we trust that the source code published along with the artifact is indeed what's built into the release executable? Is the tool chain kosher?</p> 
+  <p>&nbsp;</p> 
+  <p><b>So, what is software? </b></p> 
+  <p>We know that hardware engineering is highly determined by the laws of physics, whereas software engineering is free of rules? One definition, posed by Fred Brooks in the all-time classic, <i>The Mythical Man Month,</i> suggests: "Software is a set of instructions, data, or programs used to operate computers and execute specific tasks. It is the opposite of hardware, which describes the physical aspects of a computer."<sup>2,15</sup> So, software does something with hardware—but like the souls in our bodies, without hardware, software is nothing. </p> 
+  <p>Academics agree that we do not have a good definition of software. A peer-reviewed <i>Springer Nature </i>journal recently published a philosopher's work, who concluded that the closest relative of software is <i>text</i>. Its semantics are mapped to the grammar posed by the target architecture, but without a chip to run on, well, it's nothing but text.<sup>11 </sup></p> 
+  <p>Just like the spoken word, text can be repeated indefinitely and without any effect on the original. For instance, copying this article will not make it disappear. In the context of software, this paradox is infamously problematic for the detection of data breaches: Stolen data, like a password, is not lost when it's lost and may still be available for uninterrupted usage by its legitimate owner. The same holds true for all software, making it difficult to grasp.</p> 
+  <p>So, software does not respond to the laws of natural sciences, physics, chemistry, or even electrical engineering. It does not fall to the ground; it does not melt under heat; and it certainly does not need to breathe. In turn, software is highly theoretical and obedient to the involved rules of math. Yes, writing a software program can be learned in summer schools and at coding boot camps, but these settings abstract the true complexity of software for the sake of simplicity. The true power of software is unleashed at scale when large amounts of data are processed from globally distributed origins at the speed of light. </p> 
+  <p>In software engineering, when scale changes, everything changes. Scaling software is intuitively compositional and dynamic, but even software itself is highly compositional and dynamic. A single application can be made up of multiple self-contained components that need to be obtained from different local and remote locations.<sup>7</sup> High levels of software reuse connect large numbers of developers from various backgrounds, bringing them together as communities—but communities at scale have their very own (large) problems. </p> 
+  <p>If that's not enough, multiple technical communities coexist and collaborate, and divergence among these is by design, as one community intentionally fills the gaps of another—as one programming language serves the need left by another. Although software does not exist per se, you can say humans inherently drive it. You can even say that it inherits human properties. Many would agree with Melvin Conway's observation that organizational structure is reflected in solution design.<sup>4</sup> Subsequently, community-created open source software reflects its community—its contributors' relationships, status, geographic belonging, and political conviction. </p> 
+  <p>Circling back to my initial contemplation about tracking software components that I presented at the beginning of this article, I realize that tracking automobile parts is inherently different from tracking software because logistics for automobile parts are inherently different from tracking software, for at least two reasons: </p> 
+  <p>• Logistics for automobile parts change their physical locations and ultimately the possession of an auto part from one party to another in a 1:1 mapping, whereas software is commonly published by one party yet consumed by many others in a 1:<i>n</i> mapping, where the publisher does not even know about all copies or users. Once it's out there, it's out there.</p> 
+  <p>• The parties involved in car manufacturing can be expected to be legal entities contractually agreeing on the logistics and the possession of the parts, whereas software is commonly published to the communities by individuals, practitioners, and volunteers, who can just put it out there at any time. And, again, once it's out there, it's out there. (Yes, open-source software supposedly has a license that technically establishes two (or more) legal entities contractually agreeing, but for free open-source software, that agreement is generally a copyleft agreement and excludes maintenance liability of the publisher, i.e., it says: "It's out here; you can use it at your own risk.")</p> 
+  <p>When you combine both differences, you are led to a state of repeatedly redistributed, unregistered (software) components—similar to black-market car parts with their serial numbers removed—except that they are impossible to herd because of their immaterial nature and their ability to morph. This is a problem that supposedly breaks down to bookkeeping, which may indeed exist for commercially distributed software, but for free open-source software, there's no central register of easy-to-use identifiers that facilitate accurate matching at scale.</p> 
+  <p>&nbsp;</p> 
+  <h3>Then, How Do We Identify Software(s) in the Wild?</h3> 
+  <p>Historically, we validate the file hashes of downloads or verify their cryptographic signatures to attest integrity and establish accountability. This process is simple string matching. Accordingly, modern version-control systems on top of the git protocol use (hash-based) gitoids to uniquely identify blobs.<sup>6</sup> </p> 
+  <p>Hash-based identifiers are useful to detect changes, but note that a single bit flip in the source code will yield a new hash that's completely uncorrelatable to its parent—let alone that hashes are not human-readable. String matching may be feasible, but the transitive nature of software makes it difficult to scale this approach. </p> 
+  <p>Instead, there are several use cases for which we crave software identifiers that intentionally over-approximate what we are trying to describe with them. My all-time favorite (mainly because I started my career around that time) is the Heartbleed vulnerability from 2014 affecting OpenSSL 1.0.1 to 1.0.1g. Assuming the versioning scheme uses letters <i>a </i>to <i>g</i>, there are at least seven versions of OpenSSL to be aware of, but realistically, not every change to the source gets versioned and released; additionally, releases of the same vulnerable source may be compiled by different toolchains, with different optimizers and configurations, for different architectures, etc., all being the same software but having very different hashes. A quick web search shows that the community has already picked up this challenge. Today, there are various software identifiers for various use cases.</p> 
+  <p>One approach is to catalog acknowledged software identifiers in a publicly available directory, like in a phone book.<sup>9</sup> The security analyst who discovered Heartbleed could then have assigned it to OpenSSL's entry in the phone book, and everyone looking up OpenSSL after this would find the associated security concern with it. </p> 
+  <p>The public-directory approach is bulletproof for registered devices, e.g., FCC-approved commercial hardware, but its assumptions break for software, especially for community-supported open-source software. The ownership of a piece of code published by hobbyists may not be immediately clear, and no publisher can be associated. It is even common for vendors to republish open-source software as is, but sell it with a different license, maintenance contracts, and support. </p> 
+  <p>If an entry is not in the phone book, it cannot be found. If an entry is in the phone book under multiple names, it's not deterministic with which entry to associate the vulnerability. Further, the directory-based approaches available today have grown historically and missed the right level of granularity to describe nuances of software.<sup>13</sup> In this approach, it is simply unclear which strings to match.</p> 
+  <p>Other approaches implement the idea that anyone with access to the software should be able to infer its identifier. Intuitively something can always be identified by what it <i>appears to be</i>,<sup>10</sup> such as the brand and model of a car. According to this philosophy, the software identifier should reflect the minimal, obvious aspects of the software it describes. Commonly agreed, that's its <i>name</i> and its <i>version</i> but also its<i> type. </i>Unfortunately, I'm still not sure if OpenSSL's type is its programming language C, in which case, someone else will call it C99, or Debian, in which case, someone else will surely reference it from the sister ecosystem RPM (Red Hat Package Manager). In this approach, it is not clear how to construct the strings themselves.</p> 
+  <p>Don't get me wrong: Identifying software within one ecosystem is easy. As long as there is a package manager, everything is well-defined. That's literally what the package manager does. Things get funky when discussing native software, unpackaged or adhering to a package format but published on proprietary mirrors. Or built from source, incorporating hot fixes. "Just don't!", I hear you think loudly, but that is a terrible argument. Stability-oriented large enterprises rely heavily on forking, customizing, refactoring, and debloating external software as needed. Many run entire teams to complement external dependencies with top-tier internal support.</p> 
+  <p>&nbsp;</p> 
+  <h3>Identifying Software Is an Unsolved Problem</h3> 
+  <p>There is a lot of money in solving this problem, which incentivizes vendors to create proprietary identifiers that bind customers to their products, and also to market their products through free unstructured extra information—monetizing the structured versions of the same data. As a consequence, the space is convoluted by inconsistency.</p> 
+  <p>The alternative to commercial identifiers is a vast landscape of open-source identifiers, historically SWIDs (Software Identification Tags) and CPEs (Common Platform Enumerations), recently pURLs (package URLs), but also OmniBOR, which uses gitoids (Git Object ID) and hashes. Maybe the true problem is the lack of agreement on which of these identifiers to use and how.</p> 
+  <p>So, who is supposed to identify a piece of software—the publisher or the consumer?—and which identifier can they use to synchronize their communication? If there's a mapping between the executable and its source, how do you verify that both parties link the same artifacts to the same identifiers? </p> 
+  <p>As illustrated in the introductory example about the automobile industry, it does not matter, as long as both parties comply with the same specification. For example, as the driver I knew only what <i>brand</i> and <i>model</i> I was driving, but had to consult the dealer to read the serial number and match the string against a list of cars affected by the recall. Similar levels of indirection may facilitate better software identifiers that cover all use cases that both parties can easily get right and that serve as an authoritative directory of curated software identifiers.<sup>12</sup></p> 
+  <p>In my pursuit to declare what applications are deployed where in my datacenter (and what libraries they depend on), I learned that software does not exist, but software identifiers do. I also discovered that an abundance of solutions falsely suggests that matching these strings at scale should be easy and that the field is overserved, with practitioners frequently citing the comic strip XKCD #927.<sup>16</sup> Most solutions are nuanced, however, excelling only in a subset of scenarios, and none of today's solutions fit all the bills.<sup>1,3,14,</sup> </p> 
+  <p>Unlike the automotive field, software engineering is an open-world problem with multiple decentralized players. Abstracting away the "open worldness" and ignoring the general case are treacherous pathways for both the industry as a whole and for corporate adopters internally. We need a solution that works everywhere and that can be used consistently by anyone. </p> 
+  <p>As this solution does not exist, corporations are best advised to employ <i>standard</i> tooling and closely adhere to specifications. Divergence, proprietary tooling, and nonstandard approaches in this space will likely bear high costs in the future. So, focus on the plumbing and keep the interfaces aligned with the outside world.</p> 
+  <p>Furthermore, the business of software supply-chain security is a business of agreement and alignment; however, we find a lot of governance paired with few government resources. The few well-intended government efforts we have cannot keep up with the fast-paced software industry evolutions.<sup>5,8</sup> To develop effective solutions, we need targeted funding and strong partnership between community solutions and academic work. The interplay between these two disciplines is invaluable and inexcusable to ignore. I hope we will see more incentives and appreciation to engage and foundationally improve the existing solutions, rather than adding to the pool or considering the problem solved. It is not.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Azhakesan, A., Ombredanne, P. 2024. SCA for containers: the good, the bad, and the truth. Open Source Summit Europe; <a href="https://events.linuxfoundation.org/archive/2024/open-source-summit-europe/program/schedule/">https://events.linuxfoundation.org/archive/2024/open-source-summit-europe/program/schedule/</a>. </p> 
+  <p>2. Brooks Jr., F. P. 1975. <em>The Mythical Man-Month: Essays on Software Engineering.</em> Addison-Wesley Publishing Company.</p> 
+  <p>3. Container SBOM Clarity Project Public Report. 2024; <a href="https://nexb.com/sca-containers/">https://nexb.com/sca-containers/</a>.</p> 
+  <p>4. Conway, M. E. 1967. How do committees invent?; <a href="https://www.melconway.com/Home/pdf/committees.pdf">https://www.melconway.com/Home/pdf/committees.pdf</a>.</p> 
+  <p>5. Fox, B. 2024. The fall of the National Vulnerability Database. Darkreading; <a href="https://www.darkreading.com/vulnerabilities-threats/fall-of-national-vulnerability-database">https://www.darkreading.com/vulnerabilities-threats/fall-of-national-vulnerability-database</a>.</p> 
+  <p>6. GitBOM; <a href="https://www.iana.org/assignments/uri-schemes/prov/gitoid">https://www.iana.org/assignments/ uri-schemes/prov/gitoid</a>.</p> 
+  <p>7. Melara, M. S., Torres-Arias, S. 2023. A viewpoint on software supply chain security: Are we getting lost in translation? <i>IEEE Security &amp; Privacy </i>21(6), 55–58; <a href="https://dl.acm.org/doi/10.1109/MSEC.2023.3316568">https://dl.acm.org/doi/10.1109/MSEC.2023.3316568</a>.</p> 
+  <p>8. <i>NVD News</i>. 2024. National Vulnerability Database, National Institute of Standards and Technology; <a href="https://www.nist.gov/itl/nvd/nvd-news">https://www.nist.gov/itl/nvd/nvd-news</a>.</p> 
+  <p>9. <em>Official Common Platform Enumeration (CPE) Dictionary</em>. National Institute of Standards and Technology; <a href="https://nvd.nist.gov/products/cpe">https://nvd.nist.gov/products/cpe</a>.</p> 
+  <p>10. package-url. A minimal specification and implementation of purl aka, a Package "mostly universal" URL; <a href="https://github.com/package-url">https://github.com/package-url</a>.</p> 
+  <p>11. Possati, L. 2020. Towards a hermeneutic definition of software. <i>Humanities and Social Sciences Communications </i>7(71).<em> Springer Nature</em>; <a href="https://www.nature.com/articles/s41599-020-00565-0">https://www.nature.com/articles/s41599-020-00565-0</a>.</p> 
+  <p>12. purldb is a dataset of purls; <a href="https://github.com/aboutcode-org/purldb-data">https://github.com/aboutcode-org/purldb-data</a>.</p> 
+  <p>13. Springett, S. 2022. New recommendations to improve the NVD. <em>OWASP</em>; <a href="https://owasp.org/blog/2022/09/13/sbom-forum-recommends-improvements-to-nvd">https://owasp.org/blog/2022/09/13/sbom-forum-recommends-improvements-to-nvd</a>.</p> 
+  <p>14. Torres-Arias, S., Geer, D., Meyers, J. S. 2023. A viewpoint on knowing software bill of materials quality when you see it. <em>IEEE Security &amp; Privacy 21(6), 50-54; </em><a href="https://www.computer.org/csdl/magazine/sp/2023/06/10315783/1S2UwA5d6mI">https://www.computer.org/csdl/magazine/sp/2023/06/10315783/1S2UwA5d6mI</a><i>.</i></p> 
+  <p>15. Tukey, J. 1958. The teaching of concrete mathematics. <em>American Mathematical Monthly 65(1), 1-9</em>; <a href="https://www.tandfonline.com/doi/abs/10.1080/00029890.1958.11989128">https://www.tandfonline.com/doi/abs/10.1080/00029890.1958.11989128</a>.</p> 
+  <p>16. xkcd: a webcomic of romance, sarcasm, math, and language; <a href="https://xkcd.com/927/">https://xkcd.com/927/</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Dennis Roellke</b> is a Security Architect in the Office of the CTO at Bloomberg, where he provides strategic advice to the company's software supply chain security program. His influence spans multiple departments within the firm, orchestrating a secure software development lifecycle end-to-end in order to provide operational resilience for the company. Prior to this position, Dennis was an embedded systems engineer and worked as a security consultant for three years. He received his Ph.D. from Columbia University, where he studied the intersection of machine learning and cybersecurity.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92834f8938c8578c',t:'MTc0MzI5MjY1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 1</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3723152">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Catherine Hayes, David Malone</span> - <a href="detail.cfm?id=3690759"><b>Questioning the Criteria for Evaluating Non-cryptographic Hash Functions</b></a>
+	  <br />
+	  Although cryptographic and non-cryptographic hash functions are everywhere, there seems to be a gap in how they are designed. Lots of criteria exist for cryptographic hashes motivated by various security requirements, but on the non-cryptographic side there is a certain amount of folklore that, despite the long history of hash functions, has not been fully explored. While targeting a uniform distribution makes a lot of sense for real-world datasets, it can be a challenge when confronted by a dataset with particular patterns.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Nicole Forsgren, Eirini Kalliamvakou, Abi Noda, Michaela Greiler, Brian Houck, Margaret-Anne Storey</span> - <a href="detail.cfm?id=3639443"><b>DevEx in Action</b></a>
+	  <br />
+	  DevEx (developer experience) is garnering increased attention at many software organizations as leaders seek to optimize software delivery amid the backdrop of fiscal tightening and transformational technologies such as AI. Intuitively, there is acceptance among technical leaders that good developer experience enables more effective software delivery and developer happiness. Yet, at many organizations, proposed initiatives and investments to improve DevEx struggle to get buy-in as business stakeholders question the value proposition of improvements.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jo&#227;o Varaj&#227;o, Ant&#243;nio Trigo, Miguel Almeida</span> - <a href="detail.cfm?id=3631183"><b>Low-code Development Productivity</b></a>
+	  <br />
+	  This article aims to provide new insights on the subject by presenting the results of laboratory experiments carried out with code-based, low-code, and extreme low-code technologies to study differences in productivity. Low-code technologies have clearly shown higher levels of productivity, providing strong arguments for low-code to dominate the software development mainstream in the short/medium term. The article reports the procedure and protocols, results, limitations, and opportunities for future research.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Ivar Jacobson, Alistair Cockburn</span> - <a href="detail.cfm?id=3631182"><b>Use Cases are Essential</b></a>
+	  <br />
+	  While the software industry is a fast-paced and exciting world in which new tools, technologies, and techniques are constantly being developed to serve business and society, it is also forgetful. In its haste for fast-forward motion, it is subject to the whims of fashion and can forget or ignore proven solutions to some of the eternal problems that it faces. Use cases, first introduced in 1986 and popularized later, are one of those proven solutions.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

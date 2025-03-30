@@ -1,0 +1,732 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>The Surprise of Multiple Dependency Graphs - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Open Source' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3727151" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>March 27, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3727151">Volume 23, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3723000">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">The Surprise of Multiple Dependency Graphs</h1> 
+  <h2>Dependency resolution is not deterministic.</h2> 
+  <h3>Josie Anugerah and Eve Martin-Jones</h3> 
+  <p>There are many advantages to open source software, but like all software, it can contain bugs and vulnerabilities. Projects that depend on open source can inherit those problems, often inadvertently. In 2024, three years after the Log4Shell vulnerability, <b><a href="https://www.sonatype.com/state-of-the-software-supply-chain/2024/10-year-look">13 percent of all Log4j package downloads</a></b> were for vulnerable versions. Furthermore, 94.9 percent of vulnerable open source downloads were old versions of packages that had since been patched.</p> 
+  <p>It seems like it should be easy to avoid installing vulnerable open source software, but dependency graphs are surprisingly complex. At the time of writing, the latest version of the popular npm tool <i>webpack </i>has millions of potential dependency graphs depending on circumstances during its resolution. The exact graph chosen for a given package can depend on what other software is being built, what kind of system is building it, and even the state of the ecosystem on a given day. As a result, the developer and user of a package may end up with very different dependency graphs, which can lead to unexpected vulnerabilities.</p> 
+  <p>This article explains why dependency graphs are so complex and makes some observations about what that implies for SBOMs (Software Bill of Materials) and development practices generally. </p> 
+  <h3>What is a Dependency Graph?</h3> 
+  <p>A <i>dependency</i> of a software project is defined as a separate piece of software that is imported by a project for the build. A dependency is sometimes referred to as a library, package, or import. The intention of importing a dependency into a project is to save developer resources by reusing code that is already well-tested and documented.</p> 
+  <p>A dependency may be <i>versioned</i>. Most open source packaging <i>ecosystems</i> (npm, Maven, PyPI, etc.) adhere at least somewhat to SemVer (specifically, <a href="https://semver.org/">Semantic Versioning 2.0</a>).</p> 
+  <p><i>Dependency management </i>includes the processes used to obtain dependencies, store the dependency code, and monitor the health of these dependencies. Dependency management may be relatively easy for a project with a handful of dependencies, but modern software projects may depend on hundreds or even thousands of open source packages.</p> 
+  <p>Dependencies are often specified by a list of name-requirement pairs in a requirements file, which usually has a syntax similar to that shown in figure 1.</p> 
+  <img src="https://dl.acm.org/anugerah1.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>A <i>requirement</i> specifies a range of accepted versions for the named dependency, using a notation particular to the packaging system. For example, in npm the requirement <code>react/^16.13.1</code> specifies any version of the react package greater than or equal to <code>16.13.1</code> and less than <code>17.0.0</code>. SemVer defines a total ordering of versions; however, most ecosystems diverge from SemVer requiring additional rules to define this total ordering.</p> 
+  <p>The way requirements are specified varies widely between ecosystems. While many ecosystems follow SemVer for <i>versioning</i>, there is no universally accepted way of specifying requirements.</p> 
+  <p>A <i>dependency resolution tool</i> decides which version of each dependency should be used in the build to satisfy all the requirements (see figure 2). The usual approach is to read a requirements file and choose a version for each package that satisfies the requirements, then download these package versions from an external package registry such as <a href="http://npmjs.org/">npmjs.org</a>.</p> 
+  <img src="https://dl.acm.org/anugerah2.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>The tool needs to select versions for <i>transitive dependencies—</i>the dependencies of dependencies—in addition to direct dependencies. This is because dependencies have their own dependency requirements, which may have their own dependency requirements, and so on. The output of the dependency resolution process is called the <i>dependency graph.</i></p> 
+  <p>&nbsp;</p> 
+  <h3>There are Many Dependency Graphs</h3> 
+  <p>Intuition suggests that the requirements for a package will result in a single dependency graph. In practice, however, this is not true, and even resolving a single package's requirements could, in general, result in many dependency graphs. To see how, the popular npm module bundler <i>webpack</i> serves as an example.</p> 
+  <p>Webpack is downloaded millions of times each week. At the time of writing (mid-2024), the latest version of webpack (5.94.0) has no known vulnerabilities. Furthermore, the dependency graph for <code>webpack/5.94.0</code> <a href="https://deps.dev/npm/webpack">as resolved by the deps.dev project</a> also contains no vulnerabilities. This doesn't mean, however, that any <i>installation</i> of <code>webpack/5.94.0</code> is guaranteed to have no vulnerabilities. To see how this is possible, let's analyze the process of resolving the dependency requirements of <code>webpack/5.94.0</code>.</p> 
+  <p>The requirements file of <code>webpack/5.94.0</code> mentions 23 other packages, shown in figure 3.</p> 
+  <img src="https://dl.acm.org/anugerah3.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>These are just the direct dependencies, but the resolution process, after examining all the transitive dependencies, may add many more.</p> 
+  <p>The npm tool resolves these requirements and those of the transitive dependencies into specific package versions, producing a dependency graph. Recall that dependency resolution means taking a requirement such as <code>browserslist/^4.21.10</code> and selecting a version of <code>browserslist</code> that matches this requirement. As is often the case, many versions satisfy this requirement of <code>browserslist</code>. For example, <code>4.21.10</code>, <code>4.21.11</code> and <code>4.22.0</code> are all valid choices.</p> 
+  <p>The <code>browserslist</code> package also has four transitive requirements in its <a href="https://github.com/browserslist/browserslist/blob/main/package.json">package.json file</a> that must also be satisfied (figure 4). Just as there were many choices for the version of <code>browserslist</code>, there are many valid versions to choose from for each of its dependencies.</p> 
+  <img src="https://dl.acm.org/anugerah4.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>Enumerating all combinations of valid dependency versions that satisfy all direct and all possible transitive requirements of <code>webpack/5.94.0</code> yields approximately 6.2 x 10⁴?—<i>zillions</i>—of possible dependency graphs.</p> 
+  <p>This profusion means that any given project likely has multiple valid dependency graphs. As is explained in the next section, two different people resolving the same package could in practice get different dependency graphs. With a different dependency graph comes a different attack surface, different behavior, a different set of licenses, and a different set of vulnerabilities.</p> 
+  <p>&nbsp;</p> 
+  <h3>Why Don't Tools Always Produce the Same Dependency Graph for Each Package?</h3> 
+  <p>You might expect that the tools produce the same dependency graph every time for the same set of requirements, even though there may be zillions of valid graphs satisfying these requirements. However, this is not the case.</p> 
+  <p>Due to changes in the context in which the tool is run, there are many reasons why tools don't produce the same graph. The following sections describe various mechanisms that can cause this to happen.</p> 
+  <p>&nbsp;</p> 
+  <h4>Dependencies aren't resolved in isolation</h4> 
+  <p>Most projects depend on multiple packages. Running a query on the <a href="https://docs.deps.dev/bigquery/v1/#:~:text=The%2520deps.,as%2520a%2520BigQuery%2520public%2520dataset.">deps.dev BigQuery dataset</a> revealed that the average npm project has more than 85 direct and transitive dependencies, while the average Maven project has more than 20 (figure 5).</p> 
+  <img src="https://dl.acm.org/anugerah5.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>Because projects usually have multiple dependencies, the outcome of resolving one dependency alone is different from resolving that same dependency with the same requirement among other dependencies.</p> 
+  <p>To take an example, suppose package <code>A</code> has a requirement <code>&gt;=1.0.0 </code>on package <code>B</code>, which has three available versions: <code>1.0.0</code>, <code>1.0.1</code>, and <code>1.0.2</code>. All three versions satisfy <code>&gt;=1.0.0</code>, and so the Python pip dependency tool will choose the latest matching version, in this case, <code>1.0.2</code>.</p> 
+  <p>If package <code>A</code> were also to depend on package <code>X</code>, and <code>X</code> depends on <code>B</code>, the result of <code>B</code> may be different. If package <code>X</code> depends on package <code>B</code> with requirement <code>=1.0.1</code>, there would now be two constraints on <code>B</code>: <code>&gt;=1.0.0</code> and <code>=1.0.1</code>. The pip tool will try to find a version that satisfies all requirements, choosing <code>1.0.1</code> (see figure 6).</p> 
+  <img src="https://dl.acm.org/anugerah6.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>This isn't the only valid way tools handle this situation. The Node tool npm allows multiple versions of a package to be installed. Figure 7 shows how the same requirements on <code>B</code> are resolved differently in pip versus npm.</p> 
+  <img src="https://dl.acm.org/anugerah7.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>If you're using pip or npm, the version of <code>B</code> selected is different depending on the requirement context of the rest of the graph. It's not just your direct requirements that affect the versions chosen but transitive ones.</p> 
+  <h4>Resolutions change over time</h4> 
+  <p>When multiple versions satisfy a requirement, there are two main strategies that tools use for choosing between valid versions. </p> 
+  <p>Tools such as Maven, Go, and NuGet (by default) choose the <i>lowest</i> version so that users get new features, fixes, and bugs only when they choose to update the requirement. Other tools such as npm, Cargo, and pip choose the <i>latest</i> version so that users automatically get new fixes, features, and bugs.</p> 
+  <p>Choosing the latest version means that over time the resolution can change. As new versions are published, a new dependency graph can result (figure 8).</p> 
+  <img src="https://dl.acm.org/anugerah8.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>Because the new version (<code>B/1.0.3</code>) might have different dependencies from the old version (<code>B/1.0.2</code>), this can affect the dependency graph beyond just which version of <code>B</code> is selected, causing a surprising proportion of the graph to change.</p> 
+  <p>The analysis from deps.dev data shows that it's common for dependency graphs to change daily. The npm ecosystem sees an average of 6.22 percent of its packages' graphs change daily, while PyPI sees a 4.63 percent change.</p> 
+  <p>This churn results from the individual packages publishing new versions. While the tool itself may be deterministic, the inputs to the tool are not, as the corpus of package versions available on the registry is constantly changing.</p> 
+  <p>&nbsp;</p> 
+  <h4>Different tools produce different dependency graphs</h4> 
+  <p>Different tools often exist within an ecosystem, and these tools make different resolution decisions. For example, three different JavaScript dependency-management tools (npm, yarn, and pnpm) produce <a href="https://blog.deps.dev/zillions-of-sboms/">three different resolution results for the same set of npm dependencies</a> (figures 9a and 9b).</p> 
+  <img src="https://dl.acm.org/anugerah9a.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <br /> 
+  <img src="https://dl.acm.org/anugerah9b.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>These changes can be subtle (you might get a slightly different version of the same package installed in your graph) or dramatic (whole dependencies may not appear in one graph), but they are, nonetheless, different results.</p> 
+  <p>&nbsp;</p> 
+  <h4>A tool may change its behavior</h4> 
+  <p>Different versions of the same tool may also produce different graphs. Such algorithm changes are often done intentionally.</p> 
+  <p>Versions of the NuGet tool before version 2.8 would prefer the lowest major and minor versions, but the highest patch version. Then in 2014, the NuGet team changed to the lowest-version philosophy, reasoning that it would increase the chance that users would get the same result upon running the tool again. Later versions of the tool, therefore, preferred matching the lowest version for all parts: major, minor, and patch.</p> 
+  <p>Since then, many algorithmic changes have been made in NuGet. All of the tools observed at deps.dev have gone through algorithmic revisions. NuGet helpfully announces and documents these changes, but in other ecosystems these changes often go unannounced.</p> 
+  <p>&nbsp;</p> 
+  <h4>Resolutions differ based on system architecture</h4> 
+  <p>Finally, packages may specify different dependencies for different system architectures and operating systems. This means that the dependency graph may vary with the specifics of the machine in which the dependency tool is run.</p> 
+  <p>For example, figure 10 shows the list of requirements for the PyPI <code>tensorflow/2.18.0</code> package for Windows and Linux.</p> 
+  <img src="https://dl.acm.org/anugerah10.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>Dependency graphs that differ based on machine specifics can lead to a situation where the graph produced in the development environment is being diligently maintained, but issues in the production graph are never addressed.</p> 
+  <p>Suppose the developers of a project are using Linux, but the production build is configured to run on Windows. When developers build the software project, the dependencies installed are specific to Linux. But when the program is built for production, a different set of Windows-specific dependencies may be installed.</p> 
+  <p>This means that developers can scan the development build as much as they want for licensing issues and vulnerabilities, but this will not uncover certain issues in the production build. No issues may be detected in the development graph, but issues may still exist in the production graph.</p> 
+  <p>That means it's crucial to scan not just what is running in the development environment, but also what is actually being deployed to production. It's also important to make the development environment as close to the production one as possible, where possible.</p> 
+  <p>Development graphs differing from production graphs is not the only way this can manifest. The maintainer of the package may be managing dependencies on the platform they're developing on—say, Linux—but never think to address issues in the Windows dependency graph. Maintainers should be managing issues in the graphs for every system architecture and operating system to be supported.</p> 
+  <p>&nbsp;</p> 
+  <h4>Dependency graphs, not the dependency graph</h4> 
+  <p>For all these reasons, package-management tools may produce different dependency graphs, even if the list of dependencies is relatively small. As the dependencies grow, the number of possible resolutions grows even faster.</p> 
+  <p>Users and maintainers of open source software are managing more dependency graphs than they might be aware of. There is not just one dependency graph for a package or project, but <i>many </i>dependency graphs. We believe this multiplicity is not widely appreciated.</p> 
+  <p>&nbsp;</p> 
+  <h3>SBOMs Are Not the Solution</h3> 
+  <p>The idea of an <a href="https://www.ntia.gov/page/software-bill-materials">SBOM</a> is often suggested as a solution to understanding dependencies. As we will see, however, SBOMs are useful only for complete binary builds; they are useless for constraining the dependencies of a downloaded package.</p> 
+  <p>SBOMs work well when distributing executable applications because all the application's components are known to and controlled by the author. These components include the open source software packages that have been built into the application.</p> 
+  <p>The author can list these components in an SBOM and distribute them alongside the application. Potential users can then scan the components to identify risks such as security vulnerabilities or licensing conflicts.</p> 
+  <p>Open source library maintainers, however, are unable to know or control what will be installed when a user consumes their library. When the user installs the library, their package-management tool will re-resolve the dependencies of that library in the user's resolution context, disregarding the SBOM.</p> 
+  <p>A library maintainer publishing an SBOM containing <i>their</i> dependency graph is, therefore, useless to users. Furthermore, if the library SBOM reports no vulnerabilities or issues, it gives a false sense of security. The library may still be unsafe because there is no guarantee that the user won't pull in vulnerable versions when resolving the library's dependencies in <i>their</i> resolution context.</p> 
+  <p>Those who advocate for open source library SBOMs mistakenly assume that libraries have a single dependency graph. Multiple dependency graphs make it hard to know what vulnerabilities and licenses an open source software package is composed of. There is no easy way to address this complexity.</p> 
+  <h3>Dependency-Management Recommendations</h3> 
+  <p>Like all aspects of engineering, dependency management requires careful thought and judgment. Most engineers do code review, unit testing, integration testing, and presubmit testing on code that they write, but how often is that same level of rigor applied when assessing the code that belongs to their dependencies?</p> 
+  <p>Library maintainers should evaluate the dependency complexity they may be passing on to their users. Library users should consider their chosen dependencies carefully.</p> 
+  <p>Using a dependency comes with tradeoffs. It's important to evaluate these tradeoffs rigorously, based on the profile of the specific project or organization.</p> 
+  <p>&nbsp;</p> 
+  <h4>Consider the cost of each dependency</h4> 
+  <p>There is a Go proverb that says, <a href="https://www.youtube.com/watch?v=PAAkCSZUG1c">"A little copying is better than a little dependency."</a> Importing a dependency may not be worth the cost to maintain it and its dependencies.</p> 
+  <p>If the feature you need is simple, it may be easier and safer to write and maintain a few lines of code than to maintain a larger set of dependencies. The same feature may also be available in a smaller library with fewer dependencies. </p> 
+  <p>Similarly, it's useful to evaluate whether existing dependencies can be replaced or removed.</p> 
+  <p>&nbsp;</p> 
+  <h4>Scan what you ship</h4> 
+  <p>Scan the dependencies that are installed in the final production context. Don't trust that the results of SBOM scans or scans performed in a development environment apply to the production environment. Try to make the development environment as similar to the production environment as possible.</p> 
+  <p>&nbsp;</p> 
+  <h4>Have a dependency-management strategy</h4> 
+  <p>Use the requirement features provided by package-management tooling to develop a dependency strategy. This strategy may depend on whether you are a library maintainer or an application maintainer.</p> 
+  <p>A strategy for maintainers is to choose requirements that accept a range of versions (open requirements). This way, when a vulnerability is reported in one of the library's dependencies, users don't need to wait for an update to the library's requirements to move off the affected version.</p> 
+  <p>Application maintainers may choose to have open requirements, but also commit to regularly rebuilding the project to identify and scan new versions that are being brought into the application's dependency graph. Another approach may be to use pinned requirements to create stability in their dependency graph and upgrade those requirements only after vetting new versions.</p> 
+  <p>All strategies require continuous work, but it's important to agree on and enforce a strategy for each project.</p> 
+  <p>&nbsp;</p> 
+  <h4>Publish clear metadata for libraries</h4> 
+  <p>While libraries should not publish SBOMs—because they are misleading—publishing clear metadata (like authorship, contact information, where to file bug reports, and a clear license) is extremely useful for library users.</p> 
+  <p>Any components that are <a href="https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bundledependencies">bundled together with the package</a> should also be documented. These components won't change because they have already been resolved; however, documenting them clearly is important for allowing users to identify and scan them.</p> 
+  <p>Unfortunately, low metadata quality affects many open source libraries across almost every ecosystem. For example, many ecosystems have provenance and authorship information as an optional free-text field, which means this metadata is often missing or incorrect. Package registries should consider automatically populating/verifying this information and/or integrating with projects such as <a href="https://www.sigstore.dev/">Sigstore</a>/<a href="https://slsa.dev/">SLSA</a> (Supply-chain Levels for Software Artifacts) to give users the option to provide higher-quality provenance data.</p> 
+  <p>&nbsp;</p> 
+  <h4>Make open source tools that are simple and predictable</h4> 
+  <p>Software development can easily cause the dependency graph to change through algorithmic improvements, different architectures, version upgrades, and so on. But these changes can also cause unexpected changes to the dependency graph, and these changes need to be included in the cost of development. As the software adds dependencies, either directly or indirectly, it becomes more difficult to understand the dependency graph, which, in turn, makes it more difficult to maintain control over the graphs produced by resolution. Ecosystem maintainers should consider the features their tools provide, and whether the added complexity is worthwhile.</p> 
+  <p>Resolution algorithms should be defined precisely. As it stands, the code is the only accurate documentation of how resolution works in most ecosystems. The more unpredictable or baffling the dependency graph, the harder it is to understand and maintain it.</p> 
+  <h3>An underappreciated problem</h3> 
+  <p>Despite what is widely believed, dependency resolution is not deterministic. Two actors resolving the same set of requirements may get different results.</p> 
+  <p>Resolution is rarely a hermetic process. While the tools are deterministic, the inputs to these tools are not. The body of package versions available from the registry, machine architecture, operating system, and tool version are all factors that result in different resolution graphs. </p> 
+  <p>Automated dependency-management tools may make users feel that the problem of dependency management is solved, but in reality, it isn't even addressed. </p> 
+  <p>As the software industry's use of open source software grows, it must address the fundamental problems that the modern development model brings. One of the most underappreciated areas is the problem of dependency management and the need to work toward a set of best practices to manage that problem—in the interest of better quality and security of software projects.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Josie Anugerah</b> is a software engineer at Google working on the Google Open Source Security Team. In particular, she works on the deps.dev project, where she leads the NuGet, container image, and artifact hash efforts.</p> 
+  <p><b>Eve Martin-Jones</b> is a software engineer at Google working on the Google Open Source Security Team, in particular, the&nbsp;<a href="https://deps.dev/">deps.dev</a>&nbsp;project, analyzing open source software dependencies.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92834f810af2820c',t:'MTc0MzI5MjY1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 1</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3723000">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Amanda Casari, Julia Ferraioli, Juniper Lovato</span> - <a href="detail.cfm?id=3595879"><b>Beyond the Repository</b></a>
+	  <br />
+	  Much of the existing research about open source elects to study software repositories instead of ecosystems. An open source repository most often refers to the artifacts recorded in a version control system and occasionally includes interactions around the repository itself. An open source ecosystem refers to a collection of repositories, the community, their interactions, incentives, behavioral norms, and culture. The decentralized nature of open source makes holistic analysis of the ecosystem an arduous task, with communities and identities intersecting in organic and evolving ways. Despite these complexities, the increased scrutiny on software security and supply chains makes it of the utmost importance to take an ecosystem-based approach when performing research about open source.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Guenever Aldrich, Danny Tsang, Jason McKenney</span> - <a href="detail.cfm?id=3576027"><b>Three-part Harmony for Program Managers Who Just Don't Get It, Yet</b></a>
+	  <br />
+	  This article examines three tools in the system acquisitions toolbox that can work to expedite development and procurement while mitigating programmatic risk: OSS, open standards, and the Agile/Scrum software development processes are all powerful additions to the DoD acquisition program management toolbox.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jessie Frazelle</span> - <a href="detail.cfm?id=3349301"><b>Open-source Firmware</b></a>
+	  <br />
+	  Open-source firmware can help bring computing to a more secure place by making the actions of firmware more visible and less likely to do harm. This article&#8217;s goal is to make readers feel empowered to demand more from vendors who can help drive this change.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Marshall Kirk McKusick, George V. Neville-Neil</span> - <a href="detail.cfm?id=1035622"><b>Thread Scheduling in FreeBSD 5.2</b></a>
+	  <br />
+	  A busy system makes thousands of scheduling decisions per second, so the speed with which scheduling decisions are made is critical to the performance of the system as a whole. This article - excerpted from the forthcoming book, &#8220;The Design and Implementation of the FreeBSD Operating System&#8220; - uses the example of the open source FreeBSD system to help us understand thread scheduling. The original FreeBSD scheduler was designed in the 1980s for large uniprocessor systems. Although it continues to work well in that environment today, the new ULE scheduler was designed specifically to optimize multiprocessor and multithread environments. This article first studies the original FreeBSD scheduler, then describes the new ULE scheduler.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
