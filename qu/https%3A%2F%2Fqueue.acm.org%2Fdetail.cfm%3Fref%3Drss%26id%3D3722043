@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>How to Evaluate AI that's Smarter than Us - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3727151" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>April 1, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3727151">Volume 23, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3722043">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">How to Evaluate AI that's Smarter than Us</h1> 
+  <h2>Exploring three strategies: functional correctness, AI-as-a-judge, and comparative evaluation</h2> 
+  <h3>Chip Huyen</h3> 
+  <p>Until recently, human experts have been the ultimate judges of many AI models. A fraud-detection model is considered good if it matches the performance of professional fraud analysts. A medical-diagnosis model is deemed effective if its recommendations align with those of experienced doctors.</p> 
+  <p>The presence of human experts can often be substituted with labels. Instead of fraud analysts reviewing every AI prediction, they can label a set of transactions with their judgments: This transaction is fraudulent; this one is not. A model makes predictions on these same transactions, which are then compared to the experts' prerecorded judgments.</p> 
+  <p>This approach has two problems. First, the judgments of human experts aren't always available. In many cases, users turn to AI because human experts are too expensive, too slow, or inaccessible. Second, as AI becomes more powerful, AI's capabilities can surpass those of human experts for certain tasks. For these tasks, human experts are no longer the gold standard against which AI's performance can be benchmarked.</p> 
+  <p>For many use cases, application developers have to evaluate AI models that outperform them. It's like a student having to evaluate the teacher's solution. How do they do it? Are there strategies for evaluating AI models that are smarter than us? This article considers three such strategies.</p> 
+  <p>• <i>Functional correctness</i> – evaluating AI by how well it accomplishes its intended tasks.</p> 
+  <p>• <i>AI-as-a-judge</i> – using AI instead of human experts to evaluate AI outputs.</p> 
+  <p>• <i>Comparative evaluation</i> – evaluating AI systems in relationship with each other instead of independently.</p> 
+  <p>The discussion centers around foundation models—the most powerful category of models as of this writing—which include both LLMs (large language models) and LMMs (large multimodal models).</p> 
+  <p>The article does not go into the philosophical debate of whether AI is smarter than humans or what it means to be intelligent. Regardless of your philosophical view, the reality is that users already use AI to perform tasks that the users themselves can't comfortably perform, such as understanding complex documents, solving challenging math questions, and creating beautiful designs. Having a reliable strategy to evaluate the outputs of AI for these tasks will help users gain more confidence in using AI for increasingly high-stakes tasks.</p> 
+  <p>Evaluating AI that's smarter than us is closely related to <i>scalable oversight</i>: the problem of supervising systems that potentially outperform humans on most skills relevant to the task at hand (<a href="https://arxiv.org/abs/1606.06565">Amodei et al., 2016</a>; <a href="https://arxiv.org/abs/2211.03540">Bowman et al., 2020</a>). Scalable oversight is concerned with training models that are more capable than humans. Doing so, however, requires a reliable way to evaluate these models and benchmark their progress.</p> 
+  <p>&nbsp;</p> 
+  <h3>Evaluation-driven Development</h3> 
+  <p>The more AI is being used, the more opportunities there are for catastrophic failures. Many such failures have already occurred in the short time that foundation models have been around. A man committed suicide after being <a href="https://www.vice.com/en/article/pkadgm/man-dies-by-suicide-after-talking-with-ai-chatbot-widow-says">encouraged by a chatbot</a>. Lawyers have submitted <a href="https://fortune.com/2023/06/23/lawyers-fined-filing-chatgpt-hallucinations-in-court/">false evidence hallucinated by AI</a>. Air Canada was ordered to pay damages when its AI-powered chatbot gave <a href="https://www.cio.com/article/190888/5-famous-analytics-and-ai-disasters.html">false information</a> to a passenger. If there is no method for quality control of AI outputs, the risk of AI might outweigh its benefits for many applications.</p> 
+  <p>Before investing time, money, and resources into building an application, it's important to understand how this application will be evaluated. I call this approach <i>evaluation-driven development</i>, which means defining evaluation criteria before building. The name is inspired by <a href="https://en.wikipedia.org/wiki/Test-driven_development">test-driven development</a> in software engineering, which refers to the process of writing tests before writing code.</p> 
+  <p>While some companies chase the latest hype, sensible business decisions are still being made based on returns on investment, not hype. Applications should demonstrate value to be deployed. As a result, the most common enterprise applications in production are those with clear evaluation criteria:</p> 
+  <p>• Recommender systems are common because their successes can be evaluated by an increase in engagement or purchase-through rates. (Recommendations can increase purchases, but increased purchases are not always because of good recommendations. Other factors such as promotional campaigns and new product launches can also increase purchases. It's important to do A/B testing to differentiate impact.)</p> 
+  <p>• The success of a fraud-detection system can be measured by how much money is saved from prevented fraud.</p> 
+  <p>• Coding is a common generative AI use case because, unlike other generation tasks, generated code can be evaluated using functional correctness.</p> 
+  <p>While the evaluation-driven development approach makes sense from a business perspective, focusing only on applications whose outcomes can be measured is similar to looking for the lost key under the lamppost (at night). It's easier to do, but it doesn't mean you'll find the key. Many potentially game-changing applications may be dismissed because there is no easy way to evaluate them.</p> 
+  <p>Evaluation is the biggest bottleneck to AI adoption. Being able to build reliable evaluation pipelines will unlock many new applications.</p> 
+  <p>&nbsp;</p> 
+  <h3>Challenges of Evaluating AI that's Smarter than Us</h3> 
+  <p>Evaluating AI models has always been difficult. Evaluating AI models that are smarter than us is even more so.</p> 
+  <p>First, the more intelligent AI models become, the harder it is to evaluate them. Most people can tell if a first grader's math solution is wrong. Few can do the same for a Ph.D.-level math solution. When OpenAI's GPT-o1 came out in September 2024, the Fields medalist Terence Tao <a href="https://mathstodon.xyz/@tao/113132502735585408">compared</a> his experience with this model to working with "<i>a mediocre, but not completely incompetent, graduate student.</i>" He speculated that it may take only one or two further iterations until AI reaches the level of a "competent graduate student." In response to his assessment, many people joked that if we're already at the point where we need the brightest human minds to evaluate AI models, we'll have no one qualified to evaluate future models.</p> 
+  <p>AI can also be much more efficient than humans, making the task of verifying its outputs time consuming. It's easy to tell if a book summary is bad if it's gibberish, but a lot harder if the summary is coherent. To validate the quality of this summary, you might need to read the book first. You'll also need to fact-check, reason, and even incorporate domain expertise, all of which can take tremendous time and effort, limiting how many outputs you can evaluate.</p> 
+  <p>Second, the open-ended nature of foundation models undermines the traditional approach of evaluating a model against ground truths (labels). With traditional ML (machine learning), most tasks are close-ended. For example, a classification model can output among only the expected categories. To evaluate a classification model, you can evaluate its outputs against the labels. If the label is category X but the model's output is category Y, the model is wrong. For an open-ended task, however, for a given input, there are so many possible correct responses that it's impossible to curate a comprehensive list of correct outputs to compare against.</p> 
+  <p>At the same time, publicly available evaluation benchmarks have proven to be inadequate for evaluating foundation models. Ideally, evaluation benchmarks should capture the full range of model capabilities. As AI progresses, benchmarks need to evolve to catch up. A benchmark becomes saturated for a model once the model achieves a perfect score. With foundation models, benchmarks are becoming saturated fast. The benchmark <a href="https://arxiv.org/abs/1804.07461">GLUE</a> (General Language Understanding Evaluation) came out in 2018 and became saturated in just a year, necessitating the introduction of <a href="https://arxiv.org/abs/1905.00537">SuperGLUE</a> in 2019. Similarly, <a href="https://arxiv.org/abs/2104.08773">NaturalInstructions</a> (2021) was replaced by <a href="https://arxiv.org/abs/2204.07705">Super-NaturalInstructions</a> (2022). <a href="https://arxiv.org/abs/2009.03300">MMLU</a> (Massive Multitask Language Understanding), which was a strong benchmark introduced in 2020 that many early foundation models relied on, was largely replaced by <a href="https://arxiv.org/abs/2406.01574">MMLU-Pro</a> in 2024.</p> 
+  <p>As teams rush to adopt AI, many quickly realize that the biggest hurdle to bringing AI applications to reality is evaluation. For some applications, figuring out evaluation can take up the majority of the development effort.</p> 
+  <p>Because evaluation is difficult, many people settle for <i>word of mouth</i> (e.g., someone says that model X is good) or eyeballing the results (also known as <i>vibe check</i>). This creates even more risk and slows down application iteration. Instead, an investment in systematic evaluation is needed to make the results more reliable.</p> 
+  <p>&nbsp;</p> 
+  <h3>Approaches to Evaluating AI that's Smarter than Us</h3> 
+  <p>Given the importance of evaluation, tremendous effort is being invested into studying methods to evaluate increasingly intelligent AI. While many techniques are still actively being developed, the three common approaches are functional correctness, AI-as-a-judge, and comparative evaluation.</p> 
+  <p>&nbsp;</p> 
+  <h4>Functional correctness</h4> 
+  <p>The most reliable metric to evaluate AI is how well it accomplishes the task it is assigned to do—its functional correctness. For example, if you ask a model to create a website, does the generated website meet your requirements? If you ask a model to make a reservation at a certain restaurant, does the model succeed? If you ask a model to speed up a piece of code, how much faster does the optimized code run?</p> 
+  <p>Code generation is an example of a task where functional correctness measurement can be automated. Functional correctness in coding is sometimes called <i>execution accuracy</i>. Say you ask the model to write a Python function, <code>gcd(num1, num2)</code>, to find the gcd (greatest common denominator) of two numbers, <code>num1</code> and <code>num2</code>. The generated code can then be input into a Python interpreter to check whether the code is valid (can be compiled) and, if it is, whether it outputs the correct result of a given pair <code>(num1, num2)</code>. For example, given the pair <code>(num1=15, num2=20)</code>, if the function <code>gcd(15, 20)</code> doesn't return 5, the correct answer, then you know that the function is wrong.</p> 
+  <p>Long before AI was used for writing code, automatically verifying code's functional correctness was standard practice in software engineering. Code is typically validated with <a href="https://en.wikipedia.org/wiki/Unit_testing">unit tests</a> where code is executed in different scenarios to ensure that it generates the expected outputs. Functional correctness evaluation is how coding platforms such as LeetCode and HackerRank validate the submitted solutions.</p> 
+  <p>Popular benchmarks for evaluating AI's code-generation capabilities, such as OpenAI's <a href="https://huggingface.co/datasets/openai_humaneval">HumanEval</a> and Google's <a href="https://github.com/google-research/google-research/blob/master/mbpp/">MBPP</a> (Mostly Basic Python Problems) dataset use functional correctness as their metrics. Benchmarks for text-to-SQL (generating SQL queries from natural languages) such as <a href="https://yale-lily.github.io/spider">Spider</a> (Yu et al., 2018), <a href="https://bird-bench.github.io/">BIRD-SQL</a> (Big Bench for Large-scale Database Grounded Text-to-SQL Evaluation) (Li et al., 2023), and <a href="https://arxiv.org/abs/1709.00103">WikiSQL</a> (Zhong, Xiong, and Socher, 2017) also rely on functional correctness.</p> 
+  <p>A benchmark problem comes with a set of test cases. Each test case consists of a scenario the code should run and the expected output for that scenario.</p> 
+  <p>Here's an example of a problem and its test cases in HumanEval: </p> 
+  <p>&nbsp;</p> 
+  <p> <b>Problem</b> <br /> <code> <br />from typing import List <br /> <br />def has_close_elements(numbers: List[float], threshold: float) -&gt; <br />bool: <br />""" Check if in given list of numbers, are any two numbers <br />closer to each other than given threshold. <br />&gt;&gt;&gt; has_close_elements([1.0, 2.0, 3.0], 0.5) False <br />&gt;&gt;&gt; has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3) True <br />""" </code> <br /> <br /><b>Test cases (each <code>assert</code> statement represents a test case)</b> <br /> <code> <br /> &nbsp; &nbsp; &nbsp;def check(candidate): <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True <br /> &nbsp; &nbsp; &nbsp;assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False </code></p> 
+  <p>&nbsp;</p> 
+  <p>When evaluating a model, HumanEval generates a number of code samples, denoted as <code>k</code>, for each problem. A model solves a problem if any of the <code>k</code> code samples it generated pass all of that problem's test cases. The final score, called <code>pass@k</code>, is the fraction of the solved problems out of all problems. If there are 10 problems and a model solves five with <code>k=3</code>, then that model's <code>pass@3</code> score is 50 percent. The more code samples a model generates, the more chances the model has of solving each problem; hence, the greater the final score. This means that in expectation, the <code>pass@1</code> score should be lower than <code>pass@3</code>, which, in turn, should be lower than <code>pass@10</code>.</p> 
+  <p>Another category of tasks whose functional correctness can be automatically evaluated is gamebots. If you create a bot to play Tetris, you can tell how good the bot is by the score it gets. Tasks with measurable objectives can typically be evaluated using functional correctness. For example, if you ask AI to schedule your workloads to optimize energy consumption, the AI's performance can be measured by how much energy it saves.</p> 
+  <p>If your task can be evaluated by functional correctness, that's what you should do. The challenge with functional correctness is that it isn't always straightforward to measure, or its measurement can't be easily automated. Many tasks don't have well-defined, measurable objectives. For example, if you ask a model to write a good essay, how do you define what "good" means?</p> 
+  <p>For many tasks with measurable objectives, AI isn't yet good enough to perform them end to end, so AI can form only part of the solution. Sometimes, evaluating a part of a solution is harder than evaluating the outcome. Imagine you want to evaluate someone's ability to play chess. It's easier to evaluate the end-game outcome (win/lose/draw) than to evaluate the strength of just one move. As AI systems become increasingly more capable, however, they will be able to accomplish more complex tasks end to end, and more applications will be able to rely on functional correctness evaluation.</p> 
+  <p>&nbsp;</p> 
+  <h4>AI-as-a-judge</h4> 
+  <p>If AI already outperforms humans in many tasks, can it also outperform humans in evaluating AI? The approach of using AI to evaluate AI is called AI-as-a-judge or LLM-as-a-judge. An AI model that is used to evaluate other AI models is called an <i>AI judge</i>.</p> 
+  <p>As of this writing, AI-as-a-judge has become one of the most, if not the most, common methods for evaluating AI models in production. Most demos of AI evaluation startups I saw in 2023 and 2024 leveraged AI-as-a-judge in one way or another. <a href="https://blog.langchain.dev/langchain-state-of-ai-2023/">LangChain's </a><a href="https://blog.langchain.dev/langchain-state-of-ai-2023/">State of AI</a> report in 2023 mentioned that 58 percent of evaluations on its platform were done by AI judges. In my experience, the number of teams willing to adopt this approach has only increased since then.</p> 
+  <p>A reason for AI-as-a-judge's rapid rise in popularity is that it's fast, easy to use, and relatively cheap compared with human evaluators. While it can take hours for a human evaluator to read a book to evaluate the quality of an AI-generated summary, an AI system can do the same in seconds.</p> 
+  <p>You can ask AI models to judge an output based on any criteria: quality, correctness, toxicity, hallucinations, and more. This is similar to how you can ask a person for an opinion about anything. You might think, "But you can't always trust people's opinions." That's true, and you can't always trust AI's judgments either. Since each AI model is an aggregation of the masses, however, it's possible for AI models to make judgments representative of the masses. With the right prompt for the right model, you can get reasonably good judgments on a wide range of topics.</p> 
+  <p>Studies have shown that certain AI judges are strongly correlated to human evaluators, despite being much faster and potentially much cheaper. In 2023 <a href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> found that on their evaluation benchmark, MT-Bench, the agreement between GPT-4 and humans reached 85 percent, which is even higher than the agreement among humans (81 percent). <a href="https://arxiv.org/abs/2404.04475">AlpacaEval</a> authors (Dubois et al., 2023) also found that their AI judges have a near-perfect (0.98) correlation with LMSYS's (Large Model Systems) Chat Arena leaderboard, which is evaluated by humans.</p> 
+  <p>Not only can AI evaluate a response, but it can also explain its decision, which can be especially useful when you want to audit your evaluation results. Figure 1 shows an example of GPT-4 explaining its judgment.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3722043/assets/html/huyen1.png" alt="How to Evaluate AI thats Smarter than Us" /> 
+  <p>Its flexibility makes AI-as-a-judge useful for a wide range of applications, and for some applications, it's the only automatic evaluation option. This approach can work even if there are no labels to compare the predictions, making it suitable for the production environment.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Limitations of AI-as-a-judge</b></p> 
+  <p>Despite the many advantages of AI-as-a-judge, some teams are hesitant to adopt this approach. Using AI to evaluate AI seems tautological. The probabilistic nature of AI makes it seem too unreliable to act as an evaluator. AI judges can potentially introduce nontrivial costs and latency to an application. Given these limitations, some teams see AI-as-a-judge as a fallback option when they don't have any other way of evaluating their systems.</p> 
+  <p><b><i>Inconsistency.</i></b> For an evaluation method to be trustworthy, its results should be consistent. Yet AI judges, like all AI applications, are probabilistic. The same judge, on the same input, can output different scores if prompted differently. Even the same judge, prompted with the same instruction, can output different scores if run twice. This inconsistency makes it hard to reproduce or trust evaluation results.</p> 
+  <p>It's possible to get an AI judge to be more consistent. <a href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> (2023) showed that including evaluation examples in the prompt can increase the consistency of GPT-4 from 65 percent to 77.5 percent. They acknowledged, however, that high consistency may not imply high accuracy—the judge might consistently make the same mistakes. On top of that, including more examples makes prompts longer, and longer prompts mean higher inference costs. In <a href="https://arxiv.org/abs/2306.05685">Zheng et al.</a>'s experiment, including more examples in their prompts caused their GPT-4 spending to quadruple.</p> 
+  <p><b><i>Criteria ambiguity.</i></b> Unlike many human-designed metrics, AI-as-a-judge metrics aren't standardized, making it easy to misinterpret and misuse them. For example, as of this writing, the open source tools <a href="https://github.com/mlflow/mlflow/blob/5cdae7c4321015620032d02a3b84fb6127247392/mlflow/metrics/genai/prompts/v1.py">MLflow</a>, <a href="https://github.com/explodinggradients/ragas/blob/b276f59c0d4eb4795dc28966bfbce14d5aacd140/src/ragas/metrics/_faithfulness.py%23L93C1-L94C1">Ragas</a>, and <a href="https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/evaluation/faithfulness.py">LlamaIndex</a> all have the built-in criterion <i>faithfulness</i> to measure how faithful a generated output is to the given context, but their instructions and scoring systems are all different. As shown in table 1, MLflow uses a scoring system from 1 to 5, Ragas uses 0 and 1, whereas LlamaIndex's prompt asks the judge to output YES and NO.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3722043/assets/html/huyen-t1.png" alt="How to Evaluate AI thats Smarter than Us" /> 
+  <p>The faithfulness scores outputted by these three tools won't be comparable. If, given a (<code>context, answer</code>) pair, MLflow gives a faithfulness score of 3, Ragas outputs 1, and LlamaIndex outputs NO, which score would you trust?</p> 
+  <p>An application evolves, but the way it's evaluated should ideally be fixed. This way, evaluation metrics can be used to monitor the application's changes. AI judges are also AI applications, however, which means that they can also change over time.</p> 
+  <p>Imagine that last month your application's coherence score was 90 percent, and this month the score is 92 percent. Does this mean that your application's coherence has improved? It's hard to answer this question unless you know for sure that the AI judges used in both cases are the same. What if the judge's prompt this month is different from the one last month? Maybe you switched to a slightly better-performing prompt, or a coworker fixed a typo in last month's prompt, and the judge this month is more lenient.</p> 
+  <p>This can become especially confusing if the application and the AI judge are managed by different teams. The AI judge team might change the judges without informing the application team. As a result, the application team might mistakenly attribute the changes in the evaluation results to changes in the application rather than changes in the judges.</p> 
+  <p>Evaluation methods take time to standardize. As the field evolves and more guardrails are introduced, let's hope that AI judges will become a lot more standardized and reliable in the future.</p> 
+  <p><b><i>Increased costs and latency.</i></b> Many teams use AI judges as guardrails in production to reduce risks, showing users only those generated responses deemed good by the AI judge. However, this can significantly increase the application's latency and cost, compared with not using a judge at all.</p> 
+  <p>Powerful AI judges can be expensive. If you use the same model both to generate and to evaluate responses, you'll do twice as many inference calls, approximately doubling your API costs. If you have three evaluation prompts because you want to evaluate three criteria—say, overall response quality, factual consistency, and toxicity—you'll increase your number of API calls four times. In some cases, evaluation can take up the majority of the budget, even more than response generation.</p> 
+  <p>You can reduce costs by using weaker models as the judges (see the section, "What Models Can Act as Judges?" later in this article). You can also reduce costs with <i>spot-checking:</i> evaluating only a subset of responses. Spot-checking means you might fail to catch some failures. The larger the percentage of samples you evaluate, the more confidence you will have in your evaluation results—but also the higher the costs. Finding the right balance between cost and confidence might take trial and error. All things considered, AI judges are much cheaper than human evaluators.</p> 
+  <p>Implementing AI judges in your production pipeline can add latency. If you evaluate responses before returning them to users, you face a tradeoff: reduced risk but increased latency. The added latency might make this option a nonstarter for applications with strict latency requirements.</p> 
+  <p><b><i>Biases of AI-as-a-judge. </i></b>Human evaluators have biases, and so do AI judges. Different AI judges have different biases. This section looks at some of the common ones. Being aware of your AI judges' biases helps you interpret their scores correctly and even mitigate these biases.</p> 
+  <p>AI judges tend to have <i>self-bias</i>, where a model favors its responses over the responses generated by other models. The same mechanism that helps a model compute the most likely response to generate will also give this response a high score. In <a href="https://arxiv.org/abs/2306.05685">Zheng et al.</a>'s 2023 experiment, GPT-4 favors itself with a 10 percent higher win rate, while Claude-v1 favors itself with a 25 percent higher win rate.</p> 
+  <p>Many AI models have <a href="https://arxiv.org/abs/2306.05685">first-position bias</a>. An AI judge may favor the first answer in a pairwise comparison or the first in a list of options. This can be mitigated by repeating the same test multiple times with different orderings or with carefully crafted prompts. The position bias of AI is the opposite of that of humans. Humans tend to favor <a href="https://www.interconnects.ai/p/evaluating-open-llms">the answer they see last</a><i>, </i>which is called <i>recency bias</i>.</p> 
+  <p>Some AI judges have <i>verbosity bias</i>, favoring lengthier answers, regardless of their quality. <a href="https://arxiv.org/abs/2307.03025">Wu and Aji (2023)</a> found that both GPT-4 and Claude-1 prefer longer responses (~100 words) with factual errors over shorter, correct responses (~50 words). <a href="https://arxiv.org/pdf/2310.10076">Saito et al.</a> (2023) studied this bias for creative tasks and found that when the length difference is large enough (e.g., one response is twice as long as the other), the judge almost always prefers the longer one. <a href="https://arxiv.org/pdf/2310.10076">Saito et al.</a> (2023) found that humans tend to favor longer responses too, but to a much lesser extent. Both <a href="https://arxiv.org/abs/2306.05685">Zheng et al.</a> (2023) and <a href="https://arxiv.org/pdf/2310.10076">Saito et al.</a> (2023), however, discovered that GPT-4 is less prone to this bias than GPT-3.5, suggesting that this bias might go away as models become stronger.</p> 
+  <p>On top of all these biases, AI judges have the same limitations as all AI applications, including privacy and IP. If you were to use a proprietary model as your judge, you would need to send your data to this model. If the model provider doesn't disclose the training data, you won't know for sure if the judge is commercially safe to use.</p> 
+  <p>Despite the limitations of the AI-as-a-judge approach, its many advantages would suggest that its adoption will continue to grow.</p> 
+  <p>&nbsp;</p> 
+  <p><b>What models can act as judges?</b></p> 
+  <p>One big question is whether the AI judge needs to be stronger than the model being evaluated. At first glance, a stronger judge makes sense. Shouldn't the exam grader be more knowledgeable than the exam taker? Not only can stronger models make better judgments, but they can also help improve weaker models by guiding them to generate better responses.</p> 
+  <p>You might wonder: If you already have access to the stronger model, why bother using a weaker model to generate responses? The answer is cost and latency. You might not have the budget to use the stronger model to generate all responses, so you use it to evaluate a subset of responses. For example, you may use a cheap in-house model to generate responses and the best commercial model to evaluate one percent of the responses.</p> 
+  <p>The stronger model might also be too slow for your application. You can use a fast model to generate responses while the stronger, but slower, model does evaluation in the background. If the strong model thinks that the weak model's response is bad, remedy actions might be taken, such as updating the response with that of the strong model. Note that the opposite pattern is also common. You use a strong model to generate responses and a weak model running in the background to do the evaluation.</p> 
+  <p>Using the stronger model as a judge poses two challenges. First, the strongest model will be left with no eligible judge. Second, an alternative evaluation method is needed to determine which model is the strongest.</p> 
+  <p>Using a model to judge itself—<i>self-evaluation</i> or <i>self-critique</i>—sounds like cheating, especially because of self-bias. Self-evaluation can be great for sanity checks, however. If a model thinks its response is incorrect, the model might not be that reliable. Beyond sanity checks, asking a model to evaluate itself can nudge the model to revise and improve its responses (<a href="https://arxiv.org/abs/2210.03350">Press et al., 2022</a>; <a href="https://arxiv.org/abs/2305.11738">Gou et al. 2023</a>; <a href="https://arxiv.org/abs/2310.08118">Valmeekam, Marquez, and Kambhampati, 2023</a>). This example shows what self-evaluation might look like:</p> 
+  <p>&nbsp;</p> 
+  <p><code> Prompt [from user]: What's 10+3? <br />First response [from AI]: 30 <br />Self-critique [from AI]: Is this answer correct? <br />Final response [from AI]: No it's not. The correct answer is 13. </code></p> 
+  <p>&nbsp;</p> 
+  <p>One open question is whether the judge can be weaker than the model being judged. Some argue that judging is an easier task than generating. Anyone can have an opinion about whether a song is good, but not everyone can write a song. Weaker models should be able to judge the outputs of stronger models.</p> 
+  <p>One exciting research direction is toward small, specialized judges. These judges are trained to make specific judgments, using specific criteria and following specific scoring systems. A small, specialized judge can be more reliable than larger, general-purpose judges for specific judgments.</p> 
+  <p>In production, many teams have already successfully used weaker, cheaper models to evaluate stronger, more expensive models.</p> 
+  <p>If the assumption holds that judging is easier than generating, it's excellent news for users. This suggests we can effectively evaluate the outputs of AI models more powerful than ourselves. Bowman et al. (2022), in "<a href="https://arxiv.org/abs/2211.03540">Measuring Progress on Scalable Oversight for Large Language Models</a>," demonstrate that users can collaborate with high-performing AI by probing models for consistency, reviewing multiple outputs for the same query, and synthesizing the results using their judgment.</p> 
+  <h4>Comparative evaluation</h4> 
+  <p>Another new but promising evaluation approach is comparative evaluation. The core idea behind this approach is that even for outputs where we can't give absolute scores, we can still tell which output is better. For example, even though I might not be able to give a song a concrete score, I can still tell which of two songs I like more.</p> 
+  <p>Comparative evaluation is the opposite of pointwise evaluation. With pointwise evaluation, you evaluate each model or model output independently and then rank them by their scores. With comparative evaluation, you evaluate models against each other and compute a ranking from comparison results. For responses whose quality is subjective, comparative evaluation is typically easier to do than pointwise evaluation.</p> 
+  <p>In AI, comparative evaluation was first used in 2021 by <a href="https://arxiv.org/abs/2112.00861">Anthropic</a> to rank different models. It also powers the popular LMSYS <a href="https://arena.lmsys.org/">Chatbot Arena</a> leaderboard that ranks models using scores computed from pairwise model comparisons from the community.</p> 
+  <p>Many model providers use comparative evaluation to evaluate their models in production. Figure 2 shows an example of ChatGPT asking its users to compare two outputs side by side. These outputs could be generated by different models or by the same model with different sampling variables.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3722043/assets/html/huyen2.png" alt="How to Evaluate AI thats Smarter than Us" /> 
+  <p>For each request, two or more models are selected to respond. An evaluator, which can be human or AI, picks the winner. These preferential signals can be used not only to rank models but also to train models to better align them with human preference.</p> 
+  <p>Comparative evaluation shouldn't be confused with A/B testing. In A/B testing, a user sees the output from one candidate model at a time. In comparative evaluation, a user sees outputs from multiple models at the same time.</p> 
+  <p>As models become stronger, surpassing human performance, it might become impossible for human evaluators to give model responses concrete scores. Human evaluators might still be able to detect the difference, however, and comparative evaluation might remain the only option. For example, the Llama 2 paper shared that when the model ventures into the kind of writing beyond the ability of the best human annotators, humans can still provide valuable feedback when comparing two answers (<a href="https://arxiv.org/abs/2307.09288">Touvron et al.</a>, 2023).</p> 
+  <p>Comparative evaluation also aims to capture the quality we care about: human preference. It reduces the pressure to constantly create more benchmarks to catch up with the ever-expanding capabilities of AI. Unlike benchmarks that become useless when model performance achieves perfect scores, comparative evaluations will never get saturated as long as newer, stronger models are being introduced.</p> 
+  <p>Comparative evaluation is relatively hard to game, as there's no easy way to cheat—for example, training your model on reference data. For this reason, many trust the results of public comparative leaderboards more than any other public leaderboards.</p> 
+  <p>I believe that comparative evaluation can provide discriminating signals about models that can't be obtained otherwise. For offline evaluation, it can be a great addition to evaluation benchmarks. For online evaluation, it can be complementary to A/B testing.</p> 
+  <p>An important point to keep in mind when using comparative evaluation is that <i>not all questions should be answered by preference</i>. Many questions should be answered by correctness instead. Imagine asking the model, "Is there a link between cell phone radiation and brain tumors?" and the model presents two options—"Yes" and "No"—for you to choose from. Preference-based voting can lead to wrong signals that, if used to train your model, can result in misaligned behaviors.</p> 
+  <p>Asking users to choose can also cause user frustration. Imagine asking the model a math question because you don't know the answer, and the model gives you two different answers and asks you to pick the one you prefer. If you had known the right answer, you wouldn't have asked the model in the first place.</p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>Evaluating AI models that surpass human expertise in the task at hand presents unique challenges. These challenges only grow as AI becomes more intelligent. However, the three effective strategies presented in this article exist to address these hurdles. </p> 
+  <p>• Functional correctness measures whether AI outputs achieve intended objectives, offering a clear and reliable metric for tasks with measurable outcomes, such as code generation or gamebot performance. Automating this evaluation for more complex tasks that AI can't yet solve end to end, however, remains challenging.</p> 
+  <p>• AI-as-a-judge is the approach of using AI models as evaluators of other models. This approach has only recently become possible as AI models have become powerful enough to do so. Like all other AI applications, AI judges are probabilistic with potential inconsistencies and biases, which make many teams hesitant to use it. Despite its limitations, AI-as-a-judge offers scalability and efficiency, especially when human evaluators are unavailable or their use is impractical.</p> 
+  <p>• Comparative evaluation, which pits models against one another, captures the quality that many application developers care about: human preferences. For many tasks where humans can't effectively evaluate outcomes, they can still differentiate which outcome is better.</p> 
+  <p>Ultimately, business decisions are still made based on returns on investment. Having a systematic, reliable way to evaluate AI applications is crucial in showing the impact of AI while reducing risks. By adopting strategies like those discussed in this article, application developers can build trust in both users and stakeholders and enable more applications to be built in the future.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Chip Huyen</b> works at the intersection of AI and storytelling. Previously, she was with Snorkel AI and Nvidia, founded an AI infrastructure startup (acquired), and taught Machine Learning Systems Design&nbsp;at Stanford. She was a core developer of NeMo, Nvidia's generative AI framework. Her book,&nbsp;Designing Machine Learning Systems, is an Amazon bestseller in AI and has been translated into 10-plus languages. Her latest book, <i>AI Engineering</i>, came out in January 2025.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92bdcab3f93ad6c4',t:'MTc0MzkwNTg3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 1</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3722043">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Mark Russinovich, Ahmed Salem, Santiago Zanella-B&#233;guelin, Yonatan Zunger</span> - <a href="detail.cfm?id=3711679"><b>The Price of Intelligence</b></a>
+	  <br />
+	  The vulnerability of LLMs to hallucination, prompt injection, and jailbreaks poses a significant but surmountable challenge to their widespread adoption and responsible use. We have argued that these problems are inherent, certainly in the present generation of models and likely in LLMs per se, and so our approach can never be based on eliminating them; rather, we should apply strategies of "defense in depth" to mitigate them, and when building and using these systems, do so on the assumption that they will sometimes fail in these directions.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Sonja Johnson-Yu, Sanket Shah</span> - <a href="detail.cfm?id=3703128"><b>You Don't Know Jack About AI</b></a>
+	  <br />
+	  For a long time, it was hard to pin down what exactly AI was. A few years back, such discussions would devolve into hours-long sessions of sketching out Venn diagrams and trying to map out the different subfields of AI. Fast-forward to 2024, and we all now know exactly what AI is. AI = ChatGPT. Or not.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jim Waldo, Soline Boussard</span> - <a href="detail.cfm?id=3688007"><b>GPTs and Hallucination</b></a>
+	  <br />
+	  The findings in this experiment support the hypothesis that GPTs based on LLMs perform well on prompts that are more popular and have reached a general consensus yet struggle on controversial topics or topics with limited data. The variability in the applications's responses underscores that the models depend on the quantity and quality of their training data, paralleling the system of crowdsourcing that relies on diverse and credible contributions. Thus, while GPTs can serve as useful tools for many mundane tasks, their engagement with obscure and polarized topics should be interpreted with caution.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3676287"><b>Virtual Machinations: Using Large Language Models as Neural Computers</b></a>
+	  <br />
+	  We explore how Large Language Models (LLMs) can function not just as databases, but as dynamic, end-user programmable neural computers. The native programming language for this neural computer is a Logic Programming-inspired declarative language that formalizes and externalizes the chain-of-thought reasoning as it might happen inside a large language model.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

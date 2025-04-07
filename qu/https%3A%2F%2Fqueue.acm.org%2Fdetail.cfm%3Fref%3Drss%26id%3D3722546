@@ -1,0 +1,669 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>A Clean Approach to Process Optimization - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3727151" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+		<h3><a href='/listing.cfm?qc_type=operationsandlife&page_title=Operations%20and%20Life'>Operations and Life</a></h3>
+	
+
+<label>April 4, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3727151">Volume 23, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3722546">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">A Clean Approach to Process Optimization</h1> 
+  <h2>What I learned from my dishwasher about automating processes</h2> 
+  <h3>Thomas A. Limoncelli</h3> 
+  <p>A friend of mine asked for advice about a problem he was having at his job. Onboarding each new customer required significant effort. The process was automated, but it took a long time to execute. The delay was visible to any new customer who had just signed an expensive contract and didn't want to wait days or weeks for their new service.</p> 
+  <p>&nbsp;</p> 
+  <h3>My Dishwasher</h3> 
+  <p>Before I could offer my friend some advice, I took a minute to explain something about my dishwasher.</p> 
+  <p>Most people use their dishwasher as explained in the manual. Dirty dishes collect in its racks over a span of time. Once it's full, someone adds soap and starts the load. Later, the clean dishes are emptied. Repeat.</p> 
+  <p>I do it a little differently.</p> 
+  <p>I load the soap as soon as the clean dishes are put away. Later, once it's time to start the wash cycle, I need only press the start button.</p> 
+  <p>I prefer this approach for a few reasons. It reduces the chance I'll spill the soap powder since I tend to start the wash cycle late at night just before going to bed when I'm both sleepy and in a rush. That combination tends to make me sloppy. Thus, spilled soap.</p> 
+  <p>With my system, a full soap dispenser is an indicator that the dishes are dirty. Have you ever had a family member or housemate ask, "Are the dishes in the dishwasher clean?" It isn't always obvious. Using the soap dispenser as the signal is both more accurate and convenient than a CLEAN/DIRTY magnet or some other mechanism requiring human intervention.</p> 
+  <p>My soap-loading technique isn't revolutionary, and I don't think I'm going to win the Turing Award for this innovation. But it does demonstrate a point about process design: You can eliminate delays in starting a process by front-loading tasks whenever possible.</p> 
+  <p>Front-loading is interesting because it changes <i>when</i> you do tasks but not their order. The process still involves a loop: load dishes, add soap, press start button, empty dishes repeat. You've only changed your mental model of where the loop starts.</p> 
+  <p>&nbsp;</p> 
+  <h3>Delivering Clusters</h3> 
+  <p>Now that you understand my amazing dishwasher technique, let's see how my friend might be able to add his soap ahead of time. He showed me a diagram of all the steps required to onboard a new customer. Three or four of these steps were generic enough to be done ahead of time.</p> 
+  <p>This would save hours, which was significant and would be worthy of the engineering effort. Performing these steps ahead of time also would improve quality. In the old system, when people were rushing to fulfill the customer request, the automation performed only cursory quality-assurance checks. With the new design, any step done ahead of time would benefit from a longer, more rigorous testing cycle. The old system discouraged new tests. The new system encouraged more testing. For example, a new design could be run through disaster-recovery ("failover") tests, which can often take hours.</p> 
+  <p>This then led to another design idea: Why not prebuild many instances and then hand them out as customer contracts are signed? The wait time visible to customers could be reduced from days to minutes.</p> 
+  <p>Books such as <i>The Phoenix Project</i> (Gene Kim, et al.) advocate delaying variation to the end of the process. Auto manufacturers follow this approach. All cars of a particular model start out exactly the same. Variations such as interior colors and audio/entertainment packages are added at the end. Fast-food restaurants follow this approach as well. Burger King advertises that special orders don't upset them, but the only variations they offer are ones that can be accomplished just before the sandwich is wrapped.</p> 
+  <p>Saving variations to the end makes it easier to manage defects. A generic unit with a defect can be moved to the side, repaired, and then put back on the assembly line. In the meantime, another generic item can take its place. Once a bespoke customization for a particular customer has been added, that flexibility is lost. In extreme cases, it's easier to simply throw the burger away.</p> 
+  <p>Realizing this, my friend split the process into two systems: a slow, generic cluster builder and a fast customization engine. The first system focused on creating generic clusters, testing them, and then registering them in an inventory. It built a stockpile of clusters ready to be handed out. There was no need to rush this phase. Quality was more important than speed. We'll call this the "slow phase."</p> 
+  <p>During the slow phase, you can take the time to do extensive testing. When failures are found, you can stop the process and take whatever time is necessary to study the problem, understand the failure, and fix it properly. Major problems can be resolved by deleting the cluster and starting over. Minor problems can be fixed before they become major problems.</p> 
+  <p>This is similar to how the auto industry stops a production line to fix a small problem before it becomes a big problem. This is known as "pulling the Andon cord," referring back to a time when a physical cord was pulled to stop the line.</p> 
+  <p>During the customization phase, meanwhile, my friend's process involved waiting for customer orders, picking a generic cluster from the stockpile and then customizing it for the customer. Let's call this the "fast phase." </p> 
+  <p>Some customers, for example, require larger capacity than others. Originally, my friend's company believed that no work could start until the sales order was signed because that's when capacity became known. Given this assumption, the entire slow/fast design was not possible. But then someone observed that nearly all customers require the same capacity, with only a few outliers requiring larger capacity. So, the decision was made to use the slow phase to build standard clusters that then could be grown during the fast phase if necessary.</p> 
+  <p>Another potential blocker was that the customer name was deeply embedded (or "tattooed") in the cluster configuration—which is to say the cloud provider had no way to rename clusters once they'd been built. This, too, was believed to be a blocker to the slow/fast design. But then the company decided to build all new clusters with generic names (cluster1, cluster2, cluster3, ) and then assign customer-specific aliases during the fast phase. The introduction of aliases required only minor changes to downstream processes. For example, some third-party tools do not pay attention to aliases and thus need to be passed the actual name.</p> 
+  <p>Let's popularize the slow/fast pattern. I've seen this slow/fast pattern in many deployment or service-delivery systems: small systems such as VDI (virtual desktop infrastructure) deployments up to systems larger than the one described here. Sadly, what all of these have in common is that the slow/fast design was always part of a second-generation rewrite.</p> 
+  <p>It's a shame we don't think to build systems this way from the start. I suppose this is because first-generation systems are built in haste. There's no time for architectural navel-gazing when you're tasked with automating a process after a flurry of orders has made it impossible to provide any of those with individualized attention.</p> 
+  <p>However, I think the true reason we don't think to use the slow/fast pattern is that it hasn't yet achieved enough popularity to be at the front of our minds. It isn't taught at the university level, it isn't discussed much in online forums, and—even when the pattern is used—it is often hidden from end users.</p> 
+  <p>Which is to say ACM members could play a large role in popularizing this pattern.</p> 
+  <p>&nbsp;</p> 
+  <h3>Similar Opportunities in Life</h3> 
+  <p>The timing of when we do things is not set in stone. It only feels that way.</p> 
+  <p>There's no rule that dishwasher soap must be loaded immediately before you start the wash cycle. But it's such a common practice that people tend to act as if such a rule exists.</p> 
+  <p>The day you gather trash from bins around your house does not need to be the same day you put your trash bins at the curb. I find it easier to collect the trash on the weekends when I'm doing other chores.</p> 
+  <p>A retail store does not start the day by making preparations for customers. The night before is when the facility is cleaned and the new merchandise is put out on display. Ideally, the morning shift simply opens the doors and is ready for normal business.</p> 
+  <p>Notice that if you sleep late, people call you lazy. But if you go to sleep super early, you sleep just as much and yet people call you wise.</p> 
+  <p>&nbsp;</p> 
+  <h3>Delay Optional Tasks, Possibly Forever</h3> 
+  <p>Examining the order of steps can even help you realize that something can be postponed until much, much, later. In the best case, it might even be postponed long enough that it's never needed at all.</p> 
+  <p>Before paperless billing, I used to fastidiously file away each utility, bank, and credit card statement in a filing cabinet. I had a separate folder for each utility, bank, credit-card company, and so on. Each folder contained past statements lovingly stored in chronological order. It was a lot of work, but I was sure that someday it would prove useful. Maybe I'd win a court case since I'd be able to swiftly calculate the exact amount I'd spent on groceries during the month of July 10 years earlier. I was young, optimistic, and stupid.</p> 
+  <p>One day I realized that all my meticulous filing was eating up a considerable amount of time. In fact, I could reduce the time it took to process my monthly bills by 80 percent by simply not being so fastidious about how I stored old statements. Instead, I just started to pile up the statements in a single folder; and then start a new folder once the current one was full. I wouldn't bother to organize the statements until I actually needed some specific information.</p> 
+  <p>This approach is what's referred to as "lazy evaluation" or "call-by-need" in programming languages. The win here is that, if the need never arises, we've saved a lot of time. In my case, the need to go through that folder never arose. And then, eventually, paperless billing eliminated the need for a filing cabinet altogether.</p> 
+  <p>&nbsp;</p> 
+  <h3>Discovering That Optional Tasks Aren't Optional</h3> 
+  <p>There's also a different possible outcome. Sometimes we examine optional tasks only to discover they aren't actually optional. In this case, managing the optionality (yes, I just invented that word) turns out to be wasted work and complexity that can be eliminated.</p> 
+  <p>I encountered this very situation recently when I was preparing to optimize some complex code in an open source project. There was an expensive string operation that the code avoided until it was sure the result would be required.</p> 
+  <p>Avoiding the operation was good, but I thought I could do better: I would memorize (cache) the result, so that—if the value was needed a second time—I wouldn't have to repeat the operation. This would involve some complex cache-invalidation logic, as the language didn't support lazy evaluation. But, as we all know, cache invalidation is one of the two most difficult problems in computer science. I dreaded the bugs this might introduce to the system.</p> 
+  <p>This proved to be a good time to stop coding and start doing some analysis. Of all the inputs, what percentage actually required the expensive operation and how often was the result accessed two or more times?</p> 
+  <p>To my surprise and delight, the result was required for 100 percent of the input and was always used at least once. With that discovery, I knew I could simply do the operation for each input string upon arrival and then store both the original and the processed result. I then could also expose both as public attributes—with no need for the complexity of memorization and cache invalidation.</p> 
+  <p>And yes, here was another opportunity to move a task up to an earlier point in a process. Moving the task up meant there was no need to test whether it had been done. The result was less code.</p> 
+  <p>Which goes to show that rethinking the order and timing of tasks within a process can actually lead to significant improvements in efficiency and quality.</p> 
+  <p>Whether this means speeding up your morning routine with a simple trick or overhauling a complex business process, the principles remain the same. By front-loading what you can, delaying what isn't critical, dividing work between slow and fast, and reducing complexity by reexamining optional work, you're able not only to optimize tasks but also to pave the way for smoother, more efficient days.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Thomas A. Limoncelli</b> is a senior site reliability engineer at Stack Overflow Inc. He works from his home in New Jersey. His books include <i>The Practice of Cloud Administration</i> (<a href="https://the-cloud-book.com">https://the-cloud-book.com</a>), <i>The Practice of System and Network Administration</i> (<a href="https://the-sysadmin-book.com">https://the-sysadmin-book.com</a>), and <i>Time Management for System Administrators</i> (<a href="https://TomOnTime.com">https://TomOnTime.com</a>). He is <a href="https://bsky.app/profile/yesthattom.bsky.social">@YesThatTom on BlueSky</a> and blogs at <a href="https://dl.acm.org/YesThatBlog.com">YesThatBlog.com</a>. He holds a B.A. in computer science from Drew University.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92bdcaad6bf507d0',t:'MTc0MzkwNTg3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 1</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3722546">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Dennis Roellke</span> - <a href="detail.cfm?id=3723152"><b>String Matching at Scale</b></a>
+	  <br />
+	  String matching can't be that difficult. But what are we matching on? What is the intrinsic identity of a software component? Does it change when developers copy and paste the source code instead of fetching it from a package manager? Is every package-manager request fetching the same artifact from the same upstream repository mirror? Can we trust that the source code published along with the artifact is indeed what's built into the release executable? Is the tool chain kosher?
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Catherine Hayes, David Malone</span> - <a href="detail.cfm?id=3690759"><b>Questioning the Criteria for Evaluating Non-cryptographic Hash Functions</b></a>
+	  <br />
+	  Although cryptographic and non-cryptographic hash functions are everywhere, there seems to be a gap in how they are designed. Lots of criteria exist for cryptographic hashes motivated by various security requirements, but on the non-cryptographic side there is a certain amount of folklore that, despite the long history of hash functions, has not been fully explored. While targeting a uniform distribution makes a lot of sense for real-world datasets, it can be a challenge when confronted by a dataset with particular patterns.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Nicole Forsgren, Eirini Kalliamvakou, Abi Noda, Michaela Greiler, Brian Houck, Margaret-Anne Storey</span> - <a href="detail.cfm?id=3639443"><b>DevEx in Action</b></a>
+	  <br />
+	  DevEx (developer experience) is garnering increased attention at many software organizations as leaders seek to optimize software delivery amid the backdrop of fiscal tightening and transformational technologies such as AI. Intuitively, there is acceptance among technical leaders that good developer experience enables more effective software delivery and developer happiness. Yet, at many organizations, proposed initiatives and investments to improve DevEx struggle to get buy-in as business stakeholders question the value proposition of improvements.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jo&#227;o Varaj&#227;o, Ant&#243;nio Trigo, Miguel Almeida</span> - <a href="detail.cfm?id=3631183"><b>Low-code Development Productivity</b></a>
+	  <br />
+	  This article aims to provide new insights on the subject by presenting the results of laboratory experiments carried out with code-based, low-code, and extreme low-code technologies to study differences in productivity. Low-code technologies have clearly shown higher levels of productivity, providing strong arguments for low-code to dominate the software development mainstream in the short/medium term. The article reports the procedure and protocols, results, limitations, and opportunities for future research.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

@@ -484,23 +484,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>A dependency may be <i>versioned</i>. Most open source packaging <i>ecosystems</i> (npm, Maven, PyPI, etc.) adhere at least somewhat to SemVer (specifically, <a href="https://semver.org/">Semantic Versioning 2.0</a>).</p> 
   <p><i>Dependency management </i>includes the processes used to obtain dependencies, store the dependency code, and monitor the health of these dependencies. Dependency management may be relatively easy for a project with a handful of dependencies, but modern software projects may depend on hundreds or even thousands of open source packages.</p> 
   <p>Dependencies are often specified by a list of name-requirement pairs in a requirements file, which usually has a syntax similar to that shown in figure 1.</p> 
-  <img src="https://dl.acm.org/anugerah1.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah1.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>A <i>requirement</i> specifies a range of accepted versions for the named dependency, using a notation particular to the packaging system. For example, in npm the requirement <code>react/^16.13.1</code> specifies any version of the react package greater than or equal to <code>16.13.1</code> and less than <code>17.0.0</code>. SemVer defines a total ordering of versions; however, most ecosystems diverge from SemVer requiring additional rules to define this total ordering.</p> 
   <p>The way requirements are specified varies widely between ecosystems. While many ecosystems follow SemVer for <i>versioning</i>, there is no universally accepted way of specifying requirements.</p> 
   <p>A <i>dependency resolution tool</i> decides which version of each dependency should be used in the build to satisfy all the requirements (see figure 2). The usual approach is to read a requirements file and choose a version for each package that satisfies the requirements, then download these package versions from an external package registry such as <a href="http://npmjs.org/">npmjs.org</a>.</p> 
-  <img src="https://dl.acm.org/anugerah2.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah2.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>The tool needs to select versions for <i>transitive dependencies—</i>the dependencies of dependencies—in addition to direct dependencies. This is because dependencies have their own dependency requirements, which may have their own dependency requirements, and so on. The output of the dependency resolution process is called the <i>dependency graph.</i></p> 
   <p>&nbsp;</p> 
   <h3>There are Many Dependency Graphs</h3> 
   <p>Intuition suggests that the requirements for a package will result in a single dependency graph. In practice, however, this is not true, and even resolving a single package's requirements could, in general, result in many dependency graphs. To see how, the popular npm module bundler <i>webpack</i> serves as an example.</p> 
   <p>Webpack is downloaded millions of times each week. At the time of writing (mid-2024), the latest version of webpack (5.94.0) has no known vulnerabilities. Furthermore, the dependency graph for <code>webpack/5.94.0</code> <a href="https://deps.dev/npm/webpack">as resolved by the deps.dev project</a> also contains no vulnerabilities. This doesn't mean, however, that any <i>installation</i> of <code>webpack/5.94.0</code> is guaranteed to have no vulnerabilities. To see how this is possible, let's analyze the process of resolving the dependency requirements of <code>webpack/5.94.0</code>.</p> 
   <p>The requirements file of <code>webpack/5.94.0</code> mentions 23 other packages, shown in figure 3.</p> 
-  <img src="https://dl.acm.org/anugerah3.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah3.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>These are just the direct dependencies, but the resolution process, after examining all the transitive dependencies, may add many more.</p> 
   <p>The npm tool resolves these requirements and those of the transitive dependencies into specific package versions, producing a dependency graph. Recall that dependency resolution means taking a requirement such as <code>browserslist/^4.21.10</code> and selecting a version of <code>browserslist</code> that matches this requirement. As is often the case, many versions satisfy this requirement of <code>browserslist</code>. For example, <code>4.21.10</code>, <code>4.21.11</code> and <code>4.22.0</code> are all valid choices.</p> 
   <p>The <code>browserslist</code> package also has four transitive requirements in its <a href="https://github.com/browserslist/browserslist/blob/main/package.json">package.json file</a> that must also be satisfied (figure 4). Just as there were many choices for the version of <code>browserslist</code>, there are many valid versions to choose from for each of its dependencies.</p> 
-  <img src="https://dl.acm.org/anugerah4.png" alt="The Surprise of Multiple Dependency Graphs" /> 
-  <p>Enumerating all combinations of valid dependency versions that satisfy all direct and all possible transitive requirements of <code>webpack/5.94.0</code> yields approximately 6.2 x 10⁴?—<i>zillions</i>—of possible dependency graphs.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah4.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <p>Enumerating all combinations of valid dependency versions that satisfy all direct and all possible transitive requirements of <code>webpack/5.94.0</code> yields approximately 6.2 x 10<sup>42</sup>—<i>zillions</i>—of possible dependency graphs.</p> 
   <p>This profusion means that any given project likely has multiple valid dependency graphs. As is explained in the next section, two different people resolving the same package could in practice get different dependency graphs. With a different dependency graph comes a different attack surface, different behavior, a different set of licenses, and a different set of vulnerabilities.</p> 
   <p>&nbsp;</p> 
   <h3>Why Don't Tools Always Produce the Same Dependency Graph for Each Package?</h3> 
@@ -509,28 +509,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>&nbsp;</p> 
   <h4>Dependencies aren't resolved in isolation</h4> 
   <p>Most projects depend on multiple packages. Running a query on the <a href="https://docs.deps.dev/bigquery/v1/#:~:text=The%2520deps.,as%2520a%2520BigQuery%2520public%2520dataset.">deps.dev BigQuery dataset</a> revealed that the average npm project has more than 85 direct and transitive dependencies, while the average Maven project has more than 20 (figure 5).</p> 
-  <img src="https://dl.acm.org/anugerah5.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah5.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>Because projects usually have multiple dependencies, the outcome of resolving one dependency alone is different from resolving that same dependency with the same requirement among other dependencies.</p> 
   <p>To take an example, suppose package <code>A</code> has a requirement <code>&gt;=1.0.0 </code>on package <code>B</code>, which has three available versions: <code>1.0.0</code>, <code>1.0.1</code>, and <code>1.0.2</code>. All three versions satisfy <code>&gt;=1.0.0</code>, and so the Python pip dependency tool will choose the latest matching version, in this case, <code>1.0.2</code>.</p> 
   <p>If package <code>A</code> were also to depend on package <code>X</code>, and <code>X</code> depends on <code>B</code>, the result of <code>B</code> may be different. If package <code>X</code> depends on package <code>B</code> with requirement <code>=1.0.1</code>, there would now be two constraints on <code>B</code>: <code>&gt;=1.0.0</code> and <code>=1.0.1</code>. The pip tool will try to find a version that satisfies all requirements, choosing <code>1.0.1</code> (see figure 6).</p> 
-  <img src="https://dl.acm.org/anugerah6.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah6.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>This isn't the only valid way tools handle this situation. The Node tool npm allows multiple versions of a package to be installed. Figure 7 shows how the same requirements on <code>B</code> are resolved differently in pip versus npm.</p> 
-  <img src="https://dl.acm.org/anugerah7.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah7.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>If you're using pip or npm, the version of <code>B</code> selected is different depending on the requirement context of the rest of the graph. It's not just your direct requirements that affect the versions chosen but transitive ones.</p> 
   <h4>Resolutions change over time</h4> 
   <p>When multiple versions satisfy a requirement, there are two main strategies that tools use for choosing between valid versions. </p> 
   <p>Tools such as Maven, Go, and NuGet (by default) choose the <i>lowest</i> version so that users get new features, fixes, and bugs only when they choose to update the requirement. Other tools such as npm, Cargo, and pip choose the <i>latest</i> version so that users automatically get new fixes, features, and bugs.</p> 
   <p>Choosing the latest version means that over time the resolution can change. As new versions are published, a new dependency graph can result (figure 8).</p> 
-  <img src="https://dl.acm.org/anugerah8.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah8.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>Because the new version (<code>B/1.0.3</code>) might have different dependencies from the old version (<code>B/1.0.2</code>), this can affect the dependency graph beyond just which version of <code>B</code> is selected, causing a surprising proportion of the graph to change.</p> 
   <p>The analysis from deps.dev data shows that it's common for dependency graphs to change daily. The npm ecosystem sees an average of 6.22 percent of its packages' graphs change daily, while PyPI sees a 4.63 percent change.</p> 
   <p>This churn results from the individual packages publishing new versions. While the tool itself may be deterministic, the inputs to the tool are not, as the corpus of package versions available on the registry is constantly changing.</p> 
   <p>&nbsp;</p> 
   <h4>Different tools produce different dependency graphs</h4> 
   <p>Different tools often exist within an ecosystem, and these tools make different resolution decisions. For example, three different JavaScript dependency-management tools (npm, yarn, and pnpm) produce <a href="https://blog.deps.dev/zillions-of-sboms/">three different resolution results for the same set of npm dependencies</a> (figures 9a and 9b).</p> 
-  <img src="https://dl.acm.org/anugerah9a.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah9a.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <br /> 
-  <img src="https://dl.acm.org/anugerah9b.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah9b.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>These changes can be subtle (you might get a slightly different version of the same package installed in your graph) or dramatic (whole dependencies may not appear in one graph), but they are, nonetheless, different results.</p> 
   <p>&nbsp;</p> 
   <h4>A tool may change its behavior</h4> 
@@ -541,7 +541,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h4>Resolutions differ based on system architecture</h4> 
   <p>Finally, packages may specify different dependencies for different system architectures and operating systems. This means that the dependency graph may vary with the specifics of the machine in which the dependency tool is run.</p> 
   <p>For example, figure 10 shows the list of requirements for the PyPI <code>tensorflow/2.18.0</code> package for Windows and Linux.</p> 
-  <img src="https://dl.acm.org/anugerah10.png" alt="The Surprise of Multiple Dependency Graphs" /> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3723000/assets/html/anugerah10.png" alt="The Surprise of Multiple Dependency Graphs" /> 
   <p>Dependency graphs that differ based on machine specifics can lead to a situation where the graph produced in the development environment is being diligently maintained, but issues in the production graph are never addressed.</p> 
   <p>Suppose the developers of a project are using Linux, but the production build is configured to run on Windows. When developers build the software project, the dependencies installed are specific to Linux. But when the program is built for production, a different set of Windows-specific dependencies may be installed.</p> 
   <p>This means that developers can scan the development build as much as they want for licensing issues and vulnerabilities, but this will not uncover certain issues in the production build. No issues may be detected in the development graph, but issues may still exist in the production graph.</p> 
@@ -596,7 +596,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p><b>Eve Martin-Jones</b> is a software engineer at Google working on the Google Open Source Security Team, in particular, the&nbsp;<a href="https://deps.dev/">deps.dev</a>&nbsp;project, analyzing open source software dependencies.</p> 
   <p>&nbsp;</p> 
   <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92834f810af2820c',t:'MTc0MzI5MjY1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92bdcad02bbddda6',t:'MTc0MzkwNTg4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
 	<p>
 	
@@ -682,6 +682,13 @@ FB.Event.subscribe('edge.create', function(targetUrl) {
 More related articles:
 
 	  <p>
+	  <span>Russ Cox</span> - <a href="detail.cfm?id=3722542"><b>Fifty Years of Open Source Software Supply Chain Security</b></a>
+	  <br />
+	  The xz attack seems to be the first major attack on the open source software supply chain. The event-stream attack was similar but not major, and Heartbleed and Log4j were vulnerabilities, not attacks. But the xz attack was discovered essentially by accident because it made sshd just a bit too slow at startup. Attacks, by their nature, try to remain hidden. What are the chances we would accidentally discover the very first major attack on the open source software supply chain in just a few weeks? Perhaps we were extremely lucky, or perhaps we have missed others.
+	  </p>
+	  <br />
+
+	  <p>
 	  <span>Amanda Casari, Julia Ferraioli, Juniper Lovato</span> - <a href="detail.cfm?id=3595879"><b>Beyond the Repository</b></a>
 	  <br />
 	  Much of the existing research about open source elects to study software repositories instead of ecosystems. An open source repository most often refers to the artifacts recorded in a version control system and occasionally includes interactions around the repository itself. An open source ecosystem refers to a collection of repositories, the community, their interactions, incentives, behavioral norms, and culture. The decentralized nature of open source makes holistic analysis of the ecosystem an arduous task, with communities and identities intersecting in organic and evolving ways. Despite these complexities, the increased scrutiny on software security and supply chains makes it of the utmost importance to take an ecosystem-based approach when performing research about open source.
@@ -699,13 +706,6 @@ More related articles:
 	  <span>Jessie Frazelle</span> - <a href="detail.cfm?id=3349301"><b>Open-source Firmware</b></a>
 	  <br />
 	  Open-source firmware can help bring computing to a more secure place by making the actions of firmware more visible and less likely to do harm. This article&#8217;s goal is to make readers feel empowered to demand more from vendors who can help drive this change.
-	  </p>
-	  <br />
-
-	  <p>
-	  <span>Marshall Kirk McKusick, George V. Neville-Neil</span> - <a href="detail.cfm?id=1035622"><b>Thread Scheduling in FreeBSD 5.2</b></a>
-	  <br />
-	  A busy system makes thousands of scheduling decisions per second, so the speed with which scheduling decisions are made is critical to the performance of the system as a whole. This article - excerpted from the forthcoming book, &#8220;The Design and Implementation of the FreeBSD Operating System&#8220; - uses the example of the open source FreeBSD system to help us understand thread scheduling. The original FreeBSD scheduler was designed in the 1980s for large uniprocessor systems. Although it continues to work well in that environment today, the new ULE scheduler was designed specifically to optimize multiprocessor and multithread environments. This article first studies the original FreeBSD scheduler, then describes the new ULE scheduler.
 	  </p>
 	  <br />
 

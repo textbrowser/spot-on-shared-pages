@@ -1,0 +1,732 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Fifty Years of Open Source Software Supply Chain Security - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Open Source' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3727151" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>April 1, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3727151">Volume 23, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3722542">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Fifty Years of Open Source Software Supply Chain Security</h1> 
+  <h2>For decades, software reuse was only a lofty goal. Now it's very real.</h2> 
+  <h3>Russ Cox</h3> 
+  <p>In March 1972, the United States Air Force started a review of a Honeywell Multics system to understand whether it could be used in secure environments. The report was issued in mid-1974 and concluded that Multics, while not secure, was better than its peers and might be a reasonable starting point for a secure system.<sup>23</sup> The report raised the potential of adding a backdoor (it was called a "trap door") to an innocent system call. When passed a specific, very unlikely input, the system call allowed reading or writing an arbitrary word of kernel memory. That tiny change would completely undermine the security of the system, and the report investigated the mechanics of how such a change might be made and hidden.</p> 
+  <p>In March 2024, Andres Freund, a Postgres developer working at Microsoft, noticed that his Debian Linux system's ssh daemon was taking more CPU than normal to handle the Internet's usual background attack traffic that was trying to brute force logins into his machine. Upon closer investigation, Freund discovered that the latest version of liblzma, a compression library linked into ssh on Debian systems, contained a backdoor that targeted ssh specifically.<sup>19</sup> Now, when passed a specific, very unlikely input, the ssh daemon would allow an attacker on the Internet to execute an arbitrary shell command. This tiny change completely undermined the security of bleeding-edge Debian systems, and for the next few weeks, security researchers all over the world investigated the mechanics of how the change was made and hidden. Because liblzma was distributed as part of the xz project, this attack is now widely known as the xz attack.</p> 
+  <p>The contours of the problems in software supply chain security have not changed in half a century because they are fundamental. There are no easy answers in computer security; software supply chain security is no exception. The best we can aim to do is keep improving our defenses, and many promising reinforcements are not yet universally deployed. This article aims to highlight promising approaches that should be more widely used as well as point out areas where more work is needed.</p> 
+  <p>I led the development of the Go programming language and environment<sup>15</sup> for more than a decade, and software supply chain security is one of the specific focuses of that effort. This article is informed by that work and draws some examples from my personal experience, in addition to examples drawn from across the software industry.</p> 
+  <p>&nbsp;</p> 
+  <h3>Exploring the Problem</h3> 
+  <p>Open source software supply chain security is a hot topic, especially after the xz attack, but what exactly does it mean? In the absence of an agreed-upon definition, I suggest this one, in three parts:</p> 
+  <p>1. An open source software supply chain<i> attack</i> is the insertion of nefarious open source code into trusted software before delivery. (This definition adapts one by Kim Zetter.<sup>35</sup>)</p> 
+  <p>2. An open source software supply chain<i> vulnerability</i> is an exploitable weakness in trusted software caused by a third-party, open source component of that software.</p> 
+  <p>3. Open source software supply chain<i> security</i> is the engineering of defenses against open source software supply chain attacks and vulnerabilities.</p> 
+  <p>&nbsp;</p> 
+  <p>There are a few important nuances to this definition.</p> 
+  <p>The first is that the hardware supply chain is not of concern here. For example, <i>Der Spiegel</i> reported in 2013 that the U.S. NSA (National Security Agency) can intercept a new computer ordered by a target and install backdoored software or hardware components into it.<sup>1</sup> That kind of physical attack is beyond the scope of this discussion of the software supply chain, although it may still be important to consider and defend against in certain contexts.</p> 
+  <p>A second nuance is that closed source software components are not of concern. For example, in 2012, attackers broke into Juniper Networks and changed the VPN (virtual private network) source code, replacing some critical constants in a random number generator. The effect was to create a backdoor that made it possible for the attackers to decrypt all VPN traffic that Juniper's customers sent through those devices.<sup>8</sup> This is a software supply chain attack because it changed the software before its delivery to Juniper's customers. But it is not an open source software supply chain attack, because the nefarious change was not made in one of the open source components used in Jupiter's VPN. (The random-number generator was easily backdoored in the first place thanks to the NSA mounting what might be considered an algorithmic supply chain attack.<sup>6</sup>)</p> 
+  <p>As another example, developers in China often look for copies of Xcode on file-sharing sites hosted in China, which are faster to download. In 2015, security researchers discovered that attackers had posted a modified copy of Xcode and worked to make it the top Chinese-language search result for "Xcode download." This version, which researchers named XcodeGhost, had been nefariously altered to add malicious code to every iOS app it built. It was downloaded and used by many app developers, and the injected malware made it into at least two widely used apps.<sup>34</sup> This is a software supply chain attack on the distribution mechanism rather than the original software, but, once again, it is not targeting open source software.</p> 
+  <p>A third nuance is that the affected software does not itself need to be open source. For example, in 2021 security researchers discovered that the open source Java logging library Log4j would download and execute Java code from arbitrary URLs when logging text with a certain format.<sup>33</sup> Log4j is widely used in the Java ecosystem. As one example among millions of affected programs, in the popular game Minecraft, simply sending a chat message was sufficient to achieve remote code execution on the game server. Minecraft is, therefore, an example of a closed source program affected by an open source software supply chain vulnerability. Since almost all closed source programs use open source components,<sup>2</sup> they all depend on good open source software supply chain security.</p> 
+  <p>A final nuance is that attacks that involve code written with nefarious intent are distinguished from vulnerabilities that involve innocent bugs. For example, in 2021 Apple fixed a bug that allowed so-called zero-click takeovers of an iPhone device by sending an iMessage with a specially crafted image attachment. The attachment identified itself as a GIF but was actually a PDF containing a JBIG2 image. Apple's software used the open source Xpdf JBIG2 decoder, written in C, and that decoder did not properly validate the encoded Huffman trees in the image; this made it possible to trigger bitwise operations on memory at attacker-controlled offsets beyond an allocated region. The attackers implemented an entire virtual CPU out of these bitwise operations and then implemented code in that virtual instruction set to scan process memory, break out of the iMessage sandbox, and take over the phone.<sup>4</sup> The JBIG2 bug was only accidentally (not nefariously) introduced, so it is an open source software supply chain vulnerability, not an attack. Vulnerabilities and attacks are distinct problems with distinct potential solutions.</p> 
+  <p>As another example, in 2018 researchers discovered that the npm package event-stream contained obfuscated code that harvested bitcoin wallets when linked into the Copay mobile app.<sup>21</sup> The nefarious code explicitly targeted Copay, making that app an example of a closed source program affected by an open source software supply chain attack.</p> 
+  <p>Although the last two examples ultimately impacted closed source applications, attacks on purely open source software stacks are also possible. The xz attack did exactly this, attacking OpenSSH through a component of its software supply chain—liblzma—instead of a direct attack on the OpenSSH source code or project itself. Even a purely open source attack can be devastating: If a few more months had passed before its discovery, the backdoored sshd (Secure Shell daemon) would have been deployed in sensitive contexts worldwide.</p> 
+  <p>Although there is no silver bullet, the remainder of this article highlights the general themes for engineering better defenses as well as practical steps being taken today.</p> 
+  <p>&nbsp;</p> 
+  <h3>Understand the Software Supply Chain</h3> 
+  <p>To secure your software supply chain, you first have to understand what it is. Let's start with the definition: The <i>software supply chain</i> is all the places where a software supply chain attack might happen or vulnerability might be introduced. The more important meaning of <i>understand</i>, however, is knowing what your specific software supply chain looks like, and that turns out to be quite difficult. The word <i>chain</i> sounds simple, but a supply chain is like a fractal: complex no matter how closely you look at it.</p> 
+  <p>At the lowest level, you can look at the commands executed to build a single program and the dependencies between those commands. These build graphs align with the package dependency structure of the program itself. Even for simple programs, these graphs are so complex as to be unprintable. The Go project makes it a priority to avoid unnecessary dependencies and keep software simple,<sup>15</sup> and yet, as I write this article, building the <code>go</code> command executes 714 commands to build 297 packages, with 3,132 dependency edges in its package graph. The <code>go</code> command is unusual in that it has no external dependencies: All the packages it uses are part of the Go project itself. Looking at a slightly more complex command, Kubernetes's kubelet executes 3,289 commands in its build and depends on 1,581 packages from 137 Go modules, including many from outside the Kubernetes project. Both these examples are fairly small, low-level utilities. Higher-level programs have even more complex builds. In <a href="https://queue.acm.org/detail.cfm?id=3723000">another article in this issue of <i>acmqueue</i></a>, Josie Anugerah and Eve Martin-Jones examine the complexity of open source build graphs in more detail, along with the surprise that most programs have many possible build graphs, depending on the exact context in which they are built.</p> 
+  <p>It is tempting to think these kinds of dependency graphs are the entire software supply chain, but they are only the most visible part. Each package or module in the dependency graph may be written by a different person or organization, with different security practices, code review standards, and so on. It would be helpful to know more about these details for every dependency you take on, but in general, this information is unavailable and can change over time.</p> 
+  <p>Another kind of graph shows the computers and services that software passes through during a build and during distribution to users. A nefarious alteration could be made in any one of these computers or services, making each one a different potential attack site, not to mention a potential source of vulnerabilities. You should be concerned with who has access to each dependency project, who might have access in the future, what infrastructure they use, and so on. For the most part, without visibility into any of that, it goes ignored. But it's all still there.</p> 
+  <p>Understanding the software supply chain is critical to identifying which links need to be reinforced. As an industry, we have much more work to do here, but for this article, let's move on to specific reinforcements already known to help.</p> 
+  <p>&nbsp;</p> 
+  <h3>Authenticate Software</h3> 
+  <p>The Multics review contemplated inserting backdoors "during the distribution phase," taking advantage of "insecure telecommunications" as well as sending out nefarious updates "using forged stationery." The wording may be outdated, but the ideas are not. XcodeGhost is a modern example of exactly that approach. Fixing this problem is the nearest thing to a true success story in modern software supply chain security. Cryptographic signatures make it impossible to nefariously alter code between signing and verifying. The only problem left is key distribution: The verifier has to know who should have signed the code.</p> 
+  <p>There are many possible answers to the key distribution problem. The simplest one is to ignore questions of identity and simply record and distribute the expected cryptographic hash of the specific dependency versions being used in a given build or package manager. Verification of these predistributed hashes completely removes download servers, proxies, and other network middleboxes as potential attack sites. Debian's system for packaging dependencies includes such a check, which meant the xz attacker could not simply modify an existing copy of xz; they needed to release a new version. That didn't prevent the attack, but it did make the attack harder.</p> 
+  <p>On a larger scale, instead of predistributing all these hashes, they can be maintained in a trusted database. The Go checksum database<sup>16</sup> is a real-world example of this approach that protects millions of Go developers. The database holds the SHA256 checksum of every version of every public Go module. Each database entry is signed by the database server's private key. The corresponding public key is hard-coded in the Go command source code, so key distribution piggybacks on the rest of the Go distribution. </p> 
+  <p>Every time the <code>go</code> command downloads a new open source Go package, it looks up the expected checksum. There is a local checksum cache for dependencies in a given project, so network calls to the checksum server happen only for upgrades or adding new dependencies, but one way or another, every download is checked. This means all the proxies and other boxes between code hosting and a user's computer cannot be attack sites. Even an attack on the code hosting site cannot change old packages.</p> 
+  <p>There is, of course, the question of what checksum to put into the database. For Go, if the database hasn't recorded a specific package version yet, it fetches the code directly and stores the checksum for the code it gets. This "trust on first use" approach doesn't mean the code is trustworthy, but it does mean that the code can't change if anyone else downloads it on a different computer tomorrow. This immutability ensures that the entire Go ecosystem agrees on the meaning of Kubernetes version 1.28.4, which serves as a foundation for any other analysis work.</p> 
+  <p>To the extent that questions of identity can be solved, having authors sign their software can provide even stronger guarantees. In the case of xz, distribution packages were signed using the individual author's GPG (Gnu Privacy Guard) keys, making it possible to distinguish the packages signed by the original (trustworthy) maintainer of xz and the ones signed by the attacker who had taken control of the project.</p> 
+  <p>&nbsp;</p> 
+  <h3>Make Builds Reproducible</h3> 
+  <p>The Multics review noted that a nefarious change might "best be hidden in changes to the binary code of a compiled routine," leaving the corresponding source code unmodified. Such a change would persist only until a rebuild from source code, but most installations would not rebuild source code without reason. This remains a concern today. For example, the critical lines of code that triggered the xz attack during its build were included only in the packaged distribution, not in the actual source control repository.<sup>14</sup></p> 
+  <p>The best and most obvious way to verify that binaries have not been modified is to rebuild them and check the result against the distributed binaries, but that assumes builds are reproducible. Since computers are deterministic, it sounds like this should be trivial, but it is far too easy for contextual information like the build machine architecture or machine name, the names of temporary directories, or the current time to end up in some build output, making the overall build nonreproducible. The Reproducible Builds<sup>31</sup> project aims to raise awareness of reproducible builds generally, as well as building tools to help make progress toward complete reproducibility for all Linux software.</p> 
+  <p>The Go project recently arranged for Go itself to be completely reproducible given only the source code, meaning that although a build needs some computer running some operating system and some earlier Go toolchain, none of those choices matters. A build for a given target produces the same distribution bits whether you build on Linux or Windows or Mac, whether the build host is X86 or ARM, and so on. Strong reproducibility makes it possible for others to easily verify that the binaries that are posted for download match the source code. Those binaries are also logged in the Go checksum database and verified when the <code>go</code> command downloads a new toolchain, so that downloads can't be modified in transit.<sup>10</sup></p> 
+  <p>Authenticating software and making builds reproducible remove potential attack vectors, although certainly not all. Let's turn our focus now to vulnerabilities.</p> 
+  <p>&nbsp;</p> 
+  <h3>Find and Fix Vulnerabilities Quickly</h3> 
+  <p>Fifty years ago, there was some hope that software could be made completely secure by correct design and careful implementation. We know better now. Accepting that software will always have vulnerabilities, we must be ready to find and fix those vulnerabilities as quickly as possible when they arise.</p> 
+  <p>Since attackers are looking for those vulnerabilities too, the best defense is to find and fix them first. The most trivial example is an out-of-date dependency with a known vulnerability. There are many available vulnerability scanning tools that can identify this situation, whether language-specific tools like govulncheck and npm audit, general open source tools like osv-scanner,<sup>30</sup> or commercial tools. All of them work by cross-checking a list of the software inputs to a build—the <i>software bill of materials</i>—against a database of known vulnerabilities. </p> 
+  <p>The specific choice of tool or database is not as important as it used to be. The open source software community has standardized on the OSV (Open Source Vulnerabilities) format<sup>7</sup> for individual vulnerability descriptions, including a precise, algorithmic description of the affected packages and versions. The OSV database<sup>29</sup> then aggregates all the language-specific databases. The CVE (Common Vulnerabilities and Exposures) database's JSON 5.0 schema also adopted OSV's precise information about affected packages and versions, enabling interchange between OSV and CVE. It benefits everyone for all tools to have access to the same, complete information about known vulnerabilities.</p> 
+  <p>It is important to scan your software regularly, ideally daily, because even if your software is not changing, new entries are always being added to the database. And then you need to be ready to update to a fixed version of that dependency. This requires having comprehensive testing to make sure that the fixed version does not introduce any new bugs, as well as having automated deployment, so that a patched version of your software can go out in hours or days, not weeks or months. </p> 
+  <p>Testing and deployment are standard software engineering concerns, not specifically about supply chain security, but without them, your security posture suffers, as can your legal exposure. When the Log4j vulnerability was discovered in 2021, it took most companies weeks or months (or more) to inventory all their software to determine what was affected and then update and redeploy that software. Even the U.S. FTC (Federal Trade Commission) issued a statement warning companies to update Log4j to "reduce the likelihood of harm to consumers, and to avoid FTC legal action,"<sup>18</sup> pointing to Equifax's previous liability for an intrusion enabled by unpatched software.<sup>17</sup></p> 
+  <p>Scanning for known vulnerabilities is the bare minimum. Effort should ideally also be spent looking for as-yet-unknown vulnerabilities in your open source dependencies. When you run security audits of your own source code, it is often worthwhile to identify critical open source dependencies and audit them too. Running bug-finding analysis tools or fuzzers on your software and its dependencies can also be effective. Attackers are going to use all these methods; you might as well use them first.</p> 
+  <p>&nbsp;</p> 
+  <h3>Prevent Vulnerabilities</h3> 
+  <p>Even if software will always have vulnerabilities, there are steps you can take to prevent certain kinds or to make them less likely.</p> 
+  <p>To start, omit needless dependencies. Gordon Bell once observed that "[t]he cheapest, fastest and most reliable components of a computer system are those that aren't there."<sup>5</sup> The most secure software dependencies are the ones not used in the first place: Every dependency adds risk. </p> 
+  <p>The OpenSSH project is careful about not taking on unnecessary dependencies, but Debian was not as careful. That distribution patched sshd to link against libsystemd, which in turn linked against a variety of compression packages, including xz's liblzma. Debian's relaxing of sshd's dependency posture was a key enabler for the attack, as well as the reason its impact was limited to Debian-based systems such as Debian, Ubuntu, and Fedora, avoiding other distributions such as Arch, Gentoo, and NixOS. Weeks before the xz attack was deployed, system developers had been discussing removal of the dependency on compressors such as liblzma, specifically to improve security. It is pure speculation, but those discussions may have accelerated the timeline for launching the attack.<sup>3</sup></p> 
+  <p>The same lesson applies to all projects, large and small. If it is possible to get by without a dependency, that's usually best. If not, small dependencies are better than large ones, and the number of transitive dependencies matters. Look not only at the one dependency being added but also at its impact on the overall dependency graph, using tools like Open Source Insights.<sup>27</sup></p> 
+  <p>Another good way to prevent vulnerabilities is to use safer programming languages that remove error-prone language features or make them needed less often. In 2022, the NSA released a recommendation on "Software Memory Safety" encouraging the use of memory-safe languages such as C#, Go, Java, or Rust instead of C and C++.<sup>26</sup> Among the many strikes against C and C++, manual memory management and the lack of any kind of bounds checking simply make programs too easy to get wrong in a way that creates a security vulnerability. Their reliance on "undefined behavior" adds another level of danger.<sup>9</sup> Of course, there is a substantial amount of C and C++ code in the world, and those programs cannot be abandoned overnight. For new efforts, however, adopting a safer language has significant security benefits.</p> 
+  <p>&nbsp;</p> 
+  <h3>Fund Open Source</h3> 
+  <p><a href="https://xkcd.com/2347/">A famous xkcd comic from 2020</a> depicts "all modern digital infrastructure" built atop "a project some random person in Nebraska has been thanklessly maintaining since 2003."<sup>25</sup> The comic remains a disturbingly accurate assessment of the situation.</p> 
+  <p>In 2014, researchers discovered that OpenSSL, a library widely used by Internet HTTPS servers, would respond to a specific kind of malformed packet by sending back arbitrary chunks of server memory. In some cases, that memory included the server's secret-key material. This was not an attack, but instead, an innocent coding mistake. (OpenSSL is written in C, so this mistake was incredibly easy to make and miss; in a memory-safe language with proper bounds checking, it would have been nearly impossible.) </p> 
+  <p>The vulnerability was named Heartbleed and prompted a reckoning across the industry about exactly the situation described in the xkcd comic. At the time, OpenSSL was maintained by a handful of volunteers, with only one full-time developer. Researchers estimated that a security audit costing on the order of $100,000 would have caught the mistake, but the project received only $2,000 in annual donations, despite billions of dollars of commerce relying on the software each year. One outcome of this reckoning was the creation and funding of the Linux Foundation's Core Infrastructure Initiative, which evolved into the Open Source Security Foundation, or OpenSSF.<sup>28</sup> </p> 
+  <p>OpenSSF is an important step forward, but it has not solved the problem of modern digital infrastructure depending on critical underfunded projects. More work is needed.</p> 
+  <p>The xz attack is the clearest possible demonstration that the problem is not fixed. It was enabled as much by underfunding of open source as by any technical detail. Here's the story of the xz attack.</p> 
+  <p>Lasse Collin started the xz project in 2005, using the LZMA compression algorithm, which compressed files to about 70 percent of what gzip did. Over time, this format became widely used for compressing tar files, Linux kernel images, and many other uses. For the most part, the software was stable and did not need significant ongoing attention. Collin was not paid for it, and it was not his full-time job. </p> 
+  <p>In late 2021, an attacker using the (almost certainly not real) name "Jia Tan" started sending innocuous patches with small improvements to the xz development mailing list.<sup>22</sup> In mid-2022, the attacker started posting using other accounts and names on the mailing list, complaining about the slow pace of releases and new features, and pressuring Collin to cede control to someone with more time. They wrote things like, "The current maintainer lost interest or doesn't care to maintain anymore. It is sad to see for a repo like this." Also, "I get that this is a hobby project for all contributors, but the community desires more. Why not pass on maintainership...?" </p> 
+  <p>The pressure campaign worked. Over the next year and a half, Collin turned over more and more development responsibility to the attacker, who built trust by making honest improvements and doing important maintenance work. In early 2023, the attacker built their first official xz release; as 2023 went on, they laid the technical groundwork for the actual attack, ultimately launched in early 2024.<sup>13</sup> </p> 
+  <p>In the months after the attack was discovered, most speculation focused on the likelihood that the xz attack was carried out by nation-state hackers,<sup>22</sup> with no confirmation one way or the other. No matter who was responsible, it likely did not cost much. A competent software engineer working full-time on an open source project for two years to gain the trust of its maintainer probably costs less than a million dollars. The development of the exploit code itself, which was quite sophisticated, might cost another million dollars or so. A hidden backdoor into the vast majority of Linux ssh servers on the Internet would be worth many times more than that, possibly billions of dollars. The general underfunding of open source projects makes them directly susceptible to this kind of honest-seeming free help.</p> 
+  <p>The social engineering of the xz attack is also not an isolated incident. In the event-stream attack mentioned earlier, the attacker simply asked whether the original author wanted someone to take over maintenance. In the aftermath of the xz attack, the OpenSSF and the OpenJS Foundation issued a warning about a similar campaign that had been unsuccessfully carried out against OpenJS.<sup>20</sup></p> 
+  <p>It is far from obvious how best to fund open source development. More than a decade after Heartbleed and the launch of the Core Infrastructure Initiative, the problem clearly remains unsolved. </p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>We are all struggling with a massive shift that has happened in the past 10 or 20 years in the software industry. For decades, software reuse was only a lofty goal. Now it's very real.<sup>12</sup> Modern programming environments such as Go, Node, and Rust have made it trivial to reuse work by others, but our instincts about responsible behaviors have not yet adapted to this new reality.</p> 
+  <p>The fact that the 1974 Multics review anticipated many of the problems we face today is evidence that these problems are fundamental and have no easy answers. We must work to make continuous improvements to open source software supply chain security, making attacks more and more difficult and expensive. </p> 
+  <p>There are important steps we can take today, such as adopting software signatures in some form, making sure to scan for known vulnerabilities regularly, and being ready to update and redeploy software when critical new vulnerabilities are found. More and more development should be shifted to safer languages that make vulnerabilities and attacks less likely. We also need to find ways to fund open source development to make it less susceptible to takeover by the mere offer of free help. Relatively small investments in OpenSSL and xz development could have prevented both the Heartbleed vulnerability and the xz attack.</p> 
+  <p>The xz attack seems to be the first major attack on the open source software supply chain. The event-stream attack was similar but not major, and Heartbleed and Log4j were vulnerabilities, not attacks. But the xz attack was discovered essentially by accident because it made sshd just a bit too slow at startup. Attacks, by their nature, try to remain hidden. What are the chances we would accidentally discover the very first major attack on the open source software supply chain in just a few weeks? Perhaps we were extremely lucky, or perhaps we have missed others.</p> 
+  <p>The Multics review is famous for pointing out the possibility of adding a backdoor to a compiler to insert backdoors in critical system programs during compilation as XcodeGhost later did, and then the possibility of having the compiler backdoor <i>itself</i>, so that the modifications would persist even after a full recompilation of the compiler. Reading the report inspired Ken Thompson to implement exactly that attack on an early Unix system, probably in early 1975. He later explained the attack in his 1983 Turing Award lecture, published in <i>Communications of the ACM</i> as "Reflections on Trusting Trust."<sup>32</sup> Thompson kept the original attack source code, and with his permission, I published an annotated copy in 2023.<sup>11</sup> Perhaps the most unsettling part is how short it is: 99 lines of C and a 20-line shell script.</p> 
+  <p>In his lecture, Thompson said, "The moral is obvious: You can't trust code that you did not totally create yourself." But today, we do that all the time, whether the trust is warranted or not. We use source code downloaded from strangers on the Internet in our most critical applications; almost no one is checking the code.</p> 
+  <p>Lawrence Kesteloot's excellent short story "Coding Machines"<sup>24</sup> imagines a computing world under attack from Thompson's backdoor writ large. In our actual world, the sophistication of this kind of backdoor is simply not necessary. There are far easier ways to mount a supply chain attack, such as asking a maintainer if they would like some help. It would be nice to live in a world where attacks require the level of sophistication described by Thompson and Kesteloot.</p> 
+  <p>We all have more work to do.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Appelbaum, J., et al. 2013. Documents reveal top NSA hacking unit. Spiegel International; <a href="https://www.spiegel.de/international/world/the-nsa-uses-powerful-toolbox-in-effort-to-spy-on-global-networks-a-940969.html">https://www.spiegel.de/international/world/the-nsa-uses-powerful-toolbox-in-effort-to-spy-on-global-networks-a-940969.html</a>. </p> 
+  <p>2. Bals, F. 2024. 2024 open source security and risk analysis report. Blackduck blog; <a href="https://www.blackduck.com/blog/open-source-trends-ossra-report.html">https://www.blackduck.com/blog/open source-trends-ossra-report.html</a>. </p> 
+  <p>3. Beaumont, K. 2024. Inside the failed attempt to backdoor SSH globally — that got caught by chance. DoublePulsar; <a href="https://docs.google.com/a/whatexit.org/spreadsheets/d/1eW5m0bFY_TVHLHgFd7hEvx7RceegNy19-J4ouHwMFpk/edit?usp=sharing">https://doublepulsar.com/inside-the-failed-attempt-to-backdoor-ssh-globally-that-got-caught-by-chance-bbfe628fafdd</a>.</p> 
+  <p>4. Beer, I., Groß, S. 2021. A deep dive into an NSO zero-click iMessage exploit: Remote Code Execution, Google Project Zero blog; <a href="/cdn-cgi/l/email-protection#330c404651595650470e">https://googleprojectzero.blogspot.com/2021/12/a-deep-dive-into-nso-zero-click.html</a>.</p> 
+  <p>5. Bentley, J. 1985. Programming pearls. <i>Communications of the ACM</i> 28(9), 896–901; <a href="https://dl.acm.org/doi/10.1145/4284.315122">https://dl.acm.org/doi/10.1145/4284.315122</a>.</p> 
+  <p>6. Bernstein, D. J., Lange, T., Niderhagen, R. 2015. Dual EC: a standardized back door. <i>LNCS Essays on the New Codebreakers 9100</i>, ed. P. Y. A. Ryan, D. Naccache, J.-J. Quisquater, 256–281; <a href="https://eprint.iacr.org/2015/767">https://eprint.iacr.org/2015/767</a>. </p> 
+  <p>7. Chang, O., Catlin, K. 2023. Getting to know the Open Source Vulnerability (OSV) format, OpenSSF blog; <a href="https://openssf.org/blog/2023/05/02/getting-to-know-the-open-source-vulnerability-osv-format/">https://openssf.org/blog/2023/05/02/getting-to-know-the-open source-vulnerability-osv-format/</a>. </p> 
+  <p>8. Checkoway, S., et al. 2018. Where did I leave my keys?: lessons from the Juniper Dual EC incident. <i>Communications of the ACM</i> 61(11), 148–155; <a href="https://dl.acm.org/doi/10.1145/3266291">https://dl.acm.org/doi/10.1145/3266291</a>. </p> 
+  <p>9. Cox, R., 2023. C and C++ prioritize performance over correctness. research!rsc blog post; <a href="https://research.swtch.com/ub">https://research.swtch.com/ub</a>. </p> 
+  <p>10. Cox, R. 2023. Perfectly reproducible, verified Go toolchains. The Go Blog; <a href="https://go.dev/blog/rebuild">https://go.dev/blog/rebuild</a>. </p> 
+  <p>11. Cox, R., 2023. Running the "Reflections on Trusting Trust" compiler. research!rsc blog post; <a href="https://research.swtch.com/nih">https://research.swtch.com/nih</a>. </p> 
+  <p>12. Cox, R., 2019. Surviving software dependencies. <i>Communications of the ACM 62(9)</i>, 36–43; <a href="https://dl.acm.org/doi/10.1145/3347446">https://dl.acm.org/doi/10.1145/3347446</a>. </p> 
+  <p>13. Cox, R. 2024. Timeline of the xz open source attack. research!rsc blog post. <a href="https://research.swtch.com/xz-timeline">https://research.swtch.com/xz-timeline</a>.</p> 
+  <p>14. Cox, R., 2024. The xz attack shell script. research!rsc blog post; <a href="https://research.swtch.com/xz-script">https://research.swtch.com/xz-script</a>. </p> 
+  <p>15. Cox, R., Griesemer, R., Pike, R., Taylor, I. L., Thompson, K. 2022. The Go programming language and environment. <i>Communications of the ACM</i> <i>65(5),</i> 70–78; <a href="https://dl.acm.org/doi/10.1145/3488716">https://dl.acm.org/doi/10.1145/3488716</a>. </p> 
+  <p>16. Cox, R., Valsorda, F. 2019. Proposal: secure the public Go module ecosystem. Go design document; <a href="https://go.dev/design/25530-sumdb">https://go.dev/design/25530-sumdb</a>. </p> 
+  <p>17. Federal Trade Commission. 2019. Equifax to pay $575 million as part of settlement with FTC, CFPB, and states related to 2017 data breach. FTC press release; <a href="https://www.ftc.gov/news-events/news/press-releases/2019/07/equifax-pay-575-million-part-settlement-ftc-cfpb-states-related-2017-data-breach">https://www.ftc.gov/news-events/news/press-releases/2019/07/equifax-pay-575-million-part-settlement-ftc-cfpb-states-related-2017-data-breach</a>.</p> 
+  <p>18. Federal Trade Commission. 2022. FTC warns companies to remediate Log4j security vulnerability. FTC Office of Technology blog; <a href="https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2022/01/ftc-warns-companies-remediate-log4j-security-vulnerability">https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2022/01/ftc-warns-companies-remediate-log4j-security-vulnerability</a>. </p> 
+  <p>19. Freund, A., 2024. Backdoor in upstream xz/liblzma leading to ssh server compromise. oss-security mailing list, Openwall; <a href="https://www.openwall.com/lists/oss-security/2024/03/29/4">https://www.openwall.com/lists/oss-security/2024/03/29/4</a>. </p> 
+  <p>20. Ginn, R. B., Arasaratnam, O. 2024. XZ Utils cyberattack likely not an isolated incident. OpenSSF blog; <a href="https://openssf.org/blog/2024/04/15/open-source-security-openssf-and-openjs-foundations-issue-alert-for-social-engineering-takeovers-of-open-source-projects/">https://openssf.org/blog/2024/04/15/open source-security-openssf-and-openjs-foundations-issue-alert-for-social-engineering-takeovers-of-open source-projects/</a>. </p> 
+  <p>21. Goodin, D., 2018. Widely used open source software contained bitcoin-stealing backdoor. <i>Ars Technica</i>; <a href="https://arstechnica.com/information-technology/2018/11/hacker-backdoors-widely-used-open-source-software-to-steal-bitcoin/">https://arstechnica.com/information-technology/2018/11/hacker-backdoors-widely-used-open source-software-to-steal-bitcoin/</a>. </p> 
+  <p>22. Greenberg, A., Burgess, M. 2024. The Mystery of "Jia Tan," the XZ backdoor mastermind. <i>Wired;</i> <a href="https://www.wired.com/story/jia-tan-xz-backdoor/">https://www.wired.com/story/jia-tan-xz-backdoor/</a>. </p> 
+  <p>23. Karger, P. A., Schell, R. R. 1974. Multics security evaluation: vulnerability analysis. U.S. Air Force Electronic Systems Division report ESD-TR-74-193, Vol. II; <a href="https://seclab.cs.ucdavis.edu/projects/history/papers/karg74.pdf">https://seclab.cs.ucdavis.edu/projects/history/papers/karg74.pdf</a>.</p> 
+  <p>24. Kesteloot, L. 2009. <i>Coding Machines</i>; <a href="https://www.teamten.com/lawrence/writings/coding-machines/">https://www.teamten.com/lawrence/writings/coding-machines/</a>. </p> 
+  <p>25. Munroe, R. 2020. xkcd: Dependency. Webcomic; <a href="https://xkcd.com/2347/">https://xkcd.com/2347/</a>. </p> 
+  <p>26. National Security Agency. 2022. Software memory safety. NSA Cybersecurity Information Sheet version 1.1 (updated April 2023); <a href="http://www.kitchensoap.com/2012/09/21/a-mature-role-for-automation-part-i">https://media.defense.gov/2022/Nov/10/2003112742/-1/-1/0/CSI_SOFTWARE_MEMORY_SAFETY.PDF</a>. </p> 
+  <p>27. Open Source Insights website; <a href="https://deps.dev/">https://deps.dev/</a>. </p> 
+  <p>28. Open Source Security Foundation website; <a href="https://openssf.org/about/">https://openssf.org/about/</a>. </p> 
+  <p>29. OSV website. A distributed vulnerability database for Open Source; <a href="https://osv.dev/">https://osv.dev/</a>. </p> 
+  <p>30. Pan, R. 2022. Announcing OSV-Scanner: vulnerability scanner for open source. Google Security blog; <a href="https://security.googleblog.com/2022/12/announcing-osv-scanner-vulnerability.html">https://security.googleblog.com/2022/12/announcing-osv-scanner-vulnerability.html</a>. </p> 
+  <p>31. Reproducible Builds website; <a href="https://reproducible-builds.org/">https://reproducible-builds.org/</a>. </p> 
+  <p>32. Thompson, K. 1984. Reflections on trusting trust. <i>Communications of the ACM</i> 27(8), 761–763; <a href="https://dl.acm.org/doi/10.1145/358198.358210">https://dl.acm.org/doi/10.1145/358198.358210</a>. </p> 
+  <p>33. Turton, W., Gillum, J., Robertson, J. 2021. Inside the race to fix a potentially disastrous software flaw. Bloomberg News; <a href="https://finance.yahoo.com/news/inside-race-fix-potentially-disastrous-234445533.html">https://finance.yahoo.com/news/inside-race-fix-potentially-disastrous-234445533.html</a>. </p> 
+  <p>34. Xiao, C. 2015. Novel malware XcodeGhost modifies Xcode, infects Apple iOS apps and hits app store. Palo Alto Networks; <a href="https://unit42.paloaltonetworks.com/novel-malware-xcodeghost-modifies-xcode-infects-apple-ios-apps-and-hits-app-store/">https://unit42.paloaltonetworks.com/novel-malware-xcodeghost-modifies-xcode-infects-apple-ios-apps-and-hits-app-store/</a>. </p> 
+  <p>35. Zetter, K. 2023. The untold story of the boldest supply-chain hack ever. <i>Wired</i>; <a href="https://www.wired.com/story/the-untold-story-of-solarwinds-the-boldest-supply-chain-hack-ever/">https://www.wired.com/story/the-untold-story-of-solarwinds-the-boldest-supply-chain-hack-ever/</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Russ Cox</b> works at Google on the Go programming language team. He led the development of Go for more than a decade, with a particular focus on improving the security and reliability of using software dependencies. With Jeff Dean, he created Google Code Search, which let developers grep the world's public source code. He also worked for many years on the Plan 9 operating system from Bell Labs and holds degrees from Harvard and MIT.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92bdcabd4bbee603',t:'MTc0MzkwNTg3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 1</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3722542">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Josie Anugerah, Eve Martin-Jones</span> - <a href="detail.cfm?id=3723000"><b>The Surprise of Multiple Dependency Graphs</b></a>
+	  <br />
+	  It seems like it should be easy to avoid installing vulnerable open source software, but dependency graphs are surprisingly complex. At the time of writing, the latest version of the popular npm tool webpack has millions of potential dependency graphs depending on circumstances during its resolution. The exact graph chosen for a given package can depend on what other software is being built, what kind of system is building it, and even the state of the ecosystem on a given day.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Amanda Casari, Julia Ferraioli, Juniper Lovato</span> - <a href="detail.cfm?id=3595879"><b>Beyond the Repository</b></a>
+	  <br />
+	  Much of the existing research about open source elects to study software repositories instead of ecosystems. An open source repository most often refers to the artifacts recorded in a version control system and occasionally includes interactions around the repository itself. An open source ecosystem refers to a collection of repositories, the community, their interactions, incentives, behavioral norms, and culture. The decentralized nature of open source makes holistic analysis of the ecosystem an arduous task, with communities and identities intersecting in organic and evolving ways. Despite these complexities, the increased scrutiny on software security and supply chains makes it of the utmost importance to take an ecosystem-based approach when performing research about open source.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Guenever Aldrich, Danny Tsang, Jason McKenney</span> - <a href="detail.cfm?id=3576027"><b>Three-part Harmony for Program Managers Who Just Don't Get It, Yet</b></a>
+	  <br />
+	  This article examines three tools in the system acquisitions toolbox that can work to expedite development and procurement while mitigating programmatic risk: OSS, open standards, and the Agile/Scrum software development processes are all powerful additions to the DoD acquisition program management toolbox.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jessie Frazelle</span> - <a href="detail.cfm?id=3349301"><b>Open-source Firmware</b></a>
+	  <br />
+	  Open-source firmware can help bring computing to a more secure place by making the actions of firmware more visible and less likely to do harm. This article&#8217;s goal is to make readers feel empowered to demand more from vendors who can help drive this change.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
