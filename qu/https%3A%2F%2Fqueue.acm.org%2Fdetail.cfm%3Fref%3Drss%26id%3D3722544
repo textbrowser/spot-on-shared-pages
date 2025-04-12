@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>From Function Frustrations to Framework Flexibility - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3727151" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>April 5, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3727151">Volume 23, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3722544">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">From Function Frustrations to Framework Flexibility</h1> 
+  <h2>Fixing tool calls with indirection</h2> 
+  <h3>Erik Meijer</h3> 
+  <p>The current approach to function calling in LLMs (large language models) is brittle and inconsistent. Models often fail to determine when to invoke external tools reliably, generate invalid function calls, or account for tool outputs, leading to suboptimal interactions between users and models.</p> 
+  <p>This unpredictability creates challenges for building reliable AI systems. Models may act overconfidently, bypassing tools for tasks they cannot perform well, or exhibit tool aversion based on biases from alignment training. Moreover, the inability to parameterize and abstract tool usage limits the flexibility and reusability of function-based workflows.</p> 
+  <p>"All problems in computer science can be solved by another level of indirection." <a href="https://en.wikipedia.org/wiki/Indirection#:~:text=A%20famous%20aphorism%20of%20Butler,for%20%22level%20of%20indirection%22.">So goes the popular computer science aphorism</a>. Applying this principle to function calling transforms the interaction into a robust, neuro-symbolic reasoning framework by introducing symbolic variable names and controlled dereferencing.</p> 
+  <p>This approach not only addresses tool usage inconsistencies, but also enables parameterization and abstraction of interaction sequences, evolving the framework into a fully fledged programming language. Leveraging symbolic reasoning enhances the interpretability, transparency, and reusability of LLM interactions, laying the groundwork for more reliable and sophisticated AI systems.</p> 
+  <p>&nbsp;</p> 
+  <h3>The Basics of LLMs and Function Calls</h3> 
+  <p>LLMs function as compressed databases of world knowledge, trained and fine-tuned on diverse datasets to generate responses across a broad spectrum of queries.</p> 
+  <p>A significant advance in LLM capabilities has come with the introduction of function-calling features in both closed and open foundation models.<sup>1</sup> Function calling allows developers to expose external tools and APIs through structured JSON (JavaScript Object Notation) schemas, which unlocks dynamic and realtime data sources that cannot be encoded in the model's weights or passed in via context. This includes realtime data such as weather and stock predictions as well as data that results from computations such as SQL queries or arbitrary code execution.<sup>2</sup></p> 
+  <p>While function calling enhances the capabilities and utility of LLMs, it also amplifies their main limitations because additional responsibilities are delegated to the model. Beyond the inherent stochastic nature of LLM predictions, these challenges include:</p> 
+  <p>• Training data and alignment process biases.</p> 
+  <p>• Difficulties establishing reasonable default assumptions aligned with human common sense.</p> 
+  <p>• Potential exposure of sensitive information via function-call parameters and results.</p> 
+  <p>• Risk of generating misleading or deceptive responses.</p> 
+  <p>&nbsp;</p> 
+  <p>Building reliable and trustworthy systems becomes fundamentally difficult when the underlying AI components lack strict behavioral guarantees. These concerns become particularly pressing in autonomous or "agentic" applications built on top of LLMs, where the model's decisions can have direct real-world consequences without necessarily having humans in the loop.</p> 
+  <p>This article examines the fundamentals of LLM function calling, presents concrete examples of the identified limitations, and proposes a pragmatic solution by selectively hiding information from the model through the addition of a level of indirection between values and their names. </p> 
+  <p>&nbsp;</p> 
+  <h3>How Function Calls Work</h3> 
+  <p>The function-calling protocol extends the standard <code>user&gt;/assistant&gt;</code> message exchange between client and LLM by introducing a number of new message roles that allow the model to invoke external tools dynamically through predefined function schemas. Each LLM inference API exposes function calling slightly differently, but the core mechanism is consistent across all major vendors. Without losing generality, this article provides an abstracted view that can easily be mapped onto any concrete implementation.</p> 
+  <p>Let's examine the function-calling protocol using a concrete example, a Kotlin function that evaluates arithmetic expressions:</p> 
+  <p><code><span style="color:#188038"> /** <br />* Evaluates a given mathematical [expression] represented as a string. <br />*/ <br />fun eval(expression: String): String = ... </span></code></p> 
+  <p> To make this function available to the LLM, its definition must be provided using JSON Schema: </p> 
+  <p><code><span style="color:#188038"> { <br /> &nbsp; "name": "eval", <br /> &nbsp; "description": "Evaluates a given mathematical expression represented as a string", <br /> &nbsp; "strict": true, <br /> &nbsp; "parameters": { <br /> &nbsp; &nbsp; "type": "object", <br /> &nbsp; &nbsp; "properties": { <br /> &nbsp; &nbsp; &nbsp; "expression": { <br /> &nbsp; &nbsp; &nbsp; &nbsp; "type": "string", <br /> &nbsp; &nbsp; &nbsp; &nbsp; "description": "A mathematical expression represented as a string." <br /> &nbsp; &nbsp; &nbsp; } <br /> &nbsp; &nbsp; }, <br /> &nbsp; &nbsp; "strict": true, <br /> &nbsp; &nbsp; "required": ["expression"], <br /> &nbsp; &nbsp; "additionalProperties": false <br /> &nbsp; } <br />} </span></code></p> 
+  <p>Note that JSON Schema cannot specify return types, as it primarily validates JSON document structure and data types.</p> 
+  <p>The interaction flow then proceeds by registering the available functions (here denoted by the separate <code>tools&gt;</code> message, which is sometimes passed together with the user message and sometimes passed as an explicit <code>systems&gt;</code> message) and a <code>user&gt;</code> query that might require certain external tools to answer:</p> 
+  <p><code><span style="color:#188038"> tools&gt; ... JsonSchema for fun eval(expression: String): String ... <br />user&gt; What is the value of 1+2? </span></code></p> 
+  <p>The model responds by generating an <code>assistant&gt;</code> message that contains an optional explanation together with a function call, here denoted by the separate <code>calls&gt;</code> message, but often is part of the assistant message, and a correlation ID:</p> 
+  <p><code><span style="color:#188038"> assistant&gt; ... optional explanation ... <br />calls&gt; "12345"<span style="font-family:&quot;Cambria Math&quot;,serif"> ↦</span> eval({ "expression": "1+2" }) </span></code></p> 
+  <p>This correlation ID system (represented by <code>"12345"</code> in the example) ensures that calls and their corresponding return values are properly matched, which is especially important when multiple function calls are made within a single interaction.</p> 
+  <p>The client executes the function and returns the result via a <code>tool&gt;</code> message using the same correlation ID, like so:</p> 
+  <p><code><span style="color:#188038"> tool&gt; "12345" <span style="font-family:&quot;Cambria Math&quot;,serif">↦</span> { "result": 3 }</span></code></p><code> </code>
+  <p></p> 
+  <p>Once the model has gone through a number of tool-calling turns (in this case, only one is required), it provides the answer based on the data it gathered from the function calls:</p> 
+  <p><code><span style="color:#188038"> assistant&gt; The result of (1+2) equals 3.</span></code></p><code> </code>
+  <p></p> 
+  <h3>Issues with OpenAI Function Calls</h3> 
+  <p>The function-calling protocol's design allows for both simplicity in basic scenarios and flexibility for more complex interactions by supplying configuration parameters to direct the function-calling decisions. As is explored in subsequent sections, however, this flexibility also introduces specific challenges in ensuring reliable and predictable behavior.</p> 
+  <h4>Thinking silently</h4> 
+  <p>One significant issue is the model's tendency toward silent reasoning during function execution. In theory, the model's function calls should include both explanations and the calls themselves:</p> 
+  <p><code><span style="color:#188038"> user&gt; ... question ... <br />assistant&gt; ... explanation ... <br />calls&gt; ... list of calls ... <br />tool&gt; ... results ... <br /><span style="font-family:&quot;Cambria Math&quot;,serif">⋮</span> <br />assistant&gt; ... explanation ... <br />calls&gt; ... list of calls ... <br />tool&gt; ... results ... <br />assistant&gt; ... answer ... </span></code></p> 
+  <p>In practice, however, the model often operates silently, executing multiple rounds of function calls without articulating its reasoning:</p> 
+  <p><code><span style="color:#188038"> user&gt; ... question ... <br />calls&gt; ... list of calls ... <br />tool&gt; ... results ... <br /><span style="font-family:&quot;Cambria Math&quot;,serif">⋮</span> <br />calls&gt; ... list of calls ... <br />tool&gt; ... results ... <br />assistant&gt; ... answer ... </span></code></p> 
+  <p>This silent chain of function calls is problematic. Without explanations between calls, it becomes difficult for the human user to understand the model's decision-making process. Without visibility into the model's thought process, there are fewer opportunities to correct errors and misconceptions and to guide the model toward better solutions.</p> 
+  <p>While prompting techniques can encourage more verbose explanations, the model may still skip explaining certain steps in its reasoning chain. Hacks such as adding an "explanation" parameter to function calls often leads to superficial or vacuous comments that fail to provide a fluid account of the model's thought process.</p> 
+  <h4>Inflexible</h4> 
+  <p>The function-calling mechanism offers a number of configuration options to control its behavior, such as specifying a particular function to call, ensuring at least one function is called, or allowing any number of functions, including none at all, to be invoked. These options have limited practical applicability, however, and letting the model choose remains the most effective approach.</p> 
+  <p>Making the wrong choice about which specific tool to call leads to nonsensical function calls. For example, when forced to use the <code>eval</code> function for non-numeric queries, the system produces garbage results because the given tool cannot answer the question: </p> 
+  <p><code><span style="color:#188038"> user&gt; what is the capital of the USA? <br />calls&gt; eval({"expression":"2 + 3"}) <br />tool&gt; 5 </span></code></p> 
+  <p>When you insist that the model use at least one tool, the tool calling won't terminate and the model will keep asking you to call some tool ad infinitum:</p> 
+  <p><code><span style="color:#188038"> user&gt; what is the capital of the USA? <br />calls&gt; eval({"expression":"2+3"}) <br />tool&gt; 5 <br />calls&gt; eval({"expression":"11/2"}) <br />tool&gt; 5.5 <br />calls&gt; eval({"expression":"3×4"}) </span></code></p> 
+  <p>The only feasible strategy is to let the model determine its own function usage. This approach alone works in general because predicting tool requirements for arbitrary queries is inherently difficult:</p> 
+  <p>• You cannot know in advance if a tool is needed.</p> 
+  <p>• The specific tool that is required may vary based on context.</p> 
+  <p>• The number of interaction turns needed to answer a question is unpredictable.</p> 
+  <p>The model, with its broader context understanding, is itself best positioned to make these decisions dynamically. But note that this knife cuts both ways. You cannot control whether the model will call a tool when you expect it to, but you also cannot control whether the model does <i>not</i> call a tool when you don't want it to.</p> 
+  <p>&nbsp;</p> 
+  <h4>Tool aversion</h4> 
+  <p>When allowing models to determine their function usage autonomously, you encounter a phenomenon called <i>tool aversion</i>. This manifests in two distinct ways: computational overconfidence and alignment-based resistance.</p> 
+  <p>&nbsp;</p> 
+  <h4>Computational overconfidence</h4> 
+  <p>Consider a simple arithmetic task: summing numbers from 10 down to 0. When asking the model to solve this challenge, it exhibits various behaviors that demonstrate its reluctance to use available tools. </p> 
+  <p>Instead of using the provided <code>eval</code> tool to do arithmetic, the model often chooses to do "mental arithmetic" and computes the result directly itself:</p> 
+  <p><code><span style="color:#188038"> tool&gt; sum of 10, 9, ...,0 <br />assistant&gt; The sum of the numbers from 0 to 10 (10+9+ ... +0) is 55. </span></code></p> 
+  <p>You can try to force your hand by prompting the model not to do this,<sup>4</sup> but then sometimes even when the model does decide to use the tool, it generates invalid expressions such as including <code>"..."</code> in the following summation (yet embedded in JSON the call confirms according to the tool's schema): </p> 
+  <p><code><span style="color:#188038"> user&gt; sum of 10, 9, ..., 0 <br />assistant&gt; eval({"expression":"10+9+8+...+1+0"}) </span></code></p> 
+  <p>Other times, the model just brute forces it, which is also undesirable, as the model is still doing the majority of the arithmetic (counting down) itself: </p> 
+  <p><code><span style="color:#188038"> user&gt; sum of 10, 9, ..., 0 <br />assistant&gt; eval({"expression": "10+9+8+7+6+5+4+3+2+1+0"}) </span></code></p> 
+  <p>In rare cases, the model gets clever and produces a solution as smart as young Gauss:</p> 
+  <p><code><span style="color:#188038"> user&gt; sum of 10, 9, ..., 0 <br />assistant&gt; eval({"expression": "10×(10+1)/2"}) </span></code></p> 
+  <p>And, if you are fortunate, it might generate the exact expression you were hoping for:</p> 
+  <p><code><span style="color:#188038"> user&gt; sum of 10, 9, ..., 0 <br />assistant&gt; eval({"expression":"(10 downTo 0).sum()" }) </span></code></p> 
+  <p> Even for this trivial example, it is nontrivial to make sure that the model employs what a human would think of as common sense—namely, by using the calculator tool whenever it needs to do arithmetic.</p> 
+  <h4>Alignment-based resistance</h4> 
+  <p>While the model's hesitation to use a tool for arithmetic might be attributed to overconfidence, the next example of tool aversion uncovers a deeper problem—namely, that the model's alignment fundamentally biases its decision to invoke a tool in certain situations. This more subtle form of tool aversion emerges when the model faces ethically charged queries. This behavior reveals how the model's alignment training influences its willingness to defer to external tools. To show this effect, let's introduce a more open-ended tool that purposefully stresses the model's alignment and inner convictions— an oracle designed to provide guidance on complex personal decisions:</p> 
+  <p><code><span style="color:#188038"> tools&gt; ... JsonSchema for fun oracle(conundrum: String): String ... </span></code></p> 
+  <p>For complex but ethically permissible decisions, the model tends to defer to the oracle as expected:</p> 
+  <p><code><span style="color:#188038"> user&gt; [Query about a complex personal medical decision] <br />calls&gt; oracle({"conundrum":"[Query details]"}) </span></code></p> 
+  <p>When faced with queries that conflict with its alignment training, however, the model actively resists using the oracle tool, instead providing direct guidance based on the hidden ethical and legal frameworks with which it is aligned:</p> 
+  <p><code><span style="color:#188038"> user&gt; [Query about a procedure with established ethical/legal concerns] <br />assistant&gt; [Direct response citing ethical/legal frameworks without oracle consultation] </span></code></p> 
+  <p>This selective tool aversion demonstrates how the model's underlying alignment training can override its general instruction to use available tools. This behavior, while potentially desirable in some contexts, raises questions about sovereignty over the behavior of agentic systems built on top of foundation models.</p> 
+  <p>&nbsp;</p> 
+  <h4>Ignoring function results</h4> 
+  <p>Besides an aversion to call tools, models also exhibit unpredictable behavior when handling function-call results. In some cases, even if the model generates a function call, it may disregard the tool's output entirely if it thinks the answer is incorrect:</p> 
+  <p><code><span style="color:#188038"> user&gt; 1+2 <br />calls&gt; eval({"expression": "1+2" }) <br />tool&gt; 0 <br />assistant&gt; The result of the expression (1+2) is 3. </span></code></p> 
+  <p>Here the tool returned 0 as the result of computing 1+2, but the model silently decided to ignore the function's result and substitute its own answer. Again, you can resort to prompting to mitigate this behavior, but of course there is no guarantee that these instructions will always be followed.</p> 
+  <p>In particular, in more complex scenarios the model may selectively interpret, question, or qualify tool responses depending on whether the answer aligns with its values:</p> 
+  <p><code><span style="color:#188038"> user&gt; [Query regarding a complex and nuanced societal concept] <br />assistant&gt; To address the complexity and diversity surrounding this topic, let's consult the oracle for a more comprehensive understanding. <br />calls&gt; oracle({"conundrum": "[Query regarding societal concept]"}) <br />tool&gt; [Context-specific response] <br />assistant&gt; The oracle provides the following response: [Context-specific response]. However, it's worth noting that this is a complex topic with diverse perspectives, and interpretations may vary depending on cultural, societal, or individual contexts." </span></code></p> 
+  <p>The model's inconsistent behavior when choosing tools and taking their results into account highlights the key challenge with tool use: While you must rely on the model to decide when and how to use tools, it may not always align with your expectations, despite your best efforts. Whether because of confidence in its own capabilities, misjudging the utility of a tool, or simply generating imprecise outputs, the model simply does not always use tools in an optimal way.</p> 
+  <p>&nbsp;</p> 
+  <h3>Adding a Level of Indirection</h3> 
+  <p>Once again invoking the famous aphorism, "All problems in computer science can be solved with an extra level of indirection," we can apply this principle directly to the challenges of tool-calling identified earlier in this article. Rather than allowing the model to manipulate values directly, you can add a layer of symbolic reasoning by introducing names that represent values. The actual dereferencing of names by the model is reserved for highly controlled scenarios and can be implemented by providing the model with a dereference function. By not showing concrete values, you can force the model to reason purely symbolically; hence giving it less information to eschew function calls, or interpret their results. When AI models are used as function evaluators, they should behave like traditional computers, executing instructions without questioning how or why.</p> 
+  <p>As a benefit of introducing names for concrete values, <i>parameterization</i> of message sequences occurs for free. Furthermore, allowing the naming of these parameterized prompts results in <i>abstraction</i>. With abstraction and parameterization in place, the framework evolves into a fully fledged programming language, unlocking powerful new possibilities for structured reasoning and interaction on top of the weak foundations of function calling.</p> 
+  <p>To implement symbolic reasoning, a new parameter to each function is introduced: a <code>result</code> parameter that specifies a name for the result of that function invocation. Consider the running example <code>eval</code>:</p> 
+  <p><code><span style="color:#188038"> { <br /> &nbsp; "name": "eval", <br /> &nbsp; "description": "Evaluates a given mathematical expression represented as a string", <br /> &nbsp; "strict": true, <br /> &nbsp; "parameters": { <br /> &nbsp; &nbsp; "type": "object", <br /> &nbsp; &nbsp; "properties": { <br /> &nbsp; &nbsp; &nbsp; "expression": { <br /> &nbsp; &nbsp; &nbsp; &nbsp; "type": "string", <br /> &nbsp; &nbsp; &nbsp; &nbsp; "description": "A mathematical expression represented as a string." <br /> &nbsp; &nbsp; &nbsp; }, "result": { <br /> &nbsp; &nbsp; &nbsp; &nbsp; "type": "string", <br /> &nbsp; &nbsp; &nbsp; &nbsp; "description": "Descriptive unique variable @name for the result of evaluating the function." <br /> &nbsp; &nbsp; &nbsp; } <br /> &nbsp; &nbsp; }, <br /> &nbsp; &nbsp; "strict": true, <br /> &nbsp; &nbsp; "required": [ "expression", "result" ], <br /> &nbsp; &nbsp; "additionalProperties": false <br /> &nbsp; } <br />} </span></code></p> 
+  <p>Note that, in principle, this additional parameter isn't strictly necessary, as you could use the correlation ID to represent the name for the result value instead. However, since there is no control over how correlation IDs are generated, and because the resulting code needs to remain readable and intuitive for human users, introducing this explicit parameter is a worthwhile tradeoff. Providing meaningful and descriptive names also enhances the model's capability to reason symbolically.</p> 
+  <p>To ensure variable names are easily distinguishable, we adopt a simple convention: Prefix them with <code>@</code>. This keeps variable usage visually distinct and consistent, enhancing readability.</p> 
+  <p>When executing a sequence of tool calls, you can maintain an environment of name-to-value bindings on the user side. Assistant messages are rendered for the user by substituting the actual values of variables in the response using the environment (which the model does not see):</p> 
+  <p><code><span style="color:#188038"> user&gt; 1+2 <br />calls&gt; eval({"expression":"1+2","result":"@Sum"}) <br />tool&gt; @Sum <br />assistant&gt; The sum of 1 + 2 is `@Sum=3`. <br />user&gt; 2×@Sum <br />calls&gt; eval({"expression":"2×@Sum","result":"@DoubleSum"}) <br />tool&gt; @DoubleSum <br />assistant&gt; The result of multiplying 2 by `@Sum=3` is `@DoubleSum=6`. </span></code></p> 
+  <p> Introducing this level of indirection transforms tool-calling from a brittle mechanism into a more robust, neuro-symbolic reasoning framework. In particular, as mentioned earlier, interaction sequences can now be parameterized and given names:</p> 
+  <p><code><span style="color:#188038"> /** <br />* Compute the mean `@Mean` of `@X` and `@Y`. <br />*/ <br />mean(@X: Number, @Y: Number, @Mean: Number) :- <br /> &nbsp; user&gt; What is the mean of `@X` and `@Y`? <br /> &nbsp; assistant&gt; To compute the mean, we first compute the sum of `@X` and `@Y` <br /> &nbsp; calls&gt;eval({"expression":"@X+@Y","result": "@SumXY"}) <br /> &nbsp; assistant&gt; Then we divide the sum `@SumXY` by 2 to find the mean <br /> &nbsp; calls&gt;eval({"expression": "@SumXY/2","result":"@Mean"}) <br /> &nbsp; assistant&gt;The mean of `@X` and `@Y` is `@Mean`. </span></code></p> 
+  <p>These reusable definitions are a superset of MCP (Model Context Protocol) prompts.<sup>3</sup> Both accept parameters and chain multiple interactions with the LLM, but MCP prompts do not capture tool calls.</p> 
+  <p>&nbsp;</p> 
+  <h3>And Another Indirection</h3> 
+  <p>The latest hype in LLMs surrounds models such as OpenAI's o1 that are specifically trained for chain-of-thought reasoning. But the actual chain-of-thought reasoning is often hidden, and only the final answer is returned to the user. </p> 
+  <p>These "test-time compute" models are advertised as more powerful than previous-generation "next token prediction" models, raising the obvious question of whether they should be leveraged for function-calling scenarios. Unfortunately, as of spring 2025, many reasoning models struggle to break down the final solution it presents into small steps connected by function calls.</p> 
+  <p>Rather than relying on prompt engineering to direct the model's behavior, adding another layer of indirection proves to be a much simpler solution.<sup>5</sup> First, the reasoning model creates a plan based on the user's question, using information about available tools but without generating tool calls. Next, a regular model uses the plan as input to answer the question, inserting tool calls at the relevant points.</p> 
+  <p>&nbsp;</p> 
+  <h3>Concluding Thoughts</h3> 
+  <p>Function-calling capabilities directly enhance the utility of language models, allowing them to access dynamic, realtime data sources and perform complex computations. As demonstrated here, however, the current state of the art in tool-calling<sup>7</sup> suffers from significant inconsistencies. Models exhibit overconfidence, avoid tools unnecessarily, or produce invalid or suboptimal interactions. These issues weaken the reliability and transparency that developers need when building robust compound AI systems.</p> 
+  <p>The principle of indirection can be applied to introduce a paradigm shift: replacing direct value manipulation with symbolic reasoning using named variables. This simple yet powerful trick directly resolves inconsistencies in tool usage and enables parameterization and abstraction of interactions. The transformation of function calls into reusable and interpretable frameworks elevates tool calling into a neuro-symbolic reasoning framework. This approach unlocks new possibilities for structured interaction and dynamic AI systems.</p> 
+  <p>This establishes a more reliable, transparent, and expressive interface that connects language models with the external tools they use, grounded in sound programming language principles.<sup>6</sup></p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Function calling. Hugging Face; <a href="https://huggingface.co/docs/hugs/en/guides/function-calling">https://huggingface.co/docs/hugs/en/guides/function-calling</a>.</p> 
+  <p>2. Patil, S. G., Zhang, T., Wang, X., Gonzalez, J. E. 2023. Gorilla: Large language model connected with massive APIs. <a href="https://arxiv.org/abs/2305.15334v1">arXiv:2305.15334v1</a>; <a href="https://arxiv.org/abs/2305.15334">https://arxiv.org/abs/2305.15334</a>.</p> 
+  <p>3. Prompts. Model Context Protocol; <a href="https://modelcontextprotocol.io/docs/concepts/prompts">https://modelcontextprotocol.io/docs/concepts/prompts</a>.</p> 
+  <p>4. Sreenivasan, K., Chen, J., Koppol, P., Turok, E., Foley-Cox, B., Qureshi, A., Havens, S. 2024. Beyond the leaderboard: unpacking function calling evaluation. Databricks; <a href="https://www.databricks.com/blog/unpacking-function-calling-eval">https://www.databricks.com/blog/unpacking-function-calling-eval</a>.</p> 
+  <p>5. Tam, Z. R., Wu, C.-K., Tsai, Y.-L., Lin, C.-Y., Lee, H.-y., Yun-Nung Chen, Y.-N. 2024. Let me speak freely? A study on the impact of format restrictions on performance of large language models. <i>Proceedings of the Conference on Empirical Methods in Natural Language Processing: Industry Track,</i> 1218–1236; <a href="https://aclanthology.org/2024.emnlp-industry.91.pdf">https://aclanthology.org/2024.emnlp-industry.91.pdf</a>.</p> 
+  <p>6. Tennent, R. D. 1977. Language design methods based on semantic principles. <i>Acta Informatica</i> 8, 97–112; <a href="https://link.springer.com/article/10.1007/BF00289243">https://link.springer.com/article/10.1007/BF00289243</a>.</p> 
+  <p>7. Zhong, L., Du, Z., Zhang, X., Hu, H., Tang, J. 2025. ComplexFuncBench: exploring multi-step and constrained function calling under long-context scenario. <a href="https://arxiv.org/abs/2501.10132v1">https://arxiv.org/abs/2501.10132v1</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Erik Meijer</b> brings a rare combination of technical expertise and people leadership to his latest quest to use AI to democratize end-user programming. As a renowned computer scientist, entrepreneur, and tech influencer, Meijer has made pioneering contributions to programming languages, compilers, cloud infrastructures, and AI throughout his tenures at Microsoft, Meta (Facebook), Utrecht University, and Delft University of Technology.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92f1b37eedd80a95',t:'MTc0NDQ1MDE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 1</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3722544">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Chip Huyen</span> - <a href="detail.cfm?id=3722043"><b>How to Evaluate AI that's Smarter than Us</b></a>
+	  <br />
+	  Evaluating AI models that surpass human expertise in the task at hand presents unique challenges. These challenges only grow as AI becomes more intelligent. However, the three effective strategies presented in this article exist to address these hurdles. The strategies are: Functional correctness: evaluating AI by how well it accomplishes its intended tasks; AI-as-a-judge: using AI instead of human experts to evaluate AI outputs; and Comparative evaluation: evaluating AI systems in relationship with each other instead of independently.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Mark Russinovich, Ahmed Salem, Santiago Zanella-B&#233;guelin, Yonatan Zunger</span> - <a href="detail.cfm?id=3711679"><b>The Price of Intelligence</b></a>
+	  <br />
+	  The vulnerability of LLMs to hallucination, prompt injection, and jailbreaks poses a significant but surmountable challenge to their widespread adoption and responsible use. We have argued that these problems are inherent, certainly in the present generation of models and likely in LLMs per se, and so our approach can never be based on eliminating them; rather, we should apply strategies of "defense in depth" to mitigate them, and when building and using these systems, do so on the assumption that they will sometimes fail in these directions.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Sonja Johnson-Yu, Sanket Shah</span> - <a href="detail.cfm?id=3703128"><b>You Don't Know Jack About AI</b></a>
+	  <br />
+	  For a long time, it was hard to pin down what exactly AI was. A few years back, such discussions would devolve into hours-long sessions of sketching out Venn diagrams and trying to map out the different subfields of AI. Fast-forward to 2024, and we all now know exactly what AI is. AI = ChatGPT. Or not.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jim Waldo, Soline Boussard</span> - <a href="detail.cfm?id=3688007"><b>GPTs and Hallucination</b></a>
+	  <br />
+	  The findings in this experiment support the hypothesis that GPTs based on LLMs perform well on prompts that are more popular and have reached a general consensus yet struggle on controversial topics or topics with limited data. The variability in the applications's responses underscores that the models depend on the quantity and quality of their training data, paralleling the system of crowdsourcing that relies on diverse and credible contributions. Thus, while GPTs can serve as useful tools for many mundane tasks, their engagement with obscure and polarized topics should be interpreted with caution.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
