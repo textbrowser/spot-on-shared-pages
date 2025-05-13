@@ -1,0 +1,3960 @@
+<!-- html-header type=current begin -->
+	
+	<!DOCTYPE html>
+	
+	<html lang="en">
+	<head>
+	<!-- Render IE9 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	
+
+	<script id="before-content" type="text/javascript">
+(function () {
+    if (typeof window.sdmedia !== 'object') {
+         window.sdmedia = {};
+    }
+    if (typeof window.sdmedia.site !== 'object') {
+        window.sdmedia.site = {};
+    }
+
+    var site = window.sdmedia.site;
+    site.rootdir = "//slashdot.org";
+}());
+
+var pageload = {
+	pagemark: '632558207197340239',
+	before_content: (new Date).getTime()
+};
+function pageload_done( $, console, maybe ){
+	pageload.after_readycode	= (new Date).getTime();
+	pageload.content_ready_time	= pageload.content_ready - pageload.before_content;
+	pageload.script_ready_time	= pageload.after_readycode - pageload.content_ready;
+	pageload.ready_time		= pageload.after_readycode - pageload.before_content;
+	// Only report 1% of cases.
+	maybe || (Math.random()>0.01) || $.ajax({ type: 'POST', data: {
+		op: 'page_profile',
+		pagemark: pageload.pagemark,
+		dom: pageload.content_ready_time,
+		js: pageload.script_ready_time
+	} });
+}
+</script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	
+		<title>Carmack: World Could Run on Older Hardware if Software Optimization Was Priority - Slashdot</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  
+		<meta name="description" content="Gaming pioneer John Carmack believes we're not nearly as dependent on cutting-edge silicon as most assume -- we just lack the economic incentive to prove it. Responding to a &#34;CPU apocalypse&#34; thought experiment on X, the id Software founder and former Oculus CTO suggested that software inefficiency, ...">
+	    
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@slashdot">
+		<meta name="twitter:domain" content="tech.slashdot.org">
+		<meta property="og:url" content="https://tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority?utm_source=atom1.0mainlinkanon&utm_medium=feed">
+	    
+		<meta property="og:title" content="Carmack: World Could Run on Older Hardware if Software Optimization Was Priority - Slashdot">
+		<meta property="og:description" content="Gaming pioneer John Carmack believes we're not nearly as dependent on cutting-edge silicon as most assume -- we just lack the economic incentive to prove it. Responding to a &#34;CPU apocalypse&#34; thought experiment on X, the id Software founder and former Oculus CTO suggested that software inefficiency, ...">
+	  
+	
+	
+		<meta property="og:image" content="https://a.fsdn.com/sd/topics/software_64.png">
+	
+		<meta property="fb:admins" content="100000696822412">
+		<meta property="fb:page_id" content="267995220856">
+	
+		<meta name="viewport" content="width=1000, user-scalable=yes, minimum-scale=0, maximum-scale=10.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<link rel="canonical" href="https://tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority">
+		
+		<link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.slashdot.org/story/441997" >
+	
+
+		<link rel="stylesheet" type="text/css" media="screen, projection" href="//a.fsdn.com/sd/classic.ssl.css?c609efb3792fac20" >
+		<!--[if IE 8]><link rel="stylesheet" type="text/css" media="screen, projection" href="//a.fsdn.com/sd/ie8-classic.ssl.css?c609efb3792fac20" ><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen, projection" href="//a.fsdn.com/sd/ie7-classic.ssl.css?c609efb3792fac20" ><![endif]-->
+	
+	
+	
+
+
+
+	
+	<!--  -->
+
+	
+	
+
+	
+	<!-- SMACKS: NEW CSS -->
+	<link rel="stylesheet" href="//a.fsdn.com/sd/css/app.css?c609efb3792fac20">
+
+	<script src="//a.fsdn.com/con/js/sftheme/cmp-slashdot.js?2025-04"></script>
+	<script>// country.js converted to inline by CF Snippet
+   window.is_euro_union = 0;
+   window.country_code2 = "US";
+   window.region = "NY";
+   window.prebidOptions = {uids: {ip: "143.244.44.182" }};</script>
+	<script>
+		window.bizx.cmp.init({
+			cmp_id: 12126,
+			geo: window,
+			gam_gdpr_technical_delivery: true,
+			
+		});
+		bizx.uids.gather();
+		window.prebidOptions = window.prebidOptions || {};
+		window.prebidOptions.uids = window.prebidOptions.uids || {};
+		window.prebidOptions.uids.hem = bizx.uids.getHem();
+	</script>
+	<link rel="stylesheet" href="//a.fsdn.com/con/css/sftheme/sandiego/cmp.css?2024-12" type="text/css">
+
+	<script type='text/javascript'>
+var _gaq = _gaq || [];
+</script>
+
+<script>
+window.SD = {};
+window.SD.Ads = {};
+
+bizx.cmp.ifConsent('', ['all'], function () {
+    var bt = 'https://btloader.com/tag?o=5098683085881344&upapi=true';
+    bizx.cmp.embedScript(bt, true);
+    window.addEventListener('AcceptableAdsInit', function (e) {
+      if(e.detail) {
+        console.log('acceptable ads on');
+        SD.Ads.acceptable_ads_active = true;
+      } else {
+        console.log('acceptable ads off');
+        SD.Ads.acceptable_ads_active = false;
+      }
+    });
+});
+</script>
+<script class="asload">
+function asload() {
+	var s = document.createElement('script');
+	s.async = true;
+	s.id = "FIXtUCr";
+	s.setAttribute('data-sdk', 'l/1.1.5');
+	s.setAttribute('data-cfasync', 'false');
+	s.src = "https://as.slashdot.org/loader.min.js";
+	s.charset = "UTF-8";
+	s.data="ithc1r8q8e878b8v808e1p8efy81108k3e8iy28y8e808784y8i801m8i8i878y8e387848r8i28y8e878i8g8712z80808y8e8sf12y81108k8s8e1z89";
+	s.setAttribute('onload', "!async function(){let e='html-load.com';const t=window,r=e=>new Promise((t=>setTimeout(t,e))),o=t.atob,a=t.btoa,n=r=>{const n=o('VGhpcyBwYWdlIGNvdWxkIG5vdCBiZSBsb2FkZWQgcHJvcGVybHkgZHVlIHRvIGluY29ycmVjdCAvIGJhZCBmaWx0ZXJpbmcgcnVsZShzKSBvZiBhZGJsb2NrZXJzIGluIHVzZS4gUGxlYXNlIGRpc2FibGUgYWxsIGFkYmxvY2tlcnMgdG8gY29udGludWUgdXNpbmcgdGhlIHdlYnNpdGUuIChjbGljayBPSyBpZiB5b3UnZCBsaWtlIHRvIGxlYXJuIG1vcmUp');if(confirm(n)){const o=new t.URL('https://report.error-report.com/modal'),n=o.searchParams;n.set('url',a(location.href)),n.set('error',a(r.toString())),n.set('domain',e),location.href=o.href}else location.reload()};try{const l=()=>new Promise((e=>{let r=Math.random().toString(),o=Math.random().toString();t.addEventListener('message',(e=>e.data===r&&t.postMessage(o,'*'))),t.addEventListener('message',(t=>t.data===o&&e())),t.postMessage(r,'*')}));async function s(){try{let e=!1,o=Math.random().toString();if(t.addEventListener('message',(t=>{t.data===o+'_as_res'&&(e=!0)})),t.postMessage(o+'_as_req','*'),await l(),await r(500),e)return!0}catch(e){console.error(e)}return!1}const c=[100,500,1e3];for(let i=0;i<=c.length&&!await s();i++){if(i===c.length-1)throw o('RmFpbGVkIHRvIGxvYWQgd2Vic2l0ZSBwcm9wZXJseSBzaW5jZSA')+e+o('IGlzIHRhaW50ZWQuIFBsZWFzZSBhbGxvdyA')+e;await r(c[i])}}catch(d){console.error(d);try{t.localStorage.setItem(t.location.host+'_fa_'+a('last_bfa_at'),Date.now().toString())}catch(m){}try{setInterval((()=>document.querySelectorAll('link,style').forEach((e=>e.remove()))),100),alert(d);const h=await(await fetch('https://error-report.com/report?type=loader_light&url='+a(location.href)+'&error='+a(d),{method:'POST'})).text();let g=!1;t.addEventListener('message',(e=>{'as_modal_loaded'===e.data&&(g=!0)}));let p=document.createElement('iframe');const v=new t.URL('https://report.error-report.com/modal'),u=v.searchParams;u.set('url',a(location.href)),u.set('eventId',h),u.set('error',a(d)),u.set('domain',e),p.src=v.href,p.setAttribute('style','width:100vw;height:100vh;z-index:2147483647;position:fixed;left:0;top:0;');const I=e=>{'close-error-report'===e.data&&(p.remove(),t.removeEventListener('message',I))};t.addEventListener('message',I),document.body.appendChild(p);const G=()=>{const e=p.getBoundingClientRect();return'none'!==t.getComputedStyle(p).display&&0!==e.width&&0!==e.height},f=setInterval((()=>{if(!document.contains(p))return clearInterval(f);G()||(n(d),clearInterval(f))}),1e3);setTimeout((()=>{g||n(errStr)}),3e3)}catch(w){n(w)}}}();");
+	s.setAttribute('onerror', "!async function(){const t=window,e=t.atob,r=t.btoa;let o=JSON.parse(e('WyJodG1sLWxvYWQuY29tIiwiZmIuaHRtbC1sb2FkLmNvbSIsImNvbnRlbnQtbG9hZGVyLmNvbSIsImZiLmNvbnRlbnQtbG9hZGVyLmNvbSJd'));const a=o=>{const a=e('VGhpcyBwYWdlIGNvdWxkIG5vdCBiZSBsb2FkZWQgcHJvcGVybHkgZHVlIHRvIGluY29ycmVjdCAvIGJhZCBmaWx0ZXJpbmcgcnVsZShzKSBvZiBhZGJsb2NrZXJzIGluIHVzZS4gUGxlYXNlIGRpc2FibGUgYWxsIGFkYmxvY2tlcnMgdG8gY29udGludWUgdXNpbmcgdGhlIHdlYnNpdGUuIChjbGljayBPSyBpZiB5b3UnZCBsaWtlIHRvIGxlYXJuIG1vcmUp');if(confirm(a)){const e=new t.URL('https://report.error-report.com/modal'),a=e.searchParams;a.set('url',r(location.href)),a.set('error',r(o.toString())),a.set('domain',domain),location.href=e.href}else location.reload()};try{if(void 0===t.as_retry&&(t.as_retry=0),t.as_retry>=o.length)throw e('RmFpbGVkIHRvIGxvYWQgd2Vic2l0ZSBwcm9wZXJseSBzaW5jZSA')+o[0]+e('IGlzIGJsb2NrZWQuIFBsZWFzZSBhbGxvdyA')+o[0];const r=document.getElementById('FIXtUCr'),a=document.createElement('script');for(let t=0;t<r.attributes.length;t++)a.setAttribute(r.attributes[t].name,r.attributes[t].value);const n=new t.URL(r.getAttribute('src'));n.host=o[t.as_retry++],a.setAttribute('src',n.href),r.setAttribute('id',r.getAttribute('id')+'_'),r.parentNode.insertBefore(a,r),r.remove()}catch(e){console.error(e);try{t.localStorage.setItem(t.location.host+'_fa_'+r('last_bfa_at'),Date.now().toString())}catch(t){}try{setInterval((()=>document.querySelectorAll('link,style').forEach((t=>t.remove()))),100),alert(e);const o=await(await fetch('https://error-report.com/report?type=loader_light&url='+r(location.href)+'&error='+r(e),{method:'POST'})).text();let n=!1;t.addEventListener('message',(t=>{'as_modal_loaded'===t.data&&(n=!0)}));let s=document.createElement('iframe');const c=new t.URL('https://report.error-report.com/modal'),l=c.searchParams;l.set('url',r(location.href)),l.set('eventId',o),l.set('error',r(e)),l.set('domain',domain),s.src=c.href,s.setAttribute('style','width: 100vw; height: 100vh; z-index: 2147483647; position: fixed; left: 0; top: 0;');const i=e=>{'close-error-report'===e.data&&(s.remove(),t.removeEventListener('message',i))};t.addEventListener('message',i),document.body.appendChild(s);const d=()=>{const e=s.getBoundingClientRect();return'none'!==t.getComputedStyle(s).display&&0!==e.width&&0!==e.height},m=setInterval((()=>{if(!document.contains(s))return clearInterval(m);d()||(a(e),clearInterval(m))}),1e3);setTimeout((()=>{n||a(errStr,domain)}),3e3)}catch(t){a(t)}}}();");
+	document.head.appendChild(s);
+}
+
+if (window?.bizx?.cmp?.ifConsent) {
+	
+	bizx.cmp.ifConsent({ purposes: 'ads', vendors: 'adshield'}, asload);
+} else if (window.is_euro_union === 0 && window.region !== 'CA') {
+	
+	asload();
+}
+</script>
+
+
+
+         
+   
+   
+
+<script type="text/javascript" id="pbjs_script" data-dom="https://d3tglifpd8whs6.cloudfront.net"  src="https://d3tglifpd8whs6.cloudfront.net/js/prebid/slash-story/slash-story.min.js"></script>
+<script type='text/javascript'>
+    /*global performance */
+    var googletag = window.googletag || {};
+    googletag.cmd = googletag.cmd || [];
+
+    window.SD.Ads.slotsById = {};
+    window.SD.Ads.idsByPath = {};
+
+    window.SD.Ads.visibleTime = {};
+    window.SD.Ads.Helpers = {};
+
+    window.ID5EspConfig = {partnerId: 1787};
+
+    bizx.cmp.ifConsent({ purposes: 'ads', vendors: ['amazon-ads']}, function () {
+        !function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");
+
+        apstag.init({
+            pubID: 'c97760a3-e14d-4cad-9969-833f3ed793e6',
+            adServer: 'googletag'
+        });
+    });
+
+    bizx.cmp.ifConsent({purposes: 'all', vendors: 'prebid'}, function(){
+        window.bizxPrebid.Ads.initPrebid(window.bizxPrebid.adUnits);
+    }, function() {
+        // no 'prebid' consent (e.g. region without prebid consent string support) but try GPT directly
+        bizx.cmp.ifConsent({purposes: 'all', vendors: 'google-ads'}, function () {
+            bizx.cmp.embedScript('https://securepubads.g.doubleclick.net/tag/js/gpt.js');
+        });
+    });
+</script>
+
+<!-- prep GPT ads -->
+<script type='text/javascript'>
+(function() {
+	function page_type (loc) {
+		/*
+		only four page types:
+		- Story
+		- Poll
+		- Homepage (/ only)
+		- Other (but AdOps wants 'Homepage' again)
+		*/
+		var path = loc.pathname;
+		var just_the_root = /^\/?$/.test(path);
+		var story_or_poll = /^\/(story(?=\/)|submission(?=\/)|poll(?=\/|Booth|s\b))/i.exec(path);
+
+		var page_type = just_the_root ? 'homepage'
+			: story_or_poll ? story_or_poll[1]
+				: 'other'
+
+		// exceptions
+		if (page_type.toLowerCase() === 'submission')
+			page_type = 'story'; // submissions are like stories, right?
+		else if (page_type.toLowerCase() === 'other')
+			page_type = 'homepage'; // this one might move out of here
+
+		return page_type;
+	}
+
+	function page_section(loc) {
+		//var greek = ['alpha', 'beta', 'gamma', 'delta'].join('|');
+		//var hostwise = '^([a-z]+)(?:-(?:'+greek+'))?\\.(?:slashdot\\.org|\\.xb\\.sf\\.net)$';
+		var pathwise = '^/(?:(recent|popular|blog)|stories/([^/]+))';
+		var rootwise = '^\/?$';
+
+		//var hostwisely = new RegExp(hostwise,'i').exec(loc.hostname);
+		var pathwisely = new RegExp(pathwise, 'i').exec(loc.pathname);
+		var rootwisely = new RegExp(rootwise, 'i').exec(loc.pathname);
+
+		var section = (rootwisely && 'homepage')
+			|| (pathwisely && (pathwisely[1] || pathwisely[2]))
+			|| ''
+		;
+
+		return section.replace(/[^_a-z]/ig, '');
+	}
+
+	function single_size(size) {
+		return '' + size[0] + 'x' + size[1];
+	}
+
+	function sz_sz(sz) {
+		var str = '';
+		var sizes = [];
+		if (sz[0] instanceof Array) {
+			for (size in sz) {
+				sizes.push(single_size(sz[size]));
+			}
+			return sizes.join(',');
+		} else {
+			return single_size(sz);
+		}
+	}
+
+	function unique_tpc_array(array1, array2) {
+		var j = array1.concat(array2);
+		j.forEach(function (v, i, a) {
+			a[i] = v.replace(/[^_a-z]/ig, '');
+		});
+		return j.filter(function (v, i, a) {
+			return v != '' && a.indexOf(v) === i;
+		});
+	}
+
+	/* LEGEND:
+		- 'sz' = "size"
+		- 'npt' = "no page type" in ad unit name
+	*/
+	var tags = {
+		'728x90_A': {'sz': [[728, 90], [970, 90], [970, 250], [980, 66]]},
+		'728x90_B': {'sz': [728, 90]},
+		'728x90_C': {'sz': [728, 90], 'skip': {'homepage': 1}},
+		'PowerSwitch_980x66_A': {'sz': [980, 66], 'skip': {'homepage': 1}},
+		'PollPeel': {'sz': [200, 90], 'skip': {'homepage': 1}},
+		//'VideoWidget_300x250': { 'sz': [300, 250], 'npt': 1 },
+		'300x250_A': {'sz': [[300, 250], [300, 600], [300, 1050]]},
+		'300x250_B': {'sz': [[300, 250], [300, 600]]},
+		'300x250_C': {'sz': [[300, 250], [300, 600]]},
+		'300x250_D': {'sz': [[300, 250], [300, 600]]},
+		'Pulse_300x600_A': {'sz': [300, 600]},
+		//'Polls_Detail_300x250_A': { 'sz': [[300, 250], [300, 600]], 'npt': 1 },
+		//'Poll_300x250_A': { 'sz': [[300, 250], [300, 600]], 'npt': 1 },
+		//'SD_Story_1x1': { 'sz': [1, 1] },
+		'1x1': {'sz': [1, 1]}
+	};
+
+	//var network_path = '/41014381/Slashdot/';
+	var network_path = '/41014381/Slashdot/';
+	var tag_name_prefix = 'SD';
+	var tag_name_linkage = '_';
+	var tag_name_pagetype = page_type(location);
+	var tag_topic = page_section(location);
+	if (tag_name_pagetype == 'poll') {
+		tag_name_pagetype = 'Poll';
+	}
+	var before_tag_pagetyped = network_path
+		+ tag_name_prefix
+		+ tag_name_linkage
+		+ tag_name_pagetype
+		+ tag_name_linkage
+	;
+	var before_tag_pagetypeless = network_path
+		+ tag_name_prefix
+		+ tag_name_linkage
+		/* + tag_name_pagetype */
+		/* + tag_name_linkage */
+	;
+
+		//can be safely called
+		googletag.cmd.push(function () {
+		     googletag.pubads().enableLazyLoad({fetchMarginPercent: 0,renderMarginPercent: 0});
+
+			function remove_sticky_top() {
+				setTimeout(function () {
+					$('#div-gpt-ad-728x90_a').parent('div').addClass('adwrap-viewed-banner');
+					$('#div-gpt-ad-728x90_a').addClass('viewableImpression');
+				}, 1000);
+			}
+
+			function remove_sticky_railad() {
+				setTimeout(function () {
+					$('#slashboxes .adwrap-unviewed').addClass('adwrap-viewed-railad');
+					$('.railad').addClass('viewableImpression');
+				}, 1000);
+			}
+
+			function viewable_imp(slot) {
+				if (slot.getSlotElementId() == 'div-gpt-ad-728x90_a') {
+					remove_sticky_top();
+				}
+
+				if (document.querySelector('#slashboxes #' + slot.getSlotElementId())) {
+					remove_sticky_railad();
+				}
+
+				
+			}
+
+			function define_me_a_slot(tag) {
+				if (tags[tag].skip && tags[tag].skip[tag_name_pagetype])
+					return;
+				var sandbox_regex = /\.xb\.sf\.net$/i;
+				var full_name = tags[tag].npt  // "no page type"
+					? before_tag_pagetypeless + tag
+					: before_tag_pagetyped + tag
+				;
+				var div_id = 'div-gpt-ad-' + tag.toLowerCase();
+
+				var queryParams = new URLSearchParams(window.location.search);
+
+				if (queryParams.get('source') === 'autorefresh') {
+					full_name = full_name.replace(/(\d+x\d+)/, '$1_Ref');
+					//console.log('TAG NAME: ', full_name);
+				}
+
+				var slot = googletag.defineSlot(
+					full_name,
+					tags[tag].sz,
+					div_id
+				);
+
+				service = slot.addService(googletag.pubads());
+
+				window.SD.Ads.slotsById[div_id] = slot;
+				window.SD.Ads.idsByPath[full_name] = div_id;
+
+				service.setTargeting('sz', tags[tag].sz);
+
+				
+				var frontend_tpc = tag_topic.split(",");
+				var backend_tpc = [ "programming", "it", "software", "technology" ];
+
+				var tpc_final = unique_tpc_array(frontend_tpc, backend_tpc);
+				service.setTargeting('tpc', tpc_final);
+				if (location.hostname.match(sandbox_regex)) {
+					service.setTargeting('test', 'adops');
+				}
+
+			}
+
+		for (tag in tags) {
+			define_me_a_slot(tag, false);
+		}
+
+
+			googletag.pubads().addEventListener('slotVisibilityChanged', window.SD.Ads.visibilityChangedTracker);
+
+
+		googletag.pubads().addEventListener('impressionViewable', function(event) {
+			viewable_imp(event.slot);
+		    });
+
+                googletag.pubads().setTargeting('requestSource', 'GPT');
+		googletag.pubads().enableAsyncRendering();
+		
+
+		googletag.pubads().collapseEmptyDivs();
+		window.SD.Ads.setupAdRefresh();
+		bizxPrebid.Ads.pushToGoogle();
+		googletag.enableServices();
+	});
+})();
+
+
+/* Ad-Refresh code */
+window.SD.Ads.visibilityChangedTracker = function(event) {
+	var id = event.slot.getSlotElementId();
+	if (!window.SD.Ads.visibleTime.hasOwnProperty(id)) {
+		window.SD.Ads.visibleTime[id] = {
+			visible: false,
+			prevVisibleTotal: 0,
+			wasVisibleBeforePageBgd: false,
+			reloadCount: 0
+		};
+	}
+	var timeinfo = window.SD.Ads.visibleTime[id];
+	if (event.inViewPercentage >= 50 && !document.hidden) {
+		if (!timeinfo.visible) {
+			timeinfo.visible = performance.now();
+		}
+	} else {
+		if (timeinfo.visible) {
+			timeinfo.prevVisibleTotal += performance.now() - timeinfo.visible;
+			timeinfo.visible = false;
+		}
+	}
+};
+
+window.SD.Ads.setupAdRefresh = function() {
+	document.addEventListener('visibilitychange', function () {
+		for (var id in window.SD.Ads.visibleTime) {
+			if (window.SD.Ads.visibleTime.hasOwnProperty(id)) {
+				var timeinfo = window.SD.Ads.visibleTime[id];
+				if (document.hidden) {
+					timeinfo.wasVisibleBeforePageBgd = !!timeinfo.visible;
+					if (timeinfo.visible) {
+						timeinfo.prevVisibleTotal += performance.now() - timeinfo.visible;
+						timeinfo.visible = false;
+					}
+				} else if (!document.hidden && timeinfo.wasVisibleBeforePageBgd) {
+					timeinfo.visible = performance.now();
+				}
+			}
+		}
+	}, false);
+
+	// after 30 sec, start checking every second for reload
+	var LIMIT_MS = 30000;
+	setTimeout(function () {
+		//
+		setInterval(function () {
+			if (document.hidden) {
+				return;
+			}
+			for (var id in window.SD.Ads.visibleTime) {
+				if (window.SD.Ads.visibleTime.hasOwnProperty(id)) {
+					var timeinfo = window.SD.Ads.visibleTime[id];
+					if (timeinfo.visible &&
+						timeinfo.prevVisibleTotal + (performance.now() - timeinfo.visible) >= LIMIT_MS &&
+						timeinfo.reloadCount < 50
+					) {
+						timeinfo.reloadCount++;
+						timeinfo.visible = false;
+						timeinfo.prevVisibleTotal = 0;
+						window.SD.Ads.Helpers.refreshBids([id]);
+					}
+				}
+			}
+		}, 1000);
+	}, LIMIT_MS);
+};
+
+window.SD.Ads.Helpers.refreshBids = function (reloadIds) {
+		console.log('AD REFRESH: refreshBids', reloadIds);
+		var reloadSlots = reloadIds.map(function(id) { return window.SD.Ads.slotsById[id]; });
+		if (!window.pbjs) {
+			googletag.pubads().refresh(reloadSlots);
+			return;
+		}
+		pbjs.que.push(function () {
+			for (var i = reloadIds.length-1; i >= 0; i--) {
+				var id = reloadIds[i];
+				// clear out winner status from earlier auctions
+				if (bizxPrebid.Ads.prebidWinners[id]) {
+					delete bizxPrebid.Ads.prebidWinners[id];
+				}
+			}
+
+			var bids_back_amazon = false;
+			var bids_back_prebid = false;
+
+			function refreshBidsComplete() {
+				bizxPrebid.prebidLog('refresh: clearing old stuff');
+
+				// clear out previous sizing attrs, as they may change after refresh
+/*
+				for (var i = 0; i < reloadSlots.length; i++) {
+					var $wrappedAd = $(window.SD.Ads.Helpers.getContainerIDFromPath(reloadSlots[i].getAdUnitPath()));
+					var classes = $wrappedAd.attr('class').split(' ');
+					for (var j = 0; j < classes.length; j++) {
+						if (classes[j].indexOf('sz_') >= 0) {
+							$wrappedAd.removeClass(classes[j]);
+						}
+					}
+				}
+*/
+				pbjs.setTargetingForGPTAsync(reloadIds);
+				if (window.apstag) {
+					window.apstag.setDisplayBids();
+				}
+				googletag.pubads().refresh(reloadSlots);
+				bizxPrebid.prebidLog('refresh complete');
+			}
+
+			pbjs.requestBids({
+				timeout: window.bizxPrebid.PREBID_TIMEOUT * 3,  // longer timeout since the page has been open a long time anyway, we can wait longer for bids
+				adUnitCodes: reloadIds,
+				bidsBackHandler: function () {
+					bizxPrebid.prebidLog('refreshed pbjs bids done for', reloadIds);
+					bizxPrebid.Ads.debugPrebidResults();
+					bids_back_prebid = true;
+					if (bids_back_amazon) {
+						refreshBidsComplete();
+					}
+				}
+			});
+			if (window.apstag && bizxPrebid.amazonUnits?.length) {
+				var amazonReloadUnits = bizxPrebid.amazonUnits.filter(function(unit) {
+					return reloadIds.indexOf(unit.slotID) >= 0;
+				});
+				bizxPrebid.prebidLog('refreshing amazon ads', amazonReloadUnits);
+				window.apstag.fetchBids({
+					slots: amazonReloadUnits,
+					timeout: window.bizxPrebid.PREBID_TIMEOUT * 3
+				}, function(bids) {
+					bizxPrebid.prebidLog('refreshed amazon bids done for', reloadIds);
+					if (bizxPrebid.PREBID_DEBUG && window.console.table) {
+						window.console.table(bids);
+					}
+					bids_back_amazon = true;
+					if (bids_back_prebid) {
+						refreshBidsComplete();
+					}
+				});
+			} else {
+				bids_back_amazon = true;
+			}
+		});
+	}
+</script>
+
+<!-- CrossPixel -->
+<script type="text/javascript">
+if (window.is_euro_union === 0) {
+    bizx.cmp.ifConsent('', ['all'], function(){
+        try{(function(){ var cb = new Date().getTime(); var s = document.createElement("script"); s.defer = true; s.src = "//tag.crsspxl.com/s1.js?d=2397&cb="+cb; var s0 = document.getElementsByTagName('script')[0]; s0.parentNode.insertBefore(s, s0); })();}catch(e){}
+    });
+}
+</script>
+
+
+
+
+<!-- AdBlock Check -->
+<script>
+var sdAdBlockActive = true;
+</script>
+<script async src="//a.fsdn.com/sd/js/scripts/adpopup.js?c609efb3792fac20"></script>
+
+
+<script>
+let id = '8899772543';
+bizx.cmp.ifConsent({ purposes: 'all', vendors: 'google-ads'}, function () {
+    bizx.cmp.embedScript(`https://pagead2.googlesyndication.com/pagead/js/pcd.js?${id}`,
+        true,  // async
+        'head', // location
+        null, // callback
+        false, // defer
+        {id: `google-pcd-tag-${id}`, 'data-audience-pixel': 'dc_iu=/41014381/DFPAudiencePixel;dc_seg=' + id});
+});
+</script>
+</head>
+
+<body class="anon firehose ">
+
+	
+	<script src="//a.fsdn.com/sd/all-minified.js?c609efb3792fac20" type="text/javascript"></script>
+	
+	
+	<script type="text/javascript">
+(function(){
+var regexp=/\s*(?:\d+|many)\s+more\s*/i;
+
+	
+	var auto_more_count = 1;
+
+	function auto_more(){
+		var $more_link = $('#more-experiment a');
+		$more_link.each(function(){
+			var $lastitem = $('#firehoselist>article.fhitem:visible:last');
+			if ( Bounds.intersect(window, $lastitem) ) {
+			
+			
+				!--auto_more_count && (auto_more=undefined);
+				// don't allow a call till the next paginate gets built and |more_possible|
+				$(document).unbind('scroll', call_auto_more);
+			}
+		});
+	};
+
+	function call_auto_more(){ auto_more && auto_more(); }
+	
+
+$('#more-experiment a').
+	live('more-possible', function( event ){
+		var $more_link=$(this);
+		if ( regexp.test($more_link.text()) ) {
+		
+			$(document).bind('scroll', call_auto_more);
+		} else {
+			$(document).unbind('scroll', call_auto_more);
+		
+		}
+	});
+})();
+</script>
+	<!--[if lt IE 9]><script src="//a.fsdn.com/sd/html5.js"></script><![endif]-->
+	
+	
+	<!-- index2_variant ||-->
+		<script>
+	if (window.is_euro_union === 0) {
+            bizx.cmp.ifConsent('', ['all'], function () {
+                (function (s,o,n,a,r,i,z,e) {s['StackSonarObject']=r;s[r]=s[r]||function(){
+                (s[r].q=s[r].q||[]).push(arguments)},s[r].l=1*new Date();i=o.createElement(n),
+                z=o.getElementsByTagName(n)[0];i.async=1;i.src=a;z.parentNode.insertBefore(i,z)
+                })(window,document,'script','https://www.stack-sonar.com/ping.js','stackSonar');
+                stackSonar('stack-connect', '66');
+            });
+        }
+	</script>
+		<!-- html-header type=current end --><!-- header type=current begin -->
+	
+	
+	
+	<link rel="top"       title="News for nerds, stuff that matters" href="//slashdot.org/" >
+<link rel="search"    title="Search Slashdot" href="//tech.slashdot.org/search.pl">
+<link rel="alternate" title="Slashdot RSS" href="https://rss.slashdot.org/Slashdot/slashdotMain" type="application/rss+xml">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	
+		<div id="top_parent"></div>
+		<a name="topothepage"></a>
+		
+		<div class="container">
+			<div class="nav-wrap">
+				<nav class="nav-primary" role="navigation" aria-label="Global Navigation">
+					<h2 class="logo">
+	<a href="//slashdot.org"><span>Slashdot</span></a>
+</h2>
+
+<ul class="nav-site">
+	<li><a href="//slashdot.org"><i class="icon-book" title="Stories"></i><span>Stories</span></a></li>
+	<li>
+		<ul class="filter-firehose">
+			<li class="nav-label">Firehose <i class="icon-angle-right"></i></li>
+			<li><a href="//slashdot.org/recent">All</a></li>
+			<li><a href="//slashdot.org/popular">Popular</a></li>
+		</ul>
+	</li>
+	<li><a href="//slashdot.org/polls"><i class="icon-chart-bar" title="Polls"></i><span>Polls</span></a></li>
+
+	<!--
+	<li><a href="//ask.slashdot.org"><i class="icon-question-circle"></i><span>Ask</span></a></li>
+	
+	<li><a href="//events.slashdot.org"><i class="icon-calendar"></i><span>Events</span></a></li>
+	-->
+	<li><a href="https://slashdot.org/software/"><i class="sd-mini"></i> <span>Software</span></a></li>
+        <li><a href="//slashdot.org/content/"><span>Thought Leadership</span></a></li>
+</ul>
+<a href="//slashdot.org/submission" class="btn btn-success">Submit</a>
+				</nav>
+				<nav class="nav-user" role="navigation" aria-label="user access and account controls">
+					<div id="main-top-nav-wrapper">
+<form id="search" class="form-inline nav-search-form" method="get" action="//slashdot.org/index2.pl">
+<!-- //tech.slashdot.org/index2.pl" -->
+	<div class="form-group">
+		<label class="sr-only" for="sitesearch">Search Slashdot</label>
+		<div class="input-group">
+			<input type="text" id="" class="" name="fhfilter" value="" placeholder="Search">
+		</div>
+	</div>
+	<button type="submit" class="btn icon-search"></button>
+</form>
+<ul class="user-access">
+	
+		
+			<li >
+				<a href="//slashdot.org/my/login"  onclick="show_login_box(); return false;"><i class="icon-login"></i><span> Login</span></a>
+				
+			</li>
+		
+	
+		
+			<li class="nav-label">or</li>
+		
+	
+		
+			<li >
+				<a href="//slashdot.org/my/newuser"  ><i class="icon-user-add"></i><span> Sign up</span></a>
+				
+			</li>
+		
+	
+</ul>
+				</nav>
+			</div>
+			<div class="nav-secondary-wrap">
+				<nav class="nav-secondary" role="secondary-navigation">
+	<ul>
+		<li class="nav-label">Topics: </li>
+		<li><a href="//devices.slashdot.org">Devices</a></li>
+		<li><a href="//build.slashdot.org">Build</a></li>
+		<li><a href="//entertainment.slashdot.org">Entertainment</a></li>
+		<li><a href="//technology.slashdot.org">Technology</a></li>
+		<li><a href="//slashdot.org/?fhfilter=opensource">Open Source</a></li>
+		<li><a href="//science.slashdot.org">Science</a></li>
+		<li><a href="//yro.slashdot.org">YRO</a></li>
+		<!-- <li><a href="//slashdot.org/topics.pl">more...</a></li> -->
+	</ul>
+</nav>
+<nav class="nav-social" role="social navigation">
+	<ul>
+		<li class="nav-label">Follow us:</li>
+		<li><a href="https://rss.slashdot.org/Slashdot/slashdotMain" target="_blank" rel="nofollow"><i class="icon-rss-squared"></i><span class="sr-only">RSS</span></a></li>
+		<li><a href="https://www.facebook.com/slashdot" target="_blank" rel="nofollow"><i class="icon-facebook-squared"></i><span class="sr-only">Facebook</span></a></li>
+		<li><a href="https://www.linkedin.com/company/slashdot" target="_blank" rel="nofollow"><i class="icon-linkedin-squared"></i><span class="sr-only">LinkedIn</span></a></li>
+		<li><a href="https://x.com/slashdot" target="_blank" rel="nofollow"><i><svg style="height:20px;width:20px;margin: 3px 4px 0 4px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><g><path fill="#000000" d="M486,392.599C486,443.97,443.97,486,392.599,486H119.401C68.03,486,26,443.97,26,392.599V119.401   C26,68.031,68.03,26,119.401,26h273.198C443.97,26,486,68.031,486,119.401V392.599z"/><path fill="#F0F0F1" d="M290.425,233.064l110.65-137.91h-32.05l-94.62,117.94l-94.63-117.94H74.125l147.45,183.78l-110.66,137.92   h32.05l94.63-117.95l94.64,117.95h105.65L290.425,233.064z M126.225,120.153h41.55l218,271.7h-41.55L126.225,120.153z"/></g></svg></i><span class="sr-only">Twitter</span></a></li>
+		<li><a href="https://www.youtube.com/channel/UCsW36751Gy-EAbHQwe9WBNw" target="_blank" rel="nofollow"><i class="icon-youtube-squared">
+                    <!-- width="1792" height="1792" -->
+                    <svg viewBox="0 260 1792 1260" xmlns="http://www.w3.org/2000/svg"><path d="M711 1128l484-250-484-253v503zm185-862q168 0 324.5 4.5t229.5 9.5l73 4q1 0 17 1.5t23 3 23.5 4.5 28.5 8 28 13 31 19.5 29 26.5q6 6 15.5 18.5t29 58.5 26.5 101q8 64 12.5 136.5t5.5 113.5v176q1 145-18 290-7 55-25 99.5t-32 61.5l-14 17q-14 15-29 26.5t-31 19-28 12.5-28.5 8-24 4.5-23 3-16.5 1.5q-251 19-627 19-207-2-359.5-6.5t-200.5-7.5l-49-4-36-4q-36-5-54.5-10t-51-21-56.5-41q-6-6-15.5-18.5t-29-58.5-26.5-101q-8-64-12.5-136.5t-5.5-113.5v-176q-1-145 18-290 7-55 25-99.5t32-61.5l14-17q14-15 29-26.5t31-19.5 28-13 28.5-8 23.5-4.5 23-3 17-1.5q251-18 627-18z"/></svg>
+                </i><span class="sr-only">Youtube</span></a></li>
+		<li><a href="https://mastodon.cloud/@slashdot" target="_blank" rel="me nofollow"><i class="icon-mastodon-squared">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+				</i><span class="sr-only">Mastodon</span></a></li>
+		<li><a href="https://bsky.app/profile/slashdot.org" target="_blank" rel="nofollow"><i><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" id="Bluesky--Streamline-Simple-Icons.svg" height="20" width="20" style="margin: 3px 4px 0 4px;"><title>Bluesky</title><path d="M12 10.8c-1.087 -2.114 -4.046 -6.053 -6.798 -7.995C2.566 0.944 1.561 1.266 0.902 1.565 0.139 1.908 0 3.08 0 3.768c0 0.69 0.378 5.65 0.624 6.479 0.815 2.736 3.713 3.66 6.383 3.364 0.136 -0.02 0.275 -0.039 0.415 -0.056 -0.138 0.022 -0.276 0.04 -0.415 0.056 -3.912 0.58 -7.387 2.005 -2.83 7.078 5.013 5.19 6.87 -1.113 7.823 -4.308 0.953 3.195 2.05 9.271 7.733 4.308 4.267 -4.308 1.172 -6.498 -2.74 -7.078a8.741 8.741 0 0 1 -0.415 -0.056c0.14 0.017 0.279 0.036 0.415 0.056 2.67 0.297 5.568 -0.628 6.383 -3.364 0.246 -0.828 0.624 -5.79 0.624 -6.478 0 -0.69 -0.139 -1.861 -0.902 -2.206 -0.659 -0.298 -1.664 -0.62 -4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z" fill="rgb(17, 133, 254)" stroke-width="1"/></svg></i><span class="sr-only">Bluesky</span></a></li>
+	</ul>
+</nav>
+			</div>
+		</div>
+
+		<section>
+		
+			<div class="message-bar" id="firehose-message-tray">
+				<span class="icon-quote-left"></span>
+				<p>
+					
+						
+						Slashdot is powered by <strong><a href="//tech.slashdot.org/submission">your submissions</a></strong>, so send in your scoop
+					
+				</p>
+			</div>
+		
+		
+			<div id='embbeded_login_modal' class="hide">
+<form action="https://slashdot.org/my/login" method="post" onsubmit="if (global_returnto) { this.returnto.value = global_returnto }" class="embedded"><fieldset style="-webkit-border-radius:10px 10px 0 0;border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0">
+<div style='height:25px;'>&nbsp;</div>
+    <input type="hidden" name="returnto" value="">
+    <input type="hidden" name="op" value="userlogin">
+    <p>
+        <label class="fleft" for="unickname">Nickname:</label>
+        <input type="text" name="unickname" value="">
+    </p>
+    <p>
+        <label class="fleft" for="upasswd">Password:</label>
+        <input type="password" name="upasswd">
+    </p>
+    <label class="checkbox"><input type="checkbox" name="login_temp" value="yes"> Public Terminal</label>
+    <br>
+    <hr>
+    <input type="submit" name="userlogin" value="Log In" class="fno"> <a href="//slashdot.org/my/mailpassword" class="btn link" onclick="getModalPrefs('sendPasswdModal', 'Retrieve Password', 1); return false;">Forgot your password?</a>
+</fieldset></form>
+
+<div class="actions">
+ <a class="ico close" onclick="hide_login_slider();" href=""><span>Close</span></a>
+</div>
+</div>
+		
+		
+			<div class="banner-wrapper">
+				<div class="adwrap adwrap-unviewed banner-contain">
+					
+					<div id='div-gpt-ad-728x90_a'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.pubads().enableLazyLoad({fetchMarginPercent: 0,renderMarginPercent: 0});
+googletag.display('div-gpt-ad-728x90_a');});</script></div>
+				</div>
+			</div>
+		
+		<a name="main-articles"></a>
+	
+	<!-- header type=current end --><!-- body begin -->
+
+
+
+
+
+
+
+	
+
+	<style type="text/css">
+menu, menu * {
+	text-decoration:none;
+}
+
+menu[type=context] {
+	display:none;
+	position:absolute;
+	z-index:10000;
+}
+
+menu[type=context]:not(.brief) {
+	background-color:#dfdfdf;
+	margin:0;
+	padding:2px 0.5em;
+	border-style:solid;
+	border-width:1px;
+	border-color:#eeeeee #aaaaaa #aaaaaa #eeeeee;
+	-moz-border-radius-topright:.7em;
+	-webkit-border-top-right-radius: 0.7em 0.7em;
+}
+
+menu.full[type=context] > a.slash-hover:first-child {
+	-moz-border-radius-topright:.6em;
+	-webkit-border-top-right-radius: 0.6em 0.6em;
+}
+
+
+
+menu.brief[type=context] > a {
+	-moz-border-radius:.6em;
+	-webkit-border-radius: 0.6em;
+	color:#ffffff;
+	background-color:#000000;
+}
+
+/*
+span.briefmenu a.tag:not(.datatype) {
+    padding-left:.5em;
+}
+*/
+
+
+
+
+/* #tag-menu a, #feedback-menu a  { */
+menu.tag-menu-admin a {
+	display:list-item;
+	list-style:none;
+	text-align:left;
+	font-weight:bold;
+	color:black;
+	padding:0.1em 0.5em;
+	margin:-0.1em -0.5em;
+	cursor:pointer;
+}
+
+
+.tags .edit-bar { position:relative; }
+article aside .share .addthis_toolbox { display:block; width:60px; float:left; }
+article aside.view_mode .share { min-width:120px; padding-top:.5em; }
+#firehose.list article header h2 {padding-left: 20px; !important}
+.novote .vote { display:none; }
+
+.vote > a, .votedup > a, .voteddown > a {
+	display:inline-block;
+	height:22px;
+	width:22px;
+	margin: 2px 10px 0 0;
+	color:rgb(255,255,255);
+	text-decoration:none;
+	line-height:22px;
+	text-align:center;
+	font-weight:bold;
+	font-size:14px;
+	border-width:1px;
+	border-style:solid;
+	border-color:rgba(0,0,0,0.5);
+}
+
+.vote > a, .votedup > a, .voteddown > a {color:rgb(0,0,0);}
+
+article.fhitem-submission h2 .vote > a, article.fhitem-submission h2 .votedup > a, article.fhitem-submission h2 .voteddown > a { border-color:rgba(0,0,0,0.15); }
+.vote .up, .vote .down, .votedup .up, .votedup .down, .voteddown .up, .voteddown .down { border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; /* text-shadow:0 0 2px #000000; }*/}
+article:not(.fhitem-story) .vote .up,article:not(.fhitem-story) .vote .down,article:not(.fhitem-story) .votedup .up,article:not(.fhitem-story) .votedup .down,article:not(.fhitem-story) .voteddown .up,article:not(.fhitem-story) .voteddown .down { /*text-shadow:none !important; */}
+.voteddown .down, .votedup .up { margin-right: 10px; text-indent:2px; line-height:24px; }
+article:not(.fhitem-story) .votedup .up,article:not(.fhitem-story) .voteddown .down {background: rgb(174,174,174);background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(174,174,174)), to(rgb(193,193,193)));background-image: -moz-linear-gradient(100% 100% 90deg,rgb(193,193,193), rgb(174,174,174) 100%);color:rgb(0,0,0);}
+article.fhitem-story .votedup .up,article.fhitem-story .voteddown .down {background: rgb(0,66,66);background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(0,53,53)), to(rgb(0,102,102)));background-image: -moz-linear-gradient(100% 100% 90deg,rgb(0,102,102), rgb(0,53,53) 100%);}
+
+
+
+
+#tag-menu span.var-tag {
+font-weight:normal;
+color:#444444;
+}
+
+menu.reasons-menu a {
+padding:0 .25em 0 .25em;
+font-size:80%;
+-moz-border-radius:.5em;
+-webkit-border-radius:.5em;
+cursor:pointer;
+}
+
+menu.reasons-menu a:hover {
+background:rgb(153,153,153);
+background:-moz-linear-gradient(100% 100% 90deg, rgb(102,102,102), rgb(153,153,153) 70%) repeat scroll 0 0 rgb(102,102,102);
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(153,153,153)), to(rgb(102,102,102)));
+color:#fff;
+text-decoration:none;
+font-weignt:normal;
+}
+
+article.fhitem-story menu.reasons-menu a:hover {
+background:#002323 !important;
+background:-moz-linear-gradient(100% 100% 90deg, #002323, #005353 70%) repeat scroll 0 0 #002323 !important;
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#005353), to(#002323)) !important;
+}
+
+
+menu.reasons-menu {
+	display:none;
+	margin:0;
+	padding:0;
+}
+
+div.fhitem h3 menu.reasons-menu {
+margin:0.25em 0 0;
+}
+
+div.fhitem h3 menu.reasons-menu a.tag {
+font-size:.8em;
+}
+
+#tag-menu a.slash-hover,
+#feedback-menu a.slash-hover,
+
+.tag-display span.tag:hover,
+.tag-display span.tag.trigger {
+	color:white;
+	background-color:rgb(0, 85, 85);
+}
+
+#tag-menu a.slash-hover span.var-tag {
+	color:#eee;
+}
+
+.tag-entry.default {
+        color:#ccc;
+}
+
+.brief .nix {
+	margin-top:-1.35em;
+	margin-left:0px;
+	margin-top:-1.15em;
+	text-decoration:none;
+	line-height:1.35em;
+	padding:0 2px;
+	-moz-border-radius:.6em 0 0 .6em;
+	-webkit-border-radius:.6em 0 0 .6em;
+	-o-border-radius:.6em 0 0 .6em;
+	border-radius:.6em 0 0 .6em;
+    color:#fff !important;
+    background:transparent !important;
+}
+
+.brief .nix:hover {
+    background:rgb(153,153,153) !important;
+    background:-moz-linear-gradient(100% 100% 90deg, rgb(102,102,102), rgb(153,153,153) 70%) repeat scroll 0 0 rgb(102,102,102) !important;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(153,153,153)), to(rgb(102,102,102))) !important;
+}
+
+</style>
+
+<menu id="nix-reasons" style="display:none">
+	<a class="tag">binspam</a><a class="tag">dupe</a><a class="tag">notthebest</a><a class="tag">offtopic</a><a class="tag">slownewsday</a><a class="tag">stale</a><a class="tag">stupid</a>
+</menu>
+<menu id="nod-reasons" style="display:none">
+	<a class="tag">fresh</a><a class="tag">funny</a><a class="tag">insightful</a><a class="tag">interesting</a><a class="tag">maybe</a>
+</menu>
+<menu id="comment-nix-reasons" style="display:none">
+	<a class="tag">offtopic</a><a class="tag">flamebait</a><a class="tag">troll</a><a class="tag">redundant</a><a class="tag">overrated</a>
+</menu>
+<menu id="comment-nod-reasons" style="display:none">
+	<a class="tag">insightful</a><a class="tag">interesting</a><a class="tag">informative</a><a class="tag">funny</a><a class="tag">underrated</a>
+</menu>
+
+<menu id="tag-nod-reasons" style="display:none">
+	<a class="tag">descriptive</a>
+</menu>
+<menu id="feedback-menu" class="tag-menu-admin" type="context">
+	<a class="tag">typo</a><a class="tag">dupe</a><a class="tag">error</a>
+</menu>
+<menu id="tag-menu" class="tag-menu-admin none" type="context">
+
+<!--	<a data-op="!" class="nix">!<span class="var-tag hide"></span></a>-->
+
+</menu>
+
+<script type="text/javascript">
+$(function(){
+var $CURRENT_MENU, $TAG_MENU=$('#tag-menu'), NOTNOT=/^!!/, IE7=/^7\.0/, TAG_PREFIX=/^\/tag\//;
+
+function get_tag_name( $tag ){
+	return ($tag.attr('href') || '').replace(TAG_PREFIX, '') || $tag.text().toLowerCase();
+}
+
+function trigger_menu( e, selector, $menu, menu_content ){
+	var $target=$(original_target(e, selector)), in_use=$target.is('.trigger');
+	if ( $CURRENT_MENU ) {
+		$CURRENT_MENU.menu('cancel', e);
+		$CURRENT_MENU = null;
+	}
+
+	if ( !in_use ) {
+		menu_content && $menu.stop(true, true).hide().html(menu_content);
+		($CURRENT_MENU=$menu).menu('context', e);
+	}
+	return !in_use;
+}
+
+function open_menu( trigger, $menu ){
+	var $trigger=$(trigger), $fhitem=$trigger.closest('.fhitem');
+	$fhitem.length && user_intent('interest', $fhitem[0]);
+
+	$menu.appendTo(document.body).css({ opacity:0 }).show();
+
+	var 	right	= $fhitem.offset().left + $fhitem.width(),
+		global	= $trigger.offset(),
+		local	= $menu.offsetParent().offset();
+
+	// Ugly IE position hack required:
+	$.browser.msie && IE7.test($.browser.version) && (local.top = 0);
+
+	// pin the menu (horizontally) on-screen
+	global.left = Math.min(global.left, right-$menu.width());
+
+	$trigger.addClass('trigger');
+	$menu.css({
+		position:	'absolute',
+		top:		global.top - local.top + $trigger.height(),
+		left:		global.left - local.left,
+		opacity:	1
+	});
+}
+
+function close_menu( trigger, $menu ){
+	$menu.hide();
+	$(trigger).removeClass('trigger');
+	($CURRENT_MENU===$menu) && ($CURRENT_MENU=false);
+}
+
+/* T2 tag context-menu */
+var $TAG_MENU=$('#tag-menu'), NOTNOT=/^!!/;
+
+
+    var user_is_admin = 0;
+
+
+
+$('a[rel=tag]').live('mousedown',function(ea){
+    window.open(this.href);
+    return false;
+})
+
+$('.tag-bar .disagree').live('mousedown',function(ee){
+	var fhitem = $(original_target(ee)).closest('.fhitem')[0],
+		command = ('!' + $(original_target(ee)).attr("data-tag")).replace(NOTNOT, '');
+    try { Tags.submit(fhitem, command); } catch ( err ) {  }
+    return false;
+})
+
+
+
+$('a[rel=tag]').
+	live('mousedown', function( e ){
+        
+            return true;
+        
+
+	}).
+	live('click', function( e ){
+		if ( !logged_in ) {
+			var	target	= original_target(e),
+				tag	= $(target).text();
+			addfhfilter(tag);
+		}
+		e.preventDefault();
+		return false;
+	});
+
+$TAG_MENU.menu({
+	cssNamespace: 'slash',
+	liveTriggers: true,
+	clickDuration: 300,
+
+	start: function( e, ui ){
+		var	$tag	= $(ui.trigger),
+			tag	= get_tag_name($tag),
+			context	= firehose_settings && firehose_settings.viewtitle;
+
+		// Insert the tagname into the menu items where needed.
+		$TAG_MENU.find('span.var-tag').text(tag);
+		$TAG_MENU.find('a.nix').attr('title','not ' + tag);
+
+
+			// non-admins may only delete their own tags
+		$TAG_MENU.find('a[data-op="-"]').toggle($tag.is('.my'));
+	
+
+		// *tagname* in *viewtitle*
+		$TAG_MENU.find('a[data-op="="]').toggle(!!context);
+		context && $TAG_MENU.find('span.var-view').text(context);
+
+		open_menu($tag, $TAG_MENU);
+	},
+
+	select: function( e, ui ){
+		var	$tag	= $(ui.trigger),
+			tag	= get_tag_name($tag),
+			op	= $(ui.event.target).attr('data-op'),
+			fhitem,
+			command;
+
+		// Global for positioning other things.
+		$related_trigger = $tag;
+
+		switch ( op ) {
+			case '=':
+				addfhfilter(tag);
+				break;
+
+			default:
+				fhitem = $tag.closest('.fhitem')[0];
+				command = (op + tag).replace(NOTNOT, '');
+				try { Tags.submit(fhitem, command); } catch ( err ) {  }
+				break;
+		}
+	},
+
+	stop: function( e, ui ){ close_menu(ui.trigger, $TAG_MENU); }
+});
+
+
+
+
+/* T2 feedback context-menu */
+
+
+
+/* T2 datatype context-menu (admin-only) */
+
+
+
+
+
+
+});
+</script>
+
+	
+
+<!-- SMACKS: BEGIN STORY CONTENT -->
+<div class="container">
+	<!--SMACKS: BEGING CENTER COLUMN -->
+	<div class="main-wrap has-rail-right">
+		<div class="main-content">
+			<div class="grid_24 a2 ">
+			</div>
+			<div id="firehose" class="nothumbs">
+			<div id="firehoselist" class="fhroot fleft  grid_24">
+				<div id="announcement">
+  <div id="announcementText" style="display: none;"> <strong><a href="https://hubs.la/Q038lz530" rel="nofollow" target="_blank" onclick="window._paq.push(['trackEvent', 'Announcement', 'SOCRadar']);">Has your data leaked on the dark web? Get your free dark web report now.</a></strong></div>
+  <a href="" class="btn-close" title="don't show me this again" onclick="closeAnnouncement(); return false;">&times;</a>
+</div>
+
+
+<script type="text/javascript">
+
+if (!$.cookie('hide_sitenotice_36')) {
+	$('#announcement').fadeIn(300);
+}
+
+function closeAnnouncement() {
+	$('#announcement').fadeOut(300);
+	$.cookie('hide_sitenotice_36', 'true', { path: '/', domain: 'slashdot.org', expires: 1 });
+}
+</script>
+				<article id="firehose-177485701" data-fhid="177485701" data-fhtype="story" class="fhitem fhitem-story article usermode thumbs grid_24">
+		<span class="sd-info-block" style="display: none">
+			<span class="sd-key-firehose-id">177485701</span>
+			<span class="type">story</span>
+			
+		</span>
+
+
+
+
+
+
+
+	
+	
+
+<header>
+	
+		<span class="topic" id="topic-177485701">
+			<a href="//tech.slashdot.org/index2.pl?fhfilter=software" onclick="return addfhfilter('software');">
+			
+				<img src="//a.fsdn.com/sd/topics/software_64.png" width="64" height="64" alt="Software" title="Software">
+			
+		</a>
+		
+	
+		
+		
+		
+		
+
+		
+		<a href="//tech.slashdot.org/index2.pl?fhfilter=programming" onclick="return addfhfilter('programming');">
+			
+				<img src="//a.fsdn.com/sd/topics/programming_64.png" width="64" height="64" alt="Programming" title="Programming">
+			
+		</a>
+		
+	
+		
+		
+
+		
+		<a href="//tech.slashdot.org/index2.pl?fhfilter=it" onclick="return addfhfilter('it');">
+			
+				<img src="//a.fsdn.com/sd/topics/it_64.png" width="64" height="64" alt="IT" title="IT">
+			
+		</a>
+		</span>
+	
+    
+	<h1 class="story">
+		
+
+		
+
+		
+		
+
+		
+
+		
+
+		
+
+		<span id="title-177485701" class="story-title"> <a   href="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority">Carmack: World Could Run on Older Hardware if Software Optimization Was Priority</a></span>
+
+		
+		
+		<!--<span class="comments commentcnt-177485701" >44</span>-->
+		
+
+		
+		<!-- comment bubble -->
+		
+			<span class="comment-bubble"><a href="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority#comments" title="">44</a></span>
+		
+	</h1>
+	<div class="details" id="details-177485701">
+		<span class="story-details">
+		<span class="story-views">
+			<span class="sodify" onclick="firehose_set_options('color', 'red')" title="Filter Firehose to entries rated red or better"></span><span class="icon-beaker pop1 " alt="Popularity" title="Filter Firehose to entries rated red or better" onclick="firehose_set_options('color', 'red')"><span></span></span> 
+		</span>
+		</span>
+		<span class="story-byline">
+	
+				
+			Posted
+				by 
+		
+		
+			
+				  msmash
+			
+		
+		
+
+		
+		
+		<time id="fhtime-177485701" datetime="on Tuesday May 13, 2025 @10:00AM">on Tuesday May 13, 2025 @10:00AM</time>
+		
+		
+			 from the <span class="dept-text">closer-look</span> dept.
+		
+		</span>
+	</div>
+</header>
+
+<div class="body" id="fhbody-177485701">
+	
+		
+	
+
+	
+		
+		<div id="text-177485701" class="p">
+			
+		 	
+				Gaming pioneer John Carmack believes we're not nearly as dependent on cutting-edge silicon as most assume -- <a href="https://x.com/ID_AA_Carmack/status/1922100771392520710">we just lack the economic incentive to prove it</a>. Responding to <a href="https://x.com/lauriewired/status/1922015999118680495">a "CPU apocalypse" thought experiment</a> on X, the id Software founder and former Oculus CTO suggested that software inefficiency, not hardware limitations, is our greatest vulnerability. "More of the world than many might imagine could run on outdated hardware if software optimization was truly a priority," Carmack wrote, arguing that market pressures would drive dramatic efficiency improvements if new chips stopped arriving.<br> <br>
+
+His solution? "Rebuild all the interpreted microservice based products into monolithic native codebases!" -- essentially abandoning modern development patterns for the more efficient approaches of earlier computing eras. The veteran programmer noted that such changes would come with significant tradeoffs: "Innovative new products would get much rarer without super cheap and scalable compute."
+		 	
+		</div>
+
+		
+
+		
+
+		
+			
+		
+	</div>
+	<aside class="grid_24 view_mode">
+		
+			<div class="units-12 story-detail-tags">
+				<span id="sharethis-177485701" class="">
+					
+						
+
+						
+
+					
+				</span>
+
+				<div class="story-tags">
+					<div class="tright tw">
+						
+							<span class="tright tags">
+								
+									<menu type="toolbar" class="edit-bar">
+		<span id="tagbar-177485701" class="tag-bar none">
+			
+		</span>
+		
+		<!--
+			<a class="edit-toggle" href="/my/login/" onclick="show_login_box();return false;">
+				<span class="icon-tag btn collapse"></span>
+			</a>
+			-->
+		
+		
+		<div class="tag-menu">
+			<input class="tag-entry default" type="text" value="apply tags">
+		</div>
+		
+
+		
+		
+
+	</menu>
+								
+							</span>
+						
+					</div>
+				</div>
+			</div>
+
+			
+				
+				
+				
+			 	
+					<section class="grid_24" id="newa2footerv2">
+						<div class="grid_6 pr">
+							<h3><a title="Previous story" href="//apple.slashdot.org/story/25/05/13/1216217/apple-wants-people-to-control-devices-with-their-thoughts?sdsrc=prev">&larr;</a></h3>
+						</div>
+						<div class="grid_12 rl">
+							<h3>You may like to read:</h3>
+						</div>
+						<div class="grid_6 ns">
+							<h3><a title="Next story" href="//slashdot.org/story/25/05/13/1432232/microsoft-is-cutting-3-of-all-workers?sdsrc=next">&rarr;</a></h3>
+						</div>
+						<div class="grid_6">
+							<span class="c">
+								<a href="//apple.slashdot.org/story/25/05/13/1216217/apple-wants-people-to-control-devices-with-their-thoughts?sdsrc=prev">Apple Wants People To Control Devices With Their Thoughts </a>
+							</span>
+						</div>
+						<div class="grid_12">
+							<span class="c">
+								
+									
+									
+									
+									
+
+																				<h2><a href="//tech.slashdot.org/story/24/10/22/1810240/evs-are-just-going-to-win?sdsrc=popbyskid">EVs Are Just Going To Win</a><br></h2>
+																				<h2><a href="//tech.slashdot.org/story/24/08/04/2321224/are-ev-charger-hogs-ruining-the-ev-experience?sdsrc=popbyskid">Are EV 'Charger Hogs' Ruining the EV Experience?</a><br></h2>
+																				<h2><a href="//tech.slashdot.org/story/24/09/02/0237206/whats-holding-back-americas-move-to-electric-cars?sdsrc=popbyskid">What's Holding Back America's Move to Electric Cars?</a><br></h2>
+																				<h2><a href="//tech.slashdot.org/story/24/07/09/1640243/speed-limiters-now-mandatory-in-all-new-eu-cars?sdsrc=popbyskid">Speed Limiters Now Mandatory In All New EU Cars</a><br></h2>
+																				<h2><a href="//tech.slashdot.org/story/24/08/26/2257239/far-right-terrorgram-chatrooms-are-fueling-a-wave-of-power-grid-attacks?sdsrc=popbyskid">Far-Right 'Terrorgram' Chatrooms Are Fueling a Wave of Power Grid Attacks</a><br></h2>
+									
+								
+								
+							</span>
+						</div>
+						<div class="grid_6">
+							<span class="c">
+								
+									<a href="//slashdot.org/story/25/05/13/1432232/microsoft-is-cutting-3-of-all-workers?sdsrc=next">Microsoft is Cutting 3% of All Workers</a>
+								
+							</span>
+						</div>
+					</section>
+				
+			
+		
+	</aside>
+	
+
+
+
+	</article>
+			</div>
+			</div>
+		</div>
+	</div>
+	<!-- SMACKS: BEGIN RIGHT RAIL -->
+	<aside id="slashboxes" class="rail-right">
+		
+                    <div id="slashboxesin" class="yui-b">
+                            
+                            
+                            
+                    </div>
+		    <div class="railad adwrap-unviewed">
+<div id='div-gpt-ad-300x250_a'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.pubads().enableLazyLoad({fetchMarginPercent: 0,renderMarginPercent: 0});
+googletag.display('div-gpt-ad-300x250_a');});</script></div>
+</div>
+		
+	</aside>
+		<!-- SMACKS: END RIGHT RAIL -->
+</div>
+<!-- END STORY CONTENT -->
+
+<!-- THIS IS THE LOCATION FOR THE NEW STORY_B CODE -->
+<div class="adwrap">
+<div id='div-gpt-ad-728x90_b'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.pubads().enableLazyLoad({fetchMarginPercent: 0,renderMarginPercent: 0});
+googletag.display('div-gpt-ad-728x90_b');});</script></div>
+</div>
+<script type="text/javascript">
+if (window.is_euro_union === 0) {
+    if (sdAdBlockActive) {
+        bizx.cmp.ifConsent('', ['all'], function () {
+            $.ajax({
+                url: '/ajax.pl?op=nel',
+                type: 'POST',
+                success: function(html){
+                    if(html){
+                        $('#firehoselist article').eq(0).after(html);
+                    }
+                }
+            });
+        });
+    }
+}
+</script>
+<!--------------------------->
+
+
+<!-- SMACKS: BEGIN COMMENTS CONTAINER -->
+<div class="container">
+	<!-- SMACKS: BEGIN COMMENTS SECTION -->
+	<div class="main-wrap">
+		<div class="main-content">
+			<div id="comments" class="a2commentwrap">
+			<div>
+					<a name="comments"></a>
+<div id="comments" class="container">
+	<div class="main-wrap">
+		<div class="main-content">
+			<section class="d2incommentspl">
+				<div class="commentwrap" id="commentwrap">
+					
+						<div class="commentBox">
+							<div class="title hide">
+								<h4>
+									
+										<span class="escape-link"><a href="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority" title="Back to Article - Carmack: World Could Run on Older Hardware if Software Optimization Was Priority">Carmack: World Could Run on Older Hardware if Software Optimization Was Priority</a></span>
+									
+									<span class="commentBoxLinks"><a href="#" onclick="D2.ajaxFetchComments(0,1); return false"><span id="more_comments_num_d"></span> More</a>
+
+
+
+	| <span class="ind"></span><a href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=" onclick="D2.replyTo(0); return false;">Reply</a>
+
+
+	<a class="login"  href="//tech.slashdot.org/login.pl" onclick="show_login_box(); return false">Login</a></span>
+								</h4>
+							</div>
+						</div>
+					
+
+					<section class="grid_24" id="d2header"><div>
+						
+							<h2 class="commentspl test"><a title="Back to Article - Carmack: World Could Run on Older Hardware if Software Optimization Was Priority" href="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority">Carmack: World Could Run on Older Hardware if Software Optimization Was Priority</a></h2>
+						
+						<nav class="grid_24">
+							<div class="grid_14 widthauto">
+							
+						 		<span class="ind"></span><a class="btn first" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=" onclick="D2.replyTo(0); return false;">Post</a>
+							
+							<!-- <a href="//tech.slashdot.org/search.pl?op=comments&amp;sid=23691013" class="btn">Search <span class="totalcommentcnt">47</span> Comments</a> -->
+							
+								
+									<a href="#" onclick="D2.ajaxFetchComments(0,1,'','',-1); return false" class="btn" id="d2loadall">Load All Comments</a>
+								
+							
+							
+								</div>
+								<div class="grid_10 d1or2">
+							
+
+							
+								<div id="d2out" class="horizontal rooted grid_15">
+									<div id="d2act" class="hide">
+										<div class="loki" id="gods">
+											<script type="text/javascript">
+												 $(function(){
+													 D2.slider = new D2.Slider(
+														 D2.user_threshold(),
+														 D2.user_highlightthresh(),
+														 'x'
+													 );
+												 });
+											</script>
+											<div id="bones" class="grid_12">
+												<div class="ccw-count-container grid_24">
+													<span id="ccw-full-count-text" class="grid_8 ccw-count-text tcenter"><span></span><span id="ccw-full-phrase">&nbsp;Full</span></span>
+													<span id="ccw-abbr-count-text" class="grid_8 ccw-count-text"><span></span><span id="ccw-abbr-phrase">&nbsp;Abbreviated</span></span>
+													<span id="ccw-hide-count-text" class="grid_8 ccw-count-text tleft"><span></span><span id="ccw-hide-phrase">&nbsp;Hidden</span></span>
+												</div>
+												<div id="ccw">
+													<div id="ccw-body" class="ccw-core">
+														<div id="ccw-panel-container" class="ccw-core">
+															<div id="ccw-full-panel" class="ccw-panel">
+																/Sea<div class="ccw-panel-border"></div>
+																<div id="ccw-full-count-pos" class="ccw-core-pos ccw-count-pos"></div>
+															</div>
+															<div id="ccw-abbr-panel" class="ccw-panel">
+																<div class="ccw-panel-border"></div>
+																<div id="ccw-abbr-count-pos" class="ccw-core-pos ccw-count-pos"></div>
+															</div>
+															<div id="ccw-hide-panel" class="ccw-panel">
+																<div id="ccw-hide-count-pos" class="ccw-core-pos ccw-count-pos"></div>
+															</div>
+														</div>
+														<div id="ccw-control" class="ccw-core">
+															<div id="ccw-centering-rail" class="ccw-core">
+																<div id="ccw-hide-bar-pos" class="ccw-core-pos">
+																	<div id="ccw-hide-bar" class="ccw-bar">
+																		<div id="ccw-hide-bar-tab" class="ccw-bar-tab"></div>
+																		<div class="ccwa"></div>
+																		<div class="ccwb"></div>
+																		<div id="ccw-hide-bar-upzone" class="ccw-upzone" onclick="D2.slider.stepTHT(HIDE_BAR, +1)"></div>
+																		<div id="ccw-hide-bar-downzone" class="ccw-downzone" onclick="D2.slider.stepTHT(HIDE_BAR, -1)"></div>
+																	</div>
+																</div>
+																<div id="ccw-abbr-bar-pos" class="ccw-core-pos">
+																	<div id="ccw-abbr-bar" class="ccw-bar">
+																		<div id="ccw-abbr-bar-tab" class="ccw-bar-tab"></div>
+																		<div class="ccwa"></div>
+																		<div class="ccwb"></div>
+																		<div id="ccw-abbr-bar-upzone" class="ccw-upzone" onclick="D2.slider.stepTHT(ABBR_BAR, +1)"></div>
+																		<div id="ccw-abbr-bar-downzone" class="ccw-downzone" onclick="D2.slider.stepTHT(ABBR_BAR, -1)"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="ccw-score-label grid_24">
+														<div class="grid_3"><span class="sc">Score:</span></div>
+														<div class="grid_3">5<span class="lg"></span></div>
+														<div class="grid_3">4<span class="lg"></span></div>
+														<div class="grid_3">3<span class="lg"></span></div>
+														<div class="grid_3">2<span class="lg"></span></div>
+														<div class="grid_3">1<span class="lg"></span></div>
+														<div class="grid_3">0<span class="lg"></span></div>
+														<div class="grid_3">-1<span class="lg"></span></div>
+													</div>
+												</div>
+											</div>
+											<div class="commentControlFooter">
+												<a href="#" onclick="D2.ajaxFetchComments(0,1); return false"><span id="more_comments_num_c"></span> More</a>
+
+
+
+	| <span class="ind"></span><a href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=" onclick="D2.replyTo(0); return false;">Reply</a>
+
+
+	<a class="login"  href="//tech.slashdot.org/login.pl" onclick="show_login_box(); return false">Login</a><div id="login_cover" class="hide" onclick="hide_login_box()"></div>
+<div id="login_box" class="hide">
+	<div id="login_box_content">
+		<div id='embbeded_login_modal' class="hide">
+<form action="https://slashdot.org/my/login" method="post" onsubmit="if (global_returnto) { this.returnto.value = global_returnto }" class="embedded"><fieldset style="-webkit-border-radius:10px 10px 0 0;border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0">
+<div style='height:25px;'>&nbsp;</div>
+    <input type="hidden" name="returnto" value="//tech.slashdot.org/comments.pl?sid=23691013">
+    <input type="hidden" name="op" value="userlogin">
+    <p>
+        <label class="fleft" for="unickname">Nickname:</label>
+        <input type="text" name="unickname" value="">
+    </p>
+    <p>
+        <label class="fleft" for="upasswd">Password:</label>
+        <input type="password" name="upasswd">
+    </p>
+    <label class="checkbox"><input type="checkbox" name="login_temp" value="yes"> Public Terminal</label>
+    <br>
+    <hr>
+    <input type="submit" name="userlogin" value="Log In" class="fno"> <a href="//slashdot.org/my/mailpassword" class="btn link" onclick="getModalPrefs('sendPasswdModal', 'Retrieve Password', 1); return false;">Forgot your password?</a>
+</fieldset></form>
+
+<div class="actions">
+ <a class="ico close" onclick="hide_login_slider();" href=""><span>Close</span></a>
+</div>
+</div>
+		<div class="actions">
+			<a class="ico close" href="#" onclick="hide_login_box(); return false"><span>Close</span></a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">logged_in = 0</script>
+											</div>
+											<div id="commentControlBoxStatus" class="hide"></div>
+										</div>
+									</div>
+								</div>
+							
+							
+							<a href="//tech.slashdot.org/search.pl?op=comments&amp;sid=23691013" class="ui-icon search_comments">Search <span class="totalcommentcnt">47</span> Comments</a>
+							
+								<a class="pref ui-icon-w" href="//tech.slashdot.org/users.pl" onclick="show_login_box(); $('#modal_box').addClass('login'); return false;">Log In/Create an Account</a>
+							
+						</div>
+					</nav>
+					<section id="besttabs" class="grid_24">
+						<span class="legend">Comments Filter:</span>
+						<ul class="besttabslist">
+							<li class="active">
+								<a href="#" data-filter-url="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority#comments">All</a>
+							</li>
+						
+							<li >
+								<a href="" data-filter-url="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority/insightful-comments#comments">Insightful</a>
+							</li>
+						
+							<li >
+								<a href="" data-filter-url="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority/informative-comments#comments">Informative</a>
+							</li>
+						
+							<li >
+								<a href="" data-filter-url="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority/interesting-comments#comments">Interesting</a>
+							</li>
+						
+							<li >
+								<a href="" data-filter-url="//tech.slashdot.org/story/25/05/13/1321259/carmack-world-could-run-on-older-hardware-if-software-optimization-was-priority/funny-comments#comments">Funny</a>
+							</li>
+						
+					</ul>
+					<script>
+					(function($){
+						$('#besttabs').show();
+						$('.besttabslist').on('click', 'li a', function(e){
+							e.preventDefault();
+							var url = $(this).data('filter-url');
+							//console.log('URL= ', url);
+							$(this)
+								.closest('ul').find('li').removeClass('active')
+								.end()
+								.closest('li').addClass('active');
+							window.location = url;
+						});
+					})($j);
+					</script>
+			</section>
+				<aside class="grid_24">
+					<p>
+						<small><strong>The Fine Print:</strong> The following comments are owned by whoever posted them.  We are not responsible for them in any way.</small>
+					</p>
+				</aside>
+			</section>
+			
+		</div>
+	</div>
+</div><script src="//a.fsdn.com/sd/comments-minified.js?c609efb3792fac20" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+<!--
+D2.d2_keybindings_disable()[191] = 1;
+D2.boxStatus(1);
+D2.comments({ 65373143: { uid: 4203435, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373175: { uid: 558884, pid: 65373119, read: 0, points: 2, kids: [ 65373227, 65373245 ], opid: 65373119 }, 65373199: { uid: 2206452, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373157: { uid: 3647765, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373211: { uid: 72232, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373161: { uid: 675585, pid: 0, read: 0, points: 2, kids: [ 65373201 ], opid: 0 }, 65373209: { uid: 20347, pid: 0, read: 0, points: 3, kids: [  ], opid: 0 }, 65373307: { uid: 588767, pid: 65373241, read: 0, points: 2, kids: [  ], opid: 65373241 }, 65373135: { uid: 172628, pid: 65373119, subject: "Re:He's correct", read: 0, points: 2, kids: [  ], opid: 65373119 }, 65373227: { uid: 88907, pid: 65373175, subject: "Re:What do we need assembly for", read: 0, points: 2, kids: [  ], opid: 65373175 }, 65373263: { uid: 1223518, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373181: { uid: 558884, pid: 65373145, read: 0, points: 2, kids: [  ], opid: 65373145 }, 65373305: { uid: 4333, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373237: { uid: 1445051, pid: 65373119, subject: "Re:He's correct", read: 0, points: 2, kids: [  ], opid: 65373119 }, 65373315: { uid: 664417, pid: 65373119, subject: "Re:He's correct", read: 0, points: 2, kids: [  ], opid: 65373119 }, 65373203: { uid: 88907, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373241: { uid: 871664, pid: 0, read: 0, points: 2, kids: [ 65373307 ], opid: 0 }, 65373299: { uid: 588767, pid: 65373185, read: 0, points: 2, kids: [  ], opid: 65373185 }, 65373153: { uid: 159032, pid: 65373119, subject: "Re:He's correct", read: 0, points: 2, kids: [ 65373177 ], opid: 65373119 }, 65373267: { uid: 171132, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373197: { uid: 579555, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373177: { uid: 682162, pid: 65373153, subject: "Re:He's correct", read: 0, points: 2, kids: [  ], opid: 65373153 }, 65373257: { uid: 1041930, pid: 0, read: 0, points: 1, kids: [ 65373317 ], opid: 0 }, 65373253: { uid: 143899, pid: 65373235, subject: "Re:The point is it is not all doom", read: 0, points: 2, kids: [  ], opid: 65373235 }, 65373159: { uid: 153816, pid: 65373119, read: 0, points: 2, kids: [  ], opid: 65373119 }, 65373167: { uid: 9638526, pid: 0, read: 0, points: 1, kids: [ 65373293 ], opid: 0 }, 65373201: { uid: 582209, pid: 65373161, subject: "Re:Absolutely correct....and absolutely wrong", read: 0, points: 2, kids: [  ], opid: 65373161 }, 65373245: { uid: 209961, pid: 65373175, subject: "Re:What do we need assembly for", read: 0, points: 2, kids: [  ], opid: 65373175 }, 65373193: { uid: 132337, pid: 65373155, subject: "Re:PowerPanel", read: 0, points: 2, kids: [  ], opid: 65373155 }, 65373235: { uid: 621550, pid: 0, read: 0, points: 2, kids: [ 65373253 ], opid: 0 }, 65373165: { uid: 777598, pid: 0, read: 0, points: 2, kids: [ 65373195 ], opid: 0 }, 65373119: { uid: 209961, pid: 0, read: 0, points: 5, kids: [ 65373135, 65373153, 65373155, 65373159, 65373175, 65373219, 65373237, 65373315 ], opid: 0 }, 65373239: { uid: 871664, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373293: { uid: 588767, pid: 65373167, read: 0, points: 2, kids: [  ], opid: 65373167 }, 65373313: { uid: 1901660, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373285: { uid: 588767, pid: 0, read: 0, points: 4, kids: [  ], opid: 0 }, 65373219: { uid: 88907, pid: 65373119, subject: "Re:He's correct", read: 0, points: 2, kids: [  ], opid: 65373119 }, 65373155: { uid: 73720, pid: 65373119, read: 0, points: 5, kids: [ 65373193, 65373205 ], opid: 65373119 }, 65373291: { uid: 1423381, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373195: { uid: 1233282, pid: 65373165, subject: "Re:\"Real Men\" Write ROM-able Code", read: 0, points: 2, kids: [  ], opid: 65373165 }, 65373137: { uid: 191822, pid: 0, read: 0, points: 5, kids: [  ], opid: 0 }, 65373205: { uid: 864189, pid: 65373155, subject: "Re:PowerPanel", read: 0, points: 1, kids: [  ], opid: 65373155 }, 65373233: { uid: 5304745, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373185: { uid: 596002, pid: 0, read: 0, points: 2, kids: [ 65373299 ], opid: 0 }, 65373145: { uid: 313417, pid: 0, read: 0, points: 2, kids: [ 65373181 ], opid: 0 }, 65373309: { uid: 605470, pid: 0, read: 0, points: 2, kids: [  ], opid: 0 }, 65373317: { uid: 588767, pid: 65373257, read: 0, points: 2, kids: [  ], opid: 65373257 } });
+
+D2.thresh_totals({6:{6:{1:47,3:0,2:0}},3:{6:{1:42,3:2,2:3},4:{1:42,3:5,2:0},3:{1:42,3:5,2:0},5:{1:42,3:4,2:1}},2:{6:{1:3,3:2,2:42},4:{1:3,3:5,2:39},3:{1:3,3:25,2:19},2:{1:3,3:44,2:0},5:{1:3,3:4,2:40}},1:{6:{1:0,3:2,2:45},4:{1:0,3:5,2:42},1:{1:0,3:47,2:0},3:{1:0,3:25,2:22},2:{1:0,3:46,2:1},5:{1:0,3:4,2:43}},4:{6:{1:43,3:2,2:2},4:{1:43,3:4,2:0},5:{1:43,3:4,2:0}},0:{6:{1:0,3:2,2:45},4:{1:0,3:5,2:42},1:{1:0,3:47,2:0},3:{1:0,3:25,2:22},0:{1:0,3:47,2:0},2:{1:0,3:46,2:1},5:{1:0,3:4,2:43}},"-1":{6:{1:0,3:2,2:45},3:{1:0,3:25,2:22},2:{1:0,3:46,2:1},1:{1:0,3:47,2:0},4:{1:0,3:5,2:42},0:{1:0,3:47,2:0},"-1":{1:0,3:47,2:0},5:{1:0,3:4,2:43}},5:{6:{1:44,3:2,2:1},5:{1:44,3:3,2:0}}});
+
+D2.root_comment(0);
+D2.root_comments([65373119,65373137,65373143,65373145,65373157,65373161,65373165,65373167,65373185,65373197,65373199,65373203,65373209,65373211,65373233,65373235,65373239,65373241,65373257,65373263,65373267,65373285,65373291,65373305,65373309,65373313]);
+D2.root_comments_hash({65373143:1,65373199:1,65373211:1,65373157:1,65373209:1,65373161:1,65373263:1,65373305:1,65373241:1,65373203:1,65373267:1,65373197:1,65373257:1,65373167:1,65373235:1,65373165:1,65373119:1,65373313:1,65373239:1,65373285:1,65373291:1,65373137:1,65373233:1,65373309:1,65373185:1,65373145:1});
+
+D2.d2_comment_order(0);
+D2.user_uid(666);
+D2.user_is_anon(1);
+D2.user_is_admin(0);
+D2.user_is_subscriber(0);
+D2.user_smallscreen(0);
+D2.user_threshold(1);
+D2.user_highlightthresh(4);
+D2.user_d2asp(0);
+
+D2.discussion_id(23691013);
+
+D2.d2_seen('65373119,16,2,6,2,8,2,2,2,2,4,2,8,2,4,4,8,2,2,2,2,2,2,4,2,8,8,6,2,2,2,2,4,8,4,6,4,18,6,2,6,6,2,2,4,2,2');
+D2.more_comments_num(0);
+
+
+//-->
+</script>
+
+
+
+
+	
+	
+	
+	
+		<ul id="commentlisting" class="d2">
+			<li id="tree_65373119" class="comment full contain"><span class="ind"></span>
+<div id="comment_status_65373119" class="commentstatus"></div>
+<div id="comment_65373119" class="cw">
+	<div id="comment_top_65373119" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373119" name="comment_link_65373119" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373119" onclick="return D2.setFocusComment(65373119)" >He's correct</a>
+
+
+		 	<span id="comment_score_65373119" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373119); return false"><span class=opt>Score:</span>5</a>, Insightful)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~BytePusher">BytePusher</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~BytePusher">( 209961 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373119">		
+		on Tuesday May 13, 2025 @10:08AM (<span class="ind"></span><a rel="nofollow" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373119">#65373119</a>)
+		<small><a href="http://www.slashdot.org/" title="http://www.slashdot.org/" class="user_homepage_display">Homepage</a> </small>
+</span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373119">The more CPU and memory the more bloat. Younger software engineers don't feel the need to optimize... I was once one of them and I thought it was impressive, but absurd to write code in assembly(I still do and I'm not wrong). However, at this point we're be vibe coding our way down the slippery slope of irreversible climate change.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373119">
+<span class="ind"></span><a id="reply_link_65373119" class="btn link" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=Reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373119" onclick="D2.replyTo(65373119); return false;">Reply to This</a> 	<a rel="nofollow" href="#" class="comment_share_toggle btn link">Share</a>
+	<div class="comment_share sharethis-0 hide"><span class="au"></span>
+		<a rel="nofollow" class="t slashpop" href="https://twitter.com/intent/tweet?text=He's correct%20by%20BytePusher%20%40slashdot%20https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373119" target="_blank">twitter</a>
+		<a rel="nofollow" class="f slashpop" href="https://www.facebook.com/sharer/sharer.php?u=https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373119" target="_blank">facebook</a>
+	</div>
+ <span class="ind"></span><a id="reply_link_65373119" title="Flag this comment as Inappropriate" class="ui-icon flag fright" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=flag&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373119" onclick="return false;">Flag as Inappropriate</a>
+</div>
+</div>
+
+<div id="replyto_65373119"></div>
+
+<ul id="group_65373119">
+	<li id="hiddens_65373119" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373119"><li id="tree_65373135" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373135" class="commentstatus"></div>
+<div id="comment_65373135" class="cw">
+	<div id="comment_top_65373135" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373135" name="comment_link_65373135" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373135" onclick="return D2.setFocusComment(65373135)" >Re:</a>
+
+
+		 	<span id="comment_score_65373135" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373135); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~AvitarX">AvitarX</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~AvitarX">( 172628 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373135"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373135"><p>I don't think Carmack is suggesting that there's any world where we do efficiency for efficiency's sake though.</p><p>He seems to be implying the driving force is innovation, and that's easier with micro services for easier development but more hardware.</p><p>If hardware stopped getting better and cheaper we'd slow down development. He doesn't even seem to be suggesting (from the summary) that we're making the wrong choice, just observing the impacts of rapid hardware improvement, and that ended we'd still have runway t<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373135">
+
+</div>
+</div>
+
+<div id="replyto_65373135"></div>
+
+<ul id="group_65373135">
+	<li id="hiddens_65373135" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373153" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373153" class="commentstatus"></div>
+<div id="comment_65373153" class="cw">
+	<div id="comment_top_65373153" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373153" name="comment_link_65373153" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373153" onclick="return D2.setFocusComment(65373153)" >Re:</a>
+
+
+		 	<span id="comment_score_65373153" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373153); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~sg_oneill">sg_oneill</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~sg_oneill">( 159032 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373153"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373153"><p>Heres an argument for efficiency with a "save the world" sting in the tail.</p><p>4% of Greenhouse gasses are caused by computing. Its not 50% or whatever, but it still counts, lots of 4%s add up.</p><p>So if we absolutely spitball this and say 50% of our CPU energy budget is being eaten by inefficient code we can reduce CO2 by 2% by writing efficient code.</p><p>Javascript is killing the world, basically.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373153">
+
+</div>
+</div>
+
+<div id="replyto_65373153"></div>
+
+<ul id="group_65373153">
+	<li id="hiddens_65373153" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373153"><li id="tree_65373177" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373177" class="commentstatus"></div>
+<div id="comment_65373177" class="cw">
+	<div id="comment_top_65373177" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373177" name="comment_link_65373177" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373177" onclick="return D2.setFocusComment(65373177)" >Re:</a>
+
+
+		 	<span id="comment_score_65373177" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373177); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Z00L00K">Z00L00K</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Z00L00K">( 682162 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373177"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373177"><p>A major culprit when it comes to inefficient code is that there are delivery deadlines that must be held. If it works it's not broken and can be delivered.</p><p>Performance issues is something for maintenance to fix. But maintenance is always underbudgeted and can only fix the worst issues.</p><p>That's why we got Windows 11 that's a lot slower than Windows 10.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373177">
+
+</div>
+</div>
+
+<div id="replyto_65373177"></div>
+
+<ul id="group_65373177">
+	<li id="hiddens_65373177" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373155" class="comment full contain"><span class="ind"></span>
+<div id="comment_status_65373155" class="commentstatus"></div>
+<div id="comment_65373155" class="cw">
+	<div id="comment_top_65373155" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373155" name="comment_link_65373155" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373155" onclick="return D2.setFocusComment(65373155)" >PowerPanel</a>
+
+
+		 	<span id="comment_score_65373155" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373155); return false"><span class=opt>Score:</span>5</a>, Informative)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~JBMcB">JBMcB</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~JBMcB">( 73720 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373155">		
+		on Tuesday May 13, 2025 @10:25AM (<span class="ind"></span><a rel="nofollow" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373155">#65373155</a>)
+		<small> </small>
+</span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373155"><p>I have Cyberlink's PowerPanel installed on my windows machine to monitor my UPS. Diving into it's install directory you can find:</p><ul>
+<li>A java runtime environment (90MB)</li><li>A python install with around 200MB of packages, including PyQT, numpy, </li><li>A few dozen MB of MSVCRT and MFC libraries</li><li>NodeJS</li></ul><p>This is for a pop-up application that does basic UPS monitoring. Back when I had an APC PowerChute was about 40MB for the entire client, most of which were driver DLLs for all of their various UPSes.</p><p>At worst this app should be written in C++/Qt or WX, and should take up about 50MB. Instead the entire frontend is written in JavaScript, running on Node, and I'm assuming they are using Python to talk to the UPS itself and do network stuff as Twisted and requests is in there. </p><p>Yeah this isn't exactly performance related, but it's indicative of how development is done these days. 400MB of code to draw a window on the screen to show what your UPS is doing, and some basic networking stuff.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373155">
+<span class="ind"></span><a id="reply_link_65373155" class="btn link" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=Reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373155" onclick="D2.replyTo(65373155); return false;">Reply to This</a> <span class="ind"></span><a class="btn link" rel="nofollow" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;cid=65373119" onclick="return D2.selectParent(65373119)">Parent</a> 	<a rel="nofollow" href="#" class="comment_share_toggle btn link">Share</a>
+	<div class="comment_share sharethis-0 hide"><span class="au"></span>
+		<a rel="nofollow" class="t slashpop" href="https://twitter.com/intent/tweet?text=PowerPanel%20by%20JBMcB%20%40slashdot%20https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373155" target="_blank">twitter</a>
+		<a rel="nofollow" class="f slashpop" href="https://www.facebook.com/sharer/sharer.php?u=https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373155" target="_blank">facebook</a>
+	</div>
+ <span class="ind"></span><a id="reply_link_65373155" title="Flag this comment as Inappropriate" class="ui-icon flag fright" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=flag&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373155" onclick="return false;">Flag as Inappropriate</a>
+</div>
+</div>
+
+<div id="replyto_65373155"></div>
+
+<ul id="group_65373155">
+	<li id="hiddens_65373155" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373155"><li id="tree_65373193" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373193" class="commentstatus"></div>
+<div id="comment_65373193" class="cw">
+	<div id="comment_top_65373193" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373193" name="comment_link_65373193" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373193" onclick="return D2.setFocusComment(65373193)" >Re:</a>
+
+
+		 	<span id="comment_score_65373193" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373193); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~ArchieBunker">ArchieBunker</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~ArchieBunker">( 132337 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373193"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373193"><p>Will apcupsd talk to it? I run it on my windows box with an old APC.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373193">
+
+</div>
+</div>
+
+<div id="replyto_65373193"></div>
+
+<ul id="group_65373193">
+	<li id="hiddens_65373193" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373205" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373205" class="commentstatus"></div>
+<div id="comment_65373205" class="cw">
+	<div id="comment_top_65373205" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373205" name="comment_link_65373205" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373205" onclick="return D2.setFocusComment(65373205)" >Re:</a>
+
+
+		 	<span id="comment_score_65373205" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373205); return false"><span class=opt>Score:</span>1</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Maxo-Texas">Maxo-Texas</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Maxo-Texas">( 864189 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373205"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373205"><p>It's not the size of the code.   It's the tiny little parts of that code that are most used and least efficient.   You might see significant performance improvements with a little custom inline assembly code which don't effectively change the size at all.</p><p>However...</p><p>"At worst this app should be written in C++/Qt or WX, and should take up about 50MB. "   If you wrote this in assembly language, it would probably be under 1 MB.   If you care about memory.   But 1MB of assembly code is a beast.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373205">
+
+</div>
+</div>
+
+<div id="replyto_65373205"></div>
+
+<ul id="group_65373205">
+	<li id="hiddens_65373205" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373159" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373159" class="commentstatus"></div>
+<div id="comment_65373159" class="cw">
+	<div id="comment_top_65373159" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373159" name="comment_link_65373159" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373159" onclick="return D2.setFocusComment(65373159)" >Re: He's correct</a>
+
+
+		 	<span id="comment_score_65373159" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373159); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~drinkypoo">drinkypoo</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~drinkypoo">( 153816 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373159"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373159"><p>"I was once one of them and I thought it was impressive, but absurd to write code in assembly(I still do and I'm not wrong)."</p><p>You're situationally wrong. In the most limited cases, or for optimization, it is sometimes necessary and it's absurd to try not to.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373159">
+
+</div>
+</div>
+
+<div id="replyto_65373159"></div>
+
+<ul id="group_65373159">
+	<li id="hiddens_65373159" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373175" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373175" class="commentstatus"></div>
+<div id="comment_65373175" class="cw">
+	<div id="comment_top_65373175" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373175" name="comment_link_65373175" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373175" onclick="return D2.setFocusComment(65373175)" >What do we need assembly for</a>
+
+
+		 	<span id="comment_score_65373175" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373175); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Latent+Heat">Latent Heat</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Latent+Heat">( 558884 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373175"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373175"><p>
+when we have really good C compilers?
+</p><p>
+The effort should go into algorithms and code profiling.  And reliance on libraries.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373175">
+
+</div>
+</div>
+
+<div id="replyto_65373175"></div>
+
+<ul id="group_65373175">
+	<li id="hiddens_65373175" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373175"><li id="tree_65373227" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373227" class="commentstatus"></div>
+<div id="comment_65373227" class="cw">
+	<div id="comment_top_65373227" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373227" name="comment_link_65373227" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373227" onclick="return D2.setFocusComment(65373227)" >Re:</a>
+
+
+		 	<span id="comment_score_65373227" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373227); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~gweihir">gweihir</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~gweihir">( 88907 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373227"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373227"><p>Sometimes you need assembly. A modern C compiler makes embedding a little assembly easy. GCC, for example, even allows you do do it MC68000 style instead of the deranged Intel assembly syntax. Usually you do not need more than a few lines, but any real systemd or driver coder and some others should be able to do it.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373227">
+
+</div>
+</div>
+
+<div id="replyto_65373227"></div>
+
+<ul id="group_65373227">
+	<li id="hiddens_65373227" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373245" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373245" class="commentstatus"></div>
+<div id="comment_65373245" class="cw">
+	<div id="comment_top_65373245" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373245" name="comment_link_65373245" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373245" onclick="return D2.setFocusComment(65373245)" >Re:</a>
+
+
+		 	<span id="comment_score_65373245" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373245); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~BytePusher">BytePusher</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~BytePusher">( 209961 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373245"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373245">Right, compilers are pretty damn good these days and we've learned a lot of tricks from people who write assembly. However, compilers are not AI and will invariably do things that are less than optimal in some cases. It's not really feasible to write large codebases in assembly, nor are the gains generally worth the effort. My point is simply that when I was first learning to code in the 90s the guys writing assembly were mocking the kids writing C and C++ for writing bloated software with tons of unnecessa</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373245">
+
+</div>
+</div>
+
+<div id="replyto_65373245"></div>
+
+<ul id="group_65373245">
+	<li id="hiddens_65373245" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373219" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373219" class="commentstatus"></div>
+<div id="comment_65373219" class="cw">
+	<div id="comment_top_65373219" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373219" name="comment_link_65373219" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373219" onclick="return D2.setFocusComment(65373219)" >Re:</a>
+
+
+		 	<span id="comment_score_65373219" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373219); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~gweihir">gweihir</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~gweihir">( 88907 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373219"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373219"><p>Assembly is special-purpose only and (except very early) always has been. But a modern C compiler is not hard to use, code is portable and the binaries are blazingly fast if the coder knows what they are doing. The problem with many other languages is that they needlessly increase the active memory work-set and that decreases chache efficieny. That can cost you a factor of 10x, 100x or even more in performance.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373219">
+
+</div>
+</div>
+
+<div id="replyto_65373219"></div>
+
+<ul id="group_65373219">
+	<li id="hiddens_65373219" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373237" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373237" class="commentstatus"></div>
+<div id="comment_65373237" class="cw">
+	<div id="comment_top_65373237" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373237" name="comment_link_65373237" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373237" onclick="return D2.setFocusComment(65373237)" >Re:</a>
+
+
+		 	<span id="comment_score_65373237" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373237); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Drethon">Drethon</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Drethon">( 1445051 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373237"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373237"><p>Yep, my 10+ year old desktop still handles most of the indie games I like to play, even fairly new releases.  Starfield is a very pretty PowerPoint presentation, but I don't need that level of graphics for most games I play.  Sure my laptop with an NVIDIA 4070 card is the one I use to play when I don't want to go to the office and when I want high res screenshots for various artwork, but I don't feel like I'm missing out much when I use my "ancient" machine.</p><p>I will upgrade eventually, probably when there is<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373237">
+
+</div>
+</div>
+
+<div id="replyto_65373237"></div>
+
+<ul id="group_65373237">
+	<li id="hiddens_65373237" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373315" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373315" class="commentstatus"></div>
+<div id="comment_65373315" class="cw">
+	<div id="comment_top_65373315" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373315" name="comment_link_65373315" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373315" onclick="return D2.setFocusComment(65373315)" >Re:</a>
+
+
+		 	<span id="comment_score_65373315" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373315); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~serviscope_minor">serviscope_minor</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~serviscope_minor">( 664417 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373315"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373315"><p><span class="substr"> </span> <em>Younger software engineers don't feel the need to optimize</em> </p><p>Not just the younger ones. I rarely optimize like I used to. I do a lot in Python today, because it has good GPU integration via pytorch, good libraries and programmers who know their way around python is much easier than C++. Time was I'd write cunning algorithms to minimize the amount of processing then split it up over the available CPUs (2 for example). Now I write dumbshit code and if it's slow, fling it to the GPU and watch it go fast.</p><p>I miss do</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373315">
+
+</div>
+</div>
+
+<div id="replyto_65373315"></div>
+
+<ul id="group_65373315">
+	<li id="hiddens_65373315" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373137" class="comment full contain"><span class="ind"></span>
+<div id="comment_status_65373137" class="commentstatus"></div>
+<div id="comment_65373137" class="cw">
+	<div id="comment_top_65373137" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373137" name="comment_link_65373137" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373137" onclick="return D2.setFocusComment(65373137)" >What are LLMs...</a>
+
+
+		 	<span id="comment_score_65373137" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373137); return false"><span class=opt>Score:</span>5</a>, Insightful)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Chris+Mattern">Chris Mattern</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Chris+Mattern">( 191822 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373137">		
+		on Tuesday May 13, 2025 @10:19AM (<span class="ind"></span><a rel="nofollow" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373137">#65373137</a>)
+		<small> </small>
+</span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373137"><p>...but "throw raw data and computing power at the problem until you can't see it anymore"?</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373137">
+<span class="ind"></span><a id="reply_link_65373137" class="btn link" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=Reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373137" onclick="D2.replyTo(65373137); return false;">Reply to This</a> 	<a rel="nofollow" href="#" class="comment_share_toggle btn link">Share</a>
+	<div class="comment_share sharethis-0 hide"><span class="au"></span>
+		<a rel="nofollow" class="t slashpop" href="https://twitter.com/intent/tweet?text=What are LLMs...%20by%20Chris Mattern%20%40slashdot%20https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373137" target="_blank">twitter</a>
+		<a rel="nofollow" class="f slashpop" href="https://www.facebook.com/sharer/sharer.php?u=https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373137" target="_blank">facebook</a>
+	</div>
+ <span class="ind"></span><a id="reply_link_65373137" title="Flag this comment as Inappropriate" class="ui-icon flag fright" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=flag&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373137" onclick="return false;">Flag as Inappropriate</a>
+</div>
+</div>
+
+<div id="replyto_65373137"></div>
+
+<ul id="group_65373137">
+	<li id="hiddens_65373137" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373143" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373143" class="commentstatus"></div>
+<div id="comment_65373143" class="cw">
+	<div id="comment_top_65373143" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373143" name="comment_link_65373143" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373143" onclick="return D2.setFocusComment(65373143)" >Innovative new products would get much rarer</a>
+
+
+		 	<span id="comment_score_65373143" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373143); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~devslash0">devslash0</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~devslash0">( 4203435 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373143"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373143"><p>No, they would be as rare/frequent as they are now. The problem is that any and every startup would like you to believe that their product is new, innovative and worth investing in. The truth is, that most of the time it's just the same pancake with a slightly different seasoning. Hardly anything is innovative these days.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373143">
+
+</div>
+</div>
+
+<div id="replyto_65373143"></div>
+
+<ul id="group_65373143">
+	<li id="hiddens_65373143" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373145" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373145" class="commentstatus"></div>
+<div id="comment_65373145" class="cw">
+	<div id="comment_top_65373145" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373145" name="comment_link_65373145" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373145" onclick="return D2.setFocusComment(65373145)" >Trickle down optimization</a>
+
+
+		 	<span id="comment_score_65373145" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373145); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~pr0nbot">pr0nbot</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~pr0nbot">( 313417 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373145"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373145"><p>As a general guiding principle it would probably be enough to direct optimization effort at older code, which by definition has survived the surface churn of innovation. Obviously I mean older code that is widely used, which will tend to be the stuff towards the bottom of your stack.</p><p>To some extent this is surely happening - I bet there's more optimization work done in kernels and operating systems than in apps. But even within apps it will be happening - your UI might be tweaked weekly, but those query opti<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373145">
+
+</div>
+</div>
+
+<div id="replyto_65373145"></div>
+
+<ul id="group_65373145">
+	<li id="hiddens_65373145" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373145"><li id="tree_65373181" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373181" class="commentstatus"></div>
+<div id="comment_65373181" class="cw">
+	<div id="comment_top_65373181" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373181" name="comment_link_65373181" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373181" onclick="return D2.setFocusComment(65373181)" >Nooooooooo!!!!</a>
+
+
+		 	<span id="comment_score_65373181" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373181); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Latent+Heat">Latent Heat</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Latent+Heat">( 558884 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373181"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373181"><p>
+Maybe older code that has survived surface churn is that way because it pre-dates the Bloatware Age of assembling applications by linking to tons of libraries?
+</p><p>
+And optimizing it may break something that doesn't need fixing?</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373181">
+
+</div>
+</div>
+
+<div id="replyto_65373181"></div>
+
+<ul id="group_65373181">
+	<li id="hiddens_65373181" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373157" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373157" class="commentstatus"></div>
+<div id="comment_65373157" class="cw">
+	<div id="comment_top_65373157" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373157" name="comment_link_65373157" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373157" onclick="return D2.setFocusComment(65373157)" >Similar complaints 20+ years ago</a>
+
+
+		 	<span id="comment_score_65373157" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373157); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~nealric">nealric</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~nealric">( 3647765 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373157"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373157"><p>Complaints about software bloat have been around since the invention of the integrated circuit. The more computing power at your disposal, the less incentive there is to optimize code. People were complaining about how bloated windows XP was, but it looks lean and mean compared to today's operating systems.</p><p>However, I think the impact of software bloat has become most acute in the gaming realm. The problem is that gaming graphics haven't changed noticeably in a decade now, yet the costs and capabilities requ<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373157">
+
+</div>
+</div>
+
+<div id="replyto_65373157"></div>
+
+<ul id="group_65373157">
+	<li id="hiddens_65373157" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373161" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373161" class="commentstatus"></div>
+<div id="comment_65373161" class="cw">
+	<div id="comment_top_65373161" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373161" name="comment_link_65373161" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373161" onclick="return D2.setFocusComment(65373161)" >Absolutely correct....and absolutely wrong</a>
+
+
+		 	<span id="comment_score_65373161" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373161); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~FrankSchwab">FrankSchwab</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~FrankSchwab">( 675585 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373161"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373161"><p>He's absolutely correct.<br>There's nothing faster than a skillfully written, monolithic 'C' codebase with just a wee bit of assembly thrown in for those CPU-bound routines.  Twitter could run on 1/4 the servers they use currently; I could do everything I normally do on my computer at home or work on a 10 year old Athlon II or Core i5 CPU.</p><p>BUT, there aren't enough programmers in the world capable of skillfully writing and skillfully maintaining all the services, features, games, entertainment, surveillance,  etc<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373161">
+
+</div>
+</div>
+
+<div id="replyto_65373161"></div>
+
+<ul id="group_65373161">
+	<li id="hiddens_65373161" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373161"><li id="tree_65373201" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373201" class="commentstatus"></div>
+<div id="comment_65373201" class="cw">
+	<div id="comment_top_65373201" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373201" name="comment_link_65373201" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373201" onclick="return D2.setFocusComment(65373201)" >Re:</a>
+
+
+		 	<span id="comment_score_65373201" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373201); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~timeOday">timeOday</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~timeOday">( 582209 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373201"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373201"><blockquote><div><p>There's nothing faster than a skillfully written, monolithic 'C' codebase with just a wee bit of assembly thrown in for those CPU-bound routines.</p></div></blockquote><p>
+
+How monolithic?  Does the author of every little utility need to implement their own GUI custom-tailed for the needs of that application?  Or are we going to be generous and allow them to statically link in the GUI that comes 'close enough' - uh oh, that sounds like compromise sneaking in.
+</p><p>
+Beyond GUIs the broader issue is code re-use.  The more you can re-use, t<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373201">
+
+</div>
+</div>
+
+<div id="replyto_65373201"></div>
+
+<ul id="group_65373201">
+	<li id="hiddens_65373201" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373165" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373165" class="commentstatus"></div>
+<div id="comment_65373165" class="cw">
+	<div id="comment_top_65373165" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373165" name="comment_link_65373165" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373165" onclick="return D2.setFocusComment(65373165)" >"Real Men" Write ROM-able Code</a>
+
+
+		 	<span id="comment_score_65373165" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373165); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Spinlock_1977">Spinlock_1977</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Spinlock_1977">( 777598 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373165"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373165"><p>I miss the byte-counting assembler days of the 70's and 80's. RAM was measured in bytes or kilobytes and ROM space was almost as precious.  Code was printed on paper, and computer monitors were heavy glass boat-anchors. You had to configure dip switches to get devices to talk to each other (slowly).  Documentation was a bookshelf, not a web site. Persisent storage required rusty iron - ok, that's still the case, but now it can be solid state too. We configured IRQ's and I/O addresses.  Sometimes we had to p<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373165">
+
+</div>
+</div>
+
+<div id="replyto_65373165"></div>
+
+<ul id="group_65373165">
+	<li id="hiddens_65373165" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373165"><li id="tree_65373195" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373195" class="commentstatus"></div>
+<div id="comment_65373195" class="cw">
+	<div id="comment_top_65373195" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373195" name="comment_link_65373195" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373195" onclick="return D2.setFocusComment(65373195)" >Re:</a>
+
+
+		 	<span id="comment_score_65373195" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373195); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~hierofalcon">hierofalcon</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~hierofalcon">( 1233282 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373195"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373195">Yep. And many of us who grew up in that era can still right decent, compact, and fast code - to do some things. Unfortunately, there are too many jobs today that require a wide amount of CS ability. You may be very good at X, but the project needs X, Y, and Z. If Y and Z can be provided by a bloat filled library and get the project out the door faster, that's what people do. They don't want to hire an expert on Y and Z as well.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373195">
+
+</div>
+</div>
+
+<div id="replyto_65373195"></div>
+
+<ul id="group_65373195">
+	<li id="hiddens_65373195" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373167" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373167" class="commentstatus"></div>
+<div id="comment_65373167" class="cw">
+	<div id="comment_top_65373167" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373167" name="comment_link_65373167" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373167" onclick="return D2.setFocusComment(65373167)" >Diminishing Returns</a>
+
+
+		 	<span id="comment_score_65373167" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373167); return false"><span class=opt>Score:</span>1</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~UseYourBrain79">UseYourBrain79</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~UseYourBrain79">( 9638526 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373167"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373167">The harder you push for software optimization, the more you work towards assembly, the universe of talent and knowledge transfer diminishes.
+
+The further you push software optimization, the closer you reach 0 humans available.
+
+Modern software development techniques help scale the universe of available developers at the cost of hardware.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373167">
+
+</div>
+</div>
+
+<div id="replyto_65373167"></div>
+
+<ul id="group_65373167">
+	<li id="hiddens_65373167" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373167"><li id="tree_65373293" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373293" class="commentstatus"></div>
+<div id="comment_65373293" class="cw">
+	<div id="comment_top_65373293" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373293" name="comment_link_65373293" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373293" onclick="return D2.setFocusComment(65373293)" >Re: Diminishing Returns</a>
+
+
+		 	<span id="comment_score_65373293" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373293); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~reanjr">reanjr</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~reanjr">( 588767 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373293"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373293"><p>I would argue that most software being made today is derivative junk and malware. Having fewer people writing software would be good for society.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373293">
+
+</div>
+</div>
+
+<div id="replyto_65373293"></div>
+
+<ul id="group_65373293">
+	<li id="hiddens_65373293" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373185" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373185" class="commentstatus"></div>
+<div id="comment_65373185" class="cw">
+	<div id="comment_top_65373185" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373185" name="comment_link_65373185" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373185" onclick="return D2.setFocusComment(65373185)" >An order of magnitude</a>
+
+
+		 	<span id="comment_score_65373185" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373185); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~juancn">juancn</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~juancn">( 596002 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373185"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373185"><p>He is right, there's at least an order of magnitude of performance wasted in most systems, and I guess a lot more in some.</p><p>The issue is that in many cases the hardware is cheaper than the engineering time.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373185">
+
+</div>
+</div>
+
+<div id="replyto_65373185"></div>
+
+<ul id="group_65373185">
+	<li id="hiddens_65373185" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373185"><li id="tree_65373299" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373299" class="commentstatus"></div>
+<div id="comment_65373299" class="cw">
+	<div id="comment_top_65373299" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373299" name="comment_link_65373299" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373299" onclick="return D2.setFocusComment(65373299)" >Re: An order of magnitude</a>
+
+
+		 	<span id="comment_score_65373299" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373299); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~reanjr">reanjr</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~reanjr">( 588767 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373299"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373299"><p>"The issue is that in many cases the hardware is cheaper than the engineering time."</p><p>I imagine this is one of those conventional wisdom things that's not based on reality, typically. Sure hardware is cheap. But most companies don't buy hardware anymore. They rent cloud computing.</p><p>At even a somewhat modest scale, it can be pretty easy to save $50k or $75k there by addressing bottlenecks. Hit a couple of those each year and you've paid for an engineer.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373299">
+
+</div>
+</div>
+
+<div id="replyto_65373299"></div>
+
+<ul id="group_65373299">
+	<li id="hiddens_65373299" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373197" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373197" class="commentstatus"></div>
+<div id="comment_65373197" class="cw">
+	<div id="comment_top_65373197" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373197" name="comment_link_65373197" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373197" onclick="return D2.setFocusComment(65373197)" >Permacomputing</a>
+
+
+		 	<span id="comment_score_65373197" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373197); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~hughbar">hughbar</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~hughbar">( 579555 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373197"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373197"><a href="https://permacomputing.net/" title="permacomputing.net">https://permacomputing.net/</a> [permacomputing.net] is also part of the 'answer' to energy usage, hence climate. I'm old, my first mainframe jobs were 96K memory, tape drives + 10m (washing machine size!) disk drives that managed large companies. More secretaries and clerks, which may not be a bad thing, entry level work.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373197">
+
+</div>
+</div>
+
+<div id="replyto_65373197"></div>
+
+<ul id="group_65373197">
+	<li id="hiddens_65373197" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373199" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373199" class="commentstatus"></div>
+<div id="comment_65373199" class="cw">
+	<div id="comment_top_65373199" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373199" name="comment_link_65373199" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373199" onclick="return D2.setFocusComment(65373199)" >rushed deadlines need to go as well</a>
+
+
+		 	<span id="comment_score_65373199" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373199); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Joe_Dragon">Joe_Dragon</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Joe_Dragon">( 2206452 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373199"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373199"><p>rushed deadlines need to go as well</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373199">
+
+</div>
+</div>
+
+<div id="replyto_65373199"></div>
+
+<ul id="group_65373199">
+	<li id="hiddens_65373199" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373203" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373203" class="commentstatus"></div>
+<div id="comment_65373203" class="cw">
+	<div id="comment_top_65373203" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373203" name="comment_link_65373203" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373203" onclick="return D2.setFocusComment(65373203)" >He is right</a>
+
+
+		 	<span id="comment_score_65373203" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373203); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~gweihir">gweihir</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~gweihir">( 88907 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373203"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373203"><p>Carmack has experience with efficient, low(er) level coding and hence has an inuition about what a computer can actually do. (I do too.) Today, it all is laywers upon layers, emulations, interpreted things, inefficnencies that compilers cannot fix, comupting wasted on things not needed (for example, why graphically render a table in a browser, when a HTML 2.0 native table would be perfectly fine), and so on and on.</p><p>The other thing is that "innovative new products" are rarely innovative and often only new in<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373203">
+
+</div>
+</div>
+
+<div id="replyto_65373203"></div>
+
+<ul id="group_65373203">
+	<li id="hiddens_65373203" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373209" class="comment full contain"><span class="ind"></span>
+<div id="comment_status_65373209" class="commentstatus"></div>
+<div id="comment_65373209" class="cw">
+	<div id="comment_top_65373209" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373209" name="comment_link_65373209" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373209" onclick="return D2.setFocusComment(65373209)" >Developers got god boxes...</a>
+
+
+		 	<span id="comment_score_65373209" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373209); return false"><span class=opt>Score:</span>3</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Larry_Dillon">Larry_Dillon</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Larry_Dillon">( 20347 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373209">		 &lt;<a href="mailto:dillon%40larry.gmail%40com">dillon@larry.gmail@com</a>&gt;
+		on Tuesday May 13, 2025 @10:45AM (<span class="ind"></span><a rel="nofollow" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373209">#65373209</a>)
+		<small><a href="http://www.eff.org/" title="http://www.eff.org/" class="user_homepage_display">Homepage</a> </small>
+</span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373209"><p>As long as developers keep getting the fastest computers, with much more resources than the average consumer PC, programs will be bloated.  If you gave all programmers I3's with 8GB of RAM, you would see a massive reduction in code bloat and a huge increase in efficiency -- but at the cost of developer time.   They are simply not feeling the pain that normal people with average or older computers feel.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373209">
+<span class="ind"></span><a id="reply_link_65373209" class="btn link" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=Reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373209" onclick="D2.replyTo(65373209); return false;">Reply to This</a> 	<a rel="nofollow" href="#" class="comment_share_toggle btn link">Share</a>
+	<div class="comment_share sharethis-0 hide"><span class="au"></span>
+		<a rel="nofollow" class="t slashpop" href="https://twitter.com/intent/tweet?text=Developers got god boxes...%20by%20Larry_Dillon%20%40slashdot%20https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373209" target="_blank">twitter</a>
+		<a rel="nofollow" class="f slashpop" href="https://www.facebook.com/sharer/sharer.php?u=https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373209" target="_blank">facebook</a>
+	</div>
+ <span class="ind"></span><a id="reply_link_65373209" title="Flag this comment as Inappropriate" class="ui-icon flag fright" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=flag&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373209" onclick="return false;">Flag as Inappropriate</a>
+</div>
+</div>
+
+<div id="replyto_65373209"></div>
+
+<ul id="group_65373209">
+	<li id="hiddens_65373209" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373211" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373211" class="commentstatus"></div>
+<div id="comment_65373211" class="cw">
+	<div id="comment_top_65373211" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373211" name="comment_link_65373211" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373211" onclick="return D2.setFocusComment(65373211)" >Software optimization can be staged</a>
+
+
+		 	<span id="comment_score_65373211" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373211); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~techmage">techmage</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~techmage">( 72232 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373211"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373211"><p>It is possible to squeeze out a lot of efficiency without resorting to this level of optimization. Just rethinking how much CPU your code uses can save a lot. Rework your code to efficient. It will get faster as a result. Do this at every level from compiler development on up.</p><p>Learning to code tightly is a difficult task. Maybe bring back some coding for machines like the Commodore 64. I remember reworking code just to save 4 bytes. I need just that much more space for the program to run. We don't need to ge<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373211">
+
+</div>
+</div>
+
+<div id="replyto_65373211"></div>
+
+<ul id="group_65373211">
+	<li id="hiddens_65373211" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373233" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373233" class="commentstatus"></div>
+<div id="comment_65373233" class="cw">
+	<div id="comment_top_65373233" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373233" name="comment_link_65373233" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373233" onclick="return D2.setFocusComment(65373233)" >Bloatware</a>
+
+
+		 	<span id="comment_score_65373233" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373233); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~xack">xack</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~xack">( 5304745 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373233"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373233">I have a gigabit internet connection, but some javascript heavy sites even with a content blocker are slower than the dial up era. Also Firefox thinks its funny to use over 10 gigabytes of ram with less than 10 tabs open.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373233">
+
+</div>
+</div>
+
+<div id="replyto_65373233"></div>
+
+<ul id="group_65373233">
+	<li id="hiddens_65373233" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373235" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373235" class="commentstatus"></div>
+<div id="comment_65373235" class="cw">
+	<div id="comment_top_65373235" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373235" name="comment_link_65373235" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373235" onclick="return D2.setFocusComment(65373235)" >The point is it is not all doom</a>
+
+
+		 	<span id="comment_score_65373235" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373235); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~DarkOx">DarkOx</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~DarkOx">( 621550 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373235"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373235"><p>Here like a lot of places when some said tariff or when someone says Taiwan or supply chain, there is big fear reactions, oh noes our entire economy will grind to a halt if we don't have chips on the very latest  process at bargain prices.</p><p>Nope not even a little. The first thing we can do is simply stretch the hardware refresh cycle.  Maybe the games won't be happy but those computers on the desks of wall street offices down to the ones running the shop floor don't suddenly quit working because they are 2, 5<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373235">
+
+</div>
+</div>
+
+<div id="replyto_65373235"></div>
+
+<ul id="group_65373235">
+	<li id="hiddens_65373235" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373235"><li id="tree_65373253" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373253" class="commentstatus"></div>
+<div id="comment_65373253" class="cw">
+	<div id="comment_top_65373253" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373253" name="comment_link_65373253" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373253" onclick="return D2.setFocusComment(65373253)" >Re:</a>
+
+
+		 	<span id="comment_score_65373253" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373253); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~avandesande">avandesande</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~avandesande">( 143899 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373253"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373253">Things have certainly changed a lot. My at home computer is a 8 core machine and 6 years old and I don't have the slightest inclination to update it. I am guessing I can get another 10 years out of.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373253">
+
+</div>
+</div>
+
+<div id="replyto_65373253"></div>
+
+<ul id="group_65373253">
+	<li id="hiddens_65373253" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373239" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373239" class="commentstatus"></div>
+<div id="comment_65373239" class="cw">
+	<div id="comment_top_65373239" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373239" name="comment_link_65373239" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373239" onclick="return D2.setFocusComment(65373239)" >Some science apps need heavy heardware</a>
+
+
+		 	<span id="comment_score_65373239" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373239); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~BrendaEM">BrendaEM</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~BrendaEM">( 871664 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373239"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373239">For doing an mesh on a vehicle CFD, I need something with more memory. I would not even consider building another computer unless it had at least 256GB RAM, but that may not be enough. It comes down to mesh resolution. Currently, at 64GB I can learn something from a 10mm mesh, but I need to get it down to 55, which would be 256GB. I want 2.5mm, which would be pretty good, but that may be 1TB of RAM. I am living on a fixed budget. Sigh.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373239">
+
+</div>
+</div>
+
+<div id="replyto_65373239"></div>
+
+<ul id="group_65373239">
+	<li id="hiddens_65373239" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373241" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373241" class="commentstatus"></div>
+<div id="comment_65373241" class="cw">
+	<div id="comment_top_65373241" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373241" name="comment_link_65373241" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373241" onclick="return D2.setFocusComment(65373241)" >AI is Ruining GPU Prices, and Society</a>
+
+
+		 	<span id="comment_score_65373241" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373241); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~BrendaEM">BrendaEM</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~BrendaEM">( 871664 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373241"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373241">Every AI warning we ever had was right.</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373241">
+
+</div>
+</div>
+
+<div id="replyto_65373241"></div>
+
+<ul id="group_65373241">
+	<li id="hiddens_65373241" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373241"><li id="tree_65373307" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373307" class="commentstatus"></div>
+<div id="comment_65373307" class="cw">
+	<div id="comment_top_65373307" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373307" name="comment_link_65373307" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373307" onclick="return D2.setFocusComment(65373307)" >Re: AI is Ruining GPU Prices, and Society</a>
+
+
+		 	<span id="comment_score_65373307" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373307); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~reanjr">reanjr</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~reanjr">( 588767 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373307"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373307"><p>I don't think actual GPUs are much more expensive. There are products being sold that can be used as GPUs, but are actually Tensor or CUDA processors that can also work for gaming. Those are very expensive (like $thousands). But the last generation cards actually perform better on many games, because they were designed for gaming. Those cards have generally risen with inflation and can be acquired for several $hundred.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373307">
+
+</div>
+</div>
+
+<div id="replyto_65373307"></div>
+
+<ul id="group_65373307">
+	<li id="hiddens_65373307" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373257" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373257" class="commentstatus"></div>
+<div id="comment_65373257" class="cw">
+	<div id="comment_top_65373257" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373257" name="comment_link_65373257" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373257" onclick="return D2.setFocusComment(65373257)" >Humans Are Expensive</a>
+
+
+		 	<span id="comment_score_65373257" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373257); return false"><span class=opt>Score:</span>1</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~thriexst">thriexst</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~thriexst">( 1041930 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373257"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373257">Which is more expensive in the long run, one day of human time or 1hr of electricity?
+
+This seems to ignore that we are mostly optimizing for people's time instead of the hardware. We have vastly more software than existed in the past. This isn't because that many more people write software but it is easier to write, maintain and distribute than ever before.
+
+Assembly and C might give great efficiency but it is terrible to manage and debug versus new languages.  This is true even for veterans of those langu</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373257">
+
+</div>
+</div>
+
+<div id="replyto_65373257"></div>
+
+<ul id="group_65373257">
+	<li id="hiddens_65373257" class="hide"></li>
+</ul>
+
+<ul id="commtree_65373257"><li id="tree_65373317" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373317" class="commentstatus"></div>
+<div id="comment_65373317" class="cw">
+	<div id="comment_top_65373317" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373317" name="comment_link_65373317" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373317" onclick="return D2.setFocusComment(65373317)" >Re: Humans Are Expensive</a>
+
+
+		 	<span id="comment_score_65373317" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373317); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~reanjr">reanjr</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~reanjr">( 588767 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373317"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373317"><p>Most of the software written at places I've worked at is intended to be used at massive scale. That adds up quickly if you use cloud computing. So, yeah, engineers are still cheap when they're working on large scale projects.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373317">
+
+</div>
+</div>
+
+<div id="replyto_65373317"></div>
+
+<ul id="group_65373317">
+	<li id="hiddens_65373317" class="hide"></li>
+</ul>
+
+</li></ul></li><li id="tree_65373263" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373263" class="commentstatus"></div>
+<div id="comment_65373263" class="cw">
+	<div id="comment_top_65373263" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373263" name="comment_link_65373263" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373263" onclick="return D2.setFocusComment(65373263)" >Innovative?</a>
+
+
+		 	<span id="comment_score_65373263" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373263); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~fuzzyfuzzyfungus">fuzzyfuzzyfungus</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~fuzzyfuzzyfungus">( 1223518 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373263"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373263">It seems reasonable enough to suspect that requiring hardcore optimization would raise the barrier to entry vs. being able to just rapid prototype something on top of a giant heap of abstraction layers; but I'm a little puzzled by the implication that we are in an age of innovative new products.<br> <br>
+
+If anything, that is what is so disappointing about the bloat. It would be one thing if we lived in an age of exciting prototypes made possible by exceptionally quick time to minimum viable product; but most of th</div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373263">
+
+</div>
+</div>
+
+<div id="replyto_65373263"></div>
+
+<ul id="group_65373263">
+	<li id="hiddens_65373263" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373267" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373267" class="commentstatus"></div>
+<div id="comment_65373267" class="cw">
+	<div id="comment_top_65373267" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373267" name="comment_link_65373267" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373267" onclick="return D2.setFocusComment(65373267)" >An old, yet still apropos quote...</a>
+
+
+		 	<span id="comment_score_65373267" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373267); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~KiltedKnight">KiltedKnight</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~KiltedKnight">( 171132 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373267"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373267"><p>"Nobody should ever need more than 640k of RAM."</p><p>Once everyone found it easier to just add more memory, the idea of efficiency started to go away... knowing the more efficient way to divide by 2, knowing how to avoid unnecessary program pointer jumps (if the first character of the string does not match, why run strncmp() for when you have a large data set)... these are things taught by experience.  One of the best efficiency teachers would be to write for an embedded system with very limited memory.  You lea<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373267">
+
+</div>
+</div>
+
+<div id="replyto_65373267"></div>
+
+<ul id="group_65373267">
+	<li id="hiddens_65373267" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373285" class="comment full contain"><span class="ind"></span>
+<div id="comment_status_65373285" class="commentstatus"></div>
+<div id="comment_65373285" class="cw">
+	<div id="comment_top_65373285" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373285" name="comment_link_65373285" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373285" onclick="return D2.setFocusComment(65373285)" >Computers are so fucking fast</a>
+
+
+		 	<span id="comment_score_65373285" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373285); return false"><span class=opt>Score:</span>4</a>, Interesting)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~reanjr">reanjr</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~reanjr">( 588767 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373285">		
+		on Tuesday May 13, 2025 @11:06AM (<span class="ind"></span><a rel="nofollow" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373285">#65373285</a>)
+		<small><a href="http://reanjr.org/" title="http://reanjr.org/" class="user_homepage_display">Homepage</a> </small>
+</span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373285"><p>It's amazing how fast software runs when someone actually knows what they're doing.</p><p>I remember having a discussion with coworkers over selecting languages for command line tools.  It's amazing to me that anyone would even think to suggest using Java to write a command line tool. The startup time for Java is atrocious and it's completely inappropriate to use it to write a tool that might get out in a bash loop.</p><p>Simply by thinking for a few moments and choosing something like C or even Bash can make a huge difference in performance with essentially no extra effort (for simple enough tools).</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373285">
+<span class="ind"></span><a id="reply_link_65373285" class="btn link" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=Reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373285" onclick="D2.replyTo(65373285); return false;">Reply to This</a> 	<a rel="nofollow" href="#" class="comment_share_toggle btn link">Share</a>
+	<div class="comment_share sharethis-0 hide"><span class="au"></span>
+		<a rel="nofollow" class="t slashpop" href="https://twitter.com/intent/tweet?text=Computers are so fucking fast%20by%20reanjr%20%40slashdot%20https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373285" target="_blank">twitter</a>
+		<a rel="nofollow" class="f slashpop" href="https://www.facebook.com/sharer/sharer.php?u=https://tech.slashdot.org/comments.pl?sid=23691013&cid=65373285" target="_blank">facebook</a>
+	</div>
+ <span class="ind"></span><a id="reply_link_65373285" title="Flag this comment as Inappropriate" class="ui-icon flag fright" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=flag&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=65373285" onclick="return false;">Flag as Inappropriate</a>
+</div>
+</div>
+
+<div id="replyto_65373285"></div>
+
+<ul id="group_65373285">
+	<li id="hiddens_65373285" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373291" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373291" class="commentstatus"></div>
+<div id="comment_65373291" class="cw">
+	<div id="comment_top_65373291" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373291" name="comment_link_65373291" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373291" onclick="return D2.setFocusComment(65373291)" >YES!</a>
+
+
+		 	<span id="comment_score_65373291" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373291); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~MpVpRb">MpVpRb</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~MpVpRb">( 1423381 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373291"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373291"><p>Old school programmers managed to use cleverness to get performance out of minimal hardware<br>In the 80s, I wrote image processing routines in assembly on a 4Mhz 8088</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373291">
+
+</div>
+</div>
+
+<div id="replyto_65373291"></div>
+
+<ul id="group_65373291">
+	<li id="hiddens_65373291" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373305" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373305" class="commentstatus"></div>
+<div id="comment_65373305" class="cw">
+	<div id="comment_top_65373305" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373305" name="comment_link_65373305" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373305" onclick="return D2.setFocusComment(65373305)" >Compilers</a>
+
+
+		 	<span id="comment_score_65373305" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373305); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~bill_mcgonigle">bill_mcgonigle</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~bill_mcgonigle">( 4333 )</a></span></a> <a href="/faq/subscriptions.shtml#subscription_other_advantages">*</a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373305"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373305"><p>We need smarter compilers so humans can write maintainable microservices or whatever and the compiler can build a deployable efficient monolithic binary.</p><p>That's the point of having a Universal Turing Machine.</p><p>Our concept of compilers is still from the 70's with incremental improvements. Perhaps Go has taken one step in this direction more than others on the journey of a hundred miles. SSA trees and such were once a hot topic of research but not everybody is distracted with sexy AI topics.</p><p>John is correct on th<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373305">
+
+</div>
+</div>
+
+<div id="replyto_65373305"></div>
+
+<ul id="group_65373305">
+	<li id="hiddens_65373305" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373309" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373309" class="commentstatus"></div>
+<div id="comment_65373309" class="cw">
+	<div id="comment_top_65373309" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373309" name="comment_link_65373309" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373309" onclick="return D2.setFocusComment(65373309)" >Obvious</a>
+
+
+		 	<span id="comment_score_65373309" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373309); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~ThurstonMoore">ThurstonMoore</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~ThurstonMoore">( 605470 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373309"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373309"><p>This is obvious when you play an id tech game, they look amazing on lower end hardware.</p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373309">
+
+</div>
+</div>
+
+<div id="replyto_65373309"></div>
+
+<ul id="group_65373309">
+	<li id="hiddens_65373309" class="hide"></li>
+</ul>
+
+</li><li id="tree_65373313" class="comment oneline"><span class="ind"></span>
+<div id="comment_status_65373313" class="commentstatus"></div>
+<div id="comment_65373313" class="cw">
+	<div id="comment_top_65373313" class="commentTop newcomment">
+		<div class="title">
+			<h4><a rel="nofollow" id="comment_link_65373313" name="comment_link_65373313" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;cid=65373313" onclick="return D2.setFocusComment(65373313)" >Half correct</a>
+
+
+		 	<span id="comment_score_65373313" class="score"> (<a href="#" onclick="getModalPrefs('modcommentlog', 'Moderation Comment Log', 65373313); return false"><span class=opt>Score:</span>2</a>)</span></h4>
+		</div>
+		<div class="details">
+			<span class="by"><span class="byby">by </span><a rel="nofollow" href="//slashdot.org/~Synonymous+Homonym">Synonymous Homonym</a>  <span class="uid"><a rel="nofollow" href="//slashdot.org/~Synonymous+Homonym">( 1901660 )</a></span></a></span><span class="writes" style="display:none"> writes:</span> 
+			<span class="otherdetails" id="comment_otherdetails_65373313"></span>
+		</div>
+	</div>
+	<div class="commentBody">
+		<div id="comment_body_65373313"><p>Hardware is more energy efficient than ever.  And Software could make better use of it.  In the trilemma of "good-cheap-fast, pick any two", good is always the one that doesn't get picked.  That also means that correct, safe, secure, and resilient are at best afterthoughts.</p><p>Software optimisation is not the problem.  Modern languages, compiled and interpreted, are doing a great job at optimising.</p><p>Monolithic designs are also not the answer; they are part of the problem.  Intuitively one might expect that one bi<span class="substr"> </span></p></div>
+	</div>
+
+	<div class="commentSub" id="comment_sub_65373313">
+
+</div>
+</div>
+
+<div id="replyto_65373313"></div>
+
+<ul id="group_65373313">
+	<li id="hiddens_65373313" class="hide"></li>
+</ul>
+
+</li>
+			<li id="roothiddens" class="hide"></li>
+		</ul>
+	
+	
+	
+	
+
+<noscript><p><b>There may be more comments in this discussion. Without JavaScript enabled, you might want to <a href="//tech.slashdot.org/users.pl?op=editcomm">turn on Classic Discussion System</a> in your preferences instead.</b></p></noscript>
+<div id="discussion_buttons" class="clearfix">
+
+
+
+
+
+
+</div>
+
+
+<div class="newcmnt"><div id="replyto_0"></div></div>
+
+
+	<script type="text/javascript">
+<!--
+		D2.currents()['hidden']   = 0;
+		D2.currents()['full']     = 5;
+		D2.currents()['oneline']  = 42;
+		// D2.currents_total(47);
+
+		D2.abbrev_comments({65373211:522,65373157:522,65373161:526,65373135:529,65373263:520,65373305:536,65373237:521,65373315:3,65373203:521,65373267:522,65373257:512,65373201:565,65373245:512,65373235:522,65373165:515,65373313:529,65373145:522});
+		D2.noshow_comments([]);
+		D2.pieces_comments([65373135,65373153,65373177,65373193,65373205,65373159,65373175,65373227,65373245,65373219,65373237,65373315,65373143,65373145,65373181,65373157,65373161,65373201,65373165,65373195,65373167,65373293,65373185,65373299,65373197,65373199,65373203,65373211,65373233,65373235,65373253,65373239,65373241,65373307,65373257,65373317,65373263,65373267,65373291,65373305,65373309,65373313]);
+		D2.init_hiddens([]);
+
+		D2.finishLoading();
+
+
+		if (D2.thresh_totals()[6][6][1] == 0) {
+			D2.replyTo(0, 1);
+		}
+
+
+//-->
+	</script>
+
+
+</div>
+
+
+
+	
+	
+		<div id="clickgen" class="grid_24 b">
+    <section class="grid_16 f">
+        <div>
+			<h4 class="nobg">
+			    <a href="" class="selected btmrel" onClick="getRelatedStoriesForStory(441997);return false">Related Links</a>
+			    <span class="tops fright">Top of the: <a href="" class="btmday" onClick="getTopStories(1);return false">day</a>, <a class="btmweek" href="" onClick="getTopStories(7); return false">week</a>, <a href="" onClick="getTopStories(30);return false" class="btmmonth">month</a>.</span>
+			</h4>
+			<ul class="nobullets bmrelatedlist">
+
+
+	
+	<li>
+		<span class="cmntcnt"><span class="slant"></span><span>522<span class="hide"> comments</span></span></span><a href="//tech.slashdot.org/story/24/10/22/1810240/evs-are-just-going-to-win?sdsrc=popbyskidbtmprev">EVs Are Just Going To Win</a>
+	</li>
+
+	
+	<li>
+		<span class="cmntcnt"><span class="slant"></span><span>476<span class="hide"> comments</span></span></span><a href="//tech.slashdot.org/story/24/08/04/2321224/are-ev-charger-hogs-ruining-the-ev-experience?sdsrc=popbyskidbtmprev">Are EV 'Charger Hogs' Ruining the EV Experience?</a>
+	</li>
+
+	
+	<li>
+		<span class="cmntcnt"><span class="slant"></span><span>430<span class="hide"> comments</span></span></span><a href="//tech.slashdot.org/story/24/09/02/0237206/whats-holding-back-americas-move-to-electric-cars?sdsrc=popbyskidbtmprev">What's Holding Back America's Move to Electric Cars?</a>
+	</li>
+
+	
+	<li>
+		<span class="cmntcnt"><span class="slant"></span><span>406<span class="hide"> comments</span></span></span><a href="//tech.slashdot.org/story/24/07/09/1640243/speed-limiters-now-mandatory-in-all-new-eu-cars?sdsrc=popbyskidbtmprev">Speed Limiters Now Mandatory In All New EU Cars</a>
+	</li>
+
+	
+	<li>
+		<span class="cmntcnt"><span class="slant"></span><span>396<span class="hide"> comments</span></span></span><a href="//tech.slashdot.org/story/24/08/26/2257239/far-right-terrorgram-chatrooms-are-fueling-a-wave-of-power-grid-attacks?sdsrc=popbyskidbtmprev">Far-Right 'Terrorgram' Chatrooms Are Fueling a Wave of Power Grid Attacks</a>
+	</li>
+
+
+</ul>
+        </div>
+    </section>
+    <aside class="grid_8 st">
+		<section class="grid_24 f">
+			<div>
+				<h5 class="tlnav"><a href="//slashdot.org/story/25/05/13/1432232/microsoft-is-cutting-3-of-all-workers?sdsrc=nextbtmnext">next</a></h5>
+				<div class="grid_24">
+	    
+	    
+            	 <span class="grid_7 tcenter"><img src="//a.fsdn.com/sd/topics/microsoft_64100.png" width="100" height="64" alt="Microsoft"></span>
+	    
+					<p class="grid_12"><a href="//slashdot.org/story/25/05/13/1432232/microsoft-is-cutting-3-of-all-workers?sdsrc=nextbtmprev">Microsoft is Cutting 3% of All Workers</a></p>
+					<span class="grid_5 tcenter comments"><span class="cmntcnt_large fleft"><span class="slant"></span><span>9<span class="hide"> comments</span></span></span></span>
+	
+				</div>
+			</div>
+		</section>
+		<section class="grid_24">
+			<div>
+				<h5 class="tlnav"><a href="//apple.slashdot.org/story/25/05/13/1216217/apple-wants-people-to-control-devices-with-their-thoughts?sdsrc=prevbtmprev">previous</a></h5>
+				<div class="grid_24">
+	    
+            	 <span class="grid_7 tcenter"><img src="//a.fsdn.com/sd/topics/apple_64.png" width="64" height="64" alt="Apple"></span>
+	    
+					<p class="grid_12"><a href="//apple.slashdot.org/story/25/05/13/1216217/apple-wants-people-to-control-devices-with-their-thoughts?sdsrc=prevbtmprev">Apple Wants People To Control Devices With Their Thoughts</a></p>
+
+					<span class="grid_5 tcenter comments"><span class="cmntcnt_large fleft"><span class="slant"></span><span>20<span class="hide"> comments</span></span></span></span>
+				</div>
+			</div>
+		</section>
+	</aside>
+</div>
+	
+
+</section>
+			</div>
+		</div>
+		<div class="row top-space">
+
+
+			<div class="grid_24">
+				<!-- 728px ad -->
+
+				<div class="adwrap">
+<div id='div-gpt-ad-728x90_c'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.pubads().enableLazyLoad({fetchMarginPercent: 0,renderMarginPercent: 0});
+googletag.display('div-gpt-ad-728x90_c');});</script></div>
+</div>
+				<!-- end 728px ad -->
+				<!-- Slashdot Deals 6 Best Sellers -->
+					<div class="row deals-footer">
+						<div class="units-8 indent-2 deals-wrapper">
+						  <div class="deals-header"><h2>Slashdot Top Deals</h2></div>
+						  <div id="deals-output">
+							<script id="deals-template" type="text/x-handlebars-template">
+							  {{#each deal}}
+								<div class="deal">
+								  <a href="{{urlPath permalink}}?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign={{slug}}" target="_blank">
+								  	<img src="{{main_image}}" alt="" />
+								  </a>
+								  <p class="title"><a href="{{urlPath permalink}}?&utm_source=slashdot.org&utm_medium=dealfeed-footerfeed&utm_campaign={{slug}}" target="_blank">{{title}}</a></p>
+								  <p class="deal-price">{{centConversion price_in_cents}}</p>
+								</div>
+							  {{/each}}
+							</script>
+						  </div>
+						</div>
+					</div>
+					<script>
+						if ( sdAdBlockActive && window.is_euro_union === 0) {
+                                                    bizx.cmp.ifConsent('', ['all'], function () {
+							$.ajaxSetup({
+								cache: true
+							});
+							$.getScript( "//a.fsdn.com/sd/js/scripts/min/deals-min.js", function(){
+								runDealsWidget();
+							});
+                                                    });
+						}
+					</script>
+
+					<!-- End Slashdot Deals 6 Best Sellers -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- SMACKS: END COMMENTS SECTION -->
+</div>
+<!-- SMACKS: END COMMENTS CONTAINER -->
+
+
+	
+
+<script type="text/javascript">
+
+$(function(){
+$('#firehose-filter').
+	focus(function(event){
+		gFocusedText = this;
+	}).
+	blur(function(event){
+		if ( gFocusedText === this ) {
+			gFocusedText = null;
+		}
+	});
+
+
+apply_updates_when(		'at-end', true);
+});
+</script>
+
+<!-- body end --><!-- footer type=current begin -->
+
+	
+	</section>
+	
+	
+
+
+	<footer id="fhft" class="grid_24 nf aoc">
+		<div id="logo_nf" class="fleft">
+			<a href="//slashdot.org"><span>Slashdot</span></a>
+		</div>
+		<nav role="firehose footer">
+			
+				
+				
+				
+				
+
+				
+						<span class="ind"></span><a class="btn first" href="//tech.slashdot.org/comments.pl?sid=23691013&amp;op=reply&amp;threshold=1&amp;commentsort=0&amp;mode=thread&amp;pid=" onclick="D2.replyTo(0); return false;">Post</a>
+				
+				<a class="btn hide" id="footer_moderate_button">Moderate</a>
+				<a class="btn hide" id="footer_moderatorhelp_button">Moderator Help</a>
+				<a class="btn hide" id="footer_delete_button" title="Checked comments will be deleted.">Delete</a>
+				<script>
+					(function($){
+						var old_moderate_btn = $("#discussion_moderate_button");
+						if (old_moderate_btn.length) {
+							var moderate_btn = $("#footer_moderate_button");
+							moderate_btn.click(
+								function(){old_moderate_btn.click()}
+							);
+							moderate_btn.removeClass('hide');
+						}
+
+						var old_moderatorhelp_btn = $("#discussion_moderatorhelp_button");
+						if (old_moderatorhelp_btn.length) {
+							var moderatorhelp_btn = $("#footer_moderatorhelp_button");
+							moderatorhelp_btn.click(
+								function(){old_moderatorhelp_btn.click()}
+							);
+							moderatorhelp_btn.attr(
+								'href', old_moderatorhelp_btn.attr('href')
+							);
+							moderatorhelp_btn.removeClass('hide');
+						}
+
+						var old_delete_btn = $("#discussion_delete_button");
+						if (old_delete_btn.length) {
+							var delete_btn = $("#footer_delete_button");
+							delete_btn.click(
+								function(){old_delete_btn.click()}
+							);
+							delete_btn.removeClass('hide');
+						}
+
+						$('#discussion_buttons').addClass('hide');
+					})(Slash.jQuery); // (function($){
+				</script>
+				<ul class="fleft">
+					
+						<li class="fleft selected">
+							<span class="nbutton btn hide link reset" id="more_comments_button">
+								<a href="#" onclick="D2.ajaxFetchComments(0,1); return false">
+									<span id="more_comments_num_a" class="hide">Get more comments</span>
+								</a>
+							</span>
+						</li>
+					
+					
+						<li class="fleft">
+							<span class="loadedcommentcnt">47</span> of <span class="totalcommentcnt">47</span> loaded
+						</li>
+					
+				</ul>
+				
+					<script type="text/javascript">D2.finishLoading()</script>
+				
+			
+
+			
+			<ul class="fright submitstory">
+					<li class="fright">
+						<a href="/submit">Submit<span class="opt"> Story</span></a>
+					</li>
+			</ul>
+		</nav>
+		
+
+
+	</footer>
+	<section class="bq">
+		<blockquote class="msg grid_24" cite="https://slashdot.org">
+			<p>Put your Nose to the Grindstone!
+		-- Amalgamated Plastic Surgeons and Toolmakers, Ltd.</p>
+			<span class="slant"></span>
+		</blockquote>
+	</section>
+	<footer id="ft" class="grid_24">
+		<nav class="grid_10" role="footer">
+			<ul>
+				<li><a href="//slashdot.org/faq">FAQ</a></li>
+				<li><a href="//slashdot.org/archive.pl">Story Archive</a></li>
+				<li><a href="//slashdot.org/hof.shtml">Hall of Fame</a></li>
+				<li><a href="https://slashdotmedia.com/advertising-and-marketing-services/" rel="nofollow">Advertising</a></li>
+				<li><a href="https://slashdotmedia.com/terms-of-use/" rel="nofollow">Terms</a></li>
+				<li><a href="https://slashdotmedia.com/privacy-statement/" rel="nofollow">Privacy Statement</a></li>
+				<li><a href="//slashdot.org/faq/slashmeta.shtml">About</a></li>
+				<li><a href="mailto:feedback@slashdot.org">Feedback</a></li>
+				<li><a href="#" onclick="set_mobile_pref('mobile',1);return false;">Mobile View</a></li>
+				<li><a href="//slashdot.org/blog">Blog</a></li>
+				<li><a href="#" id="opt-out-link"></a></li>
+				<li><button class="btn opt-out" id="opt-out-button" style="display:none">
+					<img src="//a.fsdn.com/sd/ccpa-optout.png" alt="Icon">
+					Do Not Sell or Share My Personal Information</button></li>
+
+			</ul>
+		</nav>
+		<br>
+		
+		<div class="grid_14 tright tm"><span class="nobr">Copyright &copy; 2025 Slashdot Media. All Rights Reserved.</span></div>
+
+	<div class="modal-custom overlay-custom" id="ccpa-modal" style="max-width:100%">
+		<div class="modal-content modal-content-ccpa">
+	    	<span class="close" id="modal-close">&times;</span>
+			<div class="modal-header" id="ccpa-modal-content-destination"></div>
+		</div>
+	</div>
+
+	</footer>
+	
+	<div class="overlay"></div>
+<div class="modal-box">
+    <a href="#" id="close-modal">Close</a>
+    <article class="modal-content">
+    </article>
+    <footer>
+</div>
+
+
+
+
+<div id="modal_cover" class="hide" onclick="hide_modal_box(); return false;"></div>
+<div id="modal_box" class="hide">
+      <div id="modal_box_content"></div>
+      <header class="n">
+                  <span class="fadeout"></span>
+                  <span class="fadeoutfade"></span>
+		  <span class="pf"><a class="ico close" onclick="hide_modal_box(); return false;" href="#"><span>Close</span></a></span>
+		  <h3 class="pf"><div id="logo"><a href="//slashdot.org">Slashdot</a></div><span id="preference_title"></span></h3>
+      </header>
+</div>
+	
+	<!-- CCM Tag -->
+<script type="text/javascript">
+bizx.cmp.ifConsent({purposes: 'all', vendors: 'bombora'}, function() {
+        /*global _ml:true, window */
+        _ml = window._ml || {};
+        _ml.eid = '771';
+
+        var s = document.getElementsByTagName('script')[0], cd = new Date(), mltag = document.createElement('script');
+        mltag.type = 'text/javascript'; mltag.async = true;
+        mltag.src = '//ml314.com/tag.aspx?' + cd.getDate() + cd.getMonth() + cd.getFullYear();
+        s.parentNode.insertBefore(mltag, s);
+});
+</script>
+<!-- End CCM Tag -->
+
+<script type="text/javascript">
+window.google_analytics_uacct = "UA-199823890-2";
+
+var _gaq = _gaq || [];
+
+
+
+
+
+  _gaq.push(['_setAccount', 'UA-199823890-2']);
+  _gaq.push(['_setDomainName', '.slashdot.org']);
+
+	
+		_gaq.push(['_addIgnoredRef', 'slashdot.org']);
+	
+
+
+  _gaq.push(['_setCustomVar', 1, 'User Type',  'Anon', 3]);		
+	
+	_gaq.push(['_setCustomVar', 2, 'Page','article2', 3]);
+
+	
+
+
+
+// track beta behavior for user
+var betamatches = document.cookie.match(/betagroup=(-?\d+)/);
+
+if(betamatches && betamatches[1]) {
+  if(betamatches[1] == -1) {
+    _gaq.push(['_setCustomVar', 3, 'Beta-Usage','opt-out', 3]);
+  } else {
+    _gaq.push(['_setCustomVar', 3, 'Beta-Usage','unredirected', 3]);
+  }
+}
+
+
+
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+
+
+bizx.cmp.ifConsent({purposes: ['storage', 'measurement'], vendors: 'google-analytics'}, function () {
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+});
+</script>
+
+<!-- CCM GA Push -->
+<script>
+    if (typeof _ml !== 'undefined' && _ml.us) {
+        if (_ml.us.tp && _ml.us.tp.length > 0) {
+            ga('set', 'dimension2', _ml.us.tp[0]);
+        }
+        if (_ml.us.pc && _ml.us.pc.length > 0) {
+            ga('set', 'dimension7', _ml.us.pc[0]);
+        }
+        ga('set', 'dimension3', _ml.us.ind);
+        ga('set', 'dimension4', _ml.us.cr);
+        ga('set', 'dimension5', _ml.us.cs);
+        ga('set', 'dimension6', _ml.us.dm);
+        ga('set', 'dimension8', _ml.us.sn);
+    }
+</script>
+
+<!-- Sticky Ads -->
+<script type="text/javascript">
+var topBannerViewed = false;
+function initSticky(){
+    if (SD.Ads.acceptable_ads_active) {
+        return;
+    }
+        
+    if($('#div-gpt-ad-728x90_a').length > 0 && $('#div-gpt-ad-300x250_a').length > 0 && window.outerWidth >= 1070 && !sdAdBlockActive){
+        $(window).scroll(function(){
+			var y = $(document).scrollTop();
+			var z =  y + window.outerHeight;
+			var navOffset = 0;
+			var offset = [
+				$('.nav-wrap').outerHeight(true),
+				$('.nav-secondary-wrap').outerHeight(true)
+			];
+			for(row in offset){
+				if(offset[row]) navOffset = navOffset + parseInt(offset[row]);
+			}
+			$('.adwrap-unviewed').each(function(){
+				var cls = 'adwrap-sticky';
+				var toggleCls = 'adwrap';
+				
+				if($(this).hasClass('railad')) {
+					if(topBannerViewed){
+						var topPixels = $(this).offset().top;
+						navOffset += $('.adwrap').outerHeight();
+						if(y >= topPixels && y >= navOffset){
+							$('#slashboxes').css('top', 0).css('position','sticky').css('right',13);
+						} else {
+							$('#slashboxes').removeAttr('style');
+						}
+					}
+					return;
+				}
+				var topPixels = $(this).offset().top;
+				if(y >= topPixels && y >= navOffset){
+					$(this).addClass(cls);
+					$(this).removeClass('adwrap');
+					if(cls == 'adwrap-sticky') { //top banner
+						topBannerViewed = false;
+						$('#slashboxes').css('top',$(this).outerHeight() || 0).css('position','sticky').css('right',13);
+					}
+					if(topBannerViewed) {
+						
+						$('#slashboxes').css('top', 0).css('position','sticky').css('right',13);
+					}
+				}else{
+					
+					$(this).removeClass(cls);
+					$(this).addClass(toggleCls);
+					$('#slashboxes').removeAttr('style');
+				}
+			});
+			if($('.adwrap-viewed-banner').length > 0){
+				
+				topBannerViewed = true;
+				$('.adwrap-viewed-banner').removeClass('adwrap-unviewed').removeClass('adwrap-sticky').addClass('adwrap');
+			}
+			if($('.adwrap-viewed-railad').length > 0){
+				
+            	$('.adwrap-viewed-railad').removeClass('adwrap-unviewed').removeClass('adwrap-railad-sticky');
+                $('#slashboxes').removeAttr('style');
+            }
+        });
+    }
+}
+bizx.cmp.ifConsent({purposes: 'all', vendors: 'google-ads'}, function () {
+	if (!sdAdBlockActive) {
+		initSticky();
+	}
+	if (SD.Ads.acceptable_ads_active) {
+		// similar to remove* code above in initSticky
+		$('.adwrap-unviewed').removeClass('adwrap-unviewed').removeClass('adwrap-sticky').addClass('adwrap').removeClass('adwrap-railad-sticky');
+		$('#slashboxes').removeAttr('style');
+	}
+});
+</script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setCookieDomain", "*.slashdot.org"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+function initPiwikAndNels() {
+  (function() {
+    var u="//analytics.slashdotmedia.com/";
+    _paq.push(['setTrackerUrl', u+'sd.php']);
+    _paq.push(['setSiteId', 40]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'sd.js'; s.parentNode.insertBefore(g,s);
+  })();
+
+    if(window.location.pathname == '/'){
+        var nelId = (location.search.split('nel_id=')[1] || '').split('&')[0];
+        var url = '/ajax.pl?op=nel';
+        if(nelId){
+            url += '&nel_id='+nelId;
+        }
+        $.ajax({
+            url: url,
+            type: 'POST',
+            success: function(html){
+                $('#firehoselist article').eq(1).after(html);
+            }
+        });
+    }
+    //announcement NEL
+    if(document.getElementById('announcementText')){
+      $('#announcementText').hide();
+      var hlUrl = '/ajax.pl?op=hl_nel';
+      if(nelId){
+        hlUrl += '&nel_id='+nelId;
+      }
+      $.ajax({
+        url: hlUrl,
+        type: 'POST',
+        success: function(html){
+          if(html.length < 10){
+            $('#announcementText').show();
+            return;
+          }
+          $('#announcementText').html(html).show();
+        },
+        error: function () {
+          $('#announcementText').show();
+        }
+      });
+    }
+}
+bizx.cmp.ifConsent({purposes: ['storage', 'measurement'], vendors: 'sdm'}, initPiwikAndNels);
+
+<!-- 6sense -->
+bizx.cmp.ifConsent({purposes: 'all', vendors: '6sense'}, async() => {
+    (function(){
+    var s = document.getElementsByTagName("script")[0];
+    var b = document.createElement("script");
+    b.type = "text/javascript";
+    b.async = true;b.defer=true;b.id='6senseWebTag';
+    b.src = "https://j.6sc.co/j/58729049-be80-466a-9abf-b3911430bbd8.js";
+    s.parentNode.insertBefore(b, s);
+    })();
+})
+</script>
+
+
+<!-- Datonics -->
+<script type="text/javascript">
+if (window.is_euro_union === 0) {
+    bizx.cmp.ifConsent('', ['all'], function () {
+        bizx.cmp.embedScript("//ads.pro-market.net/ads/scripts/site-143573.js", true);
+    });
+}
+</script>
+<script src="//a.fsdn.com/con/js/sandiego/maxnav.js?2024-11"></script>
+	<script id="after-content" type="text/javascript">
+(function( $, fn, console ){
+	$ && fn && $(function(){ fn($, console); });
+})(window.jQuery, window.pageload_done, window.console);
+</script>
+	
+	<script type='text/javascript'>
+	if(!document.location.href.match(/source=autorefresh/)) {
+		document.write('<img src="//slashdot.org/images/js.gif?973">');
+	}
+</script>
+<noscript>
+	<img src="//slashdot.org/images/njs.gif?137">
+</noscript>
+	<div class="busy genericspinner hide"><span>Working...</span></div>
+
+	    <script>
+            var regular_opt_out_link = true;
+
+            if (bizx.cmp.show_do_not_sell()) {
+                regular_opt_out_link = false;
+                 document.getElementById('opt-out-button').setAttribute('style', 'display:inline');
+            }
+
+            if (window.is_euro_union === 1) {
+                regular_opt_out_link = false;
+                var elem = '<a href="#" title="Privacy Choices" onclick="bizx.cmp.promptConsent(); return false;">Privacy Choices</a>';
+                document.getElementById('opt-out-link').innerHTML = elem;
+            }
+
+            if (regular_opt_out_link == true) {
+                var elem = '<a href="https://slashdotmedia.com/opt-out-choices" title="Opt Out" rel="nofollow">Opt Out</a>';
+                document.getElementById('opt-out-link').innerHTML = elem;
+            }
+            var cmp_modal = document.getElementById('ccpa-modal');
+            var btn = document.getElementById('opt-out-button');
+            var span = document.getElementById('modal-close');
+
+            btn.onclick = function() {
+            	cmp_modal.style.display = 'block';
+            };
+
+            span.onclick = function() {
+            	cmp_modal.style.display = 'none';
+            };
+
+         </script>
+
+	<script>
+		if(typeof(Storage)!=="undefined"){
+			window.scrollTo(0,sessionStorage.scrollPos);
+				$(window).scroll(function () {
+				//You've scrolled this much:
+				sessionStorage.scrollPos = $(window).scrollTop();
+			});
+		}
+		$(function(){
+			$('a').click(function(){
+				delete sessionStorage.scrollPos;
+			})
+		});
+		// window.onbeforeunload = function () {
+		// 	console.log('bakc button clicked');
+		// 	delete sessionStorage.scrollPos;
+		// }
+		window.onpopstate=function() {
+			delete sessionStorage.scrollPos;
+		}
+	</script>
+	
+
+	
+		<!-- 1x1 story page -->
+		<div id='div-gpt-ad-1x1'><script type='text/javascript'>
+googletag.cmd.push(function(){
+googletag.pubads().enableLazyLoad({fetchMarginPercent: 0,renderMarginPercent: 0});
+googletag.display('div-gpt-ad-1x1');});</script></div>
+	
+    <script>
+    if (window.is_euro_union === 0 && !bizx.cmp.show_do_not_sell()) {
+        var current_time = (new Date()).getTime();
+        var image_url = 'https://io.narrative.io/?companyId=2440&id=site_name:slashdot.org&id=url:' + window.location.pathname + '&rand=' + current_time;
+        let hem = bizx.uids.getHem();
+        if (hem) {
+            image_url += '&id=hem:' + hem;
+        }
+        function naLoad() {
+            var image = new Image()
+            image.src = image_url;
+            image.style.display = "none";
+            image.style.height = 0;
+            image.style.width = 0;
+            document.body.appendChild(image)
+          }
+        bizx.cmp.ifConsent({ purposes: 'all', vendors: 'narrative'}, naLoad);
+    }
+
+    bizx.cmp.ifConsent({ purposes: 'all', vendors: 'xandr'}, function() {
+        <!-- xandr !-->
+        !function(e,i){if(!e.pixie){var n=e.pixie=function(e,i,a){n.actionQueue.push({action:e,actionValue:i,params:a})};n.actionQueue=[];var a=i.createElement("script");a.async=!0,a.src="//acdn.adnxs.com/dmp/up/pixie.js";var t=i.getElementsByTagName("head")[0];t.insertBefore(a,t.firstChild)}}(window,document);
+        pixie('init', '44bba44a-d920-4ad6-ad5c-6142072898f3' );
+        pixie('event', 'PageView');
+    })
+    function updateVid(data){
+        var args = {
+                method: 'PUT',
+                headers: {
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+               },
+            };
+        if (Object.keys(data).length !== 0) {
+            args.body = JSON.stringify(data);
+        }
+        fetch('/p/sfapi/update_vid', args);
+    }
+    if(typeof __cmp !== 'undefined') {
+        // record visitor consent opt-out
+        __cmp('addEventListener', ["consentrejected", function () {
+            try {
+                var ids = window.pbjs.getUserIds();
+                if (Object.keys(ids).length !== 0) {
+                    var regulation = bizx.cmp.getRegulation();
+                    var data = {id5id: ids.id5id.uid, jurisdiction: regulation};
+                    updateVid(data);
+                }else{
+                    updateVid({});
+                }
+            } catch (e) {
+                updateVid({});
+            }
+        }, false], null);
+    }
+	</script>
+	<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93f32a945ecf4237',t:'MTc0NzE0OTkwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+	</html>
+
+
+	<!-- footer type=current end -->
