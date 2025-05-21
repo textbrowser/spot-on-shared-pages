@@ -1,0 +1,3142 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="ie6 ie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 ie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 ie"> <![endif]-->
+<!--[if IE 9]>    <html class="ie9 ie"> <![endif]-->
+<!--[if !IE]> --> <html lang="en"> <!-- <![endif]-->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>
+Turing Machines (Stanford Encyclopedia of Philosophy)
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="noarchive, noodp" />
+<meta property="citation_title" content="Turing Machines" />
+<meta property="citation_author" content="De Mol, Liesbeth" />
+<meta property="citation_publication_date" content="2018/09/24" />
+<meta name="DC.title" content="Turing Machines" />
+<meta name="DC.creator" content="De Mol, Liesbeth" />
+<meta name="DCTERMS.issued" content="2018-09-24" />
+<meta name="DCTERMS.modified" content="2025-05-21" />
+
+<!-- NOTE: Import webfonts using this link: -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,200&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css" />
+<!--[if IE 7]> <link rel="stylesheet" type="text/css" href="../../css/font-awesome-ie7.min.css"> <![endif]-->
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/style.css" />
+<link rel="stylesheet" type="text/css" media="print" href="../../css/print.css" />
+<link rel="stylesheet" type="text/css" href="../../css/entry.css" />
+<!--[if IE]> <link rel="stylesheet" type="text/css" href="../../css/ie.css" /> <![endif]-->
+<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+<!-- NOTE: Javascript for sticky behavior needed on article and ToC pages -->
+<script type="text/javascript" src="../../js/jquery-scrolltofixed-min.js"></script>
+<script type="text/javascript" src="../../js/entry.js"></script>
+
+<!-- SEP custom script -->
+<script type="text/javascript" src="../../js/sep.js"></script>
+</head>
+
+<!-- NOTE: The nojs class is removed from the page if javascript is enabled. Otherwise, it drives the display when there is no javascript. -->
+<body class="nojs article" id="pagetopright">
+<div id="container">
+<div id="header-wrapper">
+  <div id="header">
+    <div id="branding">
+      <div id="site-logo"><a href="../../index.html"><img src="../../symbols/sep-man-red.png" alt="SEP home page" /></a></div>
+      <div id="site-title"><a href="../../index.html">Stanford Encyclopedia of Philosophy</a></div>
+    </div>
+    <div id="navigation">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <button class="btn btn-navbar collapsed" data-target=".collapse-main-menu" data-toggle="collapse" type="button"> <i class="icon-reorder"></i> Menu </button>
+            <div class="nav-collapse collapse-main-menu in collapse">
+              <ul class="nav">
+                <li class="dropdown open"><a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-book"></i> Browse</a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                    <li role="menuitem"><a href="../../contents.html">Table of Contents</a></li>
+                    <li role="menuitem"><a href="../../new.html">What's New</a></li>
+                    <li role="menuitem"><a href="https://plato.stanford.edu/cgi-bin/encyclopedia/random">Random Entry</a></li>
+                    <li role="menuitem"><a href="../../published.html">Chronological</a></li>
+                    <li role="menuitem"><a href="../../archives/">Archives</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown open"><a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-info-sign"></i> About</a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                    <li role="menuitem"><a href="../../info.html">Editorial Information</a></li>
+                    <li role="menuitem"><a href="../../about.html">About the SEP</a></li>
+                    <li role="menuitem"><a href="../../board.html">Editorial Board</a></li>
+                    <li role="menuitem"><a href="../../cite.html">How to Cite the SEP</a></li>
+                    <li role="menuitem"><a href="../../special-characters.html">Special Characters</a></li>
+                    <li role="menuitem"><a href="../../tools/">Advanced Tools</a></li>
+                    <li role="menuitem"><a href="../../contact.html">Contact</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown open"><a id="drop3" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="icon-leaf"></i> Support SEP</a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                    <li role="menuitem"><a href="../../support/">Support the SEP</a></li>
+                    <li role="menuitem"><a href="../../support/friends.html">PDFs for SEP Friends</a></li>
+                    <li role="menuitem"><a href="../../support/donate.html">Make a Donation</a></li>
+                    <li role="menuitem"><a href="../../support/sepia.html">SEPIA for Libraries</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End navigation -->
+    
+    <div id="search">
+      <form id="search-form" method="get" action="../../search/searcher.py">
+        <input type="search" name="query" placeholder="Search SEP" />
+        <div class="search-btn-wrapper"><button class="btn search-btn" type="submit" aria-label="search"><i class="icon-search"></i></button></div>
+      </form>
+    </div>
+    <!-- End search --> 
+    
+  </div>
+  <!-- End header --> 
+</div>
+<!-- End header wrapper -->
+
+<div id="content">
+
+<!-- Begin article sidebar -->
+<div id="article-sidebar" class="sticky">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <button class="btn btn-navbar" data-target=".collapse-sidebar" data-toggle="collapse" type="button"> <i class="icon-reorder"></i> Entry Navigation </button>
+        <div id="article-nav" class="nav-collapse collapse-sidebar in collapse">
+          <ul class="nav">
+            <li><a href="#toc">Entry Contents</a></li>
+            <li><a href="#Bib">Bibliography</a></li>
+            <li><a href="#Aca">Academic Tools</a></li>
+            <li><a href="https://leibniz.stanford.edu/friends/preview/turing-machine/">Friends PDF Preview <i class="icon-external-link"></i></a></li>
+            <li><a href="https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=turing-machine">Author and Citation Info <i class="icon-external-link"></i></a> </li>
+            <li><a href="#pagetopright" class="back-to-top">Back to Top <i class="icon-angle-up icon2x"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End article sidebar --> 
+
+<!-- NOTE: Article content must have two wrapper divs: id="article" and id="article-content" -->
+<div id="article">
+<div id="article-content">
+
+<!-- BEGIN ARTICLE HTML -->
+
+
+<div id="aueditable"><!--DO NOT MODIFY THIS LINE AND ABOVE-->
+
+<h1>Turing Machines</h1><div id="pubinfo"><em>First published Mon Sep 24, 2018; substantive revision Wed May 21, 2025</em></div>
+
+<div id="preamble">
+
+<p>
+Turing machines, first described by
+ <a href="../turing/">Alan Turing</a>
+ in Turing 1936&ndash;7, are simple abstract computational devices
+intended to help investigate the extent and limitations of what can be
+computed. Turing&rsquo;s &lsquo;automatic machines&rsquo;, as he
+termed them in 1936, were specifically devised for the computation of
+real numbers. They were first named &lsquo;Turing machines&rsquo; by
+Alonzo Church in a review of Turing&rsquo;s paper (Church 1937).
+Today, they are considered to be one of the foundational models of
+computability and (theoretical) computer
+ science.<sup>[<a href="notes.html#note-1" id="ref-1">1</a>]</sup></p>
+ </div> 
+
+<div id="toc"><!--Entry Contents-->
+<ul>
+	<li><a href="#DefiTuriMach">1. Definitions of the Turing Machine</a>
+
+	<ul>
+		<li><a href="#TuriDefi">1.1 Turing&rsquo;s Definition</a></li>
+		<li><a href="#PostDefi">1.2 Post&rsquo;s Definition</a></li>
+		<li><a href="#DefiForm">1.3 The Definition Formalized</a></li>
+		<li><a href="#DescBehaTuriMach">1.4 Describing the Behavior of a Turing Machine</a></li>
+	</ul>
+	</li>
+	<li><a href="#CompTuriMach">2. Computing with Turing Machines</a>
+	<ul>
+		<li><a href="#SomeSimpExam">2.1 Some (Simple) Examples</a></li>
+		<li><a href="#CompNumbProb">2.2 Computable Numbers and Problems</a></li>
+		<li><a href="#TuriUnivMach">2.3 Turing&rsquo;s Universal Machine</a>
+		<ul>
+			<li><a href="#InteProgBehaNota">2.3.1 Interchangeability of program and behavior: a notation</a></li>
+			<li><a href="#InteProgBehaBasiSetFunc">2.3.2 Interchangeability of program and behavior: a basic set of functions</a></li>
+		</ul>
+		</li>
+		<li><a href="#HaltProbEnts">2.4 The Halting Problem and the Entscheidungsproblem</a>
+		<ul>
+			<li><a href="#DireIndiProoUncoDeciProb">2.4.1 Direct and indirect proofs of uncomputable decision problems</a></li>
+			<li><a href="#TuriBasiProbCIRCPRINEnts">2.4.2 Turing&rsquo;s basic problem CIRC?, PRINT? and the Entscheidungsproblem</a></li>
+			<li><a href="#HaltProb">2.4.3 The halting problem</a></li>
+		</ul>
+		</li>
+		<li><a href="#VariTuriMach">2.5 Variations on the Turing machine</a></li>
+	</ul>
+	</li>
+	<li><a href="#PhilIssuRelaTuriMach">3. Philosophical Issues Related to Turing Machines</a>
+	<ul>
+		<li><a href="#HumaMachComp">3.1 Human and Machine Computations</a></li>
+		<li><a href="#ThesDefiAxioTheo">3.2 Thesis, Definition, Axioms or Theorem</a></li>
+	</ul>
+	</li>
+	<li><a href="#AlteHistModeComp">4. Alternative Historical Models of Computability</a>
+	<ul>
+		<li><a href="#GeneRecuFunc">4.1 General Recursive Functions</a></li>
+		<li><a href="#LDefi">4.2 &lambda;-Definability</a></li>
+		<li><a href="#PostProdSyst">4.3 Post Production Systems</a></li>
+		<li><a href="#Form1">4.4 Formulation 1</a></li>
+	</ul>
+	</li>
+	<li><a href="#ImpaTuriMachCompScie">5. Impact of Turing Machines on Computer Science</a>
+	<ul>
+		<li><a href="#ImpaTheoCompScie">5.1 Impact on Theoretical Computer Science</a></li>
+		<li><a href="#TuriMachModeComp">5.2 Turing Machines and the Modern Computer</a></li>
+		<li><a href="#TheoProg">5.3 Theories of Programming</a></li>
+	</ul>
+	</li>
+	<li><a href="#Bib">Bibliography</a></li>
+	<li><a href="#Aca">Academic Tools</a></li>
+	<li><a href="#Oth">Other Internet Resources</a>
+	<ul>
+		<li><a href="#BusyBeav">Busy Beaver</a></li>
+		<li><a href="#HaltProb_1">The Halting Problem</a></li>
+		<li><a href="#OnliTuriMachSimu">Online Turing Machine Simulators</a>
+		<ul>
+			<li><a href="#SoftSimu">Software simulators</a></li>
+			<li><a href="#HardSimu">Hardware simulators</a></li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+	<li><a href="#Rel">Related Entries</a></li>
+</ul>
+
+<!--Entry Contents-->
+
+<hr /></div>
+
+<div id="main-text">
+
+<h2 id="DefiTuriMach">1. Definitions of the Turing Machine</h2>
+
+<h3 id="TuriDefi">1.1 Turing&rsquo;s Definition</h3>
+
+<p>
+Turing introduced Turing machines in the context of research into the
+foundations of mathematics. More particularly, he used these abstract
+devices to prove that there is no effective general method or
+procedure to solve, calculate or compute every instance of the
+following problem:</p>
+
+<blockquote>
+
+<p>
+<strong><em>Entscheidungsproblem</em></strong> The problem to decide
+for every statement in first-order logic (the so-called restricted
+functional calculus, see the entry on
+ <a href="../logic-classical/">classical logic</a>
+ for an introduction) whether or not it is derivable in that
+logic.</p>
+</blockquote>
+
+<p>
+Note that in its original form (Hilbert &amp; Ackermann 1928), the
+problem was stated in terms of validity rather than derivability.
+Given G&ouml;del&rsquo;s completeness theorem (G&ouml;del 1929)
+proving that there is an effective procedure (or not) for derivability
+is also a solution to the problem in its validity form. In order to
+tackle this problem, one needs a formalized notion of &ldquo;effective
+procedure&rdquo; and Turing&rsquo;s machines were intended to do
+exactly that.</p>
+
+<p>
+In what follows, we provide a definition of Turing machines that stays
+quite close to Turing&rsquo;s original definition but using a more
+standard notation. Note that Turing, in his paper, did not provide a
+stable definition nor notation but introduced a variety of notations
+(Post 1947, M&eacute;l&egrave;s 2020/21). A Turing machine then, or a
+<em>computing machine</em> as Turing called it, in Turing&rsquo;s
+original definition is a theoretical machine which can be in a finite
+number of configurations \(q_{1},\ldots,q_{n}\) (the states of the
+machine, called <em>m</em>-configurations by Turing). It is supplied
+with a one-way infinite and one-dimensional tape divided into squares
+each capable of carrying exactly one symbol. At any moment, the
+machine is scanning the content of <em>one</em> square <em>r</em>
+which is either blank (symbolized by \(S_0\)) or contains a symbol
+\(S_{1},\ldots ,S_{m}\) with \(S_1 = 0\) and \(S_2 = 1\).</p>
+
+<p>
+The machine is an automatic machine (\(a\)-machine) which means that
+at any given moment, the behavior of the machine is completely
+determined by the current state and symbol (called the
+<em>configuration</em>) being scanned. This is the so-called
+<em>determinacy condition</em>
+ (<a href="#ThesDefiAxioTheo">Section 3</a>).
+ These <em>a</em>-machines are contrasted with the so-called choice
+machines for which the next state depends on the decision of an
+external device or operator (Turing 1936&ndash;7: 232). A Turing
+machine is capable of three types of action:</p>
+
+<ol>
+
+<li>Print \(S_i\), move one square to the left (<em>L</em>) and go to
+state \(q_{j}\)</li>
+
+<li>Print \(S_i\), move one square to the right (<em>R</em>) and go to
+state \(q_{j}\)</li>
+
+<li>Print \(S_i\), do not move (<em>N</em>) and go to state
+\(q_{j}\)</li>
+</ol>
+
+<p>
+The &lsquo;program&rsquo; of a Turing machine can then be written as a
+finite set of quintuples of the form:</p> 
+\[q_{i}S_{j}S_{i,j}M_{i,j}q_{i,j}\]
+
+<p>
+Where \(q_i\) is the current state, \(S_j\) the content of the square
+being scanned, \(S_{i,j}\) the new content of the square; \(M_{i,j}\)
+specifies whether the machine is to move one square to the left, to
+the right or to remain at the same square, and \(q_{i,j}\) is the next
+state of the machine. These quintuples are also called the transition
+rules of a given machine. The Turing machine \(T_{\textrm{Simple}}\)
+which, when started from a blank tape, computes the sequence
+\(S_0S_1S_0S_1\ldots\) is then given by
+ <a href="#Quint_Simple">Table 1</a>.</p>
+ 
+<div class="figure avoid-break" id="Quint_Simple">
+
+<p class="center">
+<span class="figlabel">Table 1:</span> Quintuple representation of
+\(T_{\textrm{Simple}}\)</p> 
+\[ 
+\begin{align}\hline
+;q_{1}S_{0}S_{0}Rq_{2}\\
+;q_{1}S_{1}S_{0}Rq_{2}\\
+;q_{2}S_{0}S_{1}Rq_{1}\\
+;q_{2}S_{1}S_{1}Rq_{1}\\\hline 
+\end{align} 
+\]
+
+</div>
+
+<p>
+Note that \(T_{\textrm{Simple}}\) will never enter a configuration
+where it is scanning \(S_1\) so that two of the four quintuples are
+redundant. Another well-known format to represent the
+&lsquo;program&rsquo; of a Turing machine and which was also used by
+Turing is the <em>transition table</em>.
+ <a href="#Table_Simple">Table 2</a>
+ gives the transition table of \(T_{\textrm{Simple}}\).</p>
+
+<div class="figure avoid-break" id="Table_Simple">
+
+<p class="center">
+<span class="figlabel">Table 2:</span> Transition table for
+\(T_{\textrm{Simple}}\)</p>
+
+<table class="cell-center cellpad-med-dense nocaption two-rules">
+<tbody>
+<tr>
+  <td>&nbsp;</td>
+  <td>\(S_0\)</td>
+  <td>\(S_1\)</td> </tr>
+<tr>
+  <td>\(q_1\)</td>
+  <td>\(S_{0}\opR q_{2}\)</td>
+  <td>\(S_{0}\opR q_{2}\)</td> </tr>
+<tr>
+  <td>\(q_2\)</td>
+  <td>\(S_{1}\opR q_{1}\)</td>
+  <td>\(S_{1}\opR q_{1}\)</td> </tr> </tbody>
+</table>
+</div>
+
+<p>
+Where current definitions of Turing machines usually have only one
+type of symbols (usually just 0 and 1; it was proven by Shannon that
+any Turing machine can be reduced to a binary Turing machine (Shannon
+1956)) Turing also considered <em>computing machines</em> that use two
+kinds of symbols: the <em>figures</em> which consist entirely of 0s
+and 1s and the so-called <em>symbols of the second kind</em>. These
+are differentiated on the Turing machine tape by using a system of
+alternating squares of figures and symbols of the second kind. One
+sequence of alternating squares contains the figures and is called the
+sequence of <em>F</em>-squares. It contains the <em>sequence computed
+by the machine</em>; the other is called the sequence of
+<em>E</em>-squares. The latter are used to mark <em>F</em>-squares and
+are there to &ldquo;assist the memory&rdquo; (Turing 1936&ndash;7:
+232). The content of the <em>E</em>-squares is liable to change.
+<em>F</em>-squares however cannot be changed which means that one
+cannot implement algorithms whereby earlier computed digits need to be
+changed. Moreover, the machine will never print a symbol on an
+<em>F</em>-square if the <em>F</em>-square preceding it has not been
+computed yet. This usage of <em>F</em> and <em>E</em>-squares can be
+quite useful (see
+ <a href="#InteProgBehaBasiSetFunc">Sec. 2.3</a>)
+ but, as was shown by Emil L. Post, it results in a number of
+complications (see
+ <a href="#PostDefi">Sec. 1.2</a>).</p>
+ 
+<p>
+There are two important observations to be made concerning the
+abstract nature of Turing&rsquo;s <em>automatic machine</em>. The
+first concerns the definition of the machine itself, namely that the
+machine&rsquo;s tape is infinite which corresponds to the assumption
+of an infinite memory. The second concerns the definition of a Turing
+computable function, namely that a function is considered Turing
+computable if there exists a set of instructions that will result in a
+Turing machine computing the function regardless of the amount of time
+it takes. One can think of this as assuming the availability of
+potentially infinite time to complete the computation.</p>
+
+<p>
+These two assumptions are intended to ensure that the definition of
+computation that results is not too narrow. It ensures that no
+computable function will fail to be Turing-computable solely because
+there is insufficient time or memory to complete the computation. It
+follows that there is an important distinction to be made between what
+is computable in theory and computable in practice. Indeed, some
+Turing computable functions for instance may not ever be computable in
+practice, since they may require more memory than can be built using
+all of the (finite number of) atoms in the universe. <em>If</em> then
+we accept the Turing machine model as a reasonable model of the modern
+computer, then any result which shows that a function is not Turing
+computable is very strong, since it would imply that no computer that
+we could ever build could carry out the computation. In Section 2.4,
+it is shown that there are functions which are not
+Turing-computable.</p>
+
+<h3 id="PostDefi">1.2 Post&rsquo;s Definition</h3>
+
+<p>
+Turing&rsquo;s definition was standardized through (some of)
+Post&rsquo;s modifications of it in Post 1947. In that paper Post
+proves that a certain problem from mathematics known as Thue&rsquo;s
+problem or the word problem for semi-groups is not Turing computable
+(or, in Post&rsquo;s words, recursively unsolvable). Roughly speaking,
+Post&rsquo;s main strategy was to show that if it were decidable then
+the following decision problem from Turing 1936&ndash;7 would also be
+decidable:</p>
+
+<blockquote>
+
+<p>
+<strong>PRINT?</strong> The problem to decide for every Turing machine
+<em>M</em> whether or not it will ever print some symbol (for
+instance, 0).</p>
+</blockquote>
+
+<p>
+It was however proven by Turing that <strong>PRINT?</strong> is not
+Turing computable and so the same holds true of Thue&rsquo;s
+problem.</p>
+
+<p>
+While the uncomputability of <strong>PRINT?</strong> plays a central
+role in Post&rsquo;s proof, Post believed that Turing&rsquo;s proof of
+that was affected by the &ldquo;spurious Turing convention&rdquo;
+(Post 1947: 9), viz. the system of <em>F</em> and <em>E</em>-squares.
+Thus, Post introduced a modified version of the Turing machine. The
+most important differences between Post&rsquo;s and Turing&rsquo;s
+definition are:</p>
+
+<ol>
+
+<li>
+
+<p>
+Post&rsquo;s Turing machine, when in a given state, either prints or
+moves and so its transition rules are more &lsquo;atomic&rsquo; (it
+does not have the composite operation of moving and printing). This
+results in the quadruple notation of Turing machines, where each
+quadruple is in one of the three forms of
+ <a href="#quadruple">Table 3</a>:</p>
+ 
+<div class="figure avoid-break" id="quadruple">
+
+<p class="center">
+<span class="figlabel">Table 3:</span> Post&rsquo;s Quadruple
+notation</p> 
+\[ 
+\begin{aligned}\hline
+&amp; q_iS_jS_{i,j}q_{i,j}\\
+&amp; q_iS_jLq_{i,j}\\
+&amp; q_iS_jRq_{i,j}\\\hline 
+\end{aligned} 
+\]
+
+</div> </li>
+
+<li>Post&rsquo;s Turing machine has only one kind of symbol and so
+does not rely on the Turing system of <em>F</em> and
+<em>E</em>-squares.</li>
+
+<li>Post&rsquo;s Turing machine has a two-way infinite tape.</li>
+
+<li>Post&rsquo;s Turing machine halts when it reaches a state for
+which no actions are defined.</li>
+</ol>
+
+<p>
+Note that Post&rsquo;s reformulation of the Turing machine is much
+rooted in (Post 1936). That short paper introduced a formalism that is
+almost identical to Turing&rsquo;s machines. However, unlike Turing,
+Post did not focus on the computation of real numbers but on a
+formalism to define solvability. This explains why Post needed a
+halting state, unlike Turing.</p>
+
+<p>
+(Some of) Post&rsquo;s modifications of Turing&rsquo;s definition
+became part of the definition of the Turing machine in standard works
+such as Kleene 1952 and Davis 1958. Since that time, several
+(logically equivalent) definitions have been introduced. Today,
+standard definitions of Turing machines are, in some respects, closer
+to Post&rsquo;s Turing machines than to Turing&rsquo;s machines. In
+what follows we will use a variant on the standard definition from
+Minsky 1967 which uses the quintuple notation but has no <em>E</em>
+and <em>F</em>-squares and includes a special halting state
+<em>H</em>. It also has only two move operations, viz., <em>L</em> and
+<em>R</em> and so the action whereby the machine merely prints is not
+used. When the machine is started, the tape is blank except for some
+finite portion of the tape. Note that the blank square can also be
+represented as a square containing the symbol \(S_0\) or simply 0. The
+finite content of the tape will also be called the <em>dataword</em>
+on the tape.</p>
+
+<h3 id="DefiForm">1.3 The Definition Formalized</h3>
+
+<p>
+Talk of &ldquo;tape&rdquo; and a &ldquo;read-write head&rdquo; is
+intended to aid the intuition (and reveals something of the time in
+which Turing was writing) but plays no important role in the
+definition of Turing machines. In situations where a formal analysis
+of Turing machines is required, it is appropriate to spell out the
+definition of the machinery and program in more mathematical terms.
+Purely formally a Turing machine can be specified as a quadruple \(T =
+(Q,\Sigma, s, \delta)\) where:</p>
+
+<ul>
+
+<li><em>Q</em> is a finite set of states <em>q</em></li>
+
+<li>\(\Sigma\) is a finite set of symbols</li>
+
+<li><em>s</em> is the initial state \(s \in Q\)</li>
+
+<li>
+
+<p>
+\(\delta\) is a transition function determining the next move:</p>
+
+\[\delta : (Q \times \Sigma) \rightarrow (\Sigma \times \{L,R\} \times Q)\]
+ </li>
+</ul>
+
+<p>
+The transition function for the machine <em>T</em> is a function from
+computation states to computation states. If \(\delta(q_i,S_j) =
+(S_{i,j},D,q_{i,j})\), then when the machine&rsquo;s state is \(q_j\),
+reading the symbol \(S_j\), \(T\) replaces \(S_j\) by \(S_{i,j}\),
+moves in direction \(D \in \{L,R\}\) and goes to state
+\(q_{i,j}\).</p>
+
+<h3 id="DescBehaTuriMach">1.4 Describing the Behavior of a Turing Machine</h3>
+
+<p>
+We introduce a representation which allows us to describe the behavior
+or dynamics of a Turing machine \(T_n\), relying on the notation of
+the <em>complete configuration</em> (Turing 1936&ndash;7: 232) also
+known today as <em>instantaneous description</em> (ID) (Davis 1982:
+6). At any stage of the computation of \(T_{i}\) its ID is given
+by:</p>
+
+<ul class="sentag tag2em">
+
+<li><span class="tag">(1)</span><span class="sen">the content of the
+tape, that is, its data word</span></li>
+
+<li><span class="tag">(2)</span><span class="sen">the location of the
+reading head</span></li>
+
+<li><span class="tag">(3)</span><span class="sen">the machine&rsquo;s
+internal state</span></li>
+</ul>
+
+<p>
+So, given some Turing machine <em>T</em> which is in state \(q_{i}\)
+scanning the symbol \(S_{j}\), its ID is given by \(Pq_{i}S_{j}Q\)
+where <em>P</em> and <em>Q</em> are the finite words to the left and
+right hand side of the square containing the symbol \(S_{j}\).
+ <a href="#CC">Figure 1</a>
+ gives a visual representation of an ID of some Turing machine
+<em>T</em> in state \(q_i\) scanning the tape.</p>
+
+<div class="figure" id="CC">
+<img alt="a Turing machine: link to extended description below" src="TM_basic0.svg" />
+
+<p class="center">
+<span class="figlabel">Figure 1:</span> A complete configuration of
+some Turing machine <em>T</em>. [An
+ <a href="figdesc.html#CC">extended description of figure 1</a>
+ is in the supplement.]</p>
+</div>
+
+<p>
+The notation thus allows us to capture the developing behavior of the
+machine and its tape through its consecutive IDs.
+ <a href="#TSimple">Figure 2</a>
+ gives the first few consecutive IDs of \(T_{\textrm{Simple}}\) using
+a graphical representation. Its simulated behavior can be accessed
+ <a href="https://www.turingmachine.io/?import-gist=4b4b8a9f450b6a4ea061945db0791ccf">here.</a>
+ </p>
+
+<div class="figure" id="TSimple">
+<object data="Sall-jessy.svg" type="image/svg+xml">
+<img alt="an animated Turing machine: link to extended description below" src="S1.svg" />
+</object>
+
+<!--pdf include pdf include-->
+
+<p class="center">
+<span class="figlabel">Figure 2:</span> The dynamics of
+\(T_{\textrm{Simple}}\) graphical representation.
+
+<!--pdf exclude begin-->
+(The animation can be started by clicking on the picture and then
+using the left and right arrows to move through it.)
+
+<!--pdf exclude end-->
+[An
+ <a href="figdesc.html#TSimple">extended description of figure 2</a>
+ is in the supplement.]</p>
+</div>
+
+<p>
+One can also explicitly print the consecutive IDs, using their
+symbolic representations. This results in a so-called state-space
+diagram of the behavior of a Turing machine. So, for
+\(T_{\textrm{Simple}}\) we get (Note that \(\overline{0}\) means the
+infinite repetition of 0s):</p> 
+\[\begin{matrix}
+\overline{0}q_1{\bf 0}\overline{0}\\
+ \overline{0}{\color{blue} 0}q_2{\bf 0}\overline{0}\\
+ \overline{0}{\color{blue}01}q_1{\bf 0}\overline{0}\\
+ \overline{0}{\color{blue}010}q_2{\bf 0}\overline{0}\\
+ \overline{0}{\color{blue}0101}q_1{\bf 0}\overline{0}\\
+ \overline{0}{\color{blue}01010}q_2{\bf 0}\overline{0}\\
+ \vdots 
+\end{matrix}\]
+
+<h2 id="CompTuriMach">2. Computing with Turing Machines</h2>
+
+<p>
+As explained in
+ <a href="#TuriDefi">Sec. 1.1</a>,
+ Turing machines were originally intended to formalize the notion of
+computability in order to tackle a fundamental problem of mathematics.
+Independently of Turing, Emil Post (Post 1936) and
+ <a href="../church/">Alonzo Church</a>
+ (Church 1936) gave a different but logically equivalent formulation
+(see
+ <a href="#AlteHistModeComp">Sec. 4</a>).
+ Today, most computer scientists agree that Turing&rsquo;s, or any
+other logically equivalent, formal notion captures <em>all</em>
+computable problems, viz. it is assumed that for any computable
+problem, there exists a Turing machine which computes it. This is
+known as the <em>Church-Turing thesis</em>, <em>Turing&rsquo;s
+thesis</em> (when the reference is only to Turing&rsquo;s work) or
+<em>Church&rsquo;s thesis</em> (when the reference is only to
+Church&rsquo;s work). Note that this does not say anything about the
+many basic
+ <a href="../logic-intensional/">intensional differences</a>
+ between the broad variety of computationally equivalent formal
+devices that have been developed since Turing&rsquo;s time. That is,
+computability here is interpreted extensionally (what can be computed)
+and not in an operational manner (how it is being computed) (Martini
+2020).</p>
+
+<p>
+The thesis implies that, if accepted, any problem not computable by a
+Turing machine is not computable by any finite means whatsoever.
+Indeed, since it was Turing&rsquo;s ambition to capture &ldquo;[all]
+the possible processes which can be carried out in computing a
+number&rdquo; (Turing 1936&ndash;7: 249), it follows that, if we
+accept Turing&rsquo;s analysis:</p>
+
+<ul>
+
+<li>Any problem not computable by a Turing machine is not
+&ldquo;computable&rdquo; in the absolute sense (at least, absolute
+relative to humans, see
+ <a href="#PhilIssuRelaTuriMach">Section 3</a>).</li>
+ 
+<li>For any problem that we believe is computable, we should be able
+to construct a Turing machine which computes it. To put it in
+Turing&rsquo;s wording:
+
+<blockquote>
+It is my contention that [the] operations [of a computing machine]
+include all those which are used in the computation of a number.
+(Turing 1936&ndash;7: 231)
+</blockquote> </li>
+</ul>
+
+<p>
+In this section, examples will be given which illustrate the
+computational power and boundaries of the Turing machine model.
+Section 3 then discusses some philosophical implications related to
+Turing&rsquo;s thesis with respect to the Turing machine model.</p>
+
+<h3 id="SomeSimpExam">2.1 Some (Simple) Examples</h3>
+
+<p>
+In order to speak about a Turing machine that does something useful
+from the human perspective, we will have to provide an interpretation
+of the symbols recorded on the tape. For example, if we want to design
+a machine which will compute some mathematical function, addition say,
+then we will need to describe how to interpret the ones and zeros
+appearing on the tape as numbers.</p>
+
+<p>
+In the examples that follow we will represent the number <em>n</em> as
+a block of \(n+1\) copies of the symbol &lsquo;1&rsquo; on the tape.
+Thus we will represent the number 0 as a single &lsquo;1&rsquo; and
+the number 3 as a block of four &lsquo;1&rsquo;s. This is called
+<em>unary notation</em>.</p>
+
+<p>
+We will also have to make some assumptions about the configuration of
+the tape when the machine is started, and when it finishes, in order
+to interpret the computation. We will assume that if the function to
+be computed requires <em>n</em> arguments, then the Turing machine
+will start with its head scanning the leftmost &lsquo;1&rsquo; of a
+sequence of <em>n</em> blocks of &lsquo;1&rsquo;s. The blocks of
+&lsquo;1&rsquo;s representing the arguments must be separated by a
+single occurrence of the symbol &lsquo;0&rsquo;. For example, to
+compute the sum \(3+4\), a Turing machine will start in the
+configuration shown in
+ <a href="#Initial">Figure 3</a>.</p>
+ 
+<div class="figure" id="Initial">
+<img alt="a Turing machine: link to extended description below" src="Initial.svg" />
+
+<p class="center">
+<span class="figlabel">Figure 3:</span> Initial configuration for a
+computation over two numbers <em>n</em> and <em>m</em>. [An
+ <a href="figdesc.html#Initial">extended description of figure 3</a>
+ is in the supplement.]</p>
+</div>
+
+<p>
+Here the supposed addition machine takes two arguments representing
+the numbers to be added, starting at the leftmost 1 of the first
+argument. The arguments are separated by a single 0 as required, and
+the first block contains four &lsquo;1&rsquo;s, representing the
+number 3, and the second contains five &lsquo;1&rsquo;s, representing
+the number 4.</p>
+
+<p>
+A machine must finish in standard configuration too. There must be a
+single block of symbols (a sequence of 1s representing some number or
+a symbol representing another kind of output) and the machine must be
+scanning the leftmost symbol of that sequence. If the machine
+correctly computes the function then this block must represent the
+correct answer.</p>
+
+<h5 id="addition-of-two-numbers-n-and-m">Addition of two numbers <em>n</em> and <em>m</em></h5>
+
+<p>
+
+ <a href="#add_simple">Table 4</a>
+ gives the transition table of a Turing machine \(T_{\textrm{Add}_2}\)
+which adds two natural numbers <em>n</em> and <em>m</em>. We assume
+the machine starts in state \(q_1\) scanning the leftmost 1 of the
+\(n+1\) 1s representing <em>n</em>.</p>
+
+<div class="figure avoid-break" id="add_simple">
+
+<p class="center">
+<span class="figlabel">Table 4:</span> Transition table for
+\(T_{\textrm{Add}_2}\)</p>
+
+<table class="cell-left cellpad-med-dense nocaption two-rules">
+<tbody>
+<tr>
+  <td>&nbsp;</td>
+  <td style="text-align:center">0</td>
+  <td style="text-align:center">1</td> </tr>
+<tr>
+  <td>\(q_1\)</td>
+  <td>/</td>
+  <td>\(0\opR q_2\)</td> </tr>
+<tr>
+  <td>\(q_2\)</td>
+  <td>\(1\opR q_3\)</td>
+  <td>\(1\opR q_2\)</td> </tr>
+<tr>
+  <td>\(q_3\)</td>
+  <td>\(0\opR q_{4}\)</td>
+  <td>\(1\opL q_3\)</td> </tr>
+<tr>
+  <td>\(q_4\)</td>
+  <td>\(/\)</td>
+  <td>\(0\opR q_{\textrm{halt}}\)</td> </tr> </tbody>
+</table>
+</div>
+
+<p>
+The idea of doing an addition with Turing machines when using unary
+representation is to shift the leftmost number <em>n</em> one square
+to the right. This is achieved by erasing the leftmost 1 of the \(n
++1\) 1s (this is done in state \(q_1\)) and then setting the 0 between
+the \(n+1\) and \(m+1\) 1s to 1 (state \(q_2\)). We then have \(n + m
++ 2\) 1s on the tape and so we still need to erase one additional 1.
+This is done by erasing the leftmost 1 (states \(q_3\) and \(q_4\)).
+ <a href="#animated_simpleadd">Figure 4</a>
+ shows this computation for \(3 + 4\).</p>
+
+<div class="figure" id="animated_simpleadd">
+<object data="tmall-jessy.svg" type="image/svg+xml">
+<img alt="an animated Turing machine: link to extended description below " src="tm1.svg" />
+</object>
+
+<!--pdf include pdf include-->
+
+<p class="center">
+<span class="figlabel">Figure 4:</span> The computation of \(3+4\) by
+\(T_{\textrm{Add}_2}\)
+
+<!--pdf exclude begin-->
+(The animation can be started by clicking on the picture and then
+using the left and right arrows to move through it.) A full
+simulation, with the possibility of changing the input and the
+behavior, can be found
+ <a href="https://www.turingmachine.io/?import-gist=9d3685d569594da278897b7c1f1f488c">here</a>
+ 
+<!--pdf exclude end-->
+[An
+ <a href="figdesc.html#animated_simpleadd">extended description of figure 4</a>
+ is in the supplement.]</p>
+</div>
+
+<h5 id="addition-of-n-numbers">Addition of <em>n</em> numbers</h5>
+
+<p>
+We can generalize \(T_{\textrm{Add}_2}\) to a Turing machine
+\(T_{\textrm{Add}_i}\) for the addition of an arbitrary number
+<em>i</em> of integers \(n_1, n_2,\ldots, n_j\). We assume again that
+the machine starts in state \(q_1\) scanning the leftmost 1 of
+\(n_1+1\) 1s. The transition table for such a machine
+\(T_{\textrm{Add}_i}\) is given in
+ <a href="#table_add">Table 5</a>.</p>
+ 
+<div class="figure avoid-break" id="table_add">
+
+<p class="center">
+<span class="figlabel">Table 5:</span> Transition table for
+\(T_{\textrm{Add}_i}\)</p>
+
+<table class="cell-left cellpad-med-dense nocaption two-rules">
+<tbody>
+<tr>
+  <td>&nbsp;</td>
+  <td style="text-align:center">0</td>
+  <td style="text-align:center">1</td> </tr>
+<tr>
+  <td>\(q_1\)</td>
+  <td>/</td>
+  <td>\(0\opR q_2\)</td> </tr>
+<tr>
+  <td>\(q_2\)</td>
+  <td>\(1\opR q_3\)</td>
+  <td>\(1\opR q_2\)</td> </tr>
+<tr>
+  <td>\(q_3\)</td>
+  <td>\(0\opL q_{6}\)</td>
+  <td>\(1\opL q_4\)</td> </tr>
+<tr>
+  <td>\(q_4\)</td>
+  <td>\(0\opR q_5\)</td>
+  <td>\(1\opL q_4\)</td> </tr>
+<tr>
+  <td>\(q_5\)</td>
+  <td>/</td>
+  <td>\(0\opR q_1\)</td> </tr>
+<tr>
+  <td>\(q_6\)</td>
+  <td>\(0\opR q_{\textrm{halt}}\)</td>
+  <td>\(1\opL q_6\)</td> </tr> </tbody>
+</table>
+</div>
+
+<p>
+The machine \(T_{\textrm{Add}_i}\) uses the principle of shifting the
+addends to the right which was also used for \(T_{\textrm{Add}_2}\).
+More particularly, \(T_{add_i}\) computes the sum of \(n_1 + 1\),
+\(n_2 + 1\),&hellip; \(n_i+1\) from left to right, viz. it computes
+this sum as follows:</p> 
+\[\begin{align}
+N_1 &amp; = n_1 + n_2 + 1\\
+ N_2 &amp; = N_1 + n_3 \\
+ N_3 &amp;= N_2 + n_4\\
+ &amp;\vdots\\
+ N_i &amp;= N_{i-1} + n_i + 1 
+\end{align} \]
+
+<p>
+The most important difference between \(T_{\textrm{Add}_2}\) and
+\(T_{\textrm{Add}_i}\) is that \(T_{\textrm{Add}_i}\) needs to verify
+if the leftmost addend \(N_j, 1 &lt; j \leq i\) is equal to \(N_i\).
+This is achieved by checking whether the first 0 to the right of
+\(N_j\) is followed by another 0 or not (states \(q_2\) and \(q_3\)).
+If it is not the case, then there is at least one more addend
+\(n_{j+1}\) to be added. Note that, as was the case for
+\(T_{\textrm{Add}_2}\), the machine needs to erase an additional one
+from the addend \(n_{j+1}\) which is done via state \(q_5\). It then
+moves back to state \(q_1\). If, on the other hand, \(N_j = N_i\), the
+machine moves to the leftmost 1 of \(N_i = n_1 + n_2 + \ldots + n_i +
+1 \) and halts. A full simulation, with the possibility of changing
+the input and the behavior of \(T_{\textrm{Add}_i}\), can be accessed
+ <a href="https://www.turingmachine.io/?import-gist=35df4f570d9c971f958a5314089d28b9">here</a>
+ </p>
+
+<h3 id="CompNumbProb">2.2 Computable Numbers and Decision Problems</h3>
+
+<p>
+Turing&rsquo;s original paper is concerned with <em>computable (real)
+numbers</em>. A (real) number is Turing computable if there exists a
+Turing machine which computes an arbitrarily precise approximation to
+that number. All of the algebraic numbers (roots of polynomials with
+algebraic coefficients) and many transcendental mathematical
+constants, such as <em>e</em> and \(\pi\) are Turing-computable.
+Turing gave several examples of classes of numbers computable by
+Turing machines as a heuristic argument showing that a wide diversity
+of classes of numbers can be computed by Turing machines (see section
+10 <em>Examples of large classes of numbers which are computable</em>
+in Turing 1936&ndash;7).</p>
+
+<p>
+One might wonder however in what sense computation with numbers, viz.
+calculation, captures <em>non-numerical</em> but computable problems
+and so how Turing machines are supposed to capture <em>all</em>
+general and effective procedures which determine whether something is
+the case or not. Examples of such problems are:</p>
+
+<ul>
+
+<li>&ldquo;decide for any given <em>x</em> whether or not <em>x</em>
+denotes a prime&rdquo;</li>
+
+<li>&ldquo;decide for any given <em>x</em> whether or not <em>x</em>
+is the description of a Turing machine&rdquo;.</li>
+</ul>
+
+<p>
+In general, these problems are of the form:</p>
+
+<ul>
+
+<li>&ldquo;decide for any given <em>x</em> whether or not <em>x</em>
+has property <em>X</em>&rdquo;</li>
+</ul>
+
+<p>
+An important challenge of both theoretical and concrete advances in
+computing (often at the interface with other disciplines) has become
+the problem of providing an interpretation of <em>X</em> such that it
+can be tackled computationally. To give just one concrete example, in
+daily computational practices it might be important to have a method
+to decide for any digital &ldquo;source&rdquo; whether or not it can
+be trusted and so one needs a computational interpretation of
+trust.</p>
+
+<p>
+The <em>characteristic function</em> of a predicate is a function
+which has the value TRUE or FALSE when given appropriate arguments. In
+order for such functions to be computable, Turing relied on
+G&ouml;del&rsquo;s insight that these kind of problems can be encoded
+as a problem about numbers (See
+ <a href="../goedel-incompleteness/">G&ouml;del&rsquo;s incompleteness theorem</a>
+ and the next
+ <a href="#InteProgBehaBasiSetFunc">Sec. 2.3</a>)
+ In Turing&rsquo;s wording:</p>
+
+<blockquote>
+
+<p>
+The expression &ldquo;there is a general process for determining
+&hellip;&rdquo; has been used [here] [&hellip;] as equivalent to
+&ldquo;there is a machine which will determine &hellip;&rdquo;. This
+usage can be justified if and only if we can justify our definition of
+&ldquo;computable&rdquo;. For each of these &ldquo;general
+process&rdquo; problems can be expressed as a problem concerning a
+general process for determining whether a given integer <em>n</em> has
+a property \(G(n)\) [e.g. \(G(n)\) might mean &ldquo;<em>n</em> is
+satisfactory&rdquo; or &ldquo;<em>n</em> is the G&ouml;del
+representation of a provable formula&rdquo;], and this is equivalent
+to computing a number whose <em>n</em>-th figure is 1 if \(G(n)\) is
+true and 0 if it is false. (1936&ndash;7: 248)</p>
+</blockquote>
+
+<p>
+It is the possibility of coding the &ldquo;general process&rdquo;
+problems as numerical problems that is essential to Turing&rsquo;s
+construction of the universal Turing machine and its use within a
+proof that shows there are problems that cannot be computed by a
+Turing machine.</p>
+
+<h3 id="TuriUnivMach">2.3 Turing&rsquo;s Universal Machine</h3>
+
+<p>
+The universal Turing machine which was constructed to prove the
+uncomputability of certain problems, is, roughly speaking, a Turing
+machine that is able to compute what any other Turing machine
+computes. Assuming that the Turing machine notion fully captures
+computability (and so that Turing&rsquo;s thesis is valid), it is
+implied that anything which can be &ldquo;computed&rdquo;, can also be
+computed by that one universal machine. Conversely, any problem that
+is not computable by the universal machine is considered to be
+uncomputable.</p>
+
+<p>
+This is the rhetorical and theoretical power of the universal machine
+concept, viz. that one relatively simple formal device captures all
+&ldquo;<em>the possible processes which can be carried out in
+computing a number</em>&rdquo; (Turing 1936&ndash;7). It is also one
+of the main reasons why Turing has been <em>retrospectively</em>
+identified as one of the founding fathers of computer science (see
+ <a href="#ImpaTuriMachCompScie">Section 5</a>).</p>
+ 
+<p>
+So how to construct a universal machine <em>U</em> out of the set of
+basic operations we have at our disposal? Turing&rsquo;s approach is
+the construction of a machine <em>U</em> which is able to (1)
+&lsquo;interpret&rsquo; the program of <em>any</em> other machine
+\(T_{n}\) and, based on that &ldquo;interpretation&rdquo;, (2)
+&lsquo;mimic&rsquo; the behavior of \(T_{n}\). To this end, a method
+is needed so that the program and the behavior of \(T_n\) are, to a
+certain extend, interchangeable since both aspects are to be
+manipulated on the same tape and by the same machine. This is achieved
+by Turing in two basic steps: the development of (1) a notational
+method and (2) a set of elementary functions which treats that
+notation&mdash;independent of whether it is formalizing the program or
+the behavior of \(T_n\)&mdash;as text to be compared, copied down,
+erased, etc. In other words, Turing develops a technique that allows
+to treat program and behavior of a Turing machine on the same
+level.</p>
+
+<h4 id="InteProgBehaNota">2.3.1 Interchangeability of program and behavior: a notation</h4>
+
+<p>
+Given some machine \(T_n\), Turing&rsquo;s basic idea is to construct
+a machine \(T_n'\) which, rather than directly printing the output of
+\(T_n\), prints out the successive complete configurations or
+instantaneous descriptions of \(T_n\). In order to achieve this,
+\(T_n'\):</p>
+
+<blockquote>
+
+<p>
+[&hellip;] could be made to depend on having the rules of operation
+[&hellip;] of [\(T_n\)] written somewhere within itself [&hellip;]
+each step could be carried out by referring to these rules. (Turing
+1936&ndash;7: 242)</p>
+</blockquote>
+
+<p>
+In other words, \(T_n'\) prints out the successive complete
+configurations of \(T_n\) by having the program of \(T_n\) written on
+its tape. Thus, Turing needs a notational method which makes it
+possible to &lsquo;capture&rsquo; two different aspects of a Turing
+machine on one and the same tape in such a way they can be treated
+<em>by the same machine</em>, viz.:</p>
+
+<ul class="sentag tag2em">
+
+<li><span class="tag">(1)</span><span class="sen"> its description in
+terms of <em>what it should do</em>&mdash;the quintuple
+notation</span></li>
+
+<li><span class="tag">(2)</span><span class="sen"> its description in
+terms of <em>what it is doing</em>&mdash;the complete configuration
+notation</span></li>
+</ul>
+
+<p>
+Thus, a first and perhaps most essential step, in the construction of
+<em>U</em> are the quintuple and complete configuration notation and
+the idea of putting them on the same tape. More particularly, the tape
+is divided into two regions which we will call the <em>A</em> and
+<em>B</em> region here. The <em>A</em> region contains a notation of
+the &lsquo;program&rsquo; of \(T_n\) and the <em>B</em> region a
+notation for the successive complete configurations of \(T_n\). In
+Turing&rsquo;s paper they are separated by an additional symbol
+&ldquo;::&rdquo;.</p>
+
+<p>
+To simplify the construction of <em>U</em> and in order to encode any
+Turing machine as a unique number, Turing develops a third notation
+which permits to express the quintuples and complete configurations
+with letters only. This is determined by [Note that we use
+Turing&rsquo;s original encoding. Of course, there is a broad variety
+of possible encodings, including binary encodings]:</p>
+
+<ul>
+
+<li>Replacing each state \(q_i\) in a quintuple of \(T_n\) by
+
+\[D\underbrace{A\ldots A}_i,\]
+ so, for instance \(q_3\) becomes \(DAAA\).</li>
+
+<li>Replacing each symbol \(S_{j}\) in a quintuple of \(T_n\) by
+
+\[D\underbrace{C\ldots C}_j,\]
+ so, for instance, \(S_1\) becomes \(DC\).</li>
+</ul>
+
+<p>
+Using this method, each quintuple of some Turing machine \(T_n\) can
+be expressed in terms of a sequence of capital letters and so the
+&lsquo;program&rsquo; of any machine \(T_{n}\) can be expressed by the
+set of symbols <em>A, C, D, R, L, N</em> and ;. This is the so-called
+<em>Standard Description</em> (S.D.) of a Turing machine. Thus, for
+instance, the S.D. of \(T_{\textrm{Simple}}\) is:</p> <!-- \label{p_simple}-->
+
+<div class="figure" style="margin-bottom: 10px; letter-spacing: .2ex; word-break: break-all">
+;<em>DADDRDAA</em>;<em>DADCDRDAA</em>;<em>DAADDCRDA</em>;<em>DAADCDCRDA</em>
+</div>
+
+<p>
+This is, essentially, Turing&rsquo;s version of
+ <a href="https://plato.stanford.edu/entries/goedel-incompleteness/sup1.html">G&ouml;del numbering</a>.
+ Indeed, as Turing shows, one can easily get a numerical description
+representation or <em>Description Number</em> (D.N.) of a Turing
+machine \(T_{n}\) by replacing:</p>
+
+<ul>
+
+<li>&ldquo;A&rdquo; by &ldquo;1&rdquo;</li>
+
+<li>&ldquo;C&rdquo; by &ldquo;2&rdquo;</li>
+
+<li>&ldquo;D&rdquo; by &ldquo;3&rdquo;</li>
+
+<li>&ldquo;L&rdquo; by &ldquo;4&rdquo;</li>
+
+<li>&ldquo;R&rdquo; by &ldquo;5&rdquo;</li>
+
+<li>&ldquo;N&rdquo; by &ldquo;6&rdquo;</li>
+
+<li>&ldquo;;&rdquo; by &ldquo;7&rdquo;</li>
+</ul>
+
+<p>
+Thus, the D.N. of \(T_{\textrm{Simple}}\) is:</p>
+
+<div class="figure" style="margin-bottom: 10px; letter-spacing: .2ex; word-break: break-all">
+7313353117313135311731133153173113131531
+</div>
+
+<p>
+Note that every machine \(T_n\) has a unique D.N.; a D.N. represents
+one and one machine only.</p>
+
+<p>
+Clearly, the method used to determine the \(S.D.\) of some machine
+\(T_n\) can also be used to write out the successive complete
+configurations of \(T_n\). Using &ldquo;:&rdquo; as a separator
+between successive complete configurations, the first few complete
+configurations of \(T_{\textrm{Simple}}\) are:</p> <!-- \label{CC_simple} -->
+
+<div class="figure" style="margin-bottom: 10px; letter-spacing: .2ex; word-break: break-all">
+:<em>DAD</em>:<em>DDAAD</em>:<em>DDCDAD</em>:<em>DDCDDAAD</em>:<em>DDCDDCDAD</em>
+</div>
+
+<h4 id="InteProgBehaBasiSetFunc">2.3.2 Interchangeability of program and behavior: a basic set of functions</h4>
+
+<p>
+Having a notational method to write the program and successive
+complete configurations of some machine \(T_n\) on one and the same
+tape of some other machine \(T_n'\) is the first step in
+Turing&rsquo;s construction of <em>U</em>. However, <em>U</em> should
+also be able to &ldquo;emulate&rdquo; the program of \(T_n\) as
+written in region <em>A</em> so that it can actually write out its
+successive complete configurations in region <em>B</em>. Moreover it
+should be possible to &ldquo;take out and exchange[&hellip;] [the
+rules of operations of some Turing machine] for others&rdquo; (Turing
+1936&ndash;7: 242). Viz., it should be able not just to calculate but
+also to compute. It should, for instance, be able to
+&ldquo;recognize&rdquo; whether it is in region <em>A</em> or
+<em>B</em> and it should be able to determine whether or not a certain
+sequence of symbols is the next state \(q_i\) which needs to be
+executed.</p>
+
+<p>
+This is achieved by Turing through the construction of a sequence of
+Turing computable problems such as:</p>
+
+<ul>
+
+<li>Finding the leftmost or rightmost occurrence of a sequence of
+symbols</li>
+
+<li>Marking a sequence of symbols by some symbol \(a\) (remember that
+Turing uses two kinds of alternating squares)</li>
+
+<li>Comparing two symbol sequences</li>
+
+<li>Copying a symbol sequence</li>
+</ul>
+
+<p>
+Turing develops a notational technique, called <em>skeleton
+tables</em>, for these functions which serves as a kind of shorthand
+notation for a complete Turing machine table but can be easily used to
+construct more complicated machines from previous ones. The technique
+is quite reminiscent of the recursive technique of composition (see:
+ <a href="../recursive-functions/">recursive functions</a>).</p>
+ 
+<p>
+To illustrate how such functions are Turing computable, we discuss one
+such function in more detail, viz. the compare function. It is
+constructed on the basis of a number of other Turing computable
+functions which are built on top of one another. In order to
+understand how these functions work, remember that Turing used a
+system of alternating <em>F</em> and <em>E</em>-squares where the
+<em>F</em>-squares contain the actual quintuples and complete
+configurations and the <em>E</em>-squares are used to mark off certain
+parts of the machine tape. For the comparing then of two sequences of
+symbols \(W_1\) and \(W_2\), each symbol of \(W_1\) will be marked by
+some symbol \(a\) and each symbol of \(W_2\) will be marked by some
+symbol <em>b</em>.</p>
+
+<p>
+Turing defined nine different functions to show how the compare
+function can be computed with Turing machines:</p>
+
+<ul>
+
+<li>FIND\((q_{i}, q_{j},a)\): this machine function searches for the
+leftmost occurrence of \(a\). If \(a\) is found, the machine moves to
+state \(q_{i}\) else it moves to state \(q_{j}\). This is achieved by
+having the machine first move to the beginning of the tape (indicated
+by a special mark) and then to have it move right until it finds \(a\)
+or reaches the rightmost symbol on the tape.</li>
+
+<li>FINDL\((q_{i}, q_{j},a)\): the same as FIND but after \(a\) has
+been found, the machine moves one square to the left. This is used in
+functions which need to compute on the symbols in <em>F</em>-squares
+which are marked by symbols \(a\) in the <em>E</em>-squares.</li>
+
+<li>ERASE\((q_{i},q_{j},a)\): the machine computes FIND. If \(a\) is
+found, it erases \(a\) and goes to state \(q_{i}\) else it goes to
+state \(q_{j}.\)</li>
+
+<li>ERASE_ALL\((q_j,a) = \textrm{ERASE}(\textrm{ERASE}\_\textrm{ALL},
+q_j,a)\): the machines computes ERASE on \(a\) repeatedly until all
+\(a\)&rsquo;s have been erased. Then it moves to \(q_{j}.\)</li>
+
+<li>EQUAL\((q_i,q_j,a)\): the machine checks whether or not the
+current symbol is \(a\). If yes, it moves to state \(q_i\) else it
+moves to state \(q_j.\)</li>
+
+<li>CMP_XY\((q_i,q_j,b) = \textrm{FINDL(EQUAL}(q_i,q_j,x), q_j, b)\):
+whatever the current symbol <em>x</em>, the machine computes FINDL on
+<em>b</em> (and so looks for the symbol marked by <em>b</em>). If
+there is a symbol <em>y</em> marked with <em>b</em>, the machine
+computes \(\textrm{EQUAL}\) on <em>x</em> and <em>y</em>, else, the
+machine goes to state \(q_j\). In other words, CMP_XY\((q_i,q_j,b)\)
+compares whether the current symbol is the same as the leftmost symbol
+marked <em>b</em>.</li>
+
+<li>COMPARE_MARKED\((q_i,q_j,q_n,a,b)\): the machine checks whether
+the leftmost symbols marked \(a\) and <em>b</em> respectively are the
+same. If there is no symbol marked \(a\) nor <em>b</em>, the machine
+goes to state \(q_{n}\); if there is a symbol marked \(a\) and one
+marked <em>b</em> and they are the same, the machine goes to state
+\(q_i\), else the machine goes to state \(q_j\). The function is
+computed as \(\textrm{FINDL(CMP}\_XY(q_i,q_j,b),
+\textrm{FIND}(q_j,q_n,b),a).\)</li>
+
+<li>\(\textrm{COMPARE}\_\textrm{ERASE}(q_iq_j,q_n,a,b)\): the same as
+COMPARE_MARKED but when the symbols marked \(a\) and <em>b</em> are
+the same, the marks \(a\) and <em>b</em> are erased. This is achieved
+by computing \(\textrm{ERASE}\) first on \(a\) and then on
+<em>b</em>.</li>
+
+<li>\(\textrm{COMPARE}\_\textrm{ALL}(q_j,q_n,a,b)\) The machine
+compares the sequences <em>A</em> and <em>B</em> marked with \(a\) and
+<em>b</em> respectively. This is done by repeatedly computing
+COMPARE_ERASE on \(a\) and <em>b</em>. If <em>A</em> and <em>B</em>
+are equal, all \(a\)&rsquo;s and <em>b</em>&rsquo;s will have been
+erased and the machine moves to state \(q_j\), else, it will move to
+state \(q_n\). It is computed by 
+\[\textrm{COMPARE}\_\textrm{ERASE}(\textrm{COMPARE}\_\textrm{ALL}(q_j,q_n,a,b),q_j,q_n,a,b)\]
+
+<p>
+and so by recursively calling \(\textrm{COMPARE}\_\textrm{ALL}\).</p>
+</li>
+</ul>
+
+<p>
+In a similar manner, Turing defines the following functions:</p>
+
+<ul>
+
+<li>\(\textrm{COPY}(q_i,a)\): copy the sequence of symbols marked with
+\(a\)&rsquo;s to the right of the last complete configuration and
+erase the marks.</li>
+
+<li>\(\textrm{COPY}_{n}(q_i, a_1,a_2,\ldots ,a_n)\): copy down the
+sequences marked \(a_1\) to \(a_n\) to the right of the last complete
+configuration and erase all marks \(a_i.\)</li>
+
+<li>\(\textrm{REPLACE}(q_i, a,b)\): replace all letters \(a\) by
+\(b.\)</li>
+
+<li>\(\textrm{MARK}\_\textrm{NEXT}\_\textrm{CONFIG}(q_i,a) \): mark
+the first configuration \(q_iS_j\) to the right of the machine&rsquo;s
+head with the letter \(a.\)</li>
+
+<li>\(\textrm{FIND}\_\textrm{RIGHT}(q_i,a)\): find the rightmost
+symbol \(a.\)</li>
+</ul>
+
+<p>
+Using the basic functions COPY, REPLACE and COMPARE, Turing constructs
+a universal Turing machine.</p>
+
+<p>
+Below is an outline of the universal Turing machine indicating how
+these basic functions indeed allow for the construction of a Turing
+machine which can emulate the behavior of any other Turing machine. It
+is assumed that upon initialization, <em>U</em> has on its tape the
+S.D. of some Turing machine \(T_n\). Remember that Turing uses the
+system of alternating <em>F</em> and <em>E</em>-squares and so, for
+instance, the S.D. of \(T_{\textrm{Simple}}\) will be written on the
+tape of <em>U</em> as:</p>
+
+<div class="figure" style="margin-bottom: 10px; letter-spacing: .2ex; word-break: break-all">
+;_<em>D</em>_<em>A</em>_<em>D</em>_<em>D</em>_<em>R</em>_<em>D</em>_<em>A</em>_<em>A</em>_<em>;</em>_<em>D</em>_<em>A</em>_<em>D</em>_<em>C</em>_<em>D</em>_<em>R</em>_<em>D</em>_<em>A</em>_<em>A</em>_<em>;</em>_<em>D</em>_<em>A</em>_<em>A</em>_<em>D</em>_<em>D</em>_<em>C</em>_<em>R</em>_<em>D</em>_<em>A</em>_<em>;</em>_<em>D</em>_<em>A</em>_<em>A</em>_<em>D</em>_<em>C</em>_<em>D</em>_<em>C</em>_<em>R</em>_<em>D</em>_<em>A</em>_
+</div>
+
+<p>
+where &ldquo;_&rdquo; indicates an unmarked <em>E</em>-square.</p>
+
+<ul>
+
+<li>INIT: To the right of the rightmost quintuple of
+<em>T</em>_<em>n</em>, <em>U</em> prints ::_:_<em>D</em>_<em>A</em>_,
+where _ indicates an unmarked <em>E</em>-square.</li>
+
+<li>
+
+<p>
+FIND_NEXT_STATE: The machine first marks (1) with <em>y</em> the
+configuration \(q_{CC,i}S_{CC,j}\) of the rightmost (and so last)
+complete configuration computed by <em>U</em> in the <em>B</em> part
+of the tape and (2) with <em>x</em> the configuration
+\(q_{q,m}S_{q,n}\) of the leftmost quintuple which is not preceded by
+a marked (with the letter <em>z</em>) semicolon in the <em>A</em> part
+of the tape. The two configurations are compared. If they are
+identical, the machine moves to MARK_OPERATIONS, if not, it marks the
+semicolon preceding \(q_{q,m}S_{q,n}\) with <em>z</em> and goes to
+FIND_NEXT_STATE. This is easily achieved using the function
+COMPARE_ALL which means that, whatever the outcome of the comparison,
+the marks <em>x</em> and <em>y</em> will be erased. For instance,
+suppose that \(T_n = T_{\textrm{Simple}}\) and that the last complete
+configuration of \(T_{\textrm{Simple}}\) as computed by <em>U</em>
+is:</p> 
+\[\tag{1} \label{CC_univ} :\_\underbrace{D\_}_{S_0}\underbrace{D\_C\_}_{S_1}\underbrace{D\_}_{S_0}\textcolor{orange}{\underbrace{D\_A\_A\_}_{q_{2}}\underbrace{D\_}_{S_0}} \]
+
+<p>
+Then <em>U</em> will move to region <em>A</em> and determine that the
+corresponding quintuple is:</p> 
+\[\tag{2}\label{quint_univ} \textcolor{orange}{\underbrace{D\_A\_A\_}_{q_{2}}\underbrace{D\_}_{S_{0}}}\underbrace{D\_C\_}_{S_1}\underbrace{R\_}\underbrace{D\_A\_}_{q_1}\]
+ </li>
+
+<li>
+
+<p>
+MARK_OPERATIONS: The machine <em>U</em> marks the operations that it
+needs to execute in order to compute the next complete configuration
+of \(T_n\). The printing and move (L,R, N) operations are marked with
+<em>u</em> and the next state with <em>y</em>. All marks <em>z</em>
+are erased. Continuing with our example, <em>U</em> will mark
+\(\eqref{quint_univ}\) as follows:</p> 
+\[D\_A\_A\_D\_\textcolor{magenta}{DuCuRu}\textcolor{green}{DyAy}\]
+ </li>
+
+<li>
+
+<p>
+MARK_COMPCONFIG: The last complete configuration of \(T_n\) as
+computed by <em>U</em> is marked into four regions: the configuration
+\(q_{CC,i}S_{CC,j}\) itself is left unmarked; the symbol just
+preceding it is marked with an <em>x</em> and the remaining symbols to
+the left or marked with <em>v</em>. Finally, all symbols to the right,
+if any, are marked with <em>w</em> and a &ldquo;:&rdquo; is printed to
+the right of the rightmost symbol in order to indicate the beginning
+of the next complete configuration of \(T_n\) to be computed by
+<em>U</em>. Continuing with our example, \(\eqref{CC_univ}\) will be
+marked as follows by <em>U</em>:</p> 
+\[\textcolor{red}{\underbrace{Dv}_{S_0}\underbrace{DvCv}_{S_1}}\textcolor{blue}{\underbrace{Dx}_{S_0}}\underbrace{D\_A\_A\_}_{q_2}\underbrace{D\_}_{S_0}:\_\]
+
+<p>
+<em>U</em> then goes to PRINT</p> </li>
+
+<li>PRINT. It is determined if, in the instructions that have been
+marked in MARK_OPERATIONS, there is an operation Print 0 or Print 1.
+If that is the case, \(0:\) respectively \(1:\) is printed to the
+right of the last complete configuration. This is not a necessary
+function but Turing insisted on having <em>U</em> print out not just
+the (coded) complete configurations computed by \(T_n\) but also the
+actual (binary) real number computed by \(T_n\).</li>
+
+<li>
+
+<p>
+PRINT_COMPLETE_CONFIGURATION. <em>U</em> prints the next complete
+configuration and erases all marks <em>u, v, w, x, y</em>. It then
+returns to FIND_NEXT_STATE. <em>U</em> first searches for the
+rightmost letter <em>u</em>, to check which move is needed (<em>R, L,
+N</em>) and erases the mark <em>u</em> for <em>R, L, N</em>. Depending
+on the value <em>L, R</em> or <em>N</em> will then write down the next
+complete configuration by applying COPY\(_5\) to <em>u, v, w, x,
+y</em>. The move operation (<em>L, R, N</em>) is accounted for by the
+particular combination of <em>u, v, w, x, y</em>:</p> 
+\[\begin{array}{ll}
+\textrm{When ~} L: &amp; \textrm{COPY}_5(\textrm{FIND}\_\textrm{NEXT}\_\textrm{STATE}, \textcolor{red}{v},\textcolor{green}{y},\textcolor{blue}{x},\textcolor{magenta}{u},\textcolor{RawSienna}{w})\\
+ \textrm{When ~} R: &amp; \textrm{COPY}_5(\textrm{FIND}\_\textrm{NEXT}\_\textrm{STATE}, \textcolor{red}{v},\textcolor{blue}{x},\textcolor{magenta}{u},\textcolor{green}{y},\textcolor{RawSienna}{w})\\
+ \textrm{When ~} N: &amp; \textrm{COPY}_5(\textrm{FIND}\_\textrm{NEXT}\_\textrm{STATE}, \textcolor{red}{v},\textcolor{blue}{x},\textcolor{green}{y},\textcolor{magenta}{u},\textcolor{RawSienna}{w}) 
+\end{array}\]
+
+<p>
+Following our example, since \(T_{\textrm{Simple}}\) needs to move
+right, the new rightmost complete configursiation of
+\(T_{\textrm{Simple}}\) written on the tape of <em>U</em> is:</p>
+
+\[\textcolor{red}{\underbrace{D\_}_{S_0}\underbrace{D\_C\_}_{S_1}}\textcolor{blue}{\underbrace{D\_}_{S_0}}\textcolor{magenta}{\underbrace{D\_C\_}_{S_1}}\textcolor{green}{\underbrace{D\_A\_}_{q_1}} \]
+
+<p>
+Since we have that for this complete configuration the square being
+scanned by \(T_{\textrm{Simple}}\) is one that was not included in the
+previous complete configuration (viz. \(T_{\textrm{Simple}}\) has
+reached beyond the rightmost previous point) the complete
+configuration as written out by <em>U</em> is in fact incomplete. This
+small defect was corrected by Post (Post 1947) by including an
+additional instruction in the function used to mark the complete
+configuration in the next round.</p> </li>
+</ul>
+
+<p>
+As is clear, Turing&rsquo;s universal machine indeed requires that
+program and &lsquo;data&rsquo; produced by that program are
+manipulated interchangeably, viz. the program and its productions are
+put next to each other and treated in the same manner, as sequences of
+letters to be copied, marked, erased and compared. Therein lies the
+combinatorial and textual character of computability as defined by
+Turing and others (Lass&egrave;gue and Longo 2012). There is nothing
+magical or mysterious about its computation.</p>
+
+<p>
+Turing&rsquo;s particular construction is quite intricate with its
+reliance on the <em>F</em> and <em>E</em>-squares, the use of a rather
+large set of symbols and a rather arcane notation used to describe the
+different functions discussed above. Since 1936 several modifications
+and simplifications have been implemented. The removal of the
+difference between <em>F</em> and <em>E</em>-squares was already
+discussed in
+ <a href="#PostDefi">Section 1.2</a>
+ and it was proven by Shannon that any Turing machine, including the
+universal machine, can be reduced to a binary Turing machine (Shannon
+1956). Since the 1950s, there has been quite some research on what
+could be the smallest possible universal devices (with respect to the
+number of states and symbols) and quite some &ldquo;small&rdquo;
+universal Turing machines have been found. These results are usually
+achieved by relying on other equivalent models of computability such
+as, for instance, tag systems. For a survey on research into small
+universal devices (see Margenstern 2000; Woods &amp; Neary 2009).</p>
+
+<h3 id="HaltProbEnts">2.4 The Halting Problem and the Entscheidungsproblem</h3>
+
+<p>
+As explained, the purpose of Turing&rsquo;s paper was to show that the
+Entscheidungsproblem for first-order logic is not computable. The same
+result was achieved independently by Church (1936a, 1936b) using a
+different kind of formal device which is logically equivalent to a
+Turing machine (see
+ <a href="#AlteHistModeComp">Sec. 4</a>).
+ The result went very much against what Hilbert had hoped to achieve
+with his finitary and formalist program. Indeed, next to
+G&ouml;del&rsquo;s incompleteness results, they broke much of
+Hilbert&rsquo;s dream of making mathematics void of
+<em>Ignorabimus</em> as expressed in the following words of
+Hilbert:</p>
+
+<blockquote>
+
+<p>
+The true reason why Comte could not find an unsolvable problem, lies
+in my opinion in the assertion that there exists no unsolvable
+problem. Instead of the stupid Ignorabimus, our solution should be: We
+must know. We shall know. (1930: 963) [translation by the author]</p>
+</blockquote>
+
+<p>
+Note that the solvability Hilbert is referring to here concerns
+solvability of mathematical problems in general and not just
+mechanically solvable. It is shown however in Mancosu et al. 2009 (p.
+94), that this general aim of solving every mathematical problem,
+underpins two particular convictions of Hilbert namely that (1) the
+axioms of number theory are complete and (2) that there are no
+undecidable problems in mathematics.</p>
+
+<h4 id="DireIndiProoUncoDeciProb">2.4.1 Direct and indirect proofs of uncomputable decision problems</h4>
+
+<p>
+So, how can one show, for a particular decision problem
+\(\textrm{D}_i\), that it is not computable? There are two main
+methods:</p>
+
+<ul class="hanging">
+
+<li><strong>Indirect proof:</strong> take some problem
+\(\textrm{D}_{\textrm{uncomp}}\) which is already known to be
+uncomputable and show that the problem &ldquo;reduces&rdquo; to
+\(\textrm{D}_{i}\).</li>
+
+<li><strong>Direct proof:</strong> prove the uncomputability of
+\(\textrm{D}_{i}\) directly by assuming some version of the
+Church-Turing thesis.</li>
+</ul>
+
+<p>
+Today, one usually relies on the first method while it is evident that
+in the absence of a problem \(\textrm{D}_{\textrm{uncomp}}\), Turing
+but also Church and Post (see
+ <a href="#AlteHistModeComp">Sec. 4</a>)
+ had to rely on the direct approach.</p>
+
+<p>
+The notion of reducibility has its origins in the work of Turing and
+Post who considered several variants (Post 1947; Turing 1939). The
+concept was later appropriated in the context of computational
+complexity theory and is today one of the basic concepts of both
+computability and computational complexity theory (Odifreddi 1989;
+Sipser 1996). Roughly speaking, a reduction of a problem \(D_i\) to a
+problem \(D_j\) comes down to providing an effective procedure for
+translating every instance \(d_{i,m}\) of the problem \(D_i\) to an
+instance \(d_{j,n}\) of \(D_j\) in such a way that an effective
+procedure for solving \(d_{j,n}\) also yields an effective procedure
+for solving \(d_{i,m}\). In other words, if \(D_i\) reduces to \(D_j\)
+then, if \(D_i\) is uncomputable so is \(D_j\). Note that the
+reduction of one problem to another can also be used in decidability
+proofs: if \(D_i\) reduces to \(D_j\) and \(D_j\) is known to be
+computable then so is \(D_i\).</p>
+
+<p>
+In the absence of <strong>D</strong>\(_{\textrm{uncomp}}\) a very
+different approach was required and Church, Post and Turing each used
+more or less the same approach to this end (Gandy 1988). First of all,
+one needs a formalism which captures the notion of computability.
+Turing proposed the Turing machine formalism to this end. A second
+step is to show that there are problems that are not computable within
+the formalism. To achieve this, a uniform process <strong>U</strong>
+needs to be set-up relative to the formalism which is able to compute
+every computable number. One can then use (some form of)
+diagonalization in combination with <strong>U</strong> to derive a
+contradiction. Diagonalization was introduced by Cantor to show that
+the set of real numbers is &ldquo;uncountable&rdquo; or not
+denumerable. A variant of the method was used also by G&ouml;del in
+the proof of his
+ <a href="https://plato.stanford.edu/entries/goedel-incompleteness/sup2.html">first incompleteness theorem</a>.</p>
+ 
+<h4 id="TuriBasiProbCIRCPRINEnts">2.4.2 Turing&rsquo;s basic problem CIRC?, PRINT? and the Entscheidungsproblem</h4>
+
+<p>
+Recall that in Turing&rsquo;s original version of the Turing machine,
+the machines are computing real numbers. This implied that a
+&ldquo;well-behaving&rdquo; Turing machine should in fact never halt
+and print out an infinite sequence of figures. Such machines were
+identified by Turing as <em>circle-free</em>. All other machines are
+called <em>circular machines</em>. A number <em>n</em> which is the
+D.N. of a circle-free machine is called <em>satisfactory</em>.</p>
+
+<p>
+This basic difference is used in Turing&rsquo;s proof of the
+uncomputability of:</p>
+
+<blockquote>
+
+<p>
+<strong>CIRC?</strong> The problem to decide for every number
+<em>n</em> whether or not it is satisfactory</p>
+</blockquote>
+
+<p>
+The proof of the uncomputability of <strong>CIRC?</strong> uses the
+construction of a hypothetical and circle-free machine \(T_{decide}\)
+which computes the diagonal sequence of the set of all computable
+numbers computed by the circle-free machines. Hence, it relies for its
+construction on the universal Turing machine and a hypothetical
+machine that is able to decide <strong>CIRC?</strong> for each number
+<em>n</em> given to it. It is shown that the machine \(T_{decide}\)
+becomes a circular machine when it is provided with its own
+description number, hence the assumption of a machine which is capable
+of solving <strong>CIRC?</strong> must be false.</p>
+
+<p>
+Based on the uncomputability of <strong>CIRC?</strong>, Turing then
+shows that also <strong>PRINT?</strong> is not computable. More
+particularly he shows that if <strong>PRINT?</strong> were to be
+computable, also <strong>CIRC?</strong> would be decidable, viz. he
+rephrases <strong>PRINT?</strong> in such a way that it becomes the
+problem to decide for any machine whether or not it will print an
+infinity of symbols which would amount to deciding
+<strong>CIRC?</strong>.</p>
+
+<p>
+Finally, based on the uncomputability of <strong>PRINT?</strong>
+Turing shows that the Entscheidungsproblem is not decidable. This is
+achieved by showing:</p>
+
+<ol>
+
+<li>how for each Turing machine <em>T</em>, it is possible to
+construct a corresponding formula <strong>T</strong> in first-order
+logic and</li>
+
+<li>if there is a general method for determining whether
+<strong>T</strong> is provable, then there is a general method for
+proving that <em>T</em> will ever print 0. This is the problem
+<strong>PRINT?</strong> and so cannot be decidable (provided we accept
+Turing&rsquo;s thesis).</li>
+</ol>
+
+<p>
+It thus follows from the uncomputability of <strong>PRINT?</strong>,
+that the Entscheidungsproblem is not computable.</p>
+
+<h4 id="HaltProb">2.4.3 The halting problem</h4>
+
+<p>
+Given Turing&rsquo;s focus on computable real numbers, his base
+decision problem is about determining whether or not some Turing
+machine will <em>not</em> halt and so is not quite the same as the
+more well-known halting problem:</p>
+
+<div class="indent">
+
+<ul class="hanging">
+
+<li><strong>HALT?</strong> The problem to decide for every Turing
+machine <em>T</em> whether or not <em>T</em> will halt.</li>
+</ul>
+</div>
+
+<p>
+Note that Turing&rsquo;s problem <strong>PRINT?</strong> is very close
+to <strong>HALT?</strong> (see Davis 1958: Chapter 5, Theorem
+2.3).</p>
+
+<p>
+A popular proof of <strong>HALT?</strong> goes as follows. Assume that
+<strong>HALT?</strong> is computable. Then it should be possible to
+construct a Turing machine which decides, for each machine \(T_i\) and
+some input <em>w</em> for \(T_i\) whether or not \(T_i\) will halt on
+<em>w</em>. Let us call this machine \(T_{H}\). More particularly, we
+have:</p> 
+\[ T_H(T_i,w) = \left\{ \begin{array}{ll}
+\textrm{HALT} &amp; \textrm{if \(T_i\) halts on } w\\
+ \textrm{LOOP} &amp; \textrm{if \(T_i\) loops on } w 
+\end{array} \right. \]
+
+<p>
+We now define a second machine \(T_D\) which relies on the assumption
+that the machine \(T_H\) can be constructed. More particularly, we
+have:</p> 
+\[ T_D(T_i,D.N.~of~ T_i) = \left\{ \begin{array}{ll}
+\textrm{HALT} &amp; \textrm{if \(T_i\) does not halt on its own} \\
+ &amp; \qquad \textrm{description number}\\
+ \textrm{LOOP} &amp; \textrm{if \(T_i\) halts on its own} \\
+ &amp; \qquad \textrm{description number}\\
+ 
+\end{array} \right. \]
+
+<p>
+If we now set \(T_i\) to \(T_D\) we end up with a contradiction: if
+\(T_D\) halts it means that \(T_D\) does not halt and vice versa. A
+popular but quite informal variant of this proof was given by
+Christopher Strachey in the context of programming (Strachey 1965,
+Daylight 2021).</p>
+
+<h3 id="VariTuriMach">2.5 Variations on the Turing machine</h3>
+
+<p>
+As is clear from
+ <a href="#TuriDefi">Sections 1.1</a>
+ and
+ <a href="#PostDefi">1.2</a>,
+ there is a variety of definitions of the Turing machine. One can use
+a quintuple or quadruple notation; one can have different types of
+symbols or just one; one can have a two-way infinite or a one-way
+infinite tape; etc. Several other less obvious modifications have been
+considered and used in the past. These modifications can be of two
+kinds: generalizations or restrictions. These do not result in
+&ldquo;stronger&rdquo; or &ldquo;weaker&rdquo; models. Viz. these
+modified machines compute no more and no less than the Turing
+computable functions. This adds to the robustness of the Turing
+machine definition.</p>
+
+<h5 class="runon" id="binary-machines">Binary machines</h5>
+
+<p>
+In his short 1936 note Post considers machines that either mark or
+unmark a square which means we have only two symbols \(S_0\) and
+\(S_1\) but he did not prove that this formulation captures exactly
+the Turing computable functions. It was Shannon who proved that for
+any Turing machine <em>T</em> with <em>n</em> symbols there is a
+Turing machine with two symbols that simulates <em>T</em> (Shannon
+1956). He also showed that for any Turing machine with <em>m</em>
+states, there is a Turing machine with only two states that simulates
+it.</p>
+
+<h5 id="non-erasing-machines">Non-erasing machines</h5>
+
+<p>
+Non-erasing machines are machines that can only overprint \(S_0\). In
+Moore 1952, it was mentioned that Shannon proved that non-erasing
+machines can compute what any Turing machine computes. This result was
+given in a context of actual digital computers of the 50s which relied
+on punched tape (and so, for which, one cannot erase). Shannon&rsquo;s
+result however remained unpublished. It was Wang who published the
+result (Wang 1957).</p>
+
+<h5 id="non-writing-machines">Non-writing machines</h5>
+
+<p>
+It was shown by Minsky that for every Turing machine there is a
+non-writing Turing machine with two tapes that simulates it (Minsky
+1961, 438&ndash;445)</p>
+
+<h5 id="multiple-tapes">Multiple tapes</h5>
+
+<p>
+Instead of one tape one can consider a Turing machine with multiple
+tapes. This turned out the be very useful in several different
+contexts. For instance, Minsky, used two-tape non-writing Turing
+machines to prove that a certain decision problem defined by Post (the
+decision problem for tag systems) is non-Turing computable (Minsky
+1961). Hartmanis and Stearns then, in their founding paper for
+computational complexity theory, proved that any <em>n</em>-tape
+Turing machine reduces to a single tape Turing machine and so anything
+that can be computed by an <em>n</em>-tape or multitape Turing machine
+can also be computed by a single tape Turing machine, and conversely
+(Hartmanis &amp; Stearns 1965). They used multitape machines because
+they were considered to be closer to actual digital computers.</p>
+
+<h5 id="n-dimensional-turing-machines"><em>n</em>-dimensional Turing machines</h5>
+
+<p>
+Another variant is to consider Turing machines where the tape is not
+one-dimensional but <em>n</em>-dimensional. This variant too reduces
+to the one-dimensional variant.</p>
+
+<h5 id="non-deterministic-machines">Non-deterministic machines</h5>
+
+<p>
+An apparently more radical reformulation of the notion of Turing
+machine is that of non-deterministic Turing machines. As explained in
+ <a href="#TuriDefi">1.1</a>,
+ one fundamental condition of Turing&rsquo;s machines is the so-called
+determinacy condition, viz. the idea that at any given moment, the
+machine&rsquo;s behavior is completely determined by the configuration
+or state it is in and the symbol it is scanning. Next to these, Turing
+also mentions the idea of choice machines for which the next state is
+not completely determined by the state and symbol pair. Instead, some
+external device makes a random choice of what to do next.
+Non-deterministic Turing machines are a kind of choice machines: for
+each state and symbol pair, the non-deterministic machine makes an
+arbitrary choice between a finite (possibly zero) number of states.
+Thus, unlike the computation of a deterministic Turing machine, the
+computation of a non-deterministic machine is a tree of possible
+configuration paths. One way to visualize the computation of a
+non-deterministic Turing machine is that the machine spawns an exact
+copy of itself and the tape for each alternative available transition,
+and each machine continues the computation. If any of the machines
+terminates successfully, then the entire computation terminates and
+inherits that machine&rsquo;s resulting tape. Notice the word
+successfully in the preceding sentence. In this formulation, some
+states are designated as <em>accepting states</em> and when the
+machine terminates in one of these states, then the computation is
+successful, otherwise the computation is unsuccessful and any other
+machines continue in their search for a successful outcome. The
+addition of non-determinism to Turing machines does not alter the
+extent of Turing-computability. Non-determinism was introduced for
+finite automata in the paper, Rabin &amp; Scott 1959, where it is also
+shown that adding non-determinism does not result in more powerful
+automata. Non-deterministic Turing machines are an important model in
+the context of
+ <a href="../computational-complexity/">computational complexity theory</a>.</p>
+ 
+<h5 id="weak-and-semi-weak-machines">Weak and semi-weak machines</h5>
+
+<p>
+Weak Turing machines are machines where some word over the alphabet is
+repeated infinitely often to the left and right of the input.
+Semi-weak machines are machines where some word is repeated infinitely
+often either to the left or right of the input. These machines are
+generalizations of the standard model in which the initial tape
+contains some finite word (possibly nil). They were introduced to
+determine smaller universal machines. Watanabe was the first to define
+a universal semi-weak machine with six states and five symbols
+(Watanabe 1961). Recently, a number of researchers have determined
+several small weak and semi-weak universal Turing machines (e.g.,
+Woods &amp; Neary 2007; Cook 2004)</p>
+
+<p>
+Besides these variants on the Turing machine model, there are variants
+that result in models which capture, in some well-defined sense, more
+than the (Turing)-computable functions. Examples of such models are
+oracle machines (Turing 1939), trial-and-error machines (Putnam 1965),
+infinite-time Turing machines (Hamkins &amp; Lewis 2008) and
+accelerating Turing machines (Copeland 2002). There are various
+reasons for introducing such &ldquo;stronger&rdquo; models. Some are
+well-known models of computability and recursion theory and are used
+in the theory of higher-order recursion and relative computability
+(oracle machines); others, like the accelerating machines, were
+introduced in the context of
+ <a href="../spacetime-supertasks/">supertasks</a>
+ and the idea of providing physical models that &ldquo;compute&rdquo;
+functions which are not Turing-computable. Note however that such
+models do not provide an <em>effective</em> method to solve
+incomputable problems such as the halting problem. Still others were
+introduced to offer elaborations to the notion of computation (think
+of trial-and-error computation) or to provide models that are
+&ldquo;closer&rdquo; to actual computational practices. See also
+ <a href="#HumaMachComp">Sec. 3.1.</a>
+ </p>
+
+<h2 id="PhilIssuRelaTuriMach">3. Philosophical Issues Related to Turing Machines</h2>
+
+<h3 id="HumaMachComp">3.1 Human and Machine Computations</h3>
+
+<p>
+In its original context, Turing&rsquo;s identification between the
+computable numbers and Turing machines was aimed at proving that the
+Entscheidungsproblem is <em>not</em> a computable problem and so is
+not a so-called &ldquo;general process&rdquo; problem (Turing
+1936&ndash;7: 248). The basic assumption to be made for this result to
+be valid is that our &ldquo;intuitive&rdquo; notion of computability
+can be formally defined as Turing computability and so that there are
+no &ldquo;computable&rdquo; problems that are not Turing computable.
+But what was Turing&rsquo;s &ldquo;intuitive&rdquo; notion of
+computability and how can we be sure that it really covers all
+computable problems, and, more generally, all kinds of computations?
+This is a very basic question in the
+ <a href="../computer-science/">philosophy of computer science</a>.</p>
+ 
+<p>
+At the time Turing was writing his paper, the modern computer was not
+developed yet and so rephrasings of Turing&rsquo;s thesis which
+identify Turing computability with computability by a modern computer
+are interpretations rather than historically correct statements of
+Turing&rsquo;s thesis. The existing computing machines at the time
+Turing wrote his paper, such as the differential analyzer or desk
+calculators, were quite restricted in what they could compute and were
+used in a context of human computational practices (Grier 2007). It is
+thus not surprising that Turing did not attempt to formalize machine
+computation but rather human computation and so computable problems in
+Turing&rsquo;s paper become computable by human means. This is very
+explicit in Section 9 of Turing 1936&ndash;7 where he shows that
+Turing machines are a &lsquo;natural&rsquo; model of (human)
+computation by analyzing the process of human computation. The
+analysis results in a kind of abstract human &lsquo;computor&rsquo;
+who fulfills a set of different conditions that are rooted in
+Turing&rsquo;s recognition of a set of human limitations which
+restrict what we can compute (of our sensory apparatus but also of our
+mental apparatus). This &lsquo;computor&rsquo; computes (real) numbers
+on an infinite one-dimensional tape divided into squares [Note: Turing
+assumed that the reduction of the 2-dimensional character of the paper
+a human mathematician usually works on &ldquo;is not essential of
+computation&rdquo; (Turing 1936&ndash;7: 249)]. It has the following
+restrictions (Gandy 1988; Sieg 1994):</p>
+
+<ul class="hanging">
+
+<li><strong>Determinacy condition D</strong> &ldquo;The behaviour of
+the computer at any moment is determined by the symbols which they are
+observing and his &lsquo;state of mind&rsquo; at that moment.&rdquo;
+(Turing 1936&ndash;7: 250)</li>
+
+<li><strong>Boundedness condition B1</strong> &ldquo;there is a bound
+B to the number of symbols or squares which the computer can observe
+at one moment. If they wish to observe more, they must use successive
+observations.&rdquo; (Turing 1936&ndash;7: 250)</li>
+
+<li><strong>Boundedness condition B2</strong> &ldquo;the number of
+states of mind which need be taken into account is finite&rdquo;
+(Turing 1936&ndash;7: 250)</li>
+
+<li><strong>Locality condition L1</strong> &ldquo;We may [&hellip;]
+assume that the squares whose symbols are changed are always
+&lsquo;observed&rsquo; squares.&rdquo; (Turing 1936&ndash;7: 250)</li>
+
+<li><strong>Locality condition L2</strong> &ldquo;each of the new
+observed squares is within <em>L</em> squares of an immediately
+previously observed square.&rdquo; (Turing 1936&ndash;7: 250)</li>
+</ul>
+
+<p>
+It is this so-called &ldquo;direct appeal to intuition&rdquo;
+(1936&ndash;7: 249) of Turing&rsquo;s analysis and resulting model
+that explain why the Turing machine is today considered by many as the
+best standard model of computability (for a strong statement of this
+point of view, see Soare 1996). Indeed, from the above set of
+conditions one can quite easily derive Turing&rsquo;s machines. This
+is achieved basically by analyzing the restrictive conditions into
+&ldquo;&lsquo;simple operations&rsquo; which are so elementary that it
+is not easy to imagine them further divided&rdquo; (Turing
+1936&ndash;7: 250).</p>
+
+<p>
+The focus on human computation in Turing&rsquo;s analysis of
+computation, has led researchers to extend Turing&rsquo;s analysis to
+computation by physical devices. This results in (versions of) the
+so-called physical Church-Turing thesis. Robin Gandy focused on
+extending Turing&rsquo;s analysis to discrete mechanical devices (note
+that he did not consider analog machines). More particularly, like
+Turing, Gandy starts from a basic set of restrictions of computation
+by discrete mechanical devices and, on that basis, develops a new
+model which he proved to be reducible to the Turing machine model.
+This work is continued by Wilfried Sieg who proposed the framework of
+Computable Dynamical Systems (Sieg 2008). Others have considered the
+possibility of &ldquo;reasonable&rdquo; models from physics which
+&ldquo;compute&rdquo; something that is not Turing computable. See for
+instance Aaronson, Bavarian, &amp; Gueltrini 2024 [Other Internet
+Resources] in which it is shown that <em>if</em> closed timelike
+curves would exist, the halting problem would become solvable with
+finite resources. Others have proposed alternative models for
+computation which are inspired by the Turing machine model but capture
+specific aspects of current computing practices for which the Turing
+machine model is considered less suited. One example here are the
+persistent Turing machines (Goldin 2000) intended to capture
+interactive processes. These and other related proposals have been
+considered by some authors as reasonable models of computation that
+somehow compute more than Turing machines. It is the latter kind of
+statements that became affiliated with research on so-called
+hypercomputation resulting in the early 2000s in a rather fierce
+debate in the computer science community, see, e.g., Teuscher 2004 for
+various positions. More recently, it was argued that the execution
+model that results from Turing machines are not suitable to capture
+interactive computation and that, by consequence, the Turing machine
+model does not provide a satisfactory mechanistic explanation of
+interactive computation (Martin et al. 2023). Unlike earlier work in
+this direction, this does not result in claims about hypercomputation
+but rather raises the significance of research which considers more
+realistic models of interactive computation.</p>
+
+<h3 id="ThesDefiAxioTheo">3.2 Thesis, Definition, Axioms or Theorem</h3>
+
+<p>
+Strictly speaking, Turing&rsquo;s thesis is not provable, since it
+states an identification between a vague and intuitive concept
+(computability) and a formal definition (Turing machines). By
+consequence, many have interpreted it as a thesis or as a definition.
+Alonzo Church very clearly insisted that any such identification
+should be understood as a definition. Emil Post, in contrast, spoke of
+a hypothesis and, ultimately, a natural law. Stephen C. Kleene then
+was the first to use the notion of thesis to accommodate both
+Church&rsquo;s and Post&rsquo;s interpretations (Kleene 1943).</p>
+
+<p>
+Clearly, the thesis would be refuted if one would be able to provide
+an intuitively acceptable effective procedure for a task that is not
+Turing-computable. This far, no such counterexample has been found.
+Other independently defined notions of computability based on
+alternative foundations, such as
+ <a href="../recursive-functions/">recursive functions</a>
+ have also been shown to be extensionally equivalent to Turing
+computability. These equivalences between quite different formulations
+indicate that there is a natural and robust notion of computability
+underlying our understanding. Given this apparent robustness of our
+notion of computability, some have proposed to avoid the notion of a
+thesis altogether and instead propose a set of axioms used to sharpen
+the informal notion. There are several approaches, most notably, an
+approach of structural axiomatization where computability itself is
+axiomatized (Sieg 2008) and one whereby an axiomatization is given
+from which the Church-Turing thesis can be derived (Dershowitz &amp;
+Gurevich 2008).</p>
+
+<h2 id="AlteHistModeComp">4. Alternative Historical Models of Computability</h2>
+
+<p>
+Besides the Turing machine, several other models were introduced
+independently of Turing in the context of research into the foundation
+of mathematics which resulted in theses that are logically equivalent
+to Turing&rsquo;s thesis. For each of these models it was proven that
+they capture the Turing computable functions. Note that the
+development of the modern computer stimulated the development of other
+models such as register machines or Markov algorithms. More recently,
+computational approaches in disciplines such as biology or physics,
+resulted in bio-inspired and physics-inspired models such as Petri
+nets or quantum Turing machines. A discussion of such models, however,
+lies beyond the scope of this entry.</p>
+
+<h3 id="GeneRecuFunc">4.1 General Recursive Functions</h3>
+
+<p>
+The original formulation of general
+ <a href="../recursive-functions/">recursive functions</a>
+ can be found in G&ouml;del 1934, which built on a suggestion by
+Herbrand. In Kleene 1936 a simpler definition was given and in Kleene
+1943 the standard form which uses the so-called minimization or
+\(\mu\)-operator was introduced. For more information, see the entry
+on
+ <a href="../recursive-functions/">recursive functions</a>.</p>
+ 
+<p>
+Church used the definition of general recursive functions to state his
+thesis:</p>
+
+<blockquote>
+
+<p>
+<strong>Church&rsquo;s thesis</strong> Every effectively calculable
+function is general recursive</p>
+</blockquote>
+
+<p>
+In the context of recursive function one uses the notion of recursive
+solvability and unsolvability rather than Turing computability and
+uncomputability. This terminology is due to Post (1944).</p>
+
+<h3 id="LDefi">4.2 &lambda;-Definability</h3>
+
+<p>
+Church&rsquo;s &lambda;-calculus has its origin in the papers (Church
+1932, 1933) where he aimed for a logical foundation of mathematics. It
+was Church&rsquo;s conviction at that time that this different formal
+approach might avoid G&ouml;del incompleteness (Sieg 1997: 177).
+However, the logical system proposed by Church was proven inconsistent
+by his two PhD students Stephen C. Kleene and Barkley Rosser and so
+they started to focus on a subpart of that logic which was basically
+the &lambda;-calculus. Church, Kleene and Rosser started to
+&lambda;-define any calculable function they could think of and quite
+soon Church proposed to define effective calculability in terms of
+&lambda;-definability. However, it was only after Church, Kleene and
+Rosser had established that general recursiveness and
+&lambda;-definability are equivalent that Church announced his thesis
+publicly and in terms of general recursive functions rather than
+&lambda;-definability (Davis 1982; Sieg 1997). See the supplement on
+ <a href="../church/supplementD.html">The &lambda;-Calculus and Type Theory</a>
+ to the entry on
+ <a href="../church/">Alonzo Church</a>.</p>
+ 
+<p>
+Today, &lambda;-calculus is considered to be a basic model in the
+theory of programming.</p>
+
+<h3 id="PostProdSyst">4.3 Post Production Systems</h3>
+
+<p>
+Around 1920&ndash;21 Emil Post developed different but related types
+of production systems in order to develop a syntactical form which
+would allow him to tackle the decision problem for first-order logic.
+One of these forms are Post canonical systems <em>C</em> which became
+later known as Post production systems.</p>
+
+<p>
+A canonical system consists of a finite alphabet \(\Sigma\), a finite
+set of initial words \(W_{0,0}\), \(W_{0,1}\),&hellip;, \(W_{0,n}\)
+and a finite set of production rules of the following form:</p>
+
+\[ \begin{array}{c}
+g_{11}P_{i_{1}^{1}}g_{12}P_{i_{2}^{1}} \ldots g_{1m_{1}}P_{i^{1}_{m_{1}}}g_{1 {(m_{1} + 1)}}\\
+ g_{21}P_{i_{1}^{2}}g_{22}P_{i_{2}^{2}} \ldots g_{2m_{2}}P_{i^{2}_{m_{2}}}g_{2 {(m_{2} + 1)}}\\
+ &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;\\
+ g_{k1}P_{i_{1}^{k}}g_{k2}P_{i_{2}^{k}} \ldots g_{km_{k}}P_{i^{k}_{m_{k}}}g_{k {(m_{k} + 1)}}\\
+ \textit{produce}\\
+ g_{1}P_{i_{1}}g_{2}P_{i_{2}} \ldots g_{m}P_{i_{m}}g_{(m + 1)}\\
+ 
+\end{array} \]
+
+<p>
+The symbols <em>g</em> are a kind of metasymbols: they correspond to
+actual sequences of letters in actual productions. The symbols
+<em>P</em> are the operational variables and so can represent any
+sequence of letters in a production. So, for instance, consider a
+production system over the alphabet \(\Sigma = \{a,b\}\) with initial
+word:</p> 
+\[W_0 = ababaaabbaabbaabbaba\]
+
+<p>
+and the following production rule:</p> 
+\[ \begin{array}{c}
+P_{1,1}bbP_{1,2}\\
+ \textit{produces}\\
+ P_{1,3}aaP_{1,4}\\
+ 
+\end{array} \]
+
+<p>
+Then, starting with \(W_0\), there are three possible ways to apply
+the production rule and in each application the variables \(P_{1,i}\)
+will have different values but the values of the g&rsquo;s are fixed.
+Any set of finite sequences of words that can be produced by a
+canonical system is called a <em>canonical set</em>.</p>
+
+<p>
+A special class of canonical forms defined by Post are normal systems.
+A normal system <em>N</em> consists of a finite alphabet \(\Sigma\),
+one initial word \(W_0 \in \Sigma^{\ast}\) and a finite set of
+production rules, each of the following form:</p> 
+\[ \begin{array}{c}
+g_iP\\
+ \textit{produces}\\
+ Pg_i'\\
+ 
+\end{array} \]
+
+<p>
+Any set of finite sequences of words that can be produced by a normal
+system is called a <em>normal set</em>. Post was able to show that for
+any canonical set <em>C</em> over some alphabet \(\Sigma\) there is a
+normal set <em>N</em> over an alphabet \(\Delta\) with \(\Sigma
+\subseteq \Delta\) such that \(C = N \cap \Sigma^{\ast}\). It was his
+conviction that (1) any set of finite sequences that can be generated
+by finite means can be generated by canonical systems and (2) the
+proof that for every canonical set there is a normal set which
+contains it, which resulted in Post&rsquo;s thesis I:</p>
+
+<blockquote>
+
+<p>
+<strong>Post&rsquo;s thesis I</strong> (Davis 1982) Every set of
+finite sequences of letters that can be generated by finite processes
+can also be generated by normal systems. More particularly, any set of
+words on an alphabet \(\Sigma\) which can be generated by a finite
+process is of the form \(N \cap \Sigma^{\ast}\), with <em>N</em> a
+normal set.</p>
+</blockquote>
+
+<p>
+Post realized that &ldquo;[for the thesis to obtain its full
+generality] a complete analysis would have to be made of all the
+possible ways in which the human mind could set up finite processes
+for generating sequences&rdquo; (Post 1965: 408) and it is quite
+probable that the formulation 1 given in Post 1936 and which is almost
+identical to Turing&rsquo;s machines is the result of such an
+analysis.</p>
+
+<p>
+Post production systems became important formal devices in computer
+science and, more particularly, formal language theory (Davis 1989;
+Pullum 2011).</p>
+
+<h3 id="Form1">4.4 Formulation 1</h3>
+
+<p>
+In 1936 Post published a short note from which one can derive
+Post&rsquo;s second thesis (De Mol 2013):</p>
+
+<blockquote>
+
+<p>
+<strong>Post&rsquo;s thesis II</strong> Solvability of a problem in
+the intuitive sense coincides with solvability by formulation 1</p>
+</blockquote>
+
+<p>
+Formulation 1 is very similar to Turing machines but the
+&lsquo;program&rsquo; is given as a list of directions which a human
+worker needs to follow. Instead of a one-way infinite tape,
+Post&rsquo;s &lsquo;machine&rsquo; consists of a two-way infinite
+symbol space divided into boxes. The idea is that a worker is working
+in this symbol space, being capable of a set of five primitive acts
+(\(O_{1}\) mark a box, \(O_{2}\) unmark a box, \(O_{3}\) move one box
+to the left, \(O_{4}\) move one box to the right, \(O_{5}\)
+determining whether the box he is in is marked or unmarked), following
+a finite set of directions \(d_{1}\),&hellip;, \(d_{n}\) where each
+direction \(d_{i}\) always has one of the following forms:</p>
+
+<ol type="A">
+
+<li>Perform one of the operations (\(O_{1}\)&ndash;\(O_4\)) and go to
+instruction \(d_{j}\)</li>
+
+<li>Perform operation \(O_{5}\) and according as the box the worker is
+in is marked or unmarked follow direction \(d_{j'}\) or
+\(d_{j''}\).</li>
+
+<li>Stop.</li>
+</ol>
+
+<p>
+Post also defined a specific terminology for his formulation 1 in
+order to define the solvability of a problem in terms of formulation
+1. These notions are applicability, finite-1-process, 1-solution and
+1-given. Roughly speaking these notions assure that a decision problem
+is solvable with formulation 1 on the condition that the solution
+given in the formalism always terminates with a correct solution.</p>
+
+<h2 id="ImpaTuriMachCompScie">5. Impact of Turing Machines on Computer Science</h2>
+
+<p>
+Turing is today one of the most celebrated figures of computer
+science. Many consider him as the father of computer science and the
+fact that the main award in the computer science community is called
+the Turing award is a clear indication of that (Daylight 2015). This
+was strengthened by the Turing centenary celebrations from 2012, which
+were largely coordinated by S. Barry Cooper. This resulted not only in
+an enormous number of scientific events around Turing but also a
+number of initiatives that brought the idea of Turing as the father of
+computer science also to the broader public (Bullynck, Daylight, &amp;
+De Mol 2015). Amongst Turing&rsquo;s contributions which are today
+considered as pioneering, the 1936 paper on Turing machines stands out
+as the one which has the largest impact on computer science. However,
+recent historical research shows also that one should treat the impact
+of Turing machines with great care and that one should be careful in
+retrofitting the past into the present.</p>
+
+<h3 id="ImpaTheoCompScie">5.1 Impact on Theoretical Computer Science</h3>
+
+<p>
+Today, the Turing machine and its theory are part of the theoretical
+foundations of computer science. It is a standard reference in
+research on foundational questions such as:</p>
+
+<ul>
+
+<li>What is an algorithm?</li>
+
+<li>What is a computation?</li>
+
+<li>What is a physical computation?</li>
+
+<li>What is an efficient computation?</li>
+
+<li>etc.</li>
+</ul>
+
+<p>
+It is also one of the main models for research into a broad range of
+subdisciplines in theoretical computer science such as: variant and
+minimal models of computability, higher-order computability,
+ <a href="../computational-complexity/">computational complexity theory</a>,
+ algorithmic information theory, etc. This significance of the Turing
+machine model for theoretical computer science has at least two
+historical roots.</p>
+
+<p>
+First of all, there is the continuation of the work in mathematical
+logic from the 1920s and 1930s by people like Martin Davis&mdash;who
+was a student of Post and Church&mdash;and Kleene. Within that
+tradition, Turing&rsquo;s work was of course well-known and the Turing
+machine was considered as the best model of computability given. Both
+Davis and Kleene published a book in the 1950s on these topics (Kleene
+1952; Davis 1958) which soon became standard references not just for
+early computability theory but also for more theoretical reflections
+in the late 1950s and 1960s on computing.</p>
+
+<p>
+Secondly, one sees that in the 1950s there is a need for theoretical
+models to reflect on the new computing machines, their abilities and
+limitations and this in a more systematic manner. It is in that
+context that the theoretical work already done was picked up. One
+important development is automata theory in which one can situate,
+amongst others, the development of other machine models like the
+register machine model or the Wang <em>B</em> machine model which are,
+ultimately, rooted in Turing&rsquo;s and Post&rsquo;s machines; there
+are the minimal machine designs discussed in
+ <a href="#TuriMachModeComp">Section 5.2</a>;
+ and there is the use of Turing machines in the context of what would
+become the origins of formal language theory, viz the study of
+different classes of machines with respect to the different
+&ldquo;languages&rdquo; they can recognize and so also their
+limitations and strengths. It are these more theoretical developments
+that contributed to the establishment of
+ <a href="../computational-complexity/">computational complexity theory</a>
+ in the 1960s. Of course, besides Turing machines, other models also
+played and play an important role in these developments. Still, within
+theoretical computer science it is mostly the Turing machine which
+remains th&eacute; model, even today. Indeed, when in 1965 one of the
+founding papers of computational complexity theory (Hartmanis &amp;
+Stearns 1965) is published, it is the multitape Turing machine which
+was introduced as the standard model for the computer.</p>
+
+<h3 id="TuriMachModeComp">5.2 Turing Machines and the Modern Computer</h3>
+
+<p>
+In several accounts, Turing has been identified not just as the father
+of computer science but as the father of the modern computer. The
+classical story for this more or less goes as follows: the blueprint
+of the modern computer can be found in von Neumann&rsquo;s EDVAC
+design and today classical computers are usually described as having a
+so-called von Neumann architecture. One fundamental idea of the EDVAC
+design is the so-called stored-program idea. Roughly speaking this
+means the storage of instructions and data in the same memory allowing
+the manipulation of programs as data. There are good reasons for
+assuming that von Neumann knew the main results of Turing&rsquo;s
+paper (Davis 1988, Haigh and Priestley 2020). Thus, one could argue
+that the stored-program concept originates in Turing&rsquo;s notion of
+the universal Turing machine and, singling this out as the defining
+feature of the modern computer, some might claim that Turing is the
+father of the modern computer. Another related argument is that Turing
+was the first who &ldquo;captured&rdquo; the idea of a general-purpose
+machine through his notion of the universal machine and that in this
+sense he also &ldquo;invented&rdquo; the modern computer (Copeland
+&amp; Proudfoot 2011). This argument is then strengthened by the fact
+that Turing was also involved with the construction of an important
+class of computing devices (the Bombe) used for decrypting the German
+Enigma code and later proposed the design of the ACE (Automatic
+Computing Engine) which was explicitly identified as a kind of
+physical realization of the universal machine by Turing himself:</p>
+
+<blockquote>
+
+<p>
+Some years ago I was researching on what might now be described as an
+investigation of the theoretical possibilities and limitations of
+digital computing machines. [&hellip;] Machines such as the ACE may be
+regarded as practical versions of this same type of machine. (Turing
+1947)</p>
+</blockquote>
+
+<p>
+Note however that Turing already knew the ENIAC and EDVAC designs, two
+of the earliest modern computers, and proposed the ACE as a kind of
+improvement on that design (amongst others, it had a simpler hardware
+architecture).</p>
+
+<p>
+These claims about Turing as the inventor and/or father of the
+computer have been scrutinized by some historians of computing
+(Daylight 2014; Haigh 2013; Haigh 2014; Mounier-Kuhn 2012), mostly in
+the wake of the Turing centenary and this from several perspectives.
+Based on that research it is clear that claims about Turing being the
+inventor of the modern computer give a distorted and biased picture of
+the development of the modern computer. At best, he is one of the many
+who made a contribution to one of the several historical developments
+(scientific, political, technological, social and industrial) which
+resulted, ultimately, in (our concept of) the modern computer. Indeed,
+the &ldquo;first&rdquo; computers are the result of a wide number of
+innovations and so are rooted in the work of not just one but several
+people with diverse backgrounds and viewpoints.</p>
+
+<p>
+In the 1950s then the (universal) Turing machine starts to become an
+accepted model in relation to actual computers and is used as a
+mathematical tool to reflect on the limits and potentials of
+general-purpose computers by both engineers, mathematicians and
+logicians. More particularly, with respect to machine designs, the
+universal machine concept provided a mathematical basis for the
+insight from practice that only a few number of operations were
+required to built a general-purpose machine. This inspired in the
+1950s reflections on minimal machine architectures. Frankel, who
+(partially) constructed the MINAC stated this as follows:</p>
+
+<blockquote>
+
+<p>
+One remarkable result of Turing&rsquo;s investigation is that he was
+able to describe a single computer which is able to compute
+<em>any</em> computable number. He called this machine a <em>universal
+computer</em>. It is thus the &ldquo;best possible&rdquo; computer
+mentioned.</p>
+
+<p>
+[&hellip;] This surprising result shows that in examining the question
+of what problems are, in principle, solvable by computing machines, we
+do not need to consider an infinite series of computers of greater and
+greater complexity but may think only of a single machine.</p>
+
+<p>
+Even more surprising than the theoretical possibility of such a
+&ldquo;best possible&rdquo; computer is the fact that it need not be
+very complex. The description given by Turing of a universal computer
+is not unique. Many computers, some of quite modest complexity,
+satisfy the requirements for a universal computer. (Frankel 1956:
+635)</p>
+</blockquote>
+
+<p>
+The result was a series of experimental machines such as the MINAC,
+TX-0 (Lincoln Lab) or the ZERO machine (van der Poel) which in their
+turn became predecessors of a number of commercial machines. It is
+worth pointing out that also Turing&rsquo;s ACE machine design fits
+into this philosophy. It was also commercialized as the BENDIX G15
+machine (De Mol, Bullynck, &amp; Daylight 2018).</p>
+
+<p>
+Of course, by minimizing the machine instructions, coding or
+programming became a much more complicated task. To put it in
+Turing&rsquo;s words who clearly realized this trade-off between code
+and (hard-wired) instructions when designing the ACE: &ldquo;[W]e have
+often simplified the circuit at the expense of the code&rdquo; (Turing
+1947). And indeed, one sees that with these early minimal designs,
+much effort goes into developing more efficient coding strategies. It
+is here that one can also situate one historical root of making the
+connection between the universal Turing machine and the important
+principle of the interchangeability between hardware and programs.</p>
+
+<p>
+Today, the universal Turing machine is by many still considered as the
+main theoretical model of the modern computer especially in relation
+to the so-called von Neumann architecture. Of course, other models
+have been introduced for other architectures such as the Bulk
+synchronous parallel model for parallel machines or the persistent
+Turing machine for modeling interactive problems.</p>
+
+<h3 id="TheoProg">5.3 Theories of Programming</h3>
+
+<p>
+The idea that any general-purpose machine can, in principle, be
+modeled as a universal Turing machine also became an important
+principle in the context of automatic programming in the later 1950s
+and early 1960s. In the machine design context it was the minimizing
+of the machine instructions that was the most important consequence of
+that viewpoint. In the programming context then it was about the idea
+that one can built a machine that is able to
+&lsquo;mimic&rsquo;&rsquo; the behavior of any other machine and so,
+ultimately, the interchangeability between machine hardware and
+language implementations. This is introduced in several forms in the
+later 1950s by people like John W. Carr III and Saul Gorn&mdash;who
+were also actively involved in the shaping of the <em>Association for
+Computing Machinery (ACM)</em>&mdash;as the unifying theoretical idea
+for automatic programming which indeed is about the (automatic)
+&ldquo;translation&rdquo; of higher-order to lower-level, and,
+ultimately, machine code. Thus, also in the context of programming,
+the universal Turing machine started to take on its foundational role
+in the 1950s (Daylight 2015).</p>
+
+<p>
+Whereas the Turing machine is and was a fundamental theoretical model
+delimiting what is possible and not on the general level, it did not
+have a real impact on the syntax and semantics of programming
+languages. In that context it were rather &lambda;-calculus and Post
+production systems that had an effect (though also here one should be
+careful in overstating the influence of a formal model on a
+programming practice). In fact, Turing machines were often regarded as
+machine models rather than as a model for programming:</p>
+
+<blockquote>
+
+<p>
+Turing machines are not conceptually different from the automatic
+computers in general use, but they are very poor in their control
+structure. [&hellip;] Of course, most of the theory of computability
+deals with questions which are not concerned with the particular ways
+computations are represented. It is sufficient that computable
+functions be represented somehow by symbolic expressions, e.g.,
+numbers, and that functions computable in terms of given functions be
+somehow represented by expressions computable in terms of the
+expressions representing the original functions. However, a practical
+theory of computation must be applicable to particular algorithms.
+(McCarthy 1963: 37)</p>
+</blockquote>
+
+<p>
+Thus one sees that the role of the Turing machine for computer science
+should be situated rather on the theoretical level: the universal
+machine is today by many still considered as the model for the modern
+computer while its ability to mimic machines through its manipulation
+of programs-as-data is one of the basic principles of modern
+computing. Moreover, its robustness as a model of computability have
+made it the main model to challenge if one is attacking versions of
+the so-called (physical) Church-Turing thesis.</p>
+</div>
+
+<div id="bibliography">
+
+<h2 id="Bib">Bibliography</h2>
+
+<ul class="hanging">
+
+<li>Barwise, Jon and John Etchemendy, 1993, <em>Turing&rsquo;s
+World</em>, Stanford, CA: CSLI Publications.</li>
+
+<li>Boolos, George S. and Richard C. Jeffrey, 1974, <em>Computability
+and Logic</em>, Cambridge: Cambridge University Press; fifth edition
+2007. doi:10.1017/CBO9780511804076 (fifth edition)</li>
+
+<li>Bromley, Allan G., 1985, &ldquo;Stored Program Concept. The Origin
+of the Stored Program Concept&rdquo;, Technical Report 274, Basser
+Department of Computer Science, November 1985.
+ [<a href="https://web.archive.org/web/20171002030127/http://sydney.edu.au/engineering/it/research/tr/tr274.pdf" target="other">Bromley 1985 available online</a>]</li>
+ 
+<li>Bullynck, Maarten, Edgar G. Daylight, and Liesbeth De Mol, 2015,
+&ldquo;Why Did Computer Science Make a Hero Out of Turing?&rdquo;,
+<em>Communications of the ACM</em>, 58(3):
+37&ndash;39.doi:10.1145/2658985</li>
+
+<li>Church, Alonzo, 1932, &ldquo;A Set of Postulates for the
+Foundation of Logic&rdquo;, <em>Annals of Mathematics</em>, 33(2):
+346&ndash;366. doi:10.2307/1968337</li>
+
+<li>&ndash;&ndash;&ndash;, 1933, &ldquo;A Set of Postulates for the
+Foundation of Logic (Second Paper)&rdquo;, <em>Annals of
+Mathematics</em>, 34(4): 839&ndash;864. doi:10.2307/1968702</li>
+
+<li>&ndash;&ndash;&ndash;, 1936a, &ldquo;An Unsolvable Problem of
+Elementary Number Theory&rdquo;, <em>American Journal of
+Mathematics</em>, 58(2): 345&ndash;363.</li>
+
+<li>&ndash;&ndash;&ndash;, 1936b, &ldquo;A Note on the
+Entscheidungsproblem&rdquo;, <em>Journal of Symbolic Logic</em>, 1(1):
+40&ndash;41. doi:10.2307/2269326</li>
+
+<li>&ndash;&ndash;&ndash;, 1937, &ldquo;Review of: On Computable
+Numbers with An Application to the Entscheidungsproblem by A.M.
+Turing&rdquo;, <em>Journal of Symbolic Logic</em>, 2(1): 42&ndash;43.
+doi:10.1017/S002248120003958X</li>
+
+<li>Cook, Matthew, 2004, &ldquo;Universality in Elementary Cellular
+Automata&rdquo;, <em>Complex Systems</em>, 15(1): 1&ndash;40.</li>
+
+<li>Cooper, S. Barry and Jan Van Leeuwen, 2013, <em>Alan Turing: His
+Work and Impact</em>, Amsterdam: Elsevier.
+doi:10.1016/C2010-0-66380-2</li>
+
+<li>Copeland, B. Jack, 2002, &ldquo;Accelerating Turing
+Machines&rdquo;, <em>Minds and Machines</em>, 12(2): 281&ndash;301.
+doi:10.1023/A:1015607401307</li>
+
+<li>Copeland, B. Jack and Diane Proudfoot, 2011, &ldquo;Alan Turing:
+Father of the Modern Computer&rdquo;, <em>The Rutherford Journal</em>,
+4: 1.
+ [<a href="http://www.rutherfordjournal.org/article040101.html" target="other">Copeland &amp; Proudfoot 2011 available online</a>]</li>
+ 
+<li>Davis, Martin, 1958 [1982], <em>Computability and
+Unsolvability</em>, New York: McGraw-Hill. Reprinted Dover, 1982.</li>
+
+<li>&ndash;&ndash;&ndash;, 1965, <em>The Undecidable. Basic papers on
+undecidable propositions, unsolvable problems and computable
+functions</em>, New York: Raven Press.</li>
+
+<li>&ndash;&ndash;&ndash;, 1978, &ldquo;What is a Computation?&rdquo;,
+Lynn Arthur Steen (ed.), <em>Mathematics Today: Twelve Informal
+Essays</em>, New York: Springer, pp. 241&ndash;267.
+doi:10.1007/978-1-4613-9435-8_10</li>
+
+<li>&ndash;&ndash;&ndash;, 1982, &ldquo;Why G&ouml;del Didn&rsquo;t
+Have Church&rsquo;s Thesis&rdquo;, <em>Information and Control</em>,
+54:(1&ndash;2): 3&ndash;24. doi:10.1016/S0019-9958(82)91226-8</li>
+
+<li>&ndash;&ndash;&ndash;, 1988, &ldquo;Mathematical Logic and the
+Origin of the Modern Computer&rdquo;, in Herken 1988:
+149&ndash;174.</li>
+
+<li>&ndash;&ndash;&ndash;, 1989, &ldquo;Emil Post&rsquo;s Contribution
+to Computer Science&rdquo;, <em>Proceedings of the Fourth Annual
+Symposium on Logic in Computer Science</em>, IEEE Computer Society
+Press, pp. 134&ndash;137. doi:10.1109/LICS.1989.39167</li>
+
+<li>Davis, Martin and Wilfried Sieg, 2015, &ldquo;Conceptual
+Confluence in 1936: Post and Turing&rdquo;, in Giovanni Sommaruga and
+Thomas Strahm (eds.), <em>Turing&rsquo;s Revolution: The Impact of His
+Ideas about Computability</em>, Cham: Springer.
+doi:10.1007/978-3-319-22156-4_1</li>
+
+<li>Daylight, Edgar G., 2014, &ldquo;A Turing Tale&rdquo;,
+<em>Communications of the ACM</em>, 57(10): 36&ndash;38.
+doi:10.1145/2629499</li>
+
+<li>&ndash;&ndash;&ndash;, 2021, &ldquo;The Halting Problem and
+Security&rsquo;s Language-Theoretic Approach: Praise and Criticism
+From a Technical Historian&rdquo;, <em>Computability</em>, 10(2):
+141&ndash;158.</li>
+
+<li>&ndash;&ndash;&ndash;, 2015, &ldquo;Towards a Historical Notion of
+&lsquo;Turing&mdash;The Father of Computer Science&rsquo;&rdquo;,
+<em>History and Philosophy of Logic</em>, . 36(3): 205&ndash;228.
+doi:10.1080/01445340.2015.1082050</li>
+
+<li>De Mol, Liesbeth, 2013, &ldquo;Generating, Solving and the
+Mathematics of Homo Sapiens. Emil Post&rsquo;s Views On
+computation&rdquo;, Hector Zenil (ed.), <em>A Computable Universe.
+Understanding Computation &amp; Exploring Nature As Computation</em>,
+Hackensack, NJ: World Scientific, pp. 45&ndash;62.
+doi:10.1142/9789814374309_0003
+ [<a href="https://hal.univ-lille3.fr/hal-01396500/document" target="other">De Mol 2013 available online</a>]</li>
+ 
+<li>De Mol, Liesbeth, Maarten Bullynck, and Edgar G. Daylight, 2018,
+&ldquo;Less is More in the Fifties: Encounters between Logical
+Minimalism and Computer Design during the 1950s&rdquo;, <em>IEEE
+Annals of the History of Computing</em>, 40(1): 19&ndash;45.
+doi:10.1109/MAHC.2018.012171265
+ [<a href="https://hal.univ-lille3.fr/hal-01345592" target="other">De Mol et al. 2018 available online</a>]</li>
+ 
+<li>Deutsch, D., 1985, &ldquo;Quantum Theory, the Church-Turing
+Principle and the Universal Quantum Computer&rdquo;, <em>Proceedings
+of the Royal Society A</em>, 400(1818): 97&ndash;117.
+doi:10.1098/rspa.1985.0070</li>
+
+<li>Dershowitz, Nachum and Yuri Gurevich, 2008, &ldquo; A Natural
+Axiomatization of Computability and Proof of Church&rsquo;s
+Thesis&rdquo;, <em>Bulletin of Symbolic Logic</em>, 14(3):
+299&ndash;350.</li>
+
+<li>Frankel, Stanley, 1956, &ldquo;Useful Applications of a
+Magnetic-Drum Computer&rdquo;, <em>Electrical Engineering</em>, 75(7):
+634&ndash;39, doi:10.1109/EE.1956.6442018</li>
+
+<li>Gandy, Robin, 1980, &ldquo;Church&rsquo;s Thesis and Principles
+for Mechanism&rdquo;, in Jon Barwise, H. Jerome Keisler, and Kenneth
+Kunen (eds.), <em>The Kleene Symposium: Proceedings of the Symposium
+Held June 18&ndash;24, 1978 at Madison, Wisconsin, U.S.A.</em>,
+(Studies in Logic and the Foundations of Mathematics, 101), Amsterdam:
+North-Holland, pp. 123&ndash;148.
+doi:10.1016/S0049-237X(08)71257-6</li>
+
+<li>&ndash;&ndash;&ndash;, 1988, &ldquo;The Confluence of Ideas in
+1936&rdquo;, in Herken 1988: 55&ndash;111.</li>
+
+<li>G&ouml;del, Kurt, 1929, &ldquo;Die Vollst&auml;ndigkeit der Axiome
+des logischen Funktionenkalk&uuml;l&rdquo;, <em>Monatshefte f&uuml;r
+Mathematik und Physik</em>, 37: 349&ndash;360.
+doi:10.1007/BF01696781</li>
+
+<li>&ndash;&ndash;&ndash;, 1934, &ldquo;On Undecidable Propositions of
+Formal Mathematical Systems&rdquo;, mimeographed lecture notes by S.
+C. Kleene and J. B. Rosser, Institute for Advanced Study, Princeton,
+NJ; corrected and amplified in Davis 1965: 41&ndash;74.</li>
+
+<li>Goldin, Dina, 2000, &ldquo;Persistent Turing Machines as a Model
+of Interactive Computation&rdquo;, <em>International Symposium on
+Foundations of Information and Knowledge Systems</em> (Lecture Notes
+in Computer Science: 1762), Berlin: Springer, pp. 116&ndash;135.</li>
+
+<li>Grier, David Alan, 2007, <em>When Computers Were Human</em>,
+Princeton, NJ: Princeton University Press.</li>
+
+<li>Haigh, Thomas, 2013, &ldquo;&lsquo;Stored Program Concept&rsquo;
+Considered Harmful: History and Historiography&rdquo;, in Paola
+Bonizzoni, Vasco Brattka, and Benedikt L&ouml;we, <em>The Nature of
+Computation. Logic, Algorithms, Applications: 9th Conference on
+Computability in Europe, CiE 2013, Milan, Italy, July 1&ndash;5, 2013
+Proceedings</em>, (Lecture Notes in Computer Science, 7921), Berlin:
+Springer, pp. 241&ndash;251. doi:10.1007/978-3-642-39053-1_28</li>
+
+<li>&ndash;&ndash;&ndash;, 2014, &ldquo;Actually, Turing Did Not
+Invent the Computer&rdquo;, <em>Communications of the ACM</em>, 57(1):
+36&ndash;41. doi:10.1145/2542504</li>
+
+<li>Haigh, Thomas and Mark Priestley, 2020, &ldquo;Von Neumann Thought
+Turing&rsquo;s Universal Machine was &lsquo;Simple and Neat&rsquo;:
+But That Didn&rsquo;t Tell Him How to Design a Computer&rdquo;,
+<em>Communications of the ACM</em>, 63(1): 26&ndash;32.</li>
+
+<li>Hamkins, Joel David and Andy Lewis, 2000, &ldquo;Infinite Time
+Turing Machines&rdquo;, <em>Journal of Symbolic Logic</em>, 65(2):
+567&ndash;604. doi:10.2307/2586556</li>
+
+<li>Hartmanis, J. and R.E. Stearns, 1965, &ldquo;On the Computational
+Complexity of Algorithms&rdquo; <em>Transactions of the American
+Mathematical Society</em>, 117: 285&ndash;306.
+doi:10.1090/S0002-9947-1965-0170805-7</li>
+
+<li>Herken, Rolf, (ed.), 1988, <em>The Universal Turing Machine: A
+Half-Century Survey</em>, New York: Oxford University Press.</li>
+
+<li>Hilbert, David, 1930, &ldquo;Naturerkennen und Logik&rdquo;,
+<em>Naturwissenschaften</em>, 18(47&ndash;49): 959&ndash;963.
+doi:10.1007/BF01492194</li>
+
+<li>Hilbert, David and Wilhelm Ackermann, 1928, <em>Grundz&uuml;ge der
+Theoretischen Logik</em>, Berlin: Springer.
+doi:10.1007/978-3-642-65400-8</li>
+
+<li>Hodges, Andrew, 1983, <em>Alan Turing: The Enigma</em>, New York:
+Simon and Schuster.</li>
+
+<li>Kleene, Stephen Cole, 1936, &ldquo;General Recursive Functions of
+Natural Numbers&rdquo;, <em>Mathematische Annalen</em>, 112:
+727&ndash;742. doi:10.1007/BF01565439</li>
+
+<li>&ndash;&ndash;&ndash;, 1943, &ldquo;Recursive predicates and
+quantifiers&rdquo;, <em>Transactions of the American Mathematical
+Society</em>, 53(1): 41&ndash;73. doi:10.2307/2267986</li>
+
+<li>&ndash;&ndash;&ndash;, 1952, <em>Introduction to
+Metamathematics</em>, Amsterdam: North Holland.</li>
+
+<li>Lambek, Joachim, 1961, &ldquo;How to Program an Infinite
+Abacus&rdquo;, <em>Canadian Mathematical Bulletin</em>, 4:
+295&ndash;302. doi:10.4153/CMB-1961-032-6</li>
+
+<li>Lass&egrave;gue, Jean, and Giuseppe Longo, 2012, &ldquo;What is
+Turing&rsquo;s Comparison between Mechanism and Writing Worth?&rdquo;,
+in Barry Cooper, et al. (eds.), <em>How the World Computes. CiE
+2012</em> (Lecture Notes in Computer Science: 7318), Berlin,
+Heidelberg: Springer, pp. 450&ndash;461.</li>
+
+<li>Lewis, Henry R. and Christos H. Papadimitriou, 1981, <em>Elements
+of the Theory of Computation</em>, Englewood Cliffs, NJ:
+Prentice-Hall.</li>
+
+<li>Lin, Shen and Tibor Rad&oacute;, 1965, &ldquo;Computer Studies of
+Turing Machine Problems&rdquo;, <em>Journal of the Association for
+Computing Machinery</em>, 12(2): 196&ndash;212.
+doi:10.1145/321264.321270</li>
+
+<li>Mancosu, Paolo, Richard Zach, and Calixto Badesa, 2009, &ldquo;The
+Development of Mathematical Logic from Russell to Tarski,
+1900&ndash;1935&rdquo;, in Leila Haaparanta (ed.), <em>The Development
+of Modern Logic</em>, New York: Oxford University Press, pp.
+318&ndash;470. doi:10.1093/acprof:oso/9780195137316.003.0029
+ [<a href="https://ucalgary.ca/rzach/papers/history.html" target="other">Mancosu et al. 2009 available online</a>]</li>
+ 
+<li>Margenstern, Maurice, 2000, &ldquo;Frontier Between Decidability
+and Undecidability: A Survey&rdquo;, <em>Theoretical Computer
+Science</em>, 231(2): 217&ndash;251.
+doi:10.1016/S0304-3975(99)00102-4</li>
+
+<li>Martin, Alice; Magnaudet, Mathieu; Conversy, Sp&eacute;phanie,
+2023, &ldquo;Computers as Interactive Machines: Can We Build an
+Explanatory Abstraction?&rdquo;, <em>Minds and Machines</em>, 33(1):
+83&ndash;112.</li>
+
+<li>Martini, Simone, 2020, &ldquo;The Standard Model for Programming
+Languages: The Birth of a Mathematical Theory of Computation&rdquo;,
+in Frank S. de Boer and Jacopo Mauro (eds.), <em>Developments in the
+Design and Implementation of Programming Languages</em> (Open Access
+Series in Informatics), Schloss Dagstuhl: Leibniz-Zentrum f&uuml;r
+Informatik, Article No. 8: 8:1&ndash;8:13.
+ [<a href="https://drops.dagstuhl.de/storage/01oasics/oasics-vol086-gabbriellis-festschrift/OASIcs.Gabbrielli.8/OASIcs.Gabbrielli.8.pdf" target="other">Martini 2020 available online</a>]</li>
+ 
+<li>McCarthy, John, 1963, &ldquo;A Basis for a Mathematical Theory of
+Computation&rdquo;, in: P. Braffort and D. Hirschberg, <em>Computer
+Programming and Formal Systems</em>, Amsterdam: North-Holland, pp.
+33&ndash;70.
+ [<a href="http://www-formal.stanford.edu/jmc/basis1/basis1.html" target="other">McCarthy 1963 available online</a>]</li>
+ 
+<li>M&eacute;l&egrave;s, Baptiste, 2020/21. &ldquo;Les langages de
+Turing&rdquo;, in <em>Intellectica. Revue de l&rsquo;Association pour
+la Recherche Cognitive</em>, 72: 81&ndash;110.</li>
+
+<li>Minsky, Marvin, 1961, &ldquo;Recursive Unsolvability of
+Post&rsquo;s Problem of &lsquo;Tag&rsquo; and other Topics in Theory
+of Turing Machines&rdquo;, <em>Annals of Mathematics</em>, 74(3):
+437&ndash;455. doi:10.2307/2269716</li>
+
+<li>&ndash;&ndash;&ndash;, 1967, <em>Computation: Finite and Infinite
+Machines</em>, Englewood Cliffs, NJ: Prentice Hall.</li>
+
+<li>Moore, E.F., 1952, &ldquo;A simplified universal Turing
+machine&rdquo;, <em>Proceedings of the Association of Computing
+Machinery</em> (meetings at Toronto, Ontario), Washington, DC: Sauls
+Lithograph, 50&ndash;55. doi:10.1145/800259.808993</li>
+
+<li>Mounier-Kuhn, Pierre, 2012, &ldquo;Logic and Computing in France:
+A Late Convergence&rdquo;, in <em>AISB/IACAP World Congress 2012:
+History and Philosophy of Programming</em>, University of Birmingham,
+2&ndash;6 July 2012.
+ [<a href="https://www.academia.edu/5252629/Logic_and_Computing_in_France_A_Late_Convergence" target="other">Mounier-Kuhn 2012 available online</a>]</li>
+ 
+<li>Odifreddi, P., 1989, <em>Classical Recursion Theory</em>,
+Amsterdam: Elsevier.</li>
+
+<li>Petzold, Charles, 2008, <em>The Annotated Turing: A Guided Tour
+Through Alan Turing&rsquo;s Historic Paper on Computability and Turing
+Machines</em>, Indianapolis, IN: Wiley.</li>
+
+<li>Post, Emil L., 1936, &ldquo;Finite Combinatory
+Processes-Formulation 1&rdquo;, <em>Journal of Symbolic Logic</em>,
+1(3): 103&ndash;105. doi:10.2307/2269031</li>
+
+<li>&ndash;&ndash;&ndash;, 1944, &ldquo;Recursively Enumerable Sets of
+Positive Integers and Their Decision Problems&rdquo;, <em>Bulletin of
+the American Mathematical Society</em>, 50(5): 284&ndash;316.
+ [<a href="https://projecteuclid.org/euclid.bams/1183505800" target="other">Post 1944 available online</a>]</li>
+ 
+<li>&ndash;&ndash;&ndash;, 1947, &ldquo;Recursive Unsolvability of a
+Problem of Thue&rdquo;, <em>Journal of Symbolic Logic</em>, 12(1):
+1&ndash;11. doi:10.2307/2267170</li>
+
+<li>&ndash;&ndash;&ndash;, 1965, &ldquo;Absolutely Unsolvable Problems
+and Relatively Undecidable Propositions&mdash;Account of an
+Anticipation&rdquo;, in Martin Davis (ed.), <em>The Undecidable: Basic
+Papers on Undecidable Propositions, Unsolvable Problems and Computable
+Functions</em>, New York: Raven Press. Corrected republication 2004,
+Dover publications, New York, pp. 340&ndash;433.</li>
+
+<li>Pullum, Geoffrey K., 2011, &ldquo;On the Mathematical Foundations
+of <em>Syntactic Structures</em>&rdquo;, <em>Journal of Logic,
+Language and Information</em>, 20(3): 277&ndash;296.
+doi:10.1007/s10849-011-9139-8</li>
+
+<li>Putnam, Hilary, 1965, &ldquo;Trial and Error Predicates and the
+Solution to a Problem of Mostowski&rdquo;, <em>The Journal of Symbolic
+Logic</em>, 30(1): 49&ndash;57.</li>
+
+<li>Rabin, M.O. and D. Scott, 1959, &ldquo;Finite Automata and their
+Decision Problems&rdquo;, <em>IBM Journal of Research and
+Development</em>, 3(2): 114&ndash;125. doi:10.1147/rd.32.0114</li>
+
+<li>Rad&oacute;, Tibor, 1962, &ldquo;On Non-Computable
+Functions&rdquo;, <em>Bell System Technical Journal</em>, 41(3/May):
+877&ndash;884. doi:10.1002/j.1538-7305.1962.tb00480.x</li>
+
+<li>Shannon, Claude E., 1956, &ldquo;A Universal Turing Machine with
+Two Internal States&rdquo;, in Shannon &amp; McCarthy 1956:
+157&ndash;165. doi:10.1515/9781400882618-007</li>
+
+<li>Shannon, Claude E. and John McCarthy (eds), 1956, <em>Automata
+Studies</em>, (Annals of Mathematics Studies, 34), Princeton:
+Princeton University Press.</li>
+
+<li>Shapiro, Stewart, 2007, &ldquo;Computability, Proof, and
+Open-Texture&rdquo;, in Adam Olszewski, Jan Wolenski, and Robert
+Janusz (eds.), <em>Church&rsquo;s Thesis After 70 years</em>, Berlin:
+Ontos Verlag, pp. 420&ndash;455. doi:10.1515/9783110325461.420</li>
+
+<li>Sieg, Wilfried, 1994, &ldquo;Mechanical Procedures and
+Mathematical Experience&rdquo;, in Alexander George (ed.),
+<em>Mathematics and Mind</em>, Oxford: Oxford University Press, pp.
+71&ndash;117.</li>
+
+<li>&ndash;&ndash;&ndash;, 1997, &ldquo;Step by Recursive Step:
+Church&rsquo;s Analysis of Effective Calculability&rdquo;, <em>The
+Bulletin of Symbolic Logic</em>, 3(2): 154&ndash;180.
+doi:10.2307/421012</li>
+
+<li>&ndash;&ndash;&ndash;, 2008, &ldquo;Church without Dogma: Axioms
+for Computability&rdquo;, in S. Barry Cooper, Benedikt L&ouml;we, and
+Andrea Sorbi (eds.), <em>New Computational Paradigms: Changing
+Conceptions of What is Computable</em>, New York: Springer Verlag, pp.
+139&ndash;152. doi:10.1007/978-0-387-68546-5_7</li>
+
+<li>Sipser, Michael, 1996, <em>Introduction to the Theory of
+Computation</em>, Boston: PWS Publishing.</li>
+
+<li>Soare, Robert I., 1996, &ldquo;Computability and Recursion&rdquo;,
+<em>Bulletin for Symbolic Logic</em>, 2(3): 284&ndash;321.
+doi:10.2307/420992</li>
+
+<li>Strachey, Christopher, 1965, &ldquo;An Impossible Program (letter
+to the editor )&rdquo;, <em>The Computer Journal</em>, 7(4): 313.
+doi:10.1093/comjnl/7.4.313</li>
+
+<li>Teuscher, Christof (ed.), 2004, <em>Alan Turing: Life and Legacy
+of a Great Thinker</em>, Berlin: Springer.
+doi:10.1007/978-3-662-05642-4</li>
+
+<li>Turing, A.M., 1936&ndash;7, &ldquo;On Computable Numbers, With an
+Application to the Entscheidungsproblem&rdquo;, <em>Proceedings of the
+London Mathematical Society</em>, s2&ndash;42: 230&ndash;265;
+correction <em>ibid</em>., s2&ndash;43: 544&ndash;546 (1937).
+doi:10.1112/plms/s2-42.1.230 and doi:10.1112/plms/s2-43.6.544</li>
+
+<li>&ndash;&ndash;&ndash;, 1937, &ldquo;Computability and
+&lambda;-Definability&rdquo;, <em>Journal of Symbolic Logic</em>,
+2(4): 153&ndash;163. doi:10.2307/2268280</li>
+
+<li>&ndash;&ndash;&ndash;, 1939, &ldquo;Systems of Logic Based on
+Ordinals&rdquo;, <em>Proceedings of the London Mathematical
+Society</em>, s2&ndash;45: 161&ndash;228.
+doi:10.1112/plms/s2-45.1.161</li>
+
+<li>&ndash;&ndash;&ndash;, 1947 [1986], &ldquo;Lecture to the London
+Mathematical Society on 20 February 1947&rdquo;, reprinted in <em>A M.
+Turing&rsquo;s ACE Report of 1946 and Other Papers: Papers by Alan
+Turing and Michael Woodger</em>, (Charles Babbage Institute Reprint,
+10), B.E. Carpenter and R.W. Doran (eds.), Cambridge, MA: MIT Press,
+1986.</li>
+
+<li>&ndash;&ndash;&ndash;, 1954, &ldquo;Solvable and Unsolvable
+Problems&rdquo;, <em>Science News</em>, (February, Penguin), 31:
+7&ndash;23.</li>
+
+<li>Wang, Hao, 1957, &ldquo;A Variant to Turing&rsquo;s Theory of
+Computing Machines&rdquo;, <em>Journal of the ACM</em>, 4(1):
+63&ndash;92. doi:10.1145/320856.320867</li>
+
+<li>Watanabe, Shigeru, 1961, &ldquo;5-Symbol 8-State and 5-Symbol
+6-State Universal Turing Machines&rdquo;, <em>Journal of the ACM</em>,
+8(4): 476&ndash;483. doi:10.1145/321088.321090</li>
+
+<li>Woods, Damien and Turlough Neary, 2007, &ldquo;Small Semi-Weakly
+Universal Turing Machines&rdquo;, in J&eacute;r&ocirc;me Durand-Lose
+and Maurice Margenstern (eds.), <em>Machines, Computations, and
+Universality: 5th International Conference, MCU 2007 Orl&eacute;ans,
+France, September 10&ndash;13, 2007</em>, (Lecture Notes in Computer
+Science, 4664), Berlin: Springer, pp. 303&ndash;315.
+doi:10.1007/978-3-540-74593-8_26</li>
+
+<li>&ndash;&ndash;&ndash;, 2009, &ldquo;The Complexity of Small
+Universal Turing Machines: A Survey&rdquo;, <em>Theoretical Computer
+Science</em>, 410(4&ndash;5): 443&ndash;450.
+doi:10.1016/j.tcs.2008.09.051</li>
+</ul>
+</div> 
+
+<div id="academic-tools">
+<h2 id="Aca">Academic Tools</h2>
+
+<blockquote>
+<table class="vert-top">
+<tr>
+<td><img src="../../symbols/sepman-icon.jpg" alt="sep man icon" /></td>
+<td><a href="https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=turing-machine" target="other">How to cite this entry</a>.</td>
+</tr>
+
+<tr>
+<td><img src="../../symbols/sepman-icon.jpg" alt="sep man icon" /></td>
+<td><a href="https://leibniz.stanford.edu/friends/preview/turing-machine/" target="other">Preview the PDF version of this entry</a> at the
+ <a href="https://leibniz.stanford.edu/friends/" target="other">Friends of the SEP Society</a>.</td>
+</tr>
+
+<tr>
+<td><img src="../../symbols/inpho.png" alt="inpho icon" /></td>
+<td><a href="https://www.inphoproject.org/entity?sep=turing-machine&amp;redirect=True" target="other">Look up topics and thinkers related to this entry</a>
+ at the Internet Philosophy Ontology Project (InPhO).</td>
+</tr>
+
+<tr>
+<td><img src="../../symbols/pp.gif" alt="phil papers icon" /></td>
+<td><a href="https://philpapers.org/sep/turing-machine/" target="other">Enhanced bibliography for this entry</a>
+at <a href="https://philpapers.org/" target="other">PhilPapers</a>, with links to its database.</td>
+</tr>
+
+</table>
+</blockquote>
+</div>
+
+<div id="other-internet-resources">
+
+<h2 id="Oth">Other Internet Resources</h2>
+
+<ul>
+
+<li>Aaronson, Scott, Mohammad Bavarian, Toby Cubitt, Sabee Grewal,
+Giulio Gueltrini, Ryan O&rsquo;Donnell, Marien Raat, 2024,
+ &ldquo;<a href="https://arxiv.org/abs/1609.05507" target="other">Computability Theory of Closed Timelike Curves</a>&rdquo;,
+ manuscript available at arXiv.org.</li>
+
+<li>&ldquo;Turing Machines&rdquo;, <em>Stanford Encyclopedia of
+Philosophy</em> (Fall 2018 Edition), Edward N. Zalta (ed.), URL =
+ &lt;<a href="http://plato.stanford.edu/archives/fall2018/entries/turing-machine/" target="other">http://plato.stanford.edu/archives/fall2018/entries/turing-machine/</a>&gt;.
+ [This was the previous entry on Turing Machines in the SEP, written
+by David Barker-Plummer.].</li>
+
+ <li><a href="https://www.turing.org.uk/turing/" target="other">The Alan Turing Home Page</a>,
+ maintained by Andrew Hodges</li>
+
+ <li><a href="https://www.bletchleypark.org.uk/" target="other">Bletchley Park</a>,
+ in the U.K., where, during the Second World War, Alan Turing was
+involved in code breaking activities at Station X.</li>
+</ul>
+
+<h3 id="BusyBeav">Busy Beaver</h3>
+
+<ul>
+
+ <li><a href="https://bbchallenge.org/story" target="other">Collaborative project on Busy Beavers led by Tristan St&eacute;rin.</a></li>
+ 
+ <li><a href="https://web.archive.org/web/20161105013714/http://somos.crg4.com:80/bb.html" target="other">Michael Somos&rsquo; page of Busy Beaver references (from archive.org).</a></li>
+ </ul>
+
+<h3 id="TM_art">Artistic projects</h3>
+
+<ul>
+
+ <li><a href="http://www.lel.ed.ac.uk/~gpullum/loopsnoop.html" target="other">A poetic proof of the halting problem by Geoff Pullum</a></li>
+ 
+ <li><a href="https://www.verostko.com/manchester/manchester.html" target="other">Illuminated universal Turing machines,</a>
+ an art project by Roman Verostko, a digital art pioneer.</li>
+
+ <li><a href="https://maximecb.github.io/Turing-Drawings/#" target="other">Turing drawings,</a>
+ an art project by Maxime Chevalier-Boisvert.</li>
+</ul>
+
+<h3 id="HaltProb_1">The Halting Problem</h3>
+
+<ul>
+
+ <li><a href="https://web.archive.org/web/20240523061414/https://www.netfunny.com/rhf/jokes/89q4/halting.760.html" target="other">Halting problem is solvable (funny)</a></li>
+ </ul>
+
+<h3 id="OnliTuriMachSimu">Online Turing Machine Simulators</h3>
+
+<p>
+Abstractly speaking, Turing machines are more powerful than any device
+that can actually be built, given the infinite availability of time
+and space, but they can be simulated both in software and
+hardware.</p>
+
+<h4 id="SoftSimu">Software simulators</h4>
+
+<p>
+There are many Turing machine simulators available online. Here are
+two browser-based simulators that allow you to play around, built your
+own machine and store it.</p>
+
+<ul>
+
+ <li><a href="https://turingmachine.io/" target="other">Turing machine simulator by Andy Li</a></li>
+ 
+ <li><a href="https://turingmachinesimulator.com/" target="other">Turing machine simulator by Martin Ugarte</a></li>
+ </ul>
+
+<h4 id="HardSimu">Hardware simulators</h4>
+
+<ul>
+
+ <li><a href="http://aturingmachine.com/" target="other">Turing Machine in the Classic Style</a>,
+ Mike Davey&rsquo;s physical Turing machine simulator.</li>
+
+ <li><a href="http://legoofdoom.blogspot.com/" target="other">Lego of Doom</a>,
+ Turing machine simulator using Lego&trade;.</li>
+
+ <li><a href="https://mural.maynoothuniversity.ie/id/eprint/12409/1/Woods_Wang_2014.pdf" target="other">An analysis of the computational complexity of Gisbert Hasenjaeger&rsquo;s electromechanical Turing machine</a>.
+ The machine was built in 1963.</li>
+</ul>
+</div>
+
+<div id="related-entries">
+
+<h2 id="Rel">Related Entries</h2>
+
+<p>
+
+ <a href="../church-turing/">Church-Turing Thesis</a> |
+ <a href="../computability/">computability and complexity</a> |
+ <a href="../computational-complexity/">computational complexity theory</a> |
+ <a href="../recursive-functions/">recursive functions</a> |
+ <a href="../turing/">Turing, Alan</a> |
+ <a href="../church/">Church, Alonzo</a>
+</p>
+</div>
+
+<div id="acknowledgments">
+
+<h3>Acknowledgments</h3>
+
+<p>
+The version of this entry published on September 24, 2018 is
+essentially a new entry, though the author would like to acknowledge
+the few sentences that remain from the previous version written by
+David Barker-Plummer. See also footnote 1 for an acknowledgment to S.
+Barry Cooper.</p>
+</div>
+<script type="text/javascript" src="local.js"></script>
+<script type="text/javascript" src="../../MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</div><!-- #aueditable --><!--DO NOT MODIFY THIS LINE AND BELOW-->
+
+<!-- END ARTICLE HTML -->
+
+</div> <!-- End article-content -->
+
+  <div id="article-copyright">
+    <p>
+ <a href="../../info.html#c">Copyright &copy; 2025</a> by
+
+<br />
+<a href="https://pro.univ-lille.fr/liesbeth-de-mol/" target="other">Liesbeth De Mol</a>
+&lt;<a href="m&#97;ilto:liesbeth&#37;2edemol&#37;40univ-lille3&#37;2efr"><em>liesbeth<abbr title=" dot ">&#46;</abbr>demol<abbr title=" at ">&#64;</abbr>univ-lille3<abbr title=" dot ">&#46;</abbr>fr</em></a>&gt;
+    </p>
+  </div>
+
+</div> <!-- End article -->
+
+<!-- NOTE: article banner is outside of the id="article" div. -->
+<div id="article-banner" class="scroll-block">
+  <div id="article-banner-content">
+    <a href="../../fundraising/">
+    Open access to the SEP is made possible by a world-wide funding initiative.<br />
+    The Encyclopedia Now Needs Your Support<br />
+    Please Read How You Can Help Keep the Encyclopedia Free</a>
+  </div>
+</div> <!-- End article-banner -->
+
+    </div> <!-- End content -->
+
+    <div id="footer">
+
+      <div id="footer-menu">
+        <div class="menu-block">
+          <h4><i class="icon-book"></i> Browse</h4>
+          <ul role="menu">
+            <li role="menuitem"><a href="../../contents.html">Table of Contents</a></li>
+            <li role="menuitem"><a href="../../new.html">What's New</a></li>
+            <li role="menuitem"><a href="https://plato.stanford.edu/cgi-bin/encyclopedia/random">Random Entry</a></li>
+            <li role="menuitem"><a href="../../published.html">Chronological</a></li>
+            <li role="menuitem"><a href="../../archives/">Archives</a></li>
+          </ul>
+        </div>
+        <div class="menu-block">
+          <h4><i class="icon-info-sign"></i> About</h4>
+          <ul role="menu">
+            <li role="menuitem"><a href="../../info.html">Editorial Information</a></li>
+            <li role="menuitem"><a href="../../about.html">About the SEP</a></li>
+            <li role="menuitem"><a href="../../board.html">Editorial Board</a></li>
+            <li role="menuitem"><a href="../../cite.html">How to Cite the SEP</a></li>
+            <li role="menuitem"><a href="../../special-characters.html">Special Characters</a></li>
+            <li role="menuitem"><a href="../../tools/">Advanced Tools</a></li>
+            <li role="menuitem"><a href="../../accessibility.html">Accessibility</a></li>
+            <li role="menuitem"><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="menu-block">
+          <h4><i class="icon-leaf"></i> Support SEP</h4>
+          <ul role="menu">
+            <li role="menuitem"><a href="../../support/">Support the SEP</a></li>
+            <li role="menuitem"><a href="../../support/friends.html">PDFs for SEP Friends</a></li>
+            <li role="menuitem"><a href="../../support/donate.html">Make a Donation</a></li>
+            <li role="menuitem"><a href="../../support/sepia.html">SEPIA for Libraries</a></li>
+          </ul>
+        </div>
+      </div> <!-- End footer menu -->
+
+      <div id="mirrors">
+        <div id="mirror-info">
+          <h4><i class="icon-globe"></i> Mirror Sites</h4>
+          <p>View this site from another server:</p>
+        </div>
+        <div class="btn-group open">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="https://plato.stanford.edu/">
+            <span class="flag flag-usa"></span> USA (Main Site) <span class="caret"></span>
+            <span class="mirror-source">Philosophy, Stanford University</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="../../mirrors.html">Info about mirror sites</a></li>
+          </ul>
+        </div>
+      </div> <!-- End mirrors -->
+      
+      <div id="site-credits">
+        <p>The Stanford Encyclopedia of Philosophy is <a href="../../info.html#c">copyright &copy; 2025</a> by <a href="https://mally.stanford.edu/">The Metaphysics Research Lab</a>, Department of Philosophy, Stanford University</p>
+        <p>Library of Congress Catalog Data: ISSN 1095-5054</p>
+      </div> <!-- End site credits -->
+
+    </div> <!-- End footer -->
+
+  </div> <!-- End container -->
+
+   <!-- NOTE: Script required for drop-down button to work (mirrors). -->
+  <script>
+    $('.dropdown-toggle').dropdown();
+  </script>
+
+</body>
+</html>
