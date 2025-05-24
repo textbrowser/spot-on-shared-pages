@@ -1,0 +1,742 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Sandboxing: Foolproof Boundaries vs. Unbounded Foolishness - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Security' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3735580" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+		<h3><a href='/listing.cfm?typefilter=Drillbits&sort=publication_date&order=desc&qc_type=Drillbits&article_type=&item_topic=all&filter_type=topic&page_title=Drill%20Bits&filter=all'>Drill Bits</a></h3>
+
+	
+
+<label>May 15, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3735580">Volume 23, issue 2 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3733699">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Sandboxing:<br />Foolproof Boundaries vs. Unbounded Foolishness</h1> 
+  <h3>Terence Kelly<br /> with Special Guest Borer Edison Fuh</h3> 
+  <h3>Library Anxiety</h3> 
+  <p>You're a diligent programmer. Where safety or security is at stake, you specify requirements precisely and implement code carefully, keeping things as simple as possible and inviting expert peer review at every step of the way. In the end, your software isn't merely trusted, it's trust<i>worthy</i>.</p> 
+  <p>Your own code, however, isn't the only software in the applications for which you are responsible. Much of the code is in large, complex, opaque off-the-shelf libraries whose top priorities are features and speed, not security. Such libraries present a dilemma. Finding and fixing their flaws would be prohibitively expensive, but linking them into your application carries risk: If crafted malicious input exploits a vulnerability in a library, the attacker can hijack the enclosing process. Thanks to the ambient authority that processes inherit from users on mainstream operating systems, hijacked processes can wreak havoc on everything within reach, stealing secrets, vandalizing data, and holding files for ransom. Far from paranoia, your library anxiety is vindicated by a long and sorry history. Bugs in libraries linked by <code>sshd</code>, for example, have made <code>sshd</code> vulnerable to remote root exploit.<sup>3,14</sup></p> 
+  <p>Sandboxing protects your code from other people's bugs. By running library code in a suitable sandbox, your application can enjoy a library's features while preventing mayhem. This episode of Drill Bits presents a simple yet powerful sandboxing mechanism, showing how it provides strong confinement for unmodified library code—and how it can be defeated if proper precautions aren't taken. Our example code tarball sandboxes a widely used production library, and the "Drills" (exercises) section sketches enhancements that ambitious coders can implement.</p> 
+  <p>&nbsp;</p> 
+  <h3>Knee-High Piñata Meets Baseball Bat</h3> 
+  <p>We call our sandboxes <i>filter sandboxes</i>. Filter sandboxes are suitable for software that maps explicit inputs to explicit outputs but does <i>not </i>maintain persistent state or rely on indirect influences. For example, filter sandboxes are a good match for most compression, encryption, and mathematical libraries.</p> 
+  <p>Filter sandboxes employ the Linux <code>seccomp</code> system call in its simplest mode of use.<sup>11</sup> A process that calls <code>seccomp</code> in this mode can subsequently make no syscalls whatsoever except <code>read</code>, <code>write</code>, and <code>exit</code>. This restriction is so simple that the OS kernel implementation is likely correct, so Draconian that sandboxes hijacked from within have few opportunities for mischief, and so easy to impose that we expect to knock the sandboxing problem out of the park blindfolded.</p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly1a.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly1a.png" alt="FIGURE 1A : Filter sandbox" style="max-width:100%;width:67%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 1A : Filter sandbox</b></p> 
+  <p>A filter sandbox is a dedicated process that runs library code under <code>seccomp</code> confinement, as shown in figure&nbsp;1a. Driver software calls <code>seccomp</code> when the only open file descriptors are <code>stdin</code>, <code>stdout</code>, and <code>stderr</code>; subsequent syscalls to obtain new file descriptors (e.g., by <code>open</code>ing a file) would cause the kernel to kill the process. The driver <code>read</code>s inputs from <code>stdin</code>, passes them as arguments to library functions, and <code>write</code>s library return values to <code>stdout</code>. The driver can gripe via <code>stderr</code>. In Unix-speak, our sandboxes are <i>filters.</i><sup>10,15</sup> Classic Unix filters include shell-pipeline favorites such as <code>grep</code>, <code>tr</code>, <code>compress</code>, and <code>crypt</code>. Unlike ordinary filters, however, our filter sandboxes are constrained to tread only the straight and narrow One True Path of Filtration.</p> 
+  <p>&nbsp;</p> 
+  <blockquote>
+    "We should have some ways of coupling programs like garden hose—screw in another segment when it becomes necessary to massage data in another way." 
+   <br />—Doug McIlroy's pipe dream, 1964<sup>10</sup> 
+  </blockquote> 
+  <p>&nbsp;</p> 
+  <p>Library code in a filter sandbox should interact with the outside world only via condoned "in-band" channels (i.e., <code>stdin</code>, <code>stdout</code>, and <code>stderr</code>). Any "out-of-band" data flow or influence is an unauthorized leak, shown in red in figure&nbsp;1a. How can leaks happen without syscalls? We'll return to that question repeatedly.</p> 
+  <p>We assume that crafted malicious input can give an attacker control of the entire filter sandbox. Trusted code that uses the sandboxed library therefore runs in a separate process that communicates with the filter sandbox over pipes. Figure&nbsp;1b shows the relationship: Trusted code <code>fork</code>s a child coprocess, the child <code>exec</code>s a filter sandbox executable, and pipes connect parent and child. In this arrangement the filter sandbox restricts only the child but not the parent, which may do whatever its permissions allow.</p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly1b.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly1b.png" alt="FIGURE 1B : Coprocesses" style="max-width:100%;width:67%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 1B : Coprocesses</b></p> 
+  <br /> 
+  <p> A full-blown rampage will be difficult for a hijacked filter sandbox child process, but some shenanigans are easy. A wayward child can hog the CPU by spinning in a tight loop, or sow confusion by spewing malarkey at the parent. A hijacked compression library, for example, can replace the input <code>"attack at dawn"</code> with <code>"surrender now"</code> prior to compression. <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly_shamrock.png" alt="My head is KILLING me!" style="float:right;width:10%;max-width:20%;margin:20px;margin:20px" /> Given this disinformation threat, a major reason to block leaks <i>into </i>filter sandboxes is to prevent more insidious targeted "spear phooling": If a hijacked compression library learns via leaks that the <code>$USER</code> is <code>kelly</code> and today is 18th March, it can replace the input <code>"Top o’ the mornin’!"</code> with <code>"My head is KILLING me!"</code> prior to compression. </p> 
+  <p>We'll try to prevent inbound leaks by keeping environment variables out of the filter sandbox and by banning nearly all syscalls, including those that obtain the date<i>/</i>time. The worst threat is that a hijacked child process can return crafted malicious data designed to hijack the trusted parent. A prudent parent regards all data from the child with suspicion and handles it with caution.</p> 
+  <p>&nbsp;</p> 
+  <h3>Confinement Code and Patterns</h3> 
+  <p>Figure&nbsp;2 lists a header file that makes it easy to create filter sandboxes and plug two kinds of leaks. Lines 7–10 define macros for reporting errors from within sandboxes. These macros avoid elaborate facilities such as <code>fprintf</code>, which make banned syscalls under the hood. The <code>CHK</code> macro is like standard <code>assert</code> but can't be disabled; it streamlines error checks. <code>DUP2</code> (lines 12–13) helps with coprocess plumbing.</p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly2.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly2.png" alt="FIGURE 2: sandbox.h: sandbox creation, preliminaries, and diagnostics" style="max-width:100%;width:100%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 2: <code>sandbox.h</code>: sandbox creation, preliminaries, and diagnostics</b></p> 
+  <br /> 
+  <p>The two macros on lines 15–21 should be called before a sandbox is created. The first prevents environment variables from leaking into a sandbox. Ideally this macro should use C23's <code>memset_explicit</code> function, which resists being optimized away by the compiler but which is not yet universally available. The second macro tries to prevent leaks from a sandbox via core dumps. We'll say more about core dumps later.</p> 
+  <p><code>SANDBOX_CREATE_STRICT</code> is the main event (lines 23–24). It calls <code>seccomp</code> in its simplest and most restrictive form, which bans all system calls except <code>read</code>, <code>write</code>, and <code>exit</code>. The kernel will kill a process that makes any other syscall after this <code>seccomp</code> call. Linux man pages document all syscalls in our code.<sup>11</sup></p> 
+  <p>We'll walk through detailed examples of two common sandboxing patterns. In the first pattern, trusted code interacts with a filter-sandboxed library in simple call-return fashion. Call-return is adequate for many libraries, particularly mathematical libraries. In the second pattern, trusted code pumps a <i>stream </i>of data through a filter sandbox. The stream pattern covers libraries that compress, encrypt, or otherwise transform arbitrary byte sequences. In both patterns, our approach requires no changes to library code.</p> 
+  <p>&nbsp;</p> 
+  <h3>Call-Return</h3> 
+  <p>Figure&nbsp;3 presents a toy "library" function that we'll use to illustrate the call-return pattern. Function <code>sum</code> adds up a given array of integers. The <code>sum</code> library neither knows nor cares about sandboxing.</p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly3.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly3.png" alt="FIGURE 3: sum_lib.c: toy library" style="max-width:50%;width:50%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 3: <code>sum_lib.c</code>: toy "library"</b></p> 
+  <br /> 
+  <p>It doesn't take much code to confine <code>sum</code> to a filter sandbox in the manner of figure&nbsp;1a. The driver in figure&nbsp;4 creates a sandbox (lines 4–6) using the macros of figure&nbsp;2, <code>read</code>s an input array from <code>stdin</code> (line 7), calls <code>sum</code> (line 9), and <code>write</code>s the return value to <code>stdout</code> (line 10). Limiting data transfers on pipes to <code>PIPE_BUF</code> bytes (lines 2–3) ensures atomicity (absent signals), sparing us the trouble of dealing with partial <code>read</code>s and <code>write</code>s.</p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly4.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly4.png" alt="FIGURE 4: sum_sandbox.c: driver that calls sum within filter sandbox" style="max-width:100%;width:100%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 4: <code>sum_sandbox.c</code>: driver that calls sum within filter sandbox</b></p> 
+  <br /> 
+  <p>It's possible to use our <code>sum</code> filter sandbox in a shell pipeline, but it's really meant to serve trusted code as a coprocess in the manner of figure&nbsp;1b.</p> 
+  <p>Figure&nbsp;5 shows a bare-bones "application" that invokes the <code>sum</code> filter sandbox as a coprocess. It <code>fork</code>s a child process, which calls <code>execve</code> to execute <code>sum_sandbox</code>. The characteristic plumbing of coprocesses begins when <code>pipe</code> (line 3) creates two pipes, one for parent<span style="font-family:&quot;Cambria Math&quot;,serif">→</span>child "calls" and the other for child<span style="font-family:&quot;Cambria Math&quot;,serif">→</span>parent "returns." The child rewires these pipes to its <code>stdin</code> and <code>stdout</code> using <code>DUP2</code> from figure&nbsp;2 (lines 18–19). By the time <code>sum_sandbox</code> springs to life, its <code>stdin</code> is the read end of the <code>p2c</code> pipe and its <code>stdout</code> is the write end of the <code>c2p</code> pipe. Stevens and Rago explain the plumbing of coprocesses.<sup>16</sup></p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly5.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly5.png" alt="FIGURE 5: sum_app.c: application that runs sum_sandbox as co-process" style="max-width:100%;width:100%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 5: <code>sum_app.c</code>: application that runs <code>sum_sandbox</code> as co-process</b></p> 
+  <br /> 
+  <p>The parent process "calls" <code>sum</code> in the filter sandbox coprocess by <code>write</code>-ing an array of <code>int</code>s to the parent<span style="font-family:&quot;Cambria Math&quot;,serif">→</span>child pipe (line 8). The parent then obtains the library function's return value by <code>read</code>ing the child<span style="font-family:&quot;Cambria Math&quot;,serif">→</span>parent pipe (line 9). The parent is simple because it relies on knowledge of the child's I<i>/</i>O behavior: The child always ingests all of its input first, and then emits all of its output, so the parent can safely ignore the possibility of tennis-match interactions or I<i>/</i>O deadlock. I<i>/</i>O misbehavior in the child could deadlock the coprocesses; this is another kind of denial-of-service attack, in addition to CPU hogging.</p> 
+  <p>The "application" code of figure&nbsp;5 takes several precautions worth noting. The child passes an empty set of environment variables when it <code>exec</code>s the sandbox (<code>ep</code> on lines 16 and 20). The parent <code>wait</code>s for the child to terminate, to prevent an orphaned child from becoming a "zombie" process, then confirms that the child exited normally by using <code>WIFEXITED</code> to inspect the kernel-set, and therefore trusted, bits of <code>ws</code> (lines 11–12). The parent ignores the child-set, and therefore untrusted, exit status stashed in the low bits of <code>ws</code>. Finally, note that both coprocesses share the same <code>stderr</code> stream. Their gripes may interleave into gibberish <i>unless </i>the shared <code>stderr</code> is a pipe, in which case <code>write</code>s smaller than <code>PIPE_BUF</code> are guaranteed to be atomic. To avert confusion, keep error messages short and run <code>stderr</code> through a pipe. More importantly, keep in mind that the shared <code>stderr</code> includes data from the untrusted child.</p> 
+  <p>&nbsp;</p> 
+  <h3>Streaming Data</h3> 
+  <p>We illustrate the stream pattern of coprocess interaction with a library that implements <code>rot13</code> "encryption," which shifts alphabetic characters 13 positions rightward: "A" becomes "N", "B" becomes "O", etc., as in the equivalent <code>tr</code> command:</p> 
+  <p> &nbsp; &nbsp; &nbsp; <code>$ echo irk | tr A-Za-z N-ZA-Mn-za-m</code></p> 
+  <p> &nbsp; &nbsp; &nbsp; <code>vex</code></p> 
+  <p>Figure&nbsp;6 shows a driver that builds a filter sandbox around <code>rot13</code>, whose trivial implementation is not shown. The driver repeatedly <code>read</code>s a buffer's worth of bytes from <code>stdin</code>, applies <code>rot13</code> to each byte, and <code>write</code>s the transformed buffer to <code>stdout</code>.</p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly6.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly6.png" alt="FIGURE 6: rot13_sandbox.c: driver that calls rot13 library function within sandbox" style="max-width:100%;width:100%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 6: <code>rot13_sandbox.c</code>: driver that calls <code>rot13</code> library function within sandbox</b></p> 
+  <br /> 
+  <p>A parent application process that pumps a stream of data through a child filter sandbox coprocess such as <code>rot13_sandbox</code> must be prepared to handle a wider range of I<i>/</i>O contingencies than in the simple call-return pattern. In general, the child may legitimately <code>read</code> and <code>write</code> arbitrary numbers of bytes in arbitrary order. I<i>/</i>O deadlock between coprocesses can easily happen unless the parent application process takes careful precautions.</p> 
+  <p>Figure&nbsp;7 presents generic application code that pumps a data stream from its own <code>stdin</code> through a coprocess to its own <code>stdout</code>. The coprocess plumbing is set up the same way as in the call-return application code of figure&nbsp;5. The child code is also similar, except now the child passes to <code>execve</code> a suffix of its own <code>argv</code>. Instructions on line&nbsp;12 show the intended mode of use for the <code>run_coproc</code> program of figure&nbsp;7. </p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly7.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly7.png" alt="FIGURE 7: run_coproc.c: generic application that pumps stream through co-process" style="max-width:100%;width:100%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 7: <code>run_coproc.c</code>: generic "application" that pumps stream through co-process</b></p> 
+  <br /> 
+  <p>The biggest difference between <code>sum_app</code> of figure&nbsp;5 and <code>run_coproc</code> of figure&nbsp;7 is that the latter's parent code uses I<i>/</i>O multiplexing. This is necessary because the child may perform blocking <code>read</code>s and <code>write</code>s in arbitrary patterns, so the parent can't know whether its own blocking <code>read</code> or <code>write</code> will create deadlock. The <code>poll</code> syscall on line 21 tells the parent if the child is ready to read or if the child has written data that the parent may read, enabling the parent to respond appropriately without fear of blocking. Flags <code>xi</code> and <code>xo</code>, respectively, indicate whether additional data remains to be written to the child or read from the child. The parent <code>poll</code>s as long as both are true (line 18), then cleans up any remaining data transfers without the need for I<i>/</i>O multiplexing (lines 31–32).</p> 
+  <p>&nbsp;</p> 
+  <h3>Zlib</h3> 
+  <p>To demonstrate that filter sandboxes are practical for real-world libraries, our example tarball includes code to sandbox the widely used <code>zlib</code> compression library and run the sandboxed <code>zlib</code> as the child coprocess of the placeholder application in figure&nbsp;7. Compression libraries are excellent candidates for filter sandboxing because security-critical programs such as <code>sshd</code> have inherited vulnerabilities by linking directly with compression libraries.<sup>3,14</sup> Furthermore, compression filters torture-test our streaming framework by changing the sizes of input streams and by interleaving <code>read</code>s and <code>write</code>s in challenging ways.</p> 
+  <p><i>Creating</i> a filter-sandboxed <code>zlib</code> was easy because the Zlib website provides driver code that exposes the library as a Unix filter.<sup>18</sup> We modified the original <code>zpipe.c</code> driver into <code>zpipe_sandbox.c</code> by adding the sandbox macros of figure&nbsp;2, replacing <code>fread<i>/</i>fwrite</code> with <code>read<i>/</i>write</code>, and making a few other changes.</p> 
+  <p><i>Running</i> our filter-sandboxed <code>zlib</code>, however, can be far from easy. The hidden machinery of modern dynamic linking and loading relies on system calls that <code>seccomp</code> bans. Address-space layout randomization employs banned syscalls too. Finally, <code>zlib</code> allocates memory dynamically, and the default <code>malloc</code> makes still more banned syscalls under the hood. A Gordian-knot solution to these problems is to statically link <code>zpipe_sandbox.c</code> with <code>libz.a</code> and with a small custom allocator that doles out statically allocated memory. Dynamically linking with <code>libz.so</code> is left as an exercise. An appropriately built<i>/</i>linked <code>zlib</code> filter sandbox works well as a coprocess for an application that must prevent <code>zlib</code> bugs from compromising the entire application.</p> 
+  <p>More generally, our experience confirms that filter-sandbox coprocesses are versatile enough to handle two important library usage patterns: call-return and pass-through streaming.</p> 
+  <p>&nbsp;</p> 
+  <blockquote>
+    If it sounds too good to be true, it is. 
+  </blockquote> 
+  <p>&nbsp;</p> 
+  <h3>Jailbreak</h3> 
+  <p>Versatility is nice, but are filter sandboxes <i>secure</i>? Not against libraries that are born evil. To see how easily a malicious library can circumvent sandboxing, compile our <code>sum_lib.c</code> library with the <code>-DEVIL</code> option. That yields the malevolent variant shown in figure&nbsp;8, which uses a constructor to dig a tunnel beneath the sandbox <i>before the sandbox is created</i>. Constructors run before the driver's <code>main</code> function, and therefore before <code>seccomp</code> is called. When the <code>sum</code> library function is eventually called, it exfiltrates data out of the sandbox via the tunnel to a file waiting in <code><i>/</i>tmp<i>/</i></code>. Of course, constructors need not restrict themselves to theft; vandalism and other mayhem are possible too. Indeed, constructors that run before <code>main</code> cause plenty of trouble even in the absence of malice.<sup>4</sup></p> 
+  <br /> <a href="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly8.png"><img src="https://dl.acm.org/cms/attachment/html/10.1145/3733699/assets/html/kelly8.png" alt="FIGURE 8: Evil version of sum_lib.c: constructor preemptively undermines sandbox" style="max-width:100%;width:100%;padding:0px;margin:0px;" /></a> 
+  <p><b>FIGURE 8: Evil version of <code>sum_lib.c</code>: constructor preemptively undermines sandbox</b></p> 
+  <br /> 
+  <p>Identifying and addressing all of the ways a malicious library can arrange for its own code to run before <code>seccomp</code> is left as an exercise for the reader. Rather than explore how malicious library code and trusted code can fight over the steering wheel before a sandbox is created, we restrict attention to library code that is not inherently malevolent but is vulnerable to being hijacked by crafted inputs while running inside a sandbox.</p> 
+  <p>It's relatively easy for crafted input to trigger <code>SIGSEGV</code> in library code. Should we worry that core dumps might leak the crown jewels from a filter sandbox? A core file would be generated by the kernel, not by syscalls that <code>seccomp</code> blocks. Before any segfaulty library code can run, however, filter sandbox drivers use a macro from figure&nbsp;2 to set <code>RLIMIT_CORE</code> to zero. Which means we can stop worrying about core dumps, right?</p> 
+  <p>Wrong. On modern Linux systems, <code><i>/</i>proc<i>/</i>sys<i>/</i>kernel<i>/</i>core_pattern</code> governs the disposition of core files. If this pseudo-file contains a pattern like <code>"|<i>/</i>path<i>/</i>program"</code>, a core file is generated and piped into the specified program <i>regardless of </i><code>RLIMIT_CORE</code>. Some Linux distributions install core-handling programs by default. Determining exactly what these programs do is left as an exercise; check for handlers explicitly designed to whisk core files away to a distant corporate mothership. Most importantly, stay in control. Configure your system to ensure that core files cannot abscond with sensitive information.</p> 
+  <p>What about leaks <i>into</i> a filter sandbox? Earlier, we saw that <code>seccomp</code> bans the syscalls that access date<i>/</i>time. On many Linux systems, however, these syscalls are helpfully replaced, in the name of efficiency, by vDSO (virtual dynamic shared object) equivalents that work despite <code>seccomp</code>. There's still hope for spear phooling the day after St. Patrick's.</p> 
+  <p>If we somehow prevent the date<i>/</i>time from leaking into a filter sandbox, would that constrain library code to map <code>stdin</code> to <code>stdout</code> deterministically? No, non-deterministic behavior remains easy thanks to unprivileged CPU instructions such as <code>RDSEED</code>, which offers gold-standard <i>true</i>-random numbers.<sup>9</sup> An entropy-proof sandbox would be a tall order on today's computers, and <code>seccomp</code> provides no such thing.</p> 
+  <p>An exhaustive security analysis of filter sandboxing is beyond the scope of this column. For now, we can summarize the evidence on hand: Accessing filter sandboxes as coprocesses is fairly easy, and this approach probably increases the cost of successful attacks on trusted applications via vulnerable libraries more than it increases the defender's costs. Filter sandboxes are likely better at hindering vandalism than completely blocking out-of-band data leakage. In-band disinformation is easy and some targeted deceptions are possible.</p> 
+  <p>Our study of sandboxing highlights several broader principles. To design and implement robust defenses, defenders must adopt the hacker's whole-system perspective: Computers are "weird machines" brimming with emergent behaviors and surprising interactions that their designers never intended.<sup>2,5</sup> Why? Because strong, clean isolation mechanisms such as <code>seccomp</code> are continually eroded and negated by frills conceived with little concern for security. Genuine security requires keeping the weird machine's weirdness in check via simplicity and logical coherence,<sup>6</sup> virtues often shortchanged in favor of bells and whistles, time to market, development cost, runtime efficiency, convenience, portability, popularity, and profit. Thus, Americans "secure" their houses with garage door openers containing 50 million lines of code.<sup>7</sup> Foolishness knows no bounds.</p> 
+  <p>&nbsp;</p> 
+  <blockquote>
+    "There are no complex systems that are secure." 
+   <br />—Bruce Schneier 
+  </blockquote> 
+  <p>&nbsp;</p> 
+  <p>The most important security conflict is not between attacker and defender but between the defenders' priorities. Choose your priorities thoughtfully, recognizing that wherever you permit complexity you preclude security. Libraries written by strangers threaten to infuse your applications with staggering complexity. Filter sandboxes keep that complexity safely away from your own trusted, and trust<i>worthy</i>, code.</p> 
+  <p>&nbsp;</p> 
+  <h3>Drilling Deeper</h3> 
+  <p>In one form or another, sandboxing has been a goal since the earliest days of timesharing. An Internet search for <i>sandboxing</i> and related terms such as <i>fault isolation</i> will turn up many mechanisms that have been tried over the decades and that are too numerous to mention here. That old ones keep getting discarded as new ones keep getting invented suggests that we still haven't got it right.</p> 
+  <p>The out-of-band data leaks that we consider are the goofy kid brothers of covert channels, such as those involving electromagnetic emissions, which we do not consider and which have been studied for decades.<sup>13</sup> One approach to preventing careless, casual ambient information flows is object-capability security in safe programming languages.<sup>12</sup></p> 
+  <p>&nbsp;</p> 
+  <blockquote>
+    "OpenSSL must die, for it will never get any better." 
+   <br />—Poul-Henning Kamp 
+  </blockquote> 
+  <p>&nbsp;</p> 
+  <p>Kamp describes how security-critical software can become a dilapidated dumping ground beyond hope of auditing.<sup>8</sup> Ken Thompson devoted his Turing Award lecture<sup>17</sup> to the limitations of source-code auditing and to a memorable rule about trusting anything designed and built by strangers: Don't.</p> 
+  <p>Black reveals the patient ingenuity of the criminal mind in his account of a long career as a burglar, safe cracker, and jailbreaker.<sup>1</sup></p> 
+  <h4>Bits</h4> 
+  <p>Grab the example code tarball at <a href="https://queue.acm.org/downloads/2025/Drill_Bits_15_example_code.tar.gz">https://queue.acm.org/downloads/2025/Drill_Bits_15_example_code.tar.gz</a>. You get all of the code discussed in this column, scripts to compile and run it, plus a vDSO demo, answers to some of the Drills below, and an alternative version of <code>run_coproc.c</code> contributed by a reviewer.</p> 
+  <p>&nbsp;</p> 
+  <h4>Drills</h4> 
+  <ol> 
+   <li>Check out the automagical syscalls made by a trivial program: <br /><code>$ echo 'int main(void){}' | gcc -x c - ; strace .<i>/</i>a.out</code> <br />Now <code>strace</code> complex deterministic programs. Is <code>getrandom()</code> called? Why??</li> 
+   <li>Our little custom memory allocator, <code>bpalloc.c</code>, uses a kludgy loop to align pointers. Replace this with a more elegant one-step alignment. </li> 
+   <li>Instead of <code>wait</code>-ing for the child coprocess to exit, should the application process (figures&nbsp;5&nbsp;and&nbsp;7) kill the child?</li> 
+   <li>See the comment about stack size in <code>kernel<i>/</i>seccomp.c</code> and amend our sandboxes accordingly.</li> 
+   <li>Find a way to prevent core dumps completely. Check out <code>prctl(PR_SET_DUMPABLE)</code>, <code>madvise(MADV_DONTDUMP)</code>, and <code>/proc/self/coredump_filter</code>.</li> 
+   <li>Would it make sense to drop user privileges before calling <code>seccomp</code>? What are the drawbacks and limitations of traditional mechanisms such as <code>setuid</code> and <code>chroot</code>? What are the best modern alternatives?</li> 
+   <li>The classic Unix command-line utility <code>sort</code> is often used as a filter. Would a filter-sandboxed <code>sort</code> work as well as the original? (Hint: Consider external sorting.)</li> 
+   <li>Prevent DoS attacks and detect deadlocks by limiting the wall-clock time spent waiting for the child in <code>sum_app</code>.</li> 
+   <li>To detect when a hijacked Zlib compression library alters its inputs prior to compression, write an application that immediately decompresses and compares the output of decompression with the input of compression. For bonus points, alter <code>zlib</code> to defeat this countermeasure by collusion between compression and decompression routines.</li> 
+   <li>Compare the performance of <code>zpipe_sandbox</code> stand-alone versus run via <code>run_coproc</code>.</li> 
+   <li>Measure overhead as function of number of chained filters: <br /><code>$ cat bigfile | ./run_coproc ... ./run_coproc /bin/cat &gt; /dev/null</code><br /> How much delay does each additional coprocess add? What happens to latency when the number of processes exceeds the number of CPU cores on your machine?</li> 
+   <li>Would it improve performance to use <code>splice</code> for more efficient pipe-to-pipe copying in the <code>copy</code> function of <code>run_coproc.c</code> (lines 3–4 of figure&nbsp;7)?</li> 
+   <li>Would it be wise to write a program to automatically respond to diagnostic messages on the shared <code>stderr</code> stream of the coprocesses of figures&nbsp;5&nbsp;and&nbsp;7?</li> 
+   <li>Use a remote procedure call mechanism to make call-return interactions across coprocesses feel more like ordinary function calls. </li> 
+   <li>Relax the near-total ban on system calls by using <code>seccomp</code>'s more sophisticated filter mode. What syscalls can safely be permitted within a sandbox?</li> 
+   <li>Link <code>zpipe_sandbox</code> dynamically with <code>zlib.so</code> and run it with <code>run_coproc</code>. To prevent dynamic linking from making banned syscalls after <code>seccomp</code>, check out the <code>LD_BIND_NOW</code> environment variable and the "<code>-z now</code>" option of GNU <code>ld</code>.</li> 
+   <li>Write a program that creates an I<i>/</i>O deadlock when <code>run_coproc</code> runs it as a coprocess. Bonus points: Do the same for the alternative <code>run_coproc_SP</code>.</li> 
+  </ol> 
+  <p>&nbsp;</p> 
+  <h4>Acknowledgments</h4> 
+  <p>Zi Fan Tan suggested that Drill Bits explore <code>seccomp</code>-based sandboxes and showed us how to subvert them with constructors. Jacob Bachmeyer, John Dilley, Paul Lawrence, and Sergey Poznyakoff reviewed our example code meticulously and repeatedly, fixing several bugs and suggesting numerous improvements. Poznyakoff contributed a variant of <code>run_coproc.c</code>. Jon Bentley, Bachmeyer, Dilley, Lawrence, and Poznyakoff reviewed drafts of this column, again fixing bugs and suggesting numerous improvements. Hans Boehm provided insights and pointers related to constructors. Boehm serves on the C++ Standard Committee; Lawrence, from the Google Android team, wrote the initial <code>seccomp</code> filter for applications.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <ol> 
+   <li>Black, J. 1926. <i>You Can't Win</i>. MacMillan; <a href="https://gutenberg.org/ebooks/69404.txt.utf-8">https://gutenberg.org/ebooks/69404.txt.utf-8</a>.</li> 
+   <li>Bratus, S., Locasto, M. E., Patterson, M. L., Sassaman, L., Shubina, A. 2011. Exploit programming: from buffer overflows to weird machines and theory of computation. <i>Usenix ;login:</i> 36(6); <a href="https://www.usenix.org/publications/login/december-2011-volume-36-number-6/exploit-programming-buffer-overflows-weird">https://www.usenix.org/publications/login/december-2011-volume-36-number-6/exploit-programming-buffer-overflows-weird</a>.</li> 
+   <li>CERT. 2002. Vulnerability: Double free bug in zlib compression library corrupts malloc's internal data structures; <a href="https://kb.cert.org/vuls/id/368819">https://kb.cert.org/vuls/id/368819</a>.</li> 
+   <li>Constructors of confusion in C++, 2025. Read a few of the FAQs that start at <a href="https://isocpp.org/wiki/faq/ctors#static-init-order-on-first-use">https://isocpp.org/wiki/faq/ctors#static-init-order-on-first-use</a> and you'll see this is a mess.</li> 
+   <li>Dullien, T. 2020. Weird machines, exploitability, and provable unexploitability. <i>IEEE Transactions on Emerging Topics in Computing</i> 8(2); <a href="https://ieeexplore.ieee.org/document/8226852">https://ieeexplore.ieee.org/document/8226852</a>.</li> 
+   <li>Ferguson, N., Schneier, B. 2003. <i>Practical Cryptography</i>. Wiley. See Section 1.2, "The Evils of Features."</li> 
+   <li>Hubert, B. 2024. Why bloat is still software's biggest vulnerability. <i>IEEE Spectrum</i> 61(4). Paywall: <a href="https://ieeexplore.ieee.org/document/10491389">https://ieeexplore.ieee.org/document/10491389</a>. Possibly without paywall: <a href="https://spectrum.ieee.org/lean-software-development">https://spectrum.ieee.org/lean-software-development</a>.</li> 
+   <li>Kamp, P.-H. 2014. Please put OpenSSL out of its misery. <i>acmqueue</i> 12(3). <a href="https://dl.acm.org/doi/pdf/10.1145/2602649.2602816">https://dl.acm.org/doi/pdf/10.1145/2602649.2602816</a>.</li> 
+   <li>Kelly, T. 2024. Zero tolerance for bias. <i>acmqueue </i>22(2); <a href="https://queue.acm.org/detail.cfm?id=3664645">https://queue.acm.org/detail.cfm?id=3664645</a>.</li> 
+   <li>Kernighan, B. 2020. <i>UNIX: A History and a Memoir</i>. Kindle Direct Publishing. See pp. 67–70 for pipes and filters.</li> 
+   <li>Linux man pages. <a href="https://man7.org/linux/man-pages/">https://man7.org/linux/man-pages/</a>: <a href="https://man7.org/linux/man-pages/man2/clock_gettime.2.html">clock_gettime(2)</a>, <a href="https://man7.org/linux/man-pages/man2/close.2.html">close(2)</a>, <a href="https://man7.org/linux/man-pages/man2/dup2.2.html">dup2(2)</a>, <a href="https://man7.org/linux/man-pages/man7/environ.7.html">environ(7)</a>, <a href="https://man7.org/linux/man-pages/man2/execve.2.html">execve(2)</a>, <a href="https://man7.org/linux/man-pages/man2/fork.2.html">fork(2)</a>, <a href="https://man7.org/linux/man-pages/man1/gcc.1.html">gcc(1)</a>, <a href="https://man7.org/linux/man-pages/man1/ld.1.html">ld(1)</a>, <a href="https://man7.org/linux/man-pages/man8/ld.so.8.html">ld.so(8)</a>, <a href="https://man7.org/linux/man-pages/man3/mkstemp.3.html">mkstemp(3)</a>, <a href="https://man7.org/linux/man-pages/man2/pipe.2.html">pipe(2)</a>, <a href="https://man7.org/linux/man-pages/man2/poll.2.html">poll(2)</a>, <a href="https://man7.org/linux/man-pages/man2/prctl.2.html">prctl(2)</a>, <a href="https://man7.org/linux/man-pages/man2/read.2.html">read(2)</a>, <a href="https://man7.org/linux/man-pages/man2/setrlimit.2.html">setrlimit(2)</a>, <a href="https://man7.org/linux/man-pages/man2/syscall.2.html">syscall(2)</a>, <a href="https://man7.org/linux/man-pages/man7/vdso.7.html">vdso(7)</a>, <a href="https://man7.org/linux/man-pages/man2/waitpid.2.html">wait(2)</a>, <a href="https://man7.org/linux/man-pages/man2/write.2.html">write(2)</a>.</li> 
+   <li>Miller, M. S., Yee, K.-P., Shapiro, J. 2003. Capability myths demolished. <i>Technical Report SRL2003-02, Johns Hopkins University Systems Research Laboratory</i>; <a href="https://papers.agoric.com/assets/pdf/papers/capability-myths-demolished.pdf">https://papers.agoric.com/assets/pdf/papers/capability-myths-demolished.pdf</a>.</li> 
+   <li>National Security Agency. TEMPEST: A signal problem; <a href="https://web.archive.org/web/20130918021523/http:/www.nsa.gov/public_info/_files/cryptologic_spectrum/tempest.pdf">https://web.archive.org/web/20130918021523/http:/www.nsa.gov/public_info/_files/cryptologic_spectrum/tempest.pdf</a>.</li> 
+   <li>Provos, N., Friedl, M., Honeyman, P. 2003. Preventing privilege escalation. <i>Proceedings of the 12th Usenix Security Symposium</i>; <a href="http://www.usenix.org/events/sec03/tech/full_papers/provos_et_al/provos_et_al.pdf">http://www.usenix.org/events/sec03/tech/full_papers/provos_et_al/provos_et_al.pdf</a>. See p. 239 for a <code>zlib</code> bug that created a remote root exploit vulnerability in <code>sshd</code> more than 20 years before the recent <code>ssh<i>/</i>xz</code> affair.</li> 
+   <li>Raymond, E. S. 2004. <i>The Art of UNIX Programming</i>. Addison-Wesley. See p. 266 for the filter pattern.</li> 
+   <li>Stevens, W. R., Rago, S. A. 2013. <i>Advanced Programming in the UNIX Environment, </i>third edition. Addison-Wesley. See pp. 548–552 for coprocesses.</li> 
+   <li>Thompson, K. 1984. Reflections on trusting trust [Turing Award lecture]. <i>Communications of the ACM</i> 27(8); <a href="https://dl.acm.org/doi/pdf/10.1145/358198.358210">https://dl.acm.org/doi/pdf/10.1145/358198.358210</a>.</li> 
+   <li>Zlib. January 2024; <a href="https://www.zlib.net/">https://www.zlib.net/</a>.</li> 
+  </ol> 
+  <p>&nbsp;</p> 
+  <p><b>Terence Kelly</b> (<a href="/cdn-cgi/l/email-protection#b2c6c2d9d7dedecbf2d3d1df9cddc0d5"><span class="__cf_email__" data-cfemail="8afefae1efe6e6f3caebe9e7a4e5f8ed">[email&#160;protected]</span></a>) and <b>Edison Fuh</b> aren't merely trusted, they're trust<i>worthy</i>.</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'944bdfa43fa82d05',t:'MTc0ODA4MDA2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 2</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3733699">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
