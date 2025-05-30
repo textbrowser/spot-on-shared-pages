@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>AI meets game theory: How language models perform in human-like social scenarios | ScienceDaily</title>
+
+	<meta name="description" content="Large language models (LLMs) -- the advanced AI behind tools like ChatGPT -- are increasingly integrated into daily life, assisting with tasks such as writing emails, answering questions, and even supporting healthcare decisions. But can these models collaborate with others in the same way humans do? Can they understand social situations, make compromises, or establish trust? A new study reveals that while today's AI is smart, it still has much to learn about social intelligence." id="metasummary" />
+	<meta name="keywords" content="Video Games; Computer Modeling; Mathematical Modeling; Artificial Intelligence; Neural Interfaces; Computers and Internet; Educational Technology; Mathematics" id="metakeywords" />
+
+	<meta name="last-modified" content="Fri, 30 May 2025 18:02:18 GMT" />
+	<meta name="expires" content="Fri, 30 May 2025 19:02:18 GMT" />
+
+	<meta property="og:title" id="og_title" content="AI meets game theory: How language models perform in human-like social scenarios" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" id="og_url" content="https://www.sciencedaily.com/releases/2025/05/250528132456.htm" />
+	<meta property="og:image" content="https://www.sciencedaily.com/images/scidaily-icon.png" />
+	<meta property="og:description" id="og_description" content="Large language models (LLMs) -- the advanced AI behind tools like ChatGPT -- are increasingly integrated into daily life, assisting with tasks such as writing emails, answering questions, and even supporting healthcare decisions. But can these models collaborate with others in the same way humans do? Can they understand social situations, make compromises, or establish trust? A new study reveals that while today's AI is smart, it still has much to learn about social intelligence." />
+	<meta property="og:site_name" content="ScienceDaily" />
+
+	<link rel="canonical" href="https://www.sciencedaily.com/releases/2025/05/250528132456.htm" />
+	<link rel="alternate" type="application/rss+xml" title="ScienceDaily: Latest Science News" href="https://www.sciencedaily.com/rss/" />
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Font Awesome CSS -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+	<!-- YAMM!3 CSS -->
+	<link href="/css/yamm.css" rel="stylesheet" />
+	
+	<!-- Social Share Kit CSS -->
+	<link href="/css/social-share-kit.css" rel="stylesheet" type="text/css" />
+
+	<!-- Custom styles for this template -->
+	<link href="/css/custom-202404121350.css" rel="stylesheet" />
+	
+<script type="text/javascript">
+	/* Google Analytics TCF 2.0 support */
+	window['gtag_enable_tcf_support'] = true;
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GT6V1PPT8H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GT6V1PPT8H');
+</script>
+
+<script type="text/javascript" async="async" data-noptimize="1" data-cfasync="false" src="//scripts.pubnation.com/tags/31bd5f42-f769-4167-8846-a066e0e8ced7.js"></script>
+
+</head>
+<body>
+
+<header>
+
+	<a href="#main" class="skip">Skip to main content</a>
+
+	<!-- Container -->
+    <div class="container white">
+	    
+		<!-- Row -->
+	    <div class="row header">
+		    
+		    <div class="col-sm-5 col-md-4 no-padding-right">
+			    <div class="logo">
+				    <a href="/" title="ScienceDaily"><img src="/images/sd-logo.png" height="43" width="260" alt="ScienceDaily" /></a>
+				    <hr class="hr-logo" />
+				    <div class="clearfix"></div>
+				    <div class="motto">Your source for the latest research news</div>
+			    </div>
+		    </div>
+		    
+			<div class="col-sm-7 col-md-8 no-padding-left hidden-xs">
+				<div class="sharing">
+					<div id="controls" class="btn-group" role="group" aria-label="...">
+						<a href="#" class="btn btn-default topbar hidden-xs" role="button" aria-disabled="true">Follow:</a>
+						<a href="https://www.facebook.com/sciencedaily" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Facebook" aria-label="Facebook Page"><i class="fa fa-facebook fa-fw" role="presentation"><span class="display-none">Facebook</span></i></a>
+						<a href="https://twitter.com/sciencedaily" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="X/Twitter" aria-label="X/Twitter Page"><i class="fa fa-twitter fa-fw" role="presentation"><span class="display-none">X/Twitter</span></i></a>
+						<a href="#" class="btn btn-default topbar hidden-xs" role="button" aria-disabled="true">Subscribe:</a>
+						<a href="/newsfeeds.htm" class="btn btn-default hidden-tiny" data-toggle="tooltip" data-placement="bottom" title="RSS Feeds" aria-label="RSS Feeds"><i class="fa fa-rss fa-fw" role="presentation"><span class="display-none">RSS Feeds</span></i></a>
+						<a href="https://sciencedaily.substack.com" class="btn btn-default" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Newsletter" aria-label="Newsletter"><i class="fa fa-envelope-o fa-fw" role="presentation"><span style="display: none">Newsletter</span></i></a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		
+		<div id="callout">
+<strong>New!</strong> Sign up for our free <strong><a href="https://sciencedaily.substack.com/#" target="_blank">email newsletter</a></strong>.</div>
+		
+	</div>
+<!-- /container -->
+
+</header>
+
+    <div id="contents" class="container white">
+	    
+	<div class="row">
+
+		<!-- Main -->
+		<main id="main">
+		<div class="col-sm-7 col-md-8 main less-padding-right hyphenate">
+			
+			<!-- Top Science News -->
+			<div class="head no-print">
+				<div class="pull-left head-left">Science News</div>
+				<div class="pull-right head-right">from research organizations</div>
+			</div>
+			<div class="clearfix"></div>
+			<hr class="head-rule no-print" />
+			
+			<h1 id="headline" class="headline">AI meets game theory: How language models perform in human-like social scenarios</h1>
+			
+			
+			<dl class="dl-horizontal dl-custom">
+				<dt>Date:</dt>
+				<dd id="date_posted">May 28, 2025</dd>
+				<dt>Source:</dt>
+				<dd id="source">Helmholtz Munich</dd>
+				<dt>Summary:</dt>
+				<dd id="abstract">Large language models (LLMs) -- the advanced AI behind tools like ChatGPT -- are increasingly integrated into daily life, assisting with tasks such as writing emails, answering questions, and even supporting healthcare decisions. But can these models collaborate with others in the same way humans do? Can they understand social situations, make compromises, or establish trust? A new study reveals that while today's AI is smart, it still has much to learn about social intelligence.
+</dd>
+				<dt class="no-print">Share:</dt>
+				<dd class="no-print">
+					<div id="share_top">
+						<div data-url="https://www.sciencedaily.com/releases/2025/05/250528132456.htm" class="ssk-sm ssk-group">
+							<a href="#" class="ssk ssk-icon ssk-facebook" aria-label="Facebook"><span class="display-none">Facebook</span></a>
+							<a href="#" class="ssk ssk-icon ssk-twitter" aria-label="Twitter"><span class="display-none">Twitter</span></a>
+							<a href="#" class="ssk ssk-icon ssk-pinterest" aria-label="Pinterest"><span class="display-none">Pinterest</span></a>
+							<a href="#" class="ssk ssk-icon ssk-linkedin" aria-label="LinkedIN"><span class="display-none">LinkedIN</span></a>
+							<a href="#" class="ssk ssk-icon ssk-email" aria-label="Email"><span class="display-none">Email</span></a>
+						</div>
+					</div>
+				</dd>
+			</dl>
+			
+						<div class="mobile-top-rectangle">
+				
+						</div>
+				
+			<div class="row">
+				
+				<div class="col-md-8 col-md-push-4">
+					
+					<div class="fullstory">FULL STORY</div>
+					<hr class="hr-fullstory" />
+
+					<!-- /story_photo -->
+					<div class="clearfix"></div>
+
+					<div id="story_text" class="hyphenate underline">
+
+						<p id="first" class="lead">Large language models (LLMs) -- the advanced AI behind tools like ChatGPT -- are increasingly integrated into daily life, assisting with tasks such as writing emails, answering questions, and even supporting healthcare decisions. But can these models collaborate with others in the same way humans do? Can they understand social situations, make compromises, or establish trust? A new study from researchers at Helmholtz Munich, the Max Planck Institute for Biological Cybernetics, and the University of T&uuml;bingen, reveals that while today's AI is smart, it still has much to learn about social intelligence.</p>
+
+						<div id="text">
+<p><strong>Playing Games to Understand AI Behavior</strong></p>
+<p>To find out how LLMs behave in social situations, researchers applied behavioral game theory -- a method typically used to study how people cooperate, compete, and make decisions. The team had various AI models, including GPT-4, engage in a series of games designed to simulate social interactions and assess key factors such as fairness, trust, and cooperation.</p>
+<p>The researchers discovered that GPT-4 excelled in games demanding logical reasoning -- particularly when prioritizing its own interests. However, it struggled with tasks that required teamwork and coordination, often falling short in those areas.</p>
+<p>"In some cases, the AI seemed almost too rational for its own good," said Dr. Eric Schulz, lead author of the study. "It could spot a threat or a selfish move instantly and respond with retaliation, but it struggled to see the bigger picture of trust, cooperation, and compromise."</p>
+<p><strong>Teaching AI to Think Socially</strong></p>
+<p>To encourage more socially aware behavior, the researchers implemented a straightforward approach: they prompted the AI to consider the other player's perspective before making its own decision. This technique, called Social Chain-of-Thought (SCoT), resulted in significant improvements. With SCoT, the AI became more cooperative, more adaptable, and more effective at achieving mutually beneficial outcomes -- even when interacting with real human players.</p>
+
+<div id="insertion_middle"></div>
+<p>"Once we nudged the model to reason socially, it started acting in ways that felt much more human," said Elif Akata, first author of the study. "And interestingly, human participants often couldn't tell they were playing with an AI."</p>
+<p><strong>Applications in Health and Patient Care</strong></p>
+<p>The implications of this study reach well beyond game theory. The findings lay the groundwork for developing more human-centered AI systems, particularly in healthcare settings where social cognition is essential. In areas like mental health, chronic disease management, and elderly care, effective support depends not only on accuracy and information delivery but also on the AI's ability to build trust, interpret social cues, and foster cooperation. By modeling and refining these social dynamics, the study paves the way for more socially intelligent AI, with significant implications for health research and human-AI interaction.</p>
+<p>"An AI that can encourage a patient to stay on their medication, support someone through anxiety, or guide a conversation about difficult choices," said Elif Akata. "That's where this kind of research is headed."</p>
+</div>
+
+					</div>
+<!-- /story_text -->
+
+				</div>
+<!-- /col-md-8 -->
+				
+				<div class="col-md-4 col-md-pull-8 less-padding-left no-print">
+					
+					<div class="row">
+
+						<div class="col-xs-6 col-md-12">
+							
+							<ul class="nav topics">
+								<li class="nav-header">
+<a href="#">RELATED TOPICS</a>
+									<ul id="related_topics" class="nav subnav">
+										<li>
+<a href="/news/computers_math/">Computers &amp; Math</a>
+											<ul class="nav nav-condensed fa-ul">
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/video_games/" rel="tag">Video Games</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/computer_modeling/" rel="tag">Computer Modeling</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/mathematical_modeling/" rel="tag">Mathematical Modeling</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/artificial_intelligence/" rel="tag">Artificial Intelligence</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/neural_interfaces/" rel="tag">Neural Interfaces</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/computers_and_internet/" rel="tag">Computers and Internet</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/educational_technology/" rel="tag">Educational Technology</a>
+</li>
+												<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/news/computers_math/mathematics/" rel="tag">Mathematics</a>
+</li>
+											</ul>
+										</li>
+</ul>
+								</li>
+							</ul>
+							
+						</div>
+						
+						<div class="col-xs-6 col-md-12">
+
+							<ul class="nav topics">
+								<li class="nav-header">
+<a href="#">RELATED TERMS</a>
+									<ul id="related_terms" class="nav nav-condensed fa-ul">
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/mathematical_model.htm">Mathematical model</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/microeconomics.htm">Microeconomics</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/artificial_intelligence.htm">Artificial intelligence</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/computer_simulation.htm">Computer simulation</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/global_climate_model.htm">Global climate model</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/macroeconomics.htm">Macroeconomics</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/security_engineering.htm">Security engineering</a>
+</li>
+										<li>
+<i class="fa-li fa fa-angle-right" role="presentation"></i><a href="/terms/computational_genomics.htm">Computational genomics</a>
+</li>
+</ul>
+								</li>
+							</ul>
+		
+						</div>
+<!-- /col-xs-6 -->
+
+					</div>
+<!-- /row -->
+
+				</div>
+<!-- /col-md-4 -->
+				
+			</div>
+<!-- /row -->
+			
+			<div id="insertion_end"></div>
+			
+						<hr />
+
+						<div id="story_source">							<p><strong>Story Source:</strong></p>
+							<p><a href="https://www.helmholtz-munich.de/en/newsroom/news-all/artikel/ai-meets-game-theory-how-language-models-perform-in-human-like-social-scenarios" style="text-decoration: underline" rel="noopener noreferrer" target="_blank">Materials</a> provided by <a href="https://www.helmholtz-munich.de/en/" rel="noopener noreferrer" target="_blank"><strong>Helmholtz Munich</strong></a>. <em>Note: Content may be edited for style and length.</em></p>
+</div>
+<!-- /story_source -->
+				
+						<hr />
+						<!-- /related_multimedia -->
+						<div id="journal_references"><p><strong>Journal Reference</strong>:</p>
+<ol class="journal">
+<li>Elif Akata, Lion Schulz, Julian Coda-Forno, Seong Joon Oh, Matthias Bethge, Eric Schulz. <strong>Playing repeated games with large language models</strong>. <em>Nature Human Behaviour</em>, 2025; DOI: <a href="http://dx.doi.org/10.1038/s41562-025-02172-y" style="text-decoration: underline" rel="noopener noreferrer" target="_blank">10.1038/s41562-025-02172-y</a>
+</li>
+</ol>
+<hr />
+</div>
+<!-- /journal_references -->
+
+						<div id="citations">
+
+							<div role="tabpanel" class="right-tabs clearfix">
+
+								<p class="pull-left"><strong>Cite This Page</strong>:</p>
+
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#citation_mla" aria-controls="citation_mla" role="tab" data-toggle="tab">MLA</a></li>
+									<li role="presentation"><a href="#citation_apa" aria-controls="citation_apa" role="tab" data-toggle="tab">APA</a></li>
+									<li role="presentation"><a href="#citation_chicago" aria-controls="citation_chicago" role="tab" data-toggle="tab">Chicago</a></li>
+								</ul>
+								
+								<!-- Tab panes -->
+								<div class="tab-content tab-citations">
+									<div role="tabpanel" class="tab-pane active" id="citation_mla">Helmholtz Munich. "AI meets game theory: How language models perform in human-like social scenarios." ScienceDaily. ScienceDaily, 28 May 2025. &lt;www.sciencedaily.com<wbr></wbr>/<wbr></wbr>releases<wbr></wbr>/<wbr></wbr>2025<wbr></wbr>/<wbr></wbr>05<wbr></wbr>/<wbr></wbr>250528132456.htm&gt;.</div>
+									<div role="tabpanel" class="tab-pane" id="citation_apa">Helmholtz Munich. (2025, May 28). AI meets game theory: How language models perform in human-like social scenarios. <em>ScienceDaily</em>. Retrieved May 30, 2025 from www.sciencedaily.com<wbr></wbr>/<wbr></wbr>releases<wbr></wbr>/<wbr></wbr>2025<wbr></wbr>/<wbr></wbr>05<wbr></wbr>/<wbr></wbr>250528132456.htm</div>
+									<div role="tabpanel" class="tab-pane" id="citation_chicago">Helmholtz Munich. "AI meets game theory: How language models perform in human-like social scenarios." ScienceDaily. www.sciencedaily.com<wbr></wbr>/<wbr></wbr>releases<wbr></wbr>/<wbr></wbr>2025<wbr></wbr>/<wbr></wbr>05<wbr></wbr>/<wbr></wbr>250528132456.htm (accessed May 30, 2025).</div>
+								</div>
+
+							</div>
+			
+							<div class="clearfix"></div>
+
+						</div>
+<!-- end citations -->
+
+						<div class="clearfix"></div>
+
+						<br />
+
+			<div class="head">
+	            <h2 id="exploremore_heading" class="pull-left head-left">Explore More</h2>
+	            <div class="pull-right head-right">from ScienceDaily</div>
+	        </div>
+	        <div class="clearfix"></div>
+	        <hr class="head-rule" />
+	
+			
+						
+			<div class="fullstory">RELATED STORIES</div>
+			<hr class="hr-fullstory" />
+	
+			<div id="related_releases">				<div class="related-headline clearfix"><a href="/releases/2024/11/241118125822.htm">Study Identifies Strategy for AI Cost-Efficiency in Health Care Settings</a></div>
+				<div class="related-summary">
+<span class="story-date">Nov. 18, 2024 &#151;</span> A study has identified strategies for using large language models (LLMs), a type of artificial intelligence (AI), in health systems while maintaining cost efficiency and performance. The findings ... </div>				<div class="related-headline clearfix"><a href="/releases/2024/09/240920112416.htm">How Can We Make the Best Possible Use of Large Language Models for a Smarter and More Inclusive Society?</a></div>
+				<div class="related-summary">
+<span class="story-date">Sep. 20, 2024 &#151;</span> Large language models (LLMs) have developed rapidly in recent years and are becoming an integral part of our everyday lives through applications like ChatGPT. An article explains the opportunities ... </div>				<div class="related-headline clearfix"><a href="/releases/2024/05/240528115005.htm">Research Finds Improving AI Large Language Models Helps Better Align With Human Brain Activity</a></div>
+				<div class="related-summary">
+<span class="story-date">May 28, 2024 &#151;</span> With generative artificial intelligence (GenAI) transforming the social interaction landscape in recent years, large language models (LLMs), which use deep-learning algorithms to train GenAI ... </div>				<div class="related-headline clearfix"><a href="/releases/2023/07/230703133029.htm">Dangerous Chatbots: AI Chatbots to Be Approved as Medical Devices?</a></div>
+				<div class="related-summary">
+<span class="story-date">July 3, 2023 &#151;</span> LLM-based generative chat tools, such as ChatGPT or Google's MedPaLM have great medical potential, but there are inherent risks associated with their unregulated use in healthcare. A new article ... </div>
+</div>
+	
+		</div>
+		</main>
+		<!-- /Main -->
+
+		<!-- Sidebar -->
+		<div class="col-sm-5 col-md-4 less-padding-left sidebar no-print">
+			<div class="pull-right btn-group btn-group-sm tools-top hidden-tiny hidden-xs" role="group" aria-label="...">
+				<a href="#" class="btn btn-default print black" role="button"><i class="fa fa-print" role="presentation"></i> &nbsp; <span class="hidden-sm">Print</span></a>
+				<a href="#" class="btn btn-default email black" role="button"><i class="fa fa-envelope" role="presentation"></i> &nbsp; <span class="hidden-sm">Email</span></a>
+				<a href="#" class="btn btn-default black" data-toggle="modal" data-target="#shareModal" role="button"><i class="fa fa-share" role="presentation"></i> &nbsp; <span class="hidden-sm">Share</span></a>
+			</div>
+			<div class="clearfix"></div>
+			<hr class="hr-tools-top" />
+			
+			<div class="subhead">
+				<h2 id="breaking_heading" class="pull-left subhead-left"><a href="/breaking/" class="breaking-head">Breaking</a></h2>
+				<div class="pull-right subhead-right">this hour</div>
+			</div>
+			<div class="clearfix"></div>
+			<hr class="head-rule" />
+			
+			<ul id="justin_headlines" class="list-unstyled breaking-list">
+	
+	<li><a href="/releases/2025/05/250527124117.htm">Declines in Maternal Mental Health Across US</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250528132509.htm">Five Things to Do in VR -- And 5 to Avoid</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250527124123.htm">HIV Vaccine Breakthrough</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250528131639.htm">How the Brain Licenses Movements</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250528131544.htm">New Injection for High Blood Pressure</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250529140137.htm">How Emotions Arise from Sensory Signals</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250529124402.htm">The Purr-Fect Gene</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250529124352.htm">Electronic Tattoo Gauges Mental Strain</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250529124114.htm">Lowering Carbon Emissions in Maritime Shipping</a></li>
+	
+
+	
+	<li><a href="/releases/2025/05/250529194648.htm">Revised Age for Land-Animal Ancestor</a></li>
+	
+</ul>
+			
+			<div class="subhead extra-top-margin">
+				<h2 id="most_popular_heading" class="pull-left subhead-left">Trending Topics</h2>
+				<div class="pull-right subhead-right">this week</div>
+			</div>
+			<div class="clearfix"></div>
+			<hr class="head-rule" />
+			
+			<div id="most_popular_section1_head" class="side-subhead"><a href="/news/space_time/" class="gray">SPACE &amp; TIME</a>
+</div>
+			<div id="most_popular_section1">
+	<div class="sidebar-headline clearfix"><a href="/news/space_time/solar_flare/">Solar Flare</a></div>
+	<div class="sidebar-headline clearfix"><a href="/news/space_time/northern_lights/">Northern Lights</a></div>
+	<div class="sidebar-headline clearfix"><a href="/news/space_time/moon/">Moon</a></div>
+</div>
+
+			<div id="most_popular_section2_head" class="side-subhead"><a href="/news/matter_energy/" class="gray">MATTER &amp; ENERGY</a>
+</div>
+			<div id="most_popular_section2">
+	<div class="sidebar-headline clearfix"><a href="/news/matter_energy/alternative_fuels/">Alternative Fuels</a></div>
+	<div class="sidebar-headline clearfix"><a href="/news/matter_energy/fuel_cells/">Fuel Cells</a></div>
+	<div class="sidebar-headline clearfix"><a href="/news/matter_energy/batteries/">Batteries</a></div>
+</div>
+			
+			<div id="most_popular_section3_head" class="side-subhead"><a href="/news/computers_math/" class="gray">COMPUTERS &amp; MATH</a>
+</div>
+			<div id="most_popular_section3">
+	<div class="sidebar-headline clearfix"><a href="/news/computers_math/communications/">Communications</a></div>
+	<div class="sidebar-headline clearfix"><a href="/news/computers_math/virtual_reality/">Virtual Reality</a></div>
+	<div class="sidebar-headline clearfix"><a href="/news/computers_math/quantum_computers/">Quantum Computers</a></div>
+</div>
+			
+			<div class="halfpage double-extra-top-margin">
+
+			</div>
+
+			<div class="subhead extra-top-margin">
+				<h2 id="strange_offbeat_heading" class="pull-left subhead-left">Strange &amp; Offbeat</h2>
+				<div class="pull-right subhead-right">&nbsp;</div>
+			</div>
+			<div class="clearfix"></div>
+			<hr class="head-rule" />
+			
+			<div id="strange_offbeat_section1_head" class="side-subhead"><a href="/news/strange_offbeat/space_time/" class="gray">SPACE &amp; TIME</a>
+</div>
+			<div id="strange_offbeat_section1">
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250528131822.htm">Ongoing Surface Modification on Jupiter's Moon Europa Uncovered</a></div>
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250528131650.htm">Observing One-Dimensional Anyons: Exotic Quasiparticles in the Coldest Corners of the Universe</a></div>
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250528131647.htm">Cosmic Mystery Deepens as Astronomers Find Object Flashing in Both Radio Waves and X-Rays</a></div>
+</div>
+
+			<div id="strange_offbeat_section2_head" class="side-subhead"><a href="/news/strange_offbeat/matter_energy/" class="gray">MATTER &amp; ENERGY</a>
+</div>
+			<div id="strange_offbeat_section2">
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250529145539.htm">New Quantum Visualization Technique to Identify Materials for Next Generation Quantum Computing</a></div>
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250529124352.htm">Electronic Tattoo Gauges Mental Strain</a></div>
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250528150829.htm">Mid-Air Transformation Helps Flying, Rolling Robot to Transition Smoothly</a></div>
+</div>
+			
+			<div id="strange_offbeat_section3_head" class="side-subhead"><a href="/news/strange_offbeat/computers_math/" class="gray">COMPUTERS &amp; MATH</a>
+</div>
+			<div id="strange_offbeat_section3">
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250528131645.htm">Solitonic Superfluorescence Paves Way for High-Temperature Quantum Materials</a></div>
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250527124546.htm">The Magic of Light: Dozens of Images Hidden in a Single Screen</a></div>
+	<div class="sidebar-headline clearfix"><a href="/releases/2025/05/250527124219.htm">Emotional Responses Crucial to Attitudes About Self-Driving Cars</a></div>
+</div>
+			
+		</div>
+		<!-- /Sidebar -->
+
+	</div>
+	<!-- /Row -->
+
+	<br />
+
+	</div> <!-- /Container -->
+
+<div id="navwrapper">
+<div id="topnav">
+	<!-- Static navbar -->
+	<nav class="navbar yamm navbar-default navbar-static navbar-custom"><div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed menu" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span>Menu &nbsp;<i class="fa fa-bars" role="presentation"></i></span>
+		  </button>
+		  <a class="navbar-brand visible-xs" href="#"><span class="icon-s">S<span class="icon-d">D</span></span></a>
+		  <ul class="nav navbar-nav hidden-xs">
+<li class="dropdown">
+			  <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><span class="icon-s">S<span class="icon-d">D</span></span></a>
+			  <ul class="dropdown-menu brand" role="menu">
+<li><a href="/" role="menuitem">Home Page</a></li>
+				<li class="divider">
+				</li>
+<li><a href="/news/top/science/" role="menuitem">Top Science News</a></li>
+				<li class="divider">
+				</li>
+<li><a href="/news/" role="menuitem">Latest News</a></li>
+			  </ul>
+</li>
+		  </ul>
+</div>
+		<div id="navbar" class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+<li class="dropdown visible-xs">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Home <span class="caret" role="presentation"></span></a>
+			  <ul class="dropdown-menu" role="menu">
+<li><a href="/" role="menuitem">Home Page</a></li>
+				<li class="divider">
+				</li>
+<li><a href="/news/top/science/" role="menuitem">Top Science News</a></li>
+				<li class="divider">
+				</li>
+<li><a href="/news/" role="menuitem">Latest News</a></li>
+			  </ul>
+<!-- /dropdown-menu -->
+</li>
+<!-- /dropdown -->
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Health <span class="caret" role="presentation"></span></a>
+			  <ul class="dropdown-menu dropdown-menu-left" role="menu">
+<li class="menu-item">
+					  <div class="yamm-content hyphenate">
+						  <div>View all the latest <strong><a href="/news/top/health/">top news</a></strong> in the health sciences, <span class="hidden-xs hidden-sm" role="presentation"><br /></span>or browse the topics below:</div>
+						  <div class="row">
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/health_medicine/">Health &amp; Medicine</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/health_medicine/allergy/" role="menuitem">Allergy</a></li>
+										<li><a href="/news/health_medicine/cancer/" role="menuitem">Cancer</a></li>
+										<li><a href="/news/health_medicine/cold_and_flu/" role="menuitem">Cold and Flu</a></li>
+										<li><a href="/news/health_medicine/diabetes/" role="menuitem">Diabetes</a></li>
+									
+										<li><a href="/news/health_medicine/heart_disease/" role="menuitem">Heart Disease</a></li>
+									
+										<li><a href="/news/health_medicine/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/mind_brain/" role="menuitem">Mind &amp; Brain</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/mind_brain/add_and_adhd/" role="menuitem">ADD and ADHD</a></li>
+									
+										<li><a href="/news/mind_brain/alzheimer's/" role="menuitem">Alzheimer's</a></li>
+									
+										<li><a href="/news/mind_brain/headaches/" role="menuitem">Headaches</a></li>
+										<li><a href="/news/mind_brain/intelligence/" role="menuitem">Intelligence</a></li>
+									
+										<li><a href="/news/mind_brain/psychology/" role="menuitem">Psychology</a></li>
+									
+										<li><a href="/news/mind_brain/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/living_well/" role="menuitem">Living Well</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/mind_brain/parenting/" role="menuitem">Parenting</a></li>
+										<li><a href="/news/mind_brain/child_development/" role="menuitem">Child Development</a></li>
+										<li><a href="/news/mind_brain/stress/" role="menuitem">Stress</a></li>
+										<li><a href="/news/health_medicine/nutrition/" role="menuitem">Nutrition</a></li>
+										<li><a href="/news/health_medicine/fitness/" role="menuitem">Fitness</a></li>
+					
+										<li><a href="/news/living_well/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+						  </div>
+<!-- /row -->
+					  </div>
+<!-- /yamm-content -->
+				  </li>
+<!-- /menu-item -->
+			  </ul>
+<!-- /dropdown-menu -->
+</li>
+<!-- /dropdown -->
+				  
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Tech <span class="caret" role="presentation"></span></a>
+			  <ul class="dropdown-menu dropdown-menu-left" role="menu">
+<li class="menu-item">
+					  <div class="yamm-content hyphenate">
+						  <div>View all the latest <strong><a href="/news/top/technology/">top news</a></strong> in the physical sciences &amp; technology, <span class="hidden-xs hidden-sm" role="presentation"><br /></span>or browse the topics below:</div>
+						  <div class="row">
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/matter_energy/" role="menuitem">Matter &amp; Energy</a></div>
+									<ul class="list-unstyled menu-topics">
+										<li><a href="/news/matter_energy/chemistry/" role="menuitem">Chemistry</a></li>
+									
+										<li><a href="/news/matter_energy/fossil_fuels/" role="menuitem">Fossil Fuels</a></li>
+									
+										<li><a href="/news/matter_energy/nanotechnology/" role="menuitem">Nanotechnology</a></li>
+										<li><a href="/news/matter_energy/physics/" role="menuitem">Physics</a></li>
+									
+										<li><a href="/news/matter_energy/solar_energy/" role="menuitem">Solar Energy</a></li>
+										<li><a href="/news/matter_energy/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/space_time/" role="menuitem">Space &amp; Time</a></div>
+									<ul class="list-unstyled menu-topics">
+									
+										<li><a href="/news/space_time/black_holes/" role="menuitem">Black Holes</a></li>
+										<li><a href="/news/space_time/dark_matter/" role="menuitem">Dark Matter</a></li>
+									
+										<li><a href="/news/space_time/extrasolar_planets/" role="menuitem">Extrasolar Planets</a></li>
+					
+										<li><a href="/news/space_time/solar_system/" role="menuitem">Solar System</a></li>
+										<li><a href="/news/space_time/space_telescopes/" role="menuitem">Space Telescopes</a></li>
+									
+										<li><a href="/news/space_time/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/computers_math/" role="menuitem">Computers &amp; Math</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/computers_math/artificial_intelligence/" role="menuitem">Artificial Intelligence</a></li>
+										<li><a href="/news/computers_math/mathematics/" role="menuitem">Mathematics</a></li>
+										<li><a href="/news/computers_math/quantum_computers/" role="menuitem">Quantum Computers</a></li>
+									
+										<li><a href="/news/computers_math/robotics/" role="menuitem">Robotics</a></li>
+										<li><a href="/news/computers_math/virtual_reality/" role="menuitem">Virtual Reality</a></li>
+									
+										<li><a href="/news/computers_math/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+						  </div>
+<!-- /row -->
+					  </div>
+<!-- /yamm-content -->
+				  </li>
+<!-- /menu-item -->
+			  </ul>
+<!-- /dropdown-menu -->
+</li>
+<!-- /dropdown -->
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Enviro <span class="caret" role="presentation"></span></a>
+			  <ul class="dropdown-menu dropdown-menu-left" role="menu">
+<li class="menu-item">
+					  <div class="yamm-content hyphenate">
+						  <div>View all the latest <strong><a href="/news/top/environment/">top news</a></strong> in the environmental sciences, <span class="hidden-xs hidden-sm" role="presentation"><br /></span>or browse the topics below:</div>
+						  <div class="row">
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/plants_animals/" role="menuitem">Plants &amp; Animals</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/plants_animals/agriculture_and_food/" role="menuitem">Agriculture and Food</a></li>
+									
+										<li><a href="/news/plants_animals/biology/" role="menuitem">Biology</a></li>
+										<li><a href="/news/plants_animals/biotechnology/" role="menuitem">Biotechnology</a></li>
+									
+									
+										<li><a href="/news/plants_animals/extinction/" role="menuitem">Extinction</a></li>
+										<li><a href="/news/plants_animals/microbes_and_more/" role="menuitem">Microbes and More</a></li>
+									
+										<li><a href="/news/plants_animals/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/earth_climate/" role="menuitem">Earth &amp; Climate</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/earth_climate/climate/" role="menuitem">Climate</a></li>
+									
+										<li><a href="/news/earth_climate/earthquakes/" role="menuitem">Earthquakes</a></li>
+									
+										<li><a href="/news/earth_climate/geology/" role="menuitem">Geology</a></li>
+										<li><a href="/news/earth_climate/global_warming/" role="menuitem">Global Warming</a></li>
+										<li><a href="/news/earth_climate/pollution/" role="menuitem">Pollution</a></li>
+									
+										<li><a href="/news/earth_climate/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/fossils_ruins/" role="menuitem">Fossils &amp; Ruins</a></div>
+									<ul class="list-unstyled menu-topics">
+										<li><a href="/news/fossils_ruins/anthropology/" role="menuitem">Anthropology</a></li>
+									
+										<li><a href="/news/fossils_ruins/archaeology/" role="menuitem">Archaeology</a></li>
+										<li><a href="/news/fossils_ruins/dinosaurs/" role="menuitem">Dinosaurs</a></li>
+										<li><a href="/news/fossils_ruins/evolution/" role="menuitem">Evolution</a></li>
+										<li><a href="/news/fossils_ruins/paleontology/" role="menuitem">Paleontology</a></li>
+									
+										<li><a href="/news/fossils_ruins/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+						  </div>
+<!-- /row -->
+					  </div>
+<!-- /yamm-content -->
+				  </li>
+<!-- /menu-item -->
+			  </ul>
+<!-- /dropdown-menu -->
+</li>
+<!-- /dropdown -->
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Society <span class="caret" role="presentation"></span></a>
+			  <ul class="dropdown-menu dropdown-menu-left" role="menu">
+<li class="menu-item">
+					  <div class="yamm-content hyphenate">
+						  <div>View all the latest <strong><a href="/news/top/society/">top news</a></strong> in the social sciences &amp; education, <span class="hidden-xs hidden-sm" role="presentation"><br /></span>or browse the topics below:</div>
+						  <div class="row">
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/science_society/" role="menuitem">Science &amp; Society</a></div>
+									<ul class="list-unstyled menu-topics">
+<li><a href="/news/science_society/arts_and_culture/" role="menuitem">Arts &amp; Culture</a></li>
+										<li><a href="/news/science_society/economics/" role="menuitem">Economics</a></li>
+										<li><a href="/news/science_society/privacy_issues/" role="menuitem">Privacy Issues</a></li>
+										<li><a href="/news/science_society/public_health/" role="menuitem">Public Health</a></li>
+										<li><a href="/news/science_society/sports/" role="menuitem">Sports</a></li>
+									
+										<li><a href="/news/science_society/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/business_industry/" role="menuitem">Business &amp; Industry</a></div>
+									<ul class="list-unstyled menu-topics">
+										<li><a href="/news/computers_math/computers_and_internet/" role="menuitem">Computers &amp; Internet</a></li>
+										<li><a href="/news/matter_energy/energy_and_resources/" role="menuitem">Energy &amp; Resources</a></li>
+										<li><a href="/news/matter_energy/engineering/" role="menuitem">Engineering</a></li>
+										<li><a href="/news/matter_energy/medical_technology/" role="menuitem">Medical Technology</a></li>
+										<li><a href="/news/matter_energy/automotive_and_transportation/" role="menuitem">Transportation</a></li>
+										
+										<li><a href="/news/business_industry/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+							  <div class="col-xs-4">
+								  <div class="menu-section"><a href="/news/education_learning/" role="menuitem">Education &amp; Learning</a></div>
+									<ul class="list-unstyled menu-topics">
+										<li><a href="/news/mind_brain/creativity/" role="menuitem">Creativity</a></li>
+										<li><a href="/news/mind_brain/educational_psychology/" role="menuitem">Educational Psychology</a></li>
+										<li><a href="/news/mind_brain/infant_and_preschool_learning/" role="menuitem">Infant &amp; Preschool</a></li>
+										<li><a href="/news/mind_brain/learning_disorders/" role="menuitem">Learning Disorders</a></li>
+										<li><a href="/news/science_society/stem_education/" role="menuitem">STEM Education</a></li>
+										
+										<li><a href="/news/education_learning/" role="menuitem">... <em>more topics</em></a></li>
+									</ul>
+<!-- /menu-topics -->
+</div>
+<!-- /col-xs-4 -->
+						  </div>
+<!-- /row -->
+					  </div>
+<!-- /yamm-content -->
+				  </li>
+<!-- /menu-item -->
+			  </ul>
+<!-- /dropdown-menu -->
+</li>
+<!-- /dropdown -->
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Quirky <span class="caret" role="presentation"></span></a>
+			  <ul class="dropdown-menu" role="menu">
+				  <li><a href="/news/strange_offbeat/" role="menuitem">Top News</a></li>
+				<li class="divider">
+				</li>
+<li><a href="/news/strange_offbeat/human_quirks/" role="menuitem">Human Quirks</a></li>
+				<li><a href="/news/strange_offbeat/odd_creatures/" role="menuitem">Odd Creatures</a></li>
+				<li><a href="/news/strange_offbeat/bizarre_things/" role="menuitem">Bizarre Things</a></li>
+				<li><a href="/news/strange_offbeat/weird_world/" role="menuitem">Weird World</a></li>
+			  </ul>
+<!-- /dropdown-menu -->
+</li>
+<!-- /dropdown -->
+		  </ul>
+<form action="/search/" method="get" class="navbar-form navbar-right" role="search">
+			  <div class="form-group search">
+				  <div class="input-group">
+					  <label id="keywordlabel" for="keyword" class="display-none">Keyword:</label><input type="text" id="keyword" name="keyword" aria-labelledby="keywordlabel" title="Enter keyword to search" class="form-control hidden-xs" placeholder="Search" /><span class="input-group-btn"><button class="btn btn-default" type="submit" aria-label="search"><i class="fa fa-search" role="presentation"><span class="display-none">Search</span></i></button></span>
+</div>
+			  </div>
+		  </form>
+
+		</div>
+<!--/.nav-collapse -->
+	  </div>
+	</nav>
+</div>
+</div>
+<!-- /navwrapper -->
+
+<footer>
+	
+	<div class="container light-gray">
+
+		<div class="row footer-links">
+			<div class="col-sm-12 col-md-4">
+				<div class="footer-head">Free Subscriptions</div>
+				<hr class="footer-rule" />
+				<p>Stay informed with ScienceDaily's free email newsletter, updated daily and weekly. Or view our many newsfeeds in your RSS reader:</p>
+				<ul class="list-unstyled footer-list">
+					<li>
+<i class="fa fa-envelope fa-fw" role="presentation"></i> <a href="https://sciencedaily.substack.com">Email Newsletter</a>
+</li>
+					<li>
+<i class="fa fa-rss fa-fw" role="presentation"></i> <a href="/newsfeeds.htm">RSS Feeds</a>
+</li>
+				</ul>
+			</div>
+			<div class="col-sm-12 col-md-4">
+				<div class="footer-head">Follow Us</div>
+				<hr class="footer-rule" />
+				<p>Keep up to date with the latest news from ScienceDaily via social networks:</p>
+				<ul class="list-unstyled footer-list">
+					<li>
+<i class="fa fa-facebook fa-fw" role="presentation"></i> <a href="https://www.facebook.com/sciencedaily">Facebook</a>
+</li>
+					<li>
+<i class="fa fa-twitter fa-fw" role="presentation"></i> <a href="https://twitter.com/sciencedaily">X / Twitter</a>
+</li>
+				</ul>
+			</div>
+			<div class="col-sm-12 col-md-4">
+				<div class="footer-head">Have Feedback?</div>
+				<hr class="footer-rule" />
+				<p>Tell us what you think of ScienceDaily -- we welcome both positive and negative comments. Have any problems using the site? Questions?</p>
+				<ul class="list-unstyled footer-list">
+					<li>
+<i class="fa fa-comment fa-fw" role="presentation"></i> <a href="#" class="feedback" role="button">Leave Feedback</a>
+</li>
+					<li>
+<i class="fa fa-phone fa-fw" role="presentation"></i> <a href="/contact.htm">Contact Us</a>
+</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container dark-gray">
+		<div class="bottom-links">
+<a href="/about.htm">About This Site</a>  &nbsp;|&nbsp;  <a href="/staff.htm">Staff</a>  &nbsp;|&nbsp;  <a href="/contribute.htm">Contribute</a>  &nbsp;|&nbsp;  <a href="/advertise.htm">Advertise</a>  &nbsp;|&nbsp;  <a href="/privacy.htm">Privacy Policy</a>  &nbsp;|&nbsp; <a href="/editorial.htm">Editorial Policy</a> &nbsp;|&nbsp;  <a href="/terms.htm">Terms of Use</a>
+		</div>
+		<div id="bottom_text">
+<a href="/copyright.htm">Copyright 1995-2024 ScienceDaily</a> or by other parties, where indicated. All rights controlled by their respective owners. Content on this website is for information only. It is not intended to provide medical or other professional advice. Views expressed here do not necessarily reflect those of ScienceDaily, contributors or partners. Financial support for ScienceDaily comes from advertisements and referral programs.</div>
+	</div>
+	
+</footer>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap-3.4.1.min.js"></script>
+	
+	<script src="/js/jQuery.print.js"></script>
+
+	<script src="/js/social-share-kit.min.js"></script>
+
+	<script src="/js/custom-202307301940.js"></script>
+		
+  </body>
+</html>
+<!-- Page successfully written to cache on EC2: May 30, 2025 02:02:18 pm (status: ) -->
