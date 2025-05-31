@@ -1,0 +1,800 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>AI: It's All About Inference Now - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3735580" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>May 24, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3735580">Volume 23, issue 2 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3733701">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">AI: It's All About Inference Now</h1> 
+  <h2>Model inference has become the critical <br />driver for model performance.</h2> 
+  <h3>Michael Gschwind</h3> 
+  <p>Public discourse about artificial intelligence and neural networks until recently invariably centered on training. First and foremost, training is a prerequisite to anything that follows. Until very recently, a defining question for AI has been whether neural networks can deliver quality results that make them relevant, and how much computational capacity is necessary to train them. </p> 
+  <p>As far back as the 1990s and 2010s, the works of LeCun et al. (1998),<sup>33</sup> Krizhevsky et al. (2012),<sup>31</sup> and Sutskever et al. (2014)<sup>47</sup> resoundingly answered this question: Neural networks can deliver meaningful capabilities over traditional systems. While the question of how far we can push training continues to be of great importance and the focus for many researchers, the question of whether AI model outputs can be produced affordably—a step known as <i>inference</i>—has become topical, now that it has been established that models have reached a quality that makes it worthwhile to deploy them.</p> 
+  <p>Inference is critical to deploying AI models in the real world, and advancements in AI have made inference a key consideration across the entire life cycle of AI models. Inference optimization is critical to delivering a performant, cost-effective infrastructure with optimizations as varied as quantization, a range of dynamic batching schemes, a variety of caching strategies, and more.</p> 
+  <p>Inference is no longer an afterthought: Architecture design now considers and optimizes for inference cost before models get developed (e.g., mixture-of-experts, multi-query attention, multi-head latent attention); quantization-aware training is an example of adapting the training process to deliver models that deliver higher quality during inference. </p> 
+  <p>Finally, with test-time scaling, inference allows the delivery of outcomes beyond the evaluation of a model, by refining answers, sampling multiple solutions, and integrating agentic interactions to access additional information and interact with their environment.</p> 
+  <p>From a deployment perspective, model inference comes with a distinct set of cost metrics and tradeoffs related to deployment, operations, accuracy, scalability, and sustainability.<sup>56</sup> These metrics materially affect model architecture, model accuracy, inference hardware, and the software stack used for inference. Thus, while computationally model inference is a subset of model training, the usability and affordability of models require drastically different tradeoffs from training. </p> 
+  <p>In a nutshell, inference is "easy" only when cost, time to market, deployment parameters, and response time do not matter. While this is true of training and inference for all model types, it is exacerbated for LLMs (large language models) because of their size and a strong dichotomy between training and inference characteristics. This dichotomy is sufficiently large to use vastly different implementations of the LLM transformer modules to maximize performance for each use case, delivering speedups of four times or more for many models for the popular BetterTransformer implementation with inference optimization.<sup>4,21</sup></p> 
+  <p>For transformer-based LLMs, the pretraining process is inherently parallel: A model trains on all tokens of an input sequence in parallel, sharing the computation across these multiple tokens and resulting in efficient hardware utilization with high compute intensity (see figure 1).</p> 
+  <p>In figure 1(a), all transformer positions are trained in parallel using a causal mask to train the next word for each subsequence in an input. In figure 1(b), after prompt processing ("prefill"), LLM inference generates a single next token based on all previously seen tokens. The token is added to the previously seen tokens, then subsequent tokens are generated one at a time, iteratively. Transformer-based models have been wildly successful, at least in part, because of the efficient use of available hardware parallelism during model pretraining. This hardware efficiency makes training affordable and makes it possible to scale up model size and training environments to improve model quality.</p> 
+  <p>For transformer-based LLM inference, the prompt input is highly parallel and can be performed in a single step to compute activations for all input tokens, making this an efficient compute-intensive processing step. The time for processing the prompt defines the TTFT (time-to-first-token), the time when the first output can be expected from the model. </p> 
+  <p>After generating the first token, autoregressive model inference requires each token of a sequence to be generated sequentially, defining the generation throughput (tokens/sec), and leading to reduced speed and efficiency out of the box. Several techniques are described later in this article that have been developed to optimize autoregressive generation. Increasingly, LLM deployment affordability is measured with the new <i>$/token</i> metric, unifying cost and efficiency.</p> 
+  <p>Efficient exploitation of training parallelism has led to an inexorable march toward training more expensive models with more parameters and bigger training corpora in line with pretraining scaling laws.<sup>29</sup> In contrast, the focus for inference has been cost reduction to improve affordability of deployments by reducing resource consumption until very recently.<sup>23</sup> As pretraining scaling may be reaching a point of diminishing returns, recent advancements in test-time compute scaling are laying the foundation for model inference as a facilitator of model quality. </p> 
+  <p>&nbsp;</p> 
+  <h3>Model Compression</h3> 
+  <p>Model compression refers to techniques that reduce the size and computational requirements of neural networks without significantly sacrificing performance. This is crucial for deploying models on resource-constrained devices, accelerating inference, and reducing training costs. Three primary methods are commonly used: pruning, distillation, and quantization.</p> 
+  <p>LLMs are often trained and provided in multiple sizes to suit different deployment needs. For example, the Llama-2 (large language model Meta AI) family includes models with 7, 13, and 70 billion parameters, and the Llama-3 family ranges from 1 to 405 billion parameters.<sup>19,53</sup> Training multiple large models from scratch is expensive. Starting with a single, large pretrained model, however, and then applying techniques such as pruning, distillation, and quantization can produce smaller, more efficient models for different deployment scales, and offers improvements compared with training smaller models from scratch. This approach is a more cost-effective way to create LLMs for diverse requirements and use cases.</p> 
+  <p>&nbsp;</p> 
+  <h4>Reducing model parameter count</h4> 
+  <p>Pruning and distillation reduce a model's complexity (measured by the number of parameters) by creating a new, derived model for inference. The goal of both techniques is to derive models with smaller sizes and lower computational cost than training a new model from scratch, while also preserving the larger model's learned knowledge and quality. Muralidharan et al.<sup>35</sup> suggest a set of best practices for LLM compression and retraining based on their empirical findings: using specific importance estimation techniques for different axes (width, depth), preferring width pruning for smaller models, and leveraging distillation with varying loss components depending on the pruning strategy.</p> 
+  <p>Pruning selectively removes redundant or less-important parts of a neural network to reduce its size and computational complexity.<sup>8</sup> Recently, the "winning lottery hypothesis" provided a theoretical underpinning to explain the higher importance of a select subgraph of a more complex network relative to the remaining network.<sup>15</sup> <i>Weight pruning</i> removes individual weights in the network that have a small magnitude or contribute minimally to the network's output. <i>Unstructured pruning</i> removes individual weights regardless of their location in the network. This often leads to sparse weight matrices, which can be challenging to accelerate on standard hardware.<sup>27</sup> <i>Structured pruning</i> removes entire neurons, filters, or channels, resulting in smaller, denser networks that are easier to accelerate and easier to run on edge devices.<sup>20</sup> </p> 
+  <p>Pruning can also be performed iteratively, where the network is pruned, retrained to recover accuracy, and pruned again. This process can be repeated until the desired level of compression is achieved.<sup>26</sup></p> 
+  <p>Distillation trains a smaller "student" model to mimic the behavior and knowledge of a larger "teacher" model, effectively transferring its learned capabilities into a more compact form. Distillation can also be used to improve the robustness and generalization ability of student models.<sup>7</sup> The teacher model is typically a pretrained, high-performing model and provides soft targets (probability distributions over classes) for the student model to learn. This allows the student model to learn more nuanced information than it would from hard targets (one-hot encoded class labels).<sup>28</sup></p> 
+  <p>Muralidharan et al.<sup>35</sup> explore combining these techniques for creating smaller and more efficient LLMs by leveraging pruning and knowledge-distillation techniques with retraining to create "Minitron" models with 4 and 8 billion parameters derived from the Nemotron-4 15B model. They find that pruning a large LLM and then retraining it with a smaller dataset can be a viable alternative to training smaller models from scratch and can significantly reduce training costs. Combining different pruning techniques with knowledge distillation during retraining leads to better results compared with using a single technique. During this process, width pruning (attention heads, neurons, embedding channels) is generally more effective than depth pruning (layers) for the model sizes studied (up to 15 billion parameters).</p> 
+  <p>&nbsp;</p> 
+  <h4>Quantization</h4> 
+  <p>Quantization reduces the precision of the weights and activations of a neural network while leaving the architectural structure of the model unchanged. Quantization can be applied to the gamut of value types (e.g., weights, activations, and key-value caches storing activations across iterations) used in a model. By reducing the size of the different value types in models, quantization allows models to take better advantage of a given device.</p> 
+  <p>The benefits from quantization accrue from several factors, affecting both the cost and speed of inference: </p> 
+  <p><b><i>• Memory footprint reduction.</i></b> Reducing the size of weights for parameters and activations enables larger models to fit into a given device, such as an accelerator's limited onboard HBM (high-bandwidth memory) or edge-device system memory. In server applications, this will reduce the number of accelerators needed and increase peak throughput while reducing deployment cost. For edge and mobile on-device inference, memory footprint is the primary determinant of which models can be used on-device.</p> 
+  <p><b><i>• Data bandwidth reduction.</i></b> Reducing the data-type size of processed values also implies that more data can be accessed with a given memory or network bandwidth. This is particularly relevant because arithmetic intensity (as measured in ops/byte), a key metric for computational efficiency, can be as low as 1.0, or less for LLM inference. </p> 
+  <p><b><i>• Peak performance per data type.</i></b> Many more operations can be performed simultaneously per time step on smaller data types on many hardware devices such as GPU accelerators and CPU vector units.<sup>22,24,36</sup> </p> 
+  <p>During quantization, data widths may be reduced from 32-bit or 16-bit floating-point numbers (FP32, FP16, BF16) to lower-precision formats such as 16-bit, 8-bit, or 4-bit floating-point (FP16, BF16, FP8, FP4), or integer (int16, int8, int4), or even lower. Torchchat provides LLM quantization for a broad set of LLMs to optimize LLM inference from servers to on-device AI.<sup>51</sup> </p> 
+  <p>Quantization down to 16-bit floating-point types is most often performed by simply rounding values to the new floating-point type. </p> 
+  <p>Quantization beyond 16-bit floating-point types most often requires scaling factors to represent the original value range. For computing scaling factors, a matrix multiplication can be viewed as a sequence of independent inner products along the shared dimension such that <nobr><code>Ci,j​=ai​⋅bj​</code></nobr>. The computation of a scaling factor for a given vector can then be defined as <code>s(V)</code>, and the quantization of the vector as <code>Q(V).</code></p> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733701/assets/html/gschwind-eq1.png" alt="equation 1" style="width:400px" /> 
+  <p>&nbsp;</p> 
+  <p>This yields a set of dot products in the quantized domain <code>Q(ai)⋅Q(bj)</code>, scaled by the product of scaling factors <code>s(ai)⋅s(bj).</code></p> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733701/assets/html/gschwind-eq2.png" alt="equation 2" style="width:150px" /> 
+  <p>&nbsp;</p> 
+  <p>This formulation is specifically known as vector-wise (or channel-wise) quantization, where each vector of a dot product has a single scaling factor. </p> 
+  <p>As the size of the vectors increases, the larger number of values in vectors <code>ai</code> and <code>bj</code> will lead to a progressively wider range of numbers being mapped, reducing the dynamic range of values. Groupwise quantization addresses this asymptotic degradation by chunking the inner product terms into groups of values, and defining scaling and quantization functions <code>snk</code> and <code>Qnk</code> with <code>k=card(V)/n</code> segments with a shared scale:</p> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733701/assets/html/gschwind-eq3.png" alt="equation 3" style="width:300px" /> 
+  <p>&nbsp;</p> 
+  <p> and </p> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733701/assets/html/gschwind-eq4.png" alt="equation 4" style="width:400px" /> 
+  <p>&nbsp;</p> 
+  <p>such that</p> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733701/assets/html/gschwind-eq5.png" alt="equation 5" style="width:200px" /> 
+  <p>&nbsp;</p> 
+  <p>Quantization implementations offer a wide range of flexibility in deciding when to perform data conversions between a stored quantized representation and the result in a wider data type. The previous quantization example uses symmetric ("absmax") quantization, which quantizes 0 in the input space to 0 in the output space. Asymmetric quantization projects the input values of each vector (or each vector chunk) to a range defined by the minimum and maximum value of each vector (or vector chunk) to make better use of the available encoding space. GPTQ is a one-shot weight quantization method utilizing approximate second-order information to achieve high accuracy and efficiency for generative AI.<sup>16</sup> GPTQ enables the quantization of large GPT models with billions of parameters, reducing the bit width to 3 or 4 bits per weight with minimal accuracy loss.</p> 
+  <p>The most common way to quantize a model is with PTQ (post-training quantization).<sup>2,46</sup> This method quantizes the data types of a pretrained model without any further training. It is a simple and fast way to reduce model size and improve inference speed, but it can sometimes lead to a drop in accuracy, especially with aggressive quantization levels. To increase result fidelity for quantized models, QAT (quantization-aware training) can simulate and account for the rounding in quantized models during training.<sup>37</sup> </p> 
+  <p>In many instances, full QAT may not be feasible because a model has already been trained (e.g., pretrained LLMs that are expected to operate in a broad range of scenarios). Quantization-aware fine-tuning offers an alternative to training a model from scratch with quantization-aware training.<sup>50</sup></p> 
+  <p>A final dimension in the quantization space is whether to derive the scaling factor when preparing the model for inference or on the fly during inference. In static quantization, a fixed scaling factor is computed ahead of inference time during model preparation and remains constant regardless of model inputs. In dynamic quantization, the scaling factor is computed at model runtime for each model input. This allows for better handling of input distributions by adjusting scaling factors to model inputs but introduces a small computational overhead. For matrix multiplications the overhead is <code>O(nm+mk)</code> relative to <code>O(nmk)</code> for the matrix multiply.</p> 
+  <p>While static quantization is conceptually simpler, computing the scaling function during model preparation for values only available at runtime requires a calibration step to adapt to the expected inputs to quantization. The complexity introduced to collect a calibration data set and to calibrate scaling factors for activations and key-value caches negates conceptual simplicity. In comparison, for large models with numerically expensive operators such as matrix multiplications, dynamic quantization allows models to adapt their dynamic range to a particular input at runtime. </p> 
+  <p>Weights are constant throughout the life of a model, independent of inputs, so a calibration step is unnecessary. Dynamic quantization offers no advantage here either in terms of adapting to model inputs or by obviating the need for a calibration step during model preparation. Using dynamic quantization for activations and key-value caches and static quantization for weights offers a good balance between accuracy and performance.</p> 
+  <h3>Model Inference Optimization for LLMs</h3> 
+  <p>Based on the LLM inference flow for autoregressive text generation, the first pass of inference is performed with the input prompt (in a step known as "prefill"), and then the output token is appended to the input, and the newly expanded sequence becomes the new input, generating the next token (figure 1b). Based on this flow, the same input features are repeatedly projected into the attention domain with only a single row or column added to the matrix for the latest token. Figure 2 shows computation of scaled dot-product attention during autoregressive text generation. The gray matrix corresponds to values that cached in a key-value (KV) cache if used.</p> 
+  <p>To compute the interaction with prior tokens and avoid recomputing the full feature to key and value projection, the prior token key and value vectors can be stored in a KV cache. This effectively replaces one dimension of context length with a single element along the context dimension for input and output projections, scaled dot-product computation, and the feed-forward block from the dimensionality of the context length to a dimension of 1 (i.e., eliminating the original computation to a minuscule fraction of the original computation by 1/<i>context length)</i>. </p> 
+  <p>The grayed-out values have been previously computed, and new computation is limited to the features of the latest token and its interaction with prior tokens. To compute interaction with prior tokens and avoid recomputing the full feature to key and value projection, the prior token key and value vectors can be placed in a KV cache. This cache is "primed" with a prefill operation evaluating all KV positions corresponding to all input tokens, usually in a single step.</p> 
+  <p>Two popular open source inference frameworks are vLLM and SGLang.<sup>32,59</sup> Both vLLM and SGLang address the optimization of large language model inference, with vLLM prioritizing high-throughput through efficient memory management and kernel optimization, while SGLang extends this focus to encompass a higher-level language abstraction that facilitates structured output generation and complex workflow design, potentially achieving comparable or superior performance through a co-designed front-end and back-end approach; importantly, both frameworks can also leverage FlashInfer, a library specializing in high-performance GPU kernels, particularly for attention mechanisms, to further accelerate inference speeds.<sup>57</sup></p> 
+  <p>&nbsp;</p> 
+  <h4>Key-value cache</h4> 
+  <p>Efficient management of the KV cache is crucial for optimizing LLM inference, especially on resource-constrained devices such as GPUs. The KV cache stores the attention keys and values computed for the full context length (i.e., all previous tokens), enabling efficient computation of attention scores for subsequent tokens. Storing keys and values for context length <code>S</code>, number of heads <code>H</code>, head dimension <code>D</code>, number of layers <code>L</code>, and data type width <code>T</code> yields a KV cache size of <code>S * H * D * L * T</code>, further scaled with batch size <code>B</code> when batching is in use. Since the KV cache can consume a large fraction of a model's memory usage during inference, research has focused on reducing its memory footprint.</p> 
+  <p>MQA (multi-query attention), GQA (group query attention), and MLA (multi-head latent attention) optimize transformer models by improving attention computation and KV-cache size. MQA increases efficiency by sharing keys (<code>K</code>) and values (<code>V</code>) across attention heads, reducing memory usage and computational cost, especially in large models. This leads to a smaller KV-cache size, making autoregressive inference more efficient.<sup>43</sup> GQA balances between MQA and full MHA (multi-head attention) by grouping multiple queries per key-value set, improving efficiency while preserving more model expressiveness than MQA.<sup>1</sup> This reduces KV-cache requirements compared with MHA while maintaining better performance than MQA in complex tasks. MLA further optimizes attention by using a shared, lower-dimensional latent space across heads, reducing complexity and accelerating inference. These techniques reduce KV-cache storage, leading to faster processing and better scalability without significantly increasing memory usage.<sup>12</sup></p> 
+  <p>Several promising approaches have emerged to address the size of KV caches. KV-cache sparsification techniques aim to selectively store only the most important key-value pairs, discarding less relevant ones. Quantization reduces the precision of the stored keys and values, trading off a small amount of accuracy for significant memory savings.<sup>6</sup> In addition, quantized KV caches align well with model quantization for model compression and computational efficiency. Chunking divides the sequence into smaller segments, caching only the keys and values for the current segment and evicting older segments as needed. Chang et al. introduce a post-training KV-cache compression framework that leverages low-rank projection to reduce the hidden dimension of KV caches, offering an additional and orthogonal compression dimension to existing quantization and token eviction methods.<sup>9</sup> </p> 
+  <p>Multilevel caching hierarchies are also being explored, using different levels of storage with varying speeds and capacities. For example, a small, fast on-chip cache could store the most recently accessed keys and values, while a larger, slower off-chip memory could hold the rest. This hierarchical approach aims to minimize access latency by keeping frequently used data readily available. Beyond these core techniques, other optimizations include efficient data structures for storing and retrieving KV pairs, and specialized hardware accelerators designed specifically for attention computation and KV cache management.</p> 
+  <p>The ongoing research into KV-cache optimization is essential for deploying LLMs effectively in diverse applications. By reducing memory requirements and improving inference speed, these techniques pave the way for handling longer sequences, increasing batch sizes, and enabling realtime interactive experiences for chat and media generation applications. Continued exploration of novel methods, including adaptive caching strategies, dynamic quantization, and integration with emerging memory technologies, promises further substantial improvements in the efficiency of LLM inference. </p> 
+  <p>&nbsp;</p> 
+  <h4>Increasing arithmetic intensity of LLM inference</h4> 
+  <p>As described, the KV cache reduces the unnecessary recomputation of tokens' key and value representations. Using a KV cache with autoregressive decoding, however, implies that all layers of the model are repeatedly evaluated for a single token at a time, making it woefully inefficient. In supercomputing terms—and artificial intelligence (training and inference) is undoubtedly the ultimate supercomputing application<sup>21</sup>—the arithmetic intensity of the matrix multiplications that dominate the evaluation of LLMs is dramatically reduced. </p> 
+  <p>A popular way to reason about the performance of applications is the roofline model.<sup>55</sup> This is a performance-analysis tool that provides an intuitive upper bound on the achievable performance of a computation on a given hardware platform. It plots performance, typically in operations per second, against arithmetic intensity (operations per byte accessed). </p> 
+  <p>As shown in figure 3, the roofline model constructs a "roof" with two key ceilings: the "compute roof," representing the peak computational throughput of the processor (limited by factors such as clock speed and number of cores/ALUs); and the "memory roof," representing the peak memory bandwidth (limited by the speed of memory interfaces). A given computation's performance is then limited by the lower of these two ceilings for its specific arithmetic intensity. Computations with low arithmetic intensity are memory-bound (performance limited by data bandwidth), while computations with high arithmetic intensity are compute-bound (performance limited by the processor's computational capabilities). This visualization helps identify performance bottlenecks and guide optimization efforts toward either improving memory-access patterns or maximizing computational efficiency. </p> 
+  <p>&nbsp;</p> 
+  <h5>Quantization</h5> 
+  <p>Quantization (described in more detail in the previous section on model compression) improves the arithmetic intensity and thereby enables exploiting more of the computation capabilities of the system. This allows model optimization to achieve success via increased arithmetic intensity according to the roofline model. At the same time, on GPUs and many modern vector-oriented CPUs, the shorter data formats also come with increased peak performance. While this does not diminish the gains achieved through the increased arithmetic intensity of quantized evaluation, the raising of the peak ops-per-sec ceiling poses an opportunity to grow performance even further.</p> 
+  <p>&nbsp;</p> 
+  <h5>Speculative decoding</h5> 
+  <p>Speculative decoding reduces the sequential nature of autoregressive decoding in transformers. Instead of generating one token at a time with a large model, it uses two models: a small "predictor" (or draft) model; and a large "verifier" (or target) model.<sup>10</sup> The predictor model produces a predictive sequence consisting of several tokens, which is then checked in parallel with higher arithmetic intensity by the more complex verifier model. In effect, the predictor/verifier paradigm allows the large model to run more efficiently with higher arithmetic intensity.</p> 
+  <p>The speculative predictor model is an autoregressive model producing one token per iteration until a targeted token sequence has been computed. This may be a fixed length, some adaptive threshold such as aggregate confidence at the last token, or prior prediction success. After a token sequence has been proposed by the draft model, this sequence is evaluated in its entirety by the target model in parallel (like training and prefill). Similar to how training and prefill are performed, the target model computes features for all proposed tokens of the sequence and checks whether the target model agrees with the proposed tokens. At the first divergence, the target model's proposed next token is adopted, and then this sequence is used to restart the draft model to produce the next output sequence (see figure 4).</p> 
+  <p>In speculative decoding, the draft and target models take turns. The draft model proposes a sequence of tokens produced sequentially using autoregressive generation. The target model then verifies the multiple proposed tokens in parallel, accepting proposed tokens that match the target's computed next token. At the first divergence, the draft model is reset to consume the target model's generated token, discarding all further predictions. The draft model then produces a next set of proposed tokens until the end-of-sequence &lt;EOS&gt; is reached. </p> 
+  <p>Advantageously, this enables the numerically more complex model to execute with higher arithmetic intensity because it no longer works on a single token at a time. In effect, the model works on the entire proposal in parallel. Often, working on a short sequence is so much more efficient than working on a single token, that processing the sequence takes about the same time as a single token. Thus, to produce <code>n</code> tokens with the target model, you can run either the target model <code>n</code> times for a runtime of <i>n⋅ t<sub>target</sub></i> or a draft model to produce <code>n</code> tokens in <i>n⋅ t<sub>draft</sub></i> time and verify in <i>t<sub>target</sub></i> for a total time of <i>n⋅ t<sub>draft</sub> + t<sub>target</sub></i> to propose and test the sequence.</p> 
+  <p>The potential of this approach depends on how much faster the draft model can be and how many of the proposed tokens are accepted by the target model, depending on factors such as the quality of the model, the complexity of the sequence, and reflecting how much the models agree. The verifier model then identifies the first token that diverges, rewinds the draft model to that point, and feeds it as its next autoregressive token, to repeat the process. The achievable improvement in secs/token depends on how well models agree. Speedup factors of at least two times are common, and for <i>t<sub>draft</sub>≪ t<sub>target</sub></i>, can be achieved by predicting sequences of one token at a time correctly, which yields two tokens—the correctly predicted token and the next correct token—resulting in time </p> 
+  <p>&nbsp;</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3733701/assets/html/gschwind-eq6.png" alt="equation 6" style="width:200px" /> 
+  <p>&nbsp;</p> 
+  <h5>MTP (multi-token prediction)</h5> 
+  <p>MTP involves forecasting multiple tokens in parallel, a technique that improves both training efficiency and inference speed. Stern et al. introduced this approach with blockwise parallel decoding, where a model predicts multiple tokens simultaneously rather than one at a time, reducing the number of sequential steps.<sup>45</sup> </p> 
+  <p>Gloeckle et al. extended the concept by focusing on training LLMs to predict multiple tokens at once, rather than relying solely on next-token prediction.<sup>18</sup> Their work demonstrated that training models on multi-token prediction tasks enhances sample efficiency and improves performance on specific benchmarks such as code generation. DeepSeek V3 and R1 adopt MTP to generate predictions for speculative decoding. </p> 
+  <p>&nbsp;</p> 
+  <h5>LayerSkip</h5> 
+  <p>LayerSkip combines speculative decoding with early exiting from an LLM.<sup>14</sup> Unlike traditional methods, it uses the same LLM for both drafting and verification. Early exit mechanisms allow the model to generate drafts using fewer layers, then refine them with deeper layers, reducing latency, improving memory efficiency, and eliminating the need for a separate model.</p> 
+  <p>LayerSkip capitalizes on the fact that early layers capture basic semantic information, while deeper layers refine nuances. By exiting early, it generates drafts quickly and then feeds them back for deeper layers to assess and improve iteratively. Performance estimates show significant speedups (1.34 to 2.16 times) compared with traditional autoregressive decoding.</p> 
+  <p>&nbsp;</p> 
+  <h4>Dynamic continuous batching</h4> 
+  <p>Batching allows taking advantage of more parallel compute resources in GPU cores by adding a batch dimension. Increasing the number of floating-point operations used in a single compute kernel enables processing elements to more efficiently parallelize kernels and take better advantage of available parallel floating-point units. In addition, batched inputs share the weights of operators, resulting in improved arithmetic intensity and more efficient use of parallel resources—in turn, this is critical to lowering the cost per result (e.g., <code>$/token</code>). Unlike batching during training where the inputs are known <i>a priori</i>, inference operates under latency and efficiency constraints, and must balance these two competing demands.</p> 
+  <p>Dynamic (cross-request) batching optimizes LLM inference efficiency by grouping incoming requests into batches for concurrent processing.<sup>25</sup> Unlike static batching, which uses fixed batch sizes, dynamic batching runs batches once a batch is full or once a maximum time has elapsed, improving latency versus static batching while maintaining throughput in high-traffic periods. This flexibility allows for efficient use of hardware, minimizing idle time while ensuring acceptable latency for individual requests.</p> 
+  <p>Continuous batching takes this one step further, reshaping a batch as generative steps for one batch element come to an end as new requests arrive. Rather than creating a dynamic batch, continuous batching removes batch elements that have indicated a stopping point and adds new batch elements as they are received.<sup>58</sup> A particular consideration is processing the "prefill" stage when new batch elements are added: Prefill processes the prompt as the first step of generation, and prefill inference time scales linear with the number of tokens in prefill. Several schemes such as chunking the prefill step or precomputing prefill separately have been proposed to handle the distinct characteristics of prefill in the context of continuous batching.</p> 
+  <p>&nbsp;</p> 
+  <h4>Very large language model inference</h4> 
+  <p>Generative inference on very large language models becomes achievable through techniques such as distributed inference and MoE (mixture of experts). Pope et al. distribute large transformer models across multiple accelerators using model parallelism.<sup>40</sup> They explore several partitioning schemes to reduce bandwidth, latency, and computation cost, making it feasible to run models with hundreds of billions of parameters. This approach allows for significant scaling of inference, lowering the computational overhead and speeding up execution, thus making large-scale deployments more practical.</p> 
+  <p>Recent DeepSeek models—such as V3 and R1—improve generative inference efficiency by using sparse activation strategies with MoE gating.<sup>12,13</sup> Instead of activating all experts (submodels) for every input, MoE gating activates only a subset of experts, significantly reducing the computational load. This makes it possible to scale model size by adding more experts without proportionally increasing resource requirements, thus allowing models with billions of parameters to remain computationally affordable.</p> 
+  <p>&nbsp;</p> 
+  <h3>Test-time Compute Scaling</h3> 
+  <p>Most recently, inference has also become topical as a new frontier for model response quality. Motivated by concerns about an end of pretraining scaling because of a lack of bigger corpora for training larger models,<sup>48</sup> test-time scaling during inference allows models to improve results quality by scaling up inference.</p> 
+  <p>Test-time compute scaling—that is, inference scaling—offers one of the most promising approaches to continue improving AI result quality. Test-time compute scaling represents a significant shift in machine-learning inference, moving beyond fixed computational budgets to dynamically allocated resources for enhanced performance, particularly relevant to LLMs. This paradigm recognizes that inference, like training, can benefit from increased computation, strategically investing computational resources during inference to achieve more accurate and versatile LLM results.<sup>44</sup> </p> 
+  <p>Consider OpenAI's o1 and o3 models as a practical example, where increased test-time compute leads to improved performance on a range of complex problems. Beeching et al. explore the potential of scaling test-time compute with a hands-on code-based approach using open source models.<sup>3</sup> They demonstrate how to significantly improve LLM performance, particularly on complex tasks and even for comparatively small models. </p> 
+  <p>Post-training to enhance accuracy in reasoning and adapt to human preferences, but at a much lower cost than pretraining, is emerging as a core component of the end-to-end training pipeline in LLMs. Implementation of RL (reinforcement learning) techniques such as GRPO (Group Relative Policy Optimization) is critical for advanced reasoning at test time and simultaneously depends on efficient inference techniques to ensure the exploration efficiency of policy models.<sup>13,42</sup> In turn, using RL for training chain of thought requires performing inference to determine the output of the thinking steps, making inference accuracy and efficiency performance critical for post-training scaling.</p> 
+  <p>Ensemble methods offer another avenue for test-time compute scaling. By aggregating the predictions of multiple models or multiple instances of the same model, these techniques leverage the "wisdom of crowds" to improve robustness and accuracy. Self-consistency generates multiple candidate outputs and selects the most consistent one, mitigating the impact of stochasticity in the model's output.<sup>54</sup> This echoes the concept of ensemble methods but is achieved within a single model execution. Similarly, Monte Carlo dropout applies dropout at inference time to generate diverse outputs, effectively creating an ensemble from a single model.<sup>17</sup> Input perturbation, a related technique, introduces small variations to the input and generates outputs for each perturbed input, subsequently combining the results to enhance robustness against input noise.<sup>49</sup> </p> 
+  <p>Iterative refinement constitutes a core approach, where models generate initial outputs and subsequently refine them through multiple computational steps. Iterative decoding, particularly prevalent in sequence-generation tasks, refines the generated output through feedback mechanisms or additional processing at each step, akin to dynamic programming.<sup>30</sup> Tree search methods, such as beam search and MCTS (Monte Carlo Tree Search), explore the space of possible outputs by constructing a search tree and evaluating different branches.<sup>41</sup> A key consideration with search-based methods is the computational cost, which can become prohibitive for complex tasks or realtime applications.</p> 
+  <p>Adaptive computation introduces a dynamic element to test-time compute scaling. Rather than fixing the computational budget <i>a priori</i>, these methods adjust the resources allocated based on the input characteristics or the model's confidence. Conditional computation uses different parts of the model or varying amounts of computation depending on the input.<sup>5</sup> Early exiting strategies terminate computation early if the model achieves sufficient confidence in its prediction.<sup>52</sup> Defining appropriate confidence metrics and exit criteria is a key challenge in adaptive computation.</p> 
+  <p>Agentic systems with a single agent and those composed of multiple agent models allow inference to tackle problems that are not part of its training set. The integration of external resources represents a powerful form of test-time compute scaling. Retrieval augmentation leverages external databases or knowledge graphs to provide contextual information to LLMs to improve their output for complex, knowledge-rich tasks.<sup>34</sup> Code execution empowers models to perform calculations, access APIs, or interact with external systems.<sup>11</sup> </p> 
+  <p>LangChain provides a modular framework for LLM application development, abstracting complex processes like prompt engineering, data retrieval, and agent orchestration, to facilitate the creation of scalable and context-aware applications. SGLang is a structured generation language designed to simplify and optimize the interaction with large language models (LLMs) by offering a high-level abstraction for controlling their output and execution; this language allows for the explicit definition of output structures, enabling precise control over LLM responses, and facilitating the development of agentic AI systems that can reliably parse and utilize generated information for subsequent actions.</p> 
+  <p>Schick et al. explore how LLM-based agents can self-learn to invoke external tools and APIs dynamically, enhancing their problem-solving capabilities.<sup>40</sup> Seo et al. discuss how LLMs can act as multi-agent systems using cooperative methods, leveraging the relevance of information and plan validation to improve dynamic collaboration.<sup>41</sup> </p> 
+  <h3>Conclusion</h3> 
+  <p>Model training has long dominated the discussion around artificial intelligence by providing the yardstick for model quality performance. Application deployment and deployment efficiency have long been the domain of inference. Inference metrics such as cost per token guide the development of more efficient models, pushing the boundaries of what's possible within resource limitations.</p> 
+  <p>Inference optimization opens doors to a multitude of benefits that enhance model utility, quality, and efficiency. By optimizing models for inference, we address critical issues such as cost, scalability, response time, and sustainability. This allows for the deployment of powerful models on resource-constrained devices, facilitating AI applications at the edge. Additionally, efficient inference techniques such as pruning, quantization, KV caches, speculative decoding, and dynamic continuous batching significantly reduce the computational burden and improve efficiency, making models more accessible and affordable to implement. </p> 
+  <p>As the scaling of pretraining is reaching a plateau of diminishing returns, model inference is quickly becoming an important driver for model performance. Today, test-time compute scaling offers a new, exciting avenue to increase model performance beyond what can be achieved with training, and test-time compute techniques cover a fertile area for many more breakthroughs in AI. Innovations using ensemble methods, iterative refinement, repeated sampling, retrieval augmentation, chain-of-thought reasoning, search, and agentic ensembles are already yielding improvements in model quality performance and offer additional opportunities for future growth.</p> 
+  <p>&nbsp;</p> 
+  <h4>Acknowledgments</h4> 
+  <p>The author would like to thank Rich James (Google) and Katharina Gschwind (Meta Platforms) for their feedback and suggestions on drafts of this paper. </p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Ainslie, J., Lee-Thorp, J., de Jong, M., Zemlyanskiy, Y., Lebrón, F., Sanghai, S. 2023. GQA: training generalized multi-query transformer models from multi-head checkpoints. arXiv:2305.13245; <a href="https://arxiv.org/abs/2305.13245">https://arxiv.org/abs/2305.13245</a>.</p> 
+  <p>2. Anderson, M., et al. 2021. First-generation inference accelerator deployment at Facebook. arXiv:2107.04140; <a href="https://arxiv.org/abs/2107.04140">https://arxiv.org/abs/2107.04140</a>.</p> 
+  <p>3. Beeching, E., Tunstall, L., Rush, S. 2024. Scaling test time compute with open models: tutorial and experiments to outperform Llama 3.1 70B on MATH-500 with a 3B Model. Hugging Face blog; <a href="https://huggingface.co/spaces/HuggingFaceH4/blogpost-scaling-test-time-compute">https://huggingface.co/spaces/HuggingFaceH4/blogpost-scaling-test-time-compute</a>. </p> 
+  <p>4. Belkada, Y., Marty, F., Benayoun, M., Han, E., Shojanazeri, H., Puhrsch, C., Guessous, D., Gschwind, M., Chauhan, G. 2022. BetterTransformer, out of the box performance for Hugging Face transformers; <a href="https://medium.com/pytorch/bettertransformer-out-of-the-box-performance-for-huggingface-transformers-3fbe27d50ab2">https://medium.com/pytorch/bettertransformer-out-of-the-box-performance-for-huggingface-transformers-3fbe27d50ab2</a>.</p> 
+  <p>5. Bengio, Y., Léonard, N., Courville, A. 2013. Estimating or propagating gradients through stochastic neurons for conditional computation. arXiv:1308.3432; <a href="https://arxiv.org/abs/1308.3432">https://arxiv.org/abs/1308.3432</a>.</p> 
+  <p>6. Bondarenko, Y., Nagel, M., Blankevoort, T. 2021. Understanding and overcoming the challenges of efficient transformer quantization. arXiv:2109.12948; <a href="https://arxiv.org/abs/2109.12948">https://arxiv.org/abs/2109.12948</a>.</p> 
+  <p>7. Buciluă, C., Caruana, R., Niculescu-Mizil, A. 2006. Model compression. <i>Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</i>, 535–541; <a href="https://dl.acm.org/doi/10.1145/1150402.1150464">https://dl.acm.org/doi/10.1145/1150402.1150464</a>.</p> 
+  <p>8. Cao, Y., Xu, W.-J., Shen, Y., Shi, W., Chan, C.-M., Xu, J. 2025. PIP: Perturbation-based Iterative Pruning for large language models. arXiv:2501.15278; <a href="https://arxiv.org/abs/2501.15278">https://arxiv.org/abs/2501.15278</a>.</p> 
+  <p>9. Chang, C.-C., Lin, W.-C., Lin, C.-Y., Chen, C.-Y., Hu, Y.-F., Wang, P.-S., Huang, N.-C., Ceze, L., Abdelfattah, M. S., Wu, K.-C. 2024. Palu: compressing KV-Cache with low-rank projection. arXiv:2407.21118; <a href="https://arxiv.org/abs/2407.21118">https://arxiv.org/abs/2407.21118</a>.</p> 
+  <p>10. Chen, C., et al. 2023. Accelerating large language model inference with speculative sampling. arXiv:2302.01318; <a href="https://arxiv.org/abs/2302.01318">https://arxiv.org/abs/2302.01318</a>.</p> 
+  <p>11. Chen, M., Tworek, J., et al. 2021. Evaluating large language models trained on code. arXiv:12107.03374; <a href="https://arxiv.org/abs/2107.03374">https://arxiv.org/abs/2107.03374</a>.</p> 
+  <p>12. DeepSeek-AI. 2024. DeepSeek-V3 technical report. arXiv:2412.19437; <a href="https://arxiv.org/abs/2412.19437">https://arxiv.org/abs/2412.19437</a>.</p> 
+  <p>13. DeepSeek-AI. 2025. DeepSeek-R1: incentivizing reasoning capability in LLMs via reinforcement learning. arXiv:2501.12948; <a href="https://arxiv.org/abs/2501.12948">https://arxiv.org/abs/2501.12948</a>.</p> 
+  <p>14. Elhoushi, M., Shrivastava, A., Liskovich, D., Hosmer, B., Wasti, B., Lai, L., Mahmoud, A., Acun, B., et al. 2024. LayerSkip: enabling early exit inference and self-speculative decoding. arXiv:2404.16710; <a href="https://arxiv.org/abs/2404.16710">https://arxiv.org/abs/2404.16710</a>.</p> 
+  <p>15. Frankle, J., Carbin, M. 2018. The lottery ticket hypothesis: finding sparse, trainable neural networks. International Conference on Learning Representations. arXiv:1803.03635; <a href="https://arxiv.org/abs/1803.03635">https://arxiv.org/abs/1803.03635</a>.</p> 
+  <p>16. Frantar, E., Ashkboos, S., Hoefler, T., Alistarh, D. 2022. GPTQ: accurate post-training quantization for generative pre-trained Transformers. <em>arXiv:2210.17323</em>; <a href="https://arxiv.org/abs/2210.17323">https://arxiv.org/abs/2210.17323</a>.</p> 
+  <p>17. Gal, Y., Ghahramani, Z. 2016. Dropout as a Bayesian approximation: representing model uncertainty in deep learning. <i>Proceedings of the 33rd International Conference on Machine Learning</i>, 1050–1059; <a href="https://dl.acm.org/doi/10.5555/3045390.3045502">https://dl.acm.org/doi/10.5555/3045390.3045502</a>.</p> 
+  <p>18. Gloeckle, F., Idrissi, B. Y., Rozière, B., Lopez-Paz, D., Synnaeve, G. 2024. Better &amp; faster large language models via multi-token prediction. <i>Proceedings of the 41st International Conference on Machine Learning</i>, 15706-15734; <a href="https://dl.acm.org/doi/10.5555/3692070.3692699">https://dl.acm.org/doi/10.5555/3692070.3692699</a>.</p> 
+  <p>19. Grattafiori, A., et al. 2024. The Llama 3 Herd of Models. arXiv:2407.21783; <a href="https://arxiv.org/abs/2407.21783">https://arxiv.org/abs/2407.21783</a>.</p> 
+  <p>20. Gschwind, K. 2021. Model compression and AutoML for efficient click-through rate prediction. MEng. thesis, MIT; <a href="https://dspace.mit.edu/bitstream/handle/1721.1/139253/Gschwind-gschwind-meng-eecs-2021-thesis.pdf">https://dspace.mit.edu/bitstream/handle/1721.1/139253/Gschwind-gschwind-meng-eecs-2021-thesis.pdf</a>.</p> 
+  <p>21. Gschwind, M. 2024. LLMs everywhere: acceleration from servers to mobile devices in the age of generative AI. Keynote speech at the International Conference on Supercomputing; <a href="https://ics2024.github.io/keynote.html">https://ics2024.github.io/keynote.html</a>.</p> 
+  <p>22. Gschwind, M. 2016. Workload acceleration with the IBM POWER vector-scalar architecture, IBM Journal of Research and Development 60(<a href="https://dl.acm.org/../../../../../../../../mgschwind/Downloads/2-3">2-3</a>); <a href="https://ieeexplore.ieee.org/document/7442604">https://ieeexplore.ieee.org/document/7442604</a>. </p> 
+  <p>23. Gschwind, M., Han, E., Wolchok, S., Zhu, R., Puhrsch, C. 2022. A better transformer for fast transformer inference. PyTorch blog; <a href="https://pytorch.org/blog/a-better-transformer-for-fast-transformer-encoder-inference/">https://pytorch.org/blog/a-better-transformer-for-fast-transformer-encoder-inference/</a>.</p> 
+  <p>24. Gschwind, M., Hofstee, P., Flachs, B., Hopkins, M., Watanabe, Y., Yamazaki, T. 2006. Synergistic processing in Cell's multicore architecture, IEEE Micro 26(2), 10-24; <a href="https://ieeexplore.ieee.org/document/1624323">https://ieeexplore.ieee.org/document/1624323</a>.</p> 
+  <p>25. Gupta, N., Gschwind, M., Husa, D., Dewan, C., Khabsa, M. 2023. MultiRay: optimizing efficiency for large-scale AI models. Meta AI blog. <a href="https://ai.meta.com/blog/multiray-large-scale-AI-models/">https://ai.meta.com/blog/multiray-large-scale-AI-models/</a>.</p> 
+  <p>26. Han, S., Mao, H., Dally, W. J. 2016. Deep compression: compressing deep neural networks with pruning, trained quantization, and Huffman coding. International Conference on Learning Representations; <a href="https://arxiv.org/abs/1510.00149">https://arxiv.org/abs/1510.00149</a>.</p> 
+  <p>27. Han, S., Pool, J., Tran, J., Dally, W. 2015. Learning both weights and connections for efficient neural networks. <i>Proceedings of the 29th International Conference on Neural Information Processing Systems</i>, volume 1, 1135–1143; <a href="https://dl.acm.org/doi/10.5555/2969239.2969366">https://dl.acm.org/doi/10.5555/2969239.2969366</a>.</p> 
+  <p>28. Hinton, G., Vinyals, O., Dean, J. 2015. Distilling the knowledge in a neural network. NIPS 2014 Deep Learning Workshop. arXiv:1503.02531; <a href="https://arxiv.org/abs/1503.02531">https://arxiv.org/abs/1503.02531</a>.</p> 
+  <p>29. Hoffmann, J., Borgeaud, S., Mensch, A., Buchatskaya, E., Cai, T., Rutherford, E., de Las Casas, D., Hendricks, L. A., Welbl, J., Clark, A., et al. 2022. Training compute-optimal large language models. <i>Proceedings of the 36th International Conference on Neural Information Processing Systems</i>, 30016-30030; <a href="https://dl.acm.org/doi/10.5555/3600270.3602446">https://dl.acm.org/doi/10.5555/3600270.3602446</a>.</p> 
+  <p>30. Jelinek, F. 1969. A fast sequential decoding algorithm using a stack. <i>IBM Journal of Research and Development</i> 13(6), 675–685; <a href="https://dl.acm.org/doi/abs/10.1147/rd.136.0675">https://dl.acm.org/doi/abs/10.1147/rd.136.0675</a>.</p> 
+  <p>31. Krizhevsky, A., Sutskever, I., Hinton, G. 2012. ImageNet classification with deep convolutional neural networks. <i>Advances in Neural Information Processing Systems</i>, 1097–1105; <a href="https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html">https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html</a> </p> 
+  <p>32. Kwon, W., Li, Z., Zhuang, S., Sheng, Y., Zheng, L., Yu, C. H., Gonzalez, J. E., Zhang, H., Stoica, I. 2023. Efficient memory management for large language model serving with paged attention. arXiv:2309.06180, <a href="https://arxiv.org/abs/2309.06180">https://arxiv.org/abs/2309.06180</a>.</p> 
+  <p>33. LeCun, Y., Bottou, L., Bengio, Y., Haffner, P. 1998. Gradient-based learning applied to document recognition. <i>Proceedings of the IEEE</i> 86(11), 2278–2324; <a href="https://ieeexplore.ieee.org/document/726791">https://ieeexplore.ieee.org/document/726791</a>.</p> 
+  <p>34. Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., et al. 2020. Retrieval-augmented generation for knowledge-intensive NLP tasks. <i>Proceedings of the 34th International Conference on Neural Information Processing Systems</i>, 9459–9474; <a href="https://dl.acm.org/doi/abs/10.5555/3495724.3496517">https://dl.acm.org/doi/abs/10.5555/3495724.3496517</a>.</p> 
+  <p>35. Muralidharan, S., Sreenivas, S. T., Joshi, R., Chochowski, M., Patwary, M., Shoeybi, M., Catanzaro, B., Kautz, J., Molchanov, P. 2024. Compact language models via pruning and knowledge distillation. <i>Advances in Neural Information Processing Systems</i> 37; <a href="https://papers.nips.cc/paper_files/paper/2024/hash/4822991365c962105b1b95b1107d30e5-Abstract-Conference.html">https://papers.nips.cc/paper_files/paper/2024/hash/4822991365c962105b1b95b1107d30e5-Abstract-Conference.html</a>.</p> 
+  <p>36. NVIDIA. 2024. NVIDIA Blackwell Architecture Technical Brief: powering the new era of generative AI and accelerated computing; <a href="https://resources.nvidia.com/en-us-blackwell-architecture">https://resources.nvidia.com/en-us-blackwell-architecture</a>.</p> 
+  <p>37. Or, A., Zhang, J., Smothers, E., Khandelwal, K., Rao, S. 2023. Quantization-aware training for large language models with PyTorch. PyTorch blog; <a href="https://pytorch.org/blog/quantization-aware-training/">https://pytorch.org/blog/quantization-aware-training/</a>.</p> 
+  <p>38. Pope, R., Douglas, S., Chowdhery, A., Devlin, J., Bradbury, J., Levskaya, A., Heek, J., Xiao, K., Agrawal, S., Dean, J. 2023. Efficiently scaling transformer inference. <i>Proceedings of Machine Learning and Systems</i> 5; <a href="https://proceedings.mlsys.org/paper_files/paper/2023/hash/c4be71ab8d24cdfb45e3d06dbfca2780-Abstract-mlsys2023.html">https://proceedings.mlsys.org/paper_files/paper/2023/hash/c4be71ab8d24cdfb45e3d06dbfca2780-Abstract-mlsys2023.html</a>.</p> 
+  <p>39. Russell, S. J., Norvig, P. 2010. <i>Artificial Intelligence: A Modern Approach</i>. Pearson. </p> 
+  <p>40. Schick, T., Dwivedi-Yu, J., Dessì, R., Raileanu, R., Lomeli, M., Zettlemoyer, L., Cancedda, N., Scialom, T. 2023. Toolformer: language models can teach themselves to use tools. <i>Proceedings of the 37th International Conference on Neural Information Processing Systems</i>, 68539–68551; <a href="https://dl.acm.org/doi/10.5555/3666122.3669119">https://dl.acm.org/doi/10.5555/3666122.3669119</a>.</p> 
+  <p>41. Seo, S., Noh, S., Lee, J., Lim, S., Lee, W. H., Kang, H. 2024. REVECA: adaptive planning and trajectory-based validation in cooperative language agents using information relevance and relative proximity. arXiv:2405.16751; <a href="https://arxiv.org/abs/2405.16751">https://arxiv.org/abs/2405.16751</a>.</p> 
+  <p>42. Shao, Z., Wang, P., Zhu, Q., Xu, R., Song, J., Bi, X., Zhang, H., Zhang, M., Li, Y. K., Wu, Y., Guo, D. 2024. DeepSeekMath: pushing the limits of mathematical reasoning in open language models. arXiv:2402.03300; <a href="https://arxiv.org/abs/2402.03300">https://arxiv.org/abs/2402.03300</a>.</p> 
+  <p>43. Shazeer, N. 2019. Fast transformer decoding: one write-head is all you need. 33rd International Conference on Neural Information Processing Systems. arXiv:1911.02150; <a href="https://arxiv.org/abs/1911.02150">https://arxiv.org/abs/1911.02150</a>.</p> 
+  <p>44. Snell, C., Lee, J., Xu, K., Kumar, A. 2024. Scaling LLM test-time compute optimally can be more effective than scaling LLM parameters. arXiv:2408.03314; <a href="https://arxiv.org/abs/2408.03314">https://arxiv.org/abs/2408.03314</a>.</p> 
+  <p>45. Stern, M., Shazeer, N., Uszkoreit, J. 2018. Blockwise parallel decoding for deep autoregressive models. <i>Proceedings of the 32nd International Conference on Neural Information Processing Systems</i>; <a href="https://dl.acm.org/doi/10.5555/3327546.3327673">https://dl.acm.org/doi/10.5555/3327546.3327673</a>.</p> 
+  <p>46. Subramanian, S., Saroufim, M., Zhang, J. 2022. Practical quantization in PyTorch. PyTorch blog; <a href="https://pytorch.org/blog/quantization-in-practice/">https://pytorch.org/blog/quantization-in-practice/</a>.</p> 
+  <p>47. Sutskever, I. 2024. Sequence to sequence learning with neural networks: what a decade. Test of Time Award Talk at NeurIPS; <a href="https://www.youtube.com/watch?v=1yvBqasHLZs">https://www.youtube.com/watch?v=1yvBqasHLZs</a>.</p> 
+  <p>48. Sutskever, I., Vinyals, O., Le, Q. V. 2014. Sequence to sequence learning with neural networks. <i>Proceedings of the 28th International Conference on Neural Information Processing Systems</i>, volume 2, 3104–3112, <a href="https://dl.acm.org/doi/10.5555/2969033.2969173">https://dl.acm.org/doi/10.5555/2969033.2969173</a>. </p> 
+  <p>49. Szegedy, C., Zaremba, W., Sutskever, I., Bruna, J., Erhan, D., Goodfellow, I., Fergus, R. 2013. Intriguing properties of neural networks. arXiv:1312.6199; <a href="https://arxiv.org/abs/1312.6199">https://arxiv.org/abs/1312.6199</a>.</p> 
+  <p>50. Team PyTorch. 2023. torchtune: easily fine-tune LLMs using PyTorch. PyTorch blog; <a href="https://pytorch.org/blog/torchtune-fine-tune-llms/">https://pytorch.org/blog/torchtune-fine-tune-llms/</a>.</p> 
+  <p>51. Team PyTorch. 2024. Introducing torchchat: accelerating local LLM inference on laptop, desktop, and mobile. PyTorch blog; <a href="https://pytorch.org/blog/torchchat-local-llm-inference/">https://pytorch.org/blog/torchchat-local-llm-inference/</a>.</p> 
+  <p>52. Teerapittayanon, S., McDanel, B., Kung, H.-T. 2016. BranchyNet: fast inference via early exiting from deep neural networks. 25th International Conference on Pattern Recognition, 2464–2469. arXiv:1709.01686; <a href="https://arxiv.org/abs/1709.01686">https://arxiv.org/abs/1709.01686</a>.</p> 
+  <p>53. Touvron, H., et al. 2023. Llama 2: open foundation and fine-tuned chat models. arXiv:2307.09288; <a href="https://arxiv.org/abs/2307.0928">https://arxiv.org/abs/2307.0928</a>8.</p> 
+  <p>54. Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., Chowdhery, A., Zhou, D. 2023. Self-consistency improves chain of thought reasoning in language models. arXiv:2203.11171; <a href="https://arxiv.org/abs/2203.11171">https://arxiv.org/abs/2203.11171</a>.</p> 
+  <p>55. Williams, S., Waterman, A., Patterson, D. 2009. Roofline: an insightful visual performance model for multicore architectures. <i>Communications of the ACM</i> 52(4), 65–76; <a href="https://dl.acm.org/doi/10.1145/1498765.1498785">https://dl.acm.org/doi/10.1145/1498765.1498785</a>.</p> 
+  <p>56. Wu, C.-J., Raghavendra, R., Gupta, U., Acun, B., Ardalani, N., Maeng, K., Chang, G., Aga, F., Huang, J., Bai, C., Gschwind, M., Gupta, A., Ott, M., Melnikov, A., Candido, S., Brooks, D., et al. 2022. Sustainable AI: environmental implications, challenges and opportunities. Machine Learning and Systems 4. arXiv:2109.02079; <a href="https://arxiv.org/abs/2111.00364">https://arxiv.org/abs/2111.00364</a>.</p> 
+  <p>57. Ye, Z., Chen, L., Lai, R., Lin, W., Zhang, Y., Wang, S., Chen, T., Kasikci, B., Grover, V., Krishnamurthy, A., Ceze, L. 2025. FlashInfer: efficient and customizable attention engine for LLM inference serving. arXiv:2501.01005, <a href="https://arxiv.org/abs/2501.01005">https://arxiv.org/abs/2501.01005</a>.</p> 
+  <p>58. Yu, G., Jeong, J., Kim, G. Kim, S., Chun, B. 2022. Orca: a distributed serving system for transformer-based generative models, 16th USENIX Symposium on Operating Systems Design and Implementation; <a href="https://www.usenix.org/system/files/osdi22-yu.pdf">https://www.usenix.org/system/files/osdi22-yu.pdf</a>.</p> 
+  <p>59. Zheng, L., Yin, L., Xie, Z., Sun, C., Huang, J., Yu, C. H., Cao, S., Kozyrakis, C., Stoica, I., Gonzalez, J. E., Barrett, C., Sheng, Y. 2023. SGLang: efficient execution of structured language model programs. arXiv:2312.07104, <a href="https://arxiv.org/abs/2312.07104">https://arxiv.org/abs/2312.07104</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Dr. Michael Gschwind</b> is a Distinguished Engineer at NVIDIA in DGX Cloud and AI optimization. He previously created and led GPU Inference, the PyTorch generative AI stack for GPU-accelerated AI servers and mobile/edge on-device AI, and AI training at Meta AI. Prior to joining Meta, he was architecture lead for Cell, the first general-purpose programmable GPU, was chief architect for three Top-1 supercomputers (Roadrunner, BlueGene, Summit), and three game-console processors (PlayStation 3, Xbox 360, Wii) at IBM. Dr. Gschwind has also been a faculty member at Technische Universität Wien and Princeton University. He is a Fellow of the IEEE.</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94854ab40a6407bd',t:'MTc0ODY4MjE0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 2</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3733701">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Vijay Janapa Reddi</span> - <a href="detail.cfm?id=3733702"><b>Generative AI at the Edge: Challenges and Opportunities</b></a>
+	  <br />
+	  Generative AI at the edge is the next phase in AI's deployment: from centralized supercomputers to ubiquitous assistants and creators operating alongside humans. The challenges are significant but so are the opportunities for personalization, privacy, and innovation. By tackling the technical hurdles and establishing new frameworks (conceptual and infrastructural), we can ensure this transition is successful and beneficial.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3722544"><b>From Function Frustrations to Framework Flexibility</b></a>
+	  <br />
+	  The principle of indirection can be applied to introduce a paradigm shift: replacing direct value manipulation with symbolic reasoning using named variables. This simple yet powerful trick directly resolves inconsistencies in tool usage and enables parameterization and abstraction of interactions. The transformation of function calls into reusable and interpretable frameworks elevates tool calling into a neuro-symbolic reasoning framework. This approach unlocks new possibilities for structured interaction and dynamic AI systems.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Chip Huyen</span> - <a href="detail.cfm?id=3722043"><b>How to Evaluate AI that's Smarter than Us</b></a>
+	  <br />
+	  Evaluating AI models that surpass human expertise in the task at hand presents unique challenges. These challenges only grow as AI becomes more intelligent. However, the three effective strategies presented in this article exist to address these hurdles. The strategies are: Functional correctness: evaluating AI by how well it accomplishes its intended tasks; AI-as-a-judge: using AI instead of human experts to evaluate AI outputs; and Comparative evaluation: evaluating AI systems in relationship with each other instead of independently.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Mark Russinovich, Ahmed Salem, Santiago Zanella-B&#233;guelin, Yonatan Zunger</span> - <a href="detail.cfm?id=3711679"><b>The Price of Intelligence</b></a>
+	  <br />
+	  The vulnerability of LLMs to hallucination, prompt injection, and jailbreaks poses a significant but surmountable challenge to their widespread adoption and responsible use. We have argued that these problems are inherent, certainly in the present generation of models and likely in LLMs per se, and so our approach can never be based on eliminating them; rather, we should apply strategies of "defense in depth" to mitigate them, and when building and using these systems, do so on the assumption that they will sometimes fail in these directions.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
