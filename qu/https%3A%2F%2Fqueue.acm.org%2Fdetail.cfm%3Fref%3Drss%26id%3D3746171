@@ -1,0 +1,671 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>WebAssembly: Yes, but for What? - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Web Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3747201" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>June 30, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3747201">Volume 23, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3746171">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">WebAssembly: Yes, but for What?</h1> 
+  <h2>The keys to a successful Wasm deployment</h2> 
+  <h3>Andy Wingo</h3> 
+  <p>WebAssembly (Wasm) turns 10 this year, which, in software terms, just about brings it to the age of majority. It has been polished, prepared, explored, and deployed, but in the language of American speculative fiction author William Gibson, we are now as ever in the unevenly distributed future: WebAssembly has found a niche but not yet filled its habitable space. This article attempts to inventory the early Wasm wins and losses and identify winning (and losing!) patterns, and then goes further to extract commonalities between these patterns: What is it that makes for a successful Wasm deployment? These observations are then used to predict the future, suggesting new areas where Wasm will find purchase in the next two to three years.</p> 
+  <p>&nbsp;</p> 
+  <h3>Methodological Confessions</h3> 
+  <p>Before diving in, we need a plan. The problem with understanding Wasm is that it is not just a technology: It also has an associated fog of narrative, and we as technologists are the perfect victims of such storytelling. Wasm is catnip to the kind of person who can find beauty in a copy of Benjamin C. Pierce's <i>Types and Programming Languages</i>, with its clean, fully specified, mechanically verified formal semantics. At the same time, its heady fumes entrance the software architects of the world with the promise of a cheap, universal, Lego-like composition of systems from standard pieces.</p> 
+  <p>Both audiences tend to turn their aesthetic predispositions into premonitions, mistaking what <i>should </i>be with what <i>will </i>be. In these 10 years, we have seen claims that WebAssembly will replace JavaScript, Docker, Linux, and several minor deities. How should you situate yourself in this landscape? What is real? How can you know what parts of Wasm are actually valuable in the here and now?</p> 
+  <p>To answer these questions, we adopt an aesthetically unsatisfying device: the market. Which Wasm deployments have stuck around? Where are people happily using Wasm? Which deployments failed? These are all real indicators by people with skin in the game.</p> 
+  <p>The market can also be used to assess bets on the future: Which Wasm niches are the target of current investments? The future is still in the making, so this criterion necessarily reincorporates narrative into the evaluation, but where many companies are all pushing in the same direction, this must be taken as a sign of what is to come.</p> 
+  <p>&nbsp;</p> 
+  <h3>Wasm and the Web: Wins and Losses</h3> 
+  <p>You would think Wasm would be a clear success on the web. After all, it's in the name. But WebAssembly on the web is a mixed bag.</p> 
+  <p>To take it from the beginning, Wasm grew out of <a href="http://asmjs.org/spec/latest/">asm.js</a> (asmjs.org), a restricted, statically typeable subset of JS (JavaScript). The <a href="https://emscripten.org/">emscripten</a> (emscripten.org) toolchain could compile C and C++ programs to this dialect of JS, and browsers such as Firefox built dedicated compilation pipelines to directly translate such JS programs to native code. The first big splash for asm.js was a set of 3D games based on Unreal Engine 4, which had experimental support for targeting the web via emscripten; this toolchain was later modified to emit Wasm instead of JS for better performance and lower startup latency.</p> 
+  <p>While these early demos were quite striking, they did not translate into massive adoption of Wasm by the gaming industry. The current version of Unreal does not even include a Wasm back end anymore. There are games on the web that use it, but Wasm is in no way an industry focus.</p> 
+  <p>In other domains, this approach of taking a desktop application and retargeting it to the web via Wasm has had some success. Adobe notably provides a web port of its Photoshop image-editing software, as well as other applications in its portfolio: a win for Wasm. The process has not been without hiccups, however. Adobe engineers had to be deeply involved in WebAssembly toolchain development in order to reach acceptable performance, and <a href="https://github.com/WebAssembly/meetings/blob/main/main/2024/CG-06.md#large-wasm-binaries-from-desktop-application-migrations-david-sankel">start-up time on first visit remains a challenge</a> (github.com).</p> 
+  <p>On the face of it, the case of the Figma collaborative interaction design web application is similar; Figma is also a graphic-design product written in C++ that targets the web. Unlike Photoshop, however, Figma is a web-only product, so you can expect that if, say, TypeScript works better for Figma's needs, then, over time, new features will be written in TypeScript instead. Indeed, looking at the breakdown of Figma over time would seem to reveal that is what has occurred; Wasm is still used for some per-pixel operations, where its greater control over data layout makes it a win, but the application is composed of relatively more JS than Wasm.</p> 
+  <p>As a component part of a web page, Wasm has had more lasting success. Wasm-compiled SQLite is so successful that it actually replaced a part of the web platform, causing <a href="https://developer.chrome.com/blog/from-web-sql-to-sqlite-wasm">Chrome to remove WebSQL entirely</a> (developer.chrome.com). The <a href="https://ui.perfetto.dev/">Perfetto tracing UI</a> (ui.perfetto.dev) uses Wasm to parse hundreds of megabytes of JSON (JavaScript Object Notation) data into packed indexable trace data, with SQL query support, though the UI itself is still implemented in TypeScript.</p> 
+  <p>These examples of Wasm success all have C++ or Rust as their source language, and that is no accident. Though Wasm is nominally independent of the language in which an application is written, in practice, it has historically been most appropriate for low-level languages. This is partly because these languages use the LLVM (low-level virtual machine)-based toolchain that compiles to Wasm, which has seen much more investment than any other compiler.</p> 
+  <p>Still, shipping C++ to the browser via Wasm has its limits. Web developers prefer JavaScript or TypeScript or some other web-first language, and if you are building an organization to create a web experience, generally speaking, you would rather pull from the deeper pool of JS developers than the more rarified C++/Wasm skill set. But there also are technical reasons that JS can work better than Wasm on the web.</p> 
+  <p>One of these reasons is a known limitation of early versions of Wasm: GC (garbage collection). Popular languages such as Python, Ruby, and Java have automatic memory management in the form of a garbage collector, but Wasm's only way to represent data was as bytes in a big array (<i>linear memory</i>). You could compile in a simple garbage collector that runs over that linear memory, but it would not be efficient; for example, Wasm still has no shared-memory multithreading, so parallel and concurrent GC are off the table. Implementers of languages needing GC instead preferred to generate JS, which could use the world-class memory manager built into the browser.</p> 
+  <p>This state of affairs has now changed with new developments in the Wasm platform. Since last year, all browsers have extended their Wasm implementations to allow source languages to use the Wasm runtime's own garbage collector. In theory, this should allow more efficient interaction with browser capabilities such as the DOM (Document Object Model) and WebGPU. It is still early, so a market-based assessment of the long-term success of this new WasmGC extension is not yet possible, but a survey of the field can shed some light.</p> 
+  <p>From a toolchain perspective, it seems that most compilers that target JS have been moving toward Wasm instead, as is the case, for example, with Scala or OCaml. There are new toolchains that skipped JS completely, such as the Hoot Scheme compiler, or the Graal ahead-of-time Java compiler. Finally, there are a couple of application development frameworks that can now target the web in addition to mobile, thanks to WasmGC (Kotlin/Compose and Dart/Flutter).</p> 
+  <p>As far as applications go, the most prominent WasmGC deployment is Google Sheets. This spreadsheet app used to evaluate per-cell spreadsheet formulae using Java code, compiled to JS; Sheets has now <a href="https://web.dev/case-studies/google-sheets-wasmgc">fully switched to WasmGC</a> (web.dev) instead. There are precious few other prominent examples, however.</p> 
+  <p>The social factors favoring JavaScript and TypeScript for web development will persist for the foreseeable future, but the technical foundations are now laid for other language communities to target the web on more-or-less equal footing. </p> 
+  <p>&nbsp;</p> 
+  <h3>Wasm without the Web</h3> 
+  <p>It's in the name, yes, but WebAssembly doesn't actually have anything to do with the web. The core specification stands alone. There is a companion specification for how to instantiate a Wasm program from JavaScript and how to pass control and data back and forth between JS and Wasm, but it is more of a language binding than an essential part of Wasm. </p> 
+  <p>Though browser vendors drove the initial development of Wasm, since then its set of stakeholders has widened to include nonbrowser use cases, which currently breaks down into three areas:</p> 
+  <p>• Ad-hoc composition/plug-ins</p> 
+  <p>• Lightweight virtualization</p> 
+  <p>• The <i>component model</i>, a sweeping new vision of how to compose systems from pieces</p> 
+  <p>As an example of ad-hoc composition, consider the <a href="https://rlbox.dev/">RLBox tool</a> (rlbox.dev), used by Firefox to link to third-party libraries written in unsafe C or C++, such as the Expat XML parser. RLBox compiles these libraries to Wasm, then compiles the Wasm version back to C. Using Wasm as an intermediate target isolates Expat's use of memory from the rest of Firefox, preventing a class of security vulnerabilities when there is a bug in Expat. Compiling the Wasm back to C allows Firefox to build and link against sandboxed Expat directly, without needing a Wasm runtime and with low overhead. Granted, this is a specific application, but it hints at the expressive possibilities afforded by the Wasm abstraction.</p> 
+  <p>Another ad-hoc use case is wherever you might want extensibility via a little virtual machine. For example, the TrueType font format has long embedded a bespoke VM used in font shaping; the HarfBuzz shaping library extends this idea by allowing OpenType fonts to <a href="https://github.com/harfbuzz/harfbuzz/blob/main/docs/wasm-shaper.md">embed more expressive shapers implemented in WebAssembly</a> (github.com). In this domain, you quickly run into issues of how to define the interface between host (application) and guest (plug-in/extension); the ad-hoc approach tends to be at a lower level than you would like, as the set of operand types to an exported function is limited to integers and floating-point numbers, at least for linear-memory Wasm.</p> 
+  <p>Lightweight virtualization also has an ad-hoc character but a broader scope in that it targets whole applications rather than their parts.</p> 
+  <p>For example, <a href="https://dl.acm.org/doi/10.1145/3689031.3717470">WALI (WebAssembly Linux Interface)</a> (dl.acm.org) is a toolchain-driven virtualization solution that compiles C, C++, and Rust applications, and applications to Wasm. Its libc redirects system calls to an ad-hoc set of imported Wasm functions, and its runtime hypervisor lowers guest Wasm code to native code, linking in implementations for the imported system calls. Though the Wizard compiler used in WALI produces less-optimized binaries than a native toolchain targeting Docker, by avoiding the fixed costs of container instantiation, it has lower total overhead for short-running tasks (approximately 0.5 seconds or less). Granted, WALI is still at the research stage, but it indicates the shape of the possible.</p> 
+  <p>In a similar vein, there are a number of IoT (Internet-of-things) projects whose firmware runs Wasm instead of native binaries, allowing for in-the-field upgrades with the robustness guarantees offered by Wasm's memory separation. Many of these use the <a href="https://github.com/bytecodealliance/wasm-micro-runtime">WAMR (WebAssembly Micro Runtime)</a> (github.com), but as the effort needed to get a basic Wasm implementation off the ground is not high, there is inevitably some fragmentation in this area.</p> 
+  <p>Finally, there is the component model. Let's approach the problem by observing that in some ways, Wasm is too expressive on its own. It is missing the equivalent of an ABI (application binary interface) that indicates how to map high-level concepts such as records or strings to the low-level scalars defined by core Wasm. Such an ABI would also have to deal with ownership and life cycles. On what common ground and with what machinery can a string be transmitted from the linear memory of one Wasm module to the linear memory of another? How do modules get instantiated, activated, and shut down? At some point you have to choose a set of abstractions and restrictions that allow independently developed pieces to work together in a system.</p> 
+  <p>Such are the goals of the component model. It defines a higher-level concept of a <i>component</i>, building on Wasm modules, but with richer types, a defined life cycle, and a specific model of shared-nothing composition and communication. The component model working group also develops a set of open source toolchains for linking and running Wasm components. The aim is to build systems with the fine-grained interoperation of shared libraries, specified in a way to allow isolation but without requiring the overhead of an operating system process or a container.</p> 
+  <p>The component model supports plug-in-like use cases. For example, Shopify allows its customers to provide Wasm code that can compute discounts based on the contents of a user's shopping cart. It also supplies an SDK (software development kit) that lets users provide source code and have the platform compile it on their behalf.</p> 
+  <p>&nbsp;</p> 
+  <h3>Cloud, Cloud, Cloud</h3> 
+  <p>The most intense area of component-model work, however, has by far been "in the cloud;" somewhere in the union of Kubernetes and edge compute, Microsoft, Fastly, Fermyon, Cosmonic, and F5 all have component-model?based offerings that they would like you to try. We aren't here to sell their products but rather to understand why they would be interested in the component model as a technology. The answer has nuances, but their main differentiator is that Wasm starts fast.</p> 
+  <p>To appreciate this point, imagine a web service that spins up a virtual machine to handle each incoming HTTP request. It would work, but it would be slow; for example, Amazon's presumably state-of-the-art <a href="https://firecracker-microvm.github.io/">Firecracker virtualization host</a> (firecracker-microvm.github.io) takes about 100ms to start a VM, and that is before handing off control to the actual request handler. Simple math says that would limit throughput to well under 10 queries per second per core.</p> 
+  <p>For this reason, many FaaS (function-as-a-service) platforms keep their service instances alive for a time, reusing them for multiple requests; still, when scaling up, a FaaS platform will need to spin up more instances, which will incur that 100ms-or-more cold-start latency penalty. This leads to higher overall tail latencies just as demand spikes, which is a recipe for cascading failures. To counter this failure mode, some services will be tempted to keep instances in reserve, but that is expensive and wasteful. What's more, reserving idle instances rules out the use of edge compute. The cost of this is bad enough in the core datacenter, but the larger number of edge nodes makes the cost impossible to bear.</p> 
+  <p>Wasm is the technology that can enable useful edge compute by reducing cold-start times to a millisecond or less—just the time to page in an instance's linear memory and call its HTTP handler, if that's what you're building. A number of optimizations can be applied to Wasm modules, such as <a href="https://github.com/bytecodealliance/wizer">resuming snapshots taken after initialization</a> (github.com). Some platforms use <a href="https://docs.wasmtime.dev/api/wasmtime/struct.PoolingAllocationConfig.html">virtual memory tricks</a> (docs.wasmtime.dev) to make hot start even faster, on the order of tens of microseconds. And of course, the advantages of fast cold start are not limited to edge deployment.</p> 
+  <p>The component model has enabled innovation in the cloud space by offering a shared vocabulary, a shared set of expectations, and a shared open source ecosystem that organizations can reuse and build on. Still, Wasm on the component-model cloud remains a frontier technology—not yet a clear win, but it certainly has a chance.</p> 
+  <h3>Patterns of Success</h3> 
+  <p>Let's summarize. WebAssembly does well at retargeting big C and C++ desktop applications to the web. It also wins at getting C and C++ components onto the web—for example, file format handlers, per-pixel processors, or embedded libraries such as SQLite. It hasn't won in games, though—perhaps there are other industry factors at play. For user-facing web interfaces, JavaScript and TypeScript are still better suited than Wasm, or rather C/C++/Rust compiled to Wasm; for Kotlin, Java, and other languages that use Wasm's garbage collector, it is still early.</p> 
+  <p>For plug-in and extension use cases, Wasm can be a good option if the host needs isolation from the guest, as is the case with Firefox and Expat. Wasm's minimalism, however, means that even concepts such as strings or records need to be represented as scalar numbers or as bytes in an array. To bridge the semantic gap between API and ABI, you need conventions, and it seems the component model is the most likely project to succeed in this space.</p> 
+  <p>The cloud Wasm space is a bit of a Wild West, with multiple players scrambling to pitch their visions of how to capture the value provided by Wasm's fast cold-start characteristics. Still, for those users who are prepared to rearchitect their services to suit the shape of cheap, transient, ephemeral Wasm compute, there may indeed be "gold in them thar hills."</p> 
+  <p>More generally, Wasm is an abstraction boundary that offers an intermediate point between isolation and rapprochement; a host can have robust memory safety guarantees with respect to the behavior of guests, but without needing a process boundary in between. Its interfaces are legible to tools, allowing a range of early and late binding strategies to be applied to the same artifact: for example, how system-call interception can be programmatically inserted into a WALI-compiled application with no dynamic dispatch overhead, or how separately compiled components can be statically linked and optimized together. And, there is fast cold start.</p> 
+  <p>&nbsp;</p> 
+  <h3>The Future</h3> 
+  <p>What should we build next? Let's put aside the problem of retargeting legacy C++ code, as there is only so much C++ to go around. Considering the patterns of Wasm wins, you can extract a pattern-pattern: Wasm works well where isolation is needed between different program parts written by different people. (If two parts are the responsibility of the same team, they generally don't need isolation.) This applies to some plug-ins, to virtualization—to any sort of system/user-space divide. The more critical the host, the more important isolation becomes. Firefox uses RLBox on Expat because web browsers have high security needs, but many users can't justify the investment.</p> 
+  <p>Therefore, one way to look for a new Wasm habitat is to identify existing extensible security-critical programs. The operating system kernel is an obvious candidate; you can only think that a Bluetooth driver should be isolated from other kernel data structures. So, writing kernel drivers would be a good use of Wasm. Of course, the Linux kernel already has eBPF (extended Berkeley Packet Filter), but it is not capable enough to write full drivers, and if Wasm made it into the kernel, it could logically take over many eBPF use cases.</p> 
+  <p>Or to take another security boundary, there could even be a Wasm operating system in which the Wasm module replaces the process. This could have MMU (memory management unit) advantages, as different Wasm modules are prevented by construction from accessing each other's memories; there need be no system call or task-switching overhead at all. This is a research matter, obviously, but it's compelling all the same.</p> 
+  <p>A final example might be our strange new AI future in which we would like for untrusted, highly fallible third parties to perform tasks on our behalf on sensitive personal data. As a lightweight compute platform that is limited to using only the capabilities explicitly granted to it, Wasm can allow for confident and confidential computing, even for untrusted code.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Andy Wingo</b> is a 20-year industry veteran with a specialization in compilers. He is a contributor to the JavaScript and WebAssembly implementations in Firefox and Chrome, co-maintains the widely deployed Guile implementation of Scheme, and can generally be found wherever there is an intermediate representation that needs munging. He lives in France with his family, in the greater Geneva area.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95a61ef889031fd6',t:'MTc1MTcxMDczNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 3</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3746171">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Conrad Watt</span> - <a href="detail.cfm?id=3746173"><b>Concurrency in WebAssembly</b></a>
+	  <br />
+	  Mismatches between the interfaces promised to programmers by source languages and the capabilities of the underlying web platform are a constant trap in compiling to Wasm. Even simple examples such as a C program using the language's native file-system API present difficulties. Often such gaps can be papered over by the compilation toolchain somewhat automatically, without the developer needing to know all of the details so long as their code runs correctly end to end. This state of affairs is strained to its limits when compiling programs for the web that use multicore concurrency features.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Daniel Ehrenberg</span> - <a href="detail.cfm?id=3746174"><b>When Is WebAssembly Going to Get DOM Support?</b></a>
+	  <br />
+	  What should be relevant for working software developers is not, "Can I write pure Wasm and have direct access to the DOM while avoiding touching any JavaScript ever?" Instead, the question should be, "Can I build my C#/Go/Python library/app into my website so it runs with good performance?" Nobody is going to want to write that bytecode directly, even if some utilities are added to make it easier to access the DOM. WebAssembly should ideally be an implementation detail that developers don't have to think about.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Ben Titzer</span> - <a href="detail.cfm?id=3746172"><b>WebAssembly: How Low Can a Bytecode Go?</b></a>
+	  <br />
+	  Wasm is still growing with new features to address performance gaps as well as recurring pain points for both languages and embedders. Wasm has a wide set of use cases outside of the web, with applications from cloud/edge computing to embedded and cyber-physical systems, databases, application plug-in systems, and more. With a completely open and rigorous specification, it has unlocked a plethora of exciting new systems that use Wasm to bring programmability large and small. With many languages and many targets, Wasm could one day become the universal execution format for compiled applications.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Shylaja Nukala, Vivek Rau</span> - <a href="detail.cfm?id=3283589"><b>Why SRE Documents Matter</b></a>
+	  <br />
+	  SRE (site reliability engineering) is a job function, a mindset, and a set of engineering approaches for making web products and services run reliably. SREs operate at the intersection of software development and systems engineering to solve operational problems and engineer solutions to design, build, and run large-scale distributed systems scalably, reliably, and efficiently. A mature SRE team likely has well-defined bodies of documentation associated with many SRE functions.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

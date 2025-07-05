@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Concurrency in WebAssembly - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Web Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3747201" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>July 3, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3747201">Volume 23, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3746173">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Concurrency in WebAssembly</h1> 
+  <h2>Experiments in the web and beyond</h2> 
+  <h3>Conrad Watt</h3> 
+  <p>As Herb Sutter once famously observed in his article <i><a href="http://gotw.ca/publications/concurrency-ddj.html">The Free Lunch is Over</a></i> (gotw.ca), CPU clock speeds have trended toward a plateau in recent years, while the <i>number</i> of CPU cores per chip continues to increase. As such, modern software reaches ever more urgently for multicore concurrency (alongside other strategies such as data parallelism) in order to capture the full performance capabilities of modern hardware.</p> 
+  <p>As a separate trend, more and more software is now built for the web platform—the collection of open standards implemented in every web browser and underpinning the operation of every website. The web platform offers an exceptional value proposition for developers: a sandboxed and (mostly) uniform virtual machine environment for application deployment that is supported by billions of devices worldwide by default, through their installed web browsers. The web platform is not without its limitations, however. The browser virtual machine can only execute code written in one of the standardized Web languages (before WebAssembly, just JavaScript, HTML and CSS), and such code can access only a restricted, safe abstraction of the underlying capabilities of the local system. Therefore, application developers must often choose between the uniformity and reach of the web platform and the flexibility, performance, and expressivity attainable only through native deployment.</p> 
+  <p>The web platform's constraints are logical considering the security model of the web—untrusted code from a website may be downloaded and executed by a visitor's computer without their explicit intervention, so the capabilities of any downloaded code must be limited. Moreover, the constraints make sense from a social perspective—in order to maintain the uniformity of the web platform, new features are generally standardized only if all browser vendors agree to implement them, creating an understandable bottleneck in the capabilities of the web based on the priorities, resources, and technical circumstances of these companies.</p> 
+  <p>With the advent of Wasm (WebAssembly) as an extension of the web platform, browser virtual machines now offer a uniform, developer-facing bytecode language and compilation target. This raises the tantalizing narrative that developers are now free to develop their applications in whichever programming language they like, so long as this language can be compiled to (or otherwise executed on top of) Wasm, in the same way that compilers might traditionally support separate x86 and ARM instruction-set targets.</p> 
+  <p>Certainly, it is true that Wasm marks an exciting new era for developer engagement with the web platform, and many projects have created profoundly impressive Web applications backed by Wasm as a compilation target for their preferred source language. Such a compilation target must still respect the constraints of the web platform as a whole, however. Mismatches between the interfaces promised to programmers by source languages and the capabilities of the underlying web platform are a constant trap in compiling to Wasm. Even simple examples such as a C program using the language's native file-system API present difficulties—for obvious reasons the web platform does not allow its programs arbitrary access to a client's file system, so the behavior of this API must be carefully virtualized during the compilation process if it is supported at all.</p> 
+  <p>Often such gaps can be papered over by the compilation toolchain somewhat automatically, without the developer needing to know all of the details so long as their code runs correctly end to end. This state of affairs is strained to its limits when compiling programs for the web that use multicore concurrency features. This article aims to describe how concurrent programs are compiled to Wasm today given the unique limitations that the Web operates under with respect to multi-core concurrency support and also to highlight some of the current discussions of standards that are taking place around further expanding Wasm's concurrency capabilities.</p> 
+  <p>&nbsp;</p> 
+  <h3>The Status Quo</h3> 
+  <p>What does multicore concurrency on the web platform look like today? The capability to create a new thread of execution on the web that can execute user-defined code is carefully limited as it's a powerful and security-sensitive operation. Currently the only way to do this is through the Web Workers API (including specialized variants such as Service Workers and Worklets, not explicitly covered by this article). Web Workers can be contrasted with native OS threads in that there is a pervasive assumption throughout the web platform that objects allocated in one Worker (or the main thread) <i>cannot be transferred by reference</i> to another Worker. </p> 
+  <p>There are two main causes of this constraint. First, JavaScript and DOM (Document Object model) objects are complicated enough that it's not possible to make their accesses thread-safe without severely compromising performance (e.g., by putting locks on everything). JavaScript objects in particular have highly dynamic representations in most browser implementations. Second, modern garbage collectors (GCs) in web browsers are generally built for speed, making use of a longstanding assumption that a lot of garbage-collection work can be safely performed thread-locally, without needing to worry about stopping the world or following cross-Worker references to ensure object liveness. Invalidating these deep-rooted implementation assumptions would create a monumental performance and security headache for web browsers, and so they are more or less entrenched as pervasive limitations on the capabilities of new Web concurrency features.</p> 
+  <p>These limitations mean that general shared-memory concurrency, where multiple threads may access the same object concurrently, is not possible as a rule, with one major exception to be discussed here shortly. Most communication between Workers happens through asynchronous message passing that simply prevents the transfer of object references by construction (either by explicitly erroring if they are present in the message or implicitly creating a separate copy in the other thread rather than sharing the reference directly).</p> 
+  <p>Because of this restriction, each newly created Web Worker must allocate a fresh global context on start-up (since it cannot share its creator's context by reference, which would allow concurrent access). This context must include (at a minimum) a new JavaScript global object specific to that Worker, and so the process of creating a Web Worker is many times more expensive than creating a new native thread. There are tricks that browser engines can play to ameliorate this issue, but, in practice, if your web code wants to create many concurrently executing jobs, it is recommended that you create a somewhat fixed pool of Web Workers on start-up, and then implement load balancing and pooling of jobs among them in user code rather than creating a new Worker for each job. The overhead of being required to perform this management in user space, especially layered on top of some underlying OS scheduler that is ignorant of the workload, has not been fully quantified (contributions welcome!).</p> 
+  <p>When coding directly in JavaScript or another web-first language, the web platform's restrictions against cross-thread reference sharing are exposed directly to the programmer, so their code can be directly written with these restrictions in mind. However, if I simply take a C program that calls <code>pthread_create()</code> and attempt to compile it to Wasm, there seems to be a mismatch. I could try to map <code>pthread_create()</code> to the web platform's new <code>Worker()</code> functionality, but imagine that the C program allocates a struct in one thread and tries to pass a pointer to that struct as an argument of <code>pthread_create</code> (figure 1 shows a simple C program that allocates a struct and then accesses the struct in two other threads through a pointer). How can I faithfully map this functionality to Wasm when we seem to lack the concept of shareable allocations?</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3747201.3746173/assets/html/watt1.png" alt="Concurrency in WebAssembly | FIGURE 1: A simple C program that allocates and accesses a struct" /> 
+  <p>As mentioned in the introduction of this article, concurrent programs (including C programs using <code>pthreads</code>) <i>can</i> in fact be compiled to Wasm. This is because there is an exception to the general principle that objects cannot be transferred between or accessed across multiple Web Workers (leaving aside certain simple immutable objects where the difference between reference sharing and copying is more or less semantically unobservable): the Wasm <i>shared memory</i> and the analogous JavaScript <i>SharedArrayBuffer</i>. Both of these objects are thin wrappers for the special allocation of a simple integer-indexed buffer of bytes—sometimes called the <i>backing store</i> for these objects—that can be allocated in one Worker and transferred by reference to another Worker (backing stores are not directly user-accessible, but when one of its user-accessible wrappers is included in a message to a Web Worker, the underlying backing store is passed by reference and a new wrapper object for it is allocated by the receiving Worker).</p> 
+  <p>These special buffers/backing stores allow true shared-memory concurrent access and can fit within the previously mentioned implementation assumptions of web browsers since they have a simple layout in memory and cannot themselves hold references to any regular objects—they can only hold raw byte data. This means that their accesses can be implemented in a thread-safe way, and the shared buffers do not need to participate in the liveness analyses of other objects when thread-local garbage collection is performed. One Worker can write to a shared buffer, and another Worker can concurrently read from it and observe this write (at least subject to the horrifically complicated cross-core caching/synchronization behaviors that are exposed by every shared-memory feature<sup>1,2</sup>—both objects provide a suite of atomic access operations to facilitate user-level synchronization). As a brief aside, this low-level model of concurrent memory access was of particular concern when mitigating the notorious Spectre and Meltdown vulnerabilities on the web, and today, as a result, shared buffers can only be allocated by websites that enable a security policy known as <i>cross-origin isolation,</i> which restricts the use of third-party scripts.</p> 
+  <p>In the context of compilation, and preserving the source-level semantics of the original program, this capability allows us (and in fact near-<i>obligates</i> us!) to bootstrap all of the source language's shared-memory concurrency behavior purely from the Wasm-level shared memory. This approach allows a feasible compilation scheme from the program from figure 1 to a Wasm module. </p> 
+  <p>Before we get into the full detail of how this scheme works, it's necessary to explain a little background on the lifecycle of a Wasm module, once it has been produced by compilation of some source code. In order to execute such a Wasm module, the module must first itself be compiled to machine code by the Wasm engine (e.g., a web browser engine such as V8). Then, a process called instantiation gathers the module's requested imports and wraps the generated machine code with function objects that can be called and manipulated by host code such as JavaScript—the result of instantiation is a user-accessible <i>instance object</i> that contains these ready-for-execution function objects, among other things.</p> 
+  <p>Our compilation scheme to Wasm produces a central module that imports a shared memory from the host. When the main thread of figure 1 allocates <code>myFoo</code>, because its pointer can be shared with other threads, the compiled Wasm code must allocate its representation into the imported shared memory. The address <code>&amp;myFoo</code> is represented as an integer index into the memory in the compiled code, and likewise the function address <code>&amp;incr</code> becomes an integer index into the list of Wasm function objects declared in the compiled code—note that for security reasons Wasm is a "Harvard architecture" where executable functions are only user-accessible in the form of these function objects, which have opaque representations and live in their own index space that is separate from the directly user-writable byte memory.</p> 
+  <p>When <code>pthread_create</code>(... <code>&amp;incr</code>, <code>&amp;myFoo</code>) is called, we will create a new Web Worker (or request one from a pre-allocated pool), but as one crucial complication this Web Worker cannot access the existing Wasm instance or its functions due to the previously mentioned restriction that such objects cannot be shared between Workers. Therefore, we must initialize a new instance in the freshly created Web Worker, essentially <i>a separate copy of the same compiled program</i> (as an optimization, the compiled machine code can be cached/shared across instantiations, but the wrapping instance objects must still be separately allocated). To do this we must transfer the shared memory by reference to the new Web Worker to be imported as part of the new instantiation process for the module performed in that Web Worker. We also message the new Worker with two integers—the first representing the address of the function to begin executing (<code>&amp;incr</code>) once instantiation is completed, and the second representing its argument: the address <code>&amp;myFoo</code>.</p> 
+  <p>The Wasm standards and toolchain community has taken to referring to this approach as an <i>instance-per-thread</i> compilation scheme, because it relies on creating a separate Wasm instance object representing a user-accessible view of the compiled program in each thread. Figure 2 depicts a snapshot of the Wasm program described earlier executing in a browser. After instantiation, and during the subsequent execution of the compiled <code>main()</code> function, a chunk of the shared memory is used to store the byte representation of the C-allocated <code>myFoo</code> struct. Two Web Workers in a pool are created with their own Wasm instances since the instance (and constituent function objects) allocated in the main thread cannot be transferred to the Web Workers by reference. The Wasm implementation of <code>pthread_create</code> involves signaling to an idle Web Worker that it should execute the <code>incr()</code> function, as described earlier. The diagram in figure 2 (Web Workers executing the program shown in figure 1 when compiled to Wasm) depicts this point in the execution where the two Web Workers have created their separate instances that both reference the same underlying shared memory (and as an optimization, the compiled machine code).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3747201.3746173/assets/html/watt2.png" alt="Concurrency in WebAssembly | FIGURE 2: Diagram of Web Workers" /> 
+  <p>&nbsp;</p> 
+  <h3>The future?</h3> 
+  <p>Several limitations to this approach remain, many of which are being discussed as part of the gargantuan <i>shared-everything threads</i> project that I am championing in the Wasm standards community alongside Andrew Brown (Intel) and Thomas Lively (Google). This umbrella project collects a number of interrelated standards proposals of varying complexity that are being investigated as possible ways to expand the concurrency capabilities of Wasm and the wider web platform. This effort also intersects with and takes inspiration from the <a href="https://github.com/tc39/proposal-structs">JavaScript structs proposal</a> (github.com) from the JavaScript standards community, championed by Shu-yu Guo (Google) and Roy Buckton (Microsoft); this proposal looks at some of the limitations from a JavaScript perspective. </p> 
+  <p>At this point I should also acknowledge the invaluable efforts of Andreas Rossberg (independent), Luke Wagner (Fastly), Ryan Hunt (Mozilla), and all the other members of the web standards community who have contributed to and participated in the development of shared-everything threads and related proposals in other standards bodies. I should also caution that all of the ideas discussed here are merely proposals, and no presumption should be made that they will be standardized in the web platform. I can only hope to give a flavor of the currently active discussions in the community, which I expect to inform the development of Wasm in the years to come.</p> 
+  <p>&nbsp;</p> 
+  <h4>Limitation 1—limited variety of atomics</h4> 
+  <p>Languages such as C/C++ and Rust offer a range of different "strengths" of different atomic operations, which allow expert programmers to selectively weaken the cross-thread synchronization guarantees of certain memory accesses in exchange for improved runtime performance. When accessing a shared memory, Wasm and JavaScript offer only two choices of access strength at the extreme ends of the spectrum—<i>unordered</i> and <i>sequentially consistent</i>. While these two access strengths are by far the most commonly used in real code, even in languages where other options are available, expertly written programs using other intermediate access strengths lose out on some performance when compiled to Wasm, since all such accesses must be compiled to Wasm's stronger and slower sequentially consistent accesses. Adding some other intermediate access strengths to Wasm, such as release-acquire, would unlock more of this performance without requiring major structural changes to the language. These efforts are ongoing as one of the less onerous parts of the shared-everything threads project.</p> 
+  <p>&nbsp;</p> 
+  <h4>Limitation 2—inability to share Wasm instances</h4> 
+  <p>As previously described, when multithreaded code is compiled to Wasm, each Web Worker used in the compiled program must create a separate Wasm instance (see figure 2). As already noted, this leads to increased thread start-up costs (mitigated by pooling of Web Workers), but a more fundamental issue arises when attempting to support dynamic code loading, such as when compiling a source C program that calls <code>dlopen</code> to Wasm. This system call dynamically loads new code and data into memory and returns a bag of new pointers, including function pointers to the loaded code that may be called as normal. </p> 
+  <p>Recall the approach for compiling C function pointers to Wasm that was previously sketched: Each thread must keep a consistent list of loaded functions, and then function pointers can just be compiled to integers that index this list, which can be safely passed between threads. If one thread executes <code>dlopen</code>, however, the compiled code in Wasm must laboriously pause the execution of every thread and update the list of loaded functions in order to ensure that any new function pointers introduced by <code>dlopen</code> behave correctly if they are used in another thread. This bookkeeping can be done automatically by the toolchain, but it is clearly not an ergonomic experience. The widely-used Emscripten toolchain for Wasm offers experimental support for this approach when compiling C code that uses <code><a href="https://emscripten.org/docs/compiling/Dynamic-Linking.html#pthreads-support">pthreads+dlopen</a></code> (emscripten.org).</p> 
+  <p>To address this and related issues, discussions in the Wasm community have focused around the feasibility of introducing a concept of shared instances to the Wasm language. Instead of requiring each Web Worker to keep a separate Wasm instance and list of loaded functions, such a capability would allow the allocation of a single shared instance that all Web Workers point to. With this, dynamic code loading could be implemented in Wasm in a way that is closer to its expected behavior in native compilation without requiring that all threads be paused. See figure 3 for a sketch of this. If this code needs to dynamically load a new function (e.g., through <code>dlopen</code>), only one shared list of functions (maintained by the shared instance) needs to be updated (in contrast to the current scheme shown in figure 2).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3747201.3746173/assets/html/watt3.png" alt="Concurrency in WebAssembly | FIGURE 3: The support of a hypothetical shared instances feature" /> 
+  <p>This extension, naively introduced, would violate the core invariant of the web as previously mentioned—now any object accessed by a function in the shared list would be accessible by multiple threads simultaneously. Discussions on possible designs of such an extension have therefore relied on mechanisms that would prevent such cross-thread-shared functions from holding references to objects that are not thread-safe, possibly through static restrictions enforced by Wasm's validation algorithm. Shared instances would still need new special handling in implementations, but at least the effect on existing objects in the web platform would be minimized. Several ideas in this space are currently the subject of a lively standards debate, taking account of the known constraints of the Web platform and the implementation resources of browser vendors.</p> 
+  <p>&nbsp;</p> 
+  <h4>Limitation 2+—inability to share JavaScript objects</h4> 
+  <p>Wasm programs often import capabilities from the JavaScript host. Created Wasm instances must therefore often hold persistent references to JavaScript functions and other objects that will be accessed during execution. As noted earlier, this is problematic when considering a possible extension to shared instances—without careful protections, it would be possible for a JavaScript function object to be accessed through the same shared instance in multiple threads, breaking the pervasive assumptions made by browser implementations about the thread-(un)safety of JavaScript objects and the safety of carrying out thread-local garbage collections. The knee-jerk reaction would be simply to ban any Wasm shared instance from importing or accessing a JavaScript object, but clearly this would severely limit the expressiveness of any compiled Wasm program making use of such a shared instance.</p> 
+  <p>It is therefore natural to ask whether the capabilities of JavaScript could be expanded in some limited way to create objects that are more safely shareable. There is ongoing discussion in the JavaScript community around the ambitious <i>shared structs</i> proposal, authored by Shu-yu Guo, which would introduce exactly this capability. Of course, the usual caveat applies that this is an early stage proposal subject to significant debate in the standards community.</p> 
+  <p>&nbsp;</p> 
+  <h4>Limitation 3—inability to share Wasm garbage-collected structs</h4> 
+  <p>The discussions here have focused mostly on the compilation of C-style languages to Wasm, which primarily use the (shared) Wasm memory—a buffer of bytes. Wasm has recently been extended with new support for allocating structs and arrays that can piggyback off of a host environment's existing GC—on the web, this means JavaScript's GC. These new primitives are used to provide enhanced support for compiling garbage-collected languages to Wasm since they can, in principle, remove the need for the compiled code to ship its own (likely far less efficient) GC as part of the Wasm binary. Because these allocations are managed by the host's GC, they are subject to the same limitations as other allocated objects—namely, the inability to share references to the allocations between threads/Web Workers. Compilation of a source language such as Java to Wasm must therefore disallow the use of source-level concurrency features (or mimic their behavior with a single-threaded simulation) if GC structs are used in the compiled code, since there is no way to faithfully support Java's much more permissive cross-thread reference-sharing behavior.</p> 
+  <p>To address this issue, the Wasm standards community is discussing the feasibility of shared GC structs, which could be safely shared by reference across Web Workers. This capability would essentially be a Wasm-level view of the ongoing and closely related JavaScript <a href="https://github.com/tc39/proposal-structs">shared structs proposal</a> (github.com). As noted in the previous limitation, such shareable objects, if standardized, would need to be prevented from accidentally introducing the ability to concurrently access ordinary JavaScript objects through transitive references.</p> 
+  <p>&nbsp;</p> 
+  <h4>Limitation 4—lack of lightweight threads</h4> 
+  <p>Web Workers carry some overhead because of their need to allocate a separate JavaScript context on start-up. It is tempting to ask whether this overhead is necessary in the context of supporting compilation to Wasm, and whether a more lightweight thread creation primitive would be appropriate. Wasm standards-body discussions around this concept have focused on the performance of the existing Web Worker pooling compilation strategy and the significant engagement with the wider Web standards ecosystem that would be necessary to pursue such a new feature. It has also been observed that generated Wasm programs need to call out to the host (e.g., JavaScript) surprisingly often during execution, and therefore the utility of a lightweight thread without a JavaScript context (where such calls would not be possible) might be limited.</p> 
+  <p>&nbsp;</p> 
+  <h3>Beyond the Web</h3> 
+  <p>While this article has focused mainly on the limitations and future of WebAssembly concurrency, it is worth emphasising that thanks to the existing efforts of the many web platform contributors, plenty of use cases for concurrency on the web already work <i>today</i>. Tools like Emscripten, where applicable, allow the arcane process of Web Worker organization and communication to be treated (mostly) as a black box, with high-profile projects such as Google Earth using this approach to bring vast "native" codebases to the Web.</p> 
+  <p>It's also worth emphasizing that <i>shared-everything threads</i> is not the only standards project seeking to enhance WebAssembly's capabilities. Two somewhat-related recent extensions especially worth highlighting, <i>SIMD instructions</i> and <i>JavaScript Promise Integration</i> (JSPI), introduce enhanced support for data parallelism and asynchronous host interaction respectively, while the early stage <i>Stack Switching</i> proposal hopes to extend WebAssembly with core primitives for asynchronous computation. These efforts (along with the aforementioned shared-everything threads umbrella proposal and many others) show the best of the web standards community, with many different participants actively contributing towards making WebAssembly as powerful and expressive as it possibly can be, all without compromising the open, consensus-driven, and backwards-compatible nature of the Web platform.</p> 
+  <p>The Web platform has proven to be popular enough that it is often the preferred abstraction even for other use cases such as server-side and cloud computation — consider for example the ubiquity of server-side JavaScript. In principle these environments can offer more tailored development experiences according to their unique priorities and technical constraints, but in practice the rigorous security model of the Web platform offers a lot "out of the box" to these environments, and economies of scale around Web development expertise mean that it just makes sense to focus efforts around providing a Web-like development environment rather than something more bespoke. WebAssembly specifically has attracted interest from even more varied environments related to embedded systems and blockchain. While all of these environments can offer limited additional capabilities to executing programs, such as file system access, on top of the base capabilities of the Web platform, they are still incidentally affected by several of its constraints — there are many benefits that come from adopting a widely used and implemented standard, but this is the trade-off! Many of the limitations discussed above (especially shared instances) will require core WebAssembly language extensions to address, which must be agreed among all stakeholders, even though many of these platforms are not subject to the same technical constraints as Web browsers.</p> 
+  <p>To end on a positive note, it may be that these "off-Web" platforms, <i>because</i> they don't suffer from the same technical constraints as Web browsers, will become fruitful environments for experimentation with new WebAssembly concurrency features that would be too onerous for Web browsers to speculatively prototype. This in turn can create evidence and precedent that may be used to inform the standards process. Seeing the energy and creativity that so many are bringing to the Web standards community on this topic leaves me optimistic about the future of WebAssembly's concurrency capabilities, and I look forward to seeing how the efforts of everyone involved will pay off over the coming years.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Watt, C., Pulte, C., Podkopaev, A., Barbier, G., Dolan, S., Flur, S., Pichon-Pharabod, J., Guo, S.-y. 2020. Repairing and mechanizing the JavaScript relaxed memory model. <i>Proceedings of the 41st ACM SIGPLAN Conference on Programming Language Design and Implementation</i>, 346–361; <a href="https://dl.acm.org/doi/abs/10.1145/3385412.3385973">https://dl.acm.org/doi/abs/10.1145/3385412.3385973</a>.</p> 
+  <p>2. Watt, C., Rossberg, A., Pichon-Pharabod, J. 2019. Weakening WebAssembly. <i>Proceedings of the ACM on Programming Languages</i> 3 (OOPSLA), Article 133, 1–28; <a href="https://dl.acm.org/doi/10.1145/3360559">https://dl.acm.org/doi/10.1145/3360559</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Conrad Watt</b> is a co-chair of the W3C WebAssembly Community Group, the main industrial decision-making body for the language. He is also an assistant professor at Nanyang Technological University, Singapore. His work focuses on the definition of WebAssembly's shared-memory concurrency model, and more broadly on the machine-assisted verification of WebAssembly's language design and related artifacts. He obtained his Ph.D. from the University of Cambridge, where he also spent three years as a Research Fellow of Peterhouse. His doctoral dissertation on formal verification of WebAssembly was awarded the EAPLS (European Association for Programming Languages and Systems) Best Dissertation Award 2021 and an ACM Doctoral Dissertation Award Honorable Mention.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95a61ede4a667ad2',t:'MTc1MTcxMDczMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 3</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3746173">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Daniel Ehrenberg</span> - <a href="detail.cfm?id=3746174"><b>When Is WebAssembly Going to Get DOM Support?</b></a>
+	  <br />
+	  What should be relevant for working software developers is not, "Can I write pure Wasm and have direct access to the DOM while avoiding touching any JavaScript ever?" Instead, the question should be, "Can I build my C#/Go/Python library/app into my website so it runs with good performance?" Nobody is going to want to write that bytecode directly, even if some utilities are added to make it easier to access the DOM. WebAssembly should ideally be an implementation detail that developers don't have to think about.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Ben Titzer</span> - <a href="detail.cfm?id=3746172"><b>WebAssembly: How Low Can a Bytecode Go?</b></a>
+	  <br />
+	  Wasm is still growing with new features to address performance gaps as well as recurring pain points for both languages and embedders. Wasm has a wide set of use cases outside of the web, with applications from cloud/edge computing to embedded and cyber-physical systems, databases, application plug-in systems, and more. With a completely open and rigorous specification, it has unlocked a plethora of exciting new systems that use Wasm to bring programmability large and small. With many languages and many targets, Wasm could one day become the universal execution format for compiled applications.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Andy Wingo</span> - <a href="detail.cfm?id=3746171"><b>WebAssembly: Yes, but for What?</b></a>
+	  <br />
+	  WebAssembly (Wasm) has found a niche but not yet filled its habitable space. What is it that makes for a successful deployment? WebAssembly turns 10 this year, but in the words of William Gibson, we are now as ever in the unevenly distributed future. Here, we look at early Wasm wins and losses,identify winning patterns, and extract commonalities between these patterns. From those, we predict the future, suggesting new areas where Wasm will find purchase in the next two to three years.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Shylaja Nukala, Vivek Rau</span> - <a href="detail.cfm?id=3283589"><b>Why SRE Documents Matter</b></a>
+	  <br />
+	  SRE (site reliability engineering) is a job function, a mindset, and a set of engineering approaches for making web products and services run reliably. SREs operate at the intersection of software development and systems engineering to solve operational problems and engineer solutions to design, build, and run large-scale distributed systems scalably, reliably, and efficiently. A mature SRE team likely has well-defined bodies of documentation associated with many SRE functions.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

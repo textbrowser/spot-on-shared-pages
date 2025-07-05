@@ -1,0 +1,670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>WebAssembly: How Low Can a Bytecode Go? - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Web Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3747201" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>July 1, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3747201">Volume 23, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3746172">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">WebAssembly: How Low Can a Bytecode Go?</h1> 
+  <h2>New performance and capabilities</h2> 
+  <h3>Ben Titzer</h3> 
+  <p>In 2017 the web platform added its fourth official language, WebAssembly. Following on HTML, CSS, and JavaScript as the standard markup, styling, and scripting languages, WebAssembly, or Wasm for short, added a new, powerful capability in the form of a low-level, binary format for compiled code that runs at near-native execution speed. Addressing use cases that prior solutions such as <a href="https://developer.mozilla.org/en-US/docs/Games/Tools/asm.js">asm.js</a> (developer.mozilla.org) and <a href="https://developer.chrome.com/docs/native-client">NaCl (Native Client)</a> (developer.chrome.com) sought to solve, Wasm was designed in an open, collaborative process that involved all browser vendors and included experts in programming languages, verification, and virtual machines.</p> 
+  <p>Since its launch, Wasm has brought new performance and capabilities to the platform with featureful applications such as game engines, desktop applications such as Photoshop<sup>1</sup> and <a href="https://www.autodesk.com/blogs/autocad/autocad-web-app-google-io-2018/">AutoCAD</a> (autodesk.com), audio processing, simulations, scientific computing, and machine learning, as well as a growing list of <a href="https://www.moonbitlang.com/">new</a> (moonbitlang.com) and <a href="https://kotlinlang.org/docs/wasm-overview.html">existing</a> (kotlinlang.org) programming languages.</p> 
+  <p>Yet even as Wasm was designed as a solution to specific problems emerging for the web, it was purposefully designed with more general uses in mind. The core specification lays out a format, verification, and execution rules independent of how Wasm is embedded into a host platform. Here the focus is on the design of the bytecode, demystifying the core features of Wasm bytecode.</p> 
+  <p>&nbsp;</p> 
+  <h3>Why a New Bytecode?</h3> 
+  <p>Prior to Wasm, JavaScript was the only truly native programming language for the web, and compiling to JavaScript was the only choice for other programming languages to target the platform. While JavaScript was initially slow to execute, engines improved in performance by leaps and bounds, unlocking performance that allowed the explosion of Web 2.0. Yet sophisticated applications such as game engines and rich applications rivaling desktop power pushed scalability to its limits, and the drawbacks of JavaScript as a compile target became apparent.</p> 
+  <p>One issue was program size. Even with minification and compression, JavaScript source code can be large, and parsing can be a bottleneck for the often huge artifacts that resulted from compiling even moderately sized C/C++ applications to JavaScript. Another issue was the mismatch between JavaScript semantics and the low-level nature of these applications, which led to the design of asm.js, a subset of JavaScript with numerical type annotations in the form of dynamic coercions that worked almost entirely by accident. (Though JavaScript had only 64-bit floating-point numbers, its unusual choice for the semantics for bitwise operators meant that <code>(a|0 + b|0)|0</code> is equivalent to a 32-bit two's complement integer.)</p> 
+  <p>By 2013, JavaScript engines were experimenting with completely separate compilation pipelines to make asm.js efficient, complete with custom parsers, validators, code generators—and bugs, which often resulted in security vulnerabilities. By 2015, engineers from different browser vendors had already recognized that the long-term trajectory would be best served by purposefully, rather than accidentally, designing a bytecode.</p> 
+  <p>Security was a critical design criteria for the bytecode. Untrusted code is the norm on the web, making malicious code a pervasive threat. Experience has shown that the complexity of an input language (especially a Turing-complete programming language) plus the complexity of the software to process and run that language multiplies the risk of bugs and security vulnerabilities. Browser vendors know this all too well, as the intricate complexity of optimizations needed to accelerate JavaScript casts a long bug tail. Thus, in designing Wasm, a healthy paranoia led to the highest levels of specification rigor to ensure that its definition was clear, unambiguous, internally consistent, and sound, bolstering confidence that promised safety properties do hold.</p> 
+  <p>&nbsp;</p> 
+  <h3>Module Structure and Verification</h3> 
+  <p>Wasm code is organized into modules, which are akin to an executable file, or part of one. A Wasm module can be as small as a few dozen bytes for a single function, or as large as an entire application, stretching into hundreds of megabytes. The binary format makes extensive use of variable-length integers, ensuring that small modules are small without limiting how large modules can eventually become. (Despite unlimited size integers in the binary format, Wasm engines enforce reasonable, standard <a href="https://webassembly.github.io/spec/core/appendix/implementation.html">limits</a> (webassembly.github.io) for how big or complicated a module can be, such as 1 million maximum functions and a total size of 1GiB .) A module is divided into sections that declare functions, memories, tables, global variables, and static data. A key difference with native executables is that Wasm bytecode instructions are grouped into functions with statically typed parameters, results, and local variables, rather than an unstructured executable region of instructions that can be jumped and called into without restriction.</p> 
+  <p>Paramount to Wasm's isolation properties is that all operations in core Wasm can access only a module's own internal state. Modules must import functions (and memories, tables, etc.) in order to access state outside the module or platform capabilities. Imports may be provided by the <i>host</i> environment, such as JavaScript and the web, or from other modules. That means that Wasm modules are always self-contained, with imports and exports describing the interface to the outside world.</p> 
+  <p>On the web, clients must verify <i>completely untrusted</i> code because no central authority exists to vet or sign code. The verification process is of critical importance, and bugs in specifications have caused severe security vulnerabilities in past code-verification systems. While modern programming language formalizations such as type systems help in defining precise and sound specifications of how to <i>typecheck</i> code, implementations are concrete and algorithmic. As a critical security measure, this validation algorithm must be straightforward to implement, well tested, and efficient, as it is on the critical path for application loading.</p> 
+  <p>To minimize latency, Wasm is thus designed so modules can be verified in a single forward pass, as shown in figure 1. Wasm modules are organized into sections that declare types, imports, functions, memories, and exports (tables and other segments not shown). The ordering between sections allows the module, as well as the code in each function, to be validated in a single pass, with an efficient single-pass abstract interpreter to infer the types of the operand stack. Because of careful ordering of the sections of a Wasm module, the information needed at each step precedes it. Decoding and validation can therefore happen in a streaming fashion, where sections, declarations, and individual function bodies are being validated as the module's bytes arrive over the network before the entire module is even complete.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746172/assets/html/titzer1.png" alt="WebAssembly: How Low Can a Bytecode Go? Fig 1: WebAssembly modules organized into sections" /> 
+  <p>Another critical factor is verifying control-flow integrity, which establishes that the program doesn't jump to random memory addresses, even under adversarial conditions such as out-of-bounds memory accesses or stack smashing. A critical choice in designing Wasm was to make control-flow verification fast and simple, which motivated three important choices: (1) code is organized into functions with only calls and returns between, (2) the execution stack is not addressable, and (3) local control flow uses blocks and loops with structured branches.</p> 
+  <p>&nbsp;</p> 
+  <h3>Execution of a Wasm Module</h3> 
+  <p>To run, a module must be <i>instantiated</i>, supplying bindings for its imports. At instantiation time, a Wasm engine creates the state (tables, globals, and memories) declared by the module, with the result being called an <i>instance</i>. An instance can export its own functions, memories, tables, etc. to other modules or the host environment. The primary dynamic storage of a Wasm program is typically one or more large, bounds-checked, byte-addressable memories, while global variables and tables of opaque host references can also be used.</p> 
+  <p>On the web platform, Wasm modules can import/export their memories as <code>WebAssembly.Memory</code> object instances, from which a typed array can be created. Thus, through the use of imports, the Wasm memory can be passed to any web API that uses typed arrays. Since the first appearance of Wasm in browsers, Wasm added first-class function references and garbage-collected objects. These too are forms of local state and must be shared explicitly with other instances.</p> 
+  <p>Wasm is often described as a low-level bytecode. This is because Wasm's abstractions are close to those provided by typical hardware. The large, page-sized but byte-addressable memories map directly onto memory provided by the underlying hardware and OS, and only simple bounds checks on the memory are necessary for safety. Unlike some attempts of making a safer C, type safety for the language that is compiled to Wasm is not enforced by the Wasm engine. Wasm memory is untyped, allowing unrestricted aliasing and byte-oriented access. The execution model provides only <i>sandboxing</i>, which prevents one Wasm module from accessing any state not explicitly created by it or granted to it.</p> 
+  <p>In Wasm 1.0, memories are limited to 4GiB in size and are indexed with 32-bit integers. On 64-bit machines, this allows a more efficient bounds-checking strategy by reserving a large enough virtual address range and protecting all out-of-bounds pages so the hardware MMU (memory management unit) performs bounds checks via normal virtual address translation, as seen in figure 2. Execution stacks, tables, globals, and the (new) GC (garbage collection) heap can store references and managed data that is separated from the byte-addressable memories. A rich instruction set allows access to these storage mechanisms as well as offering an extensive set of operations on integers, floats, and vector types.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746172/assets/html/titzer2.png" alt="WebAssembly: How Low Can a Bytecode Go? Fig 2: Wasm 3.0 instruction set and storage mechanisms" /> 
+  <p>Instructions and types are similarly low level. Wasm has the standard primitive data types that are available on all modern CPUs: 32- and 64-bit integers, 32- and 64-bit floating-point numbers, as well as a 128-bit vector type. A large set of standard integer and floating-point arithmetic instructions are available, which typically map one to one with native machine instructions and have bit-exact specifications for their outputs. This makes Wasm programs portable and deterministic. (With limited nondeterminism for some floating-point operations involving NaNs [not a number], Wasm has no undefined behavior.) Wasm allows multiple modules, memories, and instances to occupy a single host process, fully sandboxed from each other; 32-bit Wasm memory access can be implemented by simply adding the base address and relying on 64-bit virtual memory hardware without explicit bounds checks (see figure 3).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746172/assets/html/titzer3.png" alt="WebAssembly: How Low Can a Bytecode Go? Fig 3: Modules, memories, and instances in a single host process" /> 
+  <p>&nbsp;</p> 
+  <h3>Structured control flow</h3> 
+  <p>In one of Wasm's more unusual design choices, control flow within a function is represented in a structured way, with blocks, loops, and if/else instructions that must be properly nested. Branches to the end of a block or the beginning of a loop are allowed only from within their respective scopes. This was an intentional choice to improve code density and efficiency of validation, as the metadata needed per block is minimized to reusable control-stack entries. Structured control also implies reducible control-flow graphs, which simplify many compiler algorithms, such as loop analysis and transformations like peeling, unrolling, and liveness analysis, thus simplifying already-complicated engines. Producers whose main intermediate representation of code is a general CFG (control-flow graph) need to restructure the basic blocks. This can be done with several effective algorithms.<sup>3</sup></p> 
+  <p>&nbsp;</p> 
+  <h3>Compiling Wasm Bytecode</h3> 
+  <p>Wasm code was intentionally designed to be similar to native instructions. Source compilers are expected to do most of the work to lower language constructs and implement data structures at the byte and word level. Having few high-level constructs means that compiling Wasm to machine code is relatively straightforward for the Wasm engine. With all modern browsers supporting sophisticated optimizing compilers with good instruction selection and register allocation, Wasm bytecode can be parsed into the compiler's intermediate representation close to the back end, and after some optimizations are applied, efficient native machine code is generated.</p> 
+  <p>The compilation step from Wasm to machine code inevitably consumes time and memory that could delay application startup. Much effort has gone into making this step efficient. In particular, compilers face a long-known inherent compile-time/code-quality tradeoff. Empirically, large applications tend to have many functions that are rarely or never executed, and spending time optimizing them doesn't pay off. Though early browser execution strategies precompiled all Wasm code with an optimizing compiler before execution, today's web engines all employ multiple compilers for Wasm, where a quick single-pass compiler (often called a <i>baseline<sup>5</sup> compiler</i>) is used first, and an optimizing compiler provides faster code for important functions later. Caching machine code for Wasm modules that have been previously loaded is common in browsers, similar to other large resources from websites. In many use cases outside the web, Wasm engines often compile modules to machine code ahead of time, allowing for optimization while making startup nearly instantaneous.</p> 
+  <p>&nbsp;</p> 
+  <h3>Interpreting Wasm Bytecode</h3> 
+  <p>Wasm is a little unusual in that it was designed after mature optimizing compilers were already present in systems that intended to use it. Historically, most bytecode designs first consider efficient interpretation, and only later are optimizing compilers built. Because of the ready availability of optimizing compilers in web engines, Wasm was pointedly not designed to be interpreted efficiently. One example is structured control flow. While this can actually be a benefit to validation and fast compilation, it is challenging to implement an interpreter.</p> 
+  <p>Despite this, several interpreters for Wasm soon appeared, such as the first tier of the JavaScriptCore engine powering Safari, and <a href="https://github.com/wasm3/wasm3">Wasm3</a> (github.com), a low-memory engine designed primarily for embedded applications. Both of these interpreters take the approach of rewriting bytecode into an internal form with more traditional offset-based branches. (One might argue that an interpreter that requires a rewrite step is, in fact, a compiler.) The rewriting step takes time and memory, lessening some of the startup advantages of interpreters. Yet in 2022 it was shown<sup>4</sup> that Wasm could indeed be interpreted efficiently in place without rewriting, with the help of a side-table data structure that provides bytecode deltas to help with branches. Today, at least two engines have in-place interpreters that use side tables: the <a href="https://github.com/titzer/wizard-engine">Wizard Research Engine (standard, default)</a> (github.com) and JavaScriptCore (experimental).</p> 
+  <p>&nbsp;</p> 
+  <h3>New Features</h3> 
+  <p>Since first appearing in browsers, Wasm has continued to add features that expose more hardware performance and improve ergonomics for more languages. After the MVP (minimum viable product) release in 2017, early additions to the standard were reference types, bulk memory operations, multiple value returns (and values within blocks), and additional primitive type conversions. A key performance feature was the addition of a 128-bit vector type and associated instructions in the <a href="https://v8.dev/features/simd">Wasm SIMD (single instruction, multiple data) extension</a> (v8.dev), which was ratified into the standard in 2021. This feature adds a new primitive type and more than 200 instructions that perform 2-, 4-, 8-, and 16-lane integer and floating operations and memory accesses, making it the only portable bytecode to date to offer portable, deterministic vector operations with close-to-native performance.</p> 
+  <p>More recently completed features include exception handling, 64-bit memories, tail-calls, and atomics. Exception handling adds the ability to throw and catch exception packages, a feature long demanded for large C++ codebases targeting the web, which previously relied on JavaScript exception handling. Exception handling also serves languages such as Kotlin, OCaml, and Java. Larger 64-bit-addressable memories also increase Wasm's ability to handle memory-intensive applications. While tail calls had a bumpy history in the JavaScript language, they constituted an addition of just two bytecodes to Wasm. Atomics add the ability to share Wasm memories among multiple web workers and provide a memory model that allows multithreaded programs to work efficiently and portably. Though core Wasm does not have a native mechanism to launch threads, other host environments can provide thread-creation mechanisms that are appropriate to use case (e.g., <a href="https://github.com/WebAssembly/wasi-threads">WASI (WebAssembly System Interface) threads</a> (github.com)).</p> 
+  <p>Another feature with a long design phase that is now completed is garbage collection for Wasm programs. While Wasm is primarily a low-level language close to hardware, many of today's most popular languages rely on GC. Prior to Wasm, some of these languages targeted the web by compiling to JavaScript, inheriting its relatively inefficient object model and performance unpredictability. While some languages have invested considerable effort in optimizing their JavaScript output, the unpredictability of JavaScript engine optimizations has been a stumbling block.</p> 
+  <p>Another approach is to simply include the GC implementation directly into applications as Wasm bytecode, with the collector operating on the byte-level representation of language objects. A key design problem that arises is <i>root finding</i>, where a collector identifies roots in execution stacks and updates them when moving objects. Yet Wasm's execution model does not allow addressing the stack at all, so indirectly accessing the contents of execution frames is not possible. To work around this, GC implementations targeting Wasm can use a <i>shadow stack</i>, a separate region within a Wasm memory that stores references (rather than storing them directly in execution frames), allowing runtime root-finding routines to operate with no special support from the engine.</p> 
+  <p>The shadow stack comes with significant drawbacks, however, as it introduces a level of indirection and can complicate cross-module linking, even for modules written in the same language and compiled separately. A worse problem is that references to objects in the embedder language (i.e., JavaScript) cannot be written into Wasm memory, complicating cross-language interoperability with additional indirection through tables. Without strict discipline, this can lead to memory leaks. But perhaps the most critical drawback is that an application-specific GC with its own root finding makes advanced GC algorithms that employ concurrency, parallelism, and incrementalism nearly impossible, as root finding becomes a <a href="https://dl.acm.org/doi/10.1145/3316772">joint venture</a><sup>2</sup> (dl.acm.org) between two completely different collectors.</p> 
+  <p>So, in order to better serve garbage-collected languages and to attract other managed languages to Wasm and the web, the recently completed Wasm <a href="https://github.com/webAssembly/gc">GC</a> (github.com) feature introduces fixed-size structs and arrays with automatic heap management. This proposal was codesigned with the <a href="https://github.com/webAssembly/function-references">function-references</a> (github.com) proposal (which adds statically typed first-class function references) and offers a low-level object model from which more complex object models can be built. Unlike bytecodes for Java, .NET, or Python, it doesn't provide classes or method dispatch, but a simpler model: fixed-size, statically typed structs and arrays. Allocated on an engine's internal heap, these objects require minimal metadata and store fields and array elements in efficient, unboxed representations. The design allows engines to employ their existing sophisticated garbage collectors and leverage a unified heap for both host (e.g., JavaScript) and Wasm objects. Now available in all browsers (and starting to appear in non-web engines) the Wasm GC object model provides languages such as Java, Kotlin, <a href="https://github.com/ocsigen/js_of_ocaml/blob/master/README_wasm_of_ocaml.md">OCaml</a> (github.com), and <a href="https://www.scala-js.org/doc/project/webassembly.html">Scala</a> (scala-js.org) a powerful new target.</p> 
+  <p>&nbsp;</p> 
+  <h3>The Future is Wide Open</h3> 
+  <p>Wasm is still growing with new features to address performance gaps as well as recurring pain points for both languages and embedders. The process for <a href="https://github.com/WebAssembly/meetings/blob/main/process/phases.md">proposing</a> (github.com) <a href="https://github.com/WebAssembly/proposals">new features</a> (github.com) is governed by the W3C (World Wide Web Consortium), and the CG (Community Group) is open to all. As the W3C's largest community group, Wasm has a vibrant and open community, with biweekly meetings of the main group and subgroups dedicated to important proposals. In addition to developing and maintaining a detailed, open <a href="https://github.com/WebAssembly/spec/">specification</a> (github.com), the community has built dozens of open source tools and repositories maintained by a diverse set of developers from browser vendors, cloud/edge providers, web developers, representatives from large software and hardware vendors, and active volunteers from around the world.</p> 
+  <p>Wasm has a wide set of use cases outside of the web, with applications from cloud/edge computing to embedded and cyber-physical systems, databases, application plug-in systems, and more. Yet the core specification is so cleanly separated from the host environment that most design work can focus on making the best bytecode design possible. With a completely open and rigorous specification, it has unlocked a plethora of exciting new systems that use Wasm to bring programmability large and small. Those use cases have attracted more than 40 programming languages with official support. With many languages and many targets, Wasm could one day become the universal execution format for compiled applications.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Al-Shamma, N., Nattestad, T. 2021. Photoshop's journey to the web. web.dev; <a href="https://web.dev/articles/ps-on-the-web">https://web.dev/articles/ps-on-the-web</a>.</p> 
+  <p>2. Degenbaev, U., Lippautz, M., Payer, H. 2019. Garbage collection as a joint venture. <i>Communications of the ACM</i> 62(6), 36–41; <a href="https://dl.acm.org/doi/10.1145/3316772">https://dl.acm.org/doi/10.1145/3316772</a>.</p> 
+  <p>3. Ramsey, N. 2022. Beyond Relooper: recursive translation of unstructured control flow to structured control flow (functional pearl). <i>Proceedings of the ACM on Programming Languages</i> 6 (ICFP), Article No. 90, 1–22; <a href="https://dl.acm.org/doi/abs/10.1145/3547621">https://dl.acm.org/doi/abs/10.1145/3547621</a>.</p> 
+  <p>4. Titzer, B.L. 2022. A fast in-place interpreter for WebAssembly. <i>Proceedings of the ACM on Programming Languages</i> 6 (OOPSLA2), Article No. 148, 646–672; <a href="https://dl.acm.org/doi/abs/10.1145/3563311">https://dl.acm.org/doi/abs/10.1145/3563311</a>.</p> 
+  <p>5. Titzer, B.L. 2024. Whose baseline compiler is it anyway? <i>Proceedings of the IEEE/ACM International Symposium on Code Generation and Optimization</i>, 207–220; <a href="https://dl.acm.org/doi/10.1109/CGO57630.2024.10444855">https://dl.acm.org/doi/10.1109/CGO57630.2024.10444855</a>.</p> 
+  <p><b>Ben L. Titzer</b> is a principal researcher at Carnegie Mellon University. A former member of the V8 team at Google, he cofounded the WebAssembly project, led the team that built the implementation in V8, and led the initial design of V8's TurboFan optimizing compiler. Prior to that he was a researcher at Sun Labs and contributed to the Maxine Java-in-Java VM. He is now working on a new Wasm research engine called Wizard and several Wasm-related research projects. He is the designer and main implementer of the Virgil programming language.</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95a61eef3b882d11',t:'MTc1MTcxMDczMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 3</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3746172">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Conrad Watt</span> - <a href="detail.cfm?id=3746173"><b>Concurrency in WebAssembly</b></a>
+	  <br />
+	  Mismatches between the interfaces promised to programmers by source languages and the capabilities of the underlying web platform are a constant trap in compiling to Wasm. Even simple examples such as a C program using the language's native file-system API present difficulties. Often such gaps can be papered over by the compilation toolchain somewhat automatically, without the developer needing to know all of the details so long as their code runs correctly end to end. This state of affairs is strained to its limits when compiling programs for the web that use multicore concurrency features.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Daniel Ehrenberg</span> - <a href="detail.cfm?id=3746174"><b>When Is WebAssembly Going to Get DOM Support?</b></a>
+	  <br />
+	  What should be relevant for working software developers is not, "Can I write pure Wasm and have direct access to the DOM while avoiding touching any JavaScript ever?" Instead, the question should be, "Can I build my C#/Go/Python library/app into my website so it runs with good performance?" Nobody is going to want to write that bytecode directly, even if some utilities are added to make it easier to access the DOM. WebAssembly should ideally be an implementation detail that developers don't have to think about.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Andy Wingo</span> - <a href="detail.cfm?id=3746171"><b>WebAssembly: Yes, but for What?</b></a>
+	  <br />
+	  WebAssembly (Wasm) has found a niche but not yet filled its habitable space. What is it that makes for a successful deployment? WebAssembly turns 10 this year, but in the words of William Gibson, we are now as ever in the unevenly distributed future. Here, we look at early Wasm wins and losses,identify winning patterns, and extract commonalities between these patterns. From those, we predict the future, suggesting new areas where Wasm will find purchase in the next two to three years.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Shylaja Nukala, Vivek Rau</span> - <a href="detail.cfm?id=3283589"><b>Why SRE Documents Matter</b></a>
+	  <br />
+	  SRE (site reliability engineering) is a job function, a mindset, and a set of engineering approaches for making web products and services run reliably. SREs operate at the intersection of software development and systems engineering to solve operational problems and engineer solutions to design, build, and run large-scale distributed systems scalably, reliably, and efficiently. A mature SRE team likely has well-defined bodies of documentation associated with many SRE functions.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

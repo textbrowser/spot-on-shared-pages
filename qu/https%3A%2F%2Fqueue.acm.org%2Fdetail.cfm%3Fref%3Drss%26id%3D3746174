@@ -1,0 +1,748 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>When Is WebAssembly Going to Get DOM Support? - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Web Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3747201" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>July 2, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3747201">Volume 23, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3746174">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">When Is WebAssembly Going to Get DOM Support?</h1> 
+  <h2>Or, how I learned to stop worrying and love glue code</h2> 
+  <h3>Daniel Ehrenberg</h3> 
+  <p>Is WebAssembly (Wasm) really ready for production usage in web applications, even though that usage requires integration with a web page and the APIs used to manipulate it, such as the DOM?</p> 
+  <p>Simultaneously, the answer to this question is that "Wasm might never get <i>direct</i> DOM access," <i>and</i> "Yes, Wasm is ready for all kinds of web-integrated uses, having supported calling out to the DOM (with a little indirection) since day zero." Let me explain.</p> 
+  <p>WebAssembly was designed from its outset to have a strict separation from JavaScript. Unlike <a href="https://developer.mozilla.org/en-US/docs/Games/Tools/asm.js">asm.js</a> (developer.mozilla.org), which is unavoidably embedded in JavaScript, the core Wasm bytecode format is completely clean of all the "legacy" of JavaScript. At the same time, it says it right in the name—Wasm is part of the web platform. So, why are web APIs like the DOM still tied to JavaScript, and why are there no new Wasm versions?</p> 
+  <p>The answer is that new versions of web APIs, such as the DOM, are not needed to make them usable from Wasm; the existing JavaScript APIs work just fine. When used in the browser or other JavaScript environments, Wasm includes various JavaScript APIs that allow compiler-generated glue code to provide seamless access to any JavaScript code.</p> 
+  <p>WebAssembly has been progressively evolving toward allowing build toolchains to emit less code, specifically less JavaScript. These improvements target the code that makes real web applications slow and bulky in Wasm. Wasm's integration with JavaScript will continue to evolve and deepen through the work of the W3C Wasm CG (Community Group).&nbsp;</p> 
+  <p>Maybe, if it turns out to cause performance and code-size improvements to justify its complexity, a mechanism could be added in the future to call web APIs straight from Wasm, but this mechanism would require tremendous effort to design and implement. On the other hand, a bit of JavaScript glue to connect web APIs might not be <i>the</i> bottleneck to worry about, especially when there are other sources of overhead to address.</p> 
+  <p>&nbsp;</p> 
+  <h3>Gluing Wasm to JavaScript</h3> 
+  <p>To understand how Wasm and JavaScript fit together, let's work through an example adapted from <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Using_the_JavaScript_API#preparing_the_example">Wasm's excellent documentation on MDN</a> (developer.mozilla.org) showing how Wasm can call <code style="color:#4EA72E">console.log</code>. Though Wasm's main format is a binary bytecode, the specification also defines a text format called WAT (Wasm text) that makes it easy to see what's going on:</p> 
+  <p><code> (module <br />&nbsp;&nbsp;(func $log (<span style="color:#1967D2">import</span> <span style="color:#188038">"myConsole" "myLog"</span>) (param i32)) <br />&nbsp;&nbsp;(func (<span style="color:#1967D2">export</span> <span style="color:#188038">"log42"</span>) <br />&nbsp;&nbsp;&nbsp;&nbsp;i32.<span style="color:#1967D2">const</span> <span style="color:#C5221F">42</span> <br />&nbsp;&nbsp;&nbsp;&nbsp;call $log)) </code></p> 
+  <p>Wasm is a module language: Each Wasm module declares imports and exports. To run a module, you<i><span style="font-family:&quot;Merlo Medium Italic&quot;;letter-spacing:-.2pt">instantiate</span></i> it with a set of imports, and this operation provides the set of exports. The Wasm JavaScript API makes this module instantiation functionality accessible from JavaScript.</p> 
+  <p>This example is a simple module that imports a function called <code style="color:#4EA72E">myLog</code> from the module <code style="color:#4EA72E">myConsole</code>. It exports a function <code style="color:#4EA72E">log42</code> that calls that function with the argument <code style="color:#4EA72E">42</code>. JavaScript code can call any web API by referencing the global object, but Wasm has access only to what you give it, so <code style="color:#4EA72E">console.log</code> is threaded through to Wasm through a module import:</p> 
+  <p><code> <span style="color:#1967D2">const</span> importObject = { <br />&nbsp;&nbsp;myConsole: { <br />&nbsp;&nbsp;&nbsp;&nbsp;myLog(arg) { <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(arg); <br />&nbsp;&nbsp;&nbsp;&nbsp;} <br />&nbsp;&nbsp;} <br />}; <br /><span style="color:#1967D2">const</span> { instance } = <span style="color:#1967D2">await</span> <span style="color:#9334E6">WebAssembly</span>.instantiateStreaming( <br />&nbsp;&nbsp;&nbsp;&nbsp;fetch(<span style="color:#188038">"simple.wasm"</span>), importObject); <br />instance.exports.log42(); </code></p> 
+  <p>The idea is that build toolchains that output Wasm for websites will actually output a combination of Wasm and JavaScript, with the latter responsible for loading the module and linking it with the appropriate JavaScript capabilities, such as this <code style="color:#4EA72E">myConsole</code> module.</p> 
+  <p>&nbsp;</p> 
+  <h3>Modeling Everything with Flat Memory</h3> 
+  <p>To paraphrase German mathematician Leopold Kronecker, God created <code style="color:#4EA72E">i32</code>, <code style="color:#4EA72E">i64</code>, <code style="color:#4EA72E">f32</code>, and <code style="color:#4EA72E">f64</code>; all the rest is the work of man.</p> 
+  <p>WebAssembly started with a simple built-in type system. As far as values that can live on the stack and be passed as arguments to functions, it initially supported just what would fit in its flat, bitmapped memory: the four byte-addressable numeric types just mentioned. It turns out, however, that this gives Wasm bytecode full flexibility to call JavaScript APIs, even those that take objects as arguments, rather than just numbers as in the <code style="color:#4EA72E">console.log</code> example.</p> 
+  <p>Here's how you do it:</p> 
+  <ol> 
+   <li>Maintain an array in JavaScript that contains all of the references to the JavaScript objects the Wasm program needs to concern itself with.</li> 
+   <li>The modules that JavaScript exports to Wasm are wrapped. When a function is expected to take an object as an argument and return a different object, the wrapper will accept and return integer indices into that array, allocating a new entry for the return value.</li> 
+   <li>Wasm code will explicitly free these references when it no longer needs them by calling another function imported from JavaScript that manages a free list.</li> 
+   <li>The final artifact is a bundle of JavaScript and Wasm, not just Wasm.</li> 
+  </ol> 
+  <p>"That's cheating," I hear you protest. "That's not Wasm, it's just a Rube Goldberg machine of JavaScript with a little bit of Wasm in the middle!" Maybe so, but it has always been the plan to get the Wasm project bootstrapped, and it still lets you write your core logic in Wasm.</p> 
+  <p>This minimal design comes copy-pasted from the successful experience of asm.js. It is informed by the fate of <a href="https://web.archive.org/web/20200322130342/https:/developer.chrome.com/native-client/overview">Chrome's NaCl (Native Client) effort</a> (web.archive.org), which introduced the new Pepper system for doing I/O, and which did not get cross-browser support. (NaCl has now been deprecated, and its documentation page is a 404, so you need to go to the Internet Archive Wayback Machine to even learn about it).</p> 
+  <p>This all comes back to <i>Wasm's original goal: </i>to enable more programs to run with good performance on the web, rather than remove every last bit of JavaScript. The core of a program, compiled to Wasm, might be the most important part to optimize, based on how slow or bulky it would have been when written in JavaScript. Shipping that core in Wasm rather than JavaScript might be the key to making the application work in practice. That benefit isn't negated by a little JavaScript around the edges.</p> 
+  <p>Core to this design is the idea that <i>Wasm is built with a compiler toolchain</i> that can establish conventions and generate such matching code across the JavaScript/Wasm boundary. Many of these compiler toolchains have been created and are in wide use, including ones for <a href="https://emscripten.org/">C/C++</a> (emscripten.org), <a href="https://rustwasm.github.io/docs/book/">Rust</a> (rustwasm.github.io), <a href="https://kotlinlang.org/docs/wasm-overview.html">Kotlin</a> (kotlinlang.org), <a href="https://developer.fermyon.com/wasm-languages/java">Java</a> (developer.fermion.com), and more. Each one manages to thread web APIs through to Wasm in this sort of manner, so the application developer doesn't need to worry about it.</p> 
+  <p>&nbsp;</p> 
+  <h3>It Gets Worse before It Gets Better</h3> 
+  <p>If you think about it, you can basically model everything in this mixed JavaScript/Wasm design. Here are a few examples that have been implemented in actual Wasm build toolchains.</p> 
+  <p>&nbsp;</p> 
+  <h4>For exceptions</h4> 
+  <p>Call an imported JavaScript function to throw an exception (not that bad) and to model a try/catch block (this is pretty bad):</p> 
+  <ul> 
+   <li>Export Wasm functions for each of those inner blocks to JavaScript.</li> 
+   <li>Do the try/catch in JavaScript.</li> 
+   <li>Then export a function back to Wasm of that whole thing put together.</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>For blocking I/O</h4> 
+  <p>Many programs you might want to compile to Wasm are written with synchronous blocking behavior, but JavaScript (and the web platform, more broadly) is nonblocking and is instead based on JavaScript running to completion without waiting on I/O, following up later via Promises and callbacks. Two options can bridge these models:</p> 
+  <ul> 
+   <li>Run Wasm off the main thread, in a web worker where it may block. Use Wasm memory backed by a JavaScript <span style="font-family:Consolas">SharedArrayBuffer</span> to communicate with the main thread.</li> 
+   <li>To let the computation be suspended and later resumed, represent part of the call stack explicitly, based on a continuation-passing style transform, using some kind of analysis of which points in the program may block.</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>For garbage-collected values</h4> 
+  <p>In the language being compiled to Wasm, there are two options:</p> 
+  <ul> 
+   <li>Compile your own GC (garbage collector) into Wasm, operating on its flat memory. This requires maintaining a parallel "shadow stack" of roots (live values to begin the traversal of the object graph), as Wasm doesn't allow user-space GCs to see what's on the stack to find its roots.</li> 
+   <li>Call into JavaScript to allocate the values and access properties; do everything with ordinary JavaScript objects.</li> 
+  </ul> 
+  <p>Although you <i>can</i> express everything with the minimal beginnings of Wasm, the whole point of Wasm is to make applications run faster by reducing indirection. Now we're just adding more! For example, the exception-handling scheme described earlier was found to cause a big slowdown in C++ programs ported to Wasm. </p> 
+  <p>&nbsp;</p> 
+  <h3>It Gets Better</h3> 
+  <p>The key is to prioritize not "what will let me do this whole thing in Wasm and not JavaScript," but "what will make my programs actually work better," focusing instead on which parts are especially painful in practice in terms of performance or code size. Plus, the strategy has been to work incrementally, adding capabilities little by little, keeping in mind the idea of a larger coherent whole.</p> 
+  <p>Sometimes, implementations can transparently improve performance. For example:</p> 
+  <ul> 
+   <li>Optimizing <a href="https://hacks.mozilla.org/2018/10/calls-between-javascript-and-webassembly-are-finally-fast-%f0%9f%8e%89/">calls between Wasm and JavaScript</a> (hacks.mozilla.org), which includes code generated by the build step</li> 
+   <li>Introducing a <a href="https://v8.dev/docs/wasm-compilation-pipeline">multitiered JIT (just-in-time) compiler</a> (v8.dev) where <a href="https://spidermonkey.dev/blog/2024/10/16/75x-faster-optimizing-the-ion-compiler-backend.html">more effort is spent optimizing</a> (spidermonkey.dev) frequently run code</li> 
+   <li>Under certain conditions, <a href="https://chromium.googlesource.com/v8/v8.git/+/refs/heads/main/src/compiler/wasm-inlining-into-js.cc">inlining between Wasm and JavaScript</a> (chromium.googlesource.com) in the optimizing JIT</li> 
+  </ul> 
+  <p>Other times, however, Wasm has needed to add entirely new capabilities to eliminate certain kinds of overhead. These include the following capabilities for exceptions, blocking operations, and garbage-collected values.</p> 
+  <p>&nbsp;</p> 
+  <h4>For exceptions</h4> 
+  <p>Capabilities include native exception <a href="https://github.com/WebAssembly/exception-handling/blob/main/proposals/exception-handling/Exceptions.md">throwing and try/catch in Wasm</a> (github.com).</p> 
+  <p>&nbsp;</p> 
+  <h4>For blocking operations</h4> 
+  <p>WebAssembly has the native ability to <a href="https://v8.dev/blog/jspi">pause execution</a> (v8.dev) to wait for a JavaScript Promise.</p> 
+  <p>&nbsp;</p> 
+  <h4>For garbage-collected values</h4> 
+  <p>A stack of additions for different parts of support are all based on the idea of sharing the JavaScript heap, rather than encouraging other GCs to be compiled to Wasm:</p> 
+  <ul> 
+   <li>Referencing JavaScript <span style="color: black"><a href="https://github.com/WebAssembly/reference-types/blob/master/proposals/reference-types/Overview.md">values on the stack and in globals</a> (github.com) without that funny extra array</span></li> 
+   <li>Allocating and accessing <a href="https://github.com/WebAssembly/gc/blob/main/proposals/gc/Overview.md">garbage-collected structs and arrays</a> (github.com) without going into JavaScript or incurring the overhead of JavaScript's DOM</li> 
+   <li>Working directly with JavaScript strings so they <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/JavaScript_builtins">don't need to be copied</a> between the JavaScript and Wasm heaps</li> 
+   <li>Finalizers in JavaScript to allow Wasm programs to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/FinalizationRegistry">clean up their underlying linear memory</a> (developer.mozilla.org) when the JavaScript code is not using the value anymore, since you can't convince JavaScript developers to consistently call <code style="color:#4EA72E">free()</code></li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>Some good news</h4> 
+  <p>Wasm has already added <a href="https://web.dev/blog/wasmgc-wasm-tail-call-optimizations-baseline">these features</a> (web.dev) at least in the most up-to-date implementations. While none of these features lets you access the DOM without any glue code, they do significantly improve the performance of the kind of code that is likely to want to interact with the DOM: Modern, feature-rich, garbage-collected languages are where most UIs, and new code in general, are built.</p> 
+  <p>&nbsp;</p> 
+  <h3>But What about Direct DOM Access?</h3> 
+  <p>The Wasm Component Model has long been discussed as a possible path to more direct access to web APIs. In fact, earlier drafts of the Component Model were called "<a href="https://github.com/WebAssembly/interface-types/blob/c4cb0a71253ea355b3f4bd5aa54edc6387e0d3ab/proposals/webidl-bindings/Explainer.md">Web IDL bindings</a>" (github.com).</p> 
+  <p><a href="https://webidl.spec.whatwg.org/">Web IDL (Interface Description Language)</a> (webidl.spec.whatwg.org) is based on the <a href="https://www.omg.org/spec/CORBA/2.3.1">OMG (Object Management Group) IDL</a> (omg.org), part of CORBA (Common Object Request Broker Architecture). Web IDL was forked to ensure that web APIs could be specified precisely with respect to how they worked in JavaScript, whereas CORBA didn't define JavaScript mappings. Like OMG IDL, Web IDL was initially a cross-language mechanism, supporting not just JavaScript, but also Java—remember, in its early days, Mozilla was working on a Java-based web browser, and Java applets were initially expected to be an important part of the web. Implementations of Web IDL-exposed APIs tend to be written in C++ or Rust. Given this cross-language nature, wouldn't Web IDL be a good basis for Wasm bindings?</p> 
+  <p>&nbsp;</p> 
+  <h3>Web APIs Are JavaScript APIs</h3> 
+  <p>It's not so simple to separate Web IDL from JavaScript. Web IDL shed its Java support years ago in order to evolve in a more agile way toward enabling more "JavaScript-y" APIs, with support for iterators, Promises, namespaces, etc., which would be more difficult to explain on the Java side in a matching way. It would take some significant thought to truly extract the JavaScript parts of Web IDL and design a more direct Wasm mapping.</p> 
+  <p>All modern web browsers implement most Web IDL-exposed APIs with code generation based on the API's Web IDL definition, ensuring uniformly correct behavior. So, it's just a matter of tweaking this script to generate some extra Wasm bindings, right? Not so fast—there are a couple issues:</p> 
+  <ul> 
+   <li>First, these generators are large scripts weighing in at several thousands of lines of code, mostly written a long time ago and difficult to change.</li> 
+   <li>Second, the Web IDL checked into browsers' source repositories tends to be subtly different from what is in the source specification. This is done to instruct the code generator on some of the finer aspects. Defining a mapping for Wasm would require inspecting all of these differences to see what might need to be changed back for conformance—and the wrong change might break certain websites.</li> 
+  </ul> 
+  <p>Not all web APIs even use Web IDL. For example, the JavaScript specification itself does not define its standard library in Web IDL. Ecma International's TC39, the JavaScript standards committee, has considered adopting an IDL, but it would be nontrivial to do so given various mismatches in conventions applied, not to mention the compatibility risk related to making any observable change to existing JavaScript functionality.</p> 
+  <p>That being said, some JavaScript capabilities would certainly be useful from within Wasm programs. Moreover, some Web IDL?defined APIs are not implemented with a standard Web IDL generator. In most implementations, the Wasm/JavaScript API itself does not use this generator, as it is implemented in JavaScript engines rather than the browser layer.</p> 
+  <p>All considered, it's more accurate to think of web APIs today, including the DOM, as native to JavaScript rather than cross-language.</p> 
+  <p>&nbsp;</p> 
+  <h4>How about the Wasm Component Model?</h4> 
+  <p>If we can work through all of that, web APIs could be exposed as Wasm modules, perhaps in a manner similar to the built-in support for JavaScript strings described earlier. But rather than modules that work just one way, it might be more efficient to use the Wasm Component Model.</p> 
+  <p>Different programming languages use different sorts of memory layouts (e.g., strings in linear vs. GC memory). To get the best speedups, you would want to target the most appropriate one directly, rather than doing an extra copy in some cases—this is part of what the Component Model provides. Web API imports via Web IDL and the Component Model are prototyped as part of the Jco project, which brings <a href="https://bytecodealliance.github.io/jco/transpiling.html#experimental-webidl-imports">the Wasm Component Model to JavaScript</a> (bytecodealliance.github.io).</p> 
+  <p>Would this feature actually improve runtime performance or size of distributed applications? While there would probably be some size reduction in terms of less JavaScript glue code generated, it's unclear if it's enough to matter. Additional prototyping would be needed to find out what sorts of benefits would actually be gained in practice.</p> 
+  <p>For now, web folks don't seem to be sold on the urgency of this very large project. There is no active work by browser vendors in this direction. The plan is to give the Component Model effort, led more by server folks, some time to develop, and maybe later see if something useful emerges from that.</p> 
+  <p>One possible future, under development as part of Jco, is for the Component Model and any components representing web APIs to be more of a toolchain convention rather than something built into browsers. In this form, toolchains would have less work to do, relying on shared components to access web APIs/DOM instead of needing to roll their own bindings. When the rubber hits the road, this strategy would mean that you're still going through JavaScript.</p> 
+  <h3>Evolving the Wasm Bytecode Format</h3> 
+  <p>Like many programming languages, Wasm is developed in a <i>standards committee</i>, a group of experts from different backgrounds who come together to design, debate, prototype, and document new additions to the bytecode.</p> 
+  <p>This standards committee is the W3C Wasm Community Group. As the name suggests, it's part of the World Wide Web Consortium (W3C). "Community Group" indicates that this group is open to the whole developer community. Anyone can sign onto the intellectual property policy and start contributing to this group without paying a W3C membership fee.</p> 
+  <p>Still, that doesn't mean that you can just join and push something through single-handedly. Standards work is about consensus building, which means you need to repeatedly justify the feature's utility and design to various audiences in various ways until (almost) everyone is on board with the idea. It's especially important either to prototype the feature yourself—or to persuade others to do so—early in the process. To make decisions, the Wasm CG uses <a href="https://github.com/WebAssembly/meetings/blob/main/process/consensus.md#formal-consensus-at-meetings">a lightweight voting process</a> (github.com) that amounts to <a href="https://en.wikipedia.org/wiki/Rough_consensus">rough consensus</a> (wikipedia.org).</p> 
+  <p>To facilitate incremental development and prototyping in alignment with the CG, there is <a href="https://github.com/WebAssembly/meetings/blob/main/process/phases.md">a six-phase process</a> (github.com), inspired in part by <a href="https://tc39.es/process-document/">TC39's stages</a> (tc39.es). The idea is to interleave design, prototype implementations, and consensus building. This way, the group can learn from experience before declaring a standard "final," while enabling draft implementations to be increasingly aligned with the direction of the group as they become increasingly advanced.</p> 
+  <p>Input from different parties is important for developing a good Wasm feature. These different parties include:</p> 
+  <ul> 
+   <li>Wasm engine maintainers, including engines that run in web browsers, to make sure a feature can be implemented</li> 
+   <li>Build toolchain maintainers<i>,</i> to make sure the feature will be feasible and useful to output as part of a build process</li> 
+   <li>Developers of applications using Wasm, to assess the overall impact of proposed features and their usability as exposed by toolchains</li> 
+   <li>Academic researchers<i>,</i> to apply decades of related research to inform the design of features, and to think through the details of formal definitions, identifying issues and ensuring the resulting standard is sound and not ambiguous</li> 
+  </ul> 
+  <p>If you're in one of these groups, please contribute to the Wasm CG by giving feedback in <a href="https://github.com/WebAssembly/exception-handling/blob/main/proposals/exception-handling/Exceptions.md">GitHub's issues for proposal repositories</a> (github.com) and by joining <a href="https://github.com/WebAssembly/meetings">the Wasm CG's regular meetings</a> (github.com). You can join the Wasm CG via its <a href="https://www.w3.org/community/webassembly/">W3C website</a> (w3.org).</p> 
+  <p>&nbsp;</p> 
+  <h3>Is Wasm Complete?</h3> 
+  <p>There are still ways to further reduce the overhead of programs that span the JavaScript/Wasm boundary, including:</p> 
+  <ul> 
+   <li>Runtime type metadata. When Wasm/JavaScript engines allocate the structs the Wasm GC provides, the Wasm engine ends up needing a pointer in the header of the object to type-level metadata (e.g., to allow tracing by GC and type checking at the JavaScript/Wasm boundary). Native implementations of programming languages such as JavaScript and Java tend to use such an analogous header pointer to link to other language-level metadata (e.g., the table of methods). With the initial capabilities of Wasm GC, however, an additional struct field must be used. The capability to combine this metadata into one pointer per instance is proposed to be exposed to Wasm in a way that should make performance better in practice simply by avoiding the need for both that extra word of memory (when an object is used just within Wasm) and <a href="https://github.com/WebAssembly/custom-descriptors">wrapper objects</a> (to expose things ergonomically to JavaScript) (github.com).</li> 
+   <li>It's common for JavaScript APIs to accept arguments that must be of a particular type, enforced via a runtime type check. For example, this check is needed for the functionality to work with JavaScript strings, and DOM methods also similarly need to check their parameters. If Wasm's type system models these objects as generic pointers to JavaScript objects rather than a more specific type, then a runtime type check is needed when the APIs are invoked from Wasm as well. It would be great if Wasm's type system could prove statically that the check can be omitted. One proposed solution is type imports: the ability to import a type from another module. This would play one small role in reducing the overhead of <a href="https://github.com/WebAssembly/memory-control/blob/main/proposals/memory-control/Overview.md">calling from Wasm into the DOM</a> (github.com), but it hasn't been prioritized since these type checks are already pretty fast.</li> 
+  </ul> 
+  <p>There's more than that going on in the Wasm CG; for example, this author is particularly excited about the <a href="https://github.com/webassembly/memory-control/blob/main/proposals/memory-control/Overview.md">memory control proposal</a> (github.com), which could significantly improve security by making dereferencing a null pointer throw, which has been found to be <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/lehmann">a security issue</a> (usenix.org). See also, "<a href="https://www.wingolog.org/archives/2020/10/15/on-binary-security-of-webassembly">On Binary Security of Wasm</a>" (wingolog.org).</p> 
+  <p>For each of these features, as well as direct DOM/web API access, browser vendors will decide whether to implement the feature based on whether it improves actual performance or code size. Otherwise, the tools to integrate Wasm into web applications are already there and are being successfully applied.</p> 
+  <p>&nbsp;</p> 
+  <h3>Where Wasm Fits In</h3> 
+  <p>What should be relevant for working software developers is not, "Can I write pure Wasm and have direct access to the DOM while avoiding touching any JavaScript ever?" Instead, the question should be, "Can I build my C#/Go/Python library/app into my website so it runs with good performance?" Nobody is going to want to write that bytecode directly, even if some utilities are added to make it easier to access the DOM.</p> 
+  <p>WebAssembly should ideally be an implementation detail that developers don't have to think about. While this isn't quite the case today—JavaScript stubbornly maintains a leg up as something that "Just Works," with web APIs and developer tools designed primarily against it, and JavaScript build toolchains acting as merely an optimization—the thesis of Wasm is, and must be, that it's okay to have a build step.</p> 
+  <p>For the foreseeable future, when this build step is used to deploy Wasm on the web, the build output will have both JavaScript and Wasm.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Daniel Ehrenberg</b> is a software engineer on Bloomberg's JavaScript Infrastructure and Tooling team. He serves as the president of Ecma International and contributes to Ecma TC39, the JavaScript standards committee. He has dabbled in Wasm and web standards as well, both while at Bloomberg and in his previous positions at Igalia, a free software cooperative, and at Google on the V8 team, the JavaScript engine in Chrome.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95a61ee65a6a1783',t:'MTc1MTcxMDczMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 3</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3746174">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Conrad Watt</span> - <a href="detail.cfm?id=3746173"><b>Concurrency in WebAssembly</b></a>
+	  <br />
+	  Mismatches between the interfaces promised to programmers by source languages and the capabilities of the underlying web platform are a constant trap in compiling to Wasm. Even simple examples such as a C program using the language's native file-system API present difficulties. Often such gaps can be papered over by the compilation toolchain somewhat automatically, without the developer needing to know all of the details so long as their code runs correctly end to end. This state of affairs is strained to its limits when compiling programs for the web that use multicore concurrency features.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Ben Titzer</span> - <a href="detail.cfm?id=3746172"><b>WebAssembly: How Low Can a Bytecode Go?</b></a>
+	  <br />
+	  Wasm is still growing with new features to address performance gaps as well as recurring pain points for both languages and embedders. Wasm has a wide set of use cases outside of the web, with applications from cloud/edge computing to embedded and cyber-physical systems, databases, application plug-in systems, and more. With a completely open and rigorous specification, it has unlocked a plethora of exciting new systems that use Wasm to bring programmability large and small. With many languages and many targets, Wasm could one day become the universal execution format for compiled applications.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Andy Wingo</span> - <a href="detail.cfm?id=3746171"><b>WebAssembly: Yes, but for What?</b></a>
+	  <br />
+	  WebAssembly (Wasm) has found a niche but not yet filled its habitable space. What is it that makes for a successful deployment? WebAssembly turns 10 this year, but in the words of William Gibson, we are now as ever in the unevenly distributed future. Here, we look at early Wasm wins and losses,identify winning patterns, and extract commonalities between these patterns. From those, we predict the future, suggesting new areas where Wasm will find purchase in the next two to three years.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Shylaja Nukala, Vivek Rau</span> - <a href="detail.cfm?id=3283589"><b>Why SRE Documents Matter</b></a>
+	  <br />
+	  SRE (site reliability engineering) is a job function, a mindset, and a set of engineering approaches for making web products and services run reliably. SREs operate at the intersection of software development and systems engineering to solve operational problems and engineer solutions to design, build, and run large-scale distributed systems scalably, reliably, and efficiently. A mature SRE team likely has well-defined bodies of documentation associated with many SRE functions.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
