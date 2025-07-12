@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Unleashing the Power of End-User Programmable AI - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3747201" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>July 7, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3747201">Volume 23, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://portal.acm.org/citation.cfm?id=3746223">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Unleashing the Power <br />of End-User Programmable AI</h1> 
+  <h2>Creating an AI-first program Synthesis framework</h2> 
+  <h3>Erik Meijer</h3> 
+  <p>As a demonstration of what can be accomplished with contemporary LLMs (large language models), this paper outlines the high-level design of an AI-first, program-synthesis framework built around a new programming language, Universalis, designed for knowledge workers to read, optimized for our neural computer (<a href="https://queue.acm.org/detail.cfm?id=3676287">Automind</a>; queue.acm.org) to execute, and ready to be analyzed and manipulated by an accompanying set of tools. We call the language Universalis in honor of Gottfried Wilhelm Leibniz, a 17th century German polymath who had an amazing vision long before our time. Leibniz's centuries-old program of a universal science (<i><a href="https://en.wikipedia.org/wiki/Universal_science">scientia universalis</a></i>; wikipedia.org) for coordinating all human knowledge into a systematic whole comprises two parts: (1) a universal <i>notation</i> (<i><a href="https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095602850">characteristica universalis</a></i>; oxfordreference.com) by use of which any item of information whatsoever can be recorded naturally and systematically, and (2) a means of manipulating the knowledge thus recorded in a computational fashion, to reveal its logical interrelations and consequences (<i><a href="https://en.wikipedia.org/wiki/Characteristica_universalis">calculus ratiocinator</a></i>; wikipedia.org). Exactly what current day LLMs provide!</p> 
+  <p>This may sound a bit abstract and academic, but it is extremely concrete and practical. Here is an example of a question that can be asked in natural language (the <i>what</i>):</p> 
+  <p>&nbsp;</p> 
+  <p>Question</p> 
+  <p><i>Alice bought a kilo of apples for $[@B]. She sold them for $[@S]. How much percent %[@P] profit or loss did Alice make?</i></p> 
+  <p>This is the generated Universalis implementation (the <i>how</i>):</p> 
+  <p>Answer</p> 
+  <p><i>The apples cost $[@B], and the selling price was $[@S], so Alice made a profit of $[@D is (@S-@B)].The profit percentage is therefore [@P is (@D/@B)*100)]%.</i></p> 
+  <p>&nbsp;</p> 
+  <blockquote>
+    While this may seem like a whimsical example, it is not intrinsically easier or harder for an AI model compared to solving a real-world problem from a human perspective. The model processes both simple and complex problems using the same underlying mechanism. To lessen the cognitive load for the human reader, however, we will stick to simple targeted examples in this article. 
+  </blockquote> 
+  <p>To actually run a Universalis program, users need to be able to enter initial values for variables and view the values of computed variables. Depending on the environment in which Universalis code runs, the user interface can vary. Assuming a spreadsheet-style "live programming" environment where you can toggle between showing formulas and showing values, setting <code>@B=10</code> and <code>@S=17</code>, <code>@P=70</code> and the code renders as follows:</p> 
+  <p>&nbsp;</p> 
+  <p>Question</p> 
+  <p><i>Alice bought a kilo of apples for $[10]. She sold them for $[17]. How much percent %[70] profit or loss did Alice make?</i></p> 
+  <p>Answer</p> 
+  <p><i>The apples cost $[10], and the selling price was $[17], so Alice made a profit of $[7 is (17-10)].The profit percentage is therefore [70 is (7/10)*100)]%.</i></p> 
+  <p>&nbsp;</p> 
+  <p>Unlike traditional programming languages, which prioritize syntax and structure optimized for writing by professional developers, Universalis is designed with the philosophy that <i>code should be read by domain experts and written by machines</i>.</p> 
+  <p>This design tradeoff means that Universalis scripts are structured in a way that closely resembles natural language, making them intuitive and accessible even to those without formal programming training. A simple language reduces the complexity that an AI model needs to handle, making it easier for the model to generate accurate and error-free code. This shift in focus from writing to reading represents a significant departure from conventional programming paradigms, paving the way for a more inclusive and user-friendly approach to harnessing the power of AI.</p> 
+  <p>Think of Universalis clauses as some kind of literate Excel spreadsheet formulas such as <code>[@D is (@S-@B)]</code> over named tables, or relations, enclosed in <i>hedges</i> surrounded by natural language explanation, where <i>cells</i> in the table correspond to variables such as <code>@B</code>, <code>@S</code>, and <code>@D</code> (figure 1).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746223/assets/html/meijer1.png" alt="Unleashing the Power of End-User Programmable AI | FIGURE 1: Universalis clause, like a literate Excel spreadsheet formula" /> 
+  <p>The main goal in designing Universalis was that any user who can write basic Excel formulas should be able to understand Universalis scripts. Technically, Universalis is based on Prolog, and code fragments inside [...] hedges are logic predicates.</p> 
+  <p>You can also optionally specify, or let Automind generate, pre-conditions that are checked <i>before</i> the code is run by Automind:</p> 
+  <ul> 
+   <li> <i>[@B&gt;0] The buying price [@B] per kilo of apples must be greater than [0], implying that Alice paid a positive amount for the apples.</i></li> 
+   <li> <i>[@S&gt;=0] The selling price [@S] per kilo of apples must be non-negative, implying that Alice did not give away the apples for free and there was no scenario where she had to pay to dispose of them.</i></li> 
+  </ul> 
+  <p>and post-conditions that are checked after Automind has run the code: </p> 
+  <ul> 
+   <li> <i>If [@S &gt;= @B], then the profit percentage [@P] should be non-negative, indicating a profit or break-even situation.</i></li> 
+   <li> <i>If [@S &lt; @B], then the profit percentage [@P] should be negative, indicating a loss.</i></li> 
+  </ul> 
+  <p>Based on these pre- and post-condition contracts, you can reason about whether your program does what you think it does and raise an error if a condition is violated. Note that pre- and post-conditions are also vanilla Universalis programs, thus limiting the concept count for the user.</p> 
+  <p>By embedding pre- and post-conditions directly into the language semantics, Universals provides a pragmatic and extensible method for implementing AI safety. This approach allows developers to monitor and enforce the logical correctness and ethical compliance of all Automind computations.</p> 
+  <blockquote>
+    The current approach to AI safety is to align foundation models to human values using various techniques such as reinforcement learning from human feedback (RLHF). We believe this is simultaneously not scalable as well as not compositional. Safety is context- dependent and should be layered on top of unconstrained base models and enforced by formal methods. This results in a more robust and flexible approach to AI safety. 
+  </blockquote> 
+  <p>The concept of pre- and post-conditions should be familiar to Excel users as they correspond directly to Excel's data-validation rules. For example, the pre-condition <code>[@B&gt;0]</code> corresponds to the rule in figure 2.</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746223/assets/html/meijer2.png" alt="Unleashing the Power of End-User Programmable AI | FIGURE 2: The pre-condition [@B>0]" /> 
+  <p>The rest of the program text of the pre-condition corresponds to the input message that explains to the user why the constraint is put in place (figure 3).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746223/assets/html/meijer3.png" alt="Unleashing the Power of End-User Programmable AI | FIGURE 3: Explaining to the user why a constraint is put in place" /> 
+  <p>When the user enters a value that violates the pre-condition, an error is raised <br />(figure 4).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746223/assets/html/meijer4.png" alt="Unleashing the Power of End-User Programmable AI | FIGURE 4: Data Validation rule error message" /> 
+  <p>In addition, post-conditions are data-validation rules that are checked when the value of a cell is recalculated and serve as a test to catch potential errors in the cell's formula (figure 5).</p> 
+  <img src="https://dl.acm.org/cms/attachment/html/10.1145/3746223/assets/html/meijer5.png" alt="Unleashing the Power of End-User Programmable AI | FIGURE 5: Post-condition" /> 
+  <p>In Excel, however, validation conditions are not automatically run after a cell's value is calculated, but validation can be enforced on recalculated cells using VBA to implement post-condition checks.</p> 
+  <p>To allow for more complex calculations, besides chaining or sequential composition, of clauses, Universalis also supports conditionals, implicit lifting over sequences, and query comprehensions. </p> 
+  <p>&nbsp;</p> 
+  <h3>Conditionals</h3> 
+  <p>In problem-solving and decision-making processes, people need a way to handle different scenarios based on varying conditions or inputs. <i>Conditionals</i> make it possible to define specific actions or outcomes that depend on whether certain conditions are met.</p> 
+  <p>Traditional programming often makes conditionals complex and difficult to read for non-developers. By structuring conditionals as checklists and explaining each branch in natural language, Universalis ensures that the logic is clear and intuitive for the human reader, while the Universalis interpreter Automind can still recognize them as control-flow decision points as it executes the program.</p> 
+  <p>&nbsp;</p> 
+  <p>Question</p> 
+  <p><i>Erik has [@btc] BTC. If that is enough to buy [@msft] MSFT, he'll do it; otherwise, he'll keep the BTC. Help Erik decide, and compute how much BTC he has left as [@btc_left].</i></p> 
+  <p>Answer</p> 
+  <p><i>First, we need to get today's date [TODAY(@today)].</i></p> 
+  <p><i>Next, let's find the current price of MSFT stocks [STOCK("MSFT", @today, {..."close":@msft_price...})]. The total cost of [@msft] MSFT stocks is [@msft_total is @msft_price*@msft].</i></p> 
+  <p><i>Then, let's find the current price of BTC [SEARCH("current price of BTC in USD", {..."price":@btc_price...})]. The total value of [@btc] BTC is [@btc_total is @btc_price*@btc].</i></p> 
+  <p><i>Now, let's compare the two values:</i></p> 
+  <ul> 
+   <li> <i><s>If [@btc_total &gt;= @msft_total], then Erik can buy the MSFT stocks. The cost in BTC is [@btc_cost is @msft_total/@btc_price]. The remaining BTC is [@btc_left is @btc_total - @btc_cost]. Erik should buy the MSFT stocks.</s></i> </li>
+   <li> <i>If [@btc_total &lt; @msft_total], then Erik cannot afford the MSFT stocks. He should keep the BTC, so [@btc_left = @btc_total].</i></li> 
+  </ul> 
+  <p>This example assumes that the condition <code>[@btc_total &gt;= @msft_total]</code> is false, so that branch is not taken. With different initial values for @btc and @msft, however, the result of the test might be true, leading to the other branch being taken. In such cases, the Universalis user interface crosses out the other branch as unused, clearly indicating the chosen path, while still displaying all possible continuations.</p> 
+  <p>&nbsp;</p> 
+  <h3>Bulk Processing/Loopless Programming</h3> 
+  <p>When solving tasks, you often want to apply an operation to a <i>collection</i> of values rather than a single value. This need arises frequently, and traditional programming languages address it with <code>for</code>- and <code>while</code>-loops, or higher-order functions such as map and <code>forEach</code>. These constructs can be an unnecessary distraction for users who lack a computer science background.</p> 
+  <p>In Universalis, this is handled by implicitly broadcasting operations on single elements to collections, similar to how NumPy or Pandas operate in Python or how dynamic array formulas and spilled array behavior in Excel allow for loopless programming.</p> 
+  <p>Consider a primitive <code>[toPdf(@src: File, @dst: File)]</code> that converts a single file to PDF, and another primitive <code>[listFiles(@directory: Directory, @files: List&lt;File&gt;)]</code> that lists all files in a given directory.</p> 
+  <p>&nbsp;</p> 
+  <p>Question</p> 
+  <p><i>Convert all files in [@dir] to pdf.</i></p> 
+  <p>Answer</p> 
+  <p><i>List all files in the [@src] directory [listFiles(@directory, @files)]. Then, convert each file in [@files] to pdf [toPdf(@files, @dst)].</i></p> 
+  <p>&nbsp;</p> 
+  <p>Even though <code>toPdf</code> is defined to convert a single file to PDF, the Universalis implementation implicitly converts the call <code>[toPdf(@files, @dst)]</code> on a list of files to something equivalent to <code>[map(toPDF, @files, @dst)]</code><i>.</i> This means the user does not need to worry about how to stretch an operation on single files to collections of files similar to the conventions used in Excel and <a href="https://www.researchgate.net/publication/262390644_The_Essence_of_Data_Access_in_Co">Cω</a> (researchgate.net), the precursor of <a href="https://learn.microsoft.com/en-us/dotnet/standard/linq/">LINQ</a> (learn.microsoft.com).</p> 
+  <p>In Excel, <i>dynamic array formulas</i> allow users to perform operations across multiple cells without needing to write separate formulas for each cell as well. For example, to apply a unary operation, such as calculating the square of each number column <code>A</code> in a named table <code>Data</code>, you can simply enter the formula <code>=Data[A]^2</code> in the first cell of column <code>B</code>. Excel will automatically spill the results into the appropriate range in column <code>B</code>, applying the formula to each element in column <code>A</code>.</p> 
+  <p>&nbsp;</p> 
+  <h3>Query Comprehensions</h3> 
+  <p>A common scenario is where users want to process data by counting, filtering, grouping, aggregating, etc. By focusing on a structured natural-language approach for comprehending queries, Universalis ensures that even those with minimal experience in programming can perform advanced data manipulations.</p> 
+  <p>Here is a very simple example that requires filtering and counting:</p> 
+  <p>&nbsp;</p> 
+  <p>Question</p> 
+  <p><i>How many [@customers] live in Palo Alto in [@total]? </i></p> 
+  <p>Answer</p> 
+  <p><i>Consider each customer [@c = { ..."city": @city, ...}] from [@customers]:</i></p> 
+  <ul> 
+   <li> <i>Retain only customers [@c] that live in Palo Alto [@city = "Palo Alto"].</i></li> 
+   <li> <i>Subsequently, increment [@total] by one for each retained customer [@c].</i></li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <p>The corresponding query in SQL would be <code>SELECT COUNT(*) FROM customers WHERE city = 'Palo Alto'</code>. While the SQL version looks more concise, consider that both the SQL as well as the Universalis query are expressing <i>how</i> to solve the user's original question, and it is not what the users themselves write but what they should read. The Universalis query expresses the same solution in a way that is easier to understand for users who might be a little intimidated by SQL. If a model were asked to explain the SQL query, it would answer with something close to the Universalis formulation. </p> 
+  <p>Of course, if users ever wish to see the equivalent SQL for a Universalis query, they can ask Automind to provide it, allowing them to understand the underlying structure from another perspective. </p> 
+  <p>The next question generates a complex answer that involves grouping and aggregation:</p> 
+  <p>&nbsp;</p> 
+  <p>Question</p> 
+  <p><i>Given [@Players], I need to select the best team for the next World Cup soccer.</i></p> 
+  <p>Answer</p> 
+  <p><i>Consider each player [@P = {"position": @Position, "stats": @Stats, "games": @Games, "age": @Age}] from [@Players].</i></p> 
+  <p><i>Group each player [@P] by their position [@Position]. This organizes players into groups based on their playing positions (e.g., Forward, Defender). </i></p> 
+  <p><i>For each group of players in the same position:</i></p> 
+  <ul> 
+   <li><i> Determine the average stats [@Stats] of these players as [{ "averageStats": @AverageStats }]. This gives an overall measure of how well players in each position are performing on average based on stats such as goals scored, assists, tackles, etc. </i></li> 
+   <li><i> Find the minimum number of games [@Games] played by any player in this group as [{ "minGames": @MinimumGames }]. This helps identify the least experienced player in terms of game participation. </i></li> 
+   <li><i> Collect all players [@P] in this group as [{ "players": @PlayerSet }].</i></li> 
+  </ul> 
+  <p><i>Keep only groups where [@AverageStats &gt; 100] and [@MinimumGames &gt; 3]. This ensures that only groups with high overall performance and sufficient experience are considered.</i></p> 
+  <p>&nbsp;</p> 
+  <p>Writing this query in SQL is quite difficult since SQL does not support nested tables, but assuming you have a <code>COLLECT</code> aggregate, the equivalent SQL for this query would be something like: </p> 
+  <p><code> SELECT <br /> &nbsp; P.Position, <br /> &nbsp; AVG(P.Stats) AS averageStats, <br /> &nbsp; MIN(P.Games) AS minGames, <br /> &nbsp; COLLECT(P) AS players <br />FROM <br /> &nbsp; Players P <br />WHERE <br /> &nbsp; P.Age &gt; 18 <br />GROUP BY <br /> &nbsp; P.Position <br />HAVING <br />AVG(P.Stats) &gt; 100 AND MIN(P.Games) &gt; 3 </code></p> 
+  <p>To make this query work in SQL, you would have to collect the rows into a JSON list, but the syntax and details for this differ among the various SQL dialects. Despite the tenacity of SQL, its lack of compositionality makes it a suboptimal query language for average users.</p> 
+  <p>To implement, or approximate, this query in Excel requires pivot tables and the use of <code>XLOOKUP</code> and <code>VLOOKUP</code> functions. Users who can manage that themselves are so sophisticated that they do not need Automind and Universalis. </p> 
+  <p>The actual implementation of Universalis uses Kotlin DataFrames, and Automind translates the query into the following code:</p> 
+  <p><code> players.groupBy(Player::position).aggregate { <br /> &nbsp; it.mean(Player::stats) into AggregatedPlayerGroup::averageStats <br /> &nbsp; it.min(Player::games) into AggregatedPlayerGroup::minGames <br /> &nbsp; it into AggregatedPlayerGroup::players <br />}.filter { <br /> &nbsp; it[AggregatedPlayerGroup::averageStats] &gt; 100 &amp;&amp; <br /> &nbsp; it[AggregatedPlayerGroup::minGames] &gt; 3 <br />} </code></p> 
+  <p>While this implementation does support nesting, it is even less accessible for the nondeveloper user than the corresponding SQL.</p> 
+  <p>&nbsp;</p> 
+  <h3>Pattern Matching in Universalis</h3> 
+  <p>A lot of people seem to be focused on guiding LLMs to generate correct JSON. The real issue is not generating JSON, however, but making sense of the messy and complex JSON data that tools often produce. Consider an example where a tool generates JSON data for a stock query like <code>[STOCK("IBM", @json)]</code>. The resulting JSON might look like this:</p> 
+  <p><code> {"data": [{"symbol":"IBM", "name":"International Business Machines Corp", "exchange":"NYSE", "mic_code":"XNYS", "currency":"USD", "datetime":"2024-04-19", "timestamp":1713533400, "open":"182.42999", "high":"182.80000", "low":"180.57001", "close":"181.58000", "volume":"3037600", "previous_close":"181.47000", "change":"0.11000", "percent_change":"0.06062", "average_volume":"0", "is_market_open":false, "fifty_two_week":{ "low":"180.17000", "high":"183.46001", "low_change":"1.41000", "high_change":"-1.88000", "low_change_percent":"0.78260", "high_change_percent":"-1.02475", "range":"180.169998 - 183.460007"} }], "status":"ok"} </code></p> 
+  <p>From this blob, a user might want to extract specific information such as "volume" and "closing" price. Writing code to parse and extract this information can be daunting, even for those with a strong programming background, let alone for end users.</p> 
+  <p>This is where Universalis excels with its pattern-matching capability. Users can simply specify the patterns they want to match within the JSON structure:</p> 
+  <p><code> { ... "volume": @V ... "closing": @P ... "currency": @X } </code></p> 
+  <p>This pattern matching creates the bindings <code>@V=3037600</code>, <code>@P=181.58000</code>, and <code>@X="USD."</code>.</p> 
+  <p>Pattern matching in Universalis streamlines the process of working with complex structured data, ensuring that even those with minimal programming experience can effectively interact with and use JSON data.</p> 
+  <blockquote>
+    As a language designer, it's always tempting to add more features to a language (think C++) rather than limit them (think the Nicklaus Wirth's family of languages like Pascal, Modula2, Oberon). For Universalis, we intentionally keep the language minimal, focusing on sequential composition, implicit looping by lifting singleton operations over collections, and fully nested dataframe queries. This simplicity ensures Universalis is easily readable by non- specialists, can be generated by LLMs, and is compatible with traditional tools and theorem provers. 
+   <br />
+   <br /> Most workflow tools, like UIPath, Workato, and Azure Logic Apps, primarily use sequential composition with limited control flow and repetition validating our design choices. One complication in workflow tools is the need for a "language" of functions to manipulate data as it flows between actions. We replace this with pattern-matching to simplify and enhance the expressiveness of the base language without the need for an extra layer of ad-hoc functions. 
+  </blockquote> 
+  <h3>Under The Hood</h3> 
+  <p>A typical compiler stack is implemented by first lexing (tokenizing) and parsing the program text into an AST (abstract syntax tree), doing semantic analysis on the AST to check for type errors, undefined variables, etc. Next, the AST is lowered into an IR (intermediate representation) to prepare for code generation and optimization. Finally, the optimized IR is mapped to target (machine) code.</p> 
+  <p>In Lisp, the lexing and parsing steps are trivial since the concrete syntax is the same as the data structure that represents the AST. Language geeks like to say that Lisp is <i>homoiconic</i>. Similarly, <i>Intentional Programming</i> abstracts from concrete syntax by focusing on representing programs as ASTs based on the high-level intent of the developer. The same AST can then be rendered into different concrete syntaxes based on the context.</p> 
+  <p>Since Universalis programs are trying to capture the high-level intent of the user as well, Automind does not generate the concrete syntax seen in the examples so far but instead creates an abstract, intentional representation of the Universalis code:</p> 
+  <p><code> [{ "comment": "Let's first calculate the worth of the apples in dollars." }, { "expression": "@W is @A*@X" }, { "comment": "Next, we need to find the current price of gold (assumed to be in dollars per ounce)." }, { "expression": "WOLFRAM(\"gold price per ounce\", ...$@G/ounce...)" }, { "comment": "Convert the result to a number." }, { "expression": "TO_DOUBLE(@G, @GD)" }, { "comment": "Finally, convert the worth of apples from dollars to ounces of gold." }, { "expression": "@WorthInGold is @W/@GD" }, { "comment": "ounces of gold." }] </code></p> 
+  <p>This representation can be rendered in different concrete syntaxes depending on the domain in which Automind is deployed. </p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>Universalis enables users to instruct LLMs on performing various tasks through a natural and systematic approach. Complementing this, the neural computer, Automind, executes these programs using LLMs as its virtual machine.</p> 
+  <p>Universalis is designed to be as intuitive as possible, allowing users to write, understand, and interact with AI-generated code with ease. By incorporating pre- and post-conditions directly into language, Universal ensures logical correctness and ethical compliance, offering a robust method for AI safety.</p> 
+  <blockquote>
+    "I think of a programming language as a tool to convert a programmer's mental images into precise operations that a machine can perform. The main idea is to match the user's intuition as well as possible." 
+   <br /> —Donald Knuth 
+  </blockquote> 
+  <p>Moreover, as we have seen above, Universalis supports advanced features such as conditionals, bulk processing, and query comprehensions, further extending its capabilities while maintaining a natural language feel. This versatility ensures that Universalis can handle a wide range of computational tasks, from simple arithmetic and pattern matching to complex data processing and workflow execution.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Erik Meijer</b> brings a rare combination of technical expertise and people leadership to his latest quest to use AI to democratize end-user programming. As a renowned computer scientist, entrepreneur, and tech influencer, Meijer has made pioneering contributions to programming languages, compilers, cloud infrastructures, and AI throughout his tenures at Microsoft, Meta (Facebook), Utrecht University, and Delft University of Technology.</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95df7f8f4a4df83a',t:'MTc1MjMxMjM3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 3</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3746223">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Michael Gschwind</span> - <a href="detail.cfm?id=3733701"><b>AI: It's All About Inference Now</b></a>
+	  <br />
+	  As the scaling of pretraining is reaching a plateau of diminishing returns, model inference is quickly becoming an important driver for model performance. Today, test-time compute scaling offers a new, exciting avenue to increase model performance beyond what can be achieved with training, and test-time compute techniques cover a fertile area for many more breakthroughs in AI. Innovations using ensemble methods, iterative refinement, repeated sampling, retrieval augmentation, chain-of-thought reasoning, search, and agentic ensembles are already yielding improvements in model quality performance and offer additional opportunities for future growth.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Vijay Janapa Reddi</span> - <a href="detail.cfm?id=3733702"><b>Generative AI at the Edge: Challenges and Opportunities</b></a>
+	  <br />
+	  Generative AI at the edge is the next phase in AI's deployment: from centralized supercomputers to ubiquitous assistants and creators operating alongside humans. The challenges are significant but so are the opportunities for personalization, privacy, and innovation. By tackling the technical hurdles and establishing new frameworks (conceptual and infrastructural), we can ensure this transition is successful and beneficial.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3722544"><b>From Function Frustrations to Framework Flexibility</b></a>
+	  <br />
+	  The principle of indirection can be applied to introduce a paradigm shift: replacing direct value manipulation with symbolic reasoning using named variables. This simple yet powerful trick directly resolves inconsistencies in tool usage and enables parameterization and abstraction of interactions. The transformation of function calls into reusable and interpretable frameworks elevates tool calling into a neuro-symbolic reasoning framework. This approach unlocks new possibilities for structured interaction and dynamic AI systems.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Chip Huyen</span> - <a href="detail.cfm?id=3722043"><b>How to Evaluate AI that's Smarter than Us</b></a>
+	  <br />
+	  Evaluating AI models that surpass human expertise in the task at hand presents unique challenges. These challenges only grow as AI becomes more intelligent. However, the three effective strategies presented in this article exist to address these hurdles. The strategies are: Functional correctness: evaluating AI by how well it accomplishes its intended tasks; AI-as-a-judge: using AI instead of human experts to evaluate AI outputs; and Comparative evaluation: evaluating AI systems in relationship with each other instead of independently.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
