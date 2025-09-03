@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Understanding the Harm Teens Experience on Social Media - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Privacy and Rights' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3765291" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>August 28, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3765291">Volume 23, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3762991">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Understanding the Harm Teens Experience on Social Media</h1> 
+  <h2>A systematic approach to mitigating negative experiences online</h2> 
+  <h3>Arturo Béjar</h3> 
+  <p>Every day, millions of kids are having preventable harmful experiences on social media. Internal research at Instagram, a statistically significant survey called <a href="https://storage.courtlistener.com/recap/gov.uscourts.nmd.496039/gov.uscourts.nmd.496039.36.2.pdf">BEEF</a> (Bad Experiences and Encounters Framework), found that for 13- to 15-year-olds who had used Instagram over the previous seven days:</p> 
+  <ul> 
+   <li> 1 in 8 experienced unwanted sexual advances.</li> 
+   <li> 1 in 10 experienced being the target of bullying.</li> 
+   <li> 1 in 3 witnessed bullying happening.</li> 
+   <li> 1 in 5 received unwanted sexual content.</li> 
+   <li> 1 in 5 saw unwanted graphic violent content.</li> 
+   <li> 1 in 5 felt worse about themselves. </li> 
+  </ul> 
+  <p>During that internal research process, Meta found that, of the people who had a harmful experience, 1 percent ended up submitting a report, and out of those who submitted a report, 2 percent resulted in an action. Out of 10,000 people who had a harmful experience, two got help by submitting a report. This critical gap means that almost all harm—99.98 percent—is not addressed by the current approach. This becomes even more concerning when you begin to understand how harm plays out for teenagers online.</p> 
+  <p>If you are young, think about your own experiences: How often have you or your friends experienced these issues? Were you searching for trouble, or did it just get recommended? When you had a harmful experience, did you feel you could do anything about it? Did you get tools that made you feel that they would help protect others? Did you ever use reporting? And did it help?</p> 
+  <p>If you're a parent and your kids are on social media, ask them about it: What are some of the worst things they've seen? Were they searching for them? What are some of the worst things that have happened to them or their friends? </p> 
+  <p>I've talked to around 40 parents who have lost their kids, and others whose kids ended up in the hospital. I've spoken to parents and survivors of grooming, eating disorders, and body image issues and to parents of kids who have committed suicide because of bullying. When you look at the data around what each of their kids has experienced, you find that all of these issues are eminently preventable.</p> 
+  <p>Somehow, in this age of technological wonders, we have come to accept that for a 13-year-old to go on social media, the harm they experience is the price of admission for the good they get from the services. When parents hand a phone to their kids, they should know how likely it is that their kids will experience sexual harassment, become the targets of hate, experience harrowing bullying, or get exposed to a firehose of content that will make them feel bad about their bodies. If you are a parent, you should know that today your kid is not given effective tools to handle distressing content, to report inappropriate contact, or to manage their time spent and attention, no matter how bad things get for them. </p> 
+  <p>Social media companies have the technology and the expertise to understand and significantly reduce the harm young people experience while preserving the positive aspects of being connected to each other online. I know this because for six years (2009–2015) and for 1.2 billion people, I managed engineering, product, user research, data science, and design for security, safety, and customer care at Facebook. Teams I managed built machine learning infrastructure that evaluated billions of pieces of content a day in milliseconds. These teams built features that helped with suicidal ideation and tools designed for teens to help with harmful experiences, including bullying. All this work was done with academic experts embedded in the product and engineering teams, with full access to data in a way that was mindful of privacy and security. Results were published about the development process, lessons learned, and the effectiveness of safety tools. I have many years of experience with the extraordinary technological feats social media companies are capable of when something is a priority.</p> 
+  <p>Unfortunately, in recent years, leaders at social media companies have not taken responsibility for the harm their products allow and amplify. Instead, it appears as if their safety goal has become to invest in marketing and PR and try to create a conversation that dismisses or minimizes the harm our kids experience. Social media companies do not provide the transparency that we as parents deserve for our kids, and they create flawed safety features that provide only an illusion of safety.</p> 
+  <p>One of the reasons we have ended up here is that, in general, the approach to harm by most companies relies on content moderation needing to meet some objective <i>harm</i> definition, because if it meets that definition, it gets deleted. Content moderation is necessary but not sufficient. It is not how any of these harms are handled face to face. If a student approaches a teacher in school and talks about being sexually harassed, what happens from that point does not depend on whether a specific word was used. </p> 
+  <p>People's experience is the ground truth of harm. One does not "perceive" being harassed; one experiences it, even if the content is not deemed discernibly harmful by an independent observer. </p> 
+  <p>Once you understand harm from the experience of the teen and combine that with other available features, you can develop tools that are appropriate to the combination of experience, content, and context. The measure of the effectiveness of these safety tools should be done in terms of reducing the harm that people experience. It is important to set goals based on these categories.</p> 
+  <p>The good thing is that we, as engineers, have always had the tools and methods to significantly understand and reduce harm. Look at the progress we've made on security and spam. The data is there, and the strategies are effective. Engineering for online safety is similar to engineering for online security. It is a mindset that drives a different way of working. Safety engineering does not require a significant new investment in terms of content review or infrastructure. Safety engineering is about capturing the right information and creating a system that includes effective feedback loops.</p> 
+  <p>The key difference between safety and security is that when you engineer for safety, user feedback is an essential part of the system design. It is essential to capture user experience information, to combine that information with other features to prevent harm, and, where appropriate, to give feedback to the actors. When designing social systems, engineers must think about safety as incorporating the people and their responses to experiences into the system design. </p> 
+  <p>&nbsp;</p> 
+  <h3>Harm needs to be understood from the perspective of the person experiencing it.</h3> 
+  <p>In order to effectively reduce harm, it is essential to first understand it from the perspective of the person who is experiencing it. </p> 
+  <p>If you talk to teenagers about the harm categories included in BEEF or do testing using avatar accounts, you will quickly find concrete examples for each of the categories mentioned. All of these examples were delivered to an account of a 13- or 14-year-old girl.</p> 
+  <ul> 
+   <li><b><i>For unwanted sexual advances</i></b> – Comments on posts or private messages asking for sex. Things like ("dtf," or "Netflix and chill"), GIFs with condoms or sexual references, or unwanted intimate pictures—sometimes from strangers, sometimes from people in their social graph.</li> 
+   <li><b><i>For kids who are the targets of bullying</i></b> – Coded comments, putdowns, variations on slurs, comments that contextually are profoundly distressing.</li> 
+   <li><b><i>Graphically violent content</i></b> where you see people jumping off buildings, getting hit by cars or hitting the sides of pools or each other and clearly breaking bones, but with no gore.</li> 
+   <li><b><i>Content that triggers eating disorders</i></b> – Like a plate with a single piece of broccoli, or images that manipulate body shapes to make someone look too thin or overweight, recommended in the hundreds or thousands.</li> 
+   <li><b><i>Content that is related to self-harm</i></b> – Black and white images with poems about how the world would be better off without you, recommended in volume.</li> 
+   <li><b><i>Sexual content that does not have any nudity</i></b> – Instead, graphic descriptions of demeaning sex acts using cartoons, or people graphically and enthusiastically describing demeaning sexual experiences—for example, "First day of a challenge of getting railed 365 times in 365 days."</li> 
+  </ul> 
+  <p>What all of these examples have in common is that the contact, or the content, is designed to circumvent content moderation. The broken-bone videos do not show blood or gore. The sexual videos don't show private parts. Keep in mind that if one piece of content does not seem too bad on its own, the important thing is to understand what can happen when hundreds or thousands of pieces of certain kinds of content get recommended to a kid. </p> 
+  <p>A key misconception here is that harmful experiences only affect vulnerable kids. All of us when we were teenagers experienced moments of vulnerability: a break-up, a comment about our body, an argument with a friend. When talking to kids who are survivors or parents of children who have died or ended up in the hospital, it becomes clear that this could happen to any of our kids. This is why it is so critical to build products that are safe enough. </p> 
+  <p>Why do people post these kinds of content? Because the recommendation algorithm as currently designed rewards them, and it does not do a good enough job of separating content that is fine to recommend to adults but should not be recommended to a 13-year-old. Current algorithms, in a nutshell, notice when a kid spends time on a piece of content and are extremely efficient at recommending similar content. The main features are designed and measured so that users spend time on them; notifications are designed and measured to bring users back in. There is no upper bound to the time spent by a child, and there is no measure of whether that time is helping or hurting the child. </p> 
+  <p>What these algorithms don't account for, and the product design doesn't allow for, is when the content is watched out of disgust or if it is negatively impacting the teen. Every teen I've spoken to feels powerless about the recommendations they get.</p> 
+  <p>Sometimes I've heard online harms compared with face-to-face harms, that bullying at school is equivalent to bullying online, or that beauty imagery in magazines and televisions is the same as an infinite feed of content run through "beauty" filters. Online harm can be much more significant for three reasons: persistence, distribution, and scale. The situation is very different when someone makes a distressing comment that only a few people around you hear, compared with when someone posts a distressing comment that the entire school might see in a matter of minutes. It is very different to see a magazine with a few ads, compared with getting a personalized feed of thousands of posts of images that have been manipulated. If you spend time reviewing the content in question, you'll see the differences. </p> 
+  <p>If you would like to gain a better understanding of these experiences, I recommend opening an avatar teen account and seeing for yourself the kind of content social media is recommending to teenagers today for these classes of harm.</p> 
+  <p>So in this landscape, what can we as systems designers do? The first step is getting and understanding the data around the problem we are trying to solve. In this case, it is understanding harm from the kid's experience. As you do that you will find many ways it can be reduced and ways to measure the effectiveness of these changes. The first step to reducing harm is understanding it from the perspective of the person who is experiencing it. </p> 
+  <div style="margin:20px;padding:20px;border: 1px solid gray"> 
+   <h4>Placebo Features</h4> 
+   <p>When I talk about lightweight negative feedback, some will point at the "Not interested" feature that some products have. That button or "Mark as spam" are two examples of placebo buttons. For many years "Mark as spam" clicks were just dropped. Testing of the "Not interested" button on the avatar account on Instagram, many times in a row, did not stop violent content from being recommended.</p> 
+  </div> 
+  <h3>Different Kinds of Harm, and Strategies to Understand and Reduce it</h3> 
+  <p>Some of the kinds of harm that happen on social media platforms include:</p> 
+  <ul> 
+   <li><b><i>Inappropriate conduct and contact</i></b> – Unwanted sexual advances, bullying and other forms of aggressive or attacking contact, misogyny or violence toward women, other attacks toward people because of some part of their race, religion, or identity. These generally happen in messages or comments.</li> 
+   <li><b><i>Exposure to "sensitive content"</i></b> – Sexual, self-harm or depressive, violent, hateful, negative body image, drugs, etc. and the related rabbit holes or downward spirals.</li> 
+   <li><b><i>Harmful usage, also called addiction</i></b> – When time spent on the product has a negative impact on the child's life. Some examples include increasing anxiety, depressive behaviors, distancing from family or friends, etc.</li> 
+  </ul> 
+  <p>Note that when you have enough information to prevent some kind of harm with enough confidence, that should always be the first step. This approach is necessary but not sufficient, and needs to be approached with care. Systems that rely primarily on enforcement have the simultaneous risks of over-enforcement (removing content that should not be removed), and under-enforcement (allowing and distributing content that should be removed). If your safety tools include enforcement, it is important to measure both under- and over-enforcement, as measuring only one of them inevitably results in significant problems.</p> 
+  <p>Years of working on reporting tools taught me that most harmful experiences, including some of the most intense, understandably do not objectively violate content policy. Conversations with people who do sextortion or groom minors primarily consist of compliments. The most harrowing bullying can appear like positive comments to an observer. This is because many types of harm can be contextual: school, culture, slang, etc. Another kind of harm is by volume. A single image of depressive or body-image content looks innocuous on its own. But when recommended by the thousands, they can lead to a teen not eating anything that day, or worse.</p> 
+  <p>Because of its nature, most of the contact and content-based harm that teens experience would not benefit from a drastic increase in moderation or content review. This is a great opportunity for innovation, and the first step is to understand the combination of contact/content, user experience/response, severity/intensity, and action taken.</p> 
+  <p>&nbsp;</p> 
+  <h3>Effective Reporting</h3> 
+  <p>In order to get the information needed to understand and mitigate harm, it is so critical to have <i>effective reporting</i>, which is the term I use to describe well-implemented feedback and reporting mechanisms. In order for these mechanisms to be effective they need to:</p> 
+  <ul> 
+   <li>Be easy and rewarding to use.</li> 
+   <li>Capture what happened (harm), where it happened (context), and how bad it was (i.e., intensity and severity). All these steps should not be required, but they should be available and rewarding to use. </li> 
+   <li>Provide immediate support and protection for the user, independent of any content moderation considerations.</li> 
+  </ul> 
+  <p>All of these features need to be designed to gather information and provide support independent of the outcome of content review. </p> 
+  <p>The way you measure effective reporting is by asking a sample of users at the end the following questions:</p> 
+  <ul> 
+   <li>Were you able to let us know what happened?</li> 
+   <li>Were you able to let us know how bad or intense it was?</li> 
+   <li> Were we able to provide support for the issue you are experiencing?</li> 
+  </ul> 
+  <p>This is a variation of the basic structures used to assess the effectiveness of customer care. </p> 
+  <p>Providing immediate relief and support is critical to reducing harm in cases of harassment, bullying, grooming, people who might be thinking of self-harm, and other areas. In these cases, the messages sent or comments made are likely not going to be found to be violating in content review. In reviewing comments and content reported for bullying, more than 90 percent did not violate any policies, and in 50 percent of the most severe cases of bullying, the content looked benign or positive to the reviewer.</p> 
+  <p>When building effective reporting tools for 13- to 15-year-olds at Facebook, we learned a number of critical lessons:</p> 
+  <ul> 
+   <li>Teens do not like to click on the word "Report," as they think it will get them or their friends in trouble. So, different prompts were tested, such as "I don't want to see this." Changing the initial prompt doubled or tripled usage of the reporting tool, depending on the circumstance.</li> 
+   <li>Use language that matches how teens describe the issues they are experiencing. For example, the initial option was "Bullying and harassment," which no teen used to describe what happened to them. When asking teens, they said that what they were experiencing was "Somebody is threatening me" or "Someone is spreading rumors about me," etc. When the options matched the experience, usage went up significantly.</li> 
+   <li>As long as the steps were helpful, teens were fine taking multiple steps when asking for help—which was counter to the understanding that fewer steps would improve completion. What we learned is that when someone asks for help, as long as each step has a clear purpose and benefit, teens will take multiple steps. </li> 
+  </ul> 
+  <p>When we started, the traditional reporting flow had a completion rate of 10 percent; when we applied the findings just mentioned, the completion rate went to 82 percent, and 60 percent of people reported feeling better after using these tools.</p> 
+  <p>Effective reporting is one of the most critical sensing mechanisms of harm. Well implemented, it should be rewarding for the teen to use, and at the same time capture many signals that then could be used by other systems to proactively detect and prevent harm. It is the first step in a framework that can be used to meaningfully reduce harm.</p> 
+  <p>There are many opportunities for innovation here. Any innovation that helps the system designers discover and understand harm as experienced by the user can then create different kinds of features that can proactively prevent harm or provide better support when someone needs it.</p> 
+  <p>&nbsp;</p> 
+  <h3>Developing Safe Products </h3> 
+  <p>The key questions for systems designers are:</p> 
+  <ul> 
+   <li>How do you first discover or become aware of harm?</li> 
+   <li>How do you understand the nature and severity of the harm?</li> 
+   <li>How do you help someone who is experiencing harm at the moment they are experiencing it or when they ask for help?</li> 
+   <li>How do you protect other people from experiencing the same harm?</li> 
+  </ul> 
+  <p>One of the things I've learned about working in the integrity and safety space for the past 30 years is that while there are no perfect solutions, there is a product-development process to reduce harm as soon as you become aware of it. The framework to approaching, understanding, and reducing the harm that teens experience online has four elements:</p> 
+  <ol> 
+   <li>Effective reporting—You need to know what happened, where it happened, and how bad it was (severity or intensity).</li> 
+   <li>Using the information to help the person and protect others</li> 
+   <li>Where possible, giving feedback to the actor who initiated the interaction</li> 
+   <li>Measuring and monitoring the effectiveness of the program</li> 
+  </ol> 
+  <p>How do you understand the nature or severity of the harm? You ask people. Often in my career I've heard people talk of "bad reports," or that reporting data is "noisy." This is not an accurate description. The main reason people dismiss reports is that they don't understand why something was reported, or reported content does not meet the company's definitions of that harm. The harm is real; what is needed is to provide appropriate help to the person with the issue they are having and to have a proportionate response.</p> 
+  <p>For example: A person reports for "nudity or sexual activity" a video of someone apparently performing fellatio on someone else, except you cannot see penetration. To the person submitting the report, it is clearly sexual activity, but when your internal definition of sexual content requires that you see penetration, the video is not acted on. That doesn't mean the video isn't harmful.</p> 
+  <p>When reviewing the messages for unwanted sexual advances or bullying, you quickly find that most cases would not benefit from content moderation, as the messages are often not harmful to an independent observer. The question to ask is: What would you build if someone was experiencing harrowing bullying, but the messages were not objectively harmful?</p> 
+  <p>An important question to explore is: How would you create a safe messaging experience if you had no access to content moderation?</p> 
+  <p>One way to work on this problem is through a <i>conduct-in-context</i>–based approach. This relies on giving a teen an easy way to tell you when they've experienced an unwanted advance (conduct) in messages (context) or in a comment on their own posts (context). Then you can keep track of conduct in context and apply proportional responses. For example, you can provide a prominent button in any messaging feature that makes it trivial for a user to indicate when a conversation is inappropriate and the reason why—to help the user easily say if the conversation involves harassment, an unwanted sexual advance, and if they believe that the account contacting them is fake. Because the context is the user's messages, the content does not matter; what matters is that the user flagged it as inappropriate contact. In general, this is how society deals with harassment in school or in the workplace. You don't ask the person if a specific set of words was used; you treat their experience as the ground truth, and you have a proportionate response, such as giving the initiating actor feedback rather than punishment, unless there is a pattern of inappropriate contact.</p> 
+  <p>This approach would be problematic if the result of a person flagging contact as inappropriate resulted in an immediate negative consequence to the sender. Instead, the process is to look for behavioral patterns before taking a structured approach to giving feedback to the actor. For example, if someone gets flagged for unwanted advances once in messages, that should not be an issue, but if they get flagged three to five times, then you respectfully notify them that unwanted advances are inappropriate. These interventions are called <i>nudges</i>.</p> 
+  <p>During the work of Facebook's Protect and Care team, these kinds of nudges were applied, and the team consistently found that most people, given private respectful feedback, change their behavior (from 50 to 75 percent of the time). There are people who will not change harmful behavior, which then requires an escalating approach such as feature limits, etc. It is essential to have an approach like this, as it helps sift out the people who, when given a respectful reminder, would change behavior from those who will behave harmfully repeatedly. One good way to think about this is to design nudges and escalation systems as if you were the person on the receiving end of the nudge.</p> 
+  <p>There are three key benefits to the conduct-in-context approach combined with nudges:</p> 
+  <ul> 
+   <li>It helps address harm at the supply by respectfully communicating social norms to people. Addressing harm at the supply point is the most effective long-term strategy.</li> 
+   <li>It helps identify people who will engage in harmful behavior repeatedly, separating them from others. </li> 
+   <li>At each step, this approach creates a high-quality signal for all other integrity systems, which could then be used very effectively to identify similar harmful actors. For people who build integrity systems, the quality of the training dataset has a profound effect on the precision and recall of machine-learning datasets. Training on data around context-conduct-repeat could lead to effective classifiers.</li> 
+  </ul> 
+  <p>This perspective is in contrast with most current thinking about moderation. Companies create systems and processes for reporting, detecting, and punishing around their interpretations of violating content. These rely on features that the content needs to have unambiguously (for example, visible private parts in order to identify nudity). These systems are necessary but not sufficient, and their design introduces a number of unintended consequences: People quickly develop conduct and content that circumvents this approach, yet the harm is the same. The content moderation toolbox isn't able to create an environment where teens do not get unwanted sexual advances.</p> 
+  <p>When you understand harm from the perspective of the person experiencing it, there is an extraordinary amount of innovation available. How do you build a safe messaging experience if you don't have access to content moderation? Some of the examples covered here only scratch the surface of the innovation possible when you understand the harmful experiences people have when using your products.</p> 
+  <p>&nbsp;</p> 
+  <h3>Lessons Learned from Developing Tools for Teens</h3> 
+  <p>Initially, the reporting tools for teens on Facebook had a completion rate of around 10 percent. The main issue was that they were not designed for teenagers. The major lessons learned were:</p> 
+  <ul> 
+   <li><b><i>Language matters.</i></b> Avoid using the word "report" as the entry point because of findings about teens who do not "report" out of worry that they or others would get in trouble. Using different language, such as "I don't want to see this," doubled or tripled usage of the tool. For the options—the language in the product should describe what people are experiencing as they themselves describe it. Changing the options to match how users describe issues increased usage 30 percent to 60 percent. <p>There are great opportunities here for open text boxes and the applications of LLMs in understanding the issue that the person is experiencing.</p></li> 
+   <li><b><i>Context matters.</i></b> Interactions should be evaluated in context; it is different when someone slides into a teen's DMs and attempts sextortion than when somebody makes a comment on someone else's public post. <p></p> </li>
+   <li><b><i>Intensity matters.</i></b> The ability to capture intensity or severity is essential for two reasons: You cannot understand how harmful the interaction is for the teen from just the content, and without knowing it you cannot provide immediate, appropriate support or help. Capturing intensity should be optional, as to avoid an unnecessary burden in the use of the tools, but we found that as long as the tools were helpful, teens used them and that the ability to share emotion and intensity can also provide meaningful benefits in terms of self-regulation during a distressing experience.<p></p> </li>
+  </ul> 
+  <p>Based on the combination of issue, context, and intensity, the teen would get a personalized intervention. If someone was being mildly annoying, the intervention was light. If a teen was feeling profoundly afraid, angry, or sad, they got a different intervention. When applying these principles, the completion rate for these tools went from 10 percent to 82 percent, and more than 50 percent of teens felt better after using the tools.</p> 
+  <p>&nbsp;</p> 
+  <h3>Creating Effective Safety Tools</h3> 
+  <p>As products increase in complexity, effective reporting is one of many safety tools that are necessary to create a safe environment. A safety tool, in order to be effective, needs four features:</p> 
+  <ul> 
+   <li><b><i>Prevention</i></b> – It must effectively prevent the harm from happening to a teenager.</li> 
+   <li><b><i>Resiliency</i></b> – A safety tool needs to be resilient to manipulation (i.e., if there is an easy workaround (teenagers are great at that), then it really is not a safety tool).</li> 
+   <li><b><i>Protection for others:</i></b> When harm does happen, a safety tool should help with the harm and capture information that prevents others from experiencing harm.</li> 
+   <li><b><i>Ease of use:</i></b> The tool should be on by default or take one click or swipe to use.</li> 
+  </ul> 
+  <p>A good safety tool needs the ability to capture the correlated set consisting of issue, intensity or severity, context, and interaction or content (for example, a profile, a set of messages, or a piece of content). This dataset is a <i>behavioral correlate</i>. </p> 
+  <p>These behavioral correlates can be used for many goals. For example:</p> 
+  <ul> 
+   <li>Identify behavioral patterns that need to be changed, and test the effectiveness of different interventions.</li> 
+   <li>Train classifiers to personalize content delivery in order to avoid delivering content that is distressing to someone.</li> 
+   <li>Train classifiers to protect others from having similar experiences.</li> 
+   <li>Identify new forms of harm or sets of bad actors as they develop.</li> 
+   <li>Measure agency based around a specific behavioral correlate, which helps determine next steps to reduce harm.</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>Example: Unwanted sexual advances in direct messaging</h4> 
+  <p>How do we help teens deal with unwanted sexual advances over DMs while also communicating to the people who initiate the unwanted advance that it is not appropriate?</p> 
+  <p>To help deal with unwanted sexual advances in messages, the following could be built rapidly:</p> 
+  <ul> 
+   <li>1. Providing a prominent "help" button, especially during the early messages between any two people.</li> 
+   <li>2. Making it possible to give the reason why and, where appropriate, indicate severity. Reasons offered in the flow can include:</li> 
+   <ol type="a"> 
+    <li>"It's gross or upsetting."</li> 
+    <li>"They're fake."</li> 
+    <li>"They are harassing me."</li> 
+   </ol> 
+   <li>3. Using the help button should feel rewarding to the person using it; immediate feedback can include:</li> 
+   <ol type="a"> 
+    <li>"We've blocked the person."</li> 
+    <li>Depending on the severity of the harm, other resources should be provided—for example, tools to lock down who can contact the victim, or links to offline resources—for example, links to victim services/helplines (<a href="https://cybercivilrights.org/ccri-crisis-helpline/">https://cybercivilrights.org/ccri-crisis-helpline/</a>).</li> 
+    <li>Thank the person for giving feedback, because it will help make the community safer.</li> 
+   </ol> 
+   <li>4. Keeping track of how many times someone has initiated unwanted contact and the reason why.</li> 
+   <li>5. Giving a respectful, gentle "nudge" to someone who initiates unwanted contact that the recipient considers "gross" or "harassment" more than three (five?) times. For example: "Hey Alice/Bob, we've gotten feedback that you've sent some unwanted messages. This is a place where people are respectful to each other, so if you're taking an action, please make sure that it is welcome."</li> 
+   <li>6. Escalating the feedback into feature blocking if someone ignores the nudge and continues the behavior. (for example, reducing their ability to contact new people, and/or use stronger language).</li> 
+  </ul> 
+  <p>A few comments about this approach:</p> 
+  <ul> 
+   <li>It doesn't matter what the content of the message is. What matters is the context in which it happened and that it was unwelcome.</li> 
+   <li>It works with end-to-end encryption.</li> 
+   <li>It will generate data about which actors will change behavior once they are given feedback. In my experience, more than 50 percent of people change behavior on the nudge. The goal is to separate people who respond to feedback from those who won't.</li> 
+   <li>The data can identify predators, because they likely will initiate a number of unwanted contacts before finding someone who will engage with them.</li> 
+   <li>The data regarding unwanted contact that is considered "fake" could lead to identifying networks of fake accounts.</li> 
+   <li>Abusing this help mechanism would be difficult, as the people who could give this feedback would be limited to those who were initially contacted by the actor. As with any possible misuse, however, there should be something in the product that helps someone appeal or that would detect these cases.</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>The current approach to online safety, focusing on objectively harmful content and deletion or downranking, is necessary but not sufficient, as it addresses only a small fraction of the harm that teens experience. In order to understand harm, it is essential to understand it from their perspective by surveying and creating safety tools and reporting that make it easy to capture what happens and provide immediate help. Many of the recommendations in this article come from what you learn when you analyze behavioral correlates: that you need approaches that rely on conduct in context, better personalization, and providing feedback to actors.</p> 
+  <p>The fundamental approach should be to set goals based on the harm teens experience rather than the harm the company can objectively identify. Teens' experience is the ground truth of harm.</p> 
+  <p>Safety tools require the same approach as security tools. They need to be resilient, as easy to use as liking or on by default, and they need to gather information that protects the teen and protects others. It is important that they are subjected to "red team" or adversarial testing by people in the company as well as third parties.</p> 
+  <p>Once you broaden the scope away from objectively harmful content, there are many opportunities for innovation: using LLMs to understand the issues people are experiencing, training classifiers on behavioral correlates to proactively identify issues, and developing new ways to integrate people's experiences into systems design.</p> 
+  <p>Start by asking the following questions: What percentage of teens should have unwanted advances? Or get exposed to unwanted violent, sexual, or self-harm content? What do they do when it happens? Does that interaction capture enough data to understand what is happening? Are there proportionate systems responses that reduce the likelihood of harm? And perhaps the most important question of all: What would I build that I would want my kids to use? That is the basis on which everything we do should be executed.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Arturo Béjar</b> was the senior leader at Facebook responsible for its engineering and product efforts on site integrity, security, safety, and customer support, from 2009 to 2015. He was also the manager for Facebook's product infrastructure team, which created core technologies (including REACT). From 2019 to 2021, Bejar returned to the company as a consultant to work on well-being issues at Instagram. Prior to that, he started as an engineer, and eventually became the head of information security (chief paranoid) at Yahoo!.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9790c0278bf3aa17',t:'MTc1Njg1NTM1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 4</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3762991">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Mark Russinovich, C&#233;dric Fournet, Greg Zaverucha, Josh Benaloh, Brandon Murdoch, Manuel Costa</span> - <a href="detail.cfm?id=3689949"><b>Confidential Computing Proofs</b></a>
+	  <br />
+	  Proofs are powerful tools for integrity and privacy, enabling the verifier to delegate a computation and still verify its correct execution, and enabling the prover to keep the details of the computation private. Both CCP and ZKP can achieve soundness and zero-knowledge but with important differences. CCP relies on hardware trust assumptions, which yield high performance and additional confidentiality protection for the prover but may be unacceptable for some applications. CCP is also often easier to use, notably with existing code, whereas ZKP comes with a large prover overhead that may be unpractical for some applications.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Raphael Auer, Rainer B&#246;hme, Jeremy Clark, Didem Demirag</span> - <a href="detail.cfm?id=3561796"><b>Mapping the Privacy Landscape for Central Bank Digital Currencies</b></a>
+	  <br />
+	  As central banks all over the world move to digitize cash, the issue of privacy needs to move to the forefront. The path taken may depend on the needs of each stakeholder group: privacy-conscious users, data holders, and law enforcement.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Sutapa Mondal, Mangesh S. Gharote, Sachin P. Lodha</span> - <a href="detail.cfm?id=3546934"><b>Privacy of Personal Information</b></a>
+	  <br />
+	  Each online interaction with an external service creates data about the user that is digitally recorded and stored. These external services may be credit card transactions, medical consultations, census data collection, voter registration, etc. Although the data is ostensibly collected to provide citizens with better services, the privacy of the individual is inevitably put at risk. With the growing reach of the Internet and the volume of data being generated, data protection and, specifically, preserving the privacy of individuals, have become particularly important.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Kallista Bonawitz, Peter Kairouz, Brendan McMahan, Daniel Ramage</span> - <a href="detail.cfm?id=3501293"><b>Federated Learning and Privacy</b></a>
+	  <br />
+	  Centralized data collection can expose individuals to privacy risks and organizations to legal risks if data is not properly managed. Federated learning is a machine learning setting where multiple entities collaborate in solving a machine learning problem, under the coordination of a central server or service provider. Each client's raw data is stored locally and not exchanged or transferred; instead, focused updates intended for immediate aggregation are used to achieve the learning objective.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

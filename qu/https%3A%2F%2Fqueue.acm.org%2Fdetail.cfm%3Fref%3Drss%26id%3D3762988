@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Moving Faster by Not Breaking Things - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3765291" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>August 27, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3765291">Volume 23, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+			<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3762988">
+				<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+				PDF
+			</a>
+		
+</p>
+
+
+ 
+  <h1 class="hidetitle">Moving Faster by Not Breaking Things<br />—Or How Not to Blow Up the Internet</h1> 
+  <h2>Initial investments allow for a fearless approach to pushing changes.</h2> 
+  <h3>Justin Sheehy and Jonathan Reed</h3> 
+  <p>"Minor change, no review needed" was the comment in a commit message, and shortly after that change was deployed, it triggered a major and painful system outage. Oops.</p> 
+  <p>This article isn't about that mistake. It isn't even about that particular kind of mistake or gaps in peer review specifically. It's about how to build defense in depth so that <i>even if </i>a subtle, nasty bug is pushed to production and isn't caught by either humans or automated tests, the scope of impact can still be minimized. And yes, that also includes stopping them from going out at all when we can.</p> 
+  <p>You might be thinking that this is not relevant to you. That could be true if you're running a relatively simple (e.g., single server) web application or if you exclusively ship software that end users run on their computers. If, however, that software has the ability to automatically update itself or its data files, then this article will be very relevant to you, as demonstrated by a high-profile 2024 outage. Today, more and more of people's everyday needs (such as banking, news, entertainment, and more) are delivered by large, complex systems spread across multiple servers, locations, and networks. These have a huge impact on people when they fail, and—unless we design and manage them accordingly—they are more fragile by default. This article is for the developers and operators of such systems.</p> 
+  <p>On the one hand, complex systems tend to need frequent updates and improvements in order to continue to work, so many organizations push out changes frequently or continuously. On the other hand, most of the major outages we have personally observed (and over the past three decades we have seen many) have been triggered at least in part by a change being made by a system's operators. We've considered how to make those moments less risky and impactful, and thus how to make organizations safer and more confident in changing their production systems. Our conclusions might seem obvious to some who have dealt with the realities of these systems long enough, but what is obvious to one person or team is a blind spot for another. That makes it worth talking about methods for improving the safety of the changes made, <i>especially </i>the ones that may feel a bit too obvious.</p> 
+  <p>There has been a great deal of conversation over the past few years about "observability," and that concept is certainly relevant here. In this case, however, the conversation is about something larger—something we might call "malleability," meaning how safely a system can be manipulated without causing it to catastrophically fail. As with observability, this is much easier to achieve if it is designed and planned for all along; bolting such properties on after a system is already running at full scale is enormously harder and more costly.</p> 
+  <p>A few years ago our company, Akamai, had some incidents ("unplanned investments") that caused us to deeply reanalyze what we were doing to make changes safely. In the early 2000s we developed some excellent methods that were arguably groundbreaking in this regard, but after a couple of decades of organic growth and acquisitions (and the competing priorities of such an ever-growing system), some of the techniques needed updating, and others needed to be applied in a more consistent fashion. It was essential for us to do this in a way that radically improved safety while not producing too much drag on the rest of the organization. Our thesis is that if done right, such improvements may cost a bit up front, but can actually be a net positive to velocity by allowing for more fearless approaches to pushing changes out to the world.</p> 
+  <p>&nbsp;</p> 
+  <h3>A Principled Approach to Change Safety</h3> 
+  <p>The approach that we've taken for making larger systems more safely changeable is not prescriptive with regard to specific technical methods; instead it is about complementary principles that can be used to guide both design and operations. These principles on their own can be thought of as building blocks and will need tailoring to the specific details of a given system(s), but they have been useful for structuring plans of improvement. They are:</p> 
+  <ul> 
+   <li> Define, document, and publish change processes.<p></p> </li>
+   <li> Document each planned change rollout.<p></p> </li>
+   <li> Choose timing to minimize impact.<p></p> </li>
+   <li> Define health metrics and clear success/failure/safety criteria.<p></p> </li>
+   <li> Prequalify changes via testing and other verification methods.<p></p> </li>
+   <li> Incrementally deploy changes and observe/document impact per increment.<p></p> </li>
+  </ul> 
+  <p>Some of these might sound painfully obvious, but they still are worth discussing one by one. The explanations for each one tend to be looked at in the context of an incident—assume that something went other than as planned or hoped for, and look at what each principle can do then. That lens, of assuming that there will be incidents and assessing how certain choices help during or after those incidents, can be illuminating. Let's describe each one through that lens.</p> 
+  <p>&nbsp;</p> 
+  <h4>Define, document, and publish change processes</h4> 
+  <p>This is all about making sure the organization knows how you make changes. If someone is dealing with an incident that may be related to a change you made, it should be easy for that person to know and understand what you actually did to push the change out. If the details of how changes are made are only in the heads of the individuals that make them, that could get in the way of anyone else understanding what's going on—and it could also lead to inconsistencies in how you make changes based on different assumptions made by individuals.</p> 
+  <p>This sort of document should include descriptions of the mechanisms by which changes are created, deployed, paused, halted, and reverted. Ideally, it should also include an explanation of how that combination of mechanisms reduces the likelihood of a major incident. One way to do that is to refer to all of the other principles discussed in this article. Such a document is referred to as a <i>change safety strategy,</i> and it should be persuasive to a skeptical audience of your colleagues that you are taking the appropriate measures to balance safety with any other factors when enacting a change. </p> 
+  <p>It can be helpful to imagine when writing this document that it will also be used to demonstrate the quality of your choices to a customer or user—imagine that your change does cause a major outage (since you will still have the possibility of such events, no matter what) and customers ask, "Why did you even think that was OK?" You might be able to forward your change safety strategy with only minor editing, and hear back, "Oh. Yes, I see why that was reasonable." That kind of persuasiveness is not the primary purpose of such a document, but thinking about that possible use can help to focus appropriately when writing one.</p> 
+  <p>&nbsp;</p> 
+  <h4>Document each planned change rollout</h4> 
+  <p>The act of making changes to your system ought to be documented each specific time as well. This is related to the previous principle but is about each instance of change. The fact that you made a change, what its intentions and timing were, and how it was pushed should all be clear to anyone who needs to know about it both before and after it was made.</p> 
+  <p>Yes, "document" is not just one, but two of the principles. A culture of writing things down and storing them where they can be easily found and used by others is a major factor in creating and maintaining safer systems.</p> 
+  <p>Much of this doesn't have to be "extra" work. Most engineering organizations are likely already using tickets to track change occurrences and capturing code-review results in commit messages. The key is being disciplined in how this data is captured and stored, and ensuring its searchability. A good record of a change will include the reason for the change, the outcome of peer review and/or QA testing (another key principle discussed later is all about that), a link to the steps executed for deployment of the change, and a record of any anomalous events or telemetry.</p> 
+  <p>Making these change records searchable and easily accessible to all interested parties is an important final step. The records should also be consumable by other technical staff who may not be experts on the system in question. During an incident, looking at recent changes is a key part of investigating the triggers and causes of that incident, and being able to fully understand those changes and the reasons behind them will let both engineers and business leaders make informed decisions about what changes to revert and when to revert them.</p> 
+  <p>&nbsp;</p> 
+  <h4>Choose timing to minimize impact </h4> 
+  <p>Timing is a relatively controversial principle in some circles, especially in today's world of continuous delivery, where some large companies might push tens if not hundreds of changes a day. In addition, if you've done things "right," the timing shouldn't matter, but you could make such a statement about most aspects of a defense in depth. This principle is about understanding your system's place in the real world and balancing the criticality of your users' needs with your organization's ability to respond effectively to an incident, should your change cause one.</p> 
+  <p>Common applications of this principle include statements like "no changes on the last business day of the week," or "no changes during high-profile customer events," or the U.S.-centric "no changes between Thanksgiving and New Year's Day." Rather than being blind mandates, such statements should be the result of a collaborative conversation in which all stakeholders try to answer the following questions:</p> 
+  <ul> 
+   <li> What times, if any, would minimize potential customer impact?<p></p> </li>
+   <li> Is there a way you could incrementally deploy your change (for example, by geographic increments) to minimize this impact?<p></p> </li>
+   <li> What resources will be available to support the change deployment?<p></p> </li>
+   <li> If you need to escalate: Where, geographically, are stakeholder teams located? What time will it be in that location, and will it be a workday?<p></p> </li>
+   <li> Will the necessary stakeholders be available (not, for example, on vacation) during the deployment window?<p></p> </li>
+   <li> Are some of your metrics unlikely to show clear success or failure criteria until some number of hours after the change?<p></p> </li>
+   <li> If your change deployment takes an unexpected amount of time, can you transition the deployment to another team or another team member, and if so, how?<p></p> </li>
+   <li> How much time do you need to validate that the change was successful or revert the change if needed?<p></p> </li>
+  </ul> 
+  <p>It will be impossible to come up with a one-size-fits-all answer to all of these questions, nor should you try; not all changes are the same. Certainly for a global company, coming up with a single "change window" that is low impact for all customers will be nearly impossible. Instead, the point is to have the conversation and come up with a deployment plan that meets the needs of a specific change and a specific group of stakeholders. That way, when something does go wrong, and the CEO demands to know why your team made a change at noon on Tuesday, you can quickly present them with all the options discussed and the reasoning that led to the final choice.</p> 
+  <p>&nbsp;</p> 
+  <h4>Define health metrics and clear success/failure/safety criteria</h4> 
+  <p>This principle instructs you to be prepared to observe what occurs when and after you push a change. "Health metrics" here is just shorthand for observability or even older-style monitoring; you need to be able to know when a service is unhealthy. The second part of this one is less commonly understood; it simply says to write down ahead of time how to determine whether or not the change was successful.</p> 
+  <p>Metrics and success criteria are the primary ways by which you can get a clear signal of not only the success or failure of a change, but also its full impact, both intended and unintended. Every operational and engineering team almost certainly already has metrics, graphs, alerts, and a variety of other tools to determine if the system is operating well. The key in applying this principle is to identify, for a given type of change, which metrics are likely to be most valuable in determining the success or failure of a given change. </p> 
+  <p>Some of these are obvious: If you're pushing a change to reduce memory footprint, then monitoring memory usage during rollout is necessary to understand if the change had its intended effect. Some are less obvious: Even if the purpose of a change is to reduce memory footprint, if you've touched code that handles SSL/TLS (Secure Sockets Layer/Transport Layer Security) handshakes, you would need to look at connection statistics, too. Otherwise, you run the risk of believing your change is successful (because it reduced virtual memory size) when, in fact, it also resulted in a small increase in handshake failures—not enough to cause an outage, but enough that customer tickets will begin trickling in and your site reliability engineers or other experts will go off on a wild goose chase before finally identifying the culprit as this change you thought was successfully deployed.</p> 
+  <p>This is where the importance of predefining success and failure criteria comes in, because it forces stakeholders to think about the impact of a change. For example, rather than an implied success criteria of "no alerts, and graphs look good," it should be possible in a mature system for a change author to say, "This should result in a five percent increase in virtual memory size, a latency reduction of between 10?30ms, and no statistically significant changes in IOPS (input/output per second) or CPU usage." That provides a much clearer definition of success. </p> 
+  <p>Similarly, failure criteria should be documentable: "If this change results in an increase in latency of 50ms or more, we should immediately halt the rollout. If it results in more than a 2GB increase in virtual memory size, we should begin to revert the change." By being clear about the various "definitions of done," rollouts can actually be streamlined, since decisions about the success or failure of a given change can be made faster.</p> 
+  <p>Good monitoring strikes a balance between aggregate metrics and highly granular per-machine metrics or event logging. A metric that tells you DNS resolution failures increased by five percent in the last 24 hours will help provide a signal that a recent change might have introduced a new problem. But you'll need granular data from a sampling of machines to confirm whether your change caused a problem or whether a popular domain's resolution is failing for some other reason. This balance is revisited in the incremental deployment section.</p> 
+  <p>&nbsp;</p> 
+  <h4>Prequalify changes via testing and other verification methods</h4> 
+  <p>It is important to empirically understand what effects specific changes will cause, both via traditional testing methods and by running the intended change on staging and/or canary environments. Breaking things in a testing environment should be much less painful than doing so in a customer- or user-facing environment.</p> 
+  <p>The idea of prequalification tends immediately to bring to mind a "staging environment" or maybe a formal QA process. While these are common and valuable applications of this principle, prequalification can also include peer review, syntax checkers, unit tests, CI/CD (continuous integration/continuous deployment) pipelines, and ad-hoc testing by developers. But what unites all of these examples is that they provide tangible evidence—as opposed to the change author's gut feelings—that the change will work as intended once deployed to production.</p> 
+  <p>Peer review and ad-hoc developer testing can both be powerful tools, but require guidance to operate effectively. Too often, code review is unstructured: If there's no shared agreement on what reviewers are looking for, we can't easily articulate the benefits of code review as part of prequalification beyond merely ensuring another human is aware of the impending change. Teams should develop or adopt code review policies that specify what type of things reviewers should be looking for, as well as how reviewees should handle feedback. For example, if a code review found an SQL escaping issue on one line, it's worth going back through every database call in the code to see if there are others. By the same token, if your software toolchain has robust static analysis, then code reviewers need not spend a lot of time looking for null pointers or double frees.</p> 
+  <p>Where possible, prequalification should be automated so it is performed in a consistent manner each time. The tools that are used for prequalification should be enumerated, along with a clear statement of what each tool can verify—and more importantly, what it can't. When linters and syntax checkers are used, the process should be clear about whether they can identify semantic errors as well as syntactic ones. When traffic simulators are used, be clear about their limitations and how the simulated traffic differs from real production traffic. All this information can be used to help develop test suites and deployment plans to ensure that we're testing what needs to be tested and not wasting time revalidating test results that can't change.</p> 
+  <p>When testing in a formal QA or staging environment, it's important to be clear about what can and can't be tested. For example, there's no "staging" Internet, so products that need to handle large and varied types of IP or DNS traffic will naturally be limited in a test environment. Sometimes, some parts of a system can only truly be exercised in production environments; doing that safely and effectively is called <i>incremental deployment</i> here, which is the next principle.</p> 
+  <p>&nbsp;</p> 
+  <h4>Incrementally deploy changes and observe/document impact per increment</h4> 
+  <p>Incremental deployment is about releasing changes into production gradually. No matter how good your testing is, it is true that no testing can fully represent the messiness of the real world, the complexities of the Internet, and the varied behavior of customers or users of your systems. No matter how hard you try to break them earlier, some things will break after they are pushed out to the public.</p> 
+  <p>The idea behind incremental change deployment is to first apply the change to a small targeted portion of the production environment. The change is monitored in that environment, success and failure criteria (this is part of why we discussed the need to define them in an earlier section) are evaluated, and the health impact on both direct users and adjacent systems is assessed. Based on this information, you can decide whether to proceed either manually or in an automated fashion with the next increment of the change. This process is repeated across all defined increments until the change has been deployed to the entire production environment.</p> 
+  <p>Being able to do this well requires a balance between fine-grained observability and fleet-wide metrics; if your first increment is one percent of your production fleet, but all your metrics are fleet-wide aggregates, any signal from that first increment is going to be lost in diurnal patterns or other noise. If you can narrow your metrics to only the increment being targeted, you can easily compare them both with prior increments and the portion of your system that has not yet seen this change. Compared with earlier increments, subsequent increments should also give a stronger signal of the success or failure of the change. Most importantly, early increments of the change should have little, if any, unintended consequences to adjacent systems or end users even if the change goes poorly. </p> 
+  <p>It is important to note that <i>gradually</i> doesn't necessarily mean <i>slowly</i>. The number of phases you should have in your rollouts, and how long you should take between each one, depends on your own system. If your changes take effect quickly, and you are able to determine both success/failure and health impacts quickly and roll back easily, then satisfying this principle doesn't need to contradict making changes as often as you like and getting them in front of users promptly. Some people interpret this principle as being about waiting to see if something goes wrong; if you need to just wait, that is an indicator of flaws in your observational capability that, when fixed, will let you move in a much more agile fashion.</p> 
+  <p>Finally, there's a lot of overlap between prequalification and incremental deployment, which is why it's important not to consider any of these principles in isolation. Prequalification gives you the flexibility to test while guaranteeing it won't have customer-visible impact, whereas incremental deployment gives you the ability to test things that can only be tested in production, but at the risk of customer impact. One possible compromise is a "staging" or "canary" production environment in which customers knowingly participate, but that's not always feasible. When you develop both your prequalification and incremental deployment plans for a given change, you should be able to articulate what will be tested at each stage and what data you hope to get out of subsequent increments that you can't get out of earlier ones.</p> 
+  <p>&nbsp;</p> 
+  <h3>Tailoring an Approach Suited to Your Organization</h3> 
+  <p>Applying these principles can be time consuming, and making changes reliably and safely requires some up-front investment of time in the form of documentation, planning, and impact analysis. It can be challenging for a team to invest that time in a type of change they've successfully made daily or weekly for many years, and it can be equally challenging for leadership to support such an investment. Ultimately, it comes down to this: Has everything always worked in the past because the system or process prevented mistakes, or merely because of good luck?</p> 
+  <p>How much investment of time and effort should go into these principles, either individually or taken all together, is a very contextual decision. A system whose failure would somewhat inconvenience dozens of people does not need the same kind of safety thinking as one whose failure could halt major financial or life-saving mechanisms, and awareness of where you are in that spectrum should affect many of your engineering choices. Similarly, if you can quickly improve your change processes in one or two specific areas (documentation is always "free"), consider making those investments first before you tackle redesigning systems to permit incremental deployment or fast rollback. Striving for perfect compliance with all these principles is likely infeasible for many mature organizations; instead consider this a framework to guide how you or your organization thinks about making changes to your products and systems.</p> 
+  <p>Also, in finding the total amount of change safety your system needs, the collection of principles here can partially make up for each other. For example, you might for some reason be unable to deploy your changes incrementally or unable to verify them in a realistic test environment. In that case, you might want to put even more care and investment into the elements of change safety that are possible in your situation. You should also document these system limitations so you can revisit these decisions in the future as the system matures; change safety is not "set it and forget it."</p> 
+  <p>In fact, when a change is among the relevant factors that contributed to an incident, your post-incident review process should include a review of your change safety processes. This is where all your documentation work pays off: Since part of your documentation includes impact analysis and limitations of the system, you can easily understand why decisions were made and come prepared to present leadership with clear business tradeoffs and suggestions about where to invest more effort in the future. The alternative might be an incident review in which leadership or customers present you with a mandate, which may offer some small improvements in safety but will often come at the expense of time or efficiency.</p> 
+  <p>One thing that we've heard and seen—both publicly and privately, multiple times— is that you can choose to worry less about <i>configuration</i> changes than <i>code</i> changes. This is complete nonsense. From the point of view of an overall system, these are indistinguishable and are both about changing the behavior of the system. You might need to have some different details in the mechanisms of how you verify or push such changes, but the basic fact that a change is perceived by your organization as a configuration change instead of a code change should have no bearing on the degree of safety investment that is warranted to make that change safely.</p> 
+  <p>&nbsp;</p> 
+  <h3>Moving faster, because we know we won't break things!</h3> 
+  <p>If you're following enough of the preceding practices, you and your team will be able to push changes much more quickly. People slow down when they are afraid, and they are afraid when they don't know the consequences of their actions. If you've done good work to make sure that you've not only minimized the chances of such consequences but also constrained them in time and size, you can move fearlessly.</p> 
+  <p>As engineers, we're often wary of touching other people's long-established code, lest we be the one who "touched it last" before it breaks in some unexpected way. Yet we're also often so confident in our own skills that we don't see the need for additional safeties in our systems. It's important to differentiate operating without fear from operating with confidence. The famous 2014 "goto fail" SSL/TLS bug is an example of how experienced C developers can <i>almost always </i>write single-line conditionals correctly, whereas having a code review policy mandating braces for all conditionals ensures they <i>always </i>will.</p> 
+  <p>An engineering team that can move without fear, knowing that they have made themselves safe to do so, can ship more often and more quickly and make more dramatic changes without hesitation. This feels great to individual engineers and enables those engineers to be more effective for the business they work in. A bit of investment in safety pays huge dividends in speed as well as by reducing the frequency and severity of change-triggered incidents.</p> 
+  <p>Some principles can't be applied to some types of changes, (e.g., zoning for a singular change), but most can be applied more often than you might think. A change that can't be deployed incrementally, for example, can be made safer by focusing on other aspects such as health metrics and prequalification. In addition, it may not be possible to incorporate some aspects of a given principle into your change safety strategy because of technological limitations, architectural limitations, or other factors. That's OK. Your strategy should note where these gaps are and discuss other aspects of your strategy designed to minimize the impact of those gaps.</p> 
+  <p>Following all of these principles won't guarantee a lack of incidents or outages in the future when you make changes—nothing can guarantee that. Using the principles as a framework for how you manage making those changes, however, will reduce the frequency of such incidents and the severity of some of them. It will make it much easier to write documents for your customers or users to explain such outages since you won't have to make up excuses for why you didn't take responsible measures to minimize the likelihood or scope of the problem. As an added bonus, engineers both inside and outside your organization will have a greater respect for you when they are able to see that you have taken a disciplined and thoughtful approach to managing your systems.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Justin Sheehy</b> has spent most of his career thinking about how to make systems—composed of both computers and humans—safer and more resilient. He is currently chief architect for infrastructure engineering and operations at Akamai. Previously he's played roles including chief technologist for cloud native storage (VMware), CTO (Basho), principal scientist (MITRE), distributed systems engineer (multiple times), senior architect, and more.&nbsp;</p> 
+  <p><b>Jonathan Reed</b> has spent the past 10 years at Akamai Technologies, where he is a principal architect focusing on the reliability and operational supportability of Akamai's systems. He formerly led Akamai's DNS SRE team, and has spent much of his career supporting and developing large distributed systems, with a particular focus on bridging the gaps between traditional support roles, software engineering roles, and operational/SRE roles.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9790c02f4aa4990a',t:'MTc1Njg1NTM2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 4</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3762988">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Dennis Roellke</span> - <a href="detail.cfm?id=3723152"><b>String Matching at Scale</b></a>
+	  <br />
+	  String matching can't be that difficult. But what are we matching on? What is the intrinsic identity of a software component? Does it change when developers copy and paste the source code instead of fetching it from a package manager? Is every package-manager request fetching the same artifact from the same upstream repository mirror? Can we trust that the source code published along with the artifact is indeed what's built into the release executable? Is the tool chain kosher?
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Catherine Hayes, David Malone</span> - <a href="detail.cfm?id=3690759"><b>Questioning the Criteria for Evaluating Non-cryptographic Hash Functions</b></a>
+	  <br />
+	  Although cryptographic and non-cryptographic hash functions are everywhere, there seems to be a gap in how they are designed. Lots of criteria exist for cryptographic hashes motivated by various security requirements, but on the non-cryptographic side there is a certain amount of folklore that, despite the long history of hash functions, has not been fully explored. While targeting a uniform distribution makes a lot of sense for real-world datasets, it can be a challenge when confronted by a dataset with particular patterns.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Nicole Forsgren, Eirini Kalliamvakou, Abi Noda, Michaela Greiler, Brian Houck, Margaret-Anne Storey</span> - <a href="detail.cfm?id=3639443"><b>DevEx in Action</b></a>
+	  <br />
+	  DevEx (developer experience) is garnering increased attention at many software organizations as leaders seek to optimize software delivery amid the backdrop of fiscal tightening and transformational technologies such as AI. Intuitively, there is acceptance among technical leaders that good developer experience enables more effective software delivery and developer happiness. Yet, at many organizations, proposed initiatives and investments to improve DevEx struggle to get buy-in as business stakeholders question the value proposition of improvements.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jo&#227;o Varaj&#227;o, Ant&#243;nio Trigo, Miguel Almeida</span> - <a href="detail.cfm?id=3631183"><b>Low-code Development Productivity</b></a>
+	  <br />
+	  This article aims to provide new insights on the subject by presenting the results of laboratory experiments carried out with code-based, low-code, and extreme low-code technologies to study differences in productivity. Low-code technologies have clearly shown higher levels of productivity, providing strong arguments for low-code to dominate the software development mainstream in the short/medium term. The article reports the procedure and protocols, results, limitations, and opportunities for future research.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
