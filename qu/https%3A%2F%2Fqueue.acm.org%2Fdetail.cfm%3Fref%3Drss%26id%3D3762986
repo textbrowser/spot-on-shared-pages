@@ -1,0 +1,649 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>The Process - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3765291" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+		<p style='float:right;'>
+		<a href="https://www.informit.com/store/kollected-kode-vicious-9780136788249?utm_source=referral&utm_medium=acm-queue&utm_campaign=kode-vicious" target=_new2>
+		<img src="/confimg/Kode_Vicious2.jpg" border="0" alt="The Kollected Kode Vicious" style='height:196px;width:150px;padding:5px;'>
+		</a><br />
+		</p>
+		<h3><a href='/listing.cfm?typefilter=Kodevicious&sort=publication_date&order=desc&qc_type=Kodevicious&article_type=&item_topic=all&filter_type=topic&page_title=Kode%20Vicious&filter=all'>Kode Vicious</a> - <a href='https://twitter.com/kode_vicious' target='_new' style='font-size:0.8em'>@kode_vicious </a></h3>
+
+	
+
+<label>September 5, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3765291">Volume 23, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3762986">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">The Process</h1> 
+  <h2>From start to finish</h2> 
+  <p><b>Dear KV</b>,</p> 
+  <p>Many of your columns seem to be <i>not</i> about any particular piece of software but instead about the process of creating or—more often—debugging it. You have mentioned the scientific method, but that's abstract and not typically relatable to day-to-day work. Most of us are too busy pushing big rocks up a hill to sit cross-legged at the summit considering the finer points of "decidablity." Just getting to the point of having a useful test can be an incredible slog for a lot of us. So, why don't you tell us more about how we can do that? It certainly seems like more practical advice than just, "Hey, use this method, you idiots." </p> 
+  <p align="right" style="text-align:right"><b>Stuck at Base Camp</b></p> 
+  <p>&nbsp;</p> 
+  <p><b>Dear Base Camp</b>,</p> 
+  <p>What you're asking about is not the Scientific Method, which KV has yelled about more than once, but instead what I consider to be the Scientific Process. Which is how we as scientists and engineers (the best software folks are a mix of both) get actual work done. While the Scientific Method gives us a way to evaluate a hypothesis, a Scientific Process allows us to organize our minds to form these hypotheses, lay out a piece of code, organize a project, or debug a program. It's how we get to the point of focusing enough to solve the incredibly challenging problems we've set for ourselves. </p> 
+  <p>KV assumes that all his readers like challenging problems because, if they didn't, they wouldn't need to read this column. They could just give themselves over to days of dull repetition, accepting whatever tasks roll down to them, and finding their tame satisfactions in closing out tickets or shrinking the backlog. That sort of code-factory approach to software development remains with us still. But, instead of cranking out horseless carriages on an assembly line, we're throwing code into a repo and hoping something comes out the other side of the compiler. </p> 
+  <p>The closest analog I know to a Scientific Process is a Writing Process. And since writers are in the communication business, many of them have shared their processes. In fact, much of what KV uses in his Scientific Process comes from studying writers rather than scientists, although there are some scientists who have also written about their processes. There may be as many of these processes as there are people trying to achieve results through computing, but there are also some commonalities that are worth noting. The core of any Scientific Process is simple to state: Quiet your mind so you can imagine a problem worth solving, or solve a problem that's already right in front of you. Surround yourself with an environment that makes work pleasant and possible. Keep a small number of mental and physical tools at hand that aid in the process. Also, know when to work and when to rest. </p> 
+  <p>Before KV starts ranting about the best environment, processes, and tools, let me yell one more time about limiting distractions. Much of the world now wanders around with distraction machines in their pockets. For those of us in software, this is especially true. As someone who thought that building a global network would bring many positive intellectual benefits to humanity, I now would like to apologize. I was wrong and so were all of you who saw always-on global connectivity as a good idea. </p> 
+  <p>Developing software is scientific work and that requires focus, which is the opposite of distraction. So, before you even start your process, you need to figure out a way to create a chunk of time that's free of distractions. Unfortunately, most workplaces make this quite difficult, not just because of meetings (the number-one complaint of most developers), but also because of all the ridiculous ways in which we're required to make ourselves available for others who "might need us." Software requires focus, and, while it's not open-heart surgery, can you imagine what a surgeon would do in an operating theater if someone were to interrupt? Those people have scalpels! So, step 1 in any Scientific Process is to find the time to focus and turn off all distractions. </p> 
+  <p>One of the biggest challenges you'll find is that, even if you turn off all the beeping, buzzing, vibrating crap you have around you, your mind has already become so conditioned to react to these things that you'll be subject to phantom alerts, which will tempt you to turn from your work to investigate. Avoiding these distractions is like learning to meditate. I'll bet no one ever thought KV had studied meditation, at least not while sober. But the sole goal of meditation is to keep one's focus in one place and let go of distractions. Sounds easy, but the human mind is very busy and is not easily quieted. </p> 
+  <p>The thing to do whenever you're tempted to check for email or hop onto the awful and ubiquitous Slack is to just stop, take a breath, and return to your focused work. Or, you can be like one of the best scientists and writers of my acquaintance, who has simply removed himself from all distractions, including email, for many years. He spends his time in deep thought and produces amazing work, but he also has fought his entire career to get to and remain in that true guru state. Someday, maybe, KV will get there, but I doubt it will be without causing irreparable harm to a supposedly innocent bystander. For now, KV does simpler things. For example, while writing this, KV has only one application open on his desktop—his text editor. All other applications are hidden and all communication apps are turned off. </p> 
+  <p>Now that you know what you need inside your head, let's talk about what you may or may not need to get to that point. </p> 
+  <p>Different people have different working methods, and your challenge is to study your own to discover what works best for you. When KV was young and read pieces by authors saying that they got up at six every morning to cite and write, he nearly gave up writing and the sciences to become a monk—only to learn that monks get up early as well. KV is not a morning person. Even with advancing age and less need for sleep, he continues to have his best ideas and solve more problems from midday through midnight. He has come up with some of his best ideas and has come to realize what's wrong with a program he was debugging long after dark. </p> 
+  <p>The world, of course, tells us we should be productive during the daylight hours because, for most of history, that was the only time people could see well enough to work. It turns out that hasn't been true for over a century. So, if you work best in the morning, good on you. If you work best at night, fight for that right. It's always best to work when your mind is sharpest, not when some clown thinks you ought to work because the candles required to light your work are expensive. The key is to figure out when you work best and make sure <i>that's</i> when you are working. </p> 
+  <p>One of the nicer things about using computers for our work is that we're recording that work. So, go back and look over your past six months of commits, pull requests, or closed tickets to see if there is a grouping that correlates in time. Use the machines you're forced to use anyway to find out what works best for you. Perhaps the most important advice is that you shouldn't waste a good thought whenever it occurs to you. For example, KV woke up with this response to your letter nearly complete in his head. And so, against type, he wrote it all down in the morning. When inspiration hits, ride the wave. </p> 
+  <p>That takes us to environment. Before Covid and the push to work from home, most people worked in offices, and many companies now are trying to force everyone back into buildings that are already sunk investments. You didn't really think this was about collaboration, did you? Some people work well with other people milling around them. There supposedly are even some people who profess to like open-plan offices. For KV, the best office environment has always been one where he could close his door. The door offers two salient benefits: It keeps people out, and it dampens the noise of KV's incessant cursing at code, which is a blessing to others. Not everyone screams at their code, but KV does. He has also noticed that he's not the only programmer to do so. It's said that, "Stress is what happens when you prevent yourself from strangling someone who desperately deserves it." So, yelling at code is a wonderful way to vent anger and prevent workplace violence. </p> 
+  <p>Now that working from anywhere is more of a thing, it's possible for some people to pick from many different types of work environments. Lots of startups get their start in co-working spaces, which are like open-plan offices but without the distractions of a large company, where any of a large number of folks might just happen to drop by your desk to ask a question. Having people "just drop by" is a great way to lose your focus and drop out of your process. Working from home sounds great, unless your home is full of distractions. As wonderful as children are, they're also distraction machines that cannot be put on silent mode or otherwise turned off—at least not without Child Protective Services making a visit. Even homes not stocked with children come with things that are more enticing than work, like your well-stocked refrigerator, or the TV, or whatever other pleasurable distractions you have at home. </p> 
+  <p>For KV, there are a few great places to work: libraries, cafes, trains, and planes, but the latter only in business class. Someday, KV may find a company that wants just to keep him aloft in business class for weeks on end, but he's not holding his breath. </p> 
+  <p>Libraries are an obvious choice since they're quiet and have someone on hand who's paid to tell everyone to remain quiet. KV has been lucky enough to frequent a library where the librarian also brings in home-baked cookies from time to time. </p> 
+  <p>A cafe might seem like a noisy and distracting environment, but KV is not distracted by people who don't walk up to him to ask stupid things like, "Hey, what happens if the socket is hanging in 2MSL?" when KV has his hands deep into some other bit of code. A cafe also offers the advantage of having an abundance of KV's favorite legal stimulant on sale. You hand a nice person some green bits of paper or tap on some object, and they give you drugs that help you focus, and they taste good too! </p> 
+  <p>Trains and planes are nice because KV likes to be in motion, which probably has to do with some deep psychological issue he's not willing to pay money to a therapist to work out. Suffice it to say, when the doors close on some hours-long trip, KV has been known to tell his coworkers, "Oh, sorry, but the WiFi wasn't working," so he can sink into some blissfully focused coding. </p> 
+  <p>This brings us to the matter of tools. KV is not about to tell you which editor, debugger, web browser, or scissors to use in your work. Obviously, you need whatever tools your job requires, but the goal should be to find the minimal set. While writing, KV has only his editor visible and maybe a web browser in case he needs to check a fact. When developing or debugging software, KV might also need to look up a library or API, but that still requires only the web browser or his editor, which can do many things besides edit code. Make sure that whatever tools you choose are customizable to how you work best so as to make it as easy as possible to set up shortcuts. The point-and-click revolution may have helped people who want to express their fondness for pictures of cats on some social media site, but it is anathema to a working programmer. </p> 
+  <p>The tools mentioned thus far are all likely to be programs on a computer, but there are two other tools to always keep at hand when working: a pen and paper. Over the past 40 years, KV has tried every damned note-taking device or program he could get his hands on, and has even written about a few, and while he is fanatical to the point of annoyance at keeping a <a href="https://queue.acm.org/detail.cfm?id=3631181">digital lab notebook</a> (queue.acm.org), he still regularly keeps a bound paper notebook and pens with him. Why? Because if he wants to think rather than type, he needs to do it by hand. Now, you don't need to do as he does, but it is surprisingly rare to meet a good scientist or engineer who does not work in a similar way. Like writers, scientists and engineers need a way to get ideas out of their heads so they can examine them. In fact, this is probably the most important part of any intellectual exercise, so make sure you have some tool that allows you to do this. Some scientists and engineers like to jot notes in their distraction machines, but then that means they might be distracted before the thought gets recorded, which would make KV angry enough to throw the distraction machine against the wall, and that can get very expensive. </p> 
+  <p>Now that we're nearly done, we come to another important part of the process: rest. Even though working on software is not as physically taxing as mining coal, you cannot think clearly if you are not rested. You might be able to be productive for three or four hours—or even more. Everyone is different, but we all are still depressingly human and need rest. Make sure you know the signs that indicate you need rest. Are you making more than the usual number of mistakes in your code or even in your typing? Take a rest. Are you about to bite someone's head off because you've not eaten? Rest and refuel. This sounds simple, but sometimes, when you get into a good focused state, you can forget these things, and it would be unfortunate if you bit someone's head off when they didn't deserve it. </p> 
+  <p>As you may have noticed, this response has not told you how to produce good science or engineering, only how to structure your environment and working day. Here is the key: Your mind already knows how to do the work since you've been training it to do so for years. It's just that other things get in the way. Once those things have been cleared away, you can look clearly at a problem you need to solve and form the solution, write notes about it, and start experimenting with code. If you're trying to come up with something truly novel, you don't even need your computer. Just a pad and pen will do, or maybe not even that. Just fix the general area in your mind that you want to explore and go for a walk. That's what KV does. Sometimes it even works, and he usually even manages to avoid getting hit by a car or a bike messenger in a crosswalk.</p> 
+  <p align="right" style="text-align:right"><b>KV</b></p> 
+  <p>&nbsp;</p> 
+  <p> <b>George V. Neville-Neil</b> works on networking and operating-system code for fun and profit. He also teaches courses on various subjects related to programming. His areas of interest are computer security, operating systems, networking, time protocols, and the care and feeding of large codebases. He is the author of <i>The Kollected Kode Vicious</i> and co-author with Marshall Kirk McKusick and Robert N. M. Watson of <i>The Design and Implementation of the FreeBSD Operating System</i>. For nearly 20 years, he has been the columnist better known as Kode Vicious. Since 2014, he has been an industrial visitor at the University of Cambridge, where he is involved in several projects relating to computer security. He earned his bachelor's degree in computer science at Northeastern University in Boston, Massachusetts, and is a member of the ACM, the Usenix Association, and IEEE. His software not only runs on Earth, but also has been deployed as part of VxWorks in NASA's missions to Mars. He is an avid bicyclist and traveler who currently lives in New York City. </p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9851d9b5ad6222ef',t:'MTc1ODg4MDE1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 4</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3762986">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Justin Sheehy, Jonathan Reed</span> - <a href="detail.cfm?id=3762988"><b>Moving Faster by Not Breaking Things</b></a>
+	  <br />
+	  An engineering team that can move without fear, knowing that they have made themselves safe to do so, can ship more often and more quickly and make more dramatic changes without hesitation. This feels great to individual engineers and enables those engineers to be more effective for the business they work in. A bit of investment in safety pays huge dividends in speed as well as by reducing the frequency and severity of change-triggered incidents.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Dennis Roellke</span> - <a href="detail.cfm?id=3723152"><b>String Matching at Scale</b></a>
+	  <br />
+	  String matching can't be that difficult. But what are we matching on? What is the intrinsic identity of a software component? Does it change when developers copy and paste the source code instead of fetching it from a package manager? Is every package-manager request fetching the same artifact from the same upstream repository mirror? Can we trust that the source code published along with the artifact is indeed what's built into the release executable? Is the tool chain kosher?
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Catherine Hayes, David Malone</span> - <a href="detail.cfm?id=3690759"><b>Questioning the Criteria for Evaluating Non-cryptographic Hash Functions</b></a>
+	  <br />
+	  Although cryptographic and non-cryptographic hash functions are everywhere, there seems to be a gap in how they are designed. Lots of criteria exist for cryptographic hashes motivated by various security requirements, but on the non-cryptographic side there is a certain amount of folklore that, despite the long history of hash functions, has not been fully explored. While targeting a uniform distribution makes a lot of sense for real-world datasets, it can be a challenge when confronted by a dataset with particular patterns.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Nicole Forsgren, Eirini Kalliamvakou, Abi Noda, Michaela Greiler, Brian Houck, Margaret-Anne Storey</span> - <a href="detail.cfm?id=3639443"><b>DevEx in Action</b></a>
+	  <br />
+	  DevEx (developer experience) is garnering increased attention at many software organizations as leaders seek to optimize software delivery amid the backdrop of fiscal tightening and transformational technologies such as AI. Intuitively, there is acceptance among technical leaders that good developer experience enables more effective software delivery and developer happiness. Yet, at many organizations, proposed initiatives and investments to improve DevEx struggle to get buy-in as business stakeholders question the value proposition of improvements.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>

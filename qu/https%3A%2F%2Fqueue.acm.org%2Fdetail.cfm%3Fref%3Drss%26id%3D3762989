@@ -1,0 +1,717 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Unsolved Problems in MLOps - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3765291" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+
+<label>September 2, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3765291">Volume 23, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3762989">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">Unsolved Problems in MLOps</h1> 
+  <h2>Either find a better paradigm or fix the ones we're using now.</h2> 
+  <h3>Niall Murphy and Todd Underwood</h3> 
+  <p>The current state of AI is miraculous. Long-running, difficult problems of AI and CS that were thought to be unsolvable or intractable have fallen under the twin assaults of deep learning and sheer scale. A generation of computer scientists, trained by the reflective prose of Douglas Hofstadter to introspect on cognition's limits, have abandoned that introspection and are frolicking in the success of sheer compute. As various graphs climb up and to the right seemingly without cease, it's hard not to feel a dizzying sense of both wonder and disorder.</p> 
+  <p>For the moment, let's leave aside vitally important questions of AGI (artificial general intelligence), ASI (artificial superintelligence), and social impact. Many will already know where they stand on these issues. Instead, presuming a reasonable use of ML, we ask the question: How can we make it work well—work <i>reliably</i>?</p> 
+  <p>This is a pressing question everywhere but is particularly pressing in MLOps, which is thought of as the act of building, running, deploying, monitoring, managing, and decommissioning models and their associated data.</p> 
+  <p>Yet when we as practitioners take a moment to reflect on how we got here, it's sobering how little we actually understand about how to do the above well. (This is distinct from our understanding of model internals generally, which is currently also at Dark Ages level, though it is somewhat related, as we'll see.) Most of the work placed under the heading of MLOps is similar to nonfunctional requirements in the "classical" non-ML world. Unfortunately, although concepts, frameworks, and actual software tools (and a wide array of them, most of which are known to work well) are available to help accomplish our goals in the classical software world, the ML world has different problems for which much of the existing approaches are not suitable. In other words, we have been disrupted.</p> 
+  <p>At the heart of that disruption are two central facts: that classical systems are (ostensibly) deterministic and ML systems are not, and that data is as much a driver of system behavior as is code or configuration. In the classical world, we rely on the opposite of those propositions every day. Need to check whether a service is up and running well? Send it a <code>GET /</code> or a <code>SELECT 1</code> or a <code>GetIndex</code>, and test for the expected response. Need to roll out new versions safely? Build a new binary, trickling the code changes through the CI/CD (continuous integration/continuous delivery) system and associated tests, then roll out across your fleet as you watch for discontinuous changes in graphs, just in case. Need to be made aware of when things are going wrong? Set an alert threshold on SLO (service-level objective) violations for connection requests and walk away (hopefully with a pager). Need to fix something quickly because it's dying in prod? Cherry-pick from a particular branch and build a new binary, fast-pushing through the CI/CD system to get it into production.</p> 
+  <p>We can't easily reuse any of those classical approaches in ML.</p> 
+  <p>&nbsp;</p> 
+  <h3>Compare and Contrast</h3> 
+  <p>(Note: For the following discussion, the terminology is that a <i>model</i> is built from data, processed in a <i>training phase</i>, and after training has finished, you have a <i>file</i>, which is used in <i>serving </i>or <i>inference</i>. The model itself has some kind of structure, which will supply answers, given some inputs, spanning from perhaps a single real number to arbitrarily complex text.)</p> 
+  <p>An ML system might send back an arbitrary response to a query (especially true for LLMs, but also true for models), and what's in that arbitrary response depends hugely on the data the model was trained on, which may in turn depend on previous user actions.</p> 
+  <p>Rolling out a new version of a model is often more an exercise in vibes than anything else. At SRECon Americas 2025, Brendan Burns of Microsoft told the audience that Azure uses two ways of validating that new models in the Azure UI are working well: first, a set of LLMs judging the output of the new LLMs, and second, whether or not enough Microsoft employees have hit the equivalent of the "thumbs up" button when exposed to its recommendations. (This approach helps to eliminate outrageous assertions on behalf of the model but does not provide a clear quality gradient.) While Microsoft surely has enough employees for this to be some kind of relevant safeguard, not many other organizations do, and the audience was audibly surprised at Burns's statement that LLMs were judging LLM output. Even when there are stable evaluations (most published benchmarks produce broadly reproducible results on the same model), it doesn't always capture the real-world experience of the same model. The best efforts to evaluate model performance are still imperfect.</p> 
+  <p>For similar reasons, it's quite hard to have meaningful alerting for ML systems. Of course, the standard "is-it-hard-down" style alerts are still relevant and useful. But anything that relies on a quality or behavior threshold is tricky to define. The more complex the model, the more difficult it is to alert on misbehavior, even for something as simple as latency. If the model is making insurance decisions based on a small set of inputs, the resulting page should render within a few seconds, but if the model is summarizing hundreds of pages of text, the likely latency is proportional to the length of the input text. </p> 
+  <p>Some questions—for example, difficult mathematical questions or tough analysis problems—will take a long time to answer, even if the input prompt is very short. Evaluating correctness successfully in real time is almost impossible; at the very least, checking the answer as it's being emitted would presumably consume proportional resources to generating it. Some example questions that might help to illustrate this: What are the key points of this very paragraph? Are Economic Sciences prize winners included in the list of Nobel Prize winners, even though it's technically a different prize?</p> 
+  <p>When it comes to resolving errors, too, presuming you can detect any, there's the question of what you can actually <i>do</i>. In the classical world, you can build a new binary and push it out—with a strong presumption that new code paths will fix bad behavior. On rare occasions, you sometimes re-create configuration, or even restore a backup of "the" database. </p> 
+  <p>In the ML world, the relationship between serving binary, model, and data makes the decision about how and what to revert decidedly hard. In particular, to recycle classical language, if building a new binary is building a serving binary designed to load the model into memory and copy request and response back and forth, there's usually no point since it's such a thin layer. If building a new binary for ML is building a whole new <i>model</i>, then that can cost millions of dollars and take multiple months. Even if "building a new binary" is changing the system prompt or redoing some of the fine tuning, it still might take several days or weeks to make the changes and systematically test them.</p> 
+  <p>We hope that the preceding examples have given you some feeling for the problems of the domain. The examples are far from complete, but now that you have an intuition that things are difficult here, let's look at what we believe are key unsolved problems of MLOps. These are problems actively impeding the safe deployment of ML today, increasing risk for both practitioners and users and highlighting gaps in our intellectual framework around service management and what it means to run computing systems generally.</p> 
+  <p>&nbsp;</p> 
+  <h3>Measuring Model Quality</h3> 
+  <p><a href="https://sre.google/prodcast/transcripts/sre-prodcast-04-03/">We've argued</a> that end-to-end model quality is the only metric that matters for ML reliability. Measuring during model development is comparatively easy. How is it measured today in production?</p> 
+  <p>There are two approaches from the classical world that are typically reused here, though neither of them is entirely satisfactory.</p> 
+  <p>The first approach is a set of replayed queries and surveyed responses to those queries across a mixture of automated and manual actions. (Usually in the classical world the queries and responses are hard-coded.) Although this is done often, making it work is harder than you might think. The questions and responses need to be carefully evaluated for reproducibility and ease of evaluation. For example, if the question is "How many legs do humans have?" and the expected answer is "Two," what happens when a new, more thoughtful version of the model says, "Most humans have two legs, but it's not uncommon for some humans to have only one leg or even none due to accident, illness, or congenital difference." That answer isn't <i>wrong</i>, but it's going to be flagged as a deviation. There are emerging frameworks that try to do this automatically, which is more tractable in spaces where the answers are more straightforward.</p> 
+  <p>This approach takes us part of the way, but the experienced reality of such systems is poor. Any sufficiently complex business domain and quality becomes as hard to measure as the questions are to answer. So, as per the Microsoft story in the previous section, the only thing known to work <i>for sure</i> is actual feedback, in production use, of users—clicks, queries, copy-and-pastes, etc.—and in a real time format. Let's face the reality that this is, in essence, outsourcing model quality assurance to the users of the system, which is the opposite of what we strive to do in the classical world.</p> 
+  <p>The second approach we reuse is the well-known <i>canarying</i> technique for testing a new binary/application/etc., even when a definitive testing suite is not available. As outlined, it involves shipping the new model to production, exposing it to a small amount of production traffic, watching its behavior closely, and increasing that traffic fraction over time according to some reasonable schedule. Watch for long enough and you can have quite a high confidence that the model is behaving correctly before exposing it to the full production onslaught.</p> 
+  <p>In the ML world, however, this technique has two difficulties that prevent it from solving our problem: First, model behavior is very sensitive to user behavior and therefore to <i>time</i>, so if your model needs to run for a long while before you assemble definitive evidence on its behavior, it ends up interfering with your rollout schedule. Additionally, it's very common to have multiple models in action at once, and these models can end up influencing each other or make it impossible to compare with a stable baseline.</p> 
+  <p>&nbsp;</p> 
+  <h4>Consequences of poor measurement</h4> 
+  <p>There are, unfortunately, numerous cases of model-quality problems escaping into production and occasionally having <a href="https://www.bbc.com/news/articles/cn4jnwdvg9qo">serious effects</a>. For example, according to OpenAI, <a href="https://openai.com/index/sycophancy-in-gpt-4o/">one particular release</a>, which was intended to "improv[e] the model's default personality to make it feel more intuitive and effective across a variety of tasks," ended up favoring responses "that were overly supportive, but disingenuous"—the so-called <a href="https://openai.com/index/expanding-on-sycophancy/">sycophantic</a> release. It's important to note that there were multiple contributing factors to this outcome, including existing user feedback that validated <i>short-term</i> model behavior, but you should take this as a reminder that good quality control is hard, even when you have quite a sophisticated assessment system.</p> 
+  <p>There are related issues worth considering even when you're not at foundation model scale or an in-house consumer of an in-house model.</p> 
+  <p>For example, as an end consumer, if you partake of model services over an API, the lack of model versioning means you can't know if a different answer to the same question is because of model data changes or model internal state changes. For LLMs, the system prompt could also get changed—currently generally kept secret by design, unless you are <a href="https://github.com/elder-plinius/L1B3RT4S">Pliny the Prompter</a>—and this is quite likely to change the response of the model. None of this is easily detectable by the bulk of model consumers.</p> 
+  <p>Additionally, model-quality variance, as opposed to pure behavior change, is also a significant problem for API consumers. If your provider can't keep model quality within acceptable limits, you'll need to instantiate a model-quality verification process. (You don't even have to presume malfeasance, just that they don't know what you care about.) Multiply this work across all consumers of a model and it very quickly starts to incur significant overhead—imagine the size of the additional work that would be done in the world if everyone had to perform their own food-quality analysis, search-query analysis, and so on.</p> 
+  <p>The practical upshot is that if you are a provider of model services and you lack proper testing, you spend a lot more time on debugging, incidents, and postproduction unplanned work in general and have bad failures in production—sometimes headline-generating ones.</p> 
+  <p>Given all this, we say the unsolved problems are:</p> 
+  <ul> 
+   <li> Finding a way to bound the stochasticism of a model response in such a way that it's reasonable for testing</li> 
+   <li> Finding a good approach in canarying for quality control across multiple models and preserving a baseline</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>Model provenance and versioning</h4> 
+  <p>Another pervasive problem is how to do <i>model versioning</i> and understand <i>provenance.</i></p> 
+  <p>Versioning of files in the classical world is a solved problem and has been for a long while. To do it, you need a tag, handle, integer, or metadata of some kind associated with a file. The mapping from a particular version to the particular sequence of bytes composing that file can be handled either in the file, in some associated metadata, in a separate database, or by any number of arbitrary mechanisms. </p> 
+  <p>Most software engineers are familiar with software version control in general or tools to accomplish same—these are not new and unfamiliar ideas. But they are simply much less prevalent in MLOps than they should be. There is no guarantee that the system named "GPT-4o" that answers the question at 16:18 will be the same system named "GPT-4o" at 18:16, for a variety of reasons, including the provider shipping a new trained model, changing the system prompt, implementing new trust and safety controls, or any number of other changes.</p> 
+  <p>Definitionally, versioning of models is being able to identify the dataset trained on, the set (if any) of post-training transformations, the model produced, the associated policies (including filters, blocks, system prompt), and even changes in architecture that should be model-neutral but occasionally aren't. (Note that we are a long way from being able to implement the strong convention that pertains elsewhere in software in this domain—the division into major, minor, and patch-level versioning that enables people to tell that 1.5 is likely to be less capable than 2.0, even though 1.5 will probably be more stable.)</p> 
+  <p>As it happens, this closely overlaps with the question of model provenance. Let's begin with the basics: Anyone doing model training has to organize their datasets, track what data fed what training run, and track permissible and/or suitable uses, taking in legal compliance, problem domain relevance, quality scoring, and so on.</p> 
+  <p>Most organizations are not doing this carefully or sufficiently publicly, and almost none has it automated or standardized in any meaningful way. A model trained in America for use in France would need to select training data representative of French use cases, be legally permitted to be used there, be responsive to French concerns, and so on. We opine that today the practical answer to this is "Don't treat France separately in any meaningful way and cross your fingers against lawsuits," with a side order of "Don't offer service in France." There are emerging frameworks for managing data provenance, but they are frameworks and toolkits providing the ability to trace and segment, not actual suitable segments themselves.</p> 
+  <p>Data provenance does occasionally matter in non-ML cases, but no well-accepted paradigm or software suggests itself as a useful precursor.</p> 
+  <p>In effect, this once more pushes the work of model validation onto the model user, which is (as the number of consumers scales) quite inefficient. Furthermore, one interesting trap is that if you can't handle provenance or versioning well, your <i>tactical</i> flexibility seems higher—hey, none of these annoying barriers to pushing stuff to production!—but you generally end up paying the cost post-deployment and in unplanned work. (In that sense, growth is covering up large problems and creating more of its own.) </p> 
+  <p>Again, given all this, we claim the unsolved problems are:</p> 
+  <ul> 
+   <li> Providing widespread tooling support for versioning and a widely agreed set of things that constitute a worthy-of-versioning set</li> 
+   <li> Arriving at a good way to do data-set management more broadly (this is closely related to the first unsolved problem)</li> 
+   <li> Persuading others that versioning and better approaches for quality control are worthwhile to pursue and worthwhile exposing to the user (this is a human problem)</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>Monitoring and observability</h4> 
+  <p>Monitoring and observability are deeply connected with the preceding section.</p> 
+  <p>Monitoring model quality in production is what the industry should be doing, but, in large part, isn't. Half of the respondents in a recent survey of ML practitioners indicated that they did not monitor the performance of their model in production, according to <a href="https://ethical.institute/state-of-ml-2024">a 2024 report</a> on the State of Production ML by the Institute of Ethical AI and Machine Learning. This is, on some level, astonishing; again, in the classical world, leaving your app unmonitored, or effectively monitored only by customers, is clear professional negligence. But model builders are really struggling with this—monitoring and observability is the single largest problem category cited in the aforementioned State of Production ML report.</p> 
+  <p>Let's assume for now that the major reason for this is the already stated difficulty with establishing model quality when being fed novel queries by actual users. Note that even with a realtime user feedback stream in place, you are in the position of monitoring only the output, not the constituent parts contributing to the outputs.</p> 
+  <p>That isn't the end of the questions that have to be asked.</p> 
+  <p>For a start, <i>who</i> does that monitoring, and who responds to the related alerts? The current answer is the users and model builder staff, but many larger organizations have many teams who could conceivably be involved. (At one point Google chose to have SREs—site reliability engineers—do model-quality tests, but they lived with the model-builder teams for a long while.)</p> 
+  <p>Furthermore, alerting itself is specifically hard in this domain because both "standard" threshold alerting and SLO alerting need to be tied to a specific metric, and the thresholds of that metric need to stay stable enough to alert on them. Both of these are a challenge in this brave new world. If it's too hard to alert on business metrics, you can alert on the state of infrastructure instead—but that will miss many things that matter.</p> 
+  <p>Either way, you can see why half of the community is finding this difficult.</p> 
+  <p>Given all this, we claim the unsolved problems are:</p> 
+  <ul> 
+   <li> Arriving at a broadly understood consensus about who and how to do monitoring, organizationally speaking</li> 
+   <li> Establishing some best practices so we can make it easy for the nonmonitoring greater than 50 percent of practitioners to start monitoring</li> 
+   <li> Aligning with emerging industry-practice approaches in other contexts, particularly around efficiency of metrics transmission and storage; for example, it might be possible to provide model inspectability by recording every model weight lookup, but this would be immensely costly and present its own significant search problem</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h4>Efficiency, cost management, and stranded capacity </h4> 
+  <p>At this particular moment, open-market GPU hardware that specifically enables AI has two methods of pricing: new, more performant, and nonlinearly expensive versus older, more reliable, and with commodity pricing. Providers using the open-market GPU hardware often spend a lot of money to get access to the latest technology—in other words, prototype pricing structure—and as a result, many of those accelerators are hideously expensive. (For example, in 2024, NVIDIA's DGX B200 with eight cards was <a href="https://wccftech.com/nvidia-blackwell-dgx-b200-price-half-a-million-dollars-top-of-the-line-ai-hardware/">about $500,000</a>.) As a result, using those resources efficiently can make or break a company.</p> 
+  <p>The classical world actually has good solutions for this type of problem. Not every optimization trick we have is available for every provider/problem combination, but in general the techniques are broadly applicable. Foremost among these are load balancing and query cost estimation. Load balancing permits constructing a set of machines that are equally capable of answering some query class and therefore helps with both efficient usage <i>and</i> reliability—for example, there is no machine specifically dedicated to Spanish queries, so if there aren't many Spanish queries for some reason, the resources aren't lying idle; also, if a particular machine is broken or has some other problem, it can be removed from the set of generally available machines. In order to do this well, though, you have to have some idea of how difficult a query is going to be in advance. This is called query cost estimation, and there are a number of computationally cheap and effective approaches in the classical world (e.g., URL path or SQL query length). </p> 
+  <p>Those classical techniques, however, fall apart in the more complex ML world. Cost estimation in LLM serving is extremely difficult. First, given that tokenization is a huge part of how LLMs understand their input, even just figuring out the number of tokens in a prompt represents a significant portion of total prompt-processing cost. This means that you might get an accurate proxy for total cost at the end, but it's not cheap. Second, it's even harder to figure out how many tokens a <i>response</i> to a prompt will be. It varies by model, by context length, and by system prompt. But those are not even the largest part of the query routing problem.</p> 
+  <p>The problem, to use the previous terminology, is that there are multiple, disjoint <i>query classes</i> that have to be routed separately. This is largely an architectural requirement imposed by the fact that models are quite large and require specialized hardware to run on, but it is nonetheless necessary. Model proliferation means that a provider may have many different models optimized for a number of different use cases: for example, smaller and larger versions of the same model architecture, deployments with different maximum context length so users can optimize for cost or performance, etc. </p> 
+  <p>Moreover, if there is any kind of prompt caching, prioritization of certain requests, or long-running queries (which can be up to tens of minutes long in some cases), these factors impose additional constraints on query routing—essentially so many constraints have to be honored that the balancing "space" is partitioned to impractical sizes. As a result, the classical approaches can't be recycled easily—simple token-based load balancing won't correctly estimate the costs, and the available pools to balance between are partitioned too finely for real efficiency. Thus, every additional pool that is created naturally creates more stranded GPU resources, and the more instances you have of <i>almost</i> the same model, the more money you're losing.</p> 
+  <p>It is possible to partially address the problem of stranded resources by using them for batch processing so the GPUs are used for <i>something</i>, but this is hardly a real resolution. Historical data at a number of large compute organizations familiar to the authors indicates clearly that batch demand never grows large enough to substantially improve efficiency.</p> 
+  <p>Given all this, we claim the unsolved problems are:</p> 
+  <ul> 
+   <li> Arriving at a practical way to do some kind of query cost estimation</li> 
+   <li> Developing better load-balancing techniques</li> 
+   <li> Performing better capacity planning and capacity management, such that the footprint problem and the proliferation problem can be reasonably managed</li> 
+  </ul> 
+  <p>At the moment ad-hoc, proprietary approaches dominate. It would be preferable if we weren't all solving this in our own individual ways.</p> 
+  <p>&nbsp;</p> 
+  <h4>Data leakage, injection, and security with LLMs</h4> 
+  <p>In this case, <i>data leakage</i> is defined as "the LLM outputting to the user something it shouldn't, because the data in question is either confidential, inappropriate to release to that person/API consumer, or has some other constraint (such as copyright)." <i>Injection</i> is sending something to the model that causes it to behave in ways not desired by the model provider (often, as described previously, outputting something to that user that it shouldn't). This is also known as <i>jailbreaking</i>.</p> 
+  <p>This problem inarguably has an architectural component, but it also has an operational component, and it's under this heading that we mention it. Today, the only technique we <i>know</i> that works to prevent inappropriate data leakage from an LLM is to remove what you care about from the training data. (That won't prevent it from being emitted, since of course the LLM could hallucinate the same string in some circumstances, but it will go a long way toward moderating it.) This is in the case where model behavior is <i>not</i> being subverted! Conversely, jailbreaking and injection are currently not preventable in principle, and the only effective practical response relies on defense in depth such as strong live monitoring, fast mitigation rules, and failover.</p> 
+  <p>Ultimately, LLMs are difficult to control. Data controls might have some prospect of preventing leakage at emission time but obviously limit the full potential success of the model. A number of operational approaches are possible—specifically implementing some kind of filter at egress time and looking for bad classes of data there to remove them—but, again, we are addressing this in proprietary ways (see, for example, Anthropic's Responsible Scaling Policy and Opus 4, including <a href="https://www.anthropic.com/news/activating-asl3-protections">AI Safety Level 3 controls.</a>), and there isn't yet a body of practice here.</p> 
+  <p>Given all this, we claim that the unsolved problems are:</p> 
+  <ul> 
+   <li> Inventing a way to prevent things being emitted at source rather than filtered out, presuming they need to stay in the training data</li> 
+   <li> Generalizing or otherwise making universally accessible a way to safely filter inbound requests such that jailbreaking is impossible or effectively rendered impractical</li> 
+  </ul> 
+  <p>&nbsp;</p> 
+  <h3>Not Unsolved Problems</h3> 
+  <p>There are a wide variety of problems in MLOps that don't rise to the level of being an "unsolved problem." For example, the training phase is often fragile to network-performance problems in particular—losing a single link causing a training slowdown of 50 percent is not unheard of—but there are a variety of known solutions for this. Unfortunately, most of those involve provisioning redundant/additional links or making the model state more redundant and distributed, both of which add significant costs. There's no inherently novel work that has to be done here to make the situation better. (We, of course, welcome novel work to correct such problems <i>cheaply</i>.)</p> 
+  <p>&nbsp;</p> 
+  <h3>Summary</h3> 
+  <p>As discussed at the beginning of this article, the excitement with AI is carrying us along in a big wave, but the practitioners whose job it is to make this all work are scrambling behind the scenes, often more in dread than excitement. In some cases, they are using outdated techniques; in others, approaches that only work for now; and every so often they are doing <i>nothing at all</i> in order to meet significant operational, technical, and business challenges.</p> 
+  <p>In MLOps terms, it sometimes feels that we are using older paradigms to manage a thoroughly new situation, and it's not entirely clear that we really see it like this. We should be casting about for either a better paradigm or a better patching-up of the existing paradigms than is available today. Regardless, we hope that the summary of the problems presented here is a useful stimulant to people attempting to think about them more holistically and, hopefully, helps to provide some answers.</p> 
+  <p>&nbsp;</p> 
+  <h4>Acknowledgments</h4> 
+  <p>Special thanks to John Lunney, Demetrios Brinkmann, and Maria Jackson for their support in writing this article.</p> 
+  <p><b>Niall Richard Murphy</b> has worked in computing infrastructure since the mid-1990s and has been employed by every major cloud provider (specifically Amazon, Google, and Microsoft) from their Dublin, Ireland, offices in a variety of roles from individual contributor to director. He is currently CEO/founder of Stanza Systems, a small startup in the ML/AI/reliability space. He is the instigator, co-author, and editor of multiple award-winning books on networking, reliability, and machine learning, and he is probably one of the few people in the world to hold degrees in computer science, mathematics, and poetry studies. He lives in Dublin with his wife and two children.</p> 
+  <p><b>Todd Underwood</b> leads reliability at Anthropic, a company trying to create AI systems that are safe, reliable, and beneficial to society. Prior to that he briefly led reliability for the Research Platform at Open AI. Before that he was a senior engineering director at Google, leading ML capacity engineering at Alphabet. He also founded and led ML Site Reliability Engineering, a set of teams that build and scale internal and external AI/ML services. He was also the site lead for Google's Pittsburgh office. Along with several colleagues, he published <i>Reliable Machine Learning: Applying SRE Principles to ML in Production</i> (O'Reilly Press, 2022). Underwood has a B.A. in philosophy from Columbia University and an M.S. in computer science from the University of New Mexico.</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9851d9c61a739c37',t:'MTc1ODg4MDE2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 4</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3762989">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3762990"><b>Guardians of the Agents</b></a>
+	  <br />
+	  To mitigate against models going off the rails during inference, people often use so-called guardrails to dynamically monitor, filter, and control model responses for problematic content. Guardrails, however, come with their own set of problems such as false positives caused by pattern matching against a fixed set of forbidden words. This mathematical proof-based approach addresses these limitations by providing deterministic and verifiable assurances of safety without the need to trust the AI nor any of the artifacts it produces.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3746223"><b>Unleashing the Power of End-User Programmable AI</b></a>
+	  <br />
+	  As a demonstration of what can be accomplished with contemporary LLMs, this paper outlines the high-level design of an AI-first, program-synthesis framework built around a new programming language, Universalis, designed for knowledge workers to read, optimized for our neural computer to execute, and ready to be analyzed and manipulated by an accompanying set of tools. We call the language Universalis in honor of Gottfried Wilhelm Leibniz. Leibniz's centuries-old program of a universal science for coordinating all human knowledge into a systematic whole comprises two parts: (1) a universal notation by use of which any item of information whatsoever can be recorded naturally and systematically, and (2) a means of manipulating the knowledge thus recorded in a computational fashion, to reveal its logical interrelations and consequences.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Michael Gschwind</span> - <a href="detail.cfm?id=3733701"><b>AI: It's All About Inference Now</b></a>
+	  <br />
+	  As the scaling of pretraining is reaching a plateau of diminishing returns, model inference is quickly becoming an important driver for model performance. Today, test-time compute scaling offers a new, exciting avenue to increase model performance beyond what can be achieved with training, and test-time compute techniques cover a fertile area for many more breakthroughs in AI. Innovations using ensemble methods, iterative refinement, repeated sampling, retrieval augmentation, chain-of-thought reasoning, search, and agentic ensembles are already yielding improvements in model quality performance and offer additional opportunities for future growth.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Vijay Janapa Reddi</span> - <a href="detail.cfm?id=3733702"><b>Generative AI at the Edge: Challenges and Opportunities</b></a>
+	  <br />
+	  Generative AI at the edge is the next phase in AI's deployment: from centralized supercomputers to ubiquitous assistants and creators operating alongside humans. The challenges are significant but so are the opportunities for personalization, privacy, and innovation. By tackling the technical hurdles and establishing new frameworks (conceptual and infrastructural), we can ensure this transition is successful and beneficial.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+</body>
+</html>
