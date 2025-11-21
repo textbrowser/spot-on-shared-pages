@@ -1,0 +1,690 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>SRE Is Anti-Transactional - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='System Administration' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3775067" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<!--
+<p style='text-align:center;'>
+<a href='/app/' target='_new'><img src='/app/2021_03-04_lrg.png' with=90 height=120 style='float:right;width:90px;height:120px;' alt='March/April 2021 issue of acmqueue' /></a>
+<b><a href='/app/'>The March/April 2021 issue of acmqueue is out now</a></b>
+<br />
+<br />
+<a href='https://cdn.coverstand.com/3rd_pty/acm/login.html?&btx_i=705849'>Subscribers and ACM Professional members login here</a>
+<br clear=all />
+<hr style='display:block;color:red;margin:5px;' />
+</p>
+-->
+<br />
+
+
+		<h3><a href='/listing.cfm?qc_type=operationsandlife&page_title=Operations%20and%20Life'>Operations and Life</a></h3>
+	
+
+<label>November 10, 2025<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3775067">Volume 23, issue 5 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3773094">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">SRE Is Anti-Transactional</h1> 
+  <h2>An API for interfacing with automaters</h2> 
+  <h3>Thomas A. Limoncelli and Christian Pearce</h3> 
+  <p>A major concern in the SRE movement is automation—that is, moving IT from focusing on transactional work to building systems that do work for us.</p> 
+  <p>There are many competing definitions of SRE. If you ask 10 SRE engineers to define SRE, you'll get 11 definitions. Some will focus on the <i>R</i> (reliability) as the driving force in everything from feature priorities, to budgets, to technology choices. Others use SRE as an umbrella term encompassing everything from application upkeep, cloud engineering, service provisioning, and platform engineering to nearly all aspects of keeping a technology working.</p> 
+  <p>What they all have in common is an imperative to move away from transactional work. It may not be the defining attribute of the SRE domain, but it is an important aspect. Let's drill down into it.</p> 
+  <p>SREs do not like manual work. Give a team of SREs a manual process, and over time they will evolve it from fully manual (people doing work), to automated (software tools that humans use to make progress), to autonomous (systems that identify when work needs to be done, do the work, and alert humans in exceptional situations). The aim is to progress toward eliminating manual work from the system altogether.</p> 
+  <p>SREs consider transactional work to be toil. Toil is work that, while valuable in and of itself, doesn't raise the bar and improve the process for any similar future requests. It is tactical, not strategic. It addresses immediate needs rather than contributing to long-term improvements or strategic goals.</p> 
+  <p>For example, deploying a new software release to a website is a good thing. The new software release has new features that benefit the user, increase profit, or otherwise provide value. In the old days, this process was done manually and would frequently require days or weeks of planning and execution. Then, the next time a new software release arrived, the same amount of work would be required to deploy it. That is <i>toil</i>.</p> 
+  <p>On the other hand, a project that replaces all that manual toil with a CI/CD (continuous integration/continuous delivery or deployment) system such that developers can safely deploy new software releases in a self-service manner is <i>strategic</i>. It not only automates a manual process, thus reducing toil, but also permits the process to be done more frequently (even continuously) in smaller batches without waiting for IT to become available.</p> 
+  <p>SREs gladly do manual work, but only as a necessary step of learning the process so that it can be automated and eventually become autonomous. Toil is acceptable when a task is infrequent or a process is new and ill-defined or experimental in nature. Those are exceptional situations, however.</p> 
+  <p>As the old joke goes, in the future there will be a factory that needs only two employees: one human and one dog. The human's job will be to feed the dog. The dog's job will be to make sure nobody touches the equipment.</p> 
+  <p>Once SREs rule the world, the dog will be automated as well.</p> 
+  <p>&nbsp;</p> 
+  <h3>Transactional Work</h3> 
+  <p>Transactional work usually takes the form of a request that's worked on by an individual until it's completed. Tickets opened with your IT organization are transactional work. Whether you are requesting a replacement mouse or need assistance with some technology that isn't working correctly, the work is transactional. It begins with a request, work is performed, the requester verifies the work is complete, and then, lastly, the ticket is closed.</p> 
+  <p>Transactional work is typically manual and tactical (not strategic). It addresses immediate needs rather than contributing to long-term improvements or strategic goals. It doesn't improve the system, product, or processes in a meaningful way.</p> 
+  <p>Toil scales linearly. If the number of requests increases 10x, the number of people required to complete the work increases 10x. This is unacceptable in today's business environment. Since Ford popularized the automotive assembly line, it has become an expectation that cost should scale sublinearly with growth. That is, if 10 units of work requires 10 people, 100 units of work should require significantly fewer than 100 people.</p> 
+  <p>Toil is reactive and interrupt-driven by nature, which makes planning difficult. A request arrives at an unpredictable time and requires humans to stop whatever they are doing to work on the task. Since people are not available 24x7, the requester must wait. Everyone has experienced the frustration of waiting days for someone to perform a task that takes minutes. </p> 
+  <p>Automation is available 24x7, so there is less waiting.</p> 
+  <p>Toil drains engineers' time and energy, preventing them from focusing on high-impact engineering work like automation, system improvement, or innovative projects. It reduces the overall efficiency and morale of the team, as engineers are bogged down in routine maintenance rather than more meaningful contributions.</p> 
+  <p>Luckily, toil is usually repetitive and, thankfully, repetitive tasks often prove to offer hot opportunities for automation.</p> 
+  <p>&nbsp;</p> 
+  <h3>Automation</h3> 
+  <p>SREs focus on building automation that eliminates the need to do manual work. It's not that they're lazy; they just want to be able to scale.</p> 
+  <p>Give a team of SREs a fully manual task, and over time it will go from fully manual, to automated, to autonomous. The difference between automated and autonomous is the level of automation required: Automated systems are tools that humans use to get a task done. Autonomous systems are triggered when new work arrives and they complete work on their own. With autonomous systems, the humans are there only for exceptions—edge cases that haven't yet been automated, bugs that need to be fixed, or system optimizations.</p> 
+  <p>When work is automated, it can scale super linearly. This is particularly important for Internet-based companies. As Michael O'Dell, chief scientist of the first commercial ISP, frequently said, "The only problem is scaling. All the others inherit from that one."</p> 
+  <p>The analogy we like to make is that SREs aren't the assembly-line workers at an auto manufacturing plant. They're the people who make the robots that make the cars.</p> 
+  <p>A process generally goes through these stages: </p> 
+  <p>1. <b><i>Manual.</i></b> Progress is made by humans doing the work, often typing or clicking, observing what results, and then making decisions about how and when to proceed.</p> 
+  <p>2. <b><i>Automated (sometimes called manual automation).</i></b> A tool performs each step. When a task needs to be done, a human uses a tool (software) to perform that task. A single process might require many steps. SREs tend to write tools that automate those steps. Often, individual steps have bespoke tools, and the process is completed by humans who use the appropriate tool for each step, judging the results, and then deciding when to move forward to the next step.</p> 
+  <p>3. <b><i>Autonomous systems (sometimes called fully automated).</i></b> Software initiates and executes work without human intervention. Humans are there to handle exceptions and improve the system. Once a system is stable, it's mostly concerned with reducing the number of exceptions that require human intervention, addressing any new features and business concerns, and achieving greater efficiency.</p> 
+  <p>An autonomous system is never finished. SREs live in a Sisyphean struggle: As they get closer to perfect automation, a changing world throws new toil at them. If every edge case were handled today, new business needs would appear tomorrow. If the system runs smoothly now, an underlying system will require an upgrade tomorrow.</p> 
+  <p>A good system will always be a victim of its own success, becoming so popular that it exceeds its original design limits and thus requires reengineering to overcome the new bottlenecks this growth exposes. Popularity inspires new use cases, which requires redesigns and refactoring. If the system were designed to handle only green widgets, surely its success would make it attractive to the yellow-widget division. Sadly, while extending it to a new use case sounds easy, it rarely proves to be.</p> 
+  <p>It's financially impractical to automate every conceivable use case. Some use cases are so infrequent or complex that automation can offer little or no return on investment. Automating those cases would be wasteful and considered to be a bad business decision.</p> 
+  <p>Thus, an autonomous system needs a team to maintain it, optimize it, and handle the exceptions. Autonomous systems are never "one and done."</p> 
+  <p>&nbsp;</p> 
+  <h3>Example: Cluster Builds</h3> 
+  <p>Tom was once on a team that was deploying storage clusters. Each cluster was made up of many individual hardware and software components.</p> 
+  <p>Initially, the process was manual, with hundreds of steps, each documented to varying degrees of completeness.</p> 
+  <p>Soon, each phase of the process was automated; one or more tools did most of the work of each phase. It required human judgment, however, to determine whether a phase had been completed correctly or fixes were required. We relied on human judgment to determine when to start each phase. This often required checking calendars or getting a go/no-go decision from other teams.</p> 
+  <p>While this situation was a great improvement over the manual process, it still required considerable human intervention to tell us when to start, what parameters were required in each instance, when to proceed to each new phase, as well as how to handle quality control. Still, it was better than a manual process in that it was more consistent, took less time, and required less cognitive load to complete each task.</p> 
+  <p>The next phase was to help the system become autonomous. Orders for new clusters were no longer presented during status meetings or via tickets. Instead, orders came from a database (imagine an order received via SalesForce). A validation process not only verified the request's parameters, but also sent an email with an approval link to the designated budget controller. Each phase then was kicked off via timetables, verification of completion of preceding steps, and other triggers.</p> 
+  <p>Once the system was stable, we discovered that a typical cluster build still required human intervention at least twice during the multiday process. As we fixed edge cases, improved algorithms, and fine-tuned the system, this was reduced to nearly zero. The system had become data-driven and even had a dashboard that showed our "human intervention" count dropping over time.</p> 
+  <p>This count would still spike upward occasionally. These spikes correlated with new releases of software received from the developers, since each release had a tendency to break our fussy automation. Improving this required us to break out of our silo and work more closely with the developers.</p> 
+  <p>We realized that their release process needed to include verifying that the cluster-deployment system supported the new release. It was a "lightbulb moment" for the product manager when he realized the ability to deploy clusters was as much a part of a new release as the new features we had promised to ship. Maybe this is obvious in hindsight, but the authors have seen this cycle (silo, lightbulb, cooperation) repeat frequently throughout our careers.</p> 
+  <p>It took more than a year to go from fully manual to an autonomous system. Most of the fine-tuning that was required after that was to scale the system both horizontally (efficiently creating larger clusters) and vertically (creating more clusters per month).</p> 
+  <p>The old manual system didn't make anyone happy. Sales recognition (which starts <i>after</i> cluster delivery) was delayed. Customers were unhappy with misconfigurations and other bugs. </p> 
+  <p>The new system was fast and predictable (three days). It had an SLA that allowed the company to tell customers when to expect delivery of the service, and the sales department was alerted that a contract had to be signed three days before the end of the quarter for timely revenue recognition. Best of all, the system was autonomous, meaning orders could be fulfilled even if the SREs were asleep.</p> 
+  <p>&nbsp;</p> 
+  <h3>Example: Mouse and Cable Distribution</h3> 
+  <p>We used to think that one help-desk task that could never possibly be automated had to do with the procurement of small items such as replacement mice and USB cables. A customer would open a ticket requesting (for example) a mouse, whereupon the help-desk person would provide the mouse, assign the cost to the person's department, and so on. How could that get any better?</p> 
+  <p>I was impressed to discover that Google's help desk had actually succeeded in automating that process with a vending machine for physical items. Employees could swipe their badges, take the items they desired, after which their department would be billed. This system eliminated a significant percentage of help-desk visits—meaning the toil was gone. All that was left was a management process that involved ordering new items and monitoring for abuse.</p> 
+  <p>Some industry pundits claim there is a world of "old IT" that is all toil, unfixable, and doomed. We like to believe there is always hope whenever there is sufficient scale and a willingness on the part of management to embrace creativity and innovation.</p> 
+  <p>&nbsp;</p> 
+  <h3>How to Interface with SREs</h3> 
+  <p>Given the SRE distaste for transactional work, what's the best way to interact with an SRE team?</p> 
+  <p>Ideally, transactional requests that are manual in nature (verbal requests, tickets generated by humans, and so on) should be replaced by interactions through software. That is, your team should be able to provide an API to your SREs or request that they provide you with one. An API provides a way for the SRE software to interact with your systems and vice versa. This paves the path to automation.</p> 
+  <p>Sometimes, we get lucky because an API exists. Sometimes, though, the API is obscured. For example, the database or SaaS-based product your team is using might already have an API, but access to it must be enabled, properly secured, with rules of engagement defined.</p> 
+  <p>Usually, however, a new API needs to be created from scratch. This isn't easy. There's no magic button you can press to make an API appear. Creating an API requires the very human process of sitting down, identifying the need and requirements, proposing designs, and allocating resources to build, test, and implement that design. This usually requires software engineering skills, which not every team has available. For example, in our experience human resources departments rarely have software engineers on staff.</p> 
+  <p>Efforts that mesh two teams with different levels of experience with process automation can prove to be frustrating for both teams. The non-SRE team, lacking software-development experience, can be put off by the requirement to work through a detailed process analysis given that the transactional process seems so obvious to them. The SRE team, meanwhile, can often become frustrated by the other team's tolerance of toil and surprised at the lack of disdain for it.</p> 
+  <p>If creating an API is not an option, sometimes a little creativity is all that's required. In one case, Tom discovered that a "mostly autonomous" system was hamstrung by the fact that another team was responsible for allocating ID numbers required by the process. Basically, the process was fully autonomous apart from one "stop the world" moment that required waiting for a human on another team to allocate an ID number. This other team, meanwhile, didn't understand the problems that resulted from this delay. Accordingly, the requests were often ignored for days. No other team made such requests and so they were viewed as "weird" and assumed to be of low priority. In reality, the delays were causing major headaches.</p> 
+  <p>By sitting down and discussing the situation, the teams were able to propose two creative solutions. One was to allocate large batches of ID numbers, reducing the human interaction to just refill the ID pool—something that might happen only a few times each year. The other idea was simply to permit the SRE team to allocate ID numbers with a particular prefix, thus giving them the ability to manage their own allocation process.</p> 
+  <p>Likewise, SRE teams should be willing to create interfaces for others. That could be a traditional network-based API, but often a web-based user-interface or dashboard will suffice. For example, the other team's needs may be satisfied by gaining access to a dashboard in an existing monitoring or business information system. That could be a static webpage that's updated periodically. And while the need to visit a webpage to find answers might smell like unacceptable toil to an SRE, a non-SRE might just as easily view it as a welcome improvement.</p> 
+  <p>In the end, when we can find a way to work together to eliminate the need for tickets or to reduce toil in some other fashion, we all win.</p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>The value of a team is its output. If the team's role is to repeat the same task over and over again, that team's value is going to scale linearly with their effort. But if the team's role is to optimize processes through automation and the reduction of toil, then that team's value will prove to be like compound interest, with growth propelling growth. SREs are happiest when they are in the latter category: creating value that scales.</p> 
+  <p>Systems built by SREs are not fully autonomous on day one. It's iteration over time that leads to fully autonomous, functional, reliable service. This iterative process requires SREs to evaluate how much time and money should be spent to achieve the objective. It is the heart of engineering to find the fastest, cheapest, and safest way to create and maintain a system. </p> 
+  <p>We have seen conflicts between SRE goals and "traditional IT" mindsets. Generally, these stem from the fundamental differences between the SRE mindset of automating wherever possible to eliminate toil and the more immediate focus other teams have on completing certain specific tasks.</p> 
+  <p>Understanding this tension is key to interacting with SRE teams.</p> 
+  <p>&nbsp;</p> 
+  <h4>Related article</h4> 
+  <p> Operations and Life: <br /><b><a href="https://queue.acm.org/detail.cfm?id=2945077">The Small Batches Principle</a></b> <br />Reducing waste, encouraging experimentation, and making everyone happy <br />Thomas A. Limoncelli <br /><a href="https://queue.acm.org/detail.cfm?id=2945077">https://queue.acm.org/detail.cfm?id=2945077</a> </p> 
+  <p>&nbsp;</p> 
+  <p><b>Thomas A. Limoncelli</b> is a senior platform engineer at Stack Overflow Inc. He works from his home in New Jersey. His books include <i>The Practice of Cloud Administration</i> (<a href="https://the-cloud-book.com/">https://the-cloud-book.com</a>), <i>The Practice of System and Network Administration</i> (<a href="https://the-sysadmin-book.com/">https://the-sysadmin-book.com</a>), and <i>Time Management for System Administrators</i>. He is <a href="https://bsky.app/profile/yesthattom.bsky.social">@YesThatTom on BlueSky</a> and blogs at <a href="https://yesthatblog.com/">YesThatBlog.com</a>. He holds a B.A. in computer science from Drew University.</p> 
+  <p><b>Christian Pearce</b> is a platform-engineering manager and a technology leader. He is a manager at Stack Overflow, leading the Infrastructure Platform Team. He focuses on building high-performing teams that focus on cloud infrastructure, developer experience, and building scalable platform solutions. He maintains a personal website at <a href="https://www.christianpearce.com/">https://www.christianpearce.com</a> and is active in the engineering community.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a1c7f924f17d468',t:'MTc2MzY4OTQyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 5</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3773094">ACM Digital Library</a>
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Adam Oliner, Archana Ganapathi, Wei Xu</span> - <a href="detail.cfm?id=2082137"><b>Advances and Challenges in Log Analysis</b></a>
+	  <br />
+	  Computer-system logs provide a glimpse into the states of a running system. Instrumentation occasionally generates short messages that are collected in a system-specific log. The content and format of logs can vary widely from one system to another and even among components within a system. A printer driver might generate messages indicating that it had trouble communicating with the printer, while a Web server might record which pages were requested and when.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Mark Burgess</span> - <a href="detail.cfm?id=1937179"><b>Testable System Administration</b></a>
+	  <br />
+	  The methods of system administration have changed little in the past 20 years. While core IT technologies have improved in a multitude of ways, for many if not most organizations system administration is still based on production-line build logistics (aka provisioning) and reactive incident handling. As we progress into an information age, humans will need to work less like the machines they use and embrace knowledge-based approaches. That means exploiting simple (hands-free) automation that leaves us unencumbered to discover patterns and make decisions.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Christina Lear</span> - <a href="detail.cfm?id=1922541"><b>System Administration Soft Skills</b></a>
+	  <br />
+	  System administration can be both stressful and rewarding. Stress generally comes from outside factors such as conflict between SAs (system administrators) and their colleagues, a lack of resources, a high-interrupt environment, conflicting priorities, and SAs being held responsible for failures outside their control. What can SAs and their managers do to alleviate the stress? There are some well-known interpersonal and time-management techniques that can help, but these can be forgotten in times of crisis or just through force of habit.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Thomas A. Limoncelli</span> - <a href="detail.cfm?id=1921361"><b>A Plea to Software Vendors from Sysadmins - 10 Do&#8217;s and Don&#8217;ts</b></a>
+	  <br />
+	  A friend of mine is a grease monkey: the kind of auto enthusiast who rebuilds engines for fun on a Saturday night. He explained to me that certain brands of automobiles were designed in ways to make the mechanic&#8217;s job easier. Others, however, were designed as if the company had a pact with the aspirin industry to make sure there are plenty of mechanics with headaches. He said those car companies hate mechanics. I understood completely because, as a system administrator, I can tell when software vendors hate me. It shows in their products.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a1c7f8e9f9f43ef',t:'MTc2MzY4OTQyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
