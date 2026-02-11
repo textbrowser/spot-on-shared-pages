@@ -486,10 +486,43 @@ We are redesigning the Queue website.
 </p>
 
 
+ 
+  <h1 class="hidetitle">A Trunk Full of Swords</h1> 
+  <h3>The shiniest tool might cut the deepest.</h3> 
+  <p><b>Dear KV</b>,</p> 
+  <img src="https://spawn-queue.acm.org/cms/asset/f5b3dfe8-5b44-4076-93e0-d99e2df1831d/3786610_fig01.jpg" alt="A Trunk Full of Swords" style="float:right;width:50%;max-width:571px;margin-left:20px;margin-bottom:20px;" /> 
+  <p>I've been asked to mentor a new engineer on our team and it's proving to be quite a challenge. While they are very bright and eager, they also are very excitable and seem to have a thing for reaching for the wrong tool at the wrong time. In particular, they believe that all the problems in our system can be solved by making modifications to low-level software, right down to the operating system and driver level, when many of the problems could be solved by simply making changes to our libraries and user-space programs. I suspect our manager has assigned me to be the new engineer's mentor because this is the exact area in which I work and there are hopes I'll be able to "train them up" to become another "one of those systems people." I'm happy to do so, but how do you get someone like this to slow down and consider what they're doing? I feel like I'm trying to prevent a toddler from knocking over the furniture.</p> 
+  <p align="right" style="text-align:right"><b>Toddled</b></p> 
+  <p>&nbsp;</p> 
+  <p><b>Dear Toddled</b>,</p> 
+  <p>Ah, the lure of low-level systems programming. No data structures, no debuggers—nothing but you and a compiler (or maybe just the assembler) in silent solitude, making the lights blink. Who could deny the allure of telling tall tales at the bar after a hard day of toil conquering single bit flips, corrupted storage blocks, and priority inversions? Huzzah!</p> 
+  <p>Of course, we know this is not at all what programming at the systems level is about. Instead, it involves stumbling around with a dim, smoky torch in a dangerous, dark cave armed with only a stick and hoping not to meet Grendel or the Minotaur.</p> 
+  <p>Smart-and-fast thinkers are good, but slow-and-steady thinkers are great, and the former can become the latter with a little bit of practice.</p> 
+  <p>Since it seems you're the systems guru in your group, or perhaps for your whole company, it really is in your interest to train up a partner-in-systems-crimes to help you with what are surely some difficult problems. But, first, you must teach them to reach for the right tool at the right time.</p> 
+  <p>No systems programmer in their right mind—and there are still a few of us in our right minds—reaches first for a kernel modification. The tools available to study problems are, for the most part, far richer above the user/kernel boundary than below. Also, new ideas are easier to try out in a user-space library or program, where the price of failure is that you crash a single program, instead of waiting 10 minutes for a whole server to reboot. One might think a few experiences like these would be enough to teach your young protégé an important lesson. Not even KV would suggest throwing a chaos monkey at your protégé's test machine to teach them that lesson, but it is tempting.</p> 
+  <p>A more positive way to convey this lesson would be to show them the set of tools they have at their disposal and then ask questions that will lead them to use those tools. Debuggers, profilers, and tracing systems long ago made the tracking of problems in code a much more productive endeavor. When KV was a very young person, he had a boss who required him to run each new program in the debugger first, before ever running it bare. That was an important lesson and one that I encourage many people to start with. </p> 
+  <p>This can now be expanded to include running the program under a profiler first, even if the program is brand new. Storing the output of these runs allows you to track the evolution of code over time and can even prove helpful years later, after a system has been in the field for a while as a baseline for comparison. Giving yourself a way to know when a program started to perform differently will surely be of benefit to you at some point.</p> 
+  <p>If the richness of tooling isn't sufficient to convince your protégé, you can try showing them the commit history and relevant bugs for a piece of operating-system code. Have them summarize a year or two of changes to a NIC (network interface card) driver (the Intel e1000 is hilarious) and then ask them what they have learned from the experience. If they don't come back with, "Kernel programming is hard, and spurious changes are to be avoided," make them review <i>five</i> years of commits instead.</p> 
+  <p>When it comes to your protégé's own code, make sure you force them to document what they've changed, no matter at what level, in lengthy detail in each commit message. "Fixed bug" (something KV wrote about decades ago) is not a commit message. It's a slap in the face to every programmer who reads it, effectively telling them, "Go figure it out yourself." Good commit messages show that the person who wrote them understood both the problem and the solution to the problem. In the fullness of time, it may turn out their take on the problem was incorrect, but at least there will be something to reference that shows what the thought process was.</p> 
+  <p>People, alas, mostly learn from experience, when they learn at all. You will need to figure out the right set of experiences to convince your protégé to choose the right tool for the job, as opposed to whatever they might think would be the coolest. </p> 
+  <p>We both know that any person who works on low-level systems will always say, "The last tool you reach for is the one that can cut you most deeply." A driver or OS modification is more like grabbing the business end of a mace at the bottom of a trunk of swords. It's really best to try the short sword on top of the pile first. </p> 
+  <p align="right" style="text-align:right"><b>KV</b></p> 
+  <p>&nbsp;</p> 
+  <p><b>George V. Neville-Neil</b> works on networking and operating system code for fun and profit. He also teaches courses on various subjects related to programming. His areas of interest are computer security, operating systems, networking, time protocols, and the care and feeding of large codebases. He is the author of <i>The Kollected Kode Vicious</i> and co-author with Marshall Kirk McKusick and Robert N. M. Watson of <i>The Design and Implementation of the FreeBSD Operating System.</i> For nearly 20 years he has been the columnist better known as Kode Vicious. Since 2014 he has been an industrial visitor at the University of Cambridge, where he is involved in several projects relating to computer security. He earned his bachelor's degree in computer science at Northeastern University in Boston, Massachusetts, and is a member of the ACM, the Usenix Association, and IEEE. His software not only runs on Earth, but also has been deployed as part of VxWorks in NASA's missions to Mars. He is an avid bicyclist and traveler who currently lives in New York City.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dceb8fb82024',t:'MTc3MDgxMzA4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
-	<p>Coming soon</p>
-
-
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3786610">ACM Digital Library</a>
+	
+	</p>
+	
 
 
 
@@ -596,5 +629,5 @@ More related articles:
 
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9a6f700fae5541',t:'MTc3MDM3ODY4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dce849e9da9a',t:'MTc3MDgxMzA4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

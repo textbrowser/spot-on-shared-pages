@@ -479,9 +479,372 @@ We are redesigning the Queue website.
 
 
 
-	<p>Coming soon</p>
+  <h1 class="hidetitle">Modeling Version Requirements in Open Source Packaging</h1>
+  <h2>A universal model for understanding and describing requirements</h2>
+  <h3>Josie Anugerah, Caleb Brown, Elitsa Bankova, Eve Martin-Jones, and Nicky Ringland</h3>
+  <p>Open source dependencies – reusable code libraries with an open source license – are employed in almost all software projects. About 96 percent of commercial codebases contain open source software, and 70 to 90 percent of any given software code is open source licensed, according to <a href="https://www.linuxfoundation.org/blog/blog/a-summary-of-census-ii-open-source-software-application-libraries-the-world-depends-on">a recent Linux Foundation report</a>.</p>
+  <p>As open source dependency use has grown, concerns have emerged about whether we can effectively manage the risks of these third-party packages. Malicious packages continue to be published, yet consumption practices lag behind with developers frequently downloading versions known to be malicious. For example, a <a href="https://www.sonatype.com/state-of-the-software-supply-chain">2024 report from Sonatype</a> states that three years after the Log4Shell exposure, 13 percent of current Log4j downloads are of vulnerable versions. Moreover, 80 percent of open source dependencies are left un-upgraded for more than a year, even though 95 percent of them have safer alternatives. These trends raise doubts about whether the tools and mechanisms for managing open source packages are well understood and effectively used.</p>
+  <p>This article focuses on clarifying one fundamental package-management mechanism: requirements. For a given open source dependency in a project, the requirement defines which versions of that dependency are acceptable. While the concept of requirements is the same across packaging ecosystems (such as npm, PyPI, and RubyGems), the syntax used to represent them is not, creating unnecessary confusion. These differences make it seem as though requirements of different ecosystems express different ideas, when in fact they describe the same underlying principles.</p>
+  <p>This confusion limits the development of cross-ecosystem tooling for managing open source packages. Most tools are tied to a single ecosystem, despite multilanguage repositories being common. As a result, tools for problems such as vulnerability management are fragmented, duplicating effort and producing inconsistent results. In theory, one tool could handle dependencies across ecosystems, but few such tools exist.</p>
+  <p>Although there is a de facto standard for version specification (Semantic Versioning 2.0.0, or SemVer 2.0), there is no corresponding standard for specifying requirements. It is infeasible to unify the current requirement specification syntax across systems, but defining what they mean in a rigorous way can help.</p>
+  <p>We propose a universal model of requirement actions. The model does not provide a new syntax for adoption but offers a precise way for ecosystems to define the meaning of their requirement operators. With this shared understanding, we can build more effective tools for managing dependencies.</p>
+  <p>&nbsp;</p>
+  <h3>Definitions</h3>
+  <p>An open source software <i>package</i> is a unit of code distributed for open source consumption. The intention is to save developer resources by reusing code that is already well tested and used. When a package is imported for use within a piece of software, it becomes a <i>dependency</i> of that software. A dependency may, in turn, have dependencies of its own, transitively; these are called the package’s <i>indirect</i> dependencies.</p>
+  <p>A package may be <i>versioned</i> according to <a href="https://semver.org/">SemVer 2.0</a>. For the purpose of this discussion, versions are assumed to be specified strictly by SemVer 2.0. Build metadata and prereleases can be ignored while focusing on the major, minor, and patch numbering scheme without loss of generality for the purposes of the requirements model.</p>
+  <p>A <i>requirement</i> is a constraint placed on a project’s dependency to limit which versions are to be used—for example, to guarantee a feature is available or to avoid known defective versions. The set of <i>allowable versions</i> is determined by applying a requirement to the set of available package versions.</p>
+  <p>The process of <i>dependency resolution</i> chooses an extant version for each package from the set of allowable versions. Each <i>dependency resolution tool</i> (pip, yarn, npm, etc.) is an implementation of dependency resolution. The dependency resolution algorithm differs among tools, but the operations they perform are all related.</p>
+  <p>Open source packaging <i>ecosystems</i> (or <i>systems</i>) such as PyPI, Maven, npm, and others adhere to the broad strokes of SemVer 2.0 when labeling their versions, though the semantics can be difficult to enforce. (What exactly is a “<i>breaking change,”</i> for example? <a href="https://www.hyrumslaw.com/">Hyrum’s law</a> shows that almost any change breaks something.)</p>
+  <p>&nbsp;</p>
+  <h3>The Version Space</h3>
+  <p>The space of all package versions available in a given ecosystem is called the version space. It has a total ordering (with the exception of build parts), as defined by SemVer 2.0. A total ordering means that, given any two versions in the space, one version must be equal to, less than, or greater than the other. This ordering is unrelated to the date on which these versions were published or updated. Version <code>2.0.0</code> may have been published two years ago and <code>1.3.4</code> published today, but <code>1.3.4</code> will always precede <code>2.0.0</code> in the total ordering defined by SemVer 2.0.</p>
+  <p>Ecosystems often introduce quirks beyond SemVer 2.0 such as <a href="https://www.sonatype.com/state-of-the-software-supply-chain">epochs</a>, <a href="https://www.sonatype.com/state-of-the-software-supply-chain">revision parts</a>, and non-ASCII characters. The requirements model proposed here, however, functions as long as versions are totally ordered, regardless of these variations.</p>
+  <p>The version space starts at zero and has no end. There is no version before zero, but there is an infinite possibility of versions after zero.</p>
+  <p>Moreover, there are arbitrarily many possible versions between <code>1.0.0</code> and <code>2.0.0</code>, but there is a strict boundary between major version <code>1</code> and major version <code>2</code> (and <code>3</code> and <code>4,</code> and so on). There are also arbitrarily many versions between minor version <code>1.0</code> and <code>1.1,</code> and so on. In other words, the version space is actually an infinite space of disjoint spaces. Despite this complexity, there is still a total order of versions for each version space, as defined by SemVer 2.0.</p>
+  <p>&nbsp;</p>
+  <h3>The Requirements Model</h3>
+  <p>A <i>requirement</i> is a pattern that specifies a subspace of the version space. The process of requirement resolution can generate arbitrarily complex subspaces of versions, and for some packaging systems the result cannot be expressed in the requirement notation of the ecosystem. For example, resolution might lead to two versions, <code>1.0.0</code> and <code>3.0.0</code>, both satisfying the constraints, even if the underlying language has no syntax for selecting either of two explicit versions.</p>
+  <p>In order to express such situations, we define our own notation that can capture these complex subspaces. We stress we are not proposing a user-facing syntax but a notation that defines the meaning of that syntax and its results.</p>
+  <h4>The model</h4>
+  <p>Our model has an interval notation, using closed and open intervals, which are used to describe which extant versions satisfy the requirements. The total ordering defined by SemVer 2.0 makes the meaning of an interval unambiguous.</p>
+  <p>The traditional form of a square bracket specifies a closed interval, and a parenthesis specifies an open interval. The interval may have one version, such as</p>
+  <p><code>[1.0.0]</code></p>
+  <p>to specify the single version <code>1.0.0</code>; or two versions, as in</p>
+  <p><code>[1.0.0,2.0.0)</code></p>
+  <p>to specify the subspace that starts with version <code>1.0.0</code> and, using SemVer 2.0’s ordering rules, includes every version up to but excluding <code>2.0.0</code>. The ordering of versions is always from low to high, so</p>
+  <p><code>(2.0.0,1.0.0]</code></p>
+  <p>is the empty interval.</p>
+  <p>As an example of how this model can express an existing package’s requirements, the npm notation <code>=1.0.0</code> becomes <code>[1.0.0]</code> in our notation, while in Cargo, that same expression is a synonym for <code>^1.0.0</code> that becomes the interval <code>[1.0.0,2.0.0)</code>.</p>
+  <p>Intervals alone are not sufficient, though, as sometimes the requirement specification itself or the decisions made during requirement resolution can generate more than one interval. We therefore need a way to define a list of intervals, which we can consider informally to be a unioning operation, as in</p>
+  <p><code>[1.0.0] ∪ [2.0.0]</code></p>
+  <p>to specify exactly these two versions and no other. This corresponds to the <code>||</code> operator in npm, or the <code>,</code> (comma) operator in Maven and NuGet, although many other packaging ecosystems have no equivalent.</p>
+  <p>Analogously, we can add the set-like operations of intersection and exclusion, as in</p>
+  <p><code>[1.0.0,3.0.0) ∩ [2.0.0,4.0.0)</code></p>
+  <p>to specify the intersection of two intervals, and</p>
+  <p><code>[1.0.0,2.0.0) - [1.5.0]</code></p>
+  <p>to exclude the version <code>1.5.0</code> from the space of allowed versions with major version <code>1</code>.</p>
+  <p>For completeness, intersection and exclusion operators are not strictly required to specify the version subspaces—intervals with the union operator can express these subspaces without intersection and exclusion—but the operations they provide arise often during requirement resolution, so the shorthand they provide can be convenient.</p>
+  <p>Also, for convenience, we introduce a maximum value for a field, <code>∞</code>, to allow us to convert open intervals to closed ones at the boundary. That is,</p>
+  <p><code>[1.0.0,2.0.0)</code></p>
+  <p>can also be expressed as</p>
+  <p><code>[1.0.0,1.∞.∞]</code></p>
+  <p>(The minimum value of a numeric or prerelease field can always be written as a numeral zero.)</p>
+  <p>As long as there is a total ordering on the versions in a version space, this model is able to express any constraint defined by a requirement from any ecosystem. Table 1 illustrates how various ecosystem-defined operators can be rewritten as intervals and the union between intervals.</p> 
+  <style> td { 	padding:10px; 	margin:0px; 	text-align:center; 	font-family:courier new,monospace; 	font-size:0.7em; } sup.h { 	background-color:#ffff00; 	font-size:0.7em; } </style> 
+  <table style="padding:10px;margin:10px;border-top: 1px solid black;border-bottom: 1px solid black;"> 
+   <caption>
+    TABLE 1: SemVer Taxonomy
+   </caption> 
+   <tbody>
+    <tr> 
+     <th style="background-color:#ccc;">Operator</th> 
+     <th style="background-color:#bbb;">npm</th> 
+     <th style="background-color:#ccc;">Cargo</th> 
+     <th style="background-color:#bbb;">Carthage</th> 
+     <th style="background-color:#ccc;">RubyGems</th> 
+     <th style="background-color:#bbb;">PyPl</th> 
+     <th style="background-color:#ccc;">Maven (2,3)<sup class="h">1</sup></th> 
+     <th style="background-color:#bbb;">NuGet</th> 
+     <th style="background-color:#ccc;">Go</th> 
+     <th style="background-color:#bbb;">Interval Notation</th> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;font-family:sans-serif;">behavior with no op</td> 
+     <td style="background-color:#ddd;"><code>1.0.0</code></td> 
+     <td style="background-color:#eee;"><code>^1.0.0</code><sup class="h">2</sup></td> 
+     <td style="background-color:#ddd;font-family:sans-serif;">illegal</td> 
+     <td style="background-color:#eee;"><code>1.0.0</code></td> 
+     <td style="background-color:#ddd;font-family:sans-serif;">illegal</td> 
+     <td style="background-color:#eee;"><code>*</code><sup class="h">3</sup></td> 
+     <td style="background-color:#ddd;"><code>&gt;=1.0<code></code></code></td> 
+     <td style="background-color:#eee;"><code>&gt;=1.0.0<code></code></code></td> 
+     <td style="background-color:#ddd;font-family:sans-serif;">illegal</td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#ddd;"><code>= ==</code> <sup class="h">4</sup></td> 
+     <td style="background-color:#ccc;"><code>=1.0</code></td> 
+     <td style="background-color:#ddd;"><code>=</code></td> 
+     <td style="background-color:#ccc;"><code>==</code></td> 
+     <td style="background-color:#ddd;"><code>=</code></td> 
+     <td style="background-color:#ccc;"><code>==</code></td> 
+     <td style="background-color:#ddd;"><code>[1.0]</code><sup class="h">3</sup></td> 
+     <td style="background-color:#ccc;"><code>[1.0]</code><sup class="h">5</sup></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>[1.0]</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;"><code>&gt;</code></td> 
+     <td style="background-color:#ddd;"><code>&gt;</code></td> 
+     <td style="background-color:#eee;"><code>&gt;</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;"><code>&gt;</code></td> 
+     <td style="background-color:#ddd;"><code>&gt;</code></td> 
+     <td style="background-color:#eee;"><code>(1.0,)</code></td> 
+     <td style="background-color:#ddd;"><code>(1.0,)</code></td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>(1.0,∞.∞.∞]</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#ddd;"><code>&gt;=</code></td> 
+     <td style="background-color:#ccc;"><code>&gt;=</code></td> 
+     <td style="background-color:#ddd;"><code>&gt;=</code></td> 
+     <td style="background-color:#ccc;"><code>&gt;=</code></td> 
+     <td style="background-color:#ddd;"><code>&gt;=</code></td> 
+     <td style="background-color:#ccc;"><code>&gt;=</code></td> 
+     <td style="background-color:#ddd;"><code>1.0</code><sup class="h">3</sup></td> 
+     <td style="background-color:#ccc;"><code>1.0</code><sup class="h">6</sup></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>(1.0,∞.∞.∞]</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;"><code>&lt;</code></td> 
+     <td style="background-color:#ddd;"><code>&lt;</code></td> 
+     <td style="background-color:#eee;"><code>&lt;</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;"><code>&lt;</code></td> 
+     <td style="background-color:#ddd;"><code>&lt;</code></td> 
+     <td style="background-color:#eee;"><code>(,1.0)</code></td> 
+     <td style="background-color:#ddd;"><code>(,1.0)</code></td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>(0,1.0)</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#ddd;"><code>&lt;=</code></td> 
+     <td style="background-color:#ccc;"><code>&lt;=</code></td> 
+     <td style="background-color:#ddd;"><code>&lt;=</code></td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>&lt;=</code></td> 
+     <td style="background-color:#ccc;"><code>&lt;=</code></td> 
+     <td style="background-color:#ddd;"><code>(,1.0]</code></td> 
+     <td style="background-color:#ccc;"><code>(,1.0]</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>[0.0,1.0)</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;"><code>!=</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;"><code>!=</code></td> 
+     <td style="background-color:#ddd;"><code>!=</code></td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>[0.0,∞.∞.∞] - [1.0]</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#ddd;"><code>^</code></td> 
+     <td style="background-color:#ccc;"><code>^</code></td> 
+     <td style="background-color:#ddd;"><code>^</code><sup class="h">2</sup></td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>[1.0,2.0)</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;"><code>~</code></td> 
+     <td style="background-color:#ddd;"><code>~ ~&gt;</code><sup class="h">7</sup></td> 
+     <td style="background-color:#eee;"><code>~</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>[1.0,2.0)</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#ddd;"><code>~&gt;</code></td> 
+     <td style="background-color:#ccc;"><sup class="h">7</sup></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>~&gt;</code></td> 
+     <td style="background-color:#ddd;"><code>~&gt;</code></td> 
+     <td style="background-color:#ccc;"><code>~=</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>[1.0,1.1)</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;font-family:sans-serif;">wildcards</td> 
+     <td style="background-color:#ddd;"><code>* x X</code></td> 
+     <td style="background-color:#eee;"><code>* x X</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>*</code></td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>*</code></td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>[1.0,2.0)</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#ddd;"><code>OR</code></td> 
+     <td style="background-color:#ccc;"><code>||</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>,</code></td> 
+     <td style="background-color:#ccc;"><code>,</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#ccc;"><code>[]∪[]</code></td> 
+    </tr> 
+    <tr> 
+     <td style="background-color:#eee;"><code>AND</code></td> 
+     <td style="background-color:#ddd;font-family:sans-serif;">space</td> 
+     <td style="background-color:#eee;"><code>,</code></td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;"><code>,</code><sup class="h">8</sup></td> 
+     <td style="background-color:#ddd;"><code>,</code></td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;">&nbsp;</td> 
+     <td style="background-color:#eee;">&nbsp;</td> 
+     <td style="background-color:#ddd;"><code>[]∩[]</code></td> 
+    </tr> 
+   </tbody>
+  </table> 
+  <div style="font-size:0.8em;"> 
+   <p>1. In Maven, all ranges are open/closed lists written as <code>[1,2]</code> or <code>[1,2)</code>, etc., with multiple such ranges appearing as comma-separated or lists. Maven has no operators <code>&gt;</code>, <code>&gt;=</code>, etc. but uses this range syntax exclusively. Maven versions 2 and 3 use different version syntax but the same constraint syntax. </p> 
+   <p>2. If a constraint in Cargo has no operator, <code>^</code> is assumed. </p> 
+   <p>3. In Maven, <code>1.0</code> means <code>1.0</code> is a soft constraint. The syntax <code>[1.0]</code> means exactly <code>1.0</code> and is called a hard constraint. </p> 
+   <p>4. The <code>=</code> operator is necessary in Carthage and PyPI (it is <code>==</code> in both) as well as Cargo, where a missing operator defaults to <code>^</code>. </p> 
+   <p>5. In NuGet, <code>==1.0</code> matches prereleases but <code>==[1.0]</code> does not.</p> 
+   <p>6. In NuGet, a bare version in a constraint means <code>&gt;=</code>. </p> 
+   <p>7. The npm documentation defines <code>~</code>, but the code accepts <code>~&gt;</code>, and there are existing examples of that form. For npm these operators are considered to have the same meaning, which means it differs from RubyGems in its interpretation of <code>~&gt;</code>.</p> 
+   <p>8. RubyGems has no comma operator, but the constraints are stored as an array of constraints that are <code>AND</code>ed together. When that array is printed by Ruby, the comma appears as a separator.</p> 
+   <hr noshade="" size="1" /> 
+  </div> 
+  <p>&nbsp;</p> 
+  <h4>Which versions are included in an interval?</h4> 
+  <p>There are a few real-world considerations to address. First, the interval notation does not define the order of versions; that is done by the ecosystems themselves, usually the same as SemVer 2.0 or an expansion thereof. For example, whether <code>[1.0.0, 1.1.0)</code> includes the prerelease versions such as <code>1.0.0-pre</code> is defined by the rules of the system, not by the model we are providing. To put it another way, the precise set of tagged versions included in the interval <code>[1.0.0,1.∞.∞]</code> depends on the ecosystem in which it is being evaluated. Similarly, the zeroth version is also defined by the ecosystem. While we’ve been focusing on the major, minor, patch notation from SemVer 2.0, this model works for any versioning syntax that has a total ordering of versions.</p>
+  <p>Furthermore, the requirement alone does not yield a concrete set of allowable versions. The requirement must be applied to some ordered set of available versions to produce a concrete set of allowable versions. For example, we cannot know which versions are allowable from the requirement <code>[1.0.0, 1.1.0)</code> alone. We need to know what the set of available versions are (say, <code>1.0.0, 1.0.1, 2.0.0</code>) so we can use the requirement to constrain this set to the allowable versions (<code>1.0.0, 1.0.1</code>).</p>
+  <p>In some systems, requirements apply to the set of all versions of a package. In others, they apply to more specific sets that take into account variables such as the operating system and architecture. For example, in PyPI, a package might offer different sets of versions for Windows x86-64 and macOS ARM64. Depending on the machine and architecture where the dependency resolution tool is running, the relevant requirement is applied to one set of versions or the other. The requirements model itself works the same way, regardless of how the available version set is defined.</p>
+  <p>&nbsp;</p>
+  <h4>This model allows ecosystems to precisely define their requirement syntax</h4>
+  <p>Each ecosystem has its own requirement syntax. Ecosystems such as npm use algebraic operators (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>), while in Go, the operator is implicit, so a requirement <code>1.0.0</code> means <code>[1.0.0,∞.∞.∞)</code>.</p>
+  <p>In fact, the same notation in different ecosystems might have different meanings. The requirement <code>1.0.0</code> might mean exactly the version <code>1.0.0</code> (npm, RubyGems), it might mean any version with major version <code>1</code> (Cargo), or it might mean any version with major version at least <code>1</code> (NuGet).</p>
+  <p>Instead of proposing another syntax for adoption, the intention for our model is to provide the ability to define such ecosystem-specific syntaxes precisely. Table 2 demonstrates how the model expresses each of the meanings of <code>1.0.0</code> across various ecosystems.</p>
+  <p>Table 2. Meanings of the Requirement 1.0.0</p>
+  <table border="1" cellpadding="5" cellspacing="0">
+   <thead valign="bottom">
+    <tr>
+     <th align="center">npm, RubyGems</th>
+     <th align="center">Cargo</th>
+     <th align="center">Maven</th>
+     <th align="center">NuGet, Go</th>
+     <th align="center">Carthage, PyPl</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td align="center"><code>[1.0.0]</code></td>
+     <td align="center"><code>[1.0.0, 2.0.0)</code></td>
+     <td align="center"><code>[0,∞.∞.∞)</code></td>
+     <td align="center"><code>[1.0.0, ∞.∞.∞)</code></td>
+     <td align="center">Illegal</td>
+    </tr>
+   </tbody>
+  </table>
+  <p>In practice, the meaning of a system’s requirement operators is not usually well defined through its documentation. Descriptions tend to be informal and do not completely define the behavior. Describing the behavior of a system’s requirement operators in terms of the model might help in having a shared understanding of what requirements are, what various operators do, and how dependency resolution is implemented.</p>
+  <p>&nbsp;</p>
+  <h4>The model is complete</h4>
+  <p>The model is able to express an arbitrarily complex subspace of the version space. Most ecosystem-specific syntaxes are not complete in this sense. This matters because during the implementation of requirement resolution, intermediate results may be arbitrarily complex.</p>
+  <p>To illustrate, suppose we want to debug a diamond dependency conflict as depicted in Figure 1. The version <code>0</code> denotes the zeroth version.</p>
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3786612/assets/html/3786612_fig01.jpg" alt="Figure 1. 
+An example of the diamond dependency problem
+" />
+  <br />Figure 1. An example of the diamond dependency problem
+  <p>Many ecosystems are unable to express the resolved requirement on package <code>B</code>. In a resolution algorithm that tries to satisfy all the requirements imposed on a package, the resulting requirement for package <code>B</code> is</p>
+  <p><code>[3.0.0, ∞.∞.∞) ∩ [0, 2.0.0)</code></p>
+  <p>Many ecosystems lack the intersection operator. While some are able to express the empty set, this simplication doesn’t provide the specific requirements necessary to understand the conflict.</p>
+  <p>Consider also the exclusion of a version from a range. Suppose we want to allow any version <code>[1.0.0, 2.0.0)</code> but want to exclude <code>1.0.2</code>, as it is vulnerable. This can be written using the exclusion operator as</p>
+  <p><code>[1.0.0, 2.0.0) - 1.0.2</code></p>
+  <p>This representation adapts to a changing set of available versions. Given the set of available versions <code>1.0.0</code>, <code>1.0.2</code>, <code>1.0.3</code>, <code>1.0.4</code>, however, this could also be written as</p>
+  <p><code>[1.0.0] ∪ [1.0.3, 2.0.0)</code></p>
+  <p>The latter representation is useful for debugging a version upgrade or a requirements conflict at a given point in time. If new versions are published, however, this representation may become out of date. If version <code>1.0.1</code> were to be published, this requirement would need to be updated to be</p>
+  <p><code>[1.0.0, 1.0.1] ∪ [1.0.3, 2.0.0)</code></p>
+  <p>These representations are not possible in many ecosystems. Some don’t have an exclusion operator, others don’t have a union operator, and still others don’t have either operator. Details about which ecosystems support the intersection, union, and exclusion operators can be found in Table 1.</p>
+  <p>These examples are deliberately small and involve few requirements, but real-world requirements are far more complicated. A popular package may be imported from many places within a dependency graph, and a project typically doesn’t have one or two but tens, hundreds, or even thousands of dependencies. Vulnerability remediation tools (such as <a href="https://osv.dev/blog/posts/announcing-guided-remediation-in-osv-scanner/">OSV-Scanner’s guided remediation feature</a>) often require the ability to describe complex resolved requirements.</p>
+  <p>As such, it is important to be able to reason about requirements precisely at scale, and the requirements model provides a rigorous way to do so.</p>
+  <p>&nbsp;</p>
+  <h4>The model provides an abstraction for requirements</h4>
+  <p>Existing requirement syntaxes are coupled to the system’s resolution algorithm and to the dependency management strategy of the user. This needn’t be the case.</p>
+  <p>For example, consider the Go ecosystem (Table 3). Since the <code>go</code> tool always selects the lowest available version (<a href="https://research.swtch.com/vgo-mvs">Minimum Version Selection</a>), the requirement syntax is kept deliberately simple (and therefore limited) to match. Users manage dependencies mainly by reviewing new versions and updating their pinned requirements. In Go, the requirement syntax, dependency resolver, and update process all work as a single, connected system.</p>
+  <p>Table 3. Tools and dependency management strategies in Go and npm</p>
+  <table border="1" cellpadding="5" cellspacing="0">
+   <thead valign="bottom">
+    <tr>
+     <th align="center">System</th>
+     <th align="center">Go</th>
+     <th align="center">npm</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td align="left">Language</td>
+     <td align="left">Go</td>
+     <td align="left">JavaScript</td>
+    </tr>
+    <tr>
+     <td align="left">Default resolution tool</td>
+     <td align="left"><p>• go</p><p>• Chooses the lowest allowable version</p></td>
+     <td align="left"><p>• npm</p><p>• Chooses the highest allowable version</p></td>
+    </tr>
+    <tr>
+     <td align="left">Default requirement operator</td>
+     <td align="left"><p>• Plain version.</p><p>• No other operator is defined.</p><p>• e.g., <code>1.0.0</code> means <code>[1.0.0, ∞,∞,∞)</code></p></td>
+     <td align="left"><p>• Caret operator <code>^</code></p><p>• e.g., <code>^1.0.1</code> means <code>[1.0.1, 2.0.0)</code></p></td>
+    </tr>
+    <tr>
+     <td align="left">Default dependency management strategy</td>
+     <td align="left"><p>• Pin and upgrade</p><p>• Regularly upgrade the plain version requirement as vulnerabilities/new features are reported</p></td>
+     <td align="left"><p>• Re-resolve and lock</p><p>• Use a lock file and regularly run <code>npm upgrade</code> to update packages in the lock file as vulnerabilities/new features are reported</p><p>• Requirements stay the same, lock file changes</p></td>
+    </tr>
+   </tbody>
+  </table>
+  <p>Dependency management works differently in npm, where dependencies are typically managed by using the caret (<code>^</code>) operator for most requirements. If no other flags are specified, <code>npm install &lt;package&gt;</code> defaults to the <code>^</code> requirement. (See <a href="https://blog.deps.dev/after-the-advisory/">https://blog.deps.dev/after-the-advisory/</a> for an analysis of how prevalent the <code>^</code> operator is in npm and how this affects vulnerability management.) The caret operator, combined with <code>npm install/upgrade</code> selecting the highest available version, lets users upgrade without introducing breaking changes. By contrast, the Go ecosystem has no equivalent caret operator, because rather than selecting the highest available versions, it selects the minimum available version.</p>
+  <p>The requirement syntax, dependency resolution tools and dependency management strategies are all coupled together, but there is no reason why they need to be. Versioning is, for the most part, system-agnostic, because systems adhere to the broad strokes of SemVer 2.0. Requirement syntaxes and dependency-resolution tools, however, have grown to be system-specific. Each system is solving the same problem, and we should be able to choose a dependency management strategy independent of the language.</p>
+  <p>The requirements model proposed here provides a fully expressive abstraction between the requirement syntax and anything that depends on it, so requirements can be decoupled from things such as dependency management strategies and dependency resolution tools.</p>
+  <p>In fact, because all ecosystem-specific requirements can be translated into the model, it should be possible to write a single tool for resolution or vulnerability remediation instead of having ecosystem-specific implementations. This prevents work from being repeated to develop tooling and provides consistent results. Thinking this way, we can apply learnings or strategies from one ecosystem to another and have more cross-ecosystem collaboration. To this end, we have published an open source library at <a href="https://github.com/google/deps.dev">https://github.com/google/deps.dev</a> that parses requirements from eight ecosystems and translates them into the model.</p>
+  <p>&nbsp;</p>
+  <h3>Dependency Resolution</h3>
+  <p>Requirement resolution doesn’t yet leave us with a dependency resolution result where a version is chosen for each dependency package.</p>
+  <p>As mentioned earlier, <i>dependency resolution</i> chooses an extant version for each package from the allowable versions provided by applying requirements to the set of available versions. Dependency resolution must consider all versions of all dependencies, direct and indirect. (Despite common misconception, lock files of dependencies aren’t used in the resolution process.) This makes resolution more complex than it may first appear.</p>
+  <p>For example, the diamond dependency problem is solved in different ways across different systems. Systems such as npm allow for multiple versions to be installed so there are enough packages to satisfy every requirement. Other systems such as PyPI require only one package to be installed, so the requirements conflict will result in an error.</p>
+  <p>Dependency resolution involves more than requirements, however. Even if requirements stay the same, the live version set changes as new versions are published, old ones are removed, or patches are released—so results can differ day to day. Resolution also accounts for factors like architecture-specific dependencies and system cache. The inputs to dependency resolution are many, making the result difficult to pin down. (For more details on these, see the <i>acmqueue</i> article, “<a href="https://queue.acm.org/detail.cfm?id=3723000">The Surprise of Multiple Dependency Graphs</a>.”)</p>
+  <p>We should aim for clarity in the dependency resolution process, and dependency resolution relies on requirements. The model is a step toward precisely defining requirements and how they function, but there is much more to dependency resolution than requirements.</p>
+  <p>&nbsp;</p>
+  <h3>Conclusion</h3>
+  <p>Requirements define which versions of packages we import into our projects. While SemVer 2.0 provides a shared understanding of version specification, no such equivalent specification exists for requirements. The tooling for managing dependencies is system-specific, as is the requirement syntax. This leads to duplicate work and inconsistent results.</p>
+  <p>Starting with a shared syntax might once have been possible, but there are now many different accepted notations for specifying requirements. While not proposing that all ecosystems adopt the syntax of the requirements model, we offer this model to provide an abstraction. All ecosystem-specific requirements can be translated into the model as well as being defined within it, and dependency-resolution tools need not be specific to a requirement syntax.</p>
+  <p>With this model, we hope to see further cross-ecosystem collaboration, better documentation, shared tooling, and, ultimately, better dependency management.</p>
+  <p>&nbsp;</p>
+  <h3>Acknowledgment</h3>
+  <p>The authors thank Rob Pike for his guidance and conceptual contributions, which were instrumental in shaping the ideas presented here.</p>
+  <p>&nbsp;</p>
+  <p><b>Josie Anugerah</b> worked on the <a href="https://deps.dev/">deps.dev</a> project as a senior software engineer, where she led the NuGet, container image, and artifact hash efforts.</p>
+  <p><b>Caleb Brown</b> is a Senior Software Engineer at Google, working on the Google Open Source Security Team. He is the maintainer of the OpenSSF Malicious Packages project and also contributes to the <a href="https://deps.dev/">deps.dev</a> project.</p>
+  <p><b>Elitsa Bankova</b> is a software engineer on the Google Open Source Security Team. She works on securing the supply chain and on the <a href="https://deps.dev/">deps.dev</a> project, analysing open source software dependencies.</p>
+  <p><b>Eve Martin-Jones</b> is a software engineer at Google, working on the Google Open Source Security Team. In particular, she works on the <a href="https://deps.dev/">deps.dev</a> project, analyzing open source Learning, the Girls’ Programming Network, and Tech Inclusion before venturing into the realms of cybersecurity, where she works on the <a href="https://deps.dev/">deps.dev</a> project, analysing open source software dependencies.</p>
+  <p><b>Dr. Nicky Ringland</b> is a Product Manager for the Google Open Source Security team, with a background in computational linguistics, entrepreneurship, and education. She founded Grok Learning, the Girls’ Programming Network, and Tech Inclusion before venturing into the realms of cybersecurity, where she works on the <a href="https://deps.dev/">deps.dev</a> project, analysing open source software dependencies.</p>
+  <p>&nbsp;</p>
+  <p>Copyright © 2025 held by the owner/author(s). Publication rights licensed to ACM.</p>
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9cb446882c62519b&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dcd8fc5b8be2',t:'MTc3MDgxMzA4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
-
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3786612">ACM Digital Library</a>
+	
+	</p>
+	
 
 
 
@@ -602,5 +965,5 @@ More related articles:
 
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9a6f5d3fdc5541',t:'MTc3MDM3ODY4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dcd58b35da9a',t:'MTc3MDgxMzA4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

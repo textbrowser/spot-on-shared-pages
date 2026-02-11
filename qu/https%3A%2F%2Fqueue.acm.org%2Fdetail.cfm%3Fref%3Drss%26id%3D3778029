@@ -482,9 +482,622 @@ We are redesigning the Queue website.
 
 
 
-	<p>Coming soon</p>
+  <h1 class="hidetitle">What Every Experimenter Must Know <br />About Randomization</h1>
+  <h3>Terence Kelly</h3>
+  <p>This column is for experimenters and the programmers and statisticians who support them. Randomized controlled experiments offer gold-standard insight into cause and effect—the knowledge that informs our most important decisions. Unfortunately, randomization in such experiments is often botched. Randomization errors silently invalidate the interpretation of experimental results, turning a fruitful quest for knowledge into a waste of time and money—or, worse, a wellspring of misinformation. Fortunately, these fatal errors are easy to spot and fix. So whether you’re a webmaster using A/B testing to increase engagement, a medical researcher evaluating vaccines, a factory manager exploring productivity improvements, or a scientist seeking the laws that govern nature or human affairs, read on.</p>
+  <p>&nbsp;</p>
+  <h3>Intervention, Control, Assignment, and Causality</h3>
+  <p>Sometimes our understanding of the world relies on passive observation alone, but we learn more by coupling observation with active intervention. Astronomers can’t insert a new planet into the solar system to see what difference it will make, but most scientists, engineers, and pragmatic decision makers can perform experiments that impose changes and measure their effects. For example, a poultry farmer who wonders whether screen time will fatten turkeys can expose his flock to television and weigh the consequences.</p>
+  <p>Statistical lore<sup>27</sup> reminds us, however, that exposing <i>all</i> test subjects to an intervention veils its effects:</p> 
+  <div style="margin-left:24pt;">
+   <p>After a proud surgeon delivered a lecture on a procedure he’d performed many times, a medical student asked whether half of eligible patients had been set aside as a baseline for comparison. “Of course not!” thundered the surgeon. “That would have doomed half of the patients to death!” Stunned silence filled the lecture hall, and the student softly asked, “Which half?”</p>
+  </div> 
+  <p>So our farmer should compare a <i>treatment group</i> of turkeys that watches TV with a <i>control group</i> that doesn’t.</p> 
+  <div style="float:right;width:20%;max-width:400;padding:0px 0px 10px 10px;margin:0px 0px 10px 10px;"> 
+   <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3778029/assets/html/3778029_fig01.jpg" /> 
+   <p><a href="https://xkcd.com/2576/" style="font-size:0.7em;"><nobr>https://xkcd.com/2576/</nobr></a></p> 
+  </div> 
+  <p>How should birds be assigned to these groups? If they choose for themselves in free-range fashion, misleading correlations may confound the results. For example, if gluttonous turkeys also happen to crave TV, we would end up crediting screen time for weight gain that would have happened without it. Similar correlations can arise if the farmer partitions the flock. If he unconsciously assigns friendly turkeys to treatment and surly ones to control, and if friendly birds happen to have bigger appetites, we would reach the same false conclusion as with free-range assignment. The right approach is to randomly assign test subjects to treatment and control groups, which makes biased assignment and confounding correlations unlikely.</p>
+  <p>Apart from eliminating bias, random assignment serves another crucial yet underappreciated purpose: Correct random assignment confers validity upon statistical tests that draw conclusions from experimental results,<sup>7</sup><sup>,</sup><sup>12</sup><sup>,</sup><sup>20</sup> specifically <i>significance tests</i> of the <i>null hypothesis</i> that the treatment had no effect. Significance tests are meaningful and valid if <b>AND ONLY IF</b> assignment was properly randomized.</p>
+  <p>Correct methodology brings enormous rewards. Randomized controlled experiments are universally recognized as the gold standard for proving cause and effect.<sup>26</sup> That’s why top medical journals permit claims of causality only when supported by randomized controlled trials<sup>10</sup> and require that randomization be documented meticulously.<sup>14</sup></p> 
+  <div style="float:right;width:30%;max-width:400;padding:20px;margin:0px 0px 20px 20px;background-color:#dddddd;">
+    “The simple precaution of randomisation will suffice to guarantee the validity of the test of significance, by which the result of the experiment is to be judged.” 
+   <br /> – <i>R.A. Fisher</i><sup>6</sup> 
+  </div> 
+  <style>
+.equation mi {
+font-style:italic;
+}
+</style> 
+  <p>Bogus methodology invites disaster. Botched randomization can overturn the verdicts of significance tests, which then slander effective treatments and tout worthless ones, downplay real dangers and frighten us with bugbears. Unfortunately, randomization errors are widespread in practice. Busy experimenters will be glad to learn, however, that these errors are easy to spot and that right ways are <i>easier</i> than wrong. In particular, ditching pseudo-random number generators avoids fatal pitfalls while streamlining methodology.</p>
+  <p>We’ll begin by reviewing the fundamental requirements of random assignment in relation to significance tests. For clarity and brevity, we’ll illustrate general principles in the context of a very simple experimental design, but the same principles apply to more sophisticated designs.<sup>12</sup><sup>,</sup><sup>16</sup><sup>,</sup><sup>17</sup><sup>,</sup><sup>20</sup> Then we’ll consider widespread bad practices and see precisely why they negate the validity of crucial statistical tests. We’ll learn how to obtain randomness for random assignment and how to persuade colleagues mired in bad habits to change their ways. Example code simplifies several chores surrounding random assignment.</p>
+  <p>&nbsp;</p>
+  <h3>Randomization and Significance</h3>
+  <p>Our poultry farmer can randomly assign <i>N</i> test turkeys to treatment and control groups in one of several ways. <i>Unrestricted</i> randomization flips a fair coin to assign each turkey, which guarantees completely unbiased assignment but might yield unbalanced groups. <i>Urn</i> randomization guarantees balanced assignment with a slightly elevated risk of confounding correlations:<sup>22</sup> The farmer places <i>N/</i>2 green and <i>N/</i>2 red jelly beans in an urn. For each turkey, he stirs the jelly beans, removes one chosen at random, notes its color, and eats it. Green assigns the turkey to TV treatment and red consigns it to control. (“Urn” is how statisticians say “bowl” when discussing randomization, or perhaps just to signal that they’re statisticians.) Both randomization procedures choose an assignment <i>equiprobably</i>, i.e., with uniform probability, from well-defined spaces of permissible assignments: Unrestricted randomization chooses from all possible assignments; urn randomization chooses from all balanced assignments.</p>
+  <p>How much randomness or <i>entropy</i> is required for assignment? The basic unit of entropy is the bit. One bit of entropy is what we (hope to) obtain from a fair coin flip or some other physical source of independent and unbiased random bits. The absolute bare minimum amount of entropy required for equiprobable choice is the base-2 logarithm of the number of permissible assignments. Unrestricted randomization picks one of 2<i><sup>N</sup></i> assignments, so it requires log<sub>2</sub>(2<i><sup>N</sup></i>) = <i>N</i> bits of entropy—one bit per bird. Urn randomization chooses a balanced assignment, the number of which is given by the binomial coefficient, “<i>N</i> choose <i>N/</i>2”:</p>
+  <div class="display-formula" style="margin:0px;">
+   <div class="equation" role="math" style="margin:0px;">
+    <div class="inner" style="margin:0px;">
+     <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="No alternative text available">
+      <mrow>
+       <mi>
+        C
+       </mi>
+       <mrow>
+        <mo stretchy="false">
+         (
+        </mo>
+        <mi>
+         N
+        </mi>
+        <mo>
+         ,
+        </mo>
+        <mi>
+         N
+        </mi>
+        <mo stretchy="false">
+         /
+        </mo>
+        <mn>
+         2
+        </mn>
+        <mo stretchy="false">
+         )
+        </mo>
+       </mrow>
+       <mo>
+        =
+       </mo>
+       <mrow>
+        <mo fence="true" stretchy="true" minsize="2">
+         (
+        </mo>
+        <mfrac linethickness="0.0pt">
+         <mi>
+          N
+         </mi>
+         <mrow>
+          <mi>
+           N
+          </mi>
+          <mo stretchy="false">
+           /
+          </mo>
+          <mn>
+           2
+          </mn>
+         </mrow>
+        </mfrac>
+        <mo fence="true" stretchy="true" minsize="2">
+         )
+        </mo>
+       </mrow>
+       <mo>
+        =
+       </mo>
+       <mfrac>
+        <mrow>
+         <mi>
+          N
+         </mi>
+         <mo>
+          !
+         </mo>
+        </mrow>
+        <mrow>
+         <mo stretchy="false">
+          (
+         </mo>
+         <mi>
+          N
+         </mi>
+         <mo stretchy="false">
+          /
+         </mo>
+         <mn>
+          2
+         </mn>
+         <mo stretchy="false">
+          )
+         </mo>
+         <mo>
+          !
+         </mo>
+         <mo>
+          ×
+         </mo>
+         <mo stretchy="false">
+          (
+         </mo>
+         <mi>
+          N
+         </mi>
+         <mo stretchy="false">
+          /
+         </mo>
+         <mn>
+          2
+         </mn>
+         <mo stretchy="false">
+          )
+         </mo>
+         <mo>
+          !
+         </mo>
+        </mrow>
+       </mfrac>
+      </mrow>
+     </math>
+    </div>
+   </div>
+  </div>
+  <p>For example, there are <i>C</i>(300, 150) ≈ 9.38 × 10<sup>88</sup> ways to urn-randomize 300 turkeys. Choosing one with uniform probability requires at least log<sub>2</sub>(<i>C</i>(300, 150)) ≈ 295.56 bits of entropy—slightly less than the 300 bits needed for unrestricted randomization, because unbalanced assignments are banned.</p>
+  <p>Random assignment does not require a computer. Physical coins or urns are reasonable options sanctioned by many statisticians today, for the same reasons that casinos and lotteries continue to use dice, roulette wheels, and other mechanical contraptions: They are simple, transparent, and easy to build, maintain, and audit. If used with care, however, computers can correctly perform random assignment faster and more flexibly.</p>
+  <p>Computerized random assignment should follow the simple and obvious pipeline depicted in figure 1: An unbiased random assignment algorithm feasts on an all-you-can-eat stream of true-random bits and chooses equiprobably from the space of permissible assignments. Later we’ll say more about obtaining true-random bits. For now, note that the RDSEED CPU instruction provides NIST-certified crypto-grade true-random bits at torrential rates<sup>8</sup><sup>,</sup><sup>9</sup> and is widely available on both servers and consumer-grade computers; popular compilers expose it as an intrinsic function.<sup>25</sup></p> <!--
+<img src="https://dl.acm.org/3778029_fig02.jpg" alt="Figure 1. Computerized random assignment" />
+--> 
+  <table style="border:1px solid black;padding:10px;margin:10px;"> 
+   <tbody>
+    <tr> 
+     <td align="center">true-random bit stream</td>
+     <td> </td>
+     <td align="center" style="font-size:2em;">→</td>
+     <td> </td>
+     <td align="center">random assignment algorithm</td>
+     <td> </td>
+     <td align="center" style="font-size:2em;">→</td>
+     <td> </td>
+     <td align="center">equiprobable assignment</td>
+     <td> </td>
+    </tr> 
+   </tbody>
+  </table> 
+  <br />Figure 1. Computerized random assignment 
+  <p>The random assignment algorithm in figure 1 must be tailored to the experiment design. For unrestricted randomization, the assignment algorithm uses random bits as coin flips. For urn randomization, the assignment algorithm might randomly permute a list of test subjects and then assign the top half of the shuffled list to treatment and the bottom half to control. Unbiased shuffling is a subtle art, and bad advice from seemingly authoritative sources is abundant, but correct algorithms and implementations are available.<sup>11</sup> This column’s example code includes a straightforward urn randomizer. Equiprobable assignment isn’t about arcane esoterica or obsessive-compulsive perfectionism; it’s a matter of ordinary diligence in satisfying necessary requirements.</p>
+  <p>A crucial correctness criterion, <i>ex ante fairness</i>, is easy to state but elusive in the wild: There must be a moment in time, before entropy is supplied, when all permissible assignments are equally likely. If no such moment exists, the assignment procedure is not correct. Ex ante fairness is merely a restatement, in the context of random assignment, of requirements familiar in other situations. All tickets in a raffle, for example, must have the same chance of winning before the final drawing—otherwise the raffle is crooked. Later we’ll see that many assignment procedures used in practice fail this common-sense test.</p>
+  <p>There is no good scientific or statistical reason to deviate from equiprobable assignment. There are several compelling reasons to get it right, but we can’t survey them all, so we’ll drill down on an important motive that methodology experts have emphasized for a century: The best statistical significance tests of experimental results demand equiprobable random assignment.</p>
+  <p>&nbsp;</p>
+  <h3>Randomization Tests</h3>
+  <p>Experimental results include measurements of test subjects. Our poultry farmer, for example, records how much weight each turkey has piled on by the end of his TV experiment. The first question to ask is whether measured differences between the treatment group and the control group are due to chance alone rather than the treatment. In other words, we must test the null hypothesis that the treatment had no effect. We do this by (i) defining a function that summarizes inter-group differences as a single number; and (ii) using the function in a <i>randomization test</i>—a special significance test designed for randomized controlled experiments—to determine whether the difference between groups is so extreme that the null hypothesis is implausible. Experimental design monographs statsplain randomization tests in a dialect forbidding to the uninitiated,<sup>12</sup><sup>,</sup><sup>20</sup> but the basics are intuitive when stated in plain language.</p> 
+  <div style="float:right;width:30%;max-width:400;padding:20px;margin:0px 0px 20px 20px;background-color:#dddddd;">
+    “Every experiment may be said to exist only in order to give the facts a chance of disproving the null hypothesis.” 
+   <br /> – <i>R.A. Fisher</i><sup>6</sup> 
+  </div> 
+  <p>For (i), some analysts instinctively reach for the familiar “F statistic,” which considers both inter-group differences and intra-group variability.<sup>17</sup> Randomization tests, however, allow complete freedom in defining a scalar-valued function to quantify inter-group differences.<sup>12</sup><sup>,</sup><sup>20</sup> Let <i>S</i>(<i>a</i>, <i>r</i>) denote such a function, where <i>a</i> describes an assignment of test subjects to treatment vs. control groups and <i>r</i> encodes experimental results. Larger <i>S</i> values indicate greater differences between the groups.</p>
+  <p>In our turkey experiment, <i>a</i> could be an <i>N</i>-long vector of Booleans indicating birds assigned to the treatment group and <i>r</i> a vector of per-bird weight gains. Our farmer might define <i>S</i> to be the absolute difference between the two groups’ weight-gain totals:</p>
+  <p></p>
+  <div class="display-formula" style="margin:0px;">
+   <div class="equation" role="math" style="margin:0px;">
+    <div class="inner" style="margin:0px;">
+     <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="No alternative text available">
+      <mrow>
+       <mrow>
+        <mi>
+         S
+        </mi>
+        <mrow>
+         <mo stretchy="false">
+          (
+         </mo>
+         <mi>
+          a
+         </mi>
+         <mo>
+          ,
+         </mo>
+         <mi>
+          r
+         </mi>
+         <mo stretchy="false">
+          )
+         </mo>
+        </mrow>
+        <mo>
+         =
+        </mo>
+        <mo stretchy="false">
+         |
+        </mo>
+       </mrow>
+       <munderover>
+        <mo>
+         ∑
+        </mo>
+        <mrow>
+         <mi>
+          i
+         </mi>
+         <mo>
+          =
+         </mo>
+         <mn>
+          1
+         </mn>
+        </mrow>
+        <mi>
+         N
+        </mi>
+       </munderover>
+       <msub>
+        <mi>
+         a
+        </mi>
+        <mi>
+         i
+        </mi>
+       </msub>
+       <msub>
+        <mi>
+         r
+        </mi>
+        <mi>
+         i
+        </mi>
+       </msub>
+       <mo>
+        -
+       </mo>
+       <munderover>
+        <mo>
+         ∑
+        </mo>
+        <mrow>
+         <mi>
+          i
+         </mi>
+         <mo>
+          =
+         </mo>
+         <mn>
+          1
+         </mn>
+        </mrow>
+        <mi>
+         N
+        </mi>
+       </munderover>
+       <mrow>
+        <mo stretchy="false">
+         (
+        </mo>
+        <mn>
+         1
+        </mn>
+        <mo>
+         -
+        </mo>
+        <msub>
+         <mi>
+          a
+         </mi>
+         <mi>
+          i
+         </mi>
+        </msub>
+        <mo stretchy="false">
+         )
+        </mo>
+       </mrow>
+       <msub>
+        <mi>
+         r
+        </mi>
+        <mi>
+         i
+        </mi>
+       </msub>
+       <mrow>
+        <mo stretchy="false">
+         |
+        </mo>
+        <mo>
+         =
+        </mo>
+        <mo stretchy="false">
+         |
+        </mo>
+       </mrow> 
+       <mfrac linethickness="0.0pt"> 
+        <mrow> 
+         <mi mathvariant="normal">
+          <span style="font-style:normal;"> treatment group total weight gain </span>
+         </mi> 
+        </mrow> 
+       </mfrac> 
+       <mo>
+        -
+       </mo> 
+       <mfrac linethickness="0.0pt"> 
+        <mrow> 
+         <mi mathvariant="normal">
+          <span style="font-style:normal;"> control group total weight gain </span>
+         </mi> 
+        </mrow> 
+       </mfrac> 
+       <mrow>
+        <mo stretchy="false">
+         |
+        </mo>
+       </mrow>
+      </mrow>
+     </math>
+    </div>
+   </div>
+  </div>
+  <p>For (ii), a randomization test tailored to an experiment’s assignment protocol computes a <i>p-value</i>, the probability that chance alone accounts for differences between the treatment and control groups. The lower the p-value, the less plausible the null hypothesis.</p>
+  <p>Randomization tests compute p-values in an intuitive way. The null hypothesis holds that the treatment had no effect, exactly as if all test subjects had arrived on day one of the experiment with their final results stamped on their foreheads.<sup>20</sup> In our notation, the null hypothesis holds that the random choice of an assignment <i>a</i> had no influence on results <i>r</i>. Difference measure <i>S</i> varies with <i>a</i> but not with <i>r</i>, because <i>r</i> is a fixed constant under the null hypothesis. By choosing an assignment equiprobably from the set of all permissible assignments, we chose the corresponding <i>S</i> value equiprobably. A randomization test therefore considers the <i>S</i> values corresponding to all permissible assignments, and computes the p-value as the fraction of these <i>S</i> values that are at least as extreme as the <i>S</i> value obtained from the experiment’s actual assignment. Formally,</p>
+  <p></p>
+  <div class="display-formula" style="margin:0px;">
+   <div class="equation" role="math" style="margin:0px;">
+    <div class="inner" style="margin:0px;">
+     <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="No alternative text available">
+      <mi>
+       p
+      </mi><mo>
+       =
+      </mo><mfrac>
+       <mrow>
+        <msubsup>
+         <mo>
+          ∑
+         </mo>
+         <mrow>
+          <mi>
+           a
+          </mi>
+          <mo>
+           ∈
+          </mo>
+          <mi mathvariant="normal">
+           A
+          </mi>
+         </mrow>
+         <mo>
+          &nbsp;
+         </mo>
+        </msubsup>
+        <mi>
+         I
+        </mi>
+        <mo stretchy="false">
+         (
+        </mo>
+        <mi>
+         S
+        </mi>
+        <mo stretchy="false">
+         (
+        </mo>
+        <mi>
+         a
+        </mi>
+        <mo>
+         ,
+        </mo>
+        <mi>
+         r
+        </mi>
+        <mo stretchy="false">
+         )
+        </mo>
+        <mo>
+         ≥
+        </mo>
+        <mi>
+         S
+        </mi>
+        <mo stretchy="false">
+         (
+        </mo>
+        <msup>
+         <mi>
+          a
+         </mi>
+         <mo>
+          ∗
+         </mo>
+        </msup>
+        <mo>
+         ,
+        </mo>
+        <mi>
+         r
+        </mi>
+        <mo stretchy="false">
+         )
+        </mo>
+        <mo stretchy="false">
+         )
+        </mo>
+       </mrow>
+       <mrow>
+        <mo>
+         |
+        </mo>
+        <mi>
+         A
+        </mi>
+        <mo>
+         |
+        </mo>
+       </mrow>
+      </mfrac><mo>
+       =
+      </mo> <mfrac> 
+       <mrow> 
+        <mi mathvariant="normal">
+         <span style="font-style:normal;"> #assignments with extreme differences </span>
+        </mi> 
+       </mrow> 
+       <mrow> 
+        <mi mathvariant="normal">
+         <span style="font-style:normal;"> total #permissible assignments </span>
+        </mi> 
+       </mrow> 
+      </mfrac> 
+     </math>
+    </div>
+   </div>
+  </div>
+  <p>where <i>A</i> is the set of permissible assignments, |<i>A</i>| is the size of this set, <i>a</i><sup>*</sup> is the actual assignment of test subjects, and <i>I</i> is the indicator function, which returns 1 if its argument is true and zero otherwise.</p>
+  <p>Unlike many statistical tests, randomization tests do not rely on dubious or untestable assumptions; indeed, they are assumption-free.<sup>20</sup> One prominent mid-century statistician deemed them “obviously logically sound.”<sup>28</sup></p>
+  <p>The p-value formula makes it clear why random assignment must be equiprobable: All permissible assignments are given equal weight in computing the p-value. If the actual assignment was generated by a biased randomization procedure with non-uniform assignment probabilities, the computed p-value is nonsense.</p>
+  <p>The p-value formula also makes it clear that the <i>provenance</i> of the assignment used in the experiment matters: The p-value formula sums over the entire set of all permissible assignments, <i>A</i>. To know <i>A</i>, the randomization test must know what randomization protocol was actually used in the experiment. As we saw earlier, unrestricted randomization and urn randomization entail different sets of permissible assignments: |<i>A</i>|= 2<i><sup>N</sup></i> for the former and |<i>A</i>|=<i>C</i>(<i>N</i>,<i>N/</i>2) for the latter. Using one randomization rule for assignment and the other for the p-value computation yields a meaningless p-value.</p>
+  <p>More generally, any discrepancy between the set of permissible assignments actually used for random assignment and the set used to compute the p-value, or any deviation from equiprobability in the choice of an assignment from this set, invalidates the randomization test p-value. The test will, of course, always spit out a number, but that number is meaningless if randomization was bungled. Sadly, it often is.</p>
+  <p>&nbsp;</p>
+  <h3><i>Anna Karenina</i> Assignment</h3> 
+  <div style="float:right;width:30%;max-width:400;padding:20px;margin:0px 0px 20px 20px;background-color:#dddddd;">
+    “It is possible, and indeed it is all too frequent, for an experiment to be so conducted that ... [it] cannot be said, strictly, to be capable of proving anything.” 
+   <br /> – <i>R.A. Fisher</i><sup>6</sup> 
+  </div> 
+  <p>“All happy families are alike,” writes Tolstoy; “each unhappy family is unhappy in its own way.” Likewise with random assignment. All prudent experimenters use the moral equivalent of figure 1; each careless experimenter screws up in his own way.</p>
+  <p>The most brazen malpractices employ no entropy at all. For example, assignment fails the ex ante fairness test if it employs a “random-looking” but non-random digit sequence such as π. The outcome is a foregone conclusion, completely devoid of uncertainty, no matter how random the sequence might appear. For valid significance tests, the provenance of the assignment matters. Assignment determined by a digit sequence that <i>appears</i> random won’t do; the sequence must actually <i>be</i> random. R.A. Fisher, the father of randomized controlled experiments, emphasized this fundamental fact a century ago.<sup>5</sup><sup>,</sup><sup>6</sup> Fisher and his successors would concede that non-random assignment might successfully eliminate confounding correlations. It utterly fails, however, to enable valid statistical analyses of experimental results.</p>
+  <p>Lazy or misguided experimenters sometimes employ “quasirandom” assignment based on ancillary data such as test subjects’ birthdays or identification numbers. Thoughtful methodologists will have none of this. “Quasirandom resembles quasipregnant, in that they both elude definition.”<sup>22</sup></p>
+  <p>The most insidious show-stopper problems arise when the true-random bit stream of figure 1 is replaced by a pseudo-random number generator (PRNG), yielding the gratuitous undersimplification depicted in figure 2.</p> <!--
+<img src="https://dl.acm.org/3778029_fig03.jpg" alt="Figure 2. Pseudo-random assignment" />
+--> 
+  <table style="border:1px solid black;padding:10px;margin:10px;"> 
+   <tbody>
+    <tr> 
+     <td align="center">true-random fixed-length seed</td>
+     <td> </td>
+     <td align="center" style="font-size:2em;">→</td>
+     <td> </td>
+     <td align="center">pseudo-random number generator</td>
+     <td> </td>
+     <td align="center" style="font-size:2em;">→</td>
+     <td> </td>
+     <td align="center">pseudo-random bit stream</td>
+     <td> </td>
+     <td align="center" style="font-size:2em;">→</td>
+     <td> </td>
+     <td align="center">random assignment algorithm</td>
+     <td> </td>
+     <td align="center" style="font-size:2em;">→</td>
+     <td> </td>
+     <td align="center">non-equiprobable assignment</td>
+     <td> </td>
+    </tr> 
+   </tbody>
+  </table> 
+  <br />Figure 2. Pseudo-random assignment 
+  <p>The problem that gets plenty of attention is “bad” PRNGs, whose output isn’t very random-looking or whose period is short. Connoisseurs of pseudo-randomness point out, correctly, that poor PRNGs have been ruining scientific endeavors for decades: “If all scientific papers whose results are in doubt because of [inferior PRNGs] were to disappear from library shelves, there would be a gap on each shelf about as big as your fist.”<sup>18</sup> For random assignment in controlled experiments, however, low-quality PRNGs are a side show that distracts attention from far more serious problems inherent in PRNG-based assignment.</p> 
+  <div style="float:right;width:30%;max-width:400;padding:20px;margin:0px 0px 20px 20px;background-color:#dddddd;">
+    “Whatsoever a man soweth, that shall he also reap.” 
+   <br /> – <i>Galatians 6:7</i> 
+  </div> 
+  <p>One is that PRNGs are prone to misuse. Experimenters who don’t bother to properly seed a PRNG, for example, get a pseudo-random bit stream containing little or no randomness. A PRNG that falls back on a hard-wired default seed consumes no entropy and therefore emits none; its output is no more random than the digits of &amp;pi. Popular statistical software packages and commercial randomization services seed their PRNGs with facile hacks such as process ID or time-of-day; such seeds contain too little entropy to support equiprobable assignment. Recall that unrestricted random assignment of <i>N</i> test subjects requires <i>N</i> bits of entropy and balanced assignment via urn randomization requires log<sub>2</sub>(<i>C</i>(<i>N</i>,<i>N/</i>2)) bits of entropy.</p>
+  <p>Even if dutifully seeded to the hilt with true-random bits, conventional PRNGs throttle the entropy that influences assignment. The size of a PRNG seed is typically much too small for equiprobable random assignment, even for modest <i>N</i>. Earlier we saw that randomizing 300 subjects requires far more entropy than will fit through most PRNG seed interfaces. If <i>N</i> = 300, even a 256-bit seed arbitrarily precludes all but an unknown, haphazardly selected, non-random, and infinitesimally small fraction of permissible assignments. This introduces enormous bias into the assignment process and makes total nonsense of the p-value computed by a randomization test.</p>
+  <p>What if <i>N</i> is so small that the number of permissible assignments, |<i>A</i>|, is smaller than the number of PRNG seeds (2<i><sup>B</sup></i> for a <i>B</i>-bit seed)? Assignment can’t be equiprobable if |<i>A</i>| does not evenly divide 2<sup>B</sup>, which doesn’t happen in practice for balanced assignment. If you’re skeptical, try to find realistic values of <i>N</i> and <i>B</i> such that <i>C</i>(<i>N</i>,<i>N/</i>2) evenly divides 2<sup>B</sup>.</p>
+  <p>By far the biggest problem gets near-zero attention: PRNG-based random assignment inherently and inevitably <i>guarantees</i> that assignments are <i>not</i> chosen equiprobably. To understand why, view PRNG-based assignment as an opaque machine that maps a seed to an assignment, as shown in figure 3. Think of a PRNG seed as a ball that the machine pseudo-randomly tosses at bins representing permissible assignments. Now imagine that the machine flings every possible seed. The resulting distribution of balls into bins will be far from uniform: Some bins end up with more balls than others, and some bins end up empty—even, perhaps surprisingly, when the number of balls is considerably larger than the number of bins. Choosing a PRNG seed with uniform probability means choosing an <i>assignment</i> according to the highly non-uniform distribution of balls across bins.</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3778029/assets/html/3778029_fig04.jpg" alt="Figure 3. 
+Tossing balls into bins
+" />
+  <br />Figure 3. Tossing balls into bins 
+  <p>In summary, elementary counting arguments and the balls-into-bins perspective show that PRNG-based assignment inevitably creates enormous deviations from equiprobability, thereby invalidating the randomization tests that indicate whether experimental results were statistically significant. Randomized controlled experiments should always use the straightforward approach of figure 1, feeding true-random bits directly into an unbiased random assignment algorithm. <b><i>
+     <underline>
+      Never use a PRNG for random assignment
+     </underline></i></b>.</p>
+  <p>&nbsp;</p>
+  <h3>Consider the Source</h3>
+  <p>Where do we get true-random bits? The easiest entropy source is the aforementioned CPU instruction, which is likely built in to several computers that you own. RDSEED extracts entropy from thermal noise.<sup>8</sup><sup>,</sup><sup>9</sup><sup>,</sup><sup>25</sup> In seconds it can generate enough true-random bits for random assignment in the largest controlled experiments. Randomizing thousands or millions of test subjects requires a few dozen random bits per subject. Recording these random bits to facilitate repeatability is no more difficult than recording a PRNG seed and is the least of an experimenter’s bookkeeping burdens.</p>
+  <p>To roll your own weak entropy source, use physical phenomena that are neither predictable nor controllable in the context of your application. Deterministic physical systems such as roulette wheels sometimes meet these criteria and are widely used for serious purposes, where money is at stake. Beware, however, that determinism can be exposed with a modicum of effort. A Stanford professor, for example, has built a machine that gives a fair-looking coin flip that always lands heads up.<sup>3</sup> So-called “chaotic” physical systems are technically deterministic but much more difficult to predict or control because they are very sensitive to minor perturbations. Content delivery network Cloudflare extracts random bits for security-sensitive purposes from the chaotic dynamics of lava lamps and double pendulums.<sup>21</sup></p>
+  <p>For a strong entropy source, use a truly random physical phenomenon such as radioactive decay. The most diligent true-random number generators have long employed Geiger counters and radioactive material;<sup>19</sup><sup>,</sup><sup>29</sup> Cloudflare uses uranium.<sup>23</sup> Every academic, industrial, and governmental research organization that conducts randomized controlled experiments could easily afford to establish an “Office of Random Bits” to serve local needs. The requisite know-how and kit are commonly found in high school physics labs.</p>
+  <p>As a final belt-and-suspenders precaution, combine two or more unrelated and independent true-random bit streams via bitwise XOR. If a particular bit of one of the input streams is truly random, the corresponding bit of the output stream will also be truly random.</p>
+  <p>&nbsp;</p>
+  <h3>Newton’s First Law</h3>
+  <p>Serious experimental work is usually done by teams of domain experts, statisticians, and programmers. If I have convinced you that controlled experiments require proper randomization, and if randomization in your neighborhood isn’t yet proper, how do you persuade your colleagues to change?</p>
+  <p>First, keep in mind that your teammates, no matter how highly educated, are as human as anyone else. They have blind spots. They’re prone to inertia and stubbornness; some cling to bad habits with the steadfast defiance of a man who smokes through his tracheotomy. And they can react badly when informed that they’ve been screwing up something important, as Semmelweis learned the hard way.<sup>24</sup></p>
+  <p>One approach to selling proper randomization is to skip the awkward retrospective on past mistakes and instead emphasize the superior convenience of sound practices. Figure 1 is simpler than figure 2. Both require high-quality true-random bits, which nowadays are readily available in abundance, but only figure 1 puts those bits to good use. The approach of figure 1 is easy and, most importantly, it places a crucial aspect of your methodology beyond reproach. If you’re in charge of your team’s random-assignment software, you could even make the change unilaterally, with little fanfare—“nothing to see here, just a wee tiny software upgrade.” Nobody will ever complain. There are absolutely no scientific or statistical reasons to avoid scrupulously correct, strictly equiprobable random assignment.</p>
+  <p>An alternative approach is to encourage a thoughtful conversation about methodology among all stakeholders. If your current random assignment method is not equiprobable, invite your colleagues to articulate the advantages of haphazardly selecting an assignment with non-uniform probability. Everybody knows about the disastrous consequences of biased <i>sampling</i>;<sup>30</sup> why is biased assignment any better? If your team doesn’t use randomization tests to evaluate the statistical significance of experimental results, ask for a justification from first principles of the tests that are used. Don’t be surprised to hear farfetched assumptions, otherworldly models, and weak excuses. Forcing surreal hogwash to be spoken aloud can be the first step toward reform, especially if the rationalizations offered are among those already debunked by experts. See, for example, Sections 6.2 and 6.3 of Rosenberger and Lachin<sup>20</sup> and page 1051 of Neter et al.<sup>17</sup></p>
+  <p>Persuading colleagues to change their ways is a slow business, requiring patience and tact. But sound methodology is worth the effort. It determines whether experiments yield valid insights into causality, versus misinformation masquerading as science.</p>
+  <p>&nbsp;</p>
+  <h3>Drilling Deeper</h3>
+  <p>Modern texts present randomization tests in greater generality<sup>20</sup> and explain them in terms of the philosophy of science.<sup>12</sup> They don’t explain how to generate all permissible assignments for urn randomization, as needed to compute p-values, but Knuth does.<sup>13</sup> Bentley surveys random sampling algorithms<sup>1</sup> and a previous Drill Bits column covers unbiased random shufflers,<sup>11</sup> both of which can be used for random assignment. Munroe uses significance tests to link green jelly beans to acne.<sup>15</sup></p>
+  <p>Deliberate and statistically principled random assignment in controlled experiments is a remarkably recent invention. R.A. Fisher, working with pragmatic agronomists striving to increase the bounty of England’s harvests, spelled out the basics less than a century ago.<sup>5</sup><sup>,</sup><sup>6</sup> Fisher’s pioneering work is still worth reading, though his views on other topics have not worn well: He doubted that smoking is harmful and, like many early statisticians, got mixed up in the pseudo-scientific misanthropy of eugenics.<sup>2</sup><sup>,</sup><sup>4</sup></p>
+  <h4>Bits</h4>
+  <p>Grab the example code tarball at <a href="https://queue.acm.orgdownloads/2025/Drill_Bits_16_example_code.tar.gz">https://queue.acm.orgdownloads/2025/Drill_Bits_16_example_code.tar.gz</a>. You get an RDSEED driver, a program to merge files full of true-random bits, instructions on how to perform random assignment, answers to selected Drills, and a few other stocking stuffers.</p>
+  <p>&nbsp;</p> 
+  <h4>Drills</h4>
+  <p>The exercises below emphasize thinking rather than coding, but there’s plenty of useful work for programmers to do. One valuable contribution they can make is digging into the guts of random assignment software to find and fix bugs.</p>
+  <p>1. Does random assignment require fresh-minted entropy, or may we use “canned” and/or “recycled” randomness (e.g., from an old-fashioned table of random numbers)? Does it matter if others have used the same random numbers for unrelated purposes?</p> 
+  <div style="float:right;width:25%;max-width:250px;padding:10px;margin:10px;"> 
+   <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3778029/assets/html/3778029_fig05.jpg" style="width:100%;max-width:250px" /> 
+   <br /> 
+  </div> 
+  <p>2. Is random assignment the only situation where provenance matters? Imagine that the police have caught you in the act of printing fake currency. At trial you argue that your $20 bills aren’t counterfeit because they’re indistinguishable from bills printed by the government. Does the court care where cash comes from?</p>
+  <p>3. How do the counting arguments and the balls-into-bins analysis of PRNG-based random assignment change if a cryptographically secure PRNG is used?</p>
+  <p>4. Meditate on the sheer perversity of unrestricted randomization using the apparatus of figure 2.</p>
+  <p>5. Modify the R statistical software platform to ingest random bits from a file. For a precedent, check out the “<code>--random-source</code>” option of the GNU <code>shuf</code> utility.</p>
+  <p>6. Does non-equiprobable randomization undermine the validity of statistical significance tests other than randomization tests?</p>
+  <p>7. Is it possible to construct a simple device that makes random consequences of radioactive decay visible to the naked eye?</p>
+  <p>8. Study the many snafus that have plagued true-random number generators, including recent examples such as CVE-2025-62626.</p>
+  <p>9. Unrestricted randomization can place all test subjects into one group. How should experimenters avoid this possibility? Must randomization tests change?</p>
+  <p>10. The p-value formula of a randomization test iterates over the set of permissible assignments, <i>A</i>, which can be enormous. Parallelize the p-value computation. What’s the largest <i>N</i> you can handle with $20 of rented computer time?</p>
+  <p>11. If |<i>A</i>| is so huge that even parallel computation of p-values is infeasible, must we abandon the randomization test and fall back on some other significance test? (Hint: How do statisticians handle populations too large for a full census?)</p> 
+  <p>12. How many randomized controlled trials informed the 1960s conclusion that smoking causes lung cancer?</p> 
+  <div style="float:right;width:25%;max-width:250px;padding:10px;margin:10px;"> 
+   <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3778029/assets/html/3778029_fig06.jpg" style="width:100%;max-width:250px" /> 
+   <br /> 
+  </div> 
+  <p>13. The turkeys in our farmer’s treatment group learned from TV of their impending holiday fate. They stormed the Capitol, demanding that Thanksgiving be abolished. Will the President pardon them?</p>
+  <br /> 
+  <p>&nbsp;</p>
+  <h3>Acknowledgments</h3>
+  <p>Jon Bentley, Yan Chen, John Dilley, Alan Karp, Kevin O’Malley, Rob Schreiber, Yin Wang, and Charlotte Zhuang offered feedback on early drafts. Bentley helped with brainstorming before writing began, and O’Malley and Dilley reviewed the example code. Yekai Pan wrote some of the example code and used AI to generate the turkey cartoons. Linguistics consultant David Kelly provided guidance on a point of diction.</p>
+  <p>&nbsp;</p>
+  <h3>References</h3>
+  <p>1. Bentley, J. and Floyd, B. Programming Pearls: A Sample of Brilliance. <i>Communications of the ACM</i> 30, 9 (Sept. 1987), 754–757; <a href="https://dl.acm.org/doi/pdf/10.1145/30401.315746">https://dl.acm.org/doi/pdf/10.1145/30401.315746</a>.</p>
+  <p>2. Black, E. <i>War Against the Weak: Eugenics and America’s Campaign to Create a Master Race</i>. Four Walls Eight Windows, 2003.</p>
+  <p>3. Diaconis, P., Holmes, S., and Montgomery, R. Dynamical bias in the coin toss. <i>SIAM Rev.</i> 49, 2 (2007), 211–235; <a href="https://drive.google.com/file/d/13EB5xfJV1wpdELI1i7jFOY-qNndB9uFz/">https://drive.google.com/file/d/13EB5xfJV1wpdELI1i7jFOY-qNndB9uFz/</a>.</p>
+  <p>4. Ronald Fisher (Wikipedia), Oct. 2025; <a href="https://en.wikipedia.org/wiki/Ronald_Fisher">https://en.wikipedia.org/wiki/Ronald_Fisher</a>.</p>
+  <p>5. Fisher, R. The arrangement of field experiments. <i>J. of the Ministry of Agriculture of Great Britain</i> 33 (1926), 503–513; <a href="https://repository.rothamsted.ac.uk/item/8v61q/the-arrangement-of-field-experiments">https://repository.rothamsted.ac.uk/item/8v61q/the-arrangement-of-field-experiments</a> See the discussion of “ABBAABBA” on page 508.</p>
+  <p>6. Fisher, R.<i>The Design of Experiments, second ed.</i> Oliver and Boyd, 1937; <a href="https://gwern.net/doc/statistics/decision/1937-fisher-thedesignofexperiments.pdf">https://gwern.net/doc/statistics/decision/1937-fisher-thedesignofexperiments.pdf</a> See Chapter II Sections 7–10 and pages 38–39.</p>
+  <p>7. Food and Drug Administration, Guidance for Industry: E9 Statistical Principles for Clinical Trials, Sept. 1998; <a href="https://www.fda.gov/media/71336/download">https://www.fda.gov/media/71336/download</a> See section 2.3.2 on page 12.</p>
+  <p>8. Hamburg, M., Kocher, P., and Marson, M. E. Analysis of Intel’s Ivy Bridge Digital Random Number Generator, Mar. 2012; <a href="https://www.rambus.com/wp-content/uploads/2015/08/Intel_TRNG_Report_20120312.pdf">https://www.rambus.com/wp-content/uploads/2015/08/Intel_TRNG_Report_20120312.pdf</a>.</p>
+  <p>9. Intel Digital Random Number Generator (DRNG) Software Implementation Guide, Sept. 2025. Revision 2.2; <a href="https://www.intel.com/content/www/us/en/content-details/864722/intel-digital-random-number-generator-software-implementation-guide.html">https://www.intel.com/content/www/us/en/content-details/864722/intel-digital-random-number-generator-software-implementation-guide.html</a>.</p>
+  <p>10. Instructions for Authors, Journal of the American Medical Association, Oct. 2025; <a href="https://jamanetwork.com/journals/jama/pages/instructions-for-authors#SecEQUATORReportingGuidelines">https://jamanetwork.com/journals/jama/pages/instructions-for-authors#SecEQUATORReportingGuidelines</a>.</p>
+  <p>11. Kelly, T. Zero tolerance for bias. <i>ACM Queue</i> 22, 2, (March/April 2024), 19–38; <a href="https://dl.acm.org/doi/pdf/10.1145/3664645">https://dl.acm.org/doi/pdf/10.1145/3664645</a>.</p>
+  <p>12. Kempthorne, O. and Hinkelmann, K. <i>Design and Analysis of Experiments</i>, second ed., vol. 1. Wiley, 2008.</p>
+  <p>13. Knuth, D. E. <i>The Art of Computer Programming, Volume 4A: Combinatorial Algorithms, Part 1</i>. Addison-Wesley, 2011.</p>
+  <p>14. Randomised trials in <i>The Lancet</i>: formatting guidelines, Oct. 2025; <a href="https://www.thelancet.com/pb-assets/Lancet/authors/RCTguidelines-1753449053253.pdf">https://www.thelancet.com/pb-assets/Lancet/authors/RCTguidelines-1753449053253.pdf</a>.</p>
+  <p>15. Munroe, R. Significant, xkcd, Nov. 2025; <a href="https://xkcd.com/882/">https://xkcd.com/882/</a>.</p>
+  <p>16. National Institute of Standards and Technology (NIST). Randomized block designs, (Oct. 2025); <a href="https://www.itl.nist.gov/div898/handbook/pri/section3/pri332.htm">https://www.itl.nist.gov/div898/handbook/pri/section3/pri332.htm</a>.</p>
+  <p>17. Neter, J., Kutner, M. H., Nachtsheim, C. J., and Wasserman, W. <i>Applied Linear Statistical Models</i>. fourth ed., McGraw-Hill, 1996.</p>
+  <p>18. Press, W., Teukolsky, S., Vetterling, W., and Flanery, B. <i>Numerical Recipes: The Art of Scientific Computing</i>, third ed., Cambridge University Press, 2007. PDF available at <a href="https://numerical.recipes/book.html">https://numerical.recipes/book.html</a> See page 342.</p>
+  <p>19. Research Randomizer (commercial service), Oct. 2025; <a href="https://www.randomizer.org/about/">https://www.randomizer.org/about/</a> Recommends true-random bits from radioactivity where required.</p>
+  <p>20. Rosenberger, W. F. and Lachin, J. M. <i>Randomization in Clinical Trials</i>, second ed., Wiley, 2016.</p>
+  <p>21. Rubin, C. D., Valenta, L., and Meunier, T. Harnessing chaos in Cloudflare offices, Mar. 2024; <a href="https://blog.cloudflare.com/harnessing-office-chaos/">https://blog.cloudflare.com/harnessing-office-chaos/</a>.</p>
+  <p>22. Schulz, K. F. and Grimes, D. A. Generation of allocation sequences in randomised trials: chance, not choice. <i>The Lancet: Epidemiology Series</i> 359, (Feb. 2002), 515–519; <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(02)07683-3/abstract">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(02)07683-3/abstract</a>.</p>
+  <p>23. Schwab, K. The Hardest Working Office Design In America Encrypts Your Data–With Lava Lamps, Aug. 2017; <a href="https://www.fastcompany.com/90137157/the-hardest-working-office-design-in-america-encrypts-your-data-with-lava-lamps">https://www.fastcompany.com/90137157/the-hardest-working-office-design-in-america-encrypts-your-data-with-lava-lamps</a>.</p>
+  <p>24. Ignaz Semmelweis (Wikipedia), Nov. 2025; <a href="https://en.wikipedia.org/wiki/Ignaz_Semmelweis">https://en.wikipedia.org/wiki/Ignaz_Semmelweis</a>.</p>
+  <p>25. Stallman, R. M. and The GCC Developer Community.<i>Using the GNU Compiler Collection</i>, Oct. 2025. For GCC 15.2.0; <a href="https://gcc.gnu.org/onlinedocs/15.2.0/">https://gcc.gnu.org/onlinedocs/15.2.0/</a>.</p>
+  <p>26. Stoughton, J. The “randomista” movement, Sept. 2022; <a href="https://www.nsf.gov/science-matters/bubble-bursting-causality-revealing-awesomeness-randomized">https://www.nsf.gov/science-matters/bubble-bursting-causality-revealing-awesomeness-randomized</a>.</p>
+  <p>27. Tufte, E. R. <i>Data Analysis for Politics and Policy</i>. Prentice-Hall, 1974. Several variants of the “which half?” story have circulated for decades in print and on the Internet.</p>
+  <p>28. Tukey, J. W., Brillinger, D. R., and Jones, L. V. <i>The Management of Weather Resources, Volume II: The Role of Statistics in Weather Resources Management</i>. U.S. Department of Commerce, June 1978; <a href="https://books.google.com/books/about/The_Management_of_Weather_Resources.html?id=BnHkukdJiwMC">https://books.google.com/books/about/The_Management_of_Weather_Resources.html?id=BnHkukdJiwMC</a> See pages 66–68.</p>
+  <p>29. Walker, J. HotBits: Genuine random numbers, generated by radioactive decay, Jan. 2023; <a href="http://www.fourmilab.ch/hotbits/">http://www.fourmilab.ch/hotbits/</a>.</p>
+  <p>30. Wonnacott, R. J. and Wonnacott, T. H. <i>Introductory Statistics</i>, fourth ed., Wiley, 1985. See the discussion of the <a href="https://en.wikipedia.org/wiki/The_Literary_Digest">Literary Digest</a> affair on page 3.</p>
+  <p>&nbsp;</p>
+  <p><b>Terence Kelly</b> (<email>
+    <a href="https://dl.acm.org/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bbcfcbd0ded7d7c2fbdad8d695d4c9dc">[email&nbsp;protected]</a>
+   </email>) wonders whether screen time will fatten statisticians.</p>
+  <p>&nbsp;</p>
+  <p>Copyright © 2025 held by the owner/author(s) Publication rights licensed to ACM.</p>
+  <script data-cfasync="false" src="https://dl.acm.org/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9cb49aa73ee98c27&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dce21cb82952',t:'MTc3MDgxMzA4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
-
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3778029">ACM Digital Library</a>
+	
+	</p>
+	
 
 
 
@@ -575,5 +1188,5 @@ FB.Event.subscribe('edge.create', function(targetUrl) {
 
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9a6f669b3e5541',t:'MTc3MDM3ODY4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dcdeead9da9a',t:'MTc3MDgxMzA4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

