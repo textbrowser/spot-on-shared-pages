@@ -520,23 +520,7 @@ We are redesigning the Queue website.
    <p>• The <i>entire</i> program execution is considered meaningless.</p> 
    <p>• The compiler is allowed to make optimizations based on the assumption that no execution of the program will encounter undefined behavior.</p> 
    <p>Consider the following program as an example:</p> 
-   <p><code> #include
-     <limits.h> 
-      <br />#define LEN 42 
-      <br />int a[LEN] = {1,2,3}; 
-      <br /> 
-      <br />int f(int base, int off) { 
-      <br /> &nbsp; &nbsp;if (base &lt; 0 || off &lt; 0) return -1; 
-      <br /> &nbsp; &nbsp;int idx = base + off; 
-      <br /> &nbsp; &nbsp;if (idx &lt; 0) return -2; 
-      <br /> &nbsp; &nbsp;if (idx &gt;= LEN) return -3; 
-      <br /> &nbsp; &nbsp;return a[idx]; 
-      <br />} 
-      <br /> 
-      <br />int main() { 
-      <br /> &nbsp; &nbsp;return f(INT_MAX,2); 
-      <br />} 
-     </limits.h></code></p> 
+   <p><code> #include &lt;limits.h&gt; <br />#define LEN 42 <br />int a[LEN] = {1,2,3}; <br /> <br />int f(int base, int off) { <br /> &nbsp; &nbsp;if (base &lt; 0 || off &lt; 0) return -1; <br /> &nbsp; &nbsp;int idx = base + off; <br /> &nbsp; &nbsp;if (idx &lt; 0) return -2; <br /> &nbsp; &nbsp;if (idx &gt;= LEN) return -3; <br /> &nbsp; &nbsp;return a[idx]; <br />} <br /> <br />int main() { <br /> &nbsp; &nbsp;return f(INT_MAX,2); <br />} </code></p> 
    <p>This program accesses an element of array <code>a</code> whose index is determined as the sum of a <code>base</code> index and an offset. The code appears to carefully check that both <code>base</code> and <code>off</code> are non-negative and then checks <i>again</i> that their sum <code>idx</code> is non-negative and in bounds of the array.</p> 
    <p>Per the C standard, however, signed integer overflow constitutes undefined behavior. The compiler is allowed to assume that the expression <code>base + off</code> does not overflow and can conclude from both operands being non-negative that <code>idx</code> is non-negative as well. An optimizing compiler is therefore permitted to eliminate the check whether <code>idx</code> is non-negative, which is redundant under this assumption.</p> 
    <p>Indeed, gcc 14.2 with option <code>–O1</code> does exactly that: The check does not appear in the resulting x86–64 assembly (see this example in Compiler Explorer: <a href="https://godbolt.org/z/4hqnj6TEW">https://godbolt.org/z/4hqnj6TEW</a>; Clang produces similar code). In fact, the compiler applies inlining and constant folding optimizations to function <code>f</code> <i>after</i> removing the "redundant" check, resulting in assembly code for the <code>main</code> function that consists of a "hardwired" out-of-bounds access of the array:</p> 
@@ -697,16 +681,17 @@ We are redesigning the Queue website.
   <p>&nbsp;</p> 
   <p><b>Christoph Kern</b> is a principal software engineer in Google's Information Security Engineering organization. His primary focus is on developing scalable, principled approaches to software security.</p> 
   <p>&nbsp;</p> 
-  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p>  
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cb536f5de4eb964',t:'MTc3MDY1OTQ4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+  <p>Copyright © 2025 held by owner/author. Publication rights licensed to ACM.</p> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9cb78eb72c8472c2&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d100d65fe7020c0',t:'MTc3MTYxMTk4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
 	<p>
 	
 		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
 	
-	<em>Originally published in Queue vol. 23, no. 5</em>&#8212;
+	<em>Originally published in Queue vol. 23, no. 5</em>
  	<br>
-	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3773098">ACM Digital Library</a>
+ 	
 	
 	</p>
 	
@@ -830,5 +815,5 @@ More related articles:
 
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cb536f198ad429b',t:'MTc3MDY1OTQ4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d100d618f799cb4',t:'MTc3MTYxMTk4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -514,7 +514,7 @@ font-style:italic;
   <p>&nbsp;</p>
   <h3>Randomization and Significance</h3>
   <p>Our poultry farmer can randomly assign <i>N</i> test turkeys to treatment and control groups in one of several ways. <i>Unrestricted</i> randomization flips a fair coin to assign each turkey, which guarantees completely unbiased assignment but might yield unbalanced groups. <i>Urn</i> randomization guarantees balanced assignment with a slightly elevated risk of confounding correlations:<sup>22</sup> The farmer places <i>N/</i>2 green and <i>N/</i>2 red jelly beans in an urn. For each turkey, he stirs the jelly beans, removes one chosen at random, notes its color, and eats it. Green assigns the turkey to TV treatment and red consigns it to control. (“Urn” is how statisticians say “bowl” when discussing randomization, or perhaps just to signal that they’re statisticians.) Both randomization procedures choose an assignment <i>equiprobably</i>, i.e., with uniform probability, from well-defined spaces of permissible assignments: Unrestricted randomization chooses from all possible assignments; urn randomization chooses from all balanced assignments.</p>
-  <p>How much randomness or <i>entropy</i> is required for assignment? The basic unit of entropy is the bit. One bit of entropy is what we (hope to) obtain from a fair coin flip or some other physical source of independent and unbiased random bits. The absolute bare minimum amount of entropy required for equiprobable choice is the base-2 logarithm of the number of permissible assignments. Unrestricted randomization picks one of 2<i><sup>N</sup></i> assignments, so it requires log<sub>2</sub>(2<i><sup>N</sup></i>) = <i>N</i> bits of entropy—one bit per bird. Urn randomization chooses a balanced assignment, the number of which is given by the binomial coefficient, “<i>N</i> choose <i>N/</i>2”:</p>
+  <p>How much randomness or <i>entropy</i> is required for assignment? The basic unit of entropy is the bit. One bit of entropy is what we (hope to) obtain from a fair coin flip or some other physical source of independent and unbiased random bits. The absolute bare minimum amount of entropy required for equiprobable choice is the base-2 logarithm of the number of permissible assignments. Unrestricted randomization picks one of 2<i><sup>N</sup></i> assignments, so it requires log<sub>2</sub>(2<i><sup>N</sup></i>) = <i>N</i> bits of entropy—one bit per bird. Urn randomization chooses a balanced assignment, the number of which is given by the binomial coefficient, “<i>N</i> choose <i>N/</i>2”:</p> 
   <div class="display-formula" style="margin:0px;">
    <div class="equation" role="math" style="margin:0px;">
     <div class="inner" style="margin:0px;">
@@ -665,60 +665,100 @@ font-style:italic;
    <br /> – <i>R.A. Fisher</i><sup>6</sup> 
   </div> 
   <p>For (i), some analysts instinctively reach for the familiar “F statistic,” which considers both inter-group differences and intra-group variability.<sup>17</sup> Randomization tests, however, allow complete freedom in defining a scalar-valued function to quantify inter-group differences.<sup>12</sup><sup>,</sup><sup>20</sup> Let <i>S</i>(<i>a</i>, <i>r</i>) denote such a function, where <i>a</i> describes an assignment of test subjects to treatment vs. control groups and <i>r</i> encodes experimental results. Larger <i>S</i> values indicate greater differences between the groups.</p>
-  <p>In our turkey experiment, <i>a</i> could be an <i>N</i>-long vector of Booleans indicating birds assigned to the treatment group and <i>r</i> a vector of per-bird weight gains. Our farmer might define <i>S</i> to be the absolute difference between the two groups’ weight-gain totals:</p>
-  <p></p>
+  <p>In our turkey experiment, <i>a</i> could be an <i>N</i>-long vector of Booleans indicating birds assigned to the treatment group and <i>r</i> a vector of per-bird weight gains. Our farmer might define <i>S</i> to be the absolute difference between the two groups’ weight-gain totals:</p> 
   <div class="display-formula" style="margin:0px;">
    <div class="equation" role="math" style="margin:0px;">
-    <div class="inner" style="margin:0px;">
+    <div class="inner" style="margin:0px;"> 
      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="No alternative text available">
       <mrow>
+       <mi>
+        S
+       </mi>
+       <mrow>
+        <mo stretchy="false">
+         (
+        </mo>
+        <mi>
+         a
+        </mi>
+        <mo>
+         ,
+        </mo>
+        <mi>
+         r
+        </mi>
+        <mo stretchy="false">
+         )
+        </mo>
+       </mrow>
+       <mo>
+        =
+       </mo>
+       <mo stretchy="false">
+        |
+       </mo>
+      </mrow><munderover>
+       <mo>
+        ∑
+       </mo>
        <mrow>
         <mi>
-         S
+         i
         </mi>
-        <mrow>
-         <mo stretchy="false">
-          (
-         </mo>
-         <mi>
-          a
-         </mi>
-         <mo>
-          ,
-         </mo>
-         <mi>
-          r
-         </mi>
-         <mo stretchy="false">
-          )
-         </mo>
-        </mrow>
         <mo>
          =
         </mo>
-        <mo stretchy="false">
-         |
-        </mo>
+        <mn>
+         1
+        </mn>
        </mrow>
-       <munderover>
-        <mo>
-         ∑
-        </mo>
-        <mrow>
-         <mi>
-          i
-         </mi>
-         <mo>
-          =
-         </mo>
-         <mn>
-          1
-         </mn>
-        </mrow>
+       <mi>
+        N
+       </mi>
+      </munderover><msub>
+       <mi>
+        a
+       </mi>
+       <mi>
+        i
+       </mi>
+      </msub><msub>
+       <mi>
+        r
+       </mi>
+       <mi>
+        i
+       </mi>
+      </msub><mo>
+       -
+      </mo><munderover>
+       <mo>
+        ∑
+       </mo>
+       <mrow>
         <mi>
-         N
+         i
         </mi>
-       </munderover>
+        <mo>
+         =
+        </mo>
+        <mn>
+         1
+        </mn>
+       </mrow>
+       <mi>
+        N
+       </mi>
+      </munderover><mrow>
+       <mo stretchy="false">
+        (
+       </mo>
+       <mn>
+        1
+       </mn>
+       <mo>
+        -
+       </mo>
        <msub>
         <mi>
          a
@@ -727,104 +767,49 @@ font-style:italic;
          i
         </mi>
        </msub>
-       <msub>
-        <mi>
-         r
-        </mi>
-        <mi>
-         i
-        </mi>
-       </msub>
-       <mo>
-        -
+       <mo stretchy="false">
+        )
        </mo>
-       <munderover>
-        <mo>
-         ∑
-        </mo>
-        <mrow>
-         <mi>
-          i
-         </mi>
-         <mo>
-          =
-         </mo>
-         <mn>
-          1
-         </mn>
-        </mrow>
-        <mi>
-         N
-        </mi>
-       </munderover>
-       <mrow>
-        <mo stretchy="false">
-         (
-        </mo>
-        <mn>
-         1
-        </mn>
-        <mo>
-         -
-        </mo>
-        <msub>
-         <mi>
-          a
-         </mi>
-         <mi>
-          i
-         </mi>
-        </msub>
-        <mo stretchy="false">
-         )
-        </mo>
-       </mrow>
-       <msub>
-        <mi>
-         r
-        </mi>
-        <mi>
-         i
-        </mi>
-       </msub>
-       <mrow>
-        <mo stretchy="false">
-         |
-        </mo>
-        <mo>
-         =
-        </mo>
-        <mo stretchy="false">
-         |
-        </mo>
-       </mrow> 
-       <mfrac linethickness="0.0pt"> 
-        <mrow> 
-         <mi mathvariant="normal">
-          <span style="font-style:normal;"> treatment group total weight gain </span>
-         </mi> 
-        </mrow> 
-       </mfrac> 
+      </mrow><msub>
+       <mi>
+        r
+       </mi>
+       <mi>
+        i
+       </mi>
+      </msub><mrow>
+       <mo stretchy="false">
+        |
+       </mo>
        <mo>
-        -
-       </mo> 
-       <mfrac linethickness="0.0pt"> 
-        <mrow> 
-         <mi mathvariant="normal">
-          <span style="font-style:normal;"> control group total weight gain </span>
-         </mi> 
-        </mrow> 
-       </mfrac> 
-       <mrow>
-        <mo stretchy="false">
-         |
-        </mo>
-       </mrow>
+        =
+       </mo>
+       <mo stretchy="false">
+        |
+       </mo>
+      </mrow> <mfrac linethickness="0.0pt"> 
+       <mrow> 
+        <mi mathvariant="normal">
+         <span style="font-style:normal;"> treatment group total weight gain </span>
+        </mi> 
+       </mrow> 
+      </mfrac> <mo>
+       -
+      </mo> <mfrac linethickness="0.0pt"> 
+       <mrow> 
+        <mi mathvariant="normal">
+         <span style="font-style:normal;"> control group total weight gain </span>
+        </mi> 
+       </mrow> 
+      </mfrac> <mrow>
+       <mo stretchy="false">
+        |
+       </mo>
       </mrow>
      </math>
     </div>
    </div>
-  </div>
+  </div> 
   <p>For (ii), a randomization test tailored to an experiment’s assignment protocol computes a <i>p-value</i>, the probability that chance alone accounts for differences between the treatment and control groups. The lower the p-value, the less plausible the null hypothesis.</p>
   <p>Randomization tests compute p-values in an intuitive way. The null hypothesis holds that the treatment had no effect, exactly as if all test subjects had arrived on day one of the experiment with their final results stamped on their foreheads.<sup>20</sup> In our notation, the null hypothesis holds that the random choice of an assignment <i>a</i> had no influence on results <i>r</i>. Difference measure <i>S</i> varies with <i>a</i> but not with <i>r</i>, because <i>r</i> is a fixed constant under the null hypothesis. By choosing an assignment equiprobably from the set of all permissible assignments, we chose the corresponding <i>S</i> value equiprobably. A randomization test therefore considers the <i>S</i> values corresponding to all permissible assignments, and computes the p-value as the fraction of these <i>S</i> values that are at least as extreme as the <i>S</i> value obtained from the experiment’s actual assignment. Formally,</p>
   <p></p>
@@ -987,7 +972,7 @@ font-style:italic;
     “Whatsoever a man soweth, that shall he also reap.” 
    <br /> – <i>Galatians 6:7</i> 
   </div> 
-  <p>One is that PRNGs are prone to misuse. Experimenters who don’t bother to properly seed a PRNG, for example, get a pseudo-random bit stream containing little or no randomness. A PRNG that falls back on a hard-wired default seed consumes no entropy and therefore emits none; its output is no more random than the digits of &amp;pi. Popular statistical software packages and commercial randomization services seed their PRNGs with facile hacks such as process ID or time-of-day; such seeds contain too little entropy to support equiprobable assignment. Recall that unrestricted random assignment of <i>N</i> test subjects requires <i>N</i> bits of entropy and balanced assignment via urn randomization requires log<sub>2</sub>(<i>C</i>(<i>N</i>,<i>N/</i>2)) bits of entropy.</p>
+  <p>One is that PRNGs are prone to misuse. Experimenters who don’t bother to properly seed a PRNG, for example, get a pseudo-random bit stream containing little or no randomness. A PRNG that falls back on a hard-wired default seed consumes no entropy and therefore emits none; its output is no more random than the digits of π. Popular statistical software packages and commercial randomization services seed their PRNGs with facile hacks such as process ID or time-of-day; such seeds contain too little entropy to support equiprobable assignment. Recall that unrestricted random assignment of <i>N</i> test subjects requires <i>N</i> bits of entropy and balanced assignment via urn randomization requires log<sub>2</sub>(<i>C</i>(<i>N</i>,<i>N/</i>2)) bits of entropy.</p>
   <p>Even if dutifully seeded to the hilt with true-random bits, conventional PRNGs throttle the entropy that influences assignment. The size of a PRNG seed is typically much too small for equiprobable random assignment, even for modest <i>N</i>. Earlier we saw that randomizing 300 subjects requires far more entropy than will fit through most PRNG seed interfaces. If <i>N</i> = 300, even a 256-bit seed arbitrarily precludes all but an unknown, haphazardly selected, non-random, and infinitesimally small fraction of permissible assignments. This introduces enormous bias into the assignment process and makes total nonsense of the p-value computed by a randomization test.</p>
   <p>What if <i>N</i> is so small that the number of permissible assignments, |<i>A</i>|, is smaller than the number of PRNG seeds (2<i><sup>B</sup></i> for a <i>B</i>-bit seed)? Assignment can’t be equiprobable if |<i>A</i>| does not evenly divide 2<sup>B</sup>, which doesn’t happen in practice for balanced assignment. If you’re skeptical, try to find realistic values of <i>N</i> and <i>B</i> such that <i>C</i>(<i>N</i>,<i>N/</i>2) evenly divides 2<sup>B</sup>.</p>
   <p>By far the biggest problem gets near-zero attention: PRNG-based random assignment inherently and inevitably <i>guarantees</i> that assignments are <i>not</i> chosen equiprobably. To understand why, view PRNG-based assignment as an opaque machine that maps a seed to an assignment, as shown in figure 3. Think of a PRNG seed as a ball that the machine pseudo-randomly tosses at bins representing permissible assignments. Now imagine that the machine flings every possible seed. The resulting distribution of balls into bins will be far from uniform: Some bins end up with more balls than others, and some bins end up empty—even, perhaps surprisingly, when the number of balls is considerably larger than the number of bins. Choosing a PRNG seed with uniform probability means choosing an <i>assignment</i> according to the highly non-uniform distribution of balls across bins.</p> 
@@ -1017,7 +1002,7 @@ Tossing balls into bins
   <p>Modern texts present randomization tests in greater generality<sup>20</sup> and explain them in terms of the philosophy of science.<sup>12</sup> They don’t explain how to generate all permissible assignments for urn randomization, as needed to compute p-values, but Knuth does.<sup>13</sup> Bentley surveys random sampling algorithms<sup>1</sup> and a previous Drill Bits column covers unbiased random shufflers,<sup>11</sup> both of which can be used for random assignment. Munroe uses significance tests to link green jelly beans to acne.<sup>15</sup></p>
   <p>Deliberate and statistically principled random assignment in controlled experiments is a remarkably recent invention. R.A. Fisher, working with pragmatic agronomists striving to increase the bounty of England’s harvests, spelled out the basics less than a century ago.<sup>5</sup><sup>,</sup><sup>6</sup> Fisher’s pioneering work is still worth reading, though his views on other topics have not worn well: He doubted that smoking is harmful and, like many early statisticians, got mixed up in the pseudo-scientific misanthropy of eugenics.<sup>2</sup><sup>,</sup><sup>4</sup></p>
   <h4>Bits</h4>
-  <p>Grab the example code tarball at <a href="https://queue.acm.orgdownloads/2025/Drill_Bits_16_example_code.tar.gz">https://queue.acm.orgdownloads/2025/Drill_Bits_16_example_code.tar.gz</a>. You get an RDSEED driver, a program to merge files full of true-random bits, instructions on how to perform random assignment, answers to selected Drills, and a few other stocking stuffers.</p>
+  <p>Grab the example code tarball at <a href="https://queue.acm.org/downloads/2025/Drill_Bits_16_example_code.tar.gz">https://queue.acm.org/downloads/2025/Drill_Bits_16_example_code.tar.gz</a>. You get an RDSEED driver, a program to merge files full of true-random bits, instructions on how to perform random assignment, answers to selected Drills, and a few other stocking stuffers.</p>
   <p>&nbsp;</p> 
   <h4>Drills</h4>
   <p>The exercises below emphasize thinking rather than coding, but there’s plenty of useful work for programmers to do. One valuable contribution they can make is digging into the guts of random assignment software to find and fix bugs.</p>
@@ -1086,15 +1071,16 @@ Tossing balls into bins
   <p>Copyright © 2025 held by the owner/author(s) Publication rights licensed to ACM.</p>
   <script data-cfasync="false" src="https://dl.acm.org/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9cb49aa73ee98c27&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dce21cb82952',t:'MTc3MDgxMzA4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9cccbdc91bc3f534&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d100d1a4beac814',t:'MTc3MTYxMTk3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
 
 	<p>
 	
 		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
 	
-	<em>Originally published in Queue vol. 23, no. 6</em>&#8212;
+	<em>Originally published in Queue vol. 23, no. 6</em>
  	<br>
-	Comment on this article in the <a href="http://portal.acm.org/citation.cfm?id=3778029">ACM Digital Library</a>
+ 	
 	
 	</p>
 	
@@ -1188,5 +1174,5 @@ FB.Event.subscribe('edge.create', function(targetUrl) {
 
 
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cc3dcdeead9da9a',t:'MTc3MDgxMzA4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d100d1689c29cb4',t:'MTc3MTYxMTk3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
