@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Building Malleable Systems, not Future-Proof Ones: Design for Change - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786298" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3799886' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>March 30, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786298">Volume 24, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3799886">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  ﻿ 
+  <meta http-equiv="Content-Type" content="text/html" /> 
+  <title>Building Malleable Systems, not Future-Proof Ones: Design for Change</title>
+  <h1 class="hidetitle">Building Malleable Systems, not Future-Proof Ones: Design for Change</h1>
+  <h2>The code you write can’t possibly predict every change that comes along</h2>
+  <h3>Paul Callaway</h3>
+  <p>Anyone who works as a programmer is bound to hear the term <i>future proofing</i> fairly early in their career. Future proofing! It sounds like a great idea. After all, everyone has been exposed to legacy software that can’t adapt to changing needs (<i>legacy software</i> is typically defined as software someone else wrote or, alternatively, as “software I wrote at least six months ago and don’t like anymore”).</p>
+  <p>Almost no one disagrees with the general principle that we should build flexible systems, and who wouldn’t want to make the systems they’re building stand the test of time? It feels like common sense to think of all the ways your code could be used and to conclude that building for those uses now will reduce costs later. Also, in larger corporate settings, it can be hard to get consensus, approval, or the budget to work on a particular piece of software. Once those hurdles have been overcome, however, it’s tempting to add just one more feature or to spend just a bit more time to ensure that <i>this</i> time you will get it right.</p>
+  <p>Although future proofing is a fantastic idea in theory, it rarely seems to work out in practice. Throughout my career, I’ve worked almost exclusively in distributed systems programming in finance, from the matching engines that run the core of the markets to the global networks that deliver data to and from market participants. During that time, I’ve seen a number of projects intended to replace legacy systems, ranging from fairly modest ones that attempt to address a narrow use case to ambitious ones with the stated goal of fixing all the mistakes of the past and creating “System 2.0.” The former are generally far more successful than the latter, both in their narrow initial goal and in achieving full legacy-system replacement.</p>
+  <p>But that feels counterintuitive. Why would a project with more modest initial requirements be more likely to achieve goals beyond what it was originally designed for than a project that had those goals in mind from the outset? Such a counterintuitive outcome can be largely attributed to the misguided idea that the way to build a long-lived system is to “future proof” it by designing for all possible outcomes (throughout this article the terms <i>code</i>, <i>system</i>, and <i>software</i> are used interchangeably). When applied in practice, however, future proofing tends to fail for several reasons:</p>
+  <p>* <b><i>Hubris. Who are we to predict the future?</i></b> Someone who could accurately predict the future would have higher and better uses for their time than software development—or at least more lucrative ones. The false sense of confidence that the future is knowable can result in <i>less</i> flexible systems, since someone who believes they have accounted for all future uses of their system is unlikely to build something that could change in ways they didn’t anticipate at system inception. In contrast, building a system with a narrow set of goals in mind, or with the humility to accept that potential future uses are unknown, tends to produce a more flexible design.</p>
+  <p>* <b><i>Complexity. Why build something you don’t need?</i></b> Future proofing is like overpacking for a trip. You’re putting everything you might possibly need in your bag. You might never use it. What’s the harm? While that’s a reasonable thought process, you still have to <i>carry</i> that bag. It’s not hard at first, but everywhere you go, the bag of things goes with you. Instead of extra shirts, maybe you’ve implemented a few extra protocols, and not just TCP, but UDP and QUIC as well… just in case. For now, you’re just using TCP, but better safe than sorry. But what if someone asks you to add detailed metrics and logging to your protocol handler or to validate the correctness of the connectivity security suite? You’re only using TCP in production, but “carrying the future-proofing bag” means you have to work on the other two as well.</p>
+  <p>* <b><i>Risk. More code means more bugs.</i></b> All code has bugs, and code that doesn’t get exercised regularly is likely to have more undetected bugs. Even if you accept the extra complexity of carrying and changing additional code, making changes to unused code is almost certain to add bugs that you won’t find until that code gets used. In addition to correctness issues, unused code can create hidden security risks: Paths that aren’t part of normal operation are less likely to be reviewed, tested, or monitored, yet may still be reachable in unexpected ways. When those bugs do get found, whether incidentally or by deliberate abuse, the distance in time from when they were created to when they get detected increases the difficulty of understanding what exactly went wrong.</p>
+  <p>* <b><i>Cost. More expensive projects are less likely to succeed.</i></b> Every feature you build takes time and focus. Going beyond the known present and building for an uncertain future can be a great way of ensuring that you never reach that future. I tend to think of this in terms of escape velocity—every project is like a rocket trying to escape a planet’s gravitational pull. The rocket’s propulsion is the collective support (i.e., money, time, resources) that people are willing to invest. Only when the project reaches escape velocity will it continue to be used, even if all of the propulsion is spent and people move on to other projects.</p>
+  <p>The gravity of the planet and the needed escape velocity will vary widely across projects, from a “one-person hobby project” at one end of the spectrum to a full rewrite of a complex legacy corporate system at the other. Regardless of gravity’s pull on a particular project, the heavier the payload on the rocket, the more propulsion is needed. Future proofing is the equivalent of adding everything you might need to the rocket while it’s on the ground. While sound in theory, it’s counterproductive in practice.</p>
+  <p>This isn’t to say that the <i>goal</i> of future proofing is bad. On the contrary, future proofing is generally a well-intentioned effort. We all want to build long-lived systems; the urge to build things that outlast us is present across all human endeavors.</p>
+  <p>What I think can be improved is the <i>framing</i>. Specifically, we should strive to build <i>malleable</i> systems instead of future-proof ones. Of course, it’s reasonable to account for things you know are needed now or that might reasonably be needed in the future. Beyond that, we should make systems easy to change in the ways things <i>tend</i> to change, rather than trying to predict all the ways that they <i>will</i> change.</p>
+  <p>&nbsp;</p>
+  <h3>An Analogy Closer to Home</h3>
+  <p>I could spend another few thousand words trying to make this point using various coding examples. As an alternative, I’m going to use an idea that most of us are likely to be familiar with: the places we live. I’m writing this as an employee of a company whose cornerstone product has evolved from code first written 40 years ago, but I also live in a 100-year-old house. Both the code and the house have changed significantly since they were created, and both are still going strong today. I believe we can take the lessons from the physical world of houses and apply them to the virtual one of software (here the word <i>house</i> should be taken to include <i>apartment</i>, <i>condo</i>, <i>flat</i>, <i>dwelling</i>, <i>residence</i>, or any other terms that apply to the places in which we live). After all, we’ve already borrowed terms such as <i>greenfield</i>, <i>firewall</i>, and <i>architecture</i>, so why not push the analogy as far as it will go.</p>
+  <p>The house I currently live in dates from the late 1920s, and it was built without a thought to renewable energy, telephone or Internet, and even modern home insulation (as is still apparent during the winter). It’s constructed from large irregular stones, likely from a local quarry. This was a relatively uncommon building material back then, and certainly is by today’s standards. It was probably originally heated with a coal or oil steam boiler, which was later replaced by a hot water boiler. In turn, this was eventually enhanced with electric heat pumps and solar panels. I’m assuming that, when first constructed, the house had indoor plumbing and rudimentary electrical service (though I’ve lived in houses that were originally built in the 1800s without either of those comforts).</p>
+  <p>It’s a fair assumption that at least some of the readers of this article—most likely those outside of North America—have lived in places that go even further back than that. Other readers may have lived in apartments that were carved out from larger single-family homes, or in converted nonresidential spaces such as factories and churches. Yet, somehow all of those places function as homes in the 21st century, despite being seen as the housing equivalents of legacy code (see figure 1).</p>
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3799886/assets/html/3799886_fig01.jpg" alt="Figure 1. Survey of people’s experiences and opinions" />
+  <br />Figure 1. Survey of people’s experiences and opinions
+  <p>No analogy is perfect, and the comparison between houses and codebases is no exception. Unlike the myriad requirements and uses of software, houses all need to provide shelter and protection from the elements. Although someone’s choice in housing is limited by cost, location, and other practical requirements (as well as individual preferences), houses, for the most part, can be treated as substitutable in a way that software cannot. While that would seem to make it easier to move between houses than it is to move between codebases, the increased friction and upfront transition costs of moving in the physical world often offset that ease.</p>
+  <p>Although the exact reasons may be different, the result is the same—people live in uncomfortable houses just as they live in uncomfortable code. Maybe they daydream about what they would do if they could start from scratch, undertake ambitious renovation projects, or just make minor improvements as they go. Nevertheless, for whatever reason, houses seem to be more malleable than software, despite being anchored in the physical world. Ten-year-old code is widely considered a candidate for replacement, but no one is surprised that a 150-year-old house is still occupied and now has Wi-Fi and energy-efficient LED lighting. Why is this, and what lessons can we take from it?</p>
+  <p>&nbsp;</p>
+  <h3>What’s Set in Stone (And Why That’s Ok)</h3>
+  <p>Malleability has its limits, and not everything about a house or software application can be changed, no matter how well designed it is or how thoughtful the designers and architects were up front. There are always going to be core attributes that can’t be changed, at least not without excessive cost. In housing, the most obvious of these is location; where the house is located is likely where it will always be, barring the expensive and rare effort to move it. Building material is another core attribute; a brick house can’t be turned into a log cabin. Software is much the same. We choose a platform to run on, a programming language to work in, and then we start to design and build.</p>
+  <p>At this early stage, you shouldn’t be thinking about future proofing or malleability at all. On the contrary, you should be thinking intentionally about the core values of the system you’re building—the bedrock principles that will make it what it is. Think of these as the “values” with which the house or software is constructed.</p>
+  <p>While they aren’t quite as integral to the house as location or building material, if they aren’t taken into consideration from the design stage, it will be hard to ever achieve them at a reasonable cost. One excellent example of this kind of value in housing is accessibility. True design for accessibility needs to be considered from the outset of the house’s design process, since initial choices about the level changes, stairs, and width of doors and hallways are extremely difficult to change once made.</p>
+  <p>In software, these values represent the fundamental attributes of the system. They provide both a solid base to build on and a set of constraints that limit what the system can be. Changing them will be somewhere between difficult (a full house renovation) and impossible (better to pack up and move).</p>
+  <p>These will vary by domain, but examples of core values can include:</p>
+  <p>* <b><i>CAP theorem tradeoffs.</i></b> The CAP theorem states that a distributed system can deliver only two of three desired characteristics: consistency, availability, or partition tolerance. Should the system be biased to availability, or is it better to be unavailable if consistency can’t be achieved?</p>
+  <p>* <b><i>Behavior during failure.</i></b> Is the system designed to be transactional, ensuring that no data is lost during any kind of failure? Or is data loss acceptable, with customers or callers expected to retry any failed operations?</p>
+  <p>* <b><i>Determinism, or not.</i></b> Should the system produce identical results when presented with identical inputs? This may seem like an obvious value to strive for, but achieving full determinism requires tremendous discipline and attention to detail around everything from random-number generator seeds to use of the local system clock.</p>
+  <p>* <b><i>Performance and scaling.</i></b> Performance can always be tuned and improved, but only within limits before significant architectural changes are required around things such as shared state and parallelism.</p>
+  <p>These values represent both the foundation of what’s being built and the guiding principles for feature development, both initially and as the system evolves. Consistency in implementation is vital, since people tend to build critical features expecting that these values will always be held. A database that is “mostly” ACID (atomicity, consistency, isolation, durability) compliant or a message queue that’s causally ordered except under certain types of network partitioning can be quite dangerous, as it’s easy for both current users and future developers to ignore the exceptional cases.</p>
+  <p>Moving back to the physical world, the values of the system represent the location, foundation, and difficult-to-change aspects of the house. These are “set in stone,” so to speak. Beyond that, we build for what we know now—the heating and cooling technologies that exist today, communication systems that represent our best guess at what the near future will bring, and room uses and sizes that match our current and predicted future needs. But how do we handle unpredictable futures—the need to work from home full time during a global pandemic, or a family member moving back home? That’s where malleability matters. Although necessity is the mother of invention, there is no shortage of creative solutions in home improvement, as in software. Designing for flexibility makes adapting to those unknown futures easier.</p>
+  <p>So, what does that kind of malleability mean for houses, and how does that map to software development?</p>
+  <h4>Structure should be predictable and consistent</h4>
+  <p>Successfully modifying anything requires an understanding of how the existing system works. Substantial portions of houses are hidden from the user or hard to understand on surface inspection. Is this wall load bearing? How do pipes run between floors?</p>
+  <p>Knowledge tends to be acquired in bits and pieces over time, so consistent implementations allow people to use prior knowledge to predict the future. If electrical circuits are <i>always</i> isolated to a single room, or if studs in a load-bearing wall are <i>always</i> 16 inches apart, learning about one part of the house gives you knowledge about the rest of it.</p>
+  <p>It’s the same with code. Although all the code may be visible, it’s hard to hold the model of an entire codebase in memory and even harder to understand how it will behave against arbitrary input. Consistency and predictability make people’s assumptions about system behavior more likely to be correct. Code that’s never thread-safe or always thread-safe is going to be easier to work in than code where thread safety varies by where you are in the codebase.</p>
+  <p>&nbsp;</p>
+  <h4>Add documentation—especially for the exceptions</h4>
+  <p>It’s easy to say that everything should be consistent, but reality is rarely that simple. Things change over time. Regardless of our best intentions, both houses and code won’t stay the same forever. It’s rare for anyone to expect any kind of cohesive documentation when moving into a house. Maybe they’ll have the blueprints (if they’re extremely lucky), but no one is going to get a comprehensive manual describing all the inner workings of the house.</p>
+  <p>What does help, especially for the exceptional and inconsistent cases, is documentation close to where it’s needed—for example, labeled electrical breakers, where you can see at a glance what circuit goes where. Or perhaps there’s a note on the furnace with the name of the company that installed it and the last time it was serviced. Not all of this documentation needs to be written words; color coding hot- and cold-water pipes or putting a mark at the desired water level of a tank count as implicit documentation.</p>
+  <p>All of this documentation is equivalent to comments in particularly tricky parts of code—a note to whomever comes after, expecting that they will need to understand something nonobvious about the code, even if the person who knows it best is no longer around to explain it.</p>
+  <p>&nbsp;</p>
+  <h4>If something has changed in the past, prepare for it to change again in the future</h4>
+  <p>Although it might be impossible to predict everything about the future, things that have changed once are likely to change again. Someone wiring an entire house with 4-wire RJ11 phone cable in the 1980s could possibly be forgiven for thinking it would last forever, but anyone replacing it with Cat 5 cable 15 years later should have reasonably expected that process to repeat in the future. In both houses and code, if you’re touching something once, it’s likely that someone will touch it again, and you should do what you can to make it easier the second time around.</p>
+  <p>&nbsp;</p>
+  <h4>Add clear interfaces and minimize entanglement</h4>
+  <p>The more places in which two things are intertwined, the harder they are to separate. In the aforementioned wiring example, cable stapled to the framing behind the wall is impossible to pull out without major surgery to the structure of the house, but cable placed inside conduit is easily accessible for repair or replacement. The conduit acts as an interface in software, hiding the implementation of which communication technology is used.</p>
+  <p>Possibly the best example of interfaces in the real world of houses comes from plumbing. Shut-off valves serve as a point of connection between various parts of the system, allowing isolation and minimizing the side effects of working on pipes in one part of the house. When replacing a bathroom sink, there’s a big difference in user impact between having to turn off the water to the entire house and just shutting off the water to the affected fixture.</p>
+  <p>Reducing the points of contact between sections of code has the same effect. Clear and narrow interfaces minimize the points of entanglement, making it easier both to understand how different sections of code interact with one another and to provide the ability to work on one part of the system without affecting the rest.</p>
+  <p>&nbsp;</p>
+  <h4>Don’t take shortcuts just because they’re cheap or easy</h4>
+  <p>This one is easier said than done, since the universe of “hacky” shortcuts is nearly infinite in both domains. In houses, you’ll find electrical connections buried behind a wall in inaccessible boxes, beams notched more than is allowable in order to run piping, and surfaces painted without proper preparation. In software, you’ll see code that was copied and pasted, hard-coded configurations, and data munged to send between systems without having to change wire formats. Taking those shortcuts may be easy in the moment, but they only push the problem to whomever comes after.</p>
+  <p>Design for malleability isn’t a bulleted list of rules to follow; it’s a set of choices you make every day as you design and modify systems. Code is like a house, and people have to live in it, often for much longer than you expect. You may not be able to predict how it will be used in the future, but you can decide whether those future changes will be painful or straightforward. The next time you’re designing an interface, choosing an abstraction, or taking a shortcut, ask yourself whether you’re making the system easier or harder to live in. Build your code as if you’ll be the one maintaining it years from now, and give it the best foundation for future success.</p>
+  <p>&nbsp;</p>
+  <p><b>Paul Callaway</b> <i>works in the CTO Office at Bloomberg, where he is responsible for the architectural roadmap for Bloomberg’s real-time market data systems, which deliver hundreds of billions of pieces of financial information per day to the company’s customers around the globe. Prior to this position, his work included the development of an exchange-side order entry and matching engine. He earned a bachelor’s degree in computer engineering from Case Western Reserve University, a master’s degree in computer science from the University of Michigan, and an MBA from the University of Chicago.</i></p>
+  <p>&nbsp;</p>
+  <p>Copyright © 2026 held by the owner/author(s). Publication rights licensed to ACM.</p>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ead82410f17564e',t:'MTc3NTk0NzM5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ead82410f17564e',t:'MTc3NTk0NzM5Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 1</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Paul Vixie</span> - <a href="detail.cfm?id=3799737"><b>On the Evolution of Program State</b></a>
+	  <br />
+	  We are unlikely to make differences we cannot name, and the main purpose of this article is to provide a way to talk about, and thus a way to think about, the larger-scoped forces shaping both the history and opportunities of software engineering safety. Today’s AI coding assistants augur an era when more software will be created than ever before and by more people and agents than ever before. It’s undecided as yet whether this era will be safer or more dangerous than the last.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Justin Sheehy, Jonathan Reed</span> - <a href="detail.cfm?id=3762988"><b>Moving Faster by Not Breaking Things</b></a>
+	  <br />
+	  An engineering team that can move without fear, knowing that they have made themselves safe to do so, can ship more often and more quickly and make more dramatic changes without hesitation. This feels great to individual engineers and enables those engineers to be more effective for the business they work in. A bit of investment in safety pays huge dividends in speed as well as by reducing the frequency and severity of change-triggered incidents.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Dennis Roellke</span> - <a href="detail.cfm?id=3723152"><b>String Matching at Scale</b></a>
+	  <br />
+	  String matching can't be that difficult. But what are we matching on? What is the intrinsic identity of a software component? Does it change when developers copy and paste the source code instead of fetching it from a package manager? Is every package-manager request fetching the same artifact from the same upstream repository mirror? Can we trust that the source code published along with the artifact is indeed what's built into the release executable? Is the tool chain kosher?
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Catherine Hayes, David Malone</span> - <a href="detail.cfm?id=3690759"><b>Questioning the Criteria for Evaluating Non-cryptographic Hash Functions</b></a>
+	  <br />
+	  Although cryptographic and non-cryptographic hash functions are everywhere, there seems to be a gap in how they are designed. Lots of criteria exist for cryptographic hashes motivated by various security requirements, but on the non-cryptographic side there is a certain amount of folklore that, despite the long history of hash functions, has not been fully explored. While targeting a uniform distribution makes a lot of sense for real-world datasets, it can be a challenge when confronted by a dataset with particular patterns.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ead823e080cde94',t:'MTc3NTk0NzM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>The Second-System Pit of Failure - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='System Evolution' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786298" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3799736' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>April 2, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786298">Volume 24, issue 1 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3799736">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">The Second-System Pit of Failure</h1> 
+  <h2>Lessons learned from building a second-generation system</h2> 
+  <h3>Terry Coatta and Craig Smith</h3> 
+  <p>You know something matters when it has its own Wikipedia entry. The <i>second-system effect<sup>3</sup></i> (SSE) doesn't necessarily sound like something that strikes terror into the heart of the software developer, but it has, over time, become a failure mode that exerts an almost gravitational pull over developer thinking when faced with the challenge of an original system that seems to be reaching its limits. </p> 
+  <p>The danger of overengineering a solution is not just a concern when working on the second generation of a system,<sup>1</sup> but it also seems to be a failure mode that is more pronounced. For those who have been through the SSE trenches, a common conclusion has been that it is always a bad idea to start from scratch.<sup>2</sup> But like all good rules, there are exceptions, so the goal is to figure out how to be that exception. This article is a look back on the development of a successful second-generation system and tries to extract from that experience how to avoid the second-system pit of failure.</p> 
+  <p>&nbsp;</p> 
+  <h3>Second System or Not?</h3> 
+  <p>The easiest way to avoid the second-system effect is the most obvious: <i>Don't do it</i>. But like any good rule of thumb, there have to be exceptions. How do you know when it's the right thing to do?</p> 
+  <p>To dive into this in more depth, let's look at the details of building a specific second-generation system. The one in question is a <i>learning management system</i> (LMS) designed to deliver learning content to users and to track their mastery of the content. The first version of this LMS was a bespoke system designed for a specific customer. It was deployed and became a successful and integral part of the customer's overall training program. </p> 
+  <p>The success of this original deployment attracted attention from other organizations operating in similar market segments. This resulted in requests to provide the software to other organizations and forced us to ask whether to update the original code or build a replacement system. The major factors influencing this decision were as follows:</p> 
+  <p>* <b><i>Technology platform.</i></b> The existing application was written using a technology platform that was in the process of being deprecated. Retaining this platform would likely mean having less opportunity to take advantage of new language/system features in the future. Using older technologies also has an impact on developer recruitment, as developers tend to prefer jobs that involve newer technologies, which are regarded as being more beneficial from a professional development viewpoint.</p> 
+  <p>* <b><i>Architecture.</i></b> The existing system was a single-tenant monolithic server-side web application. For reasons of scalability, manageability, and maintainability, this did not seem viable in the long term. But it also made it challenging to incrementally update the existing system since there were no easily identified components that could be addressed independently.</p> 
+  <p>* <b><i>Flexibility.</i></b> As might be expected for a bespoke application, the code had a tendency toward hard-coded behaviors and configurations that were specific to the original customer. Updating the original application, as opposed to replacing it with a new system, would clearly require identifying and updating these areas in the code.</p> 
+  <p>Given that the original system was bespoke and deployed to a single customer, it might seem that replacing it with a new application written from scratch would be the obvious choice. Because of the well-known issues associated with second systems, however, we put significant effort into proving that extending the existing application was not a viable alternative. </p> 
+  <p>In the end, the issues of the technology platform and architecture were the deciding factors, because it did not seem viable to address these incrementally within the existing application, and because failing to address these issues would severely hamper our ability to deploy, operate, and maintain the application. </p> 
+  <p>Having decided to build a new system from scratch, however, we also wanted to avoid falling into the second-system trap of continually increasing complexity and continually receding delivery dates. The following three principles helped guide us:</p> 
+  <p>1. Approach the development of the new system with a minimum viable product (MVP) mentality. Set a tight deadline and be willing to drop features to get it delivered.</p> 
+  <p>2. Don't just extend features of the old system; look for underlying abstractions that are simple and powerful.</p> 
+  <p>3. Think carefully about how fully these abstractions need to be implemented in the MVP. An abstraction is still valuable even when the implementation is limited in various ways. </p> 
+  <p>&nbsp;</p> 
+  <h3>It's Just an MVP</h3> 
+  <p>Having made the decision to build a new application, we made some additional choices designed to minimize the likelihood of falling into the SSE trap. In some sense, this really boiled down to adopting an MVP mindset for the new application. We set a tight deadline (one year) for delivering the new LMS and began to enumerate and prioritize features. Because this was a second system, though, we had one constraint not typical of developing a new MVP, which was that the application had to support the original customer. Note that this did not mean that the product had to be identical, just that there had to be a way of mapping behavior from the old system to the new. </p> 
+  <p>One critical decision was that the original customer would <i>not</i> be an immediate customer for the new system. The plan was to have the new system deployed to and in production with several new customers before we attempted to migrate the old customer to the new system. While this meant that there would be an extended period (which turned out to be about four years) in which we were maintaining both systems in parallel, it would allow us to ensure that the new system was both stable and sufficiently feature-complete to support the old customer. In hindsight, this decision was critical in allowing us to address teething problems in the new system without the production demands of the original customer creating additional pressure with respect to features, performance, and timelines.</p> 
+  <p>As shown in the next section, there was some interesting interplay between this need to support old behavior and the design/features of the new system. At the outset, it felt as though the requirements of the old system might be unwelcome constraints on the development of the new one, but in the end, it forced us to find ways of generalizing behavior, which resulted in a better set of features in the new application than if we had been designing in a vacuum.</p> 
+  <p>&nbsp;</p> 
+  <h3>Build Abstractions, Not Extensions</h3> 
+  <p>As already noted, one of the guiding principles for the new system was that it had to be able to express the behavior of the old system. One way to achieve this would have been simply to extend the features of the old system to handle new requirements. Instead, our approach was to look for simple abstractions that would let us express the behavior of the old system and support new features with ease. This section reviews how this unfolded for two areas of functionality in the old system: content organization and content display. </p> 
+  <p>&nbsp;</p> 
+  <h4>Content organization</h4> 
+  <p>At a high level, an LMS must provide two broad areas of functionality: (1) displaying learning content, and (2) tracking student progress and achievements. One of the interesting outcomes of designing the new system was that most of the new features were related to managing and displaying content, whereas tracking student progress/achievements was handled similarly in both the new and old systems. This may just be because, for the MVP, our focus was initially on content, but it probably also reflected the limited content management and display features of the old system.</p> 
+  <p>In the old system, content was arranged as a set of <i>content documents</i>, which were essentially just HTML. These documents were organized into <i>courses</i>, categorized by <i>department</i> and <i>position</i>. A given document could be used in multiple courses (which happened fairly frequently), and a given course could be associated with multiple department/position values (which happened much less frequently). </p> 
+  <p>In the new system, content is represented as a hierarchy of <i>pages</i>. Each page holds an ordered set of <i>links</i>, and each link could refer to one of several different types of items: HTML content, a child page, an exam, an external site, and so on. A page is the primary organizational mechanism. It could, for example, serve as a catalog for all content related to a particular department or position, but it could also serve as a course consisting of a sequence of HTML content. </p> 
+  <p>Choosing this hierarchical structure was unusual given the flat nature of the old system, but there were numerous motivations for it, including creating a flexible permissions structure and a basis for replication/offline access. It is worth noting that we did not try to devise a more complicated version of the old system but instead looked for a better abstraction that would not only allow us to represent the old system, but also provide additional features without necessarily adding massively to complexity.</p> 
+  <p>The mapping from the old system to the new consisted of taking the ad hoc categories of department and position and representing them as a hierarchy of pages: one set of pages for departments, and within each department, a set of pages for positions. Finally, within each position there was a set of pages that represented courses, and each of these was a sequence of content, exams, and so on.</p> 
+  <p>The new system thus allowed us to take several different ad hoc data structures from the old system (department, position, course) and replace them with a single general-purpose mechanism. It is worthwhile noting that this mapping was viable only because of the hierarchical relationship between department and position in the old system. This is an example of the development of the new system being influenced by the need to map the old into the new.</p> 
+  <p>It's also important to mention that the old system allowed courses to be shared between departments/positions, and the new system did not, because pages needed to be arranged in a pure hierarchy. As noted earlier, however, this occurred only rarely, and rather than complicate the new system by adding features to support this, we handled it by simply duplicating courses for these cases. </p> 
+  <p>&nbsp;</p> 
+  <h4>Content display</h4> 
+  <p>With the basic navigation/content structure in place for the new system, the next area to tackle was how to display content. As you can probably guess, content display in the old system reflected the specific department/position/course content structure, with each of these represented by an ad hoc rendering mechanism. We struggled to design something that could represent the very specific UI that the old customer wanted without forcing that on the new customers. Eventually we saw that a templating abstraction would provide enormous flexibility and could be implemented reasonably easily. </p> 
+  <p>The purpose of the templating system was to render an LMS <i>page</i> as HTML. The templating system was built on top of the existing HTML templating mechanism provided as part of the application development platform—to be specific, HTML/Razor files from ASP.NET. As noted earlier, a page is effectively an ordered set of links, and the templating process worked by converting this ordered set of links into a view model and then rendering this view model via a template that was associated with the page itself.</p> 
+  <p>This allowed us to emulate the display of the old system by building a set of templates based on the ad hoc structure of the old system—that is, one template for displaying departments, one for displaying positions, one for displaying courses, and, finally, one for displaying a home page that tied all these elements together.</p> 
+  <p>These templates developed to support the original customer were generally not viable for new customers, because they contained quite a bit of HTML markup that was specific to that customer. So, we also developed a set of more general-purpose templates that could be deployed for new customers. </p> 
+  <p>The abstraction of a templating system thus allowed us to support the ad hoc content display structure of the old system while still allowing us to adopt new structures for new customers. While the code for the templating system itself was not complex, it did push complexity downstream into the templates, but this was complexity that we had some control over—that is, the templates that we developed for the first customers of the new system were relatively simple and based on some shared templating code. </p> 
+  <p>It is noteworthy that in the years following the release of the new LMS, these templates grew in functionality as they were used to provide more customized experiences for each customer. In a sort of echo of the building of the new LMS, we eventually took a step back from the ad hoc complexity of all the templates we had developed, identified a set of underlying abstractions, and replaced the old templating system with a new one that swapped out a lot of ad hoc templating code with structured configuration data. There is no way that we could have identified those underlying abstractions during that original phase of LMS development. We knew that the templating system was not perfect, but it was good enough. </p> 
+  <p>&nbsp;</p> 
+  <h3>Plan But Don't Execute</h3> 
+  <p>Our third strategy for avoiding the SSE trap was to figure out ways that we could limit the complexity of the implementation of our abstractions. Primarily, this involved either limiting the scope of inputs under which the implementation would work or choosing implementations we acknowledged would not be performant as the company scaled in number/size of customers. </p> 
+  <p>Three examples from the development of the MVP demonstrate this: (1) services as an abstraction versus the actual deployment, (2) using a plug-in—style architecture for permissions to defer implementation, and (3) building a general-purpose tagging system but implementing only a portion of it initially. </p> 
+  <p>&nbsp;</p> 
+  <h4>Service-oriented design and monolithic deployment</h4> 
+  <p>We knew from the outset that we wanted a services-oriented architecture, but at the time (2012), orchestration platforms (such as Kubernetes) were not being widely used, and this meant that deploying and managing multiple interconnected services would be a complex undertaking. We chose to avoid this by designing the system as a collection of well-defined services, each with a well-specified network-level interface, but deploying the system as two essentially monolithic components. </p> 
+  <p>The choice of two monolithic deployment components was a function of our chosen platform (Windows). In this context, having two deployment components was a natural match with the underlying platform capabilities. One of the components was a standard ASP.NET web application built on top of IIS (Internet Information Services). The second component was a Windows service that implemented all the underlying service interfaces. This allowed us to take advantage of existing deployment and management facilities in Windows such as service dependencies and automatic service restart on failure. We ensured that clients of the services always treated the components as independent—essentially, the monolithic implementation of the services was hidden from the clients.</p> 
+  <p>This separation of abstraction from implementation served us well. For that initial release, only a small part of our time was spent dealing with deployment considerations, and operationally, the system was stable and reasonably scalable for several years.</p> 
+  <p>&nbsp;</p> 
+  <h4>A rules-based permissions system</h4> 
+  <p>The permissions system for the new product demonstrates a different mechanism for deferring work. The permissions system from the original application was essentially hard-coded and very much based on the specific requirements of the one customer of that original application. We needed something more powerful to create a product that was broadly applicable in the market. The most obvious way to respond to this need would be to develop a role-based access system (RBAC). </p> 
+  <p>As we explored how this might unfold, however, it appeared to be leading down a road of increasing complexity—identifying what the different roles should be, mapping specific permissions to each role, and so on. At this point, we did not have enough customer experience to have a good sense of the set of roles that would be required, nor the specific permissions that should be associated with each role. </p> 
+  <p>Our solution to this problem was to decide that permissions should be based on a set of rules that could offer extensibility in several different dimensions. First, rules would assign capabilities to a user, but the set of capabilities could be extended over time. Second, rules would be expressed as Boolean expressions over a set of predicates, which could also be extended over time. Finally, the set of rules itself would not be fixed but would be configured on a per-customer basis. </p> 
+  <p>Using this approach meant that the permissions system itself was fairly simple to implement—it was basically a Boolean expression evaluator over an extensible set of predicates. Each predicate was implemented in C# according to a well-defined interface. Individual predicate implementations tend to be relatively straightforward. Initially, we delivered a relatively small set of predicates. For example, there was a predicate to check whether a user had a particular property value assigned to them (e.g., whether the user had held the rank of captain).</p> 
+  <p>The initial implementation for the permissions system was completed quickly, but even small-scale initial testing revealed a critical problem: It was a hideous performance bottleneck. Perhaps unsurprisingly, constantly evaluating Boolean expressions on every access to the system turned out to be too slow. Fortunately, the timescale of changes that alter permissions is quite large with respect to the timescale of permission checking itself, and this meant that caching would likely be a viable resolution to this problem. </p> 
+  <p>We implemented a relatively straightforward scheme to memoize the evaluation of permissions rules, which did indeed resolve the performance issues. The basic permissions system has remained in place in the application, while the set of predicates had grown to about 30 and the set of capabilities to about 100.</p> 
+  <p>In practice, when this is rolled out for customers, the rules are effectively used to implement an RBAC system. But the flexibility of the rules means that each customer effectively defines their own roles and the mapping of specific permissions to those roles. Using rules-based permissions allowed us to defer needing to fully understand the roles and permissions our customers would need until actually deploying for those customers, and it was simultaneously straightforward to implement.</p> 
+  <p>&nbsp;</p> 
+  <h4>General-purpose tagging architecture</h4> 
+  <p>One of the unique features of the original bespoke application was that it could display content in a way that was tailored to the specific user viewing the content. For example, if the current user was assigned to Vessel A and was viewing content about how to deal with fires, there would be some content that was common to all vessels (e.g., different types of fires) and some content that was specific to their vessel (e.g., where the fire extinguishers were located). The content-management system allowed authors to indicate where user-specific content should be inserted and provided a way to map certain user properties into different pieces of content to be substituted. </p> 
+  <p>It should come as no surprise that the bespoke application did this via a hard-coded set of properties that could be used for content insertion. We knew that this set of hard-coded properties was not going to address the needs of the potential customers for the new system. One possibility was to create a specific content-substitution mechanism that was extensible in terms of the properties it would use.</p> 
+  <p>We could envision, however, that this ability to categorize content based on properties would likely be something that could be valuable in other parts of the system. For example, given that the system would need to support content substitution based on the user's vessel, you could easily imagine wanting to be able to indicate, for example, that a given course was applicable to a specific vessel.</p> 
+  <p>Our solution was to define a way of tagging arbitrary items in the system without having to provide a complete implementation initially. This was achieved by defining <i>Tags</i> and <i>Tag Sets</i> and then developing a pattern for how they would be associated with items in the system. </p> 
+  <p>To continue with the previous example, you would have a Tag Set named <i>Vessel</i>, which would consist of Tags, with each tag being named for a specific vessel. Finally, we developed a general <i>Binding</i> class that could be subclassed to provide a way of associating a specific Tag with some other type of object in the system. </p> 
+  <p>The implementations of these were straightforward, and, initially, we created just two binding classes: one to associate content with tags, and one to associate exam questions with content.</p> 
+  <p>Over time, the number of binding classes has grown to about 30, and we have developed additional general-purpose code for analyzing binding relationships—for example, to check whether a given Tag is bound anywhere in the system. There is now a fair amount of complexity in this code, but the original straightforward implementations served us well for several years.</p> 
+  <p>&nbsp;</p> 
+  <h3>Closing the Loop</h3> 
+  <p>Our project to define and deliver the new LMS was successful. We delivered an initial version in roughly our original 12-month timeframe, and we were able to start acquiring new customers. A much-evolved version of the LMS continues to serve many customers, including some of the largest cruise lines in the world. </p> 
+  <p>The transition of the original customer of the bespoke system to the new LMS took place after the new system had been running for about four years. Some of this was just because of limited bandwidth, but there was also definitely a desire to ensure that the new system was sufficiently solid, both in terms of features and performance for the transition to be a wholly positive experience for the customer. </p> 
+  <p>When we originally started working on the new system, we assumed that the upgrade process would likely be a typical DB migration project. Interestingly, by the time we got to making the transition, this is not the path we chose. </p> 
+  <p>The DB schemas of the two systems were wildly different from one another, and the amount of business-level knowledge that would need to be encoded into SQL was daunting. By the time we made the decision to make the transition, however, the new system had been evolved to include a feature that turned out to be ideal for providing an alternative way to handle it.</p> 
+  <p>To support migrating customer implementations between servers and to provide a way to support external escrow of LMS data/configuration, we developed a general-purpose export/import system for the LMS. This system could take an arbitrary customer deployment and serialize it into a set of XML files structured into a directory tree that mimicked the content structure of the customer's deployment. The XML files stored in this structure corresponded to various business-model objects in the system (e.g., content files, exams, questions, and student results).</p> 
+  <p>We decided that the way to migrate the old system to the new was to serialize the state of the old system into this export/import format, and then just use the existing import facility to pull the data into an instance of the new LMS.</p> 
+  <p>There was a significant amount of data in the old system, so we anticipated that the migration would likely take a fairly long time. As a result, we planned for a two-phase process in which we would do an initial migration of all data, then freeze changes in the old system and essentially run a differential migration, picking up on the changed data. Fortunately, the import format for the new system already supported incremental updates, so this introduced only a small amount of additional code in the migrator. </p> 
+  <p>There were no major issues with this process, and, in the end, we were able to smoothly migrate the old customer to the new system over the space of a day or so. That customer continues to use the new LMS to this day. </p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusions</h3> 
+  <p>Our experience with building a new LMS to replace an existing system provides at least one point of evidence that it is possible to avoid the SSE trap. The three principles that guided our design and planning for the new system (treat it like an MVP, look for abstractions that encompass both old and new features, and be sparing in how fully those abstractions are implemented) definitely contributed to the success of the project and are potentially ideas that could be applied in many situations where a system needs to be replaced.</p> 
+  <p>&nbsp;</p> 
+  <h4>References</h4> 
+  <p>1. Brooks, F. P., Jr. 1975. <i>The Mythical Man-month: Essays on Software Engineering.</i> Reading, MA: Addison-Wesley.</p> 
+  <p>2. Spolsky, J. 2000. Things you should never do, part I. Joel on Software; <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/?utm_source=chatgpt.com">https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/</a>.</p> 
+  <p>3. Wikipedia. 2025. Second-system effect. Wikipedia; <a href="https://en.wikipedia.org/wiki/Second-system_effect">https://en.wikipedia.org/wiki/Second-system_effect</a>.</p> 
+  <p>&nbsp;</p> 
+  <p><b>Terry Coatta</b> is a retired software developer with many years of experience in application architecture. He has worked extensively with C#, .NET, cloud platforms, and DevOps tooling to design reliable, scalable, and maintainable systems. He is particularly interested in system design, observability, and infrastructure automation. </p> 
+  <p><b>Craig Smith</b> is a software developer with more than 10 years of experience building and maintaining web applications in the learning-management space. He focuses on improving usability and UI while implementing customer-driven features within long-lived systems.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright © 2026 held by owner/author. Publication rights licensed to ACM.</p> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;9e6871662d4197b2&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfEdge&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;version&quot;:&quot;2025.9.1&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script>  
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ead82379e28ae7d',t:'MTc3NTk0NzM5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ead82379e28ae7d',t:'MTc3NTk0NzM5MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 1</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Brendan Burns, Brian Grant, David Oppenheimer, Eric Brewer, John Wilkes</span> - <a href="detail.cfm?id=2898444"><b>Borg, Omega, and Kubernetes</b></a>
+	  <br />
+	  Though widespread interest in software containers is a relatively recent phenomenon, at Google we have been managing Linux containers at scale for more than ten years and built three different container-management systems in that time. Each system was heavily influenced by its predecessors, even though they were developed for different reasons. This article describes the lessons we&#8217;ve learned from developing and operating them.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Rishiyur S. Nikhil</span> - <a href="detail.cfm?id=2020861"><b>Abstraction in Hardware System Design</b></a>
+	  <br />
+	  The history of software engineering is one of continuing development of abstraction mechanisms designed to tackle ever-increasing complexity. Hardware design, however, is not as current. For example, the two most commonly used HDLs date back to the 1980s. Updates to the standards lag behind modern programming languages in structural abstractions such as types, encapsulation, and parameterization. Their behavioral semantics lag even further. They are specified in terms of event-driven simulators running on uniprocessor von Neumann machines.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>John R. Mashey</span> - <a href="detail.cfm?id=1165766"><b>The Long Road to 64 Bits</b></a>
+	  <br />
+	  Shakespeare&#8217;s words often cover circumstances beyond his wildest dreams. Toil and trouble accompany major computing transitions, even when people plan ahead. To calibrate &#8220;tomorrow&#8217;s legacy today,&#8221; we should study &#8220;tomorrow&#8217;s legacy yesterday.&#8221; Much of tomorrow&#8217;s software will still be driven by decades-old decisions. Past decisions have unanticipated side effects that last decades and can be difficult to undo.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ead8234aef6de94',t:'MTc3NTk0NzM5MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
