@@ -1,0 +1,760 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Knowledge Graphs over Two Decades - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Visualization' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786299" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3806227' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>April 27, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786299">Volume 24, issue 2 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3806227">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">Knowledge Graphs over Two Decades</h1> 
+  <h2>From web-scale extraction to LLM-augmented intelligence</h2> 
+  <h3>Xia Luna Dong</h3>
+  <p>This paper traces the evolution of knowledge graphs across three generations: entity-based knowledge graphs (KGs), text-rich KGs, and the emerging convergence of KGs and large language models. The boundary between symbolic and neural knowledge continues to blur, leading to a new era of flexible, context-aware knowledge systems.</p> 
+  <p>Knowledge Graphs (KGs) have powered a wide range of applications, from web search to personal assistants. They have evolved over three generations: <i>entity-based KGs</i>, which support general search and question answering (e.g., Google, Bing); <i>text-rich KGs</i>, which enhance product recommendations, biomedical discovery, and other domain applications (e.g., Amazon, Alibaba); and the emerging convergence of KGs and large language models (LLMs), called <i>dual neural knowledge</i>.</p> 
+  <p>This article analyzes the defining characteristics of each generation, the underlying methods for knowledge integration and extraction, and the technical innovations that have driven their industrial impact. As LLMs advance machine understanding of natural language, the boundary between symbolic and neural knowledge continues to blur, leading to a new era of flexible, context-aware knowledge systems with transformative potential for both research and industry.</p> 
+  <p>KGs model the real world with a graph representation, where <i>nodes</i> represent real-world entities or atomic (attribute) values, and <i>edges</i> represent relations between the entities or attributes between entities and atomic values. A piece of knowledge can be considered a <i>triple</i> in the form of (subject, predicate, object), such as (Seattle, <i>located_at</i>, USA). The <i>data instances</i> in a KG follow the <i>ontology</i> as the schema, which in itself is represented in a graph form and can be taken as a part of the KG. The ontology describes entity <i>classes</i>, often organized in a hierarchical structure and also called a <i>taxonomy</i>, as well as meaningful relationships between classes.</p> 
+  <p>KGs can be thought of as <i>semi-structured:</i> On the one hand, they enjoy clean semantics of structured data powered by the rigidity of schemas (i.e., ontology); on the other hand, they embrace the flexibility of unstructured data by allowing new classes and relationships to be easily added.</p> 
+  <p>An additional advantage of KGs is that they can seamlessly connect a large number of domains through common entities across domains or relationships between domains (e.g., the <i>Movie</i> and <i>Music</i> domains can be connected by people who are both actors and singers, and by the <i>featured_song</i> relation). These advantages give KGs a unique position that is both understandable to machines (through ontology) and easy to understand by human beings (blessed by the structure); suitable to facilitate understanding in search, question answering (QA), and dialogues to power recommendation through the graph structure; and to display information for human understanding (in attribute-value pairs), comparison (in tables), and explanation (in paths in the graph).</p> 
+  <p>Modern knowledge graphs started in 2007—in the same year, Yago,<sup>32</sup> DBPedia,<sup>3</sup> and Freebase<sup>4</sup> were released. (There are two knowledge bases before all KGs discussed in this article, Cyc<sup>21</sup> and WordNet;<sup>28</sup> they are limited in scope and scale because of handcrafting.) The industry deployment started about a decade ago, when Google launched Knowledge Panels in web search in 2012; since then, KGs have been used broadly to support web search (e.g., Google and Bing), voice assistants (e.g., Amazon Alexa, Apple Siri, and Google Assistant), and so on, and have made a profound business impact.</p> 
+  <p>With the rapid expansion of KG applications, the question of <i>how to effectively model and capture the vast scope of valuable knowledge in the world</i> has become a prominent research area, attracting attention from a multitude of research communities—natural language processing (NLP), information retrieval (IR), data mining, databases, and the semantic web, to name a few. Over time, knowledge graphs have been evolving in both their structural forms and their construction methodologies. This article reviews and contrasts several generations of KGs.</p> 
+  <p>The first generation is <i>entity-based</i> KGs, where both ontology and data are more rigorous, and nodes in the graphs are mostly entities that have one-to-one correspondence with real-world entities (see figure 1(a) as an example). Most well-known generic KGs, such as Yago<sup>32</sup> from academia and Google KG<sup>31</sup> from industry, are entity-based KGs. This generation of KGs is discussed in the section that follows, “Entity-Based Knowledge Graphs.”</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig01.svg" alt="Figure 1a. An example entity-based KG in the music domain" /> 
+  <br /> Figure 1a. An example entity-based KG in the music domain 
+  <p>&nbsp;</p> 
+  <p>The second generation is <i>text-rich</i> KGs, where ontology and data allow many more ambiguities, and nodes in the graphs are more often just free texts. With the text nodes, the graph is mostly in the form of a bipartite graph, as depicted in figure 1(b). The top depicts the taxonomy, which can be a rich and deep hierarchy. The bottom depicts data instances, where attribute values are mostly texts; as such, it is mostly in the form of a bipartite graph (except edges like <i>synonym</i>).</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig02.svg" alt="Figure 1b. An example text-rich KG in the product domain" /> 
+  <br /> Figure 1b. An example text-rich KG in the product domain 
+  <p>&nbsp;</p> 
+  <p>Text-rich KGs are often used to model domains where structure is sparse while ambiguities are abundant, with vague and fluid semantic boundaries between values and even classes, such as <i>product</i>, <i>bio-informatics</i>, and <i>health</i>. (The section “Text-Rich Knowledge Graphs” discusses this generation.)</p> 
+  <p>The next generation of KGs, referred to as <i>dual neural knowledge,</i> is still taking shape. This paradigm represents knowledge in two complementary forms: <i>symbolic</i>, expressed as triples in traditional KGs, and <i>neural</i>, embedded within the parameters of LLMs. The same piece of knowledge may exist in both forms or reside primarily in the one most suitable for its representation, with a smooth transition enabling seamless integration between the two. The section “Dual Neural Knowledge” elaborates on why we believe that coexistence between symbolic and neural knowledge is essential for progress, at least in the near future, and how we leverage such knowledge.</p> 
+  <p>&nbsp;</p> 
+  <h3>Entity-Based Knowledge Graphs</h3>
+  <p>Entity-based KGs are the most popular KGs in both academia (e.g., Yago,<sup>32</sup> DBPedia,<sup>3</sup> etc.) and industry (e.g., Google KG,<sup>31</sup> Bing Satori KG,<sup>16</sup> Alexa KG,<sup>1</sup><sup>,</sup><sup>2</sup> WikiData<sup>37</sup>). As early as 2015, Google Knowledge Graph was reported to show for about 25 percent of all Google search queries.<sup>30</sup></p> 
+  <p>Entity-based KGs have two characteristics. First, the ontology of the KGs is normally manually defined with clear semantics, where entity types and relationships have few ambiguities or overlaps. For each domain in the ontology, the numbers of entities and relationships are fairly small and thus manageable for manual definition; for example, Freebase contains 52 entity types and 155 relationships in the movie domain.</p> 
+  <p>Second, most entities in entity-based KGs are <i>named</i> entities, each corresponding to a real-world entity such as a person, university, movie, song, and so on. There is rarely overlap among the entities; for example, no two people are the same, and no two movies are exactly the same, even if they share the same name.</p> 
+  <p>There are two ways to construct a knowledge graph: by transforming and integrating knowledge from structured sources, and by extracting knowledge from the web, as depicted in figure 2(a) and detailed next.</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig03.svg" alt="Figure 2a. (a) Architecture for constructing an entity-based KG" /> 
+  <br /> Figure 2a. (a) Architecture for constructing an entity-based KG 
+  <p>&nbsp;</p> 
+  <h4>Constructing A KG Through Integration</h4>
+  <p>Many data sources model the world with entities and relationships: the DBMS (database management system) uses <i>ER (entity relationship) diagrams</i> to visualize the logical structure of the databases, and <i>semi-structured</i> websites (e.g., IMDb for movies, MusicBrainz for music, and Goodreads for books) contain a large number of webpages, each page representing a <i>topic entity</i> and providing key-value pairs to describe the entity. The prevalent method in constructing a KG is through transforming structured or semi-structured data into graph form and integrating such data from different sources.</p> 
+  <p>&nbsp;</p> 
+  <h5>Knowledge Transformation</h5>
+  <p>Among all structured data sources, Wikipedia<sup>9</sup> has been serving as the major source for the majority of generic KGs. Wikipedia started in 2001 and describes entities and provides hyperlinks from one entity page to another, a convenient starting point for collecting knowledge. Wikipedia Infoboxes can be transformed to entities and relationships in a straightforward way (see an example in <a href="https://en.wikipedia.org/wiki/William_Shakespeare">https://en.wikipedia.org/wiki/William_Shakespeare</a>); this spurred successful early KGs such as Yago, DBPedia, and Freebase. The high accuracy of Wikipedia data guarantees reliability of the derived knowledge, as long as the transformation is carefully curated to ensure semantics correctness; thus, KGs have been used in production as a trustworthy data source since 2012. In a similar manner, other semi-structured data sources and relational databases supplement Wikipedia and enrich KGs with knowledge about torso to long-tail entities (in terms of popularity).</p> 
+  <p>&nbsp;</p> 
+  <h5>Knowledge Integration</h5>
+  <p>Different data sources organize their data in different ways. Similar to <i>data integration</i>, there are three types of heterogeneities<sup>14</sup> that need to be resolved for integration:</p> 
+  <p><b>• Schema heterogeneity</b>. Different data sources might express the same entity type and relationship in different ways (e.g., first name and last name versus full name). <i>Schema alignment</i> aligns source schemas with the KG ontology. For major data sources, this alignment is mostly done manually to guarantee semantics correctness in the transformation.</p> 
+  <p><b>• Entity heterogeneity</b>. Different data sources may represent the same real-world entity with slightly different names and provide different attribute values (e.g., Xin Dong from University of Washington versus Xin Luna Dong from Meta). <i>Entity linkage</i> links such entities such that there is a distinct node in the KG to represent a real-world entity. This problem is even trickier, as different entities might share the same name (thus <i>entity disambiguation</i>). Entity linkage stands out as a critical problem to solve when linking multiple sources, each of which often has millions of entities, making manual linkage implausible. There have been decades of research on entity linkage, dating back to 1969.<sup>15</sup> In practice, tree-based models (e.g., Random Forest) that take attribute-wise value similarities as features have proved to be effective solutions.</p> 
+  <p><b>• Value heterogeneity</b>. Different data sources may provide different attribute values for the same entity, some of which may be imprecise or out of date (refer to the same example for entity heterogeneity). <i>Data fusion</i> decides among different and possibly conflicting values, which are correct and up to date. Despite its importance in providing trustworthy knowledge, data fusion is less prominent when knowledge sources are restricted to a few authoritative ones.</p> 
+  <p>&nbsp;</p> 
+  <h4>Constructing A KG Through Web Extraction</h4>
+  <p>The web is a huge repository of knowledge, and many researchers have wanted to extract knowledge from the whole web. Well-known projects in this line include the Never-Ending Language Learner (NELL)<sup>6</sup> and Knowledge Vault (KV).<sup>10</sup> NELL focuses on text extraction, whereas KV extracts knowledge from four types of web content: texts, semi-structured data (as discussed in the previous section), web tables, and HTML annotations (e.g., according to schema.org).</p> 
+  <p>Achieving web scale requires an efficient way to generate training data to cover various data patterns. <i>Distant supervision</i><sup>2</sup><sup>,</sup><sup>5</sup><sup>,</sup><sup>29</sup><sup>,</sup><sup>33</sup> is applied for this purpose, but the training data and thus the extractions are often noisy. Various <i>knowledge fusion</i> techniques, often extended from data fusion solutions, have been proposed to predict correctness of the extractions, such as PRA (path ranking algorithm) in NELL,<sup>6</sup> deep learning-based link prediction in KV,<sup>10</sup> and graphical models in KV.<sup>11</sup> The graphical models are also used to distinguish extraction errors and source errors, leading to web source trustworthiness evaluation, as in knowledge-based trust.<sup>12</sup></p> 
+  <p>With web-scale knowledge extraction and fusion, NELL extracted 435,000 knowledge triples and KV extracted 100 million triples with more than 90 percent confidence (94 million from semi-structured websites). It is orders of magnitude smaller than commercial KGs (to compare, at the same time point Freebase contained 637 million triples and Google KG contained 18 billion triples).</p> 
+  <p>Although web extraction did not generate a huge volume of knowledge as expected, it led to several important insights. First, entity-based knowledge is mainly structured data, so the best knowledge sources are still structured sources; thus, knowledge transformation and integration (see previous section) from well-curated structured sources could be the most effective method to collect high-quality knowledge. Second, semi-structured websites are major contributors of high-quality knowledge in web extraction, and they can cover long-tail knowledge not covered by major structured sources; this insight inspired further investment in knowledge extraction from semi-structured websites, such as using GNN (graph neural network) for OpenIE (extracting knowledge not captured in the ontology).<sup>24</sup><sup>,</sup><sup>25</sup><sup>,</sup><sup>26</sup> Finally, texts often embrace knowledge not easily captured cleanly by entities, leading to the next generation of KGs, as described in in the next section.</p> 
+  <p>&nbsp;</p> 
+  <h3>Text-Rich Knowledge Graphs</h3>
+  <p>In many domains such as products, bioinformatics, health, law, and events<i>,</i> the domain cannot be cleanly modeled by entities and relationships.</p> 
+  <p>Consider the product domain as an example. First, there can be millions of product types, and many of them are overlapping (e.g., fashion swimwear versus two-piece swimwear); thus, defining a clean taxonomy hierarchy is challenging. Second, product attributes are fuzzy and overlapping in nature (e.g., mocha versus cappuccino as flavors, where there could be subtle differences but are also often considered similar by most customers); thus, entities may not be the best way to capture them. Finally, products are not strictly named entities: Unlike a person or movie name, product names (e.g., “Onus 2 colors highlighter stick, shimmer cream powder waterproof light face cosmetics, creamy self-sharpening crayon stick highlighter”) are long, verbose, and a concatenation of product type and attributes.</p> 
+  <p>Text-rich KGs are used to model such domains. Instead of setting up clean and strict semantic boundaries among types, relationships, and entities, the majority of the nodes in text-rich KGs can be just non-canonical <i>texts</i>. Note that different from entity-based KGs, which often also contain text attributes, here text attributes can be dominant, and it is nearly impossible to extract clean entities from these texts. As such, text-rich KGs are more like bipartite graphs rather than regular connected graphs, with topic entities in the domain on one side of the graph and attribute values (or entities) on the other sides of the graph, connected by attributes (see figure 1(b) as an example).</p> 
+  <p>The rest of this section continues with the product domain as an example to describe the techniques, as the aforementioned challenges are best highlighted in the product domain, and e-business has been prevalent in people’s lives. Similar techniques have been applied in other text-rich domains.<sup>40</sup></p> 
+  <p>&nbsp;</p> 
+  <h4>Knowledge Extraction Through Tagging</h4>
+  <p>With the huge semantic ambiguities, it is not hard to imagine that in the product domain, structured data is sparse and error prone.<sup>40</sup> Thus, structure and model ambiguity need to be mined from the structure-sparse source data. Structure mining relies on knowledge extraction, which requires different techniques from those described in the previous section, “Entity-Based Knowledge Graphs,” since entities are non-named and attributes can be mostly free texts. We resort to product profiles including product names, descriptions, and bullets, and train <i>named entity recognition (NER)</i> models to detect patterns that express a particular attribute. Such models, such as OpenTag,<sup>44</sup> serve as the basis for product knowledge collection.</p> 
+  <p>Further cleaning up the knowledge, including both extracted knowledge and some preexisting knowledge (e.g., input by retailers, but also error prone), can be accomplished with deep-learning–based data cleaning (e.g., transformers, GNNs), leveraging consistency between product descriptions and attributes, between different attribute values of the same product (e.g., a snack with sugar in the ingredients is unlikely to be sugar free), and between products of the same type (e.g., spicy is unlikely to be a flavor of ice cream).<sup>7</sup><sup>,</sup><sup>8</sup><sup>,</sup><sup>13</sup></p> 
+  <p>Finally, with the extracted types and attributes, their relationships (hypernyms, synonyms, etc.) can be mined from customer shopping behaviors, such as search, co-view (“customers who viewed this also viewed”), and co-purchase. For example, if users searching for “tea” often buy “green tea,” whereas users searching for “green tea” seldom end up buying other types of teas, it hints that “green tea” is a subtype of tea. GNN models have been used to mine such relationships for types<sup>27</sup> and attribute values.<sup>13</sup> Such methods are also used to establish the substitutes and complements between products.<sup>18</sup><sup>,</sup><sup>41</sup> Figure 2(b) describes the full architecture.</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig04.svg" alt="Figure 2b. (b) Architecture for constructing a text-rich KG" /> 
+  <br /> Figure 2b. (b) Architecture for constructing a text-rich KG 
+  <p>&nbsp;</p> 
+  <h4>Scaling Up to One-Size-Fits-All Solutions</h4>
+  <p>The product domain can contain millions of product types, thousands of product attributes, and hundreds of languages and locales. Scaling up requires a one-size-fits-all solution. The product domain is complex because of the huge type variety; even neighboring product types such as coffee and tea could have quite different attributes and different vocabularies and patterns for attribute values. One-size-fits-all models need to be able to understand and leverage the subtle differences between types, attributes, and languages when training the models. Once developed, they would significantly increase the volume of product knowledge and thus the business impact. Here are a few examples:</p> 
+  <p><b>• Multitype extractions</b>. TXtract<sup>20</sup> deepens its understanding of product types for better extraction in two ways. First, it takes the embedding of the product types as part of the input to the model so the extraction is type aware. Second, it employs multitask learning to predict product types in addition to knowledge extraction for the model to better understand texts related to type semantics. TXtract shows that it can train one model for 4,000 product types, while increasing extraction F-measure by 10 percent, compared with OpenTag as a baseline.</p> 
+  <p><b>• Multi-attribute extractions</b>. The values for different attributes can be more different than values for the same attribute across different product types, thus requiring slightly different models. AdaTag,<sup>42</sup> as an example, takes attribute embeddings as input and applies Mix of Experts (MoE) and HyperNet to leverage the similarities of the attributes in model training (e.g., <i>flavor</i> and <i>scent</i>, though different, share a lot of common vocabularies). It can train one model for 32 major attributes, while still improving quality over training one model per attribute.</p> 
+  <p><b>• Multimodal extractions</b>. Product images (both the visual clues and the texts on products) supplement information not existing in product profiles or enhance information that is vague or ambiguous in profiles. The PAM multimodal extractor<sup>22</sup> uses a multimodal transformer to attend across texts and images to improve knowledge extraction; in addition, it uses a generative model, adapted according to product types, to allow extracting values not observed in training data. Experimental results show that it can improve 11 percent over text extraction on F-measure.</p> 
+  <p>&nbsp;</p> 
+  <h3>Dual Neural Knowledge</h3>
+  <p>Compared with rigorously structured entity-based KGs, text-rich KGs incorporate free-form text into their structure, offering greater flexibility for modeling complex and nuanced domains. This naturally leads to a deeper question: Can we remove explicit structure altogether and instead encode knowledge implicitly through continuous representation such as embeddings? This question has become especially salient with the rapid advancement of LLMs, whose emerging reasoning capabilities<sup>39</sup> appear to approach the long-standing goals of <i>symbolic AI</i> once pursued through logic and rule-based systems.</p> 
+  <p>We foresee that in the near future, knowledge will exist in two complementary forms: <i>symbolic</i>, represented by knowledge graphs, textual corpora, and structured relational data, and <i>neural</i>, embedded within the parameters of LLMs. Common or widely shared knowledge will likely coexist in both forms, enabling grounded reasoning and efficient conversational access; rare or domain-specific knowledge will primarily persist in the symbolic form, accessible via retrieval-augmented generation (RAG). This is termed the <i>dual neural knowledge</i> framework (figure 3), reflecting an analogy to human cognition, where frequently used information is retained in memory, while less familiar knowledge is sought from external sources.</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig05.svg" alt="Figure 3. Dual neural knowledge framework and distribution of knowledge" /> 
+  <br /> Figure 3. Dual neural knowledge framework and distribution of knowledge 
+  <p>&nbsp;</p> 
+  <p>Next, this article briefly discusses why this dual form is necessary and how modern conversational systems leverage symbolic knowledge to enhance accuracy, grounding, and interpretability.</p> 
+  <p>&nbsp;</p> 
+  <h4>Knowledge in LLMs</h4>
+  <p>LLMs acquire knowledge by “reading” vast corpora of text—articles, books, webpages, and other sources—during pretraining. Through next-token prediction, they internalize large volumes of information in their parameters. Extensive empirical studies, however, reveal several critical knowledge gaps.</p> 
+  <p>&nbsp;</p> 
+  <h4>Lack of Recent Knowledge</h4>
+  <p>LLMs have a low accuracy on answering questions regarding real-time information (e.g., current stock prices) and also regarding fast-changing facts (e.g., changing every few days, such as sports records) and slow-changing facts (e.g., changing every few months or years).<sup>38</sup> GPT-4’s accuracy on such queries falls below 15 percent, a finding later confirmed by the CRAG (comprehensive retrieval-augmented generation) benchmark<sup>43</sup> (figure 4(a)).</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig06.svg" alt="Figure 4a The CRAG benchmark" /> 
+  <br /> Figure 4a. The CRAG benchmark 
+  <p>&nbsp;</p> 
+  <h4>Lack of Tail Knowledge</h4>
+  <p>Even for static factual information, LLMs lack <i>uncommon</i> knowledge. GPT-4 answers simple questions about head entities with 40 percent accuracy, dropping to 33 percent for torso and 19 percent for tail entities (in terms of popularity)<sup>34</sup> (figure 4(b)).</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig07.svg" alt="Figure 4b The head-to-tail benchmark" /> 
+  <br /> Figure 4b. The head-to-tail benchmark 
+  <p>&nbsp;</p> 
+  <h4>Degraded Taxonomy Knowledge</h4>
+  <p>LLMs are reliable on simple <i>is-a</i> questions in common domains such as shopping (accuracy, 80–90 percent) but perform worse in specialized fields such as computer science, biology, and geography (60–70 percent). Within a taxonomy, accuracy declines from root to leaf nodes by up to 35 percent<sup>36</sup> (figure 4(c)).</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3806227/assets/html/3806227_fig08.svg" alt="Figure 4c The language taxonomy" /> 
+  <br /> Figure 4c. The language taxonomy 
+  <p>&nbsp;</p> 
+  <p>These findings clarify the complementary distribution of knowledge between the <i>symbolic</i> and <i>neural</i> forms illustrated in figure 3.</p> 
+  <p>&nbsp;</p> 
+  <h4>KG-Facilitated RAG</h4>
+  <p>RAG relies on external data to enhance conversational accuracy and grounding, and KGs play two key roles in this process.</p> 
+  <p>First, KGs are valuable knowledge sources on their own. KG-based retrieval produces precise and factually consistent information, allowing for accurate answer generation by LLMs.<sup>43</sup> Traditional QA systems, however, often suffer from low retrieval recall from KGs, as transforming natural-language questions into <i>SPARQL</i> queries or identifying relevant KG paths through <i>semantic parsing</i> can miss key relations. Recent approaches address this by first identifying the subject entity in the question, then iteratively expanding and filtering a relevant subgraph until sufficient information is gathered. The resulting subgraph is then passed to an LLM, often fine-tuned for reasoning over the graph structure, to generate the final answer.<sup>35</sup></p> 
+  <p>Second, KGs facilitate understanding and reasoning by structuring information from textual or semi-structured data sources. For example, HippoRAG<sup>17</sup> demonstrates that extracting entities and relations from text enhances reasoning and improves performance for questions that require <i>single-step multihop retrieval</i>, whereas SCRIBES<sup>23</sup> shows that appending extracted triples to semi-structured web data helps LLMs better interpret and reason over semi-structured inputs.</p> 
+  <p>&nbsp;</p> 
+  <h4>Choosing Between Neural and Symbolic Knowledge</h4>
+  <p>A central question in the dual neural knowledge framework is when an LLM should rely on its internal (parameterized) knowledge versus external sources. In the absence of external data, the model should output only reliably encoded information and suppress hallucinations; when external data is available, it should retrieve selectively to balance latency, computational cost, and attention.</p> 
+  <p>Moving beyond naive always-RAG or rule-based triggering, ConfRAG<sup>19</sup> introduces a fine-tuning strategy that teaches the model to respond with “I am unsure” when confidence is low, thereby invoking RAG. During training, the model learns to output the answer if it predicts the correct value and outputs uncertainty otherwise. Interestingly, experiments show that the most effective fine-tuning corpus consists of atomic factual statements (attribute–value pairs) from knowledge graphs such as DBpedia, which train the model to judge confidence on the building blocks of factual knowledge and generalize effectively across domains.</p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusions</h3>
+  <p>This article outlines the evolution of knowledge graphs across three stages: entity-based KGs, text-rich KGs, and dual neural knowledge. As machines have advanced in understanding natural language, knowledge representation has shifted from rigid, formally structured graphs to more flexible, semantically rich forms. While traditional graph structures suited earlier models and algorithms, future representations will align with the capabilities of modern language models. The recent success of large language models signals a new paradigm for knowledge acquisition and encoding, ushering in a new era of knowledge integration, discovery, and application with profound implications for both research and industry.</p> 
+  <p>&nbsp;</p> 
+  <h3>Related Materials</h3> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3332266">Industry-scale Knowledge Graphs: Lessons and Challenges</a></b> <br />Five diverse technology companies show how it’s done <br />Natasha Noy, et al. <br /><a href="https://queue.acm.org/detail.cfm?id=3332266">https://queue.acm.org/detail.cfm?id=3332266</a> </p> 
+  <p>&nbsp;</p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3711679">The Price of Intelligence</a></b> <br />Three risks inherent in LLMs <br />Mark Russinovich, Ahmed Salem, <br />Santiago Zanella-Béguelin, and Yonatan Zunger <br /><a href="https://queue.acm.org/detail.cfm?id=3711679">https://queue.acm.org/detail.cfm?id=3711679</a> </p> 
+  <p>&nbsp;</p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3606011">Echoes of Intelligence</a></b> <br />Textual interpretation and large language models <br />Alvaro Videla <br /><a href="https://queue.acm.org/detail.cfm?id=3606011">https://queue.acm.org/detail.cfm?id=3606011</a> </p> 
+  <p>&nbsp;</p> 
+  <p>&nbsp;</p> 
+  <p>XIN LUNA DONG is a principal scientist at Meta Wearables AI, where she leads the agentic AI efforts for building trustworthy and personalized assistants on wearable devices. Previously, she spent more than a decade advancing knowledge graph technology, including the Amazon Product Graph and the Google Knowledge Graph. She is co-author of <i>Machine Knowledge: Creation and Curation of Comprehensive Knowledge Bases</i>and<i>Big Data Integration</i>. She was named an ACM Fellow and an IEEE Fellow for significant contributions to knowledge graph construction and data integration, awarded the VLDB Women in Database Research Award and VLDB Early Career Research Contribution Award, and invited as an ACM Distinguished Speaker. She serves on the PVLDB advisory committee, was a member of the VLDB endowment, and a PC co-chair for KDD’2022 ADS track, WSDM’2022, VLDB’2021, and SIGMOD’2018.</p> 
+  <p>&nbsp;</p> 
+  <h3>References</h3>
+  <p>1. Agichtein, E. and Gravano, L. Snowball: extracting relations from large plain-text collections. In <i>Proceedings of the Fifth ACM Conf. on Digital Libraries</i> (2000), 85–94; <a href="https://dl.acm.org/doi/10.1145/336597.336644">https://dl.acm.org/doi/10.1145/336597.336644</a>.</p> 
+  <p>2. Amazon staff. How Alexa keeps getting smarter (2018); <a href="https://www.aboutamazon.com/news/devices/how-alexa-keeps-getting-smarter">https://www.aboutamazon.com/news/devices/how-alexa-keeps-getting-smarter</a>.</p> 
+  <p>3. Auer, S. et al DBpedia: a nucleus for a web of open data. In <i>Proceedings of Intern. Semantic Web Conf.</i> (2007), 722–735; <a href="https://dl.acm.org/doi/10.1007/978-3-540-76298-0_52">https://dl.acm.org/doi/10.1007/978-3-540-76298-0_52</a>.</p> 
+  <p>4. Bollacker, K. et al. Freebase: a collaboratively created graph database for structuring human knowledge. In <i>Proceedings of the ACM SIGMOD Intern. Conf. on Management of Data</i> (2008), 1247–1250; <a href="https://dl.acm.org/doi/10.1145/1376616.1376746">https://dl.acm.org/doi/10.1145/1376616.1376746</a>.</p> 
+  <p>5. Brin, S. Extracting patterns and relations from the World Wide Web. In <i>Proceedings of the Intern. Workshop on the World Wide Web and Databases</i> (1998), 172–183; <a href="https://dl.acm.org/doi/10.5555/646543.696220">https://dl.acm.org/doi/10.5555/646543.696220</a>.</p> 
+  <p>6. Carlson, A. et al. Toward an architecture for never-ending language learning. In <i>Proceedings of the 24<sup>th</sup> AAAI Conf. on Artificial Intelligence</i> (2010), 1306–1313; <a href="https://dl.acm.org/doi/10.5555/2898607.2898816">https://dl.acm.org/doi/10.5555/2898607.2898816</a>.</p> 
+  <p>7. Cheng, K. et al. Tab-Cleaner: weakly supervised tabular data cleaning via pretraining for e-commerce catalog. In <i>Proceedings of the 61<sup>st</sup> Annual Meeting of the Association for Computational Linguistics (Volume 5, Industry Track)</i> (2023), 172–185; <a href="https://aclanthology.org/2023.acl-industry.18.pdf">https://aclanthology.org/2023.acl-industry.18.pdf</a>.</p> 
+  <p>8. Cheng, K. et al PGE: robust product graph embedding learning for error detection. In <i>Proceedings of the VLDB Endowment</i> 15, 6 (2022), 1288–1296; <a href="https://dl.acm.org/doi/abs/10.14778/3514061.3514074">https://dl.acm.org/doi/abs/10.14778/3514061.3514074</a>.</p> 
+  <p>9. Denoyer, L. and Gallinari, P. The Wikipedia XML corpus. <i>ACM SIGIR Forum</i> 40, 1 (2006), 64–69; <a href="https://dl.acm.org/doi/10.1145/1147197.1147210">https://dl.acm.org/doi/10.1145/1147197.1147210</a>.</p> 
+  <p>10. Dong, X.L. et al. Knowledge vault: a web-scale approach to probabilistic knowledge fusion. In <i>Proceedings of the 20<sup>th</sup> ACM SIGKDD Intern. Conf. on Knowledge Discovery and Data Mining</i> (2014), 601–610; <a href="https://dl.acm.org/doi/10.1145/2623330.2623623">https://dl.acm.org/doi/10.1145/2623330.2623623</a>.</p> 
+  <p>11. Dong, X.L. et al. From data fusion to knowledge fusion. In <i>Proceedings of the VLDB Endowment</i> 7, 10 (2014), 881–892; <a href="https://dl.acm.org/doi/abs/10.14778/2732951.2732962">https://dl.acm.org/doi/abs/10.14778/2732951.2732962</a>.</p> 
+  <p>12. Dong, X.L. et al. Knowledge-based trust: estimating the trustworthiness of web sources. In <i>Proceedings of the VLDB Endowment</i> 8, 9 (2015), 938–949; <a href="https://dl.acm.org/doi/10.14778/2777598.2777603">https://dl.acm.org/doi/10.14778/2777598.2777603</a>.</p> 
+  <p>13. Dong, X.L. et al. AutoKnow: self-driving knowledge collection for products of thousands of types. In <i>Proceedings of the 26<sup>th</sup> ACM SIGKDD Intern. Conf. on Knowledge Discovery and Data Mining</i> (2020), 2724–2734; <a href="https://dl.acm.org/doi/10.1145/3394486.3403323">https://dl.acm.org/doi/10.1145/3394486.3403323</a>.</p> 
+  <p>14. Dong, X.L. and Srivastava, D. Big data integration. In <i>Proceedings of the VLDB Endowment</i> 6, 11 (2013), 1188–1189; <a href="https://dl.acm.org/doi/abs/10.14778/2536222.2536253">https://dl.acm.org/doi/abs/10.14778/2536222.2536253</a>.</p> 
+  <p>15. Fellegi, I.P. and Sunter, A.B. A theory for record linkage. <i>J. of the American Statistical Association</i> 64, 328 (1969), 1183–1210; <a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1969.10501049">https://www.tandfonline.com/doi/abs/10.1080/01621459.1969.10501049</a>.</p> 
+  <p>16. Gao, Y. et al. Building a large-scale, accurate and fresh knowledge graph. In <i>Proceedings of the 24<sup>th</sup> ACM SIGKDD Intern. Conf. on Knowledge Discovery and Data Mining</i> (2018).</p> 
+  <p>17. Gutiérrez, B.J. et al. HippoRAG: neurobiologically inspired long-term memory for large language models. In <i>Proceedings of the 38<sup>th</sup> Intern. Conf. on Neural Information Processing Systems (Article 1902)</i> (2024), 59532–59569; <a href="https://dl.acm.org/doi/10.5555/3737916.3739818">https://dl.acm.org/doi/10.5555/3737916.3739818</a>.</p> 
+  <p>18. Hao, J. et al. P-Companion: A principled framework for diversified complementary product recommendation. In <i>Proceedings of the 29<sup>th</sup> Intern. Conf. on Information and Knowledge Management</i> (2020), 2517–2524; <a href="https://dl.acm.org/doi/10.1145/3340531.3412732">https://dl.acm.org/doi/10.1145/3340531.3412732</a>.</p> 
+  <p>19. Huang, Y. et al. ConfRAG: confidence-guided retrieval-augmented generation. <i>arXiv: 2506-07309</i> (2025); <a href="https://arxiv.org/abs/2506.07309">https://arxiv.org/abs/2506.07309</a>.</p> 
+  <p>20. Karamanolakis, G. et al. TXtract: taxonomy-aware knowledge extraction for thousands of product categories. In <i>Proceedings of the 58<sup>th</sup> Annual Meeting of the Association for Computational Linguistics</i> (2020); <a href="https://aclanthology.org/2020.acl-main.751/">https://aclanthology.org/2020.acl-main.751/</a>.</p> 
+  <p>21. Lenat, D.B. and Guha, R.V. <i>Building Large Knowledge-Based Systems; Representation and Inference in the Cyc Project</i>. Addison-Wesley Longman Publishing Co., Inc., Boston, MA (1989). <a href="https://dl.acm.org/doi/book/10.5555/575523">https://dl.acm.org/doi/book/10.5555/575523</a>.</p> 
+  <p>22. Lin, R. et al. PAM: understanding product images in cross product category attribute extraction. In <i>Proceedings of the 27<sup>th</sup> ACM SIGKDD Conf. on Knowledge Discovery and Data Mining</i> (2021), 3262–3270; <a href="https://dl.acm.org/doi/10.1145/3447548.3467164">https://dl.acm.org/doi/10.1145/3447548.3467164</a>.</p> 
+  <p>23. Liu, S. et al. SCRIBES: web-scale script-based semi-structured data extraction with reinforcement learning. <i>arXiv: 2510.01832</i> (2025); <a href="https://arxiv.org/abs/2510.01832">https://arxiv.org/abs/2510.01832</a>.</p> 
+  <p>24. Lockard, C. et al. Ceres: distantly supervised relation extraction from the semi-structured web. In <i>Proceedings of the VLDB Endowment</i> 11, 10 (2018), 1084–1096; <a href="https://dl.acm.org/doi/abs/10.14778/3231751.3231758">https://dl.acm.org/doi/abs/10.14778/3231751.3231758</a>.</p> 
+  <p>25. Lockard, C. et al. OpenCeres: when open information extraction meets the semi-structured web. In <i>Proceedings of the Conf. of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1)</i> (2019); <a href="https://aclanthology.org/N19-1309/">https://aclanthology.org/N19-1309/</a>.</p> 
+  <p>26. Lockard, C. et al. ZeroShotCeres: zero-shot relation extraction from semi-structured webpages. In <i>Proceedings of the 58<sup>th</sup> Annual Meeting of the Association for Computational Linguistics</i> (2020); <a href="https://aclanthology.org/2020.acl-main.721/">https://aclanthology.org/2020.acl-main.721/</a>.</p> 
+  <p>27. Mao, Y. et al. Octet: online catalog taxonomy enrichment with self-supervision. In <i>Proceedings of the 26<sup>th</sup> ACM SIGKDD Intern. Conf. on Knowledge Discovery and Data Mining</i> (2020), 2247–2257; <a href="https://dl.acm.org/doi/10.1145/3394486.3403274">https://dl.acm.org/doi/10.1145/3394486.3403274</a>.</p> 
+  <p>28. Miller, G.A. et al. Introduction to WordNet: an on-line lexical database. <i>Intern. J. of Lexicography</i> 3, 4 (1990); <a href="https://academic.oup.com/ijl/article-abstract/3/4/235/923280?redirectedFrom=fulltext">https://academic.oup.com/ijl/article-abstract/3/4/235/923280?redirectedFrom=fulltext</a>.</p> 
+  <p>29. Mintz, M. et al. Distant supervision for relation extraction without labeled data. In <i>Proceedings of the Joint Conf. of the 47<sup>th</sup> Annual Meeting of the ACL and the 4<sup>th</sup> Intern. Joint Conf. on Natural Language Processing of the AFNLP (Volume 2)</i> (2009), 1003–1011; <a href="https://dl.acm.org/doi/10.5555/1690219.1690287">https://dl.acm.org/doi/10.5555/1690219.1690287</a>.</p> 
+  <p>30. Schwartz, B. <i>Google’s Knowledge Graph May Show for 25% of All Search Queries</i>. Search Engine Land (2015); <a href="https://searchengineland.com/googles-knowledge-graph-may-show-14th-search-queries-212962">https://searchengineland.com/googles-knowledge-graph-may-show-14<sup>th</sup>-search-queries-212962</a>.</p> 
+  <p>31. Singhal, A. Introducing the Knowledge Graph: things, not strings. <i>The Keyword, Google Blog</i> (2012). <a href="https://blog.google/products-and-platforms/products/search/introducing-knowledge-graph-things-not/">https://blog.google/products-and-platforms/products/search/introducing-knowledge-graph-things-not/</a>.</p> 
+  <p>32. Suchanek, F.M. et al. YAGO: a core of semantic knowledge. In <i>Proceedings of the 16<sup>th</sup> Inter. Conf. on World Wide Web</i> (2007), 697–706; <a href="https://dl.acm.org/doi/10.1145/1242572.1242667">https://dl.acm.org/doi/10.1145/1242572.1242667</a>.</p> 
+  <p>33. Suchanek, F.M., Sozio, M., and Weikum, G. SOFIE: a self-organizing framework for information extraction. In <i>Proceedings of the 18<sup>th</sup> Intern. Conf. on World Wide Web</i> (2009); <a href="https://scholar.google.com/scholar_lookup?doi=10.1145%2F1526709.1526794">https://scholar.google.com/scholar_lookup?doi=10.1145%2F1526709.1526794</a>.</p> 
+  <p>34. Sun, K. et al. Head-to-tail: how knowledgeable are large language models? A.K.A. will LLMs replace knowledge graphs? <i>arXiv: 2308-10168</i> (2023); <a href="https://arxiv.org/abs/2308.10168">https://arxiv.org/abs/2308.10168</a>.</p> 
+  <p>35. Sun, Y. et al. KERAG: knowledge-enhanced retrieval-augmented generation for advanced question answering. In <i>Findings of the Association for Computational Linguistics</i> (2025); <a href="https://aclanthology.org/2025.findings-emnlp.329/">https://aclanthology.org/2025.findings-emnlp.329/</a>.</p> 
+  <p>36. Sun, Y. et al. Are large language models a good replacement of taxonomies? In <i>Proceedings of the VLDB Endowment</i> 17, 11, (2024), 2919–2932; <a href="https://dl.acm.org/doi/abs/10.14778/3681954.3681973">https://dl.acm.org/doi/abs/10.14778/3681954.3681973</a>.</p> 
+  <p>37. Vrandečić, D. and Krötzsch, M. Wikidata: a free collaborative knowledgebase. <i>Communications of the ACM</i> 57, 10 (2014), 78–85; <a href="https://dl.acm.org/doi/10.1145/2629489">https://dl.acm.org/doi/10.1145/2629489</a>.</p> 
+  <p>38. Vu, T. et al. FreshLLMs: refreshing large language models with search engine augmentation. <i>arXiv: 2310.03214</i> (2023); <a href="https://arxiv.org/abs/2310.03214">https://arxiv.org/abs/2310.03214</a>.</p> 
+  <p>39. Wei, J. et al. Chain-of-thought prompting elicits reasoning in large language models. In <i>Proceedings of the 36<sup>th</sup> Intern. Conf. on Neural Information Processing Systems (Article 1800)</i> (2022), 24824–24837; <a href="https://dl.acm.org/doi/10.5555/3600270.3602070">https://dl.acm.org/doi/10.5555/3600270.3602070</a>.</p> 
+  <p>40. Welty, C. et al. Rapid instance-level knowledge acquisition for Google Maps from class-level common sense. In <i>Proceedings of the AAAI Conf. on Human Computation and Crowdsourcing</i> 9, 1 (2021), 143–154; <a href="https://ojs.aaai.org/index.php/HCOMP/article/view/18947">https://ojs.aaai.org/index.php/HCOMP/article/view/18947</a>.</p> 
+  <p>41. Xiao, L. et al. End-to-end conversational search for online shopping with utterance transfer. In <i>Proceedings of the Conf. on Empirical Methods in Natural Language Processing</i>. Association for Computational Linguistics, (2021), 3477–3486. <a href="https://aclanthology.org/2021.emnlp-main.280/">https://aclanthology.org/2021.emnlp-main.280/</a>.</p> 
+  <p>42. Yan, J. et al. AdaTag: multi-attribute value extraction from product profiles with adaptive decoding. In <i>Proceedings of the 59<sup>th</sup> Annual Meeting of the Association for Computational Linguistics and the 11<sup>th</sup> Intern. Joint Conf. on Natural Language Processing (Volume 1: Long Papers)</i> (2021), 4694–4705; <a href="https://aclanthology.org/2021.acl-long.362/">https://aclanthology.org/2021.acl-long.362/</a>.</p> 
+  <p>43. Yang, X. et al. CRAG – comprehensive RAG benchmark. In <i>Proceedings of the 38<sup>th</sup> Intern. Conf. on Neural Information Processing Systems (Article 335)</i> (2024), 10470–10490; <a href="https://dl.acm.org/doi/10.5555/3737916.3738251">https://dl.acm.org/doi/10.5555/3737916.3738251</a>.</p> 
+  <p>44. Zheng, G., Mukherjee, S., Dong, X. L., and Li, F. OpenTag: open attribute value extraction from product profiles. In <i>Proceedings of the 24<sup>th</sup> ACM SIGKDD Intern. Conf. on Knowledge Discovery and Data Mining</i> (2018), 1049–1058; <a href="https://dl.acm.org/doi/10.1145/3219819.3219839">https://dl.acm.org/doi/10.1145/3219819.3219839</a>.</p> 
+  <p>&nbsp;</p> 
+  <p>Copyright held by the owner/author(s). Publication rights licensed to ACM.</p> 
+  <p>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution International 4.0 License.</a></p> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f55fcbebede3968',t:'MTc3NzcxNDAxNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f55fcbebede3968',t:'MTc3NzcxNDAxNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 2</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Brendan Gregg</span> - <a href="detail.cfm?id=2927301"><b>The Flame Graph</b></a>
+	  <br />
+	  An everyday problem in our industry is understanding how software is consuming resources, particularly CPUs. What exactly is consuming how much, and how did this change since the last software version? These questions can be answered using software profilers, tools that help direct developers to optimize their code and operators to tune their environment. The output of profilers can be verbose, however, making it laborious to study and comprehend. The flame graph provides a new visualization for profiler output and can make for much faster comprehension, reducing the time for root cause analysis.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f55fcbb3a383f3b',t:'MTc3NzcxNDAxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
