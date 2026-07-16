@@ -1,0 +1,832 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>The SPACE of AI - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3807964' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>June 8, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786299">Volume 24, issue 2 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3807964">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">The SPACE of AI</h1>
+  <h2>Real-world lessons of AI’s impact on developers</h2>
+  <h3>Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, and Ben Hanrahan</h3>
+  <p>As AI tools become increasingly embedded in software development workflows, there is a growing need to understand their true impact on developer productivity and experience. This article presents findings from a mixed-methods study examining how developers perceive AI’s influence across the dimensions of the SPACE framework: Satisfaction, Performance, Activity, Collaboration, and Efficiency. Drawing on survey responses from more than 500 developers and qualitative insights from interviews and observational studies, we find that AI is broadly adopted and widely seen as enhancing productivity, particularly for routine tasks. The benefits vary, however, depending on task complexity, individual usage patterns, and team-level adoption. Developers report increased efficiency and satisfaction, with less evidence of impact on collaboration. Organizational support and peer learning play key roles in maximizing AI’s value.</p>
+  <p>These findings suggest that AI is augmenting developers rather than replacing them and that effective integration depends as much on team culture and support structures as on the tools themselves. The article concludes with practical recommendations for teams, organizations, and researchers seeking to harness AI’s potential in software engineering.</p>
+  <p>The rise of artificial intelligence in software development has sparked intense debate, especially among executives and engineering leaders eager to understand its impact. Some believe AI will soon replace entire categories of developer work, while others dismiss it as an overhyped distraction. But amid all the speculation, one perspective is often missing: that of the developers who are actually using these tools.</p>
+  <p>On one side of the coin, it seems clear that developers themselves aren’t worried about the potential of AI to replace them in the foreseeable future. Only 10 percent of software engineers express concern that AI might take their jobs.<sup>3</sup> For those working with these tools every day, the reality is clear: AI tools aren’t replacing developers; they’re augmenting them, helping them work faster, smarter, and with less toil. On the flip side, some organizations remain hesitant about whether AI is worth the investment.</p>
+  <p>The truth, assuredly, lies somewhere in the middle. While developers see clear benefits from AI, many organizations struggle to assess its true impact. Most efforts to measure AI’s value focus narrowly on how much faster developers can complete coding tasks.<sup>5</sup> This misses the bigger picture: Speed is just one piece of the puzzle. Productivity is multidimensional, as captured in the SPACE framework, which considers not just Activity and Efficiency, but also factors such as Satisfaction, Collaboration, and delivering meaningful Performance.<sup>2</sup> Not to mention that developers spend only 14 percent of their time coding new features, a statistic that underscores how incomplete a focus on coding speed alone really is.<sup>4</sup></p>
+  <p>To better understand how AI is reshaping the developer experience, we conducted a study that asked developers how AI tools affect their work. Unlike other studies, which often focus on a single tool such as GitHub Copilot, this research considers a broader range of AI tools. By combining quantitative insights with qualitative user stories, we aim to explore not just how developers are using AI, but also how it impacts their productivity across the dimensions of SPACE.</p>
+  <p>This article outlines the study design, then dives into the findings, examining AI adoption trends, its influence on individual and team productivity, and the ways it is—or isn’t—shaping the broader developer experience. Finally, the article presents actionable recommendations for teams and organizations looking to harness AI effectively. Through this work, we hope to shed light on AI’s true value in the developer’s toolkit and uncover what organizations can do to maximize its potential.</p>
+  <p>&nbsp;</p>
+  <h3>Methodology</h3>
+  <p>To explore how AI is impacting developer productivity and satisfaction across the dimensions of SPACE, we conducted a mixed-methods research study combining survey data with qualitative insights derived from interviews and focus groups.</p>
+  <h4>Survey Design</h4>
+  <p>The survey consisted of a mix of multiple-choice questions, Likert-scale ratings, and open-text prompts. The core questions aimed to assess how AI tools impact developers’ experiences across the SPACE dimensions. Additionally, respondents were asked about team-level adoption, the availability of AI training resources, and their own frequency of AI use. The survey was optimized for brevity, with an average completion time of seven minutes.</p>
+  <p>&nbsp;</p>
+  <h4>Survey Participants</h4>
+  <p>The survey was distributed to 3,500 individuals; 530 responses were received, yielding a response rate of 15 percent, which is in line with similar studies. More than 80 percent of the study participants were from Microsoft, but developers from at least 15 other companies were represented, including Airbnb, Atlassian, Charles Schwab, DoorDash, JetBrains, Meta, Netflix, Reddit, and Yelp. Non-Microsoft participants were recruited via professional networks and industry contacts, with company names provided on an optional basis.</p>
+  <p>The Microsoft sample was drawn from a randomized pool of developers within Microsoft, filtered to include individual contributors in the U.S., excluding those in finance, legal, or HR. Individuals who had received survey invitations within the past 12 months or explicitly opted out of research participation were also excluded. The external sample spanned industries, company sizes, and geographies, providing a broader context for comparison. We acknowledge that these constraints, particularly the geographic restriction, might influence the results.</p>
+  <p>&nbsp;</p>
+  <h4>Survey Execution</h4>
+  <p>The survey was conducted in August 2024, using Microsoft Forms. Participants were invited via email and incentivized with a chance to win a $50 gift card. To ensure privacy, responses were collected anonymously, and no identifying information was linked to the results.</p>
+  <p>&nbsp;</p>
+  <h4>Survey Limitations</h4>
+  <p>As with any survey-based research, this study had limitations. Response bias may have influenced the results, particularly among external participants who represented a smaller sample size. Additionally, while the survey captured perceptions of AI’s impact, it did not directly measure productivity improvements or satisfaction outcomes in practice. Finally, the study focused on developers who regularly use AI tools, which may have skewed results toward more favorable views of AI adoption.</p>
+  <p>&nbsp;</p>
+  <h4>Customer Interviews and Observational Studies</h4>
+  <p>To augment the survey findings with qualitative learning, we included insights collected from interviews and observational studies with professional developers and engineering leaders. In all, we interviewed 10 professional developers and 20 engineering leads about the impact LLMs were having on their software development teams and observed 23 experienced Java developers as they navigated both common (i.e., “accelerator”) tasks as well as uncommon (i.e., “exploratory”) tasks with GitHub Copilot. Finally, we conducted interviews with a handful of engineers at Microsoft about their experiences using GitHub Copilot specifically.</p> 
+  <p>&nbsp;</p> 
+  <h3>Findings</h3> 
+  <h4>Widespread Adoption of AI Tools</h4> 
+  <p>The adoption of AI tools in software development is no longer a niche experiment—it’s becoming the norm. While developers express concerns about AI being gimmicky or potentially degrading their skills, that does not appear to be a major blocker to adoption.</p>
+  <p>In the survey, 75 percent of developers reported that they regularly use AI to complete their tasks, while 25 percent indicated they do not.</p>
+  <p>This widespread adoption signals a clear shift in how developers are integrating AI into their workflows. Among those who have adopted AI, usage is frequent: 64 percent of developers who use AI report using it at least once a week.</p>
+  <p>While seniority plays a role, its impact on adoption is relatively minor. The most experienced developers (seven-plus years of experience) are only four percent less likely to be daily users compared with those in their first three years. Organizational support appears to be a far stronger driver of AI adoption. Developers who say their organization actively advocates for AI adoption are seven times more likely to be daily users than those who feel their company does not.</p>
+  <p>&nbsp;</p>
+  <h4>Perceived Productivity Gains</h4>
+  <p>Yet, adoption alone doesn’t tell the full story. Are these tools actually making developers more productive? Are some aspects of work seeing more benefits than others? And what role does teamwide adoption play in maximizing impact?</p>
+  <p>The following sections break down these questions, exploring not just how often AI is used, but how it’s shaping individual and team productivity across the SPACE dimensions.</p>
+  <p>These results make it clear: Developers who use AI believe it has a meaningful impact on their “productivity” (see figure 1). But what does productivity mean in this context? It is more than just speed; it spans multiple dimensions, from efficiency and task throughput to job satisfaction and collaboration. To better understand AI’s role, we examined its influence through the SPACE framework,<sup>2</sup> which captures five key aspects of developer productivity:</p>
+  <p>– <b>Satisfaction (S)</b>—how happy and fulfilled developers feel in their work</p>
+  <p>– <b>Performance (P)</b>—their ability to deliver meaningful business or customer value</p>
+  <p>– <b>Activity (A)</b>—the volume of code and tasks completed</p>
+  <p>– <b>Collaboration (C)</b>—how effectively they work with teammates</p>
+  <p>– <b>Efficiency (E)</b>—how smoothly and effectively they get work done</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3807964/assets/html/houck1.png" alt="Figure 1. AI and developer productivity" /> 
+  <br /> <span style="font-size:0.8em;">Figure 1. AI and developer productivity</span> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p>The following sections break down whether developers agree or disagree that AI is impacting their experiences across each of these dimensions.</p>
+  <p>The data leaves little room for doubt: For those developers using AI, they are seeing it improve their productivity across a wide range of dimensions. Because of the small number of developers who disagreed with the statements in the survey, disagreement segments are visible in figure 2 but not labeled. Fewer than three percent of respondents selected “Disagree” or “Strongly Disagree” for any item. A strong majority agree or strongly agree that it improves their task throughput (88 percent) and efficiency (82 percent), which aligns with previous findings about the efficacy of Copilot to decrease the time it takes to complete coding tasks.<sup>1</sup></p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3807964/assets/html/houck_fig2.svg" alt="Figure 2. Percentage of developers who agree or disagree that AI has improved each aspect of their work." /> 
+  <br /> <span style="font-size:0.8em;"> Figure 2. Percentage of developers who agree or disagree that AI has improved each aspect of their work.</span> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p>Beyond just speed, 71 percent of AI adopters believe these tools help them deliver customer value, and 62 percent say AI enhances their job satisfaction. These results suggest that, for those who use AI, it’s not just making them faster, it’s helping them feel more effective and more satisfied with their work. Previous research has shown a positive relationship between productivity and satisfaction,<sup>6</sup> and these results lend agreement to that.</p>
+  <p>The impact on collaboration tells a more nuanced story. Unlike other productivity dimensions, fewer than half of AI adopters (48 percent) agreed that AI has improved their ability to collaborate with teammates. Notably, very few developers outright disagreed, but a significant portion remained neutral, suggesting that AI’s role in team-based work is still evolving.</p>
+  <p>The qualitative findings reveal a more complex picture, however. Rather than decreasing collaboration, AI seems to be changing the nature of interactions within teams. The engineering managers in the study reported fewer interruptions within their teams, as developers relied less on colleagues for quick answers to coding questions. An executive leader at an online grocery delivery service even noted that developers were experiencing less “reputational damage” for having to interrupt teammates with simple coding questions.</p>
+  <p>At the same time, many leaders and developers did not feel that AI was diminishing meaningful discussions. Several interviewees claimed that the quality and depth of conversations, particularly between senior and junior developers, had actually improved. A VP of IT at a global supplier of technology and engineering systems explained that, because of ChatGPT, teams now spend more time “brainstorming about projects, ideas, and architectures” and less time discussing “unnecessary” coding questions.</p>
+  <p>These findings suggest that while AI may not yet be seen as a strong direct enabler of collaboration, it is reshaping how collaboration happens. By reducing interruptions and shifting conversations toward higher-value discussions, AI may be indirectly improving team interactions in ways that traditional productivity metrics, and even developer self-assessments, don’t fully capture. As teams continue to evolve their use of AI, its role in enhancing collaboration may become more visible and more measurable over time.</p>
+  <p>&nbsp;</p>
+  <h4>Task Complexity and AI’s Limits</h4>
+  <p>While developers overwhelmingly believe that AI improves productivity across multiple dimensions, the type of work matters. Not all tasks are created equal, and this distinction is critical when evaluating AI’s true impact. Developers who regularly use AI report that it excels at handling mundane, repetitive work but struggles with more complex or novel challenges.</p>
+  <p>See table 1 for how they describe it in their own words.</p> 
+  <div id="T1"> 
+   <table frame="hsides" rules="rows"> 
+    <tbody valign="bottom"> 
+     <tr> 
+      <td align="left">“It takes care of so much tedious work!”</td> 
+      <td align="left">“I’m still stuck solving all the hard problems.”</td> 
+     </tr> 
+     <tr> 
+      <td align="left">“I’ve been able to hand off fundamentally simple but repetitive [tasks] to AI.”</td> 
+      <td align="left">“I don’t find [AI tools] particularly useful for complex situations.”</td>
+     </tr> 
+     <tr> 
+      <td align="left">“It’s mostly a time-saver for the cases where I’m doing something repetitive.”</td> 
+      <td align="left">“It definitely isn’t perfect, especially for anything complex.”</td>
+     </tr>
+    </tbody>
+   </table> 
+   <div class="table-caption"> <span style="font-size:0.8em;">Table 1. Response to question, “In your own words, how has the use of AI tools impacted your productivity?”</span> 
+   </div> 
+  </div> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p>It’s not just the nature of tasks that shapes AI’s impact; how we use AI also matters. Developers who incorporate AI into their workflow might more frequently refine their approach, learning when and how to leverage it most effectively. Early interactions with AI might be limited to basic code suggestions, but over time, developers might integrate it into more nuanced problem-solving, documentation, and debugging efforts. As their familiarity grows, so too does AI’s perceived value. The data reflects this: Developers who use AI more often tend to report stronger productivity benefits (see figure 3).</p> 
+  <p>&nbsp;</p> 
+  <h4>From Assistant to Agent (and the Limits of Autonomy)</h4> 
+  <p>The industry has moved toward agentic AI tools that can plan multi-step changes, execute commands, and modify files across a project. The parallelism of multi-agent systems offers the promise of even greater productivity growth.</p> 
+  <p>However, recent qualitative research from Sara Chizari at Microsoft suggests this momentum may be outpacing how developers actually work. In a controlled study of eight experienced developers, most chose not to run multiple agents at once, even under time pressure. Cognitive load, the need for explicit context boundaries, and a preference for finishing tasks end to end all limited concurrency. Rather than leaning into automation, developers leaned into control, deliberately introducing checkpoints and using planning modes to inspect the agent’s intent before authorizing action.</p> 
+  <p>The strongest predictor of success in multi-agent sessions was not tool capability but specification quality. Sessions with clear decomposition and defined roles succeeded; sessions without upfront structure produced conflicting outputs and what developers described as “merge nightmares.” Multi-agent AI does not create structure; it exposes whether structure already exists. These findings extend the task-complexity story: It is not only that AI struggles with complex tasks, but that developer cognitive capacity for overseeing AI has limits, too.</p> 
+  <p>&nbsp;</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3807964/assets/html/houck_fig3.svg" alt="Figure 3. Response to question, “Which best describes how often you use AI tools in your day-to-day work?” compared with the average agreement rating to the question, “Using AI helps me to be more productive.”" /> 
+  <br /> <span style="font-size:0.8em;">Figure 3. Response to question, “Which best describes how often you use AI tools in your day-to-day work?” compared with the average agreement rating to the question, “Using AI helps me to be more productive.”</span> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <h4>Frequency of Use Shapes Perceived Value</h4> 
+  <p>The data suggests a positive relationship between AI usage frequency and how strongly developers believe it improves their productivity. This trend alone, however, does not imply causation. Relatively small sample sizes for less frequent AI users mean the differences are not statistically significant, so they could have arisen by chance. The direction of the relationship also remains unclear: Does frequent AI use lead to greater productivity, or are developers who already see value in AI simply more likely to use it more often?</p>
+  <p>Our observational studies of professional Java developers provide additional insights. Success with AI depends on three key factors:</p>
+  <p>– Task complexity</p>
+  <p>– Developer skill</p>
+  <p>– Familiarity with AI</p>
+  <p>AI works well for routine tasks but struggles with novel problems. More experienced developers evaluate AI-generated code more effectively, and those familiar with how LLMs work are better at refining prompts and integrating AI into workflows.</p>
+  <p>Developers engage in a continuous loop when working with AI: formulating the problem, determining inputs, evaluating AI suggestions, and deciding on implementation.</p>
+  <p>Breakdowns at any step—misunderstanding the task, unclear prompts, or lack of trust in AI outputs—can lead to frustration and wasted effort. Many developers say working with AI requires new skills or forces them to engage skills they don’t often use. A distinguished engineer at Microsoft described this learning curve:</p> 
+  <div style="margin-left:24pt;">
+   <p>“[GitHub Copilot Chat] took me a long time to use because I felt like Chat is for when I’m not in [coding] flow. That was not a muscle that I had at all.”</p>
+  </div>
+  <p>&nbsp;</p> 
+  <h4>Teamwide Adoption Amplifies Impact</h4>
+  <p>AI’s impact isn’t just about how it is used; it’s also shaped by the people around you. The way AI is adopted within a team can influence how individuals perceive its value, whether through shared best practices, cultural norms, or simply seeing colleagues benefit from its use. The next section explores how teamwide AI adoption affects perceptions of productivity.</p>
+  <p>As shown in table 2, developers working on teams where AI is widely adopted are more likely to view their team as productive. This follows, logically, from the strong agreement developers have that AI makes them more productive. It stands to reason that the more of their peers who use this productivity-boosting tool, the more productive the team will be. This raises an important question about whether there will be growing social pressure to adopt AI if the absence of adopting it will make individuals seem less productive in the eyes of their peers.</p> 
+  <div id="T2"> 
+   <table frame="hsides" rules="rows"> 
+    <thead valign="bottom"> 
+     <tr> 
+      <th align="left">“How many developers on your team use AI tools in their day-to-day role?”</th> 
+      <th align="left">“I feel like my team is productive at work.”</th> 
+      <th align="left">“Using AI helps me to be more productive.”</th>
+     </tr>
+    </thead>
+    <tbody> 
+     <tr>
+      <td align="left">All</td>
+      <td align="left">94% agree</td>
+      <td align="left">4.66</td>
+     </tr> 
+     <tr>
+      <td align="left">Most</td>
+      <td align="left">86% agree</td>
+      <td align="left">4.35</td>
+     </tr> 
+     <tr>
+      <td align="left">Some</td>
+      <td align="left">79% agree</td>
+      <td align="left">4.18</td>
+     </tr>
+    </tbody>
+   </table> 
+   <div class="table-caption"> <span style="font-size:0.8em;">Table 2. Responses to the question “How many developers in your team use AI tools in their day-to-day role,” compared with (1) the percentage of respondents who agree with the statement “I feel like my team is productive at work” and (2) the average agreement rating to “Using AI helps me to be more productive on a 5-point scale”</span> 
+   </div> 
+  </div> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p>One possibility is that as AI becomes the norm within a team, those who don’t use it may start to feel or be perceived as less productive, even if their work doesn’t directly benefit from AI-powered assistance. If AI adoption is socially reinforced, developers may feel pressure to integrate it into their workflow, whether or not they see immediate value. Over time, this could shift team norms, making AI tools a default expectation rather than an optional enhancement.</p>
+  <p>The data also suggests that AI’s benefits may extend beyond individual use through shared learning. Developers on teams with higher AI adoption don’t just rate their team as more productive, but also report stronger personal agreement that AI makes them more productive. This could indicate that as AI becomes a standard tool within a team, developers gain exposure to best practices, workflow optimizations, and peer guidance that help them get more value from it.</p>
+  <p>This is particularly important given that AI’s usefulness isn’t universal across all tasks. Some developers might struggle to see the benefits initially, especially if their work requires deep problem solving rather than automation of repetitive tasks. In a highly AI-adoptive environment, these developers might learn from their peers about where AI is most effective, allowing them to refine their usage and ultimately see greater gains.</p>
+  <p>AI’s impact on developer productivity is not just a function of the tool itself, but of how it is adopted, shared, and reinforced within teams. While individual usage plays a role, broader team adoption can shape perceptions, drive learning, and even create social expectations around AI’s effectiveness. These findings highlight that measuring AI’s value requires looking beyond just individual gain; its influence extends through the collaborative dynamics of teams and organizations. As AI continues to evolve, understanding these interactions will be key to maximizing its potential in software development.</p>
+  <p>&nbsp;</p>
+  <h3>Practical Strategies for AI Impact</h3>
+  <p>AI adoption in software development is accelerating, but how it is integrated and supported within teams and organizations plays a critical role in its effectiveness. While individual developers are finding value in AI tools, their impact is amplified when teams establish best practices, shared learning, and structured support systems. Following are key takeaways for teams, organizations, and researchers looking to maximize AI’s potential.</p>
+  <h4>For Teams: Foster Best Practices and Encourage Teamwide Adoption</h4>
+  <p>AI’s effectiveness isn’t just about whether an individual developer uses it; it thrives when adoption is supported across a team. As the data suggests, developers on teams adopting AI report stronger productivity benefits, likely because of shared learning and collaborative improvements. To maximize AI’s value:</p>
+  <p>– Create best-practices documentation to help developers understand when and how to use AI effectively.</p>
+  <p>– Encourage knowledge sharing such as teamwide discussions on AI-powered workflows or informal mentorship around AI usage. Appointing local champions can help drive adoption. Our developer interviews revealed that “social proof” (watching a trusted colleague solve a real-world problem) was the most consistently cited catalyst for adoption. In nearly every case, the turning point that converted a hesitant developer into an active user was not a training module, but watching a trusted colleague solve a real problem with AI.</p>
+  <p>– Normalize AI adoption by embedding it into daily work processes rather than treating it as an optional tool.</p>
+  <p>Teams that openly discuss AI usage, share successes, and establish guidelines for responsible adoption will see stronger, more consistent benefits across developers.</p>
+  <p>&nbsp;</p>
+  <h4>For Organizations: Invest in Training and Tooling to Drive AI Success</h4>
+  <p>Beyond individual teams, organizations play a crucial role in AI’s effectiveness by shaping policy, training, and infrastructure. One of the most striking findings from this study is that developers who feel their organization actively supports AI adoption are seven times more likely to use it daily. This suggests that clear top-down encouragement, training, and access to AI tools can significantly drive usage. Organizations can:</p>
+  <p>– Provide structured AI training to help developers refine their usage patterns and effectively integrate AI into their workflows</p>
+  <p>– Develop AI-friendly policies that encourage experimentation while addressing ethical considerations and concerns about security and reliability</p>
+  <p>– Ensure access to high-quality AI tools by evaluating internal and external options that best fit engineering needs</p>
+  <p>Without these investments, driving AI adoption might remain challenging, limiting its potential benefits and creating unnecessary friction in development workflows.</p>
+  <p>&nbsp;</p>
+  <h4>For Researchers: Investigate the Long-Term Impact of AI Adoption</h4>
+  <p>This study highlights strong correlations between AI usage and perceived productivity improvements, but many open questions remain. Future research should explore:</p>
+  <p>– <b>Causality</b>. Does frequent AI use drive greater productivity, or are more productive developers simply more likely to adopt AI?</p>
+  <p>– <b>Task-specific AI impact</b>. AI’s effectiveness varies across tasks—where does it provide the most significant lift, and where does it fall short?</p>
+  <p>– <b>The social dynamics of AI adoption</b>. How does peer influence shape AI adoption, and what role does social expectation play in driving usage?</p>
+  <p>Understanding these dynamics will help teams and organizations refine their AI strategies, ensuring that productivity gains are real, measurable, and sustainable over time.</p>
+  <p>&nbsp;</p>
+  <h3>Conclusion</h3>
+  <p>The integration of AI into software development is no longer an emerging trend; it is rapidly becoming a fundamental part of the developer experience. The research presented here shows that developers overwhelmingly believe AI enhances their productivity, efficiency, and satisfaction, yet its impact is far from uniform across all tasks and teams. While AI excels at automating routine and repetitive work, developers still find themselves tackling the most complex and strategic problems themselves.</p>
+  <p>At an individual level, familiarity and experience with AI influence how much benefit developers derive from these tools. Those who use AI more frequently tend to report greater productivity gains, though it remains unclear whether frequent use drives impact or if developers whose specific tasks benefit are best suited for AI and adopt it more often. Beyond individual usage, teamwide adoption plays a crucial role in shaping AI’s effectiveness. Developers who work in AI-supportive environments not only rate their teams as more productive but also perceive stronger personal benefits, suggesting that peer learning and organizational support are key enablers of AI success.</p>
+  <p>Despite these promising trends, challenges remain. AI assistance requires new ways of thinking, and developers must build the skills necessary to formulate effective prompts, interpret AI suggestions, and evaluate their outputs critically. Organizations that invest in training, establish best practices, and embed AI into workflows are better positioned to maximize its benefits.</p>
+  <p>The conversation about AI in software development must evolve. The focus should shift from whether AI makes developers faster to how it reshapes the broader developer experience. By considering all dimensions of productivity—satisfaction, performance, activity, collaboration, and efficiency (SPACE)—organizations can gain a more holistic view of AI’s impact and ensure that its adoption leads to meaningful, sustainable improvements.</p>
+  <p>AI is not replacing developers; it is augmenting them. The challenge now is not just about measuring AI’s effects, but understanding how to harness its potential in ways that truly empower developers, teams, and organizations.</p>
+  <p>&nbsp;</p>
+  <h3>Acknowledgments</h3>
+  <p>We would like to thank Lane Cooper, Monty Hammontree, Nancy Anderson, and David Liu for their contributions to this research study. We would also like to thank all the study participants and research reviewers for their valuable feedback and insights.</p>
+  <p>&nbsp;</p>
+  <h3>References</h3>
+  <p>1. Cui, K. et al. The productivity effects of generative AI: evidence from a field experiment with GitHub Copilot. An <i>MIT Exploration of Generative AI</i>. 2024; <a href="https://doi.org/10.21428/e4baedd9.3ad85f1c">https://doi.org/10.21428/e4baedd9.3ad85f1c</a></p>
+  <p>2. Forsgren, N. et al. The SPACE of developer productivity: There’s more to it than you think. <i>acmqueue</i>. 2021; <a href="https://dl.acm.org/doi/10.1145/3454122.3454124">https://dl.acm.org/doi/10.1145/3454122.3454124</a>.</p>
+  <p>3. Khemka, M. and Houck, B. Toward effective AI support for developers: a survey of desires and concerns. <i>Acmqueue</i>. 2024; <a href="https://doi.org/10.1145/3675416">https://doi.org/10.1145/3675416</a>.</p>
+  <p>4. Kumar, S. et al. Time warp: the gap between developers’ ideal vs actual workweeks in an AI-driven era. <i>47<sup>th</sup> Intern. Conf. on Software Engineering-Software Engineering in Practice</i>. 2025; <a href="https://aka.ms/dev-productivity-study">https://aka.ms/dev-productivity-study</a>.</p>
+  <p>5. Peng, S., Kalliamvakou, E., Cihon, P., and Demirer, M. The impact of AI on developer productivity: evidence from GitHub Copilot. 2023. arXiv 2302.06590; <a href="https://doi.org/10.48550/arXiv.2302.06590">https://doi.org/10.48550/arXiv.2302.06590</a>.</p> 
+  <p>6. Storey, M.-A. et al. Towards a theory of software developer job satisfaction and perceived productivity. In <i>IEEE Transactions on Software Engineering</i> 47, 10 2019, 2125–2142; <a href="https://www.microsoft.com/en-us/research/publication/towards-a-theory-ofsoftware-developer-job-satisfaction-and-perceived-productivity/">https://www.microsoft.com/en-us/research/publication/towards-a-theory-ofsoftware-developer-job-satisfaction-and-perceived-productivity/</a>. </p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3> 
+  <p><b>Toward Effective AI Support for Developers</b></p> 
+  <p>A survey of desires and concerns</p> 
+  <p>Mansi Khemka and Brian Houck</p> 
+  <p><a href="https://queue.acm.org/detail.cfm?id=3675416">https://queue.acm.org/detail.cfm?id=3675416</a></p> 
+  <p>&nbsp;</p> 
+  <p><b>The SPACE of Developer Productivity</b></p> 
+  <p>There’s more to it than you think.</p> 
+  <p>Nicole Forsgren, et al.</p> 
+  <p><a href="https://queue.acm.org/detail.cfm?id=3454124">https://queue.acm.org/detail.cfm?id=3454124</a></p> 
+  <p>&nbsp;</p> 
+  <p><b>How to Evaluate AI that’s Smarter than Us</b></p> 
+  <p>Exploring three strategies: functional correctness, AI-as-a-judge, and comparative evaluation</p> 
+  <p>Chip Huyen</p> 
+  <p><a href="https://queue.acm.org/detail.cfm?id=3722043">https://queue.acm.org/detail.cfm?id=3722043</a></p> 
+  <p>&nbsp;</p> 
+  <p><b>Brian Houck</b> is an applied scientist on Microsoft’s Engineering Thrive team. His work combines large-scale telemetry analysis, field experiments, surveys, and qualitative research to uncover the technical, cultural, environmental, and organizational factors that shape developer productivity and well-being. He is best known for his work on the SPACE framework for developer productivity and for his work measuring and improving developer experience in large engineering organizations.</p> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p><b>Travis Lowdermilk</b> is a mixed-methods UX researcher and author. Currently, he works on the CoreAI Design and Research team, empowering anyone, on any platform, to get the most out of AI. He holds a B.S. in information systems from California State University, Fresno, and an M.S. in human-computer interaction from DePaul University. His background is a unique blend of systems thinking, human factors, user research, design, and engineering.</p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>Cody Beyer</b> is a principal data scientist at Microsoft in the CoreAI Growth organization. His work centers on empirical studies of developer productivity and the use of large-scale telemetry, experimentation, and statistical methods to evaluate the effects of AI-assisted development tools.</p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>Steven Clarke</b> is a principal UX researcher at Microsoft, where he focuses on the design and evaluation of AI-assisted developer tools. His work centers on understanding how software developers and engineering organizations adopt agentic AI systems, including how these tools reshape workflows, decision-making, and notions of productivity and quality. He specializes in mixed-methods research, with a particular emphasis on developer experience in complex, enterprise-scale environments.</p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>Benjamin V. Hanrahan</b> is a principal UX researcher at Microsoft, where he focuses on LLM and agent-powered applications. His work combines qualitative, quantitative, and hands-on methods, drawing on more than 15 years of experience as a developer, educator, and researcher. He holds a Ph.D. in computer science from Virginia Tech and specializes in mixed-methods UX research at the intersection of human-computer interaction and AI, with a longstanding focus on user agency in algorithmically supported systems.</p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p>Copyright© 2026 held by owner/author. Publication rights licensed to ACM.</p>
+  <p>Thiswork is licensed under a CreativeCommons Attribution International 4.0 License.</p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p>&nbsp;</p>
+  <p>Copyright © 2026 held by the owner/author(s). Publication rights licensed to ACM.</p>
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;3bb0add5452d43a2b5d4b3d6c628944c&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fdc7ed26c94c',t:'MTc4NDA3ODkxNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fdc7ed26c94c',t:'MTc4NDA3ODkxNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 2</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3806226"><b>In Code They Think; In Proof We Trust</b></a>
+	  <br />
+	  AI agents that use tools can be hijacked by prompt injection to exfiltrate sensitive data. Runtime defenses such as model alignment, output scanning, and content classifiers are fundamentally reactive: By the time they detect an attack, irreversible actions may already have been taken, and sophisticated encodings such as steganography, encryption, and chunking can evade any content-based check. We propose a preemptive alternative: Constrain the agent to express its plan as a Kotlin script, then statically verify the script against a security policy before any tool executes. The verification uses taint analysis, a well-established static analysis technique. A fact extractor walks the Kotlin AST to identify sources (sensitive data origins), sinks (network exit points), and data flows between them.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Margaret-Anne Storey</span> - <a href="detail.cfm?id=3807966"><b>From Technical Debt to Cognitive and Intent Debt</b></a>
+	  <br />
+	  Generative AI is dramatically accelerating software development, allowing teams to generate and modify code faster than ever before. For decades, software engineering has focused on managing technical debt—how code structure and implementation make systems harder to change. But in the age of AI, technical debt might no longer be the most important constraint. This article argues that the real risks are shifting toward two less visible forms of debt: cognitive debt and intent debt. Cognitive debt is the erosion of shared understanding across a team where no one can confidently explain how a system works or predict the impact of a change.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jenna Butler</span> - <a href="detail.cfm?id=3807963"><b>Eight Myths on Software Engineering and GenAI</b></a>
+	  <br />
+	  Generative AI is reshaping software engineering—but the narrative has gotten ahead of the evidence. Marketing claims, anecdotal wins, and misread studies have given rise to a set of persistent myths that are quietly driving poor decisions about AI adoption, tooling, and how to measure success. This article examines eight of the most common misconceptions. We already know developers don’t actually spend most of their time writing code, with studies at Microsoft and elsewhere showing it’s closer to 14 percent. That means AI code generation, even when it works well, touches a surprisingly small slice of the actual job. And yet organizations are doubling down on lines-of-code metrics to track AI’s impact, which is a measure that is neither statistically valid nor meaningfully connected to outcomes such as software quality or delivery speed.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jenna Butler, Mara Ulloa, Margaret-Anne Storey, Christian Bird</span> - <a href="detail.cfm?id=3807965"><b>Climbing the Generative AI Mountain</b></a>
+	  <br />
+	  Most product managers (PMs) working in software today feel it—that dizzying sense of standing at the base of a mountain, staring up at a new way of working and wondering where to even begin. Generative AI has fast arrived in the software engineering workforce, with little guidance and high expectations. PMs are expected to be more productive almost overnight, without a map for how to get there. Microsoft has been at the center of this transformation. Drawing on interviews, surveys, and telemetry from 885 PMs on software teams at Microsoft, we studied how practitioners at every stage of the climb are actually navigating this shift—from those still finding their footing at base camp to those who have reached the summit and fundamentally redesigned how they work.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fdc4d9a82cbc',t:'MTc4NDA3ODkxNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

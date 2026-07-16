@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Pebbles on the Beach - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Education' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3818306' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+		<p style='float:right;'>
+		<a href="https://www.informit.com/store/kollected-kode-vicious-9780136788249?utm_source=referral&utm_medium=acm-queue&utm_campaign=kode-vicious" target=_new2>
+		<img src="/confimg/Kode_Vicious2.jpg" border="0" alt="The Kollected Kode Vicious" style='height:196px;width:150px;padding:5px;'>
+		</a><br />
+		</p>
+		
+
+	
+
+<label>July 6, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786300">Volume 24, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3818306">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">Pebbles on the Beach</h1> 
+  <h2>Keeping hold of the big questions</h2> 
+  <h3>George V. Neville-Neil</h3> 
+  <br /> 
+  <p><b>Dear KV,</b></p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3818306/asset/72b65769-1aea-4e9e-915c-2e4647d1e84a/assets/images/medium/3818306_uf01.jpg" alt="pebbles" style="float:right;width:25%;max-width:640px;padding:0px 0px 20px 20px;" /> 
+  <p>I know that your column is mostly for practitioners, but I have a question about academia for you. So, I hope it’s OK if I throw you a bit of a curveball question.</p> 
+  <p>I’ve been working as a research engineer in a university computer science department. This is my first job out of college—although “out” is a bit wrong since I’m still at the same institution where I got my undergrad degree. I thought I’d spend some more time here building things for people while I decide whether to pursue a graduate degree or go into industry. Everyone seems very worried about LLMs and AI and all that, but I did a senior project with a professor here and she had funding for a position for a year and asked if I wanted to stick around. So, I did.</p> 
+  <p>The work is a continuation of the project I was already on, only now I’m better paid and share an office with a grad student who is also working on the same project.</p> 
+  <p>One of the things I’ve been trying to pick up, along with some new data analysis and scientific Python skills, is how researchers go about choosing or finding problems to study. There’s a group lunch each week, and the grad students present what they’re working on and get comments from my boss, along with a few other professors. But it all seems very open ended, as if they’re just making it up as they go along. I even asked the grad student I’m sharing the office with, and his response wasn’t quite as obnoxiously Zen as something from Yoda, but it was something like, “I just wander around the space picking up rocks and looking under them until I find a problem that interests me, and then I build some small prototype to see if the idea has merit.” When I pressed him on how he judged merit, the best I got was, “Can I think of a journal or conference that would publish what I want to write about?”</p> 
+  <p>Now I have this image of researchers wandering around with colorful sand pails, picking up pebbles on a beach, and seeing which ones they want to take home. Since I don’t have any other academic experience to compare it with, I wonder if this pertains to just this group or is more widespread. I know from your bio that you work with universities. So, is this common, or is it just my group?</p> 
+  <p align="right" style="text-align:right"><b>– Pebbles on the Beach</b></p> 
+  <p><b>Dear Pebbles,</b></p> 
+  <p>You read my bio? What did it say? Hopefully nothing too salacious, although cavorting with academics might be considered... well, never mind.</p> 
+  <p>On the one hand, I could be equally vague and say, “There are as many intellectual styles among academics as there are grains of sand.” But, in fact, that has not been KV’s experience in his time as someone who has done, as you do, development for research.</p> 
+  <p>Research is often billed as being “curiosity driven.” And, with the recent attacks on academia, particularly in the United States, this phrasing has even made its way into the popular press. For the whole of human history, some people have been curious about the world around them, and they have come up with different ways to satisfy that curiosity. Newton is said to have stuck a needle around his eyeball to “learn about colour” (his spelling, not mine). You have to really be interested in how your eye works to mess with it in that way.</p> 
+  <p>Now, the real question is: Was Newton just idly walking one day when he thought, “Cheerio, if I shove a needle into my eye socket, will I get a minimum publishable unit for the <i>Journal of Crazy Eyeball Physics and Optics</i>?” I kind of hope this was not what he was thinking, and I also kind of hope Newton didn’t sound like some parody of Monty Python either. Rather, KV hopes Newton had a question he was trying to answer about the nature of light, or the nature of how we perceive light.</p> 
+  <p>This is where we come to what KV has seen from the best researchers: They’re not just wandering around picking up shiny pebbles; instead they are trying to answer some particular question. Answering questions is what scientists—and engineers—are supposed to do. Which provides us with a crossover between science and practice.</p> 
+  <p>When KV is debugging a piece of code (which is most of what he does, since he works on large codebases written by 12 monkeys with ASR-33 terminals who were trying to hammer out a copy of Version 7 Unix by typing randomly), he too is trying to answer a question. The top-level question KV most often faces is: Where is my gin? But shortly after that, the next lower-level question arises: Why does this code suck? Then that evolves into something more sedate: Why does this function return garbage but only after more than a million correct operations?</p> 
+  <p>We see here the effect of the question on the eventual solution. This is why the polestar KV uses to keep him on track is: What is the problem we are trying to solve?</p> 
+  <p>Should you ever lose track of this guiding star, you will get lost in a universe of dull red dwarfs, bright new blue suns, neutron stars, and the most dreaded star of all—the black hole.</p> 
+  <p>It has been my privilege over the years to work with some academics for whom this question of focus is always firmly in mind. They may have ideas about how to answer a question, in part, because of happenstance—the equivalent of picking up a shiny pebble on the beach is very much the “Aha!” moment in the shower, but this is not what is guiding them. The guiding star is a question such as: Why do all systems seem to reduce to this one type of system? What is the optimal layout of this set of data structures? How can we build an interface that is usable by nonspecialists and yet does not impede the specialist user? And, of course, since KV is a “systemsy” person, How can I make this system perform more operations per unit of time than it already performs?</p> 
+  <p>If KV had been a physicist, which might have been the case had he been smarter, then the questions would have been grander: Where did the universe come from? Can anything travel faster than light? And the perennial, Where is my other sock? I put a pair in the dryer and now I only find one.</p> 
+  <p>There are many advantages to this question-focused form of research, not the least of which is that it can lead to a longer-term program than a single, shiny pebble might. KV was very young when he was first exposed to the people building BSD Unix at UC Berkeley, a project they had already been working on for many years, which had not only produced useful working systems for others, but also led to answers to several questions about software design, process scheduling, and file storage, among others. While the group might not have used the same terms KV is using here (and they definitely would not use the same words KV uses when he’s angry at code), one can see that the questions they asked led to much of the research they produced. KV continues to seek out researchers who are question-focused in this way because questions also lead to narratives, and KV hates work without a narrative arc.</p> 
+  <p>The need for a narrative arc is a personal bias. Not everyone needs one, but there are fewer things more maddening than watching someone wander around a space bumping into ideas as if they’re in a pinball machine, learning nothing more than a few words that might be used at a cocktail party to impress the guests. To develop ideas that coherently answer questions, there must be order—and that order is the narrative arc.</p> 
+  <p>If you find that you as well need this form of order to organize thoughts and you like to keep a good question in front of you to guide you, then, by all means, continue your work with academics. Look for the ones who don’t just publish papers on a particular topic, but those who develop full programs that attract bright graduate students who understand the <i>research question</i>, as they call it, and then take a piece of that question and try to answer it. This is the way in which the edifice of science has been built. Picking up pebbles on the beach is a hobby, but answering questions is a calling.</p> 
+  <p align="right" style="text-align:right"><b>– KV</b></p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3674499">Repeat, Reproduce, Replicate</a></b> <br />The pressure to publish versus the will to defend scientific claims <br />Kode Vicious <br /><a href="https://queue.acm.org/detail.cfm?id=3674499">https://queue.acm.org/detail.cfm?id=3674499</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3132371">Research for Practice: Vigorous Public Debates in Academic Computer Science</a></b> <br />Expert-curated Guides to the Best of CS Research <br />John Regehr <br /><a href="https://queue.acm.org/detail.cfm?id=3132371">https://queue.acm.org/detail.cfm?id=3132371</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3631181">Dear Diary</a></b> <br />On keeping a laboratory notebook <br />Kode Vicious <br /><a href="https://queue.acm.org/detail.cfm?id=3631181">https://queue.acm.org/detail.cfm?id=3631181</a> </p> 
+  <p>&nbsp;</p> 
+  <p><b>George V. Neville-Neil</b> works on networking and operating-system code for fun and profit. He also teaches courses on various subjects related to programming. His areas of interest are computer security, operating systems, networking, time protocols, and the care and feeding of large codebases. He is the author of <i>The Kollected Kode Vicious</i> and co-author with Marshall Kirk McKusick and Robert N. M. Watson of <i>The Design and Implementation of the FreeBSD Operating System</i>. For nearly 20 years he has been the columnist better known as Kode Vicious. Since 2014 he has been an industrial visitor at the University of Cambridge, where he is involved in several projects relating to computer security. He earned his bachelor’s degree in computer science at Northeastern University in Boston, Massachusetts, and is a member of the ACM, the Usenix Association, and IEEE. His software not only runs on Earth, but also has been deployed as part of VxWorks in NASA’s missions to Mars. He is an avid bicyclist and traveler who currently lives in New York City.</p> 
+  <p>&nbsp;</p> 
+  <p> This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution International 4.0 License</a>. <br /> Copyright © 2026 held by the owner/author(s). Publication rights licensed to ACM. </p> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a196c7681ec9a5ff',t:'MTc4Mzc2MjExNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a196c7681ec9a5ff',t:'MTc4Mzc2MjExNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 3</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Ellen Chisa</span> - <a href="detail.cfm?id=2683579"><b>Evolution of the Product Manager</b></a>
+	  <br />
+	  Software practitioners know that product management is a key piece of software development. Product managers talk to users to help figure out what to build, define requirements, and write functional specifications. They work closely with engineers throughout the process of building software. They serve as a sounding board for ideas, help balance the schedule when technical challenges occur - and push back to executive teams when technical revisions are needed. Product managers are involved from before the first code is written, until after it goes out the door.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jon P. Daries, Justin Reich, Jim Waldo, Elise M. Young, Jonathan Whittinghill, Daniel Thomas Seaton, Andrew Dean Ho, Isaac Chuang</span> - <a href="detail.cfm?id=2661641"><b>Privacy, Anonymity, and Big Data in the Social Sciences</b></a>
+	  <br />
+	  Open data has tremendous potential for science, but, in human subjects research, there is a tension between privacy and releasing high-quality open data. Federal law governing student privacy and the release of student records suggests that anonymizing student data protects student privacy. Guided by this standard, we de-identified and released a data set from 16 MOOCs (massive open online courses) from MITx and HarvardX on the edX platform. In this article, we show that these and other de-identification procedures necessitate changes to data sets that threaten replication and extension of baseline analyses. To balance student privacy and the benefits of open data, we suggest focusing on protecting privacy without anonymizing data by instead expanding policies that compel researchers to uphold the privacy of the subjects in open data sets.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Michael J. Lutz, J. Fernando Naveda, James R. Vallino</span> - <a href="detail.cfm?id=2653382"><b>Undergraduate Software Engineering: Addressing the Needs of Professional Software Development</b></a>
+	  <br />
+	  In the fall semester of 1996 RIT (Rochester Institute of Technology) launched the first undergraduate software engineering program in the United States. The culmination of five years of planning, development, and review, the program was designed from the outset to prepare graduates for professional positions in commercial and industrial software development.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a196c7643f8f23b8',t:'MTc4Mzc2MjExNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

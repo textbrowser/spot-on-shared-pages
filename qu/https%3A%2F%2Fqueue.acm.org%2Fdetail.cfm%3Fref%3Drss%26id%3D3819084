@@ -1,0 +1,701 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>You Don’t Know Jack About Formal Verification - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Workflow Systems' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3819084' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>June 22, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786300">Volume 24, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3819084">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  ﻿ 
+  <meta http-equiv="Content-Type" content="text/html" /> 
+  <title>You Don’t Know Jack About Formal Verification</title>
+  <h1 class="hidetitle">You Don’t Know Jack About Formal Verification</h1>
+  <h2>What can you confidently guarantee about your software?</h2>
+  <h3>Fernanda Graciolli and Nada Amin</h3>
+  <p>The cost and tooling of formal verification have reached the point of widespread use. By eliminating the cost of writing proofs, AI is removing the biggest barrier to formal verification. This makes it easier than ever to build software with critical business rules that are guaranteed to be mathematically correct, rather than merely tested.</p>
+  <p>If your program has a complex set of business rules, can you guarantee that no combination of valid inputs will produce an invalid outcome?</p>
+  <p>Consider a secrets-management platform with a permission system. Rules control who can read, edit, or delete secrets across environments. When a user creates a custom role, the system checks that the new role’s permissions are a subset of the user’s own (i.e., you shouldn’t be able to grant access you don’t have). The boundary check covers every combination of permission operators. It has a thorough test suite, and all are passing.</p>
+  <p>But there’s a case that the tests never tried: A user with access scoped to a single environment (say, QA) could create a role scoped to “not development.” That sounds narrow, but “not development” matches every environment except development (e.g., user acceptance testing, sandbox, canary, production, etc.)—meaning a single-environment permission escalated to near-universal access. The boundary check approves it and the tests don’t catch it, because every test uses overlapping values, which means the excluded value always appears in the parent’s set. The bug triggers only when they don’t overlap.</p>
+  <p>A correctly designed and implemented permission system has one fundamental semantic invariant: Permission derivation is subset invariant. That is, the set of environments that a derived permission matches must always be a subset of the environments the granting permission matches. That property says nothing about how permissions are represented. It covers finite sets, negated sets, and any representation that might be added later. With this invariant set, permission derivation can’t fail at runtime because a bug of this class would be made impossible by construction.</p>
+  <p>The distinction between “the code didn’t fail at runtime” and “the code <i>can’t</i> fail” is what this article is about.</p>
+  <p>&nbsp;</p>
+  <h3>What Formal Verification Actually Is</h3>
+  <p>At its core, formal verification is a simple concept. You start with properties you want your code to uphold. These are contracts for input and output, functions and methods. For a shopping cart, you might want to prove the following:</p>
+  <p>– The balance never goes negative.</p>
+  <p>– Every item in the cart is reflected in the total.</p>
+  <p>– Only one coupon code can be applied per order.</p>
+  <p>A verifier can’t work with English, so those properties need to be expressed in a verification-aware language—a programming language designed so that specifications and proofs are treated as first-class citizens alongside implementation code. Several exist, each with different strengths: Dafny uses an imperative style familiar to most developers and automates much of the proof work via SMT (satisfiability modulo theories) solvers; Lean has roots in pure mathematics and is rapidly gaining traction for both theorem proving and verified software; Rocq (formerly Coq) and Isabelle are interactive proof assistants with decades of use in research and high-assurance systems; F* targets verified systems programming with extraction to C and OCaml; and TLA+ focuses on specifying and model checking distributed protocols.</p>
+  <p>They all work differently, but the core idea is the same: You write your code <i>and</i> your properties in the same system, and the tool checks that one satisfies the other. Here’s what that looks like in Dafny. For “the balance never goes negative” property, you would write:</p>
+  <p><code>method ApplyCoupon(balance: int, discount: int) returns (newBalance: int)<br />&nbsp;&nbsp;&nbsp;requires discount &gt;= 0<br />&nbsp;&nbsp;&nbsp;requires balance &gt;= discount<br />&nbsp;&nbsp;&nbsp;ensures newBalance &gt;= 0<br />{<br />&nbsp;&nbsp;&nbsp;newBalance := balance - discount;<br />}</code></p>
+  <p>The <code>requires</code> clauses are preconditions, which means that this must be true before the function runs. The <code>ensures</code> clause is a postcondition; this is what the function guarantees when it finishes. The verifier doesn’t run this code. Instead, it reasons about its structure and hands the verification conditions to an automated oracle (in this case, an SMT solver) that determines whether the postcondition holds for every input that satisfies the preconditions. If it does, the proof goes through. If there’s even one reachable state where the property breaks, the code doesn’t compile.</p>
+  <p>The guarantee is only as good as the spec, but when the spec is right, the guarantee is absolute: The property holds in every reachable state of the program. You can now <i>guarantee</i> that this verified piece of code will not break under any circumstance (that is, assuming preconditions are met, postconditions are ensured).</p>
+  <p>This is fundamentally different from testing. With property tests, you can sample one million random inputs into a system and catch some nasty bugs. Your software sits in production with high confidence levels until a user runs a sequence that would have been caught by the 1,000,001<sup>st</sup> random input.</p>
+  <p>Verification tells you, “There is no bug to find here.” That 1,000,001<sup>st</sup> sequence was already covered before the code compiled, and so was every sequence after it. The proof didn’t check them one by one—it ruled them all out at once.</p>
+  <p>So, why haven’t you used it? Because, historically, the cost of writing proofs dwarfed the cost of writing the code. You would state an “obvious” property and then spend days coaxing a proof assistant into accepting it. The tools were slow, the process was painstakingly tedious and required Ph.D.-level skill, and this all produced error messages that were inscrutable. The guarantee was real, but the price was too high, which is why formal verification lived almost exclusively in avionics, chip design, nuclear systems, and cryptographic protocols—domains where a bug costs lives or fortunes. For everyone else, the reasonable conclusion was: Tests are good enough.</p>
+  <p>&nbsp;</p>
+  <h3>Now, Formal Verification Is AI’s Problem</h3>
+  <p>The conclusion that testing is enough no longer holds because AI can now handle the exact bottleneck that prevented this system from being used in mainstream development in the first place. The bottleneck was not the verification itself since a lot of the tools can check proofs automatically. The bottleneck had to do with writing the proofs: translating an intuitive requirement into the precise logical form a verifier demands, and then spending hours or days wrestling with it when the solver can’t automatically confirm what you know to be true. That’s the part that made the cost prohibitive.</p>
+  <p>Since Opus 4.5, most frontier LLMs can draft formal specifications from natural-language requirements, propose proof strategies, and—critically—iterate relatively fast on failing lemmas in a tight loop with the verifier.</p>
+  <p>AI proposes implementation candidates, and a deterministic, mechanical process checks each candidate’s correctness. If the proof is wrong, the verifier rejects it and AI tries again. Trust in AI is reduced (to the specifications) because the verifier is an external authority. The human stays in the loop for the part that requires judgment: deciding <i>which</i> properties are worth guaranteeing and system design. Meanwhile, the machine handles the labor of producing a verifiably correct implementation.</p>
+  <p>This changes who and what formal verification is for. It’s no longer just for safety-critical systems with the budget for specialized proof engineers. It’s for anyone who has a property worth proving.</p>
+  <p>&nbsp;</p>
+  <h3>Formal Verification in Practice</h3>
+  <p>Consider an e-commerce order that follows a state machine: <code>Cart → Placed → Shipping → Delivered</code>, with <code>Cancelled</code> reachable from <code>Placed</code> or <code>Shipping</code>. Placing an order charges the customer’s card; the warehouse begins shipping items; and at any point before delivery, the customer can cancel and the system must issue a refund.</p>
+  <p>The fundamental property to verify is <i>financial conservation</i>: On cancellation, the refund equals exactly the value of unshipped items. Equivalently, the net amount the customer pays must always equal the value of the items they receive.</p>
+  <p>In Dafny:</p>
+  <p><code>datatype State = Cart | Placed | Shipping | Delivered | Cancelled<br />datatype Item = Item(name: string, price: nat)<br />datatype Order = Order(state: State, items: seq&lt;Item&gt;,<br />&nbsp;&nbsp;&nbsp;shippedValue: nat, charged: nat, refunded: nat)<br />predicate Valid(o: Order)<br />{<br />&nbsp;&nbsp;&nbsp;o.shippedValue &lt;= Total(o.items) &amp;&amp;<br />&nbsp;&nbsp;&nbsp;match o.state<br />&nbsp;&nbsp;&nbsp;case Cancelled =&gt;<br />&nbsp;&nbsp;&nbsp;o.charged == Total(o.items) &amp;&amp;<br />&nbsp;&nbsp;&nbsp;o.refunded == o.charged - o.shippedValue<br /> // ... other states<br />}</code></p>
+  <p>The critical clause: in <code>Cancelled, refunded == charged - shippedValue</code>. One line encodes the financial conservation law for every possible cancellation: nothing shipped, half shipped, or all but one shipped. The invariant covers every case at once.</p>
+  <p>Each state transition is a method with preconditions and postconditions:</p>
+  <p><code>method CancelOrder(o: Order) returns (o': Order)<br />&nbsp;&nbsp;&nbsp;requires Valid(o)<br />&nbsp;&nbsp;&nbsp;requires o.state == Placed || o.state == Shipping<br />&nbsp;&nbsp;&nbsp;ensures Valid(o') &amp;&amp; o'.state == Cancelled<br />{<br />&nbsp;&nbsp;&nbsp;var refund := Total(o.items) - o.shippedValue;<br />&nbsp;&nbsp;&nbsp;o' := o.(state := Cancelled, refunded := refund);<br />}</code></p>
+  <p>Every state transition preserves <code>Valid</code>. A subsequent <code>FinanciallySound</code> ghost predicate stating that the customer pays for exactly what they received (<code>charged - refunded == shippedValue</code>) discharges automatically from <code>Valid</code>’s <code>Cancelled</code> case. So does a <code>NoMoneyLost</code> lemma: If a charge exists, then either items shipped, a refund was issued, or the order is still in fulfillment.</p>
+  <p>No sequence of operations—adding items, placing, shipping, cancelling—can produce an invalid order. The cancellation refund equals exactly the value of unshipped items. These guarantees hold for every possible order at any price, shipment pattern, and cancellation timing.</p>
+  <p>&nbsp;</p>
+  <h3>Catching Drift and Preserving Intent</h3>
+  <p>When the accounting is simple, the <code>FinanciallySound</code> property holds up trivially for terminal states <code>Cancelled</code> and <code>Delivered</code>. An engineer with some knowledge of the e-commerce domain, however, knows that features such as discounts, batched and recurring orders, or return windows can add complexity to the accounting.</p>
+  <p>Regardless of what’s added later, there is no scenario in which you would want a user to be over- or undercharged. By encoding the financial conservation property upfront, you ensure that no future code inside this model can violate this fundamental property.</p>
+  <p>Let’s say that, six months later, the product adds order-level coupons: a “$20 off $100” promotion. The change looks small: a <code>discount</code> field on <code>Order</code> and <code>charged</code> becomes <code>Total(items) - discount</code>. The test fixtures are updated, and the cancellation tests still pass.</p>
+  <p>A bug is introduced where the customer is now overcharged in certain cancellation scenarios. (The detailed calculation is left as an exercise for the reader.)</p>
+  <p>Of course, since this product’s order lifecycle is being implemented as a verified domain, the discount feature—as it is part of this lifecycle—must be implemented inside the same system. In this case, a discount calculation would be added to the <code>FinanciallySound</code> predicate.</p>
+  <p>The invariant <code>refunded == charged - shippedValue</code> is correct when <code>charged == Total(items)</code>. Once <code>discount &gt; 0</code>, <code>charged</code>, and <code>Total(items)</code> diverge, the invariant silently encodes the wrong financial law. Adding a <code>discount</code> field changes the <i>meaning</i> of <code>charged</code> without changing its name, and every invariant that refers to <code>charged</code> comes to mean something different (a drift in intent).</p>
+  <p>The verifier says nothing about whether the meaning is preserved. If <code>Valid</code> is the only invariant, the implementation still satisfies it. What the verifier does catch, however, is <i>inconsistency between invariants</i>.</p>
+  <p>The error doesn’t fix the bug, but the failure indicates a gap in design that needs to be addressed so that the fundamental property put in place earlier—holding that the user should not be over- or undercharged—cannot be violated. In this case, you need to consider how the discount is allocated across items. Proportionally? Shipped first? Unshipped first?</p>
+  <p>Because the discount feature is implemented inside a verified system, no implementation of this feature will even compile if it violates the invariant.</p>
+  <p>&nbsp;</p>
+  <h3>The Proof Is Only as Good as the Spec</h3>
+  <p>Everything stated in this article so far assumes the spec is right. That’s not a small assumption—it’s the hardest part and the crux of formal verification. No tool can fully automate the design decisions <i>you</i> want your app to adopt. The verifier will ruthlessly enforce whatever you tell it to, but it can’t tell you what to enforce. Brainstorming and planning with AI, along with spec-conflict audits during the formal spec-writing step, facilitates the design process.</p>
+  <p>Consider the example set forth&nbsp;in this article. The secrets-management bug is catchable only if someone has stated the subset invariant: Derived permissions must always match a subset of the granting permission’s environments. If the spec had instead said something narrower—“finite permissions can contain only other finite permissions”—the proof would pass, but the guarantee wouldn’t cover future permission representations. The invariant needs to be stated at the right level of abstraction, and the subsequent proof needs to prove it at the right level of depth. Getting both of these right requires a deep understanding of the domain, even if you never need to touch a formal spec or proof and your review is focused on the artifacts produced by the results of both.</p>
+  <p>&nbsp;</p>
+  <h3>What Formal Verification Can and Can’t Do</h3>
+  <p>The properties you choose to verify are a statement about what matters most in your system. Once you get that right, the guarantees are absolute.</p>
+  <p>As of today, the formally verified core can handle most effect-free logic—invariants, transitions, conflict resolution. But the UI, network calls, and database interactions typically sit outside the verification boundary. Verification makes the core airtight but doesn’t guarantee end-to-end correctness.</p>
+  <p>Some tools exist, and the cost of proofs is now the cost of the tokens it takes to write them. With the right tooling, formal verification is ready to be integrated into mainstream AI workflows.</p>
+  <p>&nbsp;</p>
+  <h3>Acknowledgment</h3>
+  <p>We thank Anastasiya Kravchuk–Kirilyuk for reading and discussing drafts.</p>
+  <p>&nbsp;</p>
+  <h3>Related Material</h3>
+  <p><b>Proving the Correctness of Nonblocking Data Structures</b></p>
+  <p>Nonblocking synchronization can yield astonishing results in terms of scalability and realtime response, but at the expense of verification state space.</p>
+  <p>Mathieu Desnoyers</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=2889274">https://queue.acm.org/detail.cfm?id=2490873</a></p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>The Verification of a Distributed System</b></p>
+  <p>A practitioner’s guide to increasing confidence in system correctness</p>
+  <p>Caitie McCaffrey</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=2889274">https://queue.acm.org/detail.cfm?id=2889274</a></p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>You Don’t Know Jack About AI</b></p>
+  <p>And ChatGPT probably doesn’t either</p>
+  <p>Sonja Johnson-Yu and Sanket Shah</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3703128">https://queue.acm.org/detail.cfm?id=3703128</a></p>
+  <p>&nbsp;</p>
+  <p><b>Fernanda Graciolli</b> is co-founder of Midspiral. After an early career in neuroscience research, she pivoted to web development and product design, focusing on making complex technologies accessible to end users. Since 2020, she has built several AI tools, including, most recently, co-creating both the methodology for applying formal verification to web application patterns and lemmafit, an npm package that employs that methodology in Claude Code to build end-to-end apps.</p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>Nada Amin</b> is an assistant professor of computer science at Harvard, where she combines PL and AI to create systems that are correct by construction. Prior to Harvard, she was a University Lecturer at the University of Cambridge and completed her PhD at EPFL as part of the Scala team. She has received two Amazon Research Awards in Automated Reasoning and best papers awards at NeurIPS Math-AI and PLDI. With Fernanda Graciolli, she has recently co-founded Midspiral to bring verification to mainstream development with AI.</p>
+  <p>&nbsp;</p>
+  <p>Copyright © 2026 held by the owner/author(s). Publication rights licensed to ACM.</p>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1aff4bf58b528a6',t:'MTc4NDAyNjExNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1aff4bf58b528a6',t:'MTc4NDAyNjExNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 3</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Mark A. Overton</span> - <a href="detail.cfm?id=3089807"><b>The IDAR Graph</b></a>
+	  <br />
+	  UML is the de facto standard for representing object-oriented designs. It does a fine job of recording designs, but it has a severe problem: its diagrams don&#8217;t convey what humans need to know, making them hard to understand. This is why most software developers use UML only when forced to. People understand an organization, such as a corporation, in terms of a control hierarchy. When faced with an organization of people or objects, the first question usually is, &quot;What&#8217;s controlling all this?&quot; Surprisingly, UML has no concept of one object controlling another. Consequently, in every type of UML diagram, no object appears to have greater or lesser control than its neighbors.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Eric Bouwers, Joost Visser, Arie Van Deursen</span> - <a href="detail.cfm?id=2229115"><b>Getting What You Measure</b></a>
+	  <br />
+	  Software metrics - helpful tools or a waste of time? For every developer who treasures these mathematical abstractions of software systems there is a developer who thinks software metrics are invented just to keep project managers busy. Software metrics can be very powerful tools that help achieve your goals but it is important to use them correctly, as they also have the power to demotivate project teams and steer development in the wrong direction.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Duncan Johnston-Watt</span> - <a href="detail.cfm?id=1122689"><b>Under New Management</b></a>
+	  <br />
+	  In an increasingly competitive global environment, enterprises are under extreme pressure to reduce operating costs. At the same time they must have the agility to respond to business opportunities offered by volatile markets.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Derek Miers</span> - <a href="detail.cfm?id=1122688"><b>Best Practice (BPM)</b></a>
+	  <br />
+	  Just as BPM (business process management) technology is markedly different from conventional approaches to application support, the methodology of BPM development is markedly different from traditional software implementation techniques. With CPI (continuous process improvement) as the core discipline of BPM, the models that drive work through the company evolve constantly. Indeed, recent studies suggest that companies fine-tune their BPM-based applications at least once a quarter (and sometimes as often as eight times per year). The point is that there is no such thing as a &quot;finished&quot; process; it takes multiple iterations to produce highly effective solutions. Every working BPM-based process is just a starting point for the future.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1aff4bc7b0828d3',t:'MTc4NDAyNjExNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

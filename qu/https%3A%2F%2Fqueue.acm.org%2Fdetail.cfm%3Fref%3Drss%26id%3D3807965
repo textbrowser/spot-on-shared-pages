@@ -1,0 +1,793 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Climbing the Generative AI Mountain - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3807965' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>May 18, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786299">Volume 24, issue 2 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3807965">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  <h1 class="hidetitle">Climbing the Generative AI Mountain</h1>
+  <h2>A “hitchhiker’s guide” for product managers</h2>
+  <h3>Jenna Butler, Mara Ulloa, Margaret-Anne Storey, and Christian Bird</h3> 
+  <p>Most product managers (PMs) working in software today feel it—that dizzying sense of standing at the base of a mountain, staring up at a new way of working and wondering where to even begin. Generative AI has fast arrived in the software engineering workforce, with little guidance and high expectations. PMs are expected to be more productive almost overnight, without a map for how to get there.</p> 
+  <p>Microsoft has been at the center of this transformation. Drawing on interviews, surveys, and telemetry from 885 PMs on software teams at Microsoft, we studied how practitioners at every stage of the climb are actually navigating this shift—from those still finding their footing at base camp to those who have reached the summit and fundamentally redesigned how they work. From this data, we developed a set of personas that capture the real texture of the ascent: where people get stuck, what moves them forward, and what traps are easy to fall into.</p> 
+  <p>This article is not a feature overview or a list of prompting tips. It is a practitioner’s guide built from real behavior, real struggles, and real wins—with verbatim accounts from PMs doing this work every day. Whether you are still packing your bags or looking to push past the next ridge, this article offers concrete, experience-backed guidance for redesigning your workflows with AI, one step at a time.</p> 
+  <hr /> 
+  <p>Do you feel like you are standing at the base of a big GenAI “mountain,” looking up and wondering how you will ever scale to the top of this incredible new way of working? You are not alone. We studied 885 product managers at Microsoft and found much of the same thing—most want to transform how they work with GenAI and become more effective, but many of them are left wondering how.</p>
+  <p>Looking at the lived experience of these 885 PMs across teams, roles, and experience levels, we noticed PMs described a common adoption journey (figure 1). It often begins with passive uses such as GenAI-generated notes, progresses through summarization and content creation, and eventually evolves into deeper collaboration—where GenAI shifts from tool to thought partner. For some, the final ascent involves building repeatable workflows and agents. At the top, PMs look around and see a whole new way of working (figure 2).</p>
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3807965/assets/html/050426.feature article.butler.figure1.jpg" alt="Figure 1. The mountain PMs climb when adopting GenAI" />
+  <br />Figure 1. The mountain PMs climb when adopting GenAI
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3807965/assets/html/050426.feature article.butler.figure2.jpg" alt="Figure 2. With greater GenAI adoption maturity comes greater altitude—and a broader view of the terrain, from the forest floor to the farthest peaks." />
+  <br />Figure 2. With greater GenAI adoption maturity comes greater altitude—and a broader view of the terrain, from the forest floor to the farthest peaks.
+  <p>This article provides a guide to the top of the GenAI adoption mountain. It walks you from the very beginning of GenAI adoption to base camp and beyond, sharing practical examples at each step of the journey. When the terrain gets treacherous, we call out some common pitfalls and how to avoid them. This guide is based on real data and learning from one of the most advanced GenAI companies in the world—Microsoft.</p>
+  <p>For each step of the journey, we have created a persona (a pseudonym but based on real PMs with quotes from multiple real people who are at a similar level of GenAI abilities) to describe what that part of the journey looks like. The article includes best-practice advice from real PMs who are on the climb, as well as practical examples, again from lived-experience quotes the PMs shared with us. At each step, we provide climbing strategies, and where applicable, we also include pitfalls to watch out for as you make your way up the mountain.</p>
+  <p>&nbsp;</p>
+  <h3>Level 0: Pack Your Bags</h3>
+  <p>The introduction of GenAI into the workplace is not merely a technical shift, but also a sociotechnical one. Ideas of artificial intelligence long predate modern systems, appearing everywhere from mythology to science fiction. As a result, everyone begins their GenAI journey carrying assumptions about what these tools are—and what they are not.</p>
+  <p>In our study of Microsoft PMs, most had already headed off on the journey: 62 percent reported using GenAI daily or nearly daily, while fewer than one percent said they rarely or never use it. Those who were more hesitant often cited concerns about trust, training data, or output quality.</p>
+  <p>Yet even self-described nonusers frequently revealed otherwise. One PM explained: “Nobody has to take notes in Teams meetings anymore [...] because of the recording / transcript (also GenAI-driven), which can be used to fact-check the summary if necessary.” For many, GenAI has become so embedded in workflows that its presence fades into the background.</p>
+  <p>Whatever assumptions you bring, the first step is simple: Experiment. GenAI adoption often begins not with mastery, but with curiosity.</p>
+  <p>&nbsp;</p>
+  <h3>Level 1: The Gateway</h3>
+  <p><b>Gabriel</b>, a junior PM at Microsoft, is at “the gateway” of GenAI adoption. They desire to be more productive with GenAI, but haven’t figured out exactly how to do that. What they do know is automatic meeting recording, translation, and summary have been a huge help in their meeting-heavy job, saying, <i>“GenAI recaps of Teams meetings and automated curation of action items is the best benefit I’ve experienced.”</i> One of the main entry points into the GenAI climb is using Teams recording more intentionally for note taking, catching up, and generating to-do items.</p>
+  <p>&nbsp;</p>
+  <h3>Gateway Climbing Strategies</h3>
+  <h4>Offload routine cognition to GenAI.</h4>
+  <p content-type="inline-heading">Early adoption often succeeds when GenAI supports existing workflows rather than reshaping them. Meeting-heavy roles provide a natural starting point. GenAI can automatically capture notes, extract action items, provide information from missed discussions, and condense related knowledge sources. As one PM explained: <i>“I love using reasoning agents to quickly pull together information about things that I would otherwise have to laboriously hunt down.”</i> By reducing the mental overhead of documentation and information retrieval, PMs free cognitive resources for higher-value work.</p>
+  <p>&nbsp;</p>
+  <h4>Team orientation and task prioritization.</h4>
+  <p content-type="inline-heading">Just as climbing is often a team sport, the PM role requires team members to coordinate and prioritize work across their team. GenAI can help ensure those priorities are surfaced in the meeting when everyone is in the same “room” helping not just with task assignment, but also with awareness and alignment. This can also help keep those not at the meetings informed.</p>
+  <p>&nbsp;</p>
+  <h3>Gateway Practical Examples</h3>
+  <p>Using automated meeting recordings might seem obvious, but there is more you can do beyond just getting a transcript. Here are examples from real PMs suggesting multiple ways to take advantage of meeting recordings and begin the climb of becoming a GenAI-forward PM:</p>
+  <p>– <b>Take notes.</b> “The Teams built-in feature for generating meeting notes is great! It has saved me time from having to take notes or remember to write them down after the fact.”</p>
+  <p>– <b>Work and task management.</b> “Most importantly it helps in identifying the actionables very quickly by scanning the meeting notes. That helps in avoiding any miss or delays. Earlier that was mostly a manual effort. It keeps me on track.”</p>
+  <p>– <b>Multitasking.</b> “I depend on generative AI to manage my meetings, particularly for taking meeting notes, summarizing the discussion, and getting insights into meetings I was unable to attend directly.”</p>
+  <p>– <b>Meeting recap.</b> “The greatest value to date has been through intelligent meeting recap as part of Teams Meetings. This is, in part, because it is effortless to use and provides practical value. The second most valuable anecdote we have seen has been around using Copilot as a knowledge base for everything from defining acronyms, to quickly understanding concepts.”</p>
+  <p>– <b>Finding decisions in meeting notes.</b> “Meeting recaps and ability to ask Copilot about a topic that was discussed in a meeting and it will give you timing when exactly it was discussed [and this] helps to save a lot of time.”</p>
+  <p>&nbsp;</p>
+  <h3>Level 2: Base Camp</h3>
+  <p>After seeing how useful GenAI was for meeting summaries and transcripts, <b>Basil</b> at “base camp” decided to experiment with using GenAI for consumption of more than just a meeting. When asked for a specific example of when GenAI saved him time at work, Basil said, <i>“Summarize customer interview insights from videos and transcripts, that saves a ton of my time to get the key takeaways.”</i></p>
+  <p>At base camp, PMs move beyond passively consuming GenAI outputs and begin actively working with them. Here, GenAI is no longer just generating artifacts. PMs ask questions of content, refine outputs, and transform information into new units of work.</p>
+  <p>Many PMs initially frame this stage in terms of time savings. But as adoption deepens, a more important dynamic emerges: the tradeoff between speed and accuracy.</p>
+  <p>&nbsp;</p>
+  <h3>Base Camp Climbing Strategies</h3>
+  <h4>Practice making the accuracy/speed tradeoff.</h4>
+  <p content-type="inline-heading">Like mountain climbing, progress requires judgment. GenAI can make mistakes, and early users often feel compelled to verify every output—eroding much of the perceived time savings. PMs who move beyond base camp develop a more nuanced strategy: Not every task requires perfect accuracy. <i>“It is helpful when I get added to an email thread or Teams conversation that is very long and I’m expected to catch up and help out. I use Copilot’s summarize feature in this case to catch up quickly. However, I am usually concerned the summary may have missed important details, but I would still rather use it and trust the results versus spending a long time reading too many emails/messages.”</i> Advancing in GenAI adoption means learning when speed provides greater value than completeness.</p>
+  <p>&nbsp;</p>
+  <h4>Just keep trying.</h4>
+  <p content-type="inline-heading">Reaching base camp is an achievement—but progress often feels uneven. While 68 percent of PMs report that GenAI saves them time or improves their work, many describe a slower path to value. One PM explained: <i>“I haven’t reached the tipping point where I’ve found that Generative AI has saved me any time. The time I spend is more experimental, and, so far, I’ve been disappointed. This detracts me from trying more ways.”</i> Persistence emerged as the most common advice from more experienced users: <i>“Just try it. Experimentation will lead to familiarity will lead to time saved.”</i> This mindset is reinforced by the rapid evolution of GenAI systems. As another PM noted: <i>“Just get started. The tools have gotten a lot better in the past year, and a lot of what didn’t used to be possible is possible now.”</i> Like a hike up a mountain, GenAI adoption is rarely linear—but it is often cumulative.</p>
+  <p>&nbsp;</p>
+  <h3>Base Camp Practical Examples</h3>
+  <p>When asked specifically how they use GenAI for PM work, the PMs gave many practical examples of where the summarization abilities of Copilot helped them save time:</p>
+  <p>– <b>Onboarding.</b> “It pulls all related files and resources when I get on board a new project, then summarizes the core concepts from them.”</p>
+  <p>– <b>Career.</b> “Summarized projects I worked on in the last year [for my annual performance review].”</p>
+  <p>– <b>Management.</b> “Summarize people feedback. Ask Copilot to highlight great work for my direct reports.”</p>
+  <p>– <b>Fast clarity</b>. “I was looking for a definition of a technical term in simple words. I needed to respond to a customer in chat in 30 seconds before I start presenting. I used Copilot to tell me how to explain the term in simple words and was able to copy over the response in time. This helped the customer understand what I’m talking about and build on it during the discussion.”</p>
+  <p>– <b>Customer insights</b>. “Summarization of surveys and customer discovery calls based on recorded transcript—helped me to quickly share insights. This is work that I had to do manually in the past and would have taken several hours. Now it’s much faster! And let’s me focus on calls with customers too.”</p>
+  <p>&nbsp;</p>
+  <h3>Level 3: The Middle Climb</h3>
+  <p><b>Mica</b> is in the middle climb. She has used GenAI for summarization for some time and found it reliable—but now wants to know whether it can help create PM artifacts, not just compress existing ones. Rather than asking GenAI to generate documents from scratch, Mica starts with her own thinking and uses the tool to articulate, structure, and format it. As she put it: <i>“It has helped frame specs and deliverables, as well as helped create a definitions table for acronyms.”</i></p>
+  <p>What makes this transition feel safe is not trust in the tool, but control over verification. Mica already knows what should be in the spec and what the acronyms mean; GenAI accelerates articulation, not judgment. Because she can quickly validate correctness, she can comfortably trade a small amount of oversight for significant speed. This shift—from summarizing existing content to co-creating new artifacts—marks a critical milestone on the journey to becoming a GenAI-powered PM.</p>
+  <p>It is also common. In our survey, 74.4 percent of individual contributor (IC) PMs said they use it for drafting or refining documents, 32.2 percent said they use it for writing emails or external communications, 17.1 percent use it for creating presentations (including visuals and diagrams), and 13.3 percent use it for writing performance reviews and career plans (the number adds up to greater than 100 percent, as people could select as many ways of using it as they wished).</p>
+  <p>&nbsp;</p>
+  <h3>Middle Climb Strategies</h3>
+  <h4>Do the groundwork first.</h4>
+  <p content-type="inline-heading">One user wrote, “Don’t expect that AI will write good, consistent, useful specs (or emails or other work product) from scratch/near-scratch, even with lots of relevant inputs. You’re much better off writing the scaffolding yourself and asking GenAI to tweak it.” At this stage, GenAI works best as an articulation engine, not a source of ideas. PMs who succeed in the middle climb front-load context, sketch document structure, outline arguments, collect relevant references, or dump raw thinking into a shared file before asking the tool to help refine it. When creation attempts fail, the issue is often not model capability but missing context. GenAI cannot infer what is “obvious” to you. Treat it as a collaborator that needs a briefing, not a replacement for your reasoning.</p>
+  <p>&nbsp;</p>
+  <h4>Think of it as an aid.</h4>
+  <p content-type="inline-heading">“Get started by trying Generative AI to write docs, specs, and decks. Make notes of the things that are good (and bad). I find value in giving it a try and then using it as an aid to writer’s block. It’s not good enough in most cases for me, but it is getting better.” In the middle climb, successful PMs stop expecting GenAI to originate high-quality work and start using it to unstick stalled thinking. When ideas exist but feel unformed or difficult to express, GenAI can help turn fragments into a coherent first pass. The key shift is recognizing that fluency is not the same as correctness. PMs retain responsibility for substance and judgment, while GenAI provides momentum—helping translate rough ideas into drafts that can be revised, critiqued, or discarded. Used this way, GenAI doesn’t replace thinking; it reduces the activation energy required to begin.</p>
+  <p>&nbsp;</p>
+  <h3>Middle Climb Practical Examples</h3>
+  <p>– <b>Career.</b> “My favorite pattern is using voice to brain dump to AI everything I am thinking about a topic like individual performance, then asking for help in structuring my thoughts into clearer communications that help land my original thoughts much better.”</p>
+  <p>– <b>Stream of conscious organization.</b> “The single biggest benefit is that I’m a very verbal person who is a slow typist and I think I have really high-quality ideas in my ability to generate project or program artifacts quickly, and converting sort of scattered verbal thinking into clear text is a total game changer for me.”</p>
+  <p>– <b>Presentations.</b> “It has been able to take notes and turn them into presentations.”</p>
+  <p>– <b>Accessibility.</b> “Several people on my team are based outside of the USA and have found success using AI tools to help them create documents for English-first audiences.”</p>
+  <p>– <b>Newsletters.</b> “I find writing broad emails challenging, for example, status emails. I find Copilot is useful for those situations as it prevents me from overthinking it. Also, in that situation the specific words don’t matter as long as the update is accurate.”</p>
+  <p>– <b>Tone correction.</b> “Writing blog posts (that I then manually edit), rewriting emails to make them more concise, rewriting emails to make them more professional (sometimes when I have to write a contentious email, I draft it in an extremely unprofessional tone just to get it out, and then ask Copilot to make it sound professional and polite).”</p>
+  <p>– <b>Idea to document.</b> “Drafting whole spec docs from a structured idea in a well-curated prompt.”</p>
+  <p>– <b>Multi-input</b>. “I think drafting product requirements, documents, and notes from customer calls and emails [...while] using voice as an input method is a place where I find substantial value.”</p>
+  <p>&nbsp;</p>
+  <h3>Level 4: Navigating New Terrain</h3>
+  <p><b>Neela</b> is already adept at GenAI. She regularly uses it to summarize email, turn jumbled thoughts into polished documents, and convert existing material into presentations. By most measures, she is effective—and comfortable. That comfort is exactly what a fellow PM, further along in the journey, challenges: <i>“Get out of your comfort zone. Stop using GenAI to draft specs or to create messages for executives. Try GenAI for areas that your peers work in (coding, designing, user research) and start learning on how you can be great in some of those areas, too, with the right help. We all need to become more of a Swiss Army Knife.”</i></p>
+  <p>The advice lands. Neela begins experimenting with GenAI in domains she does not already understand well. The shift feels risky. In unfamiliar territory, validation becomes harder: How can GenAI be useful if you cannot easily tell whether its output is correct? This tension defines level 4. Progress now depends less on accelerating familiar work and more on learning how to work productively without direct verification. PMs at this stage begin using GenAI not to produce final answers, but to explore problem spaces, quickly prototype, and engage meaningfully with work that previously sat outside their expertise.</p>
+  <p>&nbsp;</p>
+  <h3>Navigating New Terrain Climbing Strategies</h3>
+  <h4>Understand when and how to validate output.</h4>
+  <p content-type="inline-heading">When PMs use GenAI in unfamiliar domains, correctness cannot always be checked line by line. Instead, judgment shifts toward indirect oversight: assessing whether outputs are internally consistent, align with known constraints, or help clarify tradeoffs worth discussing with experts. In this stage, the speed-accuracy tradeoff becomes contextual. When GenAI is used to explore ideas, sketch possibilities, or prepare for conversations—rather than to deliver a final artifact—imperfect accuracy is often acceptable. What matters is whether the output improves understanding or accelerates learning.</p>
+  <p>&nbsp;</p>
+  <h4>Use GenAI to expand thinking, not replace expertise.</h4>
+  <p content-type="inline-heading">One of the most valuable uses of GenAI at this level is as a thought partner. PMs use it to brainstorm alternatives, identify blind spots, or pressure-test early ideas before bringing them to teammates. In our survey, 34.6 percent of IC PMs reported using GenAI specifically for brainstorming, and 65.2 percent reported viewing GenAI as a thought partner/teammate/assistant (with 85.3 percent saying they think of it as a tool, a sign of being slightly earlier in the journey).</p>
+  <p>Using it in this way shifts human collaboration upstream: Conversations with engineers, designers, or researchers become more focused and productive, because much of the exploratory thinking has already happened. As one PM described it: <i>“The [single biggest benefit from GenAI is the] ability to collaborate and bounce ideas off of something without having to use my teammates’ time. Now, when I go to my teammates, the conversations can be more productive, because I have done a lot of thinking with AI already.”</i></p>
+  <p>In level 4, GenAI does not make PMs experts in new domains—but it lowers the barrier to engagement. Used well, it becomes a tool for cross-disciplinary sensemaking, helping PMs ask better questions and participate more meaningfully beyond their traditional boundaries.</p>
+  <p>&nbsp;</p>
+  <h3>Navigating New Terrain Practical Examples</h3>
+  <p>– <b>Research.</b> “I asked a complex question and asked AI to present the results in a table/comparison format. Search engines would only provide results, but not in the (customized) comparison format that I’m looking [for] (e.g., I asked AI to list all the airline mileage expiration policies grouped by duration by airline as well as include a link to the terms and conditions stating those policies”).</p>
+  <p>– <b>Prototyping.</b> “Prototyping ideas is a lot quicker. For example, I prototyped ideas on Failure Bucketing following a research paper written by the University of Singapore and IIT. From paper to working prototype, it took me less than two hours. This would typically have taken one to two days of engineers’ or my time to read and build a working prototype if we had to handcraft the code.”</p>
+  <p>– <b>Stakeholder communication.</b> “I’m all about using agent mode in GitHub Copilot to sketch out ideas to share with design and engineering. This has gone a really long way to help me communicate my thinking for new feature ideas and to create something for people to poke at and iterate from. It’s also been a really good way to put something in front of customers for feedback without needing to spend time trying to explain it to engineering first.”</p>
+  <p>– <b>Exploring other disciplines.</b> “It helps me write complex SQL queries in minutes instead of waiting for a data scientist to do it over days.”</p>
+  <p>– <b>Customer insights</b>. “I use an LLM and an MCP server to analyze app store reviews that are reported out in a product shiproom meeting. I no longer have to read those reviews to find quality verbatims among the non-actionable ones.”</p>
+  <p>– <b>Proof of concept.</b> “I created a proof of concept (PoC) using ChatGPT. I asked it to create a react app based on my requirement, which I explained to it in the prompt. I also asked it to create a PRD for the same. It did it really well and fast. If not for GenAI, it would have taken me lot of effort—like presenting the proposal to the dev team, slotting it for bandwidth, getting it prioritized, and explaining the requirements. Then it would have taken the developer around three to four days to create this PoC. It took me just 2.5 hours to complete this PoC, PRD, and demo video.”</p> 
+  <p>– <b>Content creation.</b> “Recent example is drafting a blog post for a product release. By using the Researcher agent in M365 Copilot, we were able to generate a very well-written first draft of a blog post by pointing the agent at product documentation, some internal spec docs, and steering with a bit of guidance on key points to land. This is a key use case—AI is allowing us to go from 0 to 80 percent on documents with just a few ideas and some links. This allows us to focus all of our energy on the polish—getting from 80 to 100 percent. It also prevents typical writer’s block situations where a PM has a hard time just getting started. Throw a few ideas at Copilot or other AI tools, and have it structure your stream-of-consciousness thinking into a structured document that others can quickly and easily react to. This allows us to advance ideas so much faster, universally accelerating our product thinking.”</p> 
+  <p>&nbsp;</p>
+  <h3>Navigating New Terrain Pitfalls</h3> 
+  <p>As PMs begin using GenAI as a thought partner in unfamiliar domains, a subtle risk emerges: the illusion of expanded creativity. Because GenAI produces fluent, plausible ideas drawn from existing patterns, it can feel as though one’s own ideation capacity has suddenly grown—when in fact it may be quietly plateauing. One PM described it this way:</p> 
+  <div style="margin-left:24pt;"> 
+   <p>“Generative AI is trained on existing knowledge, and I have noticed around my peers that when it generates ideas that already exist out there, but one hadn’t thought about, it creates a feeling of “This machine can do anything!”, eventually leading to a plateau in the quality and breadth of ideas. I believe that’s a muscle that it’s important for us to continue training the old way, as it’s way too easy to fall for the convenience trap, and eventually losing what is an important skill for us.”</p> 
+  </div> 
+  <p>The danger is not that GenAI replaces thinking, but that it short-circuits the effort required to generate novel perspectives. When PMs rely on GenAI to supply ideas rather than to challenge, stretch, or interrogate their own thinking, they risk narrowing—not expanding—their creative range. At this level, GenAI is most valuable when it is used to pressure-test ideas, surface alternatives, or make implicit assumptions visible—not when it becomes the primary source of originality.</p> 
+  <p>&nbsp;</p>
+  <h3>Level 5: The Summit</h3>
+  <p><b>Summer</b> has been using GenAI long enough to know what works—and what doesn’t. As a manager, she fields constant requests for her time and judgment, especially around what senior leadership expects. One task comes up repeatedly: reviewing documents and presentations for “exec readiness.” Rather than reviewing each artifact manually, Summer hands documents to Copilot and asks a consistent set of questions: Does this have a clear executive summary? Are the action items explicit? Are owners named? Is there anything an executive might find controversial or unclear? This allows her to review far more work far more quickly.</p>
+  <p>But the real shift comes when she recognizes a pattern. The questions she asks are not ad hoc—they reflect years of accumulated judgment about what matters most at the executive level. Summer packages that judgment into an Exec Review Agent.</p>
+  <p>Anyone on her team can now run their work through the agent and get immediate feedback aligned with the standards she has developed over time. The agent does not replace her judgment—it extends it. This marks the summit of the GenAI journey. Progress is no longer about using GenAI effectively oneself, but about recognizing repeatable judgment and turning it into durable, autonomous capability. GenAI shifts from a personal tool into organizational infrastructure.</p>
+  <p>&nbsp;</p>
+  <h3>Summit Climbing Strategy</h3>
+  <h4>Identify repeated scenarios.</h4>
+  <p content-type="inline-heading">Summer noticed she was regularly giving a similar prompt with a document to Copilot, which made her realize that prompt could be packaged and replicated so she didn’t have to run it over and over. Another example was someone realizing they answer the same set of questions over email constantly, so they made an agent to automatically reply to a certain set of questions. If you notice something you do regularly, whether with GenAI or not, see if GenAI can do it well and then package it into an agent you can use anytime you need to accomplish that particular task.</p>
+  <p>&nbsp;</p>
+  <h3>Summit Practical Examples</h3>
+  <p>Creating your own agent might seem like a far-off goal, but as we saw with Summer, it is possible once you have GenAI use cases that work for you.</p>
+  <p>– <b>Consistent communication.</b> “We used it to create agents that can query a set of POR information so that anyone who has a question gets a consistent answer and we don’t have to be in every call to ensure information is conveyed and disseminated correctly. Helps us scale.”</p>
+  <p>– <b>Management.</b> “I built an agent during [a hackathon] focused on exec communication and attention, brevity, clarity—I save a lot of time because I ask folks to run content through this tool before I review.”</p>
+  <p>– <b>Customer intelligence.</b> “One of our team built an agent to connect to our CRM system to allow us to use a chat-based interface to gather information around support and predictive license acquisition. This allowed us to identify customers we needed to target for proactive engagements.”</p>
+  <p>– <b>Coverage</b>. “Created an agent to help answer often-asked questions when OOO [out of office] or most-often asked questions for [my role], etc.”</p>
+  <p>– <b>Document review.</b> “We created an agent that helps my [team] improve the quality of their success stories (called Spotlights). Agent has detailed instructions and is grounded with examples of good stories from prior submissions. Importance of this agent was evident when [PMs] received feedback from our Spotlights team regarding the quality of their submissions.”</p>
+  <p>– <b>Data cleaning.</b> “We are using LLM to build a EUII/EUPI sanitizer [to remove personal information from customer feedback]. And it’s absolutely amazing!”</p>
+  <p>– <b>Team enablement.</b> “One example is that someone on my team built an agent that helps our team members in customer conversations to determine which GenAI solution best fits the need of the customer challenge. This has been shared with team members and is being utilized.”</p>
+  <p>&nbsp;</p>
+  <h3>Summit Pitfalls</h3>
+  <p>Not every task that GenAI succeeds at will scale well enough to become an agent running independently. Some tasks work extremely well, while others don’t. One PM said, <i>“I think it has fostered a lot of new energy and ideas for things that weren’t previously practical. However, I have already seen that people often overestimate the current capabilities for generative AI (at least without significant cost). There are a lot of scenarios that work really well for a [proof of concept] (PoC), but then struggle to scale.”</i></p>
+  <p>A common theme from high users is to experiment repeatedly. If you think it might be good, quickly make an agent and try it. Since prototyping and experimenting are relatively cheap now, you can test out different ideas. Even if only one out of every five agents works, that still means a chunk of your tasks are now being done independently, giving you more time.</p>
+  <p>&nbsp;</p>
+  <h3>Seeing the Horizon</h3>
+  <p>Reaching the summit does not mark the end of the journey. From the top of the mountain, PMs can see farther—not just new peaks, but a broader landscape of possible ways of working. Some of what lies ahead is already visible: richer workflows, more autonomous agents, and tighter integration between human judgment and machine execution.</p>
+  <p>We asked PMs what they see at the “top of the mountain”: “Where do you see Generative AI playing the biggest role in your PM tasks in the next one to two years?”</p>
+  <p>One particularly striking pattern emerged in the responses. PMs did not describe radically different futures; instead, they described futures that closely resembled the ways more experienced GenAI users already work today. In other words, perceptions of the future appeared to be anchored to present-day experience. Those early in their GenAI journey envisioned improvements to tasks they were only beginning to explore, while more experienced users imagined transformations that extended from their already expanded workflows.</p>
+  <p>This suggests that what PMs see as they look to the horizon is not a single, fixed landscape. Rather, what they see strongly depends on where they currently stand on the climb. To illustrate this pattern, we describe the future views through three perspectives: beginner climbers, middle climbers, and those closest to the top.</p>
+  <p>&nbsp;</p>
+  <h3>Beginner Climbers</h3>
+  <p>PMs early in their journey tend to imagine a future focused on improvements to tasks they are just beginning to explore today. They describe GenAI handling meeting notes, summaries, action items, and follow-ups—work that more advanced users already routinely offload. One PM envisioned a near future where GenAI would: <i>“[...] send meeting notes and capture next steps and action items. I think Generative AI could also email each person [who is] assigned an action item a task to follow up on after the meeting with a soft deadline.”</i></p>
+  <p>Others were more skeptical, suggesting that without improvements in quality, the value would remain limited. Yet this skepticism itself reflects position on the climb. Those further along know today’s tools already outperform earlier expectations—and continue to improve.</p>
+  <p>&nbsp;</p>
+  <h3>Middle Climbers</h3>
+  <p>PMs in the middle of the journey see a broader transformation. Their horizon extends beyond summarization into creation, synthesis, and prioritization. They imagine GenAI helping with recurring, time-consuming work—assembling newsletters, synthesizing user insights, kick-starting specs, and preparing stakeholder conversations. As one PM put it: <i>“It will hopefully make it possible to take on more work, and to let me focus on the important things.”</i> Here, the future is not defined by new tasks, but by rebalancing attention: shifting effort away from routine execution and toward judgment, alignment, and decision-making.</p>
+  <p>&nbsp;</p>
+  <h3>The Top</h3>
+  <p>Lastly, those PMs looking out from the top of the mountain see a very interesting landscape, some with optimism and some with trepidation. Some see a world where PM and SWE continue to blur, saying <i>“Anyone can be an engineer—prototyping and shipping code”</i> and <i>“The engineering role will move ‘up the stack’ to be a bit more high level. The PM job will move ‘down the stack’ a bit closer to code. We will meet in the middle and swap a lot of accountabilities.”</i></p>
+  <p>We are already seeing evidence of this, as in a recent interview, Marc Andreessen described a “three-way Mexican standoff” in which AI makes each discipline (PM, engineering, and design) feel newly capable of doing core parts of the others’ work, leading to overlapping responsibilities and tension over ownership<sup>1</sup> in the 2025 paper, "Product Managers Practices for Delegating Work to Generative AI."<sup>2</sup></p>
+  <p>Others see a promising future where they do fewer routine and boring tasks and are able to focus their time and energy on the interesting, creative parts of their jobs. One said, <i>“Over the next year or two, I think GenAI will move beyond helping with drafting emails, translations, summarizing to actually supporting deeper product thinking. I see it helping us connect the dots across user feedback, product data, and market trends to surface insights we might miss and that could happen at even larger scales. It means allowing us to cover a bigger portfolio. It could even start flagging strategy gaps or suggesting road map changes based on what’s happening in real time. I also think we’ll see more AI agents that can handle small execution tasks—creating tickets, or prepping/tracking updates—which would free up time for PMs to focus more on vision, alignment, and driving impact for broader scopes.”</i> Another more succinctly said, <i>“Replacing all busy work allowing PMs to be strategic and very creative.”</i></p>
+  <p>Then there are some who see an even greater transformation coming. One PM said, “Hard to forecast one to two years since the world will be so different by then. Based on current experience: better tracking partner work without having to engage with partners directly. But actually: AI doing a lot more heavy lifting, my PM role will likely change to something very different from what I have now—maybe more administrative? Maybe more technical? I don’t expect my role to be the same as now.”</p>
+  <p>Seeing this very new landscape ahead, we also asked what advice they would give other PMs on this journey. A repeated theme that really stood out was, <i>“Don’t worry.”</i> At the top of the mountain, most (but not all) PMs see opportunity. One said, <i>“Don’t be afraid—PM is not going anywhere; AI is just making us stronger.”</i> Another said, <i>“Embrace GenAI—it’s more than ‘a bicycle for the mind,’ it’s your best ally to increase your team’s productivity exponentially!”</i> Yet another said, <i>“AI-forward PMs also don’t see all aspects of work being handed over to AI, but view it more as something that will free them up for those uniquely human aspects of the job.”</i> They recommend keeping the following in mind:</p> 
+  <div style="margin-left:24pt;"> 
+   <p>“The Soul of your product is uniquely human, identify how you create the Soul, and use AI to help you achieve the vision.”</p> 
+  </div> 
+  <p>So, pack your bags and start the journey. As one PM put it, “<i>Every PM should be an AI PM!”</i></p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3458743">Software Development in Disruptive Times</a></b> <br />Creating a software solution with fast decision capability, agile project management, and extreme low-code technology <br />João Varajão <br /><a href="https://queue.acm.org/detail.cfm?id=3458743">https://queue.acm.org/detail.cfm?id=3458743</a> </p> 
+  <p>&nbsp;</p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3447645">The Non-psychopath’s Guide to Managing an Open-source Project</a></b> <br />Respect your staff, learn from others, and know when to let go <br />Kode Vicious <br /><a href="https://queue.acm.org/detail.cfm?id=3447645">https://queue.acm.org/detail.cfm?id=3447645</a> </p> 
+  <p>&nbsp;</p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=1066076">Mal Managerium: A Field Guide</a></b> <br />I have seen the enemy, and he is me. <br />Phillip Laplante <br /><a href="https://queue.acm.org/detail.cfm?id=1066076">https://queue.acm.org/detail.cfm?id=1066076</a> </p> 
+  <p>&nbsp;</p> 
+  <p><b>JENNA BUTLER</b> is a principal applied research scientist at Microsoft, where she studies developer productivity and well-being within engineering organizations and co-leads Microsoft’s New Future of Work research program. Her work focuses on the human dimensions of software engineering, including individual and team well-being, decision-making processes, and the social and organizational dynamics of engineering teams. She received her Ph.D. in computer science from Western University in 2015, where her research examined cancer simulation using cellular automata, reflecting an early interest in interdisciplinary approaches bridging computing and the life sciences. Her recent research spans human-computer interaction and socio-technical systems, with contributions to studies on remote and hybrid work, developer experience, and the impact of AI tools on real-world software development.</p> 
+  <p>&nbsp;</p> 
+  <p><b>MARA ULLOA</b> is a Ph.D. candidate at Northwestern University in the department of computer science, where she conducts human–computer interaction research focused on the design and evaluation of AI systems. Her research has been supported by the U.S. National Science Foundation Graduate Research Fellowship, the Segal Cluster Design Fellowship from the Human Computer Interaction and Design Center, and the Center for Advancing the Safety of Machine Intelligence/Underwriters Laboratories. She develops and applies human-centered methods for data-driven systems, with contributions to the use of generative AI for the future of work and health-focused machine learning systems, informed by a critical computing perspective that bridges her training in computer science, social sciences, and the humanities.</p> 
+  <p>&nbsp;</p> 
+  <p><b>MARGARET-ANNE STOREY</b> is a professor of computer science at the University of Victoria and a Canada research chair in human and social aspects of software engineering. She is co-author of the SPACE framework and a leading researcher in developer experience (DevEx). Her research focuses on how developers and teams understand complex software systems and how tools, AI, and collaborative practices shape that understanding. Her recent work examines how generative AI is transforming software engineering by changing how understanding is created, shared, and maintained. She collaborates with industry partners including Microsoft and DX, and she holds an honorary doctorate from Lund University.</p> 
+  <p>&nbsp;</p> 
+  <p><b>CHRISTIAN BIRD</b> is a senior principal researcher at Microsoft Research whose work focuses on software engineering, developer productivity, and AI-assisted development. He uses empirical studies, large-scale software data, and human-centered methods to better understand how software teams work and how engineering tools can improve practice. He holds a B.S. in computer science from Brigham Young University and a Ph.D. in computer science from the University of California, Davis.</p> 
+  <p>&nbsp;</p> 
+  <h3>References</h3> 
+  <p>1. Rachitsky, L. Marc Andreessen: The real AI boom hasn’t even started yet. Audio podcast episode, Lenny’s Podcast: Product | Career |Growth. Cited from audio at 36: 16–38: 40. (2026); <a href="https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom">https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom</a>.</p> 
+  <p>2. Ulloa, M. et al. Product manager practices for delegating work to generative AI: “Accountability must not be delegated to non-human actors”. arXiv:2510.02504. (2025); <a href="https://arxiv.org/abs/2510.02504">https://arxiv.org/abs/2510.02504</a>.</p> 
+  <p>Copyright © 2026 heldby owner/author. Publication rights licensed to ACM.</p> 
+  <p>This work is licensedunder a&nbsp;CreativeCommons Attribution-NonCommercial-NoDerivs International 4.0 License.</p> 
+  <p>&nbsp;</p> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fde27b83c7c1',t:'MTc4NDA3ODkyMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fde27b83c7c1',t:'MTc4NDA3ODkyMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 2</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3806226"><b>In Code They Think; In Proof We Trust</b></a>
+	  <br />
+	  AI agents that use tools can be hijacked by prompt injection to exfiltrate sensitive data. Runtime defenses such as model alignment, output scanning, and content classifiers are fundamentally reactive: By the time they detect an attack, irreversible actions may already have been taken, and sophisticated encodings such as steganography, encryption, and chunking can evade any content-based check. We propose a preemptive alternative: Constrain the agent to express its plan as a Kotlin script, then statically verify the script against a security policy before any tool executes. The verification uses taint analysis, a well-established static analysis technique. A fact extractor walks the Kotlin AST to identify sources (sensitive data origins), sinks (network exit points), and data flows between them.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, Benjamin V. Hanrahan</span> - <a href="detail.cfm?id=3807964"><b>The SPACE of AI</b></a>
+	  <br />
+	  As AI tools become increasingly embedded in software development workflows, there is a growing need to understand their true impact on developer productivity and experience. This article presents findings from a mixed-methods study examining how developers perceive AI’s influence across the dimensions of the SPACE framework: Satisfaction, Performance, Activity, Collaboration, and Efficiency. Drawing on survey responses from more than 500 developers and qualitative insights from interviews and observational studies, we find that AI is broadly adopted and widely seen as enhancing productivity, particularly for routine tasks. The benefits vary, however, depending on task complexity, individual usage patterns, and team-level adoption. Developers report increased efficiency and satisfaction, with less evidence of impact on collaboration.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Margaret-Anne Storey</span> - <a href="detail.cfm?id=3807966"><b>From Technical Debt to Cognitive and Intent Debt</b></a>
+	  <br />
+	  Generative AI is dramatically accelerating software development, allowing teams to generate and modify code faster than ever before. For decades, software engineering has focused on managing technical debt—how code structure and implementation make systems harder to change. But in the age of AI, technical debt might no longer be the most important constraint. This article argues that the real risks are shifting toward two less visible forms of debt: cognitive debt and intent debt. Cognitive debt is the erosion of shared understanding across a team where no one can confidently explain how a system works or predict the impact of a change.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jenna Butler</span> - <a href="detail.cfm?id=3807963"><b>Eight Myths on Software Engineering and GenAI</b></a>
+	  <br />
+	  Generative AI is reshaping software engineering—but the narrative has gotten ahead of the evidence. Marketing claims, anecdotal wins, and misread studies have given rise to a set of persistent myths that are quietly driving poor decisions about AI adoption, tooling, and how to measure success. This article examines eight of the most common misconceptions. We already know developers don’t actually spend most of their time writing code, with studies at Microsoft and elsewhere showing it’s closer to 14 percent. That means AI code generation, even when it works well, touches a surprisingly small slice of the actual job. And yet organizations are doubling down on lines-of-code metrics to track AI’s impact, which is a measure that is neither statistically valid nor meaningfully connected to outcomes such as software quality or delivery speed.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fddf4a8b2cbc',t:'MTc4NDA3ODkxOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

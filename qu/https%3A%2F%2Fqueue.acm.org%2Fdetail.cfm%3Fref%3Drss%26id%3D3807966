@@ -1,0 +1,768 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>From Technical Debt to Cognitive and Intent Debt - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3807966' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>June 1, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786299">Volume 24, issue 2 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3807966">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+ 
+  <h1 class="hidetitle">From Technical Debt <br />to Cognitive and Intent Debt</h1> 
+  <h2>Rethinking software health in the age of AI</h2> 
+  <h3>Margaret-Anne Storey</h3> 
+  <p>Generative AI is dramatically accelerating software development, allowing teams to generate and modify code faster than ever before. For decades, software engineering has focused on managing technical debt—how code structure and implementation make systems harder to change. But in the age of AI, technical debt might no longer be the most important constraint. This article argues that the real risks are shifting toward two less visible forms of debt: cognitive debt and intent debt. Cognitive debt is the erosion of shared understanding across a team where no one can confidently explain how a system works or predict the impact of a change. Intent debt is the absence of clear goals, constraints, and rationale that explain what the system is for and guide how it should evolve, for both humans and AI agents. These debts have always existed, but GenAI accelerates their accumulation while hiding their effects. I propose how these forms of debt can be recognized in practice and suggest strategies teams can use to mitigate them.</p> 
+  <p>Generative AI (GenAI) is dramatically accelerating the velocity of software development, enabling small teams to ship features at a pace that would have seemed implausible just a few years ago.<sup>24</sup> I saw this firsthand in an entrepreneurship course I taught recently. Student teams were building software products over the semester, using GenAI tools to accelerate development, moving quickly to ship features and meet milestones. By week eight, one team hit a wall. Simple changes were breaking things in unexpected places, and progress had stalled. They initially blamed technical debt: messy code, hurried implementations, architectural shortcuts.</p> 
+  <p>As we dug deeper, however, a different problem emerged. No one on the team could explain why certain design decisions had been made, or how different parts of the system were supposed to work together. The code might have been messy, but the deeper issue was that the team’s shared understanding, the theory of the system,<sup>22</sup> had quietly fragmented. They had also failed to write down or communicate the rationale behind decisions. They had accumulated cognitive and intent debt faster than technical debt, and it had paralyzed them.</p> 
+  <p>This is not an isolated story.<sup>33</sup> GenAI does not remove the challenges of software engineering; it redistributes them. This article proposes a triple debt model (see figure 1) for reasoning about software health, built around three interacting debt types: <i>Technical debt</i> refers to problems in the code layer; <i>cognitive debt</i> refers to erosion of shared understanding across a team over time; and <i>intent debt</i> refers to a lack of externalized goals, constraints, and rationale that both humans and AI systems need to work safely and efficiently with the codebase. Technical debt makes systems harder to change. Cognitive debt makes systems harder to understand. Intent debt makes it difficult to know what the system is for and whether it is meeting real user needs.</p> 
+  <p> <img src="https://spawn-queue.acm.org/cms/10.1145/3807966/asset/6d191011-8aa8-43cb-8f4d-a42d3926999a/assets/graphic/storey1.svg" alt="Figure 1. Triple debt model for reasoning about software health" /> <br /> Figure 1. Triple debt model for reasoning about software health </p> 
+  <p>&nbsp;</p> 
+  <h3>The Hidden Cost of AI-Generated Code</h3> 
+  <p>For years, software engineers have worried about technical debt,<sup>6</sup> the long-term cost of messy code that accumulates and compounds when teams prioritize speed over quality. But GenAI might be quietly shifting where the real risk lies. Today, AI systems can generate code faster than developers can read or understand it, and as those models improve, the systems show growing promise for reducing debt through automated refactoring, test generation, and automated code review.<sup>14</sup> That is, GenAI might reduce technical debt while simultaneously accelerating the accumulation of cognitive and intent debt. Organizational expectations for rapid productivity gains, without corresponding investment in learning support, can create a paradoxical effect where developers lack the time to develop the understanding that would actually save them time.<sup>21</sup></p> 
+  <p>The code might work. It might even be well architected. But the team might not adequately understand how it works or remember why it was built the way it was. Over time, the shared understanding that makes a software system safe to change quietly erodes. This gradual loss of understanding increases cognitive debt, while the loss of captured rationale leads to intent debt. In AI-assisted development, cognitive and intent debt might quietly become the risks that matter most.</p> 
+  <p>&nbsp;</p> 
+  <h4>What Is a Software System, Really?</h4> 
+  <p>When developers think about a software system, they typically think first about code: the files, functions, and architecture that implement its features. But a software system exists across three distinct layers:</p> 
+  <p><b>Goals and intent.</b> The requirements, constraints, and objectives the system is meant to fulfill, as held by stakeholders and captured in specifications, tests, and documentation.</p> 
+  <p><b>Code and structure.</b> The representation of a system and the implementation of its intent: the source code, architecture, dependencies, and deployment infrastructure that make the system executable.</p> 
+  <p><b>Shared understanding.</b> The dynamic mental models that developers, architects, product managers, and other stakeholders hold about how the system works and how it can be reasoned about—what Peter Naur called the “theory of the system.”<sup>22</sup> Importantly, no single individual needs to understand all aspects of these layers; what matters is that sufficient shared understanding exists across the team to support safe change and coordination.</p> 
+  <p>Technical debt has long been used to describe problems in the second layer. But the health of a software system depends on the alignment and quality of all three layers. When intent is unclear, systems drift from their intended purpose. When shared understanding is inadequate, teams cannot reason about change safely and are even reluctant to make changes. The system might pass its tests, but the product might have the wrong behavior. These failures are not only about technical debt in the code, although technical debt remains a concern.</p> 
+  <p>&nbsp;</p> 
+  <h3>Technical Debt: The Well-Known Layer</h3> 
+  <p>Technical debt arises when developers make deliberate or inadvertent tradeoffs that prioritize short-term delivery over long-term code quality. They take shortcuts that lead to messy or smelly code and make (or avoid) architectural decisions that constrain future evolution.<sup>18</sup> The argument is that, like financial debt, technical debt accrues interest: The longer it goes unaddressed, the more costly it becomes to change the system.</p> 
+  <p>Technical debt, although problematic, is perhaps the easiest to manage of the three types of debt discussed in this article, in part because of its visibility. And the software engineering community has developed a rich set of accepted and validated practices to manage technical debt:<sup>2,9</sup> test-driven development, refactoring, and code review, among others. GenAI is increasingly contributing to this work to reduce technical debt, providing automation for refactoring, identification of code or architectural smells, and test generation. This optimism aside, even a codebase with low technical debt can be deeply problematic if the team does not understand it or if it no longer reflects what the system was meant to do.</p> 
+  <p>&nbsp;</p> 
+  <h3>Cognitive Debt: The Invisible Layer</h3> 
+  <p>Cognitive debt is a team-level, project-level property reflecting the erosion of shared understanding across a software system over time. This erosion manifests as increasingly inadequate shared mental models that developers rely on to reason about the system and change it safely and confidently. While individual developers experience this erosion as confusion, loss of control, or reduced confidence,<sup>27</sup> the debt itself resides in the accumulation of gaps in shared understanding and awareness across the team. This framing draws on distributed cognition theory, which holds that cognitive processes are properties of systems of people, artifacts, and their interactions rather than of individual minds alone.<sup>15</sup></p> 
+  <p>The term <i>cognitive debt</i> has also been used to describe measurable reductions in individual neural engagement during AI-assisted tasks.<sup>17</sup> Related work describes “comprehension debt” as the growing gap between what code developers can produce with AI and what they genuinely understand.<sup>1</sup> The use of the term in this paper, however, focuses on the team-level and longitudinal dimension of software development: the accumulated erosion of shared understanding of a software system over time.</p> 
+  <p>Developers have always struggled to understand not just legacy systems they did not build,<sup>31</sup> but also software they built themselves using libraries they did not fully grasp or Stack Overflow solutions they copied without comprehending. Classic case studies also observed that software systems depend on distributed human understanding; no one developer understands all of a system.<sup>7</sup> Software development has never required any one person to understand an entire system; rather, it depends on sufficient, shared understanding across the team to enable safe change, coordination, and accountability.</p> 
+  <p>Cognitive debt is not new; developers have long worked with incomplete and distributed understanding of complex systems. What is new is the rate at which this gap can accumulate and the difficulty of detecting it in AI-assisted development.</p> 
+  <p>GenAI further changes the relative importance of cognitive debt with respect to technical debt in a fundamental way. When a developer writes code from scratch, even messy code, the friction and effort mean they build at least a partial mental model along the way. They strive to understand what the code is trying to do, even if the implementation is imperfect. When AI generates that same code, the developer might accept it without building the same level of understanding.<sup>27</sup> At scale, across a team and over time, this creates an accumulation of not knowing across the team. The code works, but the understanding and mental models of how the system behaves and how to reason about it are missing or flawed.</p> 
+  <h4>Cognitive Surrender Leads to Cognitive Debt</h4> 
+  <p>Reading and reasoning about unfamiliar code are among the most cognitively demanding activities developers undertake,<sup>12</sup> which is partly why understanding erosion is so consequential. The psychological mechanism behind this is what Steven Shaw and Gideon Nave<sup>26</sup> of the Wharton School refer to as cognitive surrender: adopting AI outputs with minimal scrutiny, bypassing both intuition and deliberate reasoning (drawing on psychologist Daniel Kahneman’s<sup>16</sup> distinction between fast, intuitive System 1 thinking and slower, more deliberate System 2 reasoning).</p> 
+  <p>This is importantly different from cognitive offloading, the strategic delegation of a discrete task to a tool (using a linter, a type checker, a spell checker). Cognitive offloading is a rational productivity choice. Cognitive surrender can also be intentional, but it might also lead to the loss of critical engagement. Even when surrender is intentional, the resulting debt accumulates invisibly. The team doesn’t realize what understanding they’re losing until it’s gone. Notably, Shaw and Nave find that cognitive surrender also inflates confidence even when the AI is wrong, which helps explain why cognitive debt remains invisible until it is too late: The team feels they understand the system better than they do.</p> 
+  <p>Cognitive debt, like technical debt, might also accumulate deliberately based on a conscious economic tradeoff between understanding and speed of delivery. In my entrepreneurship course, students were rightly focused on getting rapid feedback on their ideas and cared less about cognitive debt. In so doing, they also accumulated intent debt, failing to maintain a shared understanding of where they were headed. In larger organizations, keeping track of an acceptable amount of cognitive debt can be even more challenging because of its mostly invisible nature and scale.</p> 
+  <p>Effective problem solving requires continuous interaction between a developer’s model of the problem and their model of the system, each informing and correcting the other. When AI handles solution building, this feedback loop is severed, leaving developers with an increasingly static understanding of the problem itself,<sup>29</sup> while also losing track of who knows what across the team.</p> 
+  <p>&nbsp;</p> 
+  <h4>Diagnosing Cognitive Debt</h4> 
+  <p>Cognitive debt is harder to see and measure than technical debt, because it is distributed across people and not directly visible in the codebase. But it leaves some visible traces and signals:</p> 
+  <p><b>Resistance to change.</b> Low confidence in understanding the system might make developers across the team reluctant to modify it.<sup>27</sup></p> 
+  <p><b>Unexpected results.</b> A reliable signal of cognitive debt is when a team member makes a change expecting one set of observable outcomes but sees something else entirely.<sup>27</sup></p> 
+  <p><b>Slow or unpredictable onboarding</b>. New team members cannot get up to speed despite documentation, because the documentation describes what the code does, not why, and others on their team also struggle to help newcomers onboard.</p> 
+  <p><b>Loss of transactive memory</b>.<sup>11,32</sup> Team members lose track of who knows what and how the system is understood, increasingly relying on individual interactions with AI rather than shared practices.</p> 
+  <p><b>Low bus factor.</b> Only one person or very few on the team truly understand the system, and other team members are concerned about what might happen if they leave.<sup>28</sup></p> 
+  <p>&nbsp;</p> 
+  <h4>Practices for Mitigating Cognitive Debt</h4> 
+  <p>Some of the practices that work for technical debt are also useful here: Human code review, for example, is valuable for not only catching defects, but for spreading understanding across the team. Pair programming serves a similar function. But cognitive debt also calls for specific and new team understanding practices:</p> 
+  <p><b>Design for troubleshooting.</b> Ensure “diagnostic legibility”<sup>20</sup> is preserved, as developers lack familiarity with code they didn’t write but might need to troubleshoot.<sup>27</sup></p> 
+  <p><b>Reimplementation to repair cognitive debt</b>. As the cost of code generation is now relatively “low,” teams can instruct an agent to reimplement a feature using different tests or new design elements that might help rebuild understanding.</p> 
+  <p><b>System walkthroughs.</b> This is where developers explain code they did not write for the purpose of knowledge sharing and theory building<sup>22</sup> rather than documentation or code refactoring.</p> 
+  <p><b>Retrospectives and postmortems.</b> When things break or challenges emerge, this helps collectively rebuild mental models that might have frayed.</p> 
+  <p><b>Deliberate communication during implementation, onboarding, and offboarding</b>. This can surface gaps in shared understanding through grounding interactions.<sup>5</sup></p> 
+  <p>A common theme emerges when considering these practices: The practices that most effectively reduce cognitive debt are those that make implicit knowledge explicit—not as an afterthought but as part of the development process itself. Some practitioners also propose using AI to reduce the cost of these practices and aid in understanding, but they should not fully replace the human friction involved in understanding. The need to externalize motivates the recognition of a third layer of debt, discussed next.</p> 
+  <p>&nbsp;</p> 
+  <h3>Intent Debt: The Forgotten Layer</h3> 
+  <p>There is a third layer of debt that has received less attention, but which becomes increasingly critical as AI systems take on larger roles in software development: Intent debt refers to the absence or erosion of explicit rationale, goals, and constraints that guide how a system evolves. Intent debt is not just about missing context and documentation. It accumulates when the goals, constraints, and specifications, especially those related to user needs, are unclear, poorly articulated, or not captured in any artifact that humans and, increasingly, AI agents can consult. As intent debt accumulates, teams may gradually shift towards optimizing the system and their processes rather than the evolving needs of their users.</p> 
+  <p>What some practitioners are beginning to call <i>context debt</i>—the missing information AI agents need to work effectively—often includes symptoms of intent debt. This growing urgency of tools to capture intent is what Marshall McLuhan described as technological “retrieval.”<sup>19</sup> The introduction of new tools often revives practices that earlier technologies made less necessary or even obsolete. As GenAI systems generate more code, practices that capture intent, such as specifications, tests, domain knowledge, and design rationale, might become critical again.</p> 
+  <p>Where technical debt lives in code and cognitive debt lives in people, intent debt lives in incomplete or missing noncode artifacts. Artifacts such as requirements documents, architectural decision records, implementation plans, tests, and specifications are the externalized memory of what a system is supposed to do. When this information is absent, incomplete, fragmented,<sup>35</sup> or out of date, intent debt cannot be repaired, and the system might gradually drift from its intended purpose—and neither the team of developers nor the AI agents assisting them will have a reliable source of guidance.</p> 
+  <p>Intent debt is also a familiar challenge in software engineering, especially for larger teams. Software projects have always struggled with requirements that drift, specifications and decisions that are never written down, and goals and constraints that exist only in the minds of a few key stakeholders. Intent is best captured at the moment key decisions are made, as recovering it later can be difficult and sometimes impossible (unlike technical debt, which can be addressed later).</p> 
+  <p>The arrival of AI agents as active participants in software development makes addressing intent debt more urgent than before, both for developers who might have inadequate understanding and for AI agents that might need to refactor, extend, or test a system. AI agents and human developers might need to understand what the system is for, not just what it currently does. Without this information, human developers might find it impossible to build sufficient shared understanding, and agents might optimize for the wrong objectives. Each generation of AI-assisted development not only carries the debt forward, but also compounds it.</p> 
+  <h4>Diagnosing Intent Debt</h4> 
+  <p>Intent debt can be recognized by several patterns:</p> 
+  <p><b>Behavior drift.</b> The system’s behavior diverges from what stakeholders believe it should do, discovered only during early testing or, worse, during customer incidents.</p> 
+  <p><b>AI agents struggle to make changes.</b> Just as AI agents can struggle with poor-quality code,<sup>4</sup> they might require extensive clarification, might produce solutions that are technically correct but miss the point, or might use more tokens and time than expected because of a lack of context.</p> 
+  <p><b>Loss of articulated constraints.</b> Nonfunctional requirements such as performance budgets, privacy constraints, and accessibility requirements are known to a few people and are gradually forgotten.</p> 
+  <p>&nbsp;</p> 
+  <h4>Practices for Creating and Maintaining Intent Artifacts</h4> 
+  <p>Before reliance on GenAI, source code often captured human intent through naming and design. When code is generated by AI, however, intent might need to be deliberately articulated and captured through intent-first workflows. Reducing intent debt requires investing in “living” artifacts that externalize goals, plans, constraints, and reasoning, similar to emerging approaches that treat knowledge itself as a structured, executable artifact:<sup>35</sup></p> 
+  <p><b>Executable intent.</b> Behavior-driven development (BDD) specifications and tests are designed to capture purpose rather than just verify behavior.<sup>34</sup> These are intent artifacts that can be executed, and when they fail, they might show that the system has drifted from its intent.</p> 
+  <p><b>Decision and rationale records.</b> Architectural decision records (ADRs) capture what was decided, why, and what was not done.<sup>23</sup> Domain-driven design (DDD) offers a complementary approach:<sup>8</sup> Its practices of ubiquitous language and collaborative domain modeling make domain intent explicit before it is encoded in code.</p> 
+  <p><b>Context artifacts for AI-assisted development.</b> Harness engineering,<sup>3</sup> patterns for reducing AI frustration,<sup>10</sup>AI skills, agent instructions, playbooks, and AI-assisted intent capture from meetings and conversations<sup>30</sup> are emerging practices producing artifacts to be used by both humans and agents.</p> 
+  <p><b>Keep user needs visible.</b> Make explicit who the system is for, what problem it solves, and what success looks like for its users. Revisit assumptions and success criteria continuously and reflect them in artifacts that guide both developers and AI agents. Validate these regularly against real user feedback and outcomes. Without this, systems may continue to evolve while drifting away from what users actually need.</p> 
+  <p>Despite their promise, these approaches cannot replace the hard human work of deciding what the system is for and ensuring that its evolution remains aligned with the evolving needs of its users.<sup>25</sup></p> 
+  <p>&nbsp;</p> 
+  <h3>Three Layers of Software System Health</h3> 
+  <p>Together, technical, cognitive, and intent debt point to a framework for thinking about software system health that goes beyond code quality and changeability:</p> 
+  <p><b>Technical debt lives in code.</b> It accumulates when implementation decisions compromise future changeability. It limits how systems can change.</p> 
+  <p><b>Cognitive debt lives in people.</b> It accumulates when a shared understanding of the system erodes faster than it is replenished. It limits how teams can reason about change.</p> 
+  <p><b>Intent debt lives in artifacts.</b> It accumulates when the goals and constraints that should guide the system are poorly captured or maintained. It limits whether the system continues to reflect what developers meant to build, what users need, and how humans and AI agents can continue to evolve the system effectively.</p> 
+  <p>The three types of debt are system-level properties that interact and reinforce each other. The distributed cognition theory describes how cognitive processes are properties of systems of people, artifacts, and their interactions.<sup>15</sup> Intent debt can cause cognitive debt; when the purpose of a system is not well documented, new and returning team members cannot form accurate mental models of it.</p> 
+  <p>Conversely, developers who lack understanding of the system intent will not be able to externalize specifications and record decisions. Cognitive debt can cause technical debt; when developers do not understand a system, they are more likely to make poor implementation decisions. And technical debt can amplify cognitive debt; messy code is harder to reason about, diminishing understanding. The reinforcing dynamics among technical, cognitive, and intent debt are notable, and each has the potential to mitigate or erode the other (see figure 1).</p> 
+  <p>Managing software system health therefore requires proactive attention to all three layers, not just the one that is easiest to measure.</p> 
+  <p>&nbsp;</p> 
+  <h3>How AI Is Shifting the Balance</h3> 
+  <p>As mentioned, the three types of debt are not new, but GenAI is changing their relative importance and the rate at which they accumulate. For managing technical debt, AI shows great potential. Automated refactoring, AI-assisted code review, and AI-generated test suites can reduce technical-debt accumulation and make it easier to improve legacy systems. If current trends continue, some believe AI might increasingly manage the code layer on behalf of developers, reducing the human cost of maintaining code quality.</p> 
+  <p>AI can be used as a partial solution for mitigating cognitive and intent debt, but it might also be a risk multiplier if the humans involved surrender their cognition and do not proactively capture their intent. AI generates code faster than teams can build the understanding needed to safely change it. At least today, it accepts underspecified prompts, fills in gaps, and produces plausible-looking results that might miss the intent or system needs entirely. As AI takes on more of the implementation and documentation work, the feedback loop and friction that traditionally forced developers to understand the code and think about their intent are weakened.</p> 
+  <p>&nbsp;</p> 
+  <h3>Implications for Practice</h3> 
+  <p>What can practitioners do? The framework for system health presented in this article suggests several practical priorities for software teams working with AI-assisted development:</p> 
+  <p><b>Treat understanding as a deliverable.</b> Just as working code is a product of software development, shared understanding should be treated as a first-class deliverable, something teams invest in explicitly rather than something that happens as a side effect of writing code. This means allocating time for understanding practices such as walkthroughs, retrospectives, and knowledge transfer during onboarding and offboarding, while also investing in tools and software-design principles that help rebuild understanding.</p> 
+  <p><b>Intent-first workflows.</b> Capture intent early when using AI to assist or automate development. ADRs, well-written specifications, domain modeling, decision rationales, plans, and clear user-acceptance criteria are the raw materials that ground human understanding and that AI agents will require to do useful work.</p> 
+  <p><b>Resist the automation of understanding.</b> There is a temptation to use AI to generate documentation as well as code, producing explanations of what the system does without the team ever building genuine understanding. This substitutes the appearance of understanding for the real thing and makes cognitive debt harder to detect. Teams should be cautious about any practice that produces the artifacts of understanding without hard cognitive work to build important mental models. In the future, the core developer’s skill might not be writing code, but maintaining a correct understanding of what the system does and why and how it can evolve.<sup>13</sup></p> 
+  <p><b>Monitor the three layers in tandem.</b> Technical debt has a rich ecosystem of tools for measurement and monitoring. Similar attention should be paid to cognitive and intent debt: perhaps through onboarding time tracking, knowledge-concentration metrics, requirements-coverage analysis, and regular audits of the gap between documented intent and actual behavior. At the very least, a team might wish to reflect on which practices they use to minimize debt across the three interacting dimensions mentioned in this article. A focus on only some practices might lead to tradeoffs they do not realize. Software systems depend on intent captured in artifacts, behavior embodied in code, and understanding distributed across the team and its artifacts. When these layers erode or fall out of alignment, the three types of debt accumulate.</p> 
+  <div style="border:solid black 1px;padding:20px;margin:20px;"> 
+   <h3>Open Questions for Practice</h3> 
+   <p><b>Should we document "intent"?</b></p> 
+   <p>Not all practitioners agree that capturing intent is worth the effort, arguing that it doesn’t matter how they got here; they just need to focus on what changes are needed to go forward and that what they need to know can be (re)constructed. Others argue that capturing intent is important, and GenAI might help. The debate about whether and how intent should be documented is far from settled.</p> 
+   <p><b>Can AI help make implicit knowledge explicit?</b></p> 
+   <p>Some practitioners have proposed that AI can help surface implicit knowledge, reducing intent debt proactively and retroactively. Others counter that the main value in creating documentation is the human understanding gained. Whether and how AI should be used to autogenerate such documentation remains an open question.</p> 
+   <p><b>Debt as a risk, or debt as a strategy?</b></p> 
+   <p>This article frames cognitive debt as a risk to be managed, while acknowledging that understanding might not need to be about details of the implementation layer and might be distributed among team members and artifacts. Others argue this understanding is often not needed at all, similarly to how managers have always had to trust team members. With GenAI automating more development work, knowing how much debt is acceptable in a particular organization or project remains uncertain.</p> 
+  </div> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>GenAI promises extraordinary gains in the speed and ease with which software can be created. As with many technological shifts, however, the benefits might carry a hidden reversal from technical debt to cognitive and intent debt, with a need for tools and processes to support paying that down. The teams and organizations that navigate the AI-assisted development era most successfully will be those who invest in understanding and intent as deliberately as they have invested in code quality. Maintaining healthy software systems in the age of AI might depend on preserving alignment among intent, code, and understanding, and software teams should manage understanding with the same care and urgency as they manage code.</p> 
+  <p>&nbsp;</p> 
+  <h3>Acknowledgments</h3> 
+  <p>I am grateful to colleagues who provided valuable feedback and ideas reviewing earlier drafts of this work: Adam Tornhill, Kent Beck, Daniel German, Dave Thomas, Marian Petre, Markus Borg, Mary Shaw, Roy Weil, Max Alexander-Kanat, Keith Mann, and Ciara Storey. I am grateful to Arty Starr for discussions that helped sharpen the definitions in this paper and for work that influenced my thinking about how understanding breaks down and is rebuilt in practice. I also thank colleagues who attended the Future of Software Engineering Retreat organized by Thoughtworks in February 2026 for their insights and feedback.</p> 
+  <p>&nbsp;</p> 
+  <h3>References</h3> 
+  <p>1. Alakmeh, T. et al. Grasping AI reliance in program comprehension and coding through the AIRELI persona taxonomy. <i>IEEE ICPC 2026</i>, Rio de Janeiro, Brazil. 2026; <a href="https://aireli.hasel.dev/download/aireli-preprint.pdf">https://aireli.hasel.dev/download/aireli-preprint.pdf</a></p> 
+  <p>2. Beck, K. <i>Extreme Programming Explained: Embrace Change</i>. Addison-Wesley Professional 1999.</p> 
+  <p>3. Böckeler, B. Context engineering. martinFowler.com. 2026; <a href="https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html">https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html</a></p> 
+  <p>4. Borg, M., Hagatulah, N., Tornhill, A., and Söderberg, E. Code for machines, not just humans: quantifying AI-friendliness with code health metrics. 2026. arXiv:2601.02200; <a href="https://arxiv.org/abs/2601.02200">https://arxiv.org/abs/2601.02200</a>.</p> 
+  <p>5. Clark, H. H. and Brennan, S. E. Grounding in communication. In <i>Perspectives on Socially Shared Cognition</i>, L. B. Resnick, J. M. Levine, and J. S. D. Teasley ed. American Psychological Association, 1991.</p> 
+  <p>6. Cunningham, W. The WyCash portfolio management system. <i>ACM SIGPLAN OOPS Messenger</i> 4, 2 1993, 29–30; <a href="https://dl.acm.org/doi/10.1145/157710.157715">https://dl.acm.org/doi/10.1145/157710.157715</a>.</p> 
+  <p>7. Curtis, B., Krasner, H., and Iscoe, N. A field study of the software design process for large systems. <i>Communications of the ACM</i> 31, 11 1988, 1268–1287; <a href="https://dl.acm.org/doi/10.1145/50087.50089">https://dl.acm.org/doi/10.1145/50087.50089</a>.</p> 
+  <p>8. Evans, E. Domain-Driven Design: Tackling Complexity in the Heart of Software. Addison-Wesley, 2003.</p> 
+  <p>9. Fowler, M. Technical debt. martinFowler.com. 2003; <a href="https://martinfowler.com/bliki/TechnicalDebt.html">martinfowler.com/bliki/TechnicalDebt.html</a>.</p> 
+  <p>10. Garg, R. Patterns for reducing friction in AI-assisted development. martinFowler.com. 2026; <a href="https://martinfowler.com/articles/reduce-friction-ai/">https://martinfowler.com/articles/reduce-friction-ai/</a>.</p> 
+  <p>11. Herbsleb, J. D. Global software engineering: the future of socio-technical coordination. In <i>Future of Software Engineering</i> IEEE 2007, 188–198; <a href="https://dl.acm.org/doi/10.1109/FOSE.2007.11">https://dl.acm.org/doi/10.1109/FOSE.2007.11</a>.</p> 
+  <p>12. Hermans, F. <i>The Programmer’s Brain: What Every Programmer Needs to Know About Cognition</i>. Manning Publications, 2021.</p> 
+  <p>13. Hicks, C. M., Lee, C. S., and Foster-Marks, K. The new developer: AI skill threat, identity change &amp; developer thriving in the transition to AI-assisted software development. <i>PsyArXiv</i>. 2024; <a href="https://osf.io/preprints/psyarxiv/2gej5_v2">https://osf.io/preprints/psyarxiv/2gej5_v2</a>.</p> 
+  <p>14. Hou, X. et al. Large language models for software engineering: a systematic literature review. <i>ACM Transactions on Software Engineering and Methodology</i>. 2024; <a href="https://dl.acm.org/doi/10.1145/3695988">https://dl.acm.org/doi/10.1145/3695988</a>.</p> 
+  <p>15. Hutchins, E. <i>Cognition in the Wild</i>. MIT Press, 1995.</p> 
+  <p>16. Kahneman, D. <i>Thinking, Fast and Slow</i>. Farrar, Straus and Giroux, 2011.</p> 
+  <p>17. Kosmyna, N. et al. Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task. arXiv-2506.08872. 2025; <a href="https://arxiv.org/abs/2506.08872">https://arxiv.org/abs/2506.08872</a>.</p> 
+  <p>18. Kruchten, P., Nord, R.L., and Ozkaya, I. Technical debt: From metaphor to theory and practice. <i>IEEE Software</i> 29, 6 2012, 18–21; <a href="https://ieeexplore.ieee.org/document/6336722">https://ieeexplore.ieee.org/document/6336722</a>.</p> 
+  <p>19. McLuhan, M. and McLuhan, E. <i>Laws of Media: The New Science</i>. University of Toronto Press, 1988.</p> 
+  <p>20. Miles, R. On cognitive debt and the care of the habitat. <i>A Software</i><i> Enchiridion</i>. 2026; <a href="https://www.softwareenchiridion.com/p/on-cognitive-debt-and-the-care-of">https://www.softwareenchiridion.com/p/on-cognitive-debt-and-the-care-of</a>.</p> 
+  <p>21. Miller, C. et al. “Maybe we need some more examples:” individual and team drivers of developer GenAI tool use. <i>IEEE/ACM Intern. Conf. on Software Engineering (ICSE 2026)</i>. arXiv:2507.21280. 2026; <a href="https://arxiv.org/abs/2507.21280">https://arxiv.org/abs/2507.21280</a>.</p> 
+  <p>22. Naur, P. Programming as theory building. <i>Microprocessing</i><i> and Microprogramming</i> 15, 5 1985, 253–261; <a href="https://www.sciencedirect.com/science/article/abs/pii/0165607485900328">https://www.sciencedirect.com/science/article/abs/pii/0165607485900328</a>.</p> 
+  <p>23. Nygard, M. Documenting architecture decisions. Cognitect, 2011; <a href="https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions">https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions</a>.</p> 
+  <p>24. Peng, S., Kalliamvakou, E., Cihon, P., and Demirer, M. The impact of AI on developer productivity: evidence from GitHub Copilot. arXiv:2302.06590. 2023; <a href="https://arxiv.org/abs/2302.06590">https://arxiv.org/abs/2302.06590</a>.</p> 
+  <p>25. Petre, M. and Shaw, M. Contrasting to spark creativity in software development teams. <i>IEEE Software</i> 42, 3 2025, 67–74; <a href="https://doi.org/10.1109/MS.2025.3538670">https://doi.org/10.1109/MS.2025.3538670</a>.</p> 
+  <p>26. Shaw, S. D. and Nave, G. Thinking—fast, slow, and artificial: how AI is reshaping human reasoning and the rise of cognitive surrender. The Wharton School Research Paper. Available at SSRN. 2026; <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646</a>.</p> 
+  <p>27. Starr, A. and Storey, M. A. Theory of troubleshooting: the developer’s cognitive experience of overcoming confusion. <i>Accepted ACM Transactions on Software Engineering and Methodology</i> 2026; <a href="https://dl.acm.org/doi/abs/10.1145/3800945">https://dl.acm.org/doi/abs/10.1145/3800945</a>.</p> 
+  <p>28. Tornhill, A. <i>Your Code as a Crime Scene</i>. Pragmatic Programmers, 2015.</p> 
+  <p>29. Tornhill, A. Skills rot at machine speed?. <i>AI is changing how developers learn and think</i>. Forbes, 2025; <a href="https://www.forbes.com/councils/forbestechcouncil/2025/04/28/skills-rot-at-machine-speed-ai-is-changing-how-developers-learn-and-think/">https://www.forbes.com/councils/forbestechcouncil/2025/04/28/skills-rot-at-machine-speed-ai-is-changing-how-developers-learn-and-think/</a>.</p> 
+  <p>30. Ulloa, M. et al. Product manager practices for delegating work to generative AI: “Accountability must not be delegated to non-human actors”. <i>IEEE/ACM Intern. Conf. on Software Engineering (ICSE 2026)</i>. arXiv:2510.02504. 2026; <a href="https://arxiv.org/abs/2510.02504">https://arxiv.org/abs/2510.02504</a>.</p> 
+  <p>31. von Mayrhauser, A. and Vans, A. M. Program comprehension during software maintenance and evolution. <i>Computer</i> 28, 8 1995, 44–55; <a href="https://dl.acm.org/doi/10.1109/2.402076">https://dl.acm.org/doi/10.1109/2.402076</a>.</p> 
+  <p>32. Wegner, D. M. Transactive memory: a contemporary analysis of the group mind. In <i>Theories of Group Behavior</i>, B. Mullen and G. R. Goethals, ed. Springer New York, New York, NY. 1987, 185–208.</p> 
+  <p>33. Willison, S. Cognitive debt. 2026; <a href="https://simonwillison.net/2026/Feb/15/cognitive-debt/">https://simonwillison.net/2026/Feb/15/cognitive-debt/</a>.</p> 
+  <p>34. Wynne, M., Hellesøy, A., and Tooke, S. <i>The Cucumber Book: Behaviour-Driven Development for Testers and Developers</i>, Second Edition. The Pragmatic Bookshelf, 2017.</p> 
+  <p>35. Zhang, D. et al. Cloud Intelligence/AIOps 2.0: Knowledge-Anchored Agentic AIOps. <i>To appear ACM</i><i> FSE 2026 Workshop on Data Intensive Software Engineering (DISE)</i>. 2026.</p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3639443">DevEx in Action</a></b> <br />A study of its tangible impacts <br />Nicole Forsgren, et al. <br /><a href="https://queue.acm.org/detail.cfm?id=3639443">https://queue.acm.org/detail.cfm?id=3639443</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=2168798">Managing Technical Debt</a></b> <br />Shortcuts that save money and time today can cost you down the road <br />Eric Allman <br /><a href="https://queue.acm.org/detail.cfm?id=2168798">https://queue.acm.org/detail.cfm?id=2168798</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3674114">Working Models for Tackling Tech Debt</a></b> <br />Understand the options to tailor an approach that suits your needs <br />Kate Matsudaira <br /><a href="https://queue.acm.org/detail.cfm?id=3674114">https://queue.acm.org/detail.cfm?id=3674114</a> </p> 
+  <p>&nbsp;</p> 
+  <p><b>Margaret-Anne Storey</b> is a professor of computer science at the University of Victoria and a Canada research chair in human and social aspects of software engineering. She is coauthor of the SPACE framework and a leading researcher in developer experience (DevEx). Her research focuses on how developers and teams understand complex software systems and how tools, AI, and collaborative practices shape that understanding. Her recent work examines how generative AI is transforming software engineering by changing how understanding is created, shared, and maintained. She collaborates with industry partners including Microsoft and DX. She holds an honorary doctorate from Lund University.</p> 
+  <p>&nbsp;</p> 
+  <p style="margin:0in">This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution International 4.0 License</a>.</p> 
+  <p>Copyright © 2026 held by the owner/author(s).Publication rights licensed to ACM.</p> 
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>   
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fdcf8ce5992b',t:'MTc4NDA3ODkxNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fdcf8ce5992b',t:'MTc4NDA3ODkxNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 2</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3806226"><b>In Code They Think; In Proof We Trust</b></a>
+	  <br />
+	  AI agents that use tools can be hijacked by prompt injection to exfiltrate sensitive data. Runtime defenses such as model alignment, output scanning, and content classifiers are fundamentally reactive: By the time they detect an attack, irreversible actions may already have been taken, and sophisticated encodings such as steganography, encryption, and chunking can evade any content-based check. We propose a preemptive alternative: Constrain the agent to express its plan as a Kotlin script, then statically verify the script against a security policy before any tool executes. The verification uses taint analysis, a well-established static analysis technique. A fact extractor walks the Kotlin AST to identify sources (sensitive data origins), sinks (network exit points), and data flows between them.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, Benjamin V. Hanrahan</span> - <a href="detail.cfm?id=3807964"><b>The SPACE of AI</b></a>
+	  <br />
+	  As AI tools become increasingly embedded in software development workflows, there is a growing need to understand their true impact on developer productivity and experience. This article presents findings from a mixed-methods study examining how developers perceive AI’s influence across the dimensions of the SPACE framework: Satisfaction, Performance, Activity, Collaboration, and Efficiency. Drawing on survey responses from more than 500 developers and qualitative insights from interviews and observational studies, we find that AI is broadly adopted and widely seen as enhancing productivity, particularly for routine tasks. The benefits vary, however, depending on task complexity, individual usage patterns, and team-level adoption. Developers report increased efficiency and satisfaction, with less evidence of impact on collaboration.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jenna Butler</span> - <a href="detail.cfm?id=3807963"><b>Eight Myths on Software Engineering and GenAI</b></a>
+	  <br />
+	  Generative AI is reshaping software engineering—but the narrative has gotten ahead of the evidence. Marketing claims, anecdotal wins, and misread studies have given rise to a set of persistent myths that are quietly driving poor decisions about AI adoption, tooling, and how to measure success. This article examines eight of the most common misconceptions. We already know developers don’t actually spend most of their time writing code, with studies at Microsoft and elsewhere showing it’s closer to 14 percent. That means AI code generation, even when it works well, touches a surprisingly small slice of the actual job. And yet organizations are doubling down on lines-of-code metrics to track AI’s impact, which is a measure that is neither statistically valid nor meaningfully connected to outcomes such as software quality or delivery speed.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jenna Butler, Mara Ulloa, Margaret-Anne Storey, Christian Bird</span> - <a href="detail.cfm?id=3807965"><b>Climbing the Generative AI Mountain</b></a>
+	  <br />
+	  Most product managers (PMs) working in software today feel it—that dizzying sense of standing at the base of a mountain, staring up at a new way of working and wondering where to even begin. Generative AI has fast arrived in the software engineering workforce, with little guidance and high expectations. PMs are expected to be more productive almost overnight, without a map for how to get there. Microsoft has been at the center of this transformation. Drawing on interviews, surveys, and telemetry from 885 PMs on software teams at Microsoft, we studied how practitioners at every stage of the climb are actually navigating this shift—from those still finding their footing at base camp to those who have reached the summit and fundamentally redesigned how they work.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1b4fdcc89272cbc',t:'MTc4NDA3ODkxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
