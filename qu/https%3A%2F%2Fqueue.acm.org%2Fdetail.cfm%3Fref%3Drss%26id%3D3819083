@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Beyond Zero: Enterprise Security for the AI Era - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Security' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3819083' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>July 20, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786300">Volume 24, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3819083">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  <h1 class="hidetitle">Beyond Zero: Enterprise security for the AI era</h1>
+  <h3>Joseph Valente and Michal Zalewski</h3>
+  <p>The rise of autonomous AI agents and the accelerating velocity of corporate data access are stretching the application-centric model of zero trust security to its breaking point. This article introduces Beyond Zero, a new security paradigm designed for the AI era. The Beyond Zero architecture performs per-resource access decisions for humans and agents at machine speed. By shrinking the trust boundary from the application level to individual action and by coupling static authorization guarantees with dynamic, AI-driven reasoning, Beyond Zero enables a self-defending enterprise capable of mediating thousands of human and machine decisions per second. Google’s vision for the future of this access model as well as a call for industry collaboration and standards development are outlined here.</p>
+  <p>Enterprise security is transitioning from human-speed security to high-frequency, AI-mediated defense. This new model is called Beyond Zero, and the fundamental concepts for the new architecture are laid out in this article. Beyond Zero allows for a contextual, risk-based, resource-level authorization model to run at machine speed, securing both humans and agents without overburdening users.</p>
+  <p>The Beyond Zero model has the following key features:</p>
+  <p><b>Resource/action-based security.</b> Individual actions on individual resources are where authorization decisions are made, rather than provisioning access to a tool, application, or feature within an application. This is true no matter where those resources are accessible (e.g., via front-end tooling, API, MCP, or other access methods).</p>
+  <p><b>Blended static and dynamic security.</b> Granular static policies are applied to resource accesses in addition to fully dynamic controls that apply even stronger security in risky or complex scenarios. This allows for dynamic controls to be applied without shifting to a fully dynamic security model that is challenging to statically verify.</p>
+  <p><b>Automatically enriched context.</b> The decision systems can draw on context about the user, what the user should be working on, what data the user is trying to interact with, what the user is attempting to do with the data, and what potential risk mitigations are available. These facts are always available to the decision-making infrastructure.</p>
+  <p><b>Automated in-depth investigation.</b> Investigations can be triggered to run autonomously by risk signals and, in turn, can activate either challenges or containments that are immediately applied to the user’s stream of accesses.</p>
+  <p><b>Challenges and containments.</b> Challenges and containments can be triggered directly from the security policies, enabling accessors to provide additional risk information on demand.</p>
+  <p>Beyond Zero builds on the BeyondCorp model Google introduced in 2014 by extending the zero-trust concept to the authentication and authorization layers. The assumptions underpinning BeyondCorp—that accessors are human, that actions occur at human speed, and that applications are the correct boundary for trust—are no longer sufficient. Now that we are entering an era where AI agents access data at 10 times the rate of humans, often reasoning about information across vast unstructured datasets, a new model is needed for securing data. Note that when <i>agents</i> are discussed in this article, that specifically refers to AI agents that mimic human behavior.</p>
+  <p>The publication of the BeyondCorp whitepaper<sup>1</sup> marked both a milestone on Google’s own journey toward adopting the BeyondCorp model as well as a vision for how the rest of the industry could both adopt the same model and build the infrastructure to help others adopt a similar continuous authorization model. This article marks a milestone in Google’s own effort to transition to the Beyond Zero model as well as a vision for where the industry needs to move to accelerate this transition.</p>
+  <p>&nbsp;</p>
+  <h3>The Problem: Securing Data at Machine Speed</h3>
+  <p>A number of major shifts have made the transition to the Beyond Zero model necessary. In particular, some of the major changes we have observed are:</p>
+  <p><b>Agents driving exponential growth in access volume.</b> The transition from a human-centric workforce to an agentic one has fundamentally altered the frequency of access requests. AI agents, whether operating autonomously or as “copilots” for human users, interact with corporate resources at a far higher rate than traditional human activity. The legacy infrastructure is strained by the need to authorize tens of millions of concurrent machine-driven actions per second.</p>
+  <p><b>Unprecedented data velocity and scale.</b> It is not merely the frequency of access that has changed, but also the volume of data being consumed. Even before the adoption of agents, there was already an exponential growth in both the volume and sensitivity of data being accessed inside digital applications. Additionally, with agentic workflows, there is now a rise in aggregation and reasoning across vast unstructured datasets, leading to an even greater growth in the volume of data. This “geometric shock” to the system means that more sensitive intellectual property and user data are available to be accessed and acted upon than ever before. While AI enables this data to be processed and acted upon more quickly, any processing would happen at a velocity that outpaces manual oversight and after-the-fact security operations (SecOps) review.</p>
+  <p><b>Increasing sophistication of the threat landscape.</b> In the current environment, even the least sophisticated attackers have weaponized AI to accelerate their tradecraft. These adversaries use LLMs to rewrite malicious code on demand, making static detection methodologies less effective. Attackers can now afford to be patient, testing surfaces that were previously considered low value, using automated agentic methods. Furthermore, the rise of agentic infrastructure introduces new attack vectors, such as the exploitation of <i>ambient authority</i>, where an agent is granted the full, often overprovisioned permissions of its human user. This combination of machine-speed attacks and nondeterministic agent behavior creates a risk profile that requires a move toward dynamic, intent-based defense.</p>
+  <p>&nbsp;</p>
+  <h3>The Solution: Introducing the Beyond Zero Model</h3>
+  <p>Beyond Zero shifts the trust boundary from the application to the action being performed on a piece of data in realtime—and from after-the-fact investigation to in-the-moment evaluation and containment. It augments BeyondCorp’s foundational identity with a “brain” capable of reasoning about the context and intent of a specific request in realtime.</p>
+  <p>Implementing all the Beyond Zero features (see table 1) allows an enterprise to express high-level security policies that naturally follow resources across the company and trickle down into individual enforcement actions. Enterprises can also build both static and dynamic policies that take in large amounts of data to make highly granular decisions while minimizing the degree to which human users are interrupted during their workday. This unblocks a variety of use cases including access abuse, intellectual property protection, and compliance. For accessors (humans and agents), the <i>access bubble</i> that controls their permissions dynamically flexes to be bigger or smaller depending on what they need to do in a given moment, reducing overprovisioning without impacting productivity.</p>
+  <div id="T1">
+   <div class="table-caption">
+    <span class="table-number">Table 1.</span><span class="table-title">The Beyond Zero model</span>
+   </div>
+   <table frame="hsides" rules="rows">
+    <thead valign="top">
+     <tr>
+      <th align="left">Feature</th>
+      <th align="left">BeyondCorp (Legacy)</th>
+      <th align="left">Beyond Zero (New)</th>
+     </tr>
+    </thead>
+    <tbody valign="top">
+     <tr>
+      <td align="left"><p>Trust</p><p>Boundary</p></td>
+      <td align="left">Application / Tool</td>
+      <td align="left"><p>Individual Action/Resource</p><p>Limits the boundary of trust to an individual piece of data because normal ACLs are too coarse-grained</p></td>
+     </tr>
+     <tr>
+      <td align="left">Decision Speed</td>
+      <td align="left">Human Speed</td>
+      <td align="left"><p>Machine Speed</p><p>Increases velocity of checks because attackers are starting to operate this way, and we need to match their speed.</p></td>
+     </tr>
+     <tr>
+      <td align="left">Policy Type</td>
+      <td align="left"><p>Static (Allow/Deny)</p></td>
+      <td align="left"><p>Static and Dynamic (Infer &amp; Interrupt)</p><p>Static policies are insufficient to codify the dynamic nature of today’s enterprises.</p></td>
+     </tr>
+     <tr>
+      <td align="left">Context Attributes</td>
+      <td align="left"><p>Identity +</p><p>Device</p></td>
+      <td align="left"><p>Identity + Device + Behavior + Data Context</p><p>A holistic view of user behavior matching or surpassing the capabilities of a human analyst</p></td>
+     </tr>
+     <tr>
+      <td align="left">Intent (User and Policy)</td>
+      <td align="left">Simple Static Evaluation</td>
+      <td align="left"><p>User Intent + Agent Intent can be interpreted and checked to ensure alignment and limit prompt injection risks.</p><p>User Intent + Agent Intent can be an input in dynamic evaluation against Policy Intent.</p></td>
+     </tr>
+     <tr>
+      <td align="left">Action Window</td>
+      <td align="left">Action Only</td>
+      <td align="left"><p>Activity Window (before + after Action)</p><p>Looking at an action in the context of the many operations that a user or agent has performed both before and after their action can give a more holistic picture of whether the action is legitimate.</p></td>
+     </tr>
+     <tr>
+      <td align="left">Investigation</td>
+      <td align="left">After-the-Fact</td>
+      <td align="left"><p>Near-realtime and integrated back into authorization</p><p>AI allows us to run rapid investigations in minutes instead of days or hours, and act on the results of these investigations.</p></td>
+     </tr>
+     <tr>
+      <td align="left">Challenges and Containments</td>
+      <td align="left">Unlinked to Policy</td>
+      <td align="left"><p>Linked to Policy (e.g., risk of hijacking, trigger security key touch)</p><p>Reduced disruption to legitimate accessors compared with traditional approvals, tailored hard challenges for malicious actors</p></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p>&nbsp;</p>
+  <h3>Beyond Zero Architecture</h3>
+  <p>Beyond Zero operates by applying policy decisions to individual resources rather than applications as a whole. Authorization is evaluated for a specific resource rather than a tool or application. Policies are dynamically derived from reasoning decisions and immutable principles that govern access. When an action is performed on data, a set of checks is performed, taking into account various pieces of information about the accessor, the data being accessed, and the operation being performed to authorize the access.</p>
+  <p>We maintain static policies (the floor) to ensure baseline security and compliance. Layered on top is a dynamic reasoning engine (the ceiling) that observes behavior and applies friction (challenges) when an action deviates from established norms or carries high risk. There’s a statically enforced baseline that makes sure that the agent doesn’t deviate from a certain set of rules; then there’s a dynamic component that allows for decision-making at a higher granularity.</p>
+  <p>The Beyond Zero architecture consists of four cooperating components, described next, that form a continuous feedback loop. These components are autonomous governance, event intake, reasoning engine, and challenge infrastructure.</p>
+  <p>&nbsp;</p>
+  <h3>Autonomous Governance: Building the Enterprise World Model</h3>
+  <p>Before a decision can be made, the system must understand the terrain. In the same way that self-driving cars rely on a world model to understand the physics and constraints of the world in which they operate, so too does there need to be an accurate enterprise world model to help decide how agents and humans can take actions on resources throughout the enterprise. Through integration with existing HR and project management warehouses and other sources of data that show who humans inside the company are and how their work relates to the company’s assets, the autonomous governance component uses AI to generate and maintain a live enterprise world model with the following information:</p>
+  <p><b>Who</b>—information about accessors (humans and agents), including their job function, role, seniority, controlling human (in the case of agents), etc. This information can be sourced from a variety of identity, HR, and other system-of-record databases.</p>
+  <p>Preprocessing ensures that unstructured data is converted into static attributes that can be used as part of authorization. For example, when a person works in a given team, the subject matter of the team and graph relationships of the team to other teams can be extracted from the organizational chart and other HR data, creating a set of attributes that can be used as part of security checks in both static and dynamic policies.</p>
+  <p><b>What</b>—a semantic understanding of data sensitivity (confidentiality [e.g., confidential, public, crown jewels, etc.] and data type [e.g., user data]). This information is preprocessed by AI, allowing for resource understanding to be translated into an understandable structure. This could take the form of a semantic graph or a resource model (e.g., showing relationships between enterprise resources).</p>
+  <p><b>How</b>—information about what accessors are tasked to work on and how they do their work, based on historical usage and sharing patterns, group membership, team membership, assignments, etc. Preprocessing extracts the precise data around work assignments (for example, a user is currently working on an assignment that requires access to data belonging to customers A, B, and C only).</p>
+  <p>The need to make access decisions without adding undue latency to user requests means that much of the information needed to make access decisions must be accurately prepopulated and available at low latency at access time.</p>
+  <p>Preprocessing becomes critical because the strict latency budgets available at access time mean that inference tasks must be front-loaded to ensure that accurate attributes are available at access time.</p>
+  <p>The underlying principle here is to minimize the overhead of individual realtime access decisions by precomputing as much of the reasoning outputs as possible. This precomputed knowledge allows you to make high-fidelity determinations with precision, previously unattainable using conventional access-control tools.</p>
+  <p>&nbsp;</p>
+  <h3>Event Intake: Connecting to Agent and Human Activity</h3>
+  <p>To reason about risk, the system needs high-fidelity visibility, not only into the immediate action that’s under evaluation, but also into the broader context of user actions and enterprise patterns. To accomplish this, Beyond Zero can ingest streams of events from a variety of traditional, existing data sources, including:</p>
+  <p><b>Server side</b> (access logs from corporate proxies and APIs; enterprise productivity apps, system-level server access, and other server-side sources). Some of these signals can be used at access time without event enrichment. Others require preprocessing to formulate attributes that are, in turn, used at access time or otherwise can be used for post-access analysis for post-access actions.</p>
+  <p><b>Client side</b> (on-device signals indicating browser state, local file access, or process activity). This includes signals coming from standard data loss prevention (DLP) solutions and existing client security agents running on the endpoint as well as raw system logs. These signals cannot be used without preprocessing and typically are not useful other than in limited use cases (for example, post-access).</p>
+  <p><b>Agent activity</b> (logs of prompt inputs, execution plans, tool invocations, and more by AI agents). For agentic access scenarios, these additional signals can be used to determine whether the agent’s access reflects both the intention of the user as well as alignment with enterprise policy.</p>
+  <p>The vast majority of this information is not directly acted upon by the agent but is used to gradually build a better understanding of user behavior and to intercept actions once a certain risk threshold is exceeded.</p>
+  <p>The information is stored in both a hot cache populated with processed data for use in fast access-time policy evaluations and a larger long-term data store that stores the larger set of data for more detailed evaluation and preprocessing by different AI agents.</p>
+  <p>&nbsp;</p>
+  <h3>Reasoning Engine: Making Static and Dynamic Decisions</h3>
+  <p>The reasoning engine is the heart of Beyond Zero. It is a hierarchical AI system distributed across central server-side components and endpoint agents that consumes information about accessors as well as recent access signals to answer a single question: In the context of what is known about the user and the resource, is this specific action safe? The reasoning engine, in a similar way to data-storage systems, is capable of both fast reasoning tailored for at-access-time evaluation and slower inference to do richer analysis on a set of actions.</p>
+  <h4>Policy Evaluation (Fast) or Inference (Slow)</h4>
+  <p>In faster configurations, the reasoning engine can perform granular attribute-based access control to determine, for example, if a person is accessing data belonging to a VIP user in one of the customer support tools or if a person is attempting a high-risk operation. These can be blocked at access time.</p>
+  <p>In slower configurations, more complex anomalies can be detected, such as a human user accessing 500 percent more files than their peer group. These can then be intervened with custom challenges or containments.</p>
+  <p>&nbsp;</p>
+  <h4>Decision</h4>
+  <p>The reasoning engine outputs a verdict: <styled-content style="background-color:#E9EEF6">
+    allow
+   </styled-content>, <styled-content style="background-color:#E9EEF6">
+    deny
+   </styled-content>, or <styled-content style="background-color:#E9EEF6">
+    challenge
+   </styled-content>. These decisions then factor into out-of-band risk evaluations, which then become attributes that can be referenced in subsequent evaluations (even across attempts to access other applications or resources).</p>
+  <p>&nbsp;</p>
+  <h4>Attacker Scenarios</h4>
+  <h5>The curious contractor.</h5>
+  <p>An external party attempts to compromise an enterprise by purchasing the stolen credentials of one of their contractors who is working on software development. As soon as the external attacker attempts to use the credentials to start their attack, they are seen trying to access data not linked to the contractor’s scope of work, and various challenges can be issued to the accessor to confirm the access is legitimate.</p>
+  <p>In this scenario, various aspects of the contractor’s status are stored as risk attributes, and the contractor’s position in the organizational chart, along with their typical scope of work, is stored as a set of attributes linked to the accessor’s identity. The autonomous governance system has also performed analysis on the documents, understanding their semantic context.</p>
+  <p>At access time, the reasoning engine sees that a high-risk accessor with low subject-matter crossover is attempting to access sensitive documents. The contractor is given the option of requesting access via a document owner approval challenge (for an explanation of how this works, see “Challenge Infrastructure: Managing Exceptions” later in this article).</p>
+  <p>&nbsp;</p>
+  <h5>The suddenly foolish administrator.</h5>
+  <p>In this scenario, a system administrator logs into a service as usual, but in another window is looking up basic questions about the architecture of the system—information that would be obvious to anyone experienced at the company. These signals are placed in long-term storage but are then processed into an attribute indicating potential risk.</p>
+  <p>The administrator then attempts a host of operations, all of which appear in rapid succession indicating usage of agentic assistance. The short-term reasoning engine sees the risk indicator attribute and the high-risk operation attribute and stops the operation, challenging the user to touch their security key and provide their password, preventing compromise. After clearing the challenge, the record is placed in long-term storage for evaluation again should an unusual operation be seen in the future.</p>
+  <p>&nbsp;</p>
+  <h4>Automated Reasoning</h4>
+  <p>As Beyond Zero implementations mature, the reasoning engine could be used to reduce the burden of certain security controls by deciding that users don’t need to be challenged in scenarios that are deemed low risk. Example: Security key touches might be seen as unnecessary if an accessor is the same person showing up at the same hour in the same location, but could then be reapplied should behavior start to deviate from the expected baseline.</p>
+  <p>&nbsp;</p>
+  <h3>Challenge Infrastructure: Managing Exceptions</h3>
+  <p>Challenge infrastructure is used to either gather context using challenges or restrict access using containments. <i>Challenges</i> are introduced to gather further context before deciding whether to grant access. <i>Containments</i> are more durable “stop signs” that are designed to introduce substantial friction to an accessor’s access in order to stop attacks. Containments are designed to be dynamic and to move up or down in strength should a completed challenge clarify that the detected risk was a false positive.</p>
+  <h4>Challenges</h4>
+  <p>When the reasoning engine detects ambiguity or elevated risk, it triggers a challenge. Unlike the blunt “access denied” of the past, challenges are granular and context-aware:</p>
+  <p><b>Justification.</b> “Please explain why you need access to this file.”</p>
+  <p><b>Verification.</b> “Touch your security key to prove you are present.”</p>
+  <p><b>Approval.</b> “Requesting manager approval for bulk export.”</p>
+  <p><b>Biometric</b>. “Please perform a selfie check to prove you’re sitting at your machine.”</p>
+  <p>Challenges are designed to be statically verifiable using policy; however, some challenges might contain dynamic evaluations that can then be statically evaluated. For example, policy can be written requiring a selfie check before an administrator is allowed to perform a high-risk action to ensure that they are sitting at their computer when the action is being performed (and have not lost or sold their credentials).</p>
+  <p>More dynamic checks are also possible. For example, a person attempting to email data to their personal account might be asked to provide a justification that can be checked against the document contents in realtime.</p>
+  <p>The goal of the challenge infrastructure is to abstract away the complexity of implementing each of these challenges into a single service that has static and dynamic policies written against it. That decoupling ensures that it can independently evolve as better challenges become available. For example, should a company roll out a fingerprint-enabled security key? This could be easily done.</p>
+  <p>&nbsp;</p>
+  <h4>Containments</h4>
+  <p>Containments are a second, more durable type of interruption. These interruptions revoke some or all of the actor’s access in response to a perceived risk. Containment revocation is generally not as straightforward as challenge completion. While some containments can be revoked by correctly passing a challenge, other containments might be lifted only when the security team interviews the contained user and their manager before deciding on a course of action.</p>
+  <p>&nbsp;</p>
+  <h3>An End-to-End Example: The “Rogue” Agent</h3>
+  <p>Consider a scenario where an internal AI agent, <styled-content style="background-color:#E9EEF6">
+    SalesGenie
+   </styled-content>, is authorized to read sales reports.</p>
+  <h4>Action</h4>
+  <p>
+   <styled-content style="background-color:#E9EEF6">
+    SalesGenie
+   </styled-content> attempts to query a highly sensitive strategic planning document inside Google Drive.</p>
+  <p>&nbsp;</p>
+  <h4>BeyondCorp Check</h4>
+  <p>Both the agent and the person who prompted the agent have a valid certificate from an authorized machine and identity, and both identities are authorized to access sales reports. Access allowed.</p>
+  <p>&nbsp;</p>
+  <h4>Beyond Zero Check</h4>
+  <h5>Accessor context.</h5>
+  <p>The reasoning engine sees that the user that prompted <styled-content style="background-color:#E9EEF6">
+    SalesGenie
+   </styled-content> works only on financial services accounts in the Northeast. The user’s risk score is also higher, as they have been recently attempting accesses that are not closely related to their work assignment.</p>
+  <p>&nbsp;</p>
+  <h5>Data context.</h5>
+  <p>The data being accessed is highly strategic, company-level data used only in financial reporting. The only teams that typically access this data are the strategy and finance teams. The data is classified as highly confidential, the highest tier of sensitivity, as it could be used in insider trading.</p>
+  <p>&nbsp;</p>
+  <h5>Decision.</h5>
+  <p>The reasoning engine finds a policy specifying that for data classified as highly confidential, a valid work assignment must be present. As the work assignment here does not match the worker types who need access to this data, the accessor is served two challenges. A second, slower inference can happen over the actor’s recent accesses once the first risky action has been detected. This can lead to intervention once the detailed analysis has been performed by the automated reasoning engine. In this case, the inference might detect a pattern of accesses together with logs showing the actor attempting to exfiltrate some of their data and decide that a stronger containment is needed.</p>
+  <p>&nbsp;</p>
+  <h5>Intervention.</h5>
+  <p>(1) The human actor must confirm that the access the agent is attempting is intended by the human to minimize the risk of rogue actions by the agent. (2) The human actor must then request approval from the team that owns the data, confirming that they require access to it. (3) Following the failure to clear challenges and a more detailed inference completing over a larger set of actions, the user is then contained. In the vast majority of cases, the decision to contain will be autonomous. Only a tiny percentage would be escalated to human review when there is a high confidence in malicious intent, which is substantially higher fidelity than the current paradigm.</p>
+  <p>&nbsp;</p>
+  <h3>Accelerating Toward Beyond Zero in the Technology Industry</h3>
+  <p>A shift toward a Beyond Zero model will require more broadly landing a number of major alignments across the industry. These would be useful areas for exploration:</p>
+  <p><b>Open architectures that can enhance transparency into access as enterprises make the agentic transformation</b>—for example, standardized APIs for agent introspection, with a standardized way to analyze chain-of-thought/tool use in realtime.</p>
+  <p><b>Standards for agentic identities and how to define and control their access</b>—for example, an industry standard for request annotations to make all agent actions attributable to a specific agent, a specific controlling user, and a specific task.</p>
+  <p><b>Frameworks for allowing reasoning engines to safely make access decisions and take actions</b>—for example, make external, enterprise-operated policy evaluation and decision-point integration and enforcement a first-class citizen for all software-as-a-service products.</p>
+  <p>The National Institute of Standards and Technology (NIST) has already commenced an agent security effort, and, hopefully, efforts like this will accelerate the industry’s path toward making these important standardizations.</p>
+  <p>&nbsp;</p>
+  <h3>Conclusion</h3>
+  <p>The application boundary model is reaching its end of life as the rise of autonomous agents and exponential data velocity stretch legacy zero-trust frameworks to their breaking point. As AI agents join the workforce and the speed of business accelerates, what is needed is a security model that works at machine speed as well.</p>
+  <p>Beyond Zero represents the next major evolution in enterprise defense, shifting the trust boundary from the broad application level to the individual action performed on a specific resource. By unifying static authorization with a dynamic, AI-driven reasoning engine, the architecture allows a self-defending enterprise capable of mediating thousands of decisions per second at machine speed. It effectively fuses access management and security operations into a single, high-frequency feedback loop that can infer and interrupt threats in realtime.</p>
+  <p>Beyond Zero is the future of enterprise security, moving toward a model of security as an immune system that continuously adapts to the context and intent of every request. This transition is a strategic necessity for the agentic era, ensuring that enterprise data remains secure even as the boundaries between human and machine actions continue to blur. The hope is not only that these ideas will help make the industry safer, but also that others will build on this foundation to strengthen the state of the art of how security should work in this new era. Now that this future is coming into view, it’s time to accelerate our investments toward the development of new standards, particularly around pluggable policy evaluations and agent context annotations.</p>
+  <p>As we continue our own journey in developing and deploying Beyond Zero, we intend to continue publishing more articles in this space. We encourage others to start the same journey and share their learnings with the industry as we all work through the challenges of this new era together.</p>
+  <p>&nbsp;</p>
+  <h3>Acknowledgments</h3>
+  <p>The Beyond Zero approach is the culmination of years of thinking and work by many individuals at Alphabet and in the broader industry. In alphabetical order, we would like to thank Heather Adkins, Darren Bilby, Gordon Chaffee, Garrett Cronin, Ian Green, Royal Hansen, Sebastian Harris, Gregory Kick, Kaan Kivilcim, Bryan Landsiedel, Naveed Makhani, Justin McWilliams, Luis Miranda, Pankaj Rohatgi, Ismail Sebe, Ruchi Shah, Umesh Shankar, Nic Shupe, Adam Tanana, Marianna Tishchenko, Tavish Vaidya, Juan Vasquez, and Ollie Wild.</p> 
+  <p>&nbsp;</p> 
+  <h3>References</h3> 
+  <p>1 Ward, R. and Beyer, B. BeyondCorp: a new approach to enterprise security. <i>login</i> 39, 6 (2014), 6–11; <a href="https://www.usenix.org/publications/login/dec14/ward">https://www.usenix.org/publications/login/dec14/ward</a>.</p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3561799">From Zero to One Hundred</a></b> <br />Demystifying zero trust and its implications on enterprise people, process, and technology <br />Matthew Bush, Atefeh Mashatan <br /><a href="https://queue.acm.org/detail.cfm?id=3561799">https://queue.acm.org/detail.cfm?id=3561799</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3439745">Everything VPN is New Again</a></b> <br />The 24-year-old security model has found a second wind. <br />David Crawshaw <br /><a href="https://queue.acm.org/detail.cfm?id=3439745">https://queue.acm.org/detail.cfm?id=3439745</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3648601">Developer Ecosystems for Software Safety</a></b> <br />Continuous assurance at scale <br />Christoph Kern <br /><a href="https://queue.acm.org/detail.cfm?id=3648601">https://queue.acm.org/detail.cfm?id=3648601</a> </p> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p>&nbsp;</p>
+  <p><b>Joseph Valente</b> <i>is a director of product management leading enterprise security efforts within Alphabet Security. While his current work focuses on securing all of Alphabet’s business units—from Google Ads to DeepMind, YouTube, Devices, and Cloud—his previous roles inside Alphabet focused on creating what is now known as Sovereign Cloud from Google, Google Cloud’s sovereign compute offering. Prior to Google, he cofounded the companies Pathify and Ebla, as well as working briefly as a consultant at Bain &amp; Company. Contact him at <a href="https://dl.acm.org/cdn-cgi/l/email-protection#2a4045594f5a425c4b464f445e4f6a4d45454d464f04494547"><span class="__cf_email__" data-cfemail="4b2124382e3b233d2a272e253f2e0b2c24242c272e65282426">[email&#160;protected]</span></a>.</i></p>
+  <p>&nbsp; &nbsp; &nbsp;</p>
+  <p><b>Michal Zalewski</b> <i>is a Distinguished Engineer at Google, leading Alphabet Security’s strategy. Prior to rejoining Google he was chief information security officer at Snap, where he joined after more than a decade at Google. In his first Google stint, he was the director of information security and engineering and oversaw an organization of more than 100 engineers, growing these efforts through the company’s initial early period of growth and establishing early means of solving for code vulnerabilities and product security challenges, as well as running design reviews and offensive security exercises for the company. Outside of Google, he writes at Substack and is the author of</i> The Secret Life of Circuits. <i>Contact him at&nbsp;<a href="https://dl.acm.org/lcamtuf@google.com"><span class="__cf_email__" data-cfemail="b1ddd2d0dcc5c4d7f1d6deded6ddd49fd2dedc">[email&#160;protected]</span></a></i>.</p>
+  <p>&nbsp;</p> 
+  <p> Copyright © 2026 Held by Owner/Author. Publication rights Licensed to ACM. This work is licensed under a&nbsp;<a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution International 4.0License</a>. </p> 
+  <script data-cfasync="false" src="https://dl.acm.org/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="https://dl.acm.org/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a21bd1b6ee13db5c',t:'MTc4NTE1NzE0NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799"}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a21bd1b6ee13db5c',t:'MTc4NTE1NzE0NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 3</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Russ Cox</span> - <a href="detail.cfm?id=3786614"><b>Running the &quot;Reflections on Trusting Trust&quot; Compiler</b></a>
+	  <br />
+	  In October 1983, Dennis Ritchie and Ken Thompson received the Turing Award for their work on Unix. Thompson's lecture, reprinted in Communications of the ACM under the title "Reflections on Trusting Trust," explained in three steps how to modify a C compiler binary to insert a backdoor when compiling a target program, leaving no trace in any source code. This article revisits that backdoored compiler, presenting the original code Thompson wrote more than 50 years ago.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Russ Cox</span> - <a href="detail.cfm?id=3786614"><b>Running the &quot;Reflections on Trusting Trust&quot; Compiler</b></a>
+	  <br />
+	  In October 1983, Dennis Ritchie and Ken Thompson received the Turing Award for their work on Unix. Thompson's lecture, reprinted in Communications of the ACM under the title "Reflections on Trusting Trust," explained in three steps how to modify a C compiler binary to insert a backdoor when compiling a target program, leaving no trace in any source code. This article revisits that backdoored compiler, presenting the original code Thompson wrote more than 50 years ago.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jeff Vander Stoep, Alex Rebert, Lars Bergstrom</span> - <a href="detail.cfm?id=3773096"><b>A Practical Guide to Transitioning to Memory-Safe Languages</b></a>
+	  <br />
+	  Traditional approaches to memory safety have often amounted to best-effort defect discovery after the fact, and sometimes more advanced strategies focused on threat modeling: identifying critical code, applying interventions, and repeating the cycle as the codebase evolves. While this approach is a valuable part of a defense-in-depth strategy, it is fundamentally flawed as a primary strategy. It traps teams in a reactive and never-ending cycle of treating symptoms with solutions empirically shown to be insufficiently complete without ever addressing the underlying cause.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Louis Dionne, Alex Rebert, Max Shavrick, Konstantin Varlamov</span> - <a href="detail.cfm?id=3773097"><b>Practical Security in Production</b></a>
+	  <br />
+	  The challenge of improving the memory safety of the vast landscape of existing C++ code demands pragmatic solutions. Standard library hardening represents a powerful and practical approach, directly addressing common sources of spatial safety vulnerabilities within the foundational components used by nearly all C++ developers. Our collective experience at Apple and Google demonstrates that significant safety gains are achievable with surprisingly minimal performance overhead in production environments. This is made possible by a combination of careful library design, modern compiler technology, and profile-guided optimization.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a21bd1b3e8034aa7',t:'MTc4NTE1NzE0Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

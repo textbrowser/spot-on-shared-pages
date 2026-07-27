@@ -1,0 +1,908 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Titan Transients and LLM Scalability - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			<a href="issuedetail.cfm?issue=3786300" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+			
+		</form>
+		<a href='/'><img src='https://queue.acm.org/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3819082' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>July 22, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786300">Volume 24, issue 3 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3819082">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  <h1 class="hidetitle">Titan Transients and LLM Scalability</h1>
+  <h2>The ghost in the machine</h2>
+  <h3>Neil J. Gunther</h3> 
+  <p>While training LLMs, OpenAI observed what it termed the compute-efficient frontier (CEF), which characterizes a lower bound on token-prediction error or test loss. This limit has raised concerns that it might constitute a universal constraint on the scalability of GenAI systems. This article presents a model of LLM computational dynamics, based on the universal scalability law (USL), that provides a framework for understanding the CEF. The USL defines bistable minima in the tokenized neural net landscape. The deeper minimum determines the lowest achievable loss of an LLM instance. Successively larger LLMs possess deeper global minima that align with the power-law slope of the CEF. This suggests the CEF is a consequence of larger LLMs detecting inter-corpora correlations on all size scales.</p> 
+  <p>In the course of training LLMs, an apparent limit on the achievable reduction in text prediction error has been observed by OpenAI (OAI) researchers.<sup>9</sup> This unexpected constraint—referred to as the <i>compute-efficient frontier</i> (CEF), a term possibly borrowed from the <a href="https://en.wikipedia.org/wiki/Efficient_frontier">fintech lexicon</a>—has raised concerns that it might constitute a fundamental limit on the scalability of GenAI systems. This article presents a model of LLM computational dynamics that provides a framework for understanding this newly observed constraint.</p> 
+  <p>The CEF refers to the diagonal red line in figure 1. OAI authors have stated: “At present we do not have a solid theoretical understanding for any of our proposed scaling laws.”<sup>9</sup> Indeed, the OAI benchmarks have caused others in the GenAI community to remark: <a href="https://www.youtube.com/watch?v=5eqRuVp65eY">“AI models can’t cross this boundary and we don’t know why,”</a> and “Have we discovered <a href="https://x.com/hamptonism/status/1827087356999975270">a fundamental law of nature</a> for building intelligent systems?” Let’s address these concerns in two stages:</p> 
+  <p>1. Each simulated loss curve in figure 1 is determined by a theoretical LLM cost function, labeled <i>K</i> in table 1 to avoid confusion with OAI’s use of <i>C</i> to denote compute.</p> 
+  <p>2. The CEF arises from the increasing depth of the global minimum (<i>K<sub>b</sub></i> in table 1) belonging to each cost function as the size, <i>N</i>, of successive LLMs is increased.</p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/cdbbec56-844f-4ae7-8f7d-f19f3d554982/assets/graphic/gunther_fig1.svg" alt="Figure 1. Simulated error loss curves showing horizontal tails at the CEF red line" />
+  <br /><small>Figure 1. Simulated error loss curves showing horizontal tails at the CEF red line</small> 
+  <br /> 
+  <style>
+table {
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+}
+</style> 
+  <div> 
+   <table style="width:100%"> 
+    <thead valign="bottom"> 
+     <tr> 
+      <th colspan="2" align="left">OAI Empirical Model</th> 
+      <th colspan="2" align="left">USL Theoretical Model</th> 
+     </tr> 
+     <tr> 
+      <th align="left">2D metric</th> 
+      <th align="left">Definition</th> 
+      <th align="left">3D metric</th> 
+      <th align="left">Definition</th> 
+     </tr> 
+    </thead> 
+    <tbody> 
+     <tr> 
+      <td align="left">L</td> 
+      <td align="left">Test loss data in NATS</td> 
+      <td align="left">K</td> 
+      <td align="left">USL cost function</td> 
+     </tr> 
+     <tr> 
+      <td align="left">N</td> 
+      <td align="left">Number of LLM parameters</td> 
+      <td align="left">N</td> 
+      <td align="left">System processing size</td> 
+     </tr> 
+     <tr> 
+      <td align="left">—</td> 
+      <td align="left">—</td> 
+      <td align="left">N<sub>o</sub>,N<sub>b</sub></td> 
+      <td align="left">Bistable queue lengths</td> 
+     </tr> 
+     <tr> 
+      <td align="left">C</td> 
+      <td align="left">Compute ops in PF-Days</td> 
+      <td align="left">T</td> 
+      <td align="left">Execution time in days</td>
+     </tr>
+     <tr> 
+      <td align="left">(C,L)</td> 
+      <td align="left">(x,y) data axes in figure 1</td> 
+      <td align="left">(K,N,T)</td> 
+      <td align="left">3D coordinates in figure 4</td> 
+     </tr> 
+     <tr> 
+      <td align="left">C<sub>min</sub></td> 
+      <td align="left">C point where loss plateaus</td> 
+      <td align="left">K<sub>b</sub></td> 
+      <td align="left">Global minimum in K at N<sub>b</sub></td> 
+     </tr> 
+     <tr> 
+      <td align="left"><nobr>L = r(C<sub>min</sub>)<sup>−s</sup></nobr></td> 
+      <td align="left">Empirical power law</td> 
+      <td align="left"><nobr>K<sub>b</sub> = rT<sup>−s</sup></nobr></td> 
+      <td align="left">Theoretical power law</td>
+     </tr>
+    </tbody>
+   </table> 
+   <br /> <small>Table 1. Glossary relating OAI’s 2D representation to the USL 3D representation</small> 
+  </div> 
+  <p>More formally, the CEF corresponds to power-law behavior.<sup>6</sup><sup>,</sup><sup>11</sup> That terminology stems from a curve such as <i>y = x<sup>−</sup></i><sup>1</sup> <i>= 1/x</i> appearing as a straight line when plotted on double logarithmic axes. Transforming to log axes is equivalent to taking the logarithm of both sides: <i>log y = − log x</i>. A general power law, <i>y = r x<sup>−s</sup></i>, includes constants <i>r</i> and <i>s</i>, where <i>s</i> is the exponent or power of <i>x</i>. Hence, the name. The magnitude of <i>s</i> determines the slope of the line while its sign determines the direction. In figure 1, <i>−s</i> means <i>Log-y</i> decreases as <i>Log-x</i> increases, and <i>r</i> is the <i>Log-y</i> intercept.</p> 
+  <p>Empirical power laws often signal that a complex system undergoes some kind of macroscopic state transition caused by the onset of strong correlations.<sup>4</sup><sup>,</sup><sup>6</sup><sup>,</sup><sup>10</sup><sup>,</sup><sup>11</sup> Based on the benchmark measurements reported for OpenAI’s ChatGPT, a queue-theoretic model of LLM dynamics is constructed that exhibits power-law behavior corresponding to the CEF constraint. In particular, the prefactor <i>r</i> represents the scale of the LLM neural network, while the magnitude of <i>s</i> indicates the strength of scale-free text correlations.</p> 
+  <p>&nbsp;</p> 
+  <h3>GPT Dynamics</h3> 
+  <p>Before delving into the details of this analysis, let’s briefly review those aspects of GPT models that will be pertinent to what follows. The abbreviation GPT has swiftly become such common currency that many readers might not recall what the letters represent. Simply put:</p> 
+  <p>– <i><b>G</b>enerative</i>&nbsp;(G) refers to the LLM being capable of responding to an input textual prompt with new output text that is considered coherent and credible by a typical human reader.</p> 
+  <p>– <i><b>P</b>retrained</i>&nbsp;(P) refers to using a large curated corpus of encoded (English) text tokens to iteratively improve the LLM responses by comparing its predicted output against a known input.</p> 
+  <p>– <i><b>T</b>ransformer</i>&nbsp;(T) refers to a particular kind of massively parallel, multilayer (feed-forward) neural network (NN) with trillions of neural connections (LLM parameters). NN nodes compute and update encoded token probabilities during a training run.</p> 
+  <p>The transformer is the pattern-recognition subsystem that lies at the heart of all LLMs. Not only can it generate human-acceptable text responses, but it can also be applied to nontextual objects such as binary-format audio and video inputs.</p> 
+  <p>The capabilities of GPT models really burst onto the scene when version 4 of ChatGPT was released in 2024. GPT-4 comprises approximately 2 trillion NN connections, or LLM parameters, whereas GPT-3 had just a measly 200 billion. As a consequence, any GPT-3 prompt produced only a single readable sentence. GPT-4o, however, with its gargantuan NN model, together with a massive amount of curated Internet data for LLM training, is capable of producing multiple paragraphs of text assembled into what is generally perceived (by human readers) to constitute coherent information. The empirical analysis by OAI considered here is based on version 3 of ChatGPT.<sup>9</sup></p> 
+  <p>Because the total computational work needed to make accurate textual predictions is significant, LLMs are usually executed on specialized hardware, e.g., GPUs, rather than general-purpose multicore processors alone. While processing encoded input tokens during each training run, the weights of the NN connections are iteratively updated and a corresponding loss function is reevaluated. The loss is defined as the difference between the predicted value and the actual value—typically expressed as the <i>mean squared error</i>.</p> 
+  <p>The upper part of figure 1 shows a set of simulated LLM training curves similar to those analyzed by OAI. Each curve corresponds to the discrete history of loss updates across successively larger LLMs. The inset shows the full sigmoidal shape of the simulated loss curves. (More on that aspect later.) An impressive amount of empirical data was collected by OAI over very long test durations. The performance metric on the y-axis (Test Loss) is a function of the amount of computational work on the x-axis that is consumed during each test run (measured in PF-Days). The training goal is to reduce the loss and thereby improve the predicted text sequence of an LLM instance.</p> 
+  <p>It is clear from figure 1, however, that after a certain amount of computational effort by each LLM instance, there is no improvement in the Test Loss metric. Consequently, larger LLM instances with more NN connections are applied in an attempt to reduce Test Loss further. This results in loss curves that look like hockey sticks since they develop short “feet” at the CEF line. Beyond that line, the loss remains constant until the test is terminated.</p> 
+  <p>OAI’s empirical analysis is principally based on the 2D representation of figure 1. The theoretical approach presented here introduces a 3D representation. Table 1 provides a glossary to aid the reader when comparing OAI’s 2D notation with the 3D notation used here, which is based on the universal scalability law (USL).<sup>4</sup></p> 
+  <p>&nbsp;</p> 
+  <h3>Bistable Queues</h3> 
+  <p>Every system administrator is familiar with monitoring computer system performance based on the operating system run-queue, because shorter response times are generally associated with shorter run-queues. Performance metrics such as load average<sup>5</sup> quantify load in terms of the average run-queue length <i>(N)</i>, which can assist in developing intuition about what constitutes an optimal queue size or system load. It will therefore come as a surprise that certain queues can have more than one stable size: a bistable queue.<sup>1</sup><sup>,</sup><sup>3</sup></p> 
+  <p>Figure 2 shows how a bistable queue can form. Processes arrive from the right-hand side and wait in the queue (depicted as red blocks) until they can be serviced at a processor (depicted as a blue disk). Serviced processes depart to the left. The two curves represent the average arrival rate (red line) and the average departure rate (blue curve).</p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/6c613cc8-ada3-4312-8508-e8d5f01e7dc4/assets/graphic/gunther_fig2.svg" alt="Figure 2. A bistable queue with associated arrival and departure curves" />
+  <br /><small>Figure 2. A bistable queue with associated arrival and departure curves</small> 
+  <p>The arrival rate decreases linearly with <i>N</i> because there are only a finite number of requests that circulate between the queue and the load generators in the system. The queue is closed with respect to any external requests. If all <i>N</i> possible processes are enqueued, the arrival rate effectively falls to zero. The departure rate varies nonlinearly with <i>N</i> and is known as a load-dependent throughput,<sup>5</sup> which is denoted here by <i>X(N)</i>. The chief characteristic of <i>X(N)</i> is that it can become retrograde beyond a certain load (e.g., <i>N<sub>o</sub></i> in figure 2). This kind of queueing behavior is familiar to performance engineers running benchmarks or load tests, where diminishing throughput at high loads is not uncommon.</p> 
+  <p>What do the curves in figure 2 indicate? First, they intersect each other at the dashed vertical lines. The leftmost vertical line at load <i>N<sub>o</sub></i> corresponds to a relatively short average queue length. If a queue fluctuation makes it shorter than <i>N<sub>o</sub></i> , arrivals exceed departures, whereby the queue will tend to grow back toward <i>N<sub>o</sub></i> rather than shrink further. Conversely, if arrivals cause the queue to grow, departures exceed arrivals, and the queue will again tend to shrink back toward <i>N<sub>o</sub></i> . Over a sufficiently long measurement period, the queue would be seen to fluctuate about the stable point <i>N<sub>o</sub></i> —the optimal queue length.</p> 
+  <p>Second, the vertical line on the far right of figure 2, located at <i>N<sub>b</sub></i> , corresponds to a relatively long average queue length. Comparing the curves in the same way, you find that the queue exhibits the same behavior as for <i>N<sub>o</sub></i>, but for a longer average queue size. That means there is a long queue fluctuating around <i>N<sub>b</sub></i> that is also stable. In other words, this queue has two stable queue lengths.</p> 
+  <p>Finally, what about the middle vertical line at <i>N<sub>c</sub></i> ? If the fluctuations are shorter than <i>N<sub>c</sub></i> , the queue will tend to shrink back toward <i>N<sub>o</sub></i> . If, however, any fluctuation is slightly larger than <i>N<sub>c</sub></i> , the queue will tend to grow toward <i>N<sub>b</sub></i> , which is also stable. <i>N<sub>c</sub></i> corresponds to a point of instability in the system.<sup>1</sup></p> 
+  <p>The whole system, however, is said to be metastable, because, while it might spend an arbitrary amount of time fluctuating around <i>N<sub>o</sub></i> , it will eventually find its way to the other stable point <i>N<sub>b</sub></i> —the long, congested queue length—and possibly remain there for an intolerably long time. Therefore, <i>“b”</i> is for bad. Anyone who has experienced virtual memory thrashing knows what this condition feels like. Virtual memory is bistable.</p> 
+  <p>The curves in figure 2 are continuous, whereas the enqueued requests are discrete. In queueing-model simulations, time is also discrete. Even if time is taken to be continuous in this discussion, how can continuous queue lengths be realistic? As long as the queue size is large and the times are long, the continuous approximation is valid. As already noted for ChatGPT, training data typically involves billions of encoded tokens, and training times are measured in days.</p> 
+  <p>Indeed, just looking at the loss curves in figure 1, although they are constructed from discrete measurements, they essentially look continuous.</p> 
+  <p>As intriguing as this bistability phenomenon is, mentally juggling the proximity of the rates is irksome. Luckily, there is a way to visualize this bistable queue more easily than figure 2:</p> 
+  <p>– Starting with the original rate curves in figure 3(a), you take their difference to produce the single curve shown in figure 3(b).</p> 
+  <p>– This curve is known as the <i>drift</i>.<sup>3</sup> The original points of intersection in figure 3(a) are now represented by the three points of intersection of the continuous drift function with the N-axis. Those points align with the vertical lines between figures 3(a) and 3(b).</p> 
+  <p>– Taking the negative integral of the drift produces the cost function in figure 3(c), denoted <i>K(N)</i> in table 1. The stability points are now identified with a local minimum at <i>N<sub>o</sub></i> , the central maximum at <i>N<sub>c</sub></i> , and the global minimum <i>K<sub>b</sub></i> located at <i>N<sub>b</sub></i> .<sup>3</sup></p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/69d5b8d3-caea-4c34-894d-37b077e1ec11/assets/graphic/gunther_fig3.svg" alt="Figure 3. Relationship between bistable Rates (a), Drift (b), and Cost (c)" /> 
+  <br /> <small>Figure 3. Relationship between bistable Rates (a), Drift (b), and Cost (c)</small> 
+  <p>It is now easy to visualize the growth of the queue tail as being like an imaginary ball bearing rolling from the upper valley at <i>N<sub>o</sub></i> in figure 3(c), over the hill at <i>N<sub>c</sub>,</i> and down into the lower valley at <i>N<sub>b</sub></i> .</p> 
+  <p>Although the nonlinear form of the throughput in figures 2 and 3(a) is unusual, it is, in fact, a manifestation of the USL throughput that previously appeared in <a href="https://queue.acm.org/detail.cfm?id=2789974"><i>acmqueue</i></a> to analyze superlinear scaling.<sup>7</sup> There, <i>N</i> represented the number of Hadoop cluster nodes (hardware) running a fixed number of software processes per node. In the case of virtual memory thrashing,<sup>1</sup><sup>,</sup><sup>3</sup><sup>,</sup><sup>4</sup><sup>,</sup><sup>5</sup> <i>N</i> represents the number of (software) processes executing on a fixed hardware configuration. Equation 1 can be applied in either case because all the details of the actual computing platform are encoded in the three coefficients: α, β, and γ, which respectively represent the magnitudes of queueing contention, data coherence, and the level of concurrency in the system.<sup>4</sup><sup>,</sup><sup>8</sup></p> 
+  <div id="Eeq1">
+   <math display="block">
+    <mrow>
+     <mi>
+      X
+     </mi>
+     <mrow>
+      <mo stretchy="false">
+       (
+      </mo>
+      <mi>
+       N
+      </mi>
+      <mo stretchy="false">
+       )
+      </mo>
+     </mrow>
+     <mo>
+      =
+     </mo>
+     <mfrac>
+      <mrow>
+       <mi>
+        γ
+       </mi>
+       <mi>
+        N
+       </mi>
+      </mrow>
+      <mrow>
+       <mn>
+        1
+       </mn>
+       <mo>
+        +
+       </mo>
+       <mi>
+        α
+       </mi>
+       <mo>
+        (
+       </mo>
+       <mi>
+        N
+       </mi>
+       <mo>
+        -
+       </mo>
+       <mn>
+        1
+       </mn>
+       <mo>
+        )
+       </mo>
+       <mo>
+        +
+       </mo>
+       <mi>
+        β
+       </mi>
+       <mi>
+        N
+       </mi>
+       <mrow>
+        <mo stretchy="false">
+         (
+        </mo>
+        <mi>
+         N
+        </mi>
+        <mo>
+         -
+        </mo>
+        <mn>
+         1
+        </mn>
+        <mo stretchy="false">
+         )
+        </mo>
+       </mrow>
+      </mrow>
+     </mfrac>
+    </mrow>
+   </math>  <span>Equation 1</span>
+  </div>
+  <p>The USL formula (equation 1) can be derived from an underlying single-queue model that exhibits precisely the same form of nonlinear throughput seen in figures 2 and 3(a). Moreover, event-based simulations have demonstrated (theorem 2)<sup>8</sup> that the nonlinear throughput can occur when the waiting line is first sorted before requests are actually serviced.</p> 
+  <p>&nbsp;</p> 
+  <h3>Titan Transients</h3> 
+  <p>With the phenomenon of bistable queueing as background, let’s return to LLMs and the CEF. For a given LLM instance, the USL cost function <i>K(N)</i> in figure 3(c) now represents the amount of processing performed by the NN as it adjusts its connection weights against the input tokens. By analogy with the previous section, you can still think of LLM processing as being represented by a queue serviced by GPUs rather than CPUs. Only the nature of the computational work is different. Analogous&nbsp;to load dependence being caused by sorting the waiting line prior to service in equation 1, the NN graph can be transformed into a topologically sorted linear list.</p> 
+  <p>Something that is not anticipated, however, is the following role reversal. <i>N<sub>o</sub></i> no longer corresponds to an optimal LLM state (as it did in the previous section), because relatively few tokens have been processed in the early phase of LLM training. Rather, <i>N<sub>o</sub></i> represents an origin state where tokens are mostly uncorrelated. Even if <i>N<sub>o</sub></i> is temporarily stable, nothing is achieved by remaining in a state where the loss function is still very high. Similarly, <i>N<sub>b</sub></i> is no longer the “bad” state. It is the new optimum, where the loss function is expected to be lowest at the end of the training run. <i>N<sub>b</sub></i> is now the boundary state of the CEF. This reversal in labeling becomes clearer in the next section.</p> 
+  <p>To make contact with figure 1, the time evolution of any LLM loss curve, from <i>N<sub>o</sub></i> to <i>N<sub>b,</sub></i> needs to be determined. That requires introducing an explicit time coordinate. This is done as follows. There are only three kinds of performance metrics, defined in table 2. Any canonical or custom performance metric must belong to one of those types. Consider the OAI Compute metric, measured in units of <i>PF-Days</i> in figure 1. The <i>P</i> is an abbreviation for <i>peta</i>—the SI prefix for 10<sup>15</sup>—and the <i>F</i> is an abbreviation for floating-point operations per second, or FLOPS. Thus, <i>PF</i> stands for 10<sup>15</sup> FLOPS. Row 3 in table 2 shows that the per-second (inverse time) in FLOPS means that <i>PF</i> must signify a rate metric.</p> 
+  <div id="T2"> 
+   <table frame="hsides" rules="rows">
+    <thead valign="bottom">
+     <tr>
+      <th></th>
+      <th align="left">Metric</th>
+      <th align="left">Examples</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td align="left">1</td>
+      <td align="left">time</td>
+      <td align="left">seconds, days</td>
+     </tr>
+     <tr>
+      <td align="left">2</td>
+      <td align="left">number</td>
+      <td align="left">tokens, operations</td>
+     </tr>
+     <tr>
+      <td align="left">3</td>
+      <td align="left">rate (inverse time)</td>
+      <td align="left">FLOPS, GHz</td>
+     </tr>
+    </tbody>
+   </table> 
+   <br /> <small>Table 2. Fundamental performance metrics</small>
+  </div>  
+  <p><i>PF-Days</i> is shorthand for PFLOPS multiplied by time—in units of Days. The product of a rate metric (inverse time) and a time metric is a pure number metric (row 2), because the time metrics cancel. <i>PF-Days</i> is the total number of PFLOPs (plural) operations expended to reduce each Test-Loss curve in figure 1 to the point where it becomes a plateau at the CEF line. For reference, a single <i>PF-Day</i> is equivalent to <i>10<sup>15</sup> FLOPS × 24 hours × 3, 600 seconds = 8.64 × 10<sup>19</sup></i> floating-point operations, or 86.4 exaFLOPs; not exaFLOPS.</p> 
+  <p>For this analysis, the time evolution of the loss transition is more important than the total number of operations expended (<i>n</i>). Ignoring the types of operations (floating point), you can write <i>1 k.day = 86.4 exa-ops</i>, where <i>k</i> is a constant. Therefore, <i>1 day = 86.4/k</i>, and the <i>n</i>-axis in figure 1 can be replaced by a time-axis (<i>T</i>), where <i>T = n/k</i>. This remapping is equivalent to Little’s law,<sup>5</sup> which is applicable, even during the large loss transition. Each test measurement, taken during the transition, has the same sample period <i>(∆T)</i> such that <i>∆n = k∆T</i> is valid. The procedure is no different from the way the linear-rising portion of throughput is measured, at low loads, in a conventional load test system.<sup>4</sup><sup>,</sup><sup>5</sup></p> 
+  <p>The simple 2D curve in figure 3(c) makes it easy to visualize the drift of the queue size from <i>N<sub>o</sub></i> to <i>N<sub>b</sub></i> as an imaginary ball bearing rolling between the two valleys. But queues are stochastic, not deterministic, so it cannot really behave as a ball bearing. Or, can it? It is more accurate to think of the queue fluctuations in the upper valley as being like those of a tiny dust particle jiggling around the stable point <i>N<sub>o</sub></i> . Think of the imaginary dust particle as being stuck on the tail of the queue. Similarly, the long stable queue would correspond to the dust particle jiggling around <i>N<sub>b</sub></i> . But how can a jiggling dust particle get over the hill at <i>N<sub>c</sub></i> ?</p> 
+  <p>Depending on the exact hill profile, successive tiny jiggles are unlikely to get the dust particle up and over that hill. Here comes the next surprise. The dust particle suddenly appears to morph into a ball bearing, rolls up and over the hill and down into the lower valley (as before), where it reverts to being a jiggling dust particle again. In other words, it is not a series of tiny fluctuations that causes the queue to grow beyond <i>N<sub>c</sub></i> , but a sudden, giant fluctuation: a <i>titan transient</i>.</p> 
+  <p>The 3D time-evolution of the LLM processing queue is shown in figure 4. The titan transient follows a sigmoidal path that is determined by the shape of the cost surface, <i>K(N)</i>. The morphing dust particle analogy captures the notion that the titan transient becomes manifest because of the sudden onset of strong correlations during the loss computations. Incidentally, the titan transient in figure 4 is plotted on linear axes, whereas the loss curves in figure 1 are plotted on log axes. Changing to log axes has the effect of stretching the upper part of figure 4b and squashing the bottom part, making the transition appear somewhat steeper in figure 1.</p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/f39b5fcc-bb1c-4449-877d-9facfd928989/assets/graphic/gunther_fig4a.svg" alt="Figure 4. Numerical calculation of a titan transient (dots) in linear (N,T,K) coordinates | (a) Transition viewed through the NK axes" /> 
+  <br /> <small>(a) Transition viewed through the NK axes</small> 
+  <br /> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/cdf544ec-1b03-40cc-a3ed-433e8deb828d/assets/graphic/gunther_fig4b.svg" alt="Figure 4. Numerical calculation of a titan transient (dots) in linear (N,T,K) coordinates | (b) Aerial view above the TN axes (cf. figure 1)" /> 
+  <br /> <small>(b) Aerial view above the TN axes (cf. figure 1)</small> 
+  <br /> <small>Figure 4. Numerical calculation of a titan transient (dots) in linear (N,T,K) coordinates</small> 
+  <p>The empirical loss curve is the result of the <i>NN</i> “sniffing out” the unknown cost landscape defined by the training data (e.g., via gradient descent). The USL model represents a simple, a priori theoretical cost landscape. The resulting transients, however, have a similar sigmoidal shape to those observed by OAI. That suggests the USL cost landscape is not too different from the OAI empirical landscape. Furthermore, the USL model accounts for the longer time spent by larger LLMs in the <i>N<sub>o</sub></i> origin state. Successive loss curves are shifted to the right in figure 1 because it takes longer for significant correlations to begin emerging in larger LLMs.</p> 
+  <p>The gradient descent algorithm can also be understood from figure 3. It searches for the minimum mean-square error. A minimum occurs at the bottom of a valley in figure 3(c), where the gradient is zero. The gradient is the derivative of <i>K</i>, which is equivalent to the drift in figure 3(b). Thus, the global minimum at <i>K<sub>b</sub></i> corresponds to the rightmost N-intersection point of the drift function. Of course, the LLM computational algorithm is the discrete version of this procedure.</p> 
+  <p>In the applied statistics and queueing literature, such titan transients are known as <i>large deviations</i>.<sup>2</sup> Because of the mathematical subtleties associated with the cost function, <i>K</i>, the time evolution of the titan transient in figure 4 is calculated numerically.<sup>6</sup> As a general matter, titan transients have a relatively low probability of occurring immediately in conventional computer systems, because the enqueued processes are only weakly correlated. When a large transient suddenly does emerge, it appears like an unexpected ghost out of nowhere. Similarly for LLMs, the loss is initially high because the tokens are weakly correlated at the beginning of a training run. Eventually, as a result of the LLM computations, the sudden onset of stronger correlations drives the loss directly toward the boundary state at <i>N<sub>b</sub></i> .</p> 
+  <p>&nbsp;</p> 
+  <h3>CEF Bound</h3> 
+  <p>So far, this article has established that each empirical loss curve in figure 1 can be understood as arising from the sudden onset of a large transient that is determined by an associated cost function shown in figure 4. That completes stage 1 of this analysis. To see how titan transients are related to the CEF, let’s now consider successively larger LLM instances.</p> 
+  <p>Attempting to include many LLM instances would obscure the 3D visualization with too much clutter. To avoid that, consider the global minima of just three exemplar LLMs that are each separated by a decade in size on the <i>Log-N</i> axis (i.e., <i>N<sub>b</sub> = 10<sup>7</sup>, 10<sup>8</sup>, 10<sup>9</sup></i> in figure 5). Each global minimum, <i>K<sub>b</sub></i> , of the USL cost function is depicted as a truncated valley that is now extended into the third dimension of increasing time, i.e., the Log-T axis.</p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/28594dd4-ffbb-42e2-b258-7c826fc83a21/assets/graphic/gunther_fig5.svg" alt="Figure 5. Global minima belonging to three exemplar LLM models" /> 
+  <br /> <small>Figure 5. Global minima belonging to three exemplar LLM models</small> 
+  <p>Each <i>K<sub>b</sub></i> in figure 5 is a 3D version of the 2D lower valley at <i>N<sub>b</sub></i> in figure 3(c). To keep track of the orientation of these three minima, a red line is placed along the bottom of each valley. Each red line sits on the inclined plane in figure 5. When viewed directly through the <i>Log-KN</i> axes, it corresponds to the diagonal CEF line in figure 1.</p> 
+  <p>The meaning of the CEF power-law bound can now be understood as follows. By rotating figure 5 about the vertical <i>Log-K</i> axis, through 90 degrees to the left, the <i>Log-T</i> axis swings around to replace the <i>Log-N</i> axis. The resulting perspective is shown in figure 6, where the three red lines in figure 5 now appear as three parallel lines that are constant in time.</p> 
+  <img src="https://spawn-queue.acm.org/cms/10.1145/3819082/asset/9893ef06-1790-40f1-9d9b-e621e4917ab0/assets/graphic/gunther_fig6.svg" alt="Figure 6. View through the Log-KT axes of figure 5" /> 
+  <br /> <small>Figure 6. View through the Log-KT axes of figure 5</small> 
+  <p>Figure 6 depicts three exemplar titan transients that have reached their respective red lines as blue “hockey-stick” curves with arrows pointing in the direction of increasing time. Titan transients, belonging to LLMs that are intermediate in size to the three exemplar transients, are depicted as thin blue lines. Although no red lines are shown for those intermediate transients, they have the same hockey-stick shape as they reach the dashed CEF line in figure 6. Collectively, these blue hockey sticks correspond to the simulated loss curves in figure 1.</p> 
+  <p>The reason why the CEF has remained so puzzling now becomes clear. Figure 1 is the “flattened” version of figure 6, with the horizontal red lines missing. The 2D view is ambiguous when trying to interpret figure 1. That situation is completely understandable. The red lines require locating the global minima, <i>K<sub>b</sub></i> , of each LLM instance, and each empirical cost function was not explicitly computed for the OAI training runs. The theoretical 3D visualization disambiguates the original 2D representation. Moreover, the plateaus in the loss curves at the CEF bound are also accounted for. This completes stage 2 of the analysis in this article.</p> 
+  <p>&nbsp;</p> 
+  <h3>Conclusion</h3> 
+  <p>The foregoing analysis has provided a different perspective on the original question about the significance of the CEF. The evolution of each LLM loss-curve in figure 1 can be interpreted as corresponding to a monotonically decreasing transient that takes the LLM training system from an uncorrelated, high-loss state to a highly correlated, low-loss state. The time development of this large transient is controlled by a bistable queue, where the characteristics are determined by the coefficients of the USL cost surface. The phenomenon of bistable queueing has been studied in a variety of conventional computer systems<sup>1</sup><sup>,</sup><sup>3</sup><sup>,</sup><sup>4</sup> and is therefore not unique to LLMs.</p> 
+  <p>Similarly, power-law behavior is also known in conventional computer systems and networks,<sup>4</sup><sup>,</sup><sup>10</sup> but the way it arises in LLMs is unusual. Each LLM has its own associated global minimum, <i>K<sub>b</sub></i> , corresponding to the deepest valley in figures 3(c) and 5. Each set of LLM parameters is rescaled by many orders of magnitude prior to the next training run. The degree of cumulative measurement needed to expose the CEF is exceptionally large compared with typical benchmarking systems, and that makes this aspect of LLM performance analysis uniquely difficult.</p> 
+  <p>The CEF appears as an unexpected limit because recomputing already strongly correlated tokens does not lower the loss once it reaches the globally stable valley at <i>K<sub>b</sub></i> . In conventional computer systems, queueing is either random or weakly correlated in time, whereas the long queues are a result of the LLM detecting strong correlations. The LLM power-law phenomenon described here is reminiscent of the highly correlated packet trains observed in certain types of network traffic.<sup>10</sup> The striking difference is that, unlike conventional computer systems, strongly correlated “congestion” is the desired goal for LLMs. <i>N<sub>b</sub></i> , rather than <i>N<sub>o</sub></i> , is the performance optimum.</p> 
+  <p>Further insight into the nature of the CEF comes from comparing it with Zipf’s law.<sup>11</sup> The canonical Zipf exponent is <i>s = 1.0</i>. The empirically determined LLM loss-exponent is <i>s = 0.05</i>.<sup>9</sup> The Zipf exponent derives from ranking (English) word frequencies sampled from a relatively small corpus compared with LLM training data. It characterizes correlations that are stronger than the exponential tails of standard statistical distributions. A fractional exponent, on the other hand, implies correlations that are much stronger than Zipf’s law. From this perspective, the much smaller CEF loss exponent suggests that LLMs detect <i>inter-corpora</i> correlations on all size-<i>N</i> scales: plausibly a new phenomenon in computer science.</p> 
+  <p>Finally, the reader might be wondering why no effort has been made to incorporate a lot more detail regarding the GPT architecture beyond that briefly outlined in the introductory sections. The remarkable answer is that near a critical point (e.g., <i>N<sub>c</sub></i>) the system forgets what it is. Once the queue fluctuations suddenly become correlated enough to induce a titan transient, that timescale completely dominates the hierarchy of shorter timescales in the LLM computing platform.</p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=2789974">Hadoop Superlinear Scalability</a></b> <br />The perpetual motion of parallel performance <br />Neil Gunther, Paul Puglia, Kristofer Tomasette <br /><a href="https://queue.acm.org/detail.cfm?id=2789974">https://queue.acm.org/detail.cfm?id=2789974</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3606011">Echoes of Intelligence</a></b> <br />Textual interpretation and large language models <br />Alvaro Videla <br /><a href="https://queue.acm.org/detail.cfm?id=3606011">https://queue.acm.org/detail.cfm?id=3606011</a> </p> 
+  <p> <b><a href="https://queue.acm.org/detail.cfm?id=3595862">You Don’t know Jack about Application Performance</a></b> <br />Knowing whether you’re doomed to fail is important when starting a project. <br />David Collier-Brown <br /><a href="https://queue.acm.org/detail.cfm?id=3595862">https://queue.acm.org/detail.cfm?id=3595862</a> </p> 
+  <p>&nbsp;</p> 
+  <p><b>Neil J. Gunther</b><i>, M.Sc., Ph.D., is a researcher, consultant, and teacher at Performance Dynamics (<a href="http://www.perfdynamics.com">www.perfdynamics.com</a>). He has written several textbooks and many papers on computer system performance analysis. He received the A.A. Michelson Award in 2008.</i></p> 
+  <p>&nbsp;</p> 
+  <h3>References</h3> 
+  <p>1. Courtois, P. Decomposability, instabilities, and saturation in multiprogramming systems. <i>Communications of the ACM</i> 18, 7 (1975), 371–377; <a href="https://cacm.acm.org/research/decomposability-instabilities-and-saturation-in-multiprogramming-systems/">https://cacm.acm.org/research/decomposability-instabilities-and-saturation-in-multiprogramming-systems/</a>.</p> 
+  <p>2. Ganesh, A., O’Connell, N., and Wischik, D. Lecture Notes in Mathematics. <i>Big Queues</i>. Springer-Verlag, Heidelberg (2004).</p> 
+  <p>3. Gunther, N. Path integral methods for computer performance analysis. <i>Information Processing Letters</i> 32, 1 (1989), 7–13; <a href="https://dl.acm.org/doi/10.1016/0020-0190(89)90061-6">https://dl.acm.org/doi/10.1016/0020-0190(89)90061-6</a>; <a href="http://www.perfdynamics.com/Papers/IPLnjg89.pdf">http://www.perfdynamics.com/Papers/IPLnjg89.pdf</a>.</p> 
+  <p>4. Gunther, N. <i>Guerrilla Capacity Planning: A Tactical Approach to Planning for Highly Scalable Applications and Services</i>. Springer-Verlag, Berlin, Heidelberg (2007). <a href="https://dl.acm.org/doi/10.5555/1196475">https://dl.acm.org/doi/10.5555/1196475</a>.</p> 
+  <p>5. Gunther, N. <i>Analyzing Computer System Performance With Perl::PDQ</i>. 2nd ed., Springer, Heidelberg (2011). <a href="https://dl.acm.org/doi/book/10.5555/2025242">https://dl.acm.org/doi/book/10.5555/2025242</a>.</p> 
+  <p>6. Gunther, N. Does the efficiency compute frontier represent new physics? In <i>APS Global Physics Summit, American Physical Society</i> (2025); <a href="https://summit.aps.org/">https://summit.aps.org/</a>.</p> 
+  <p>7. Gunther, N., Puglia, P., and Tomasette, K. Hadoop superlinear scalability. <i>Communications of the ACM</i> 58, 4 (2015), 46–55; <a href="https://dl.acm.org/doi/10.1145/2719919">https://dl.acm.org/doi/10.1145/2719919</a>.</p> 
+  <p>8. Holtman, J. and Gunther, N. Getting in the zone for successful scalability. <i>arXiv 0809.2541</i>; (2008); <a href="https://arxiv.org/abs/0809.2541">https://arxiv.org/abs/0809.2541</a>.</p> 
+  <p>9. Kaplan, J. et al. Scaling laws for neural language models. <i>arXiv 2001.0803</i> (2020); <a href="https://arxiv.org/pdf/2001.08361">https://arxiv.org/pdf/2001.08361</a>.</p> 
+  <p>10. Leland, W.E., Taqqu, M.S., Willinger, W., and Wilson, D.V. On the self-similar nature of Ethernet traffic (extended version). <i>IEEE/ACM Transactions on Networking</i> 2, 1 (1994), 1–15; <a href="https://dl.acm.org/doi/abs/10.1145/167954.166255">https://dl.acm.org/doi/abs/10.1145/167954.166255</a>.</p> 
+  <p>11. Newman, M. Power laws, Pareto distributions and Zipf’s law. <i>Contemporary Physics</i> 46, 5 (2005), 323–351; <a href="https://www.cs.cornell.edu/courses/cs6241/2019sp/readings/Newman-2005-distributions.pdf">https://www.cs.cornell.edu/courses/cs6241/2019sp/readings/Newman-2005-distributions.pdf</a>.</p> 
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;3bb0add5452d43a2b5d4b3d6c628944c&quot;}" crossorigin="anonymous"></script> 
+ <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a21bd1aeed0cc5af',t:'MTc4NTE1NzE0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799"}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a21bd1aeed0cc5af',t:'MTc4NTE1NzE0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 3</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3806226"><b>In Code They Think; In Proof We Trust</b></a>
+	  <br />
+	  AI agents that use tools can be hijacked by prompt injection to exfiltrate sensitive data. Runtime defenses such as model alignment, output scanning, and content classifiers are fundamentally reactive: By the time they detect an attack, irreversible actions may already have been taken, and sophisticated encodings such as steganography, encryption, and chunking can evade any content-based check. We propose a preemptive alternative: Constrain the agent to express its plan as a Kotlin script, then statically verify the script against a security policy before any tool executes. The verification uses taint analysis, a well-established static analysis technique. A fact extractor walks the Kotlin AST to identify sources (sensitive data origins), sinks (network exit points), and data flows between them.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, Benjamin V. Hanrahan</span> - <a href="detail.cfm?id=3807964"><b>The SPACE of AI</b></a>
+	  <br />
+	  As AI tools become increasingly embedded in software development workflows, there is a growing need to understand their true impact on developer productivity and experience. This article presents findings from a mixed-methods study examining how developers perceive AI’s influence across the dimensions of the SPACE framework: Satisfaction, Performance, Activity, Collaboration, and Efficiency. Drawing on survey responses from more than 500 developers and qualitative insights from interviews and observational studies, we find that AI is broadly adopted and widely seen as enhancing productivity, particularly for routine tasks. The benefits vary, however, depending on task complexity, individual usage patterns, and team-level adoption. Developers report increased efficiency and satisfaction, with less evidence of impact on collaboration.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Margaret-Anne Storey</span> - <a href="detail.cfm?id=3807966"><b>From Technical Debt to Cognitive and Intent Debt</b></a>
+	  <br />
+	  Generative AI is dramatically accelerating software development, allowing teams to generate and modify code faster than ever before. For decades, software engineering has focused on managing technical debt—how code structure and implementation make systems harder to change. But in the age of AI, technical debt might no longer be the most important constraint. This article argues that the real risks are shifting toward two less visible forms of debt: cognitive debt and intent debt. Cognitive debt is the erosion of shared understanding across a team where no one can confidently explain how a system works or predict the impact of a change.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jenna Butler</span> - <a href="detail.cfm?id=3807963"><b>Eight Myths on Software Engineering and GenAI</b></a>
+	  <br />
+	  Generative AI is reshaping software engineering—but the narrative has gotten ahead of the evidence. Marketing claims, anecdotal wins, and misread studies have given rise to a set of persistent myths that are quietly driving poor decisions about AI adoption, tooling, and how to measure success. This article examines eight of the most common misconceptions. We already know developers don’t actually spend most of their time writing code, with studies at Microsoft and elsewhere showing it’s closer to 14 percent. That means AI code generation, even when it works well, touches a surprisingly small slice of the actual job. And yet organizations are doubling down on lines-of-code metrics to track AI’s impact, which is a measure that is neither statistically valid nor meaningfully connected to outcomes such as software quality or delivery speed.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='https://queue.acm.org/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a21bd1abda494aa7',t:'MTc4NTE1NzE0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
