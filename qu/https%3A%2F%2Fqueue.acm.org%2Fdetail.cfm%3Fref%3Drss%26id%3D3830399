@@ -1,0 +1,726 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Unethical Ways to Manage Technical Debt - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Development' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			
+			<a href="issuedetail.cfm?issue=3786301" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3830399' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+		<h3><a href='/listing.cfm?qc_type=operationsandlife&page_title=Operations%20and%20Life'>Operations and Life</a></h3>
+	
+
+<label>August 10, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786301">Volume 24, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3830399">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  <h1 class="hidetitle">Unethical Ways to Manage Technical Debt</h1>
+  <h2>Is ignoring it unethical?</h2>
+  <h3>Thomas A. Limoncelli</h3> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3830399/assets/html/071026.column.limoncelli.image1.jpg" alt="debt" style="float:right;width:33%;max-width:640px;padding:0px 0px 20px 20px;" /> 
+  <p>You can ignore it, tie it to unrelated company initiatives, or feign ignorance and simply not offer solutions that add to it. Or… you can adopt more above-board techniques such as Crawl/Walk/Run and the Reverse Farmer’s Rule, which reframe projects so that confronting tech debt is an upfront part of the plan.</p> 
+  <hr clear="all" /> 
+  <p>Most articles I’ve read about technical debt discuss pie-in-the-sky solutions that seem detached from reality. Let’s get real. Most executive management doesn’t understand tech debt enough to care about it. It is easier to get tech debt remediated by being underhanded.</p>
+  <p>Technical debt is the nonfunctional (i.e., invisible to the customer) work required to make other work more efficient. Remember that shortcut you took to meet a deadline? Now that the deadline has passed, you need to allocate time to replace the shortcut with a better solution. Until that happens, all engineering work takes longer, because you have to work around that shortcut.</p>
+  <p>You can also think of it as having served a meal and now needing to spend time cleaning the kitchen before the next meal. Serving the meal has direct value. Customers pay for the meal. Cleaning the kitchen, however, has only indirect value. It is difficult to convince executives to value things of indirect value. I wonder how many of them have worked in a restaurant.</p>
+  <p>While my use of the term <i>unethical</i> is provocative hyperbole, I do include counterbalance by including some ethical techniques as well. And, as you’ll see, there are cases where two wrongs can make a right.</p>
+  <p>&nbsp;</p>
+  <h3>Unethical Technique 1: Call it Tech Debt</h3>
+  <p>I’m going to go out on a limb here and say that calling it <i>technical debt</i> is a crime against software engineering. Debt, to the typical engineer, is a bad thing. In your personal life, you’re always warned against debt. Credit card debt? Bad. Loan debt? Bad. Government debt? Bad. Therefore, calling it technical debt feels like a good way to signal to corporate management that this is a bad thing that needs to be fixed with resources allocated to solve this terrible problem!</p>
+  <p>Aha! That’s where we fail to communicate. People with MBAs love debt. Debt is how good things happen. Debt is just one way to raise capital, which can be used to make a profit! Debt isn’t bad; it’s the precursor to profit! To an MBA, debt is capital that, if all goes well, is going to make you money. We <i>like</i> money!</p>
+  <p>When asking executives to take technical debt seriously, they may agree with you, but their brainstem is screaming, “Debt good! Don’t believe this engineer!” It’s like trying to tell a dog not to eat chocolate. “How can this unbelievably tasty treat be bad for me when it’s an unbelievably tasty treat?”</p>
+  <p>The dog just waits for you to leave the room so he can eat himself sick.</p>
+  <p>The CEO just waits for you to leave the room so he can be proud of this wonderful technical debt he has learned the company possesses.</p>
+  <p>It’s important to adjust your terminology for the intended audience. That’s why I prefer to call it <i>operational drag</i>. There is no universe (or MBA program) where that has positive connotations. CEOs might be willing to put up with operational drag in the short term, but they know it must be dealt with in order to scale.</p>
+  <p>Old habits are difficult to change. While I use <i>operational drag</i> with nonengineers, I can’t help but call it technical debt in this very article.</p> 
+  <p>&nbsp;</p> 
+  <h3>Unethical Technique 2: Ignore It.</h3>
+  <p>Probably the most popular technique for dealing with technical debt is to ignore it.</p> 
+  <p>Sure, all other work is slowed down until it is fixed, but who can really measure productivity for an engineer? Every attempt at measuring engineering productivity has failed. If you can’t measure it, does it really exist?</p> 
+  <p>Technical debt builds slowly over time. It creeps up on you like a frog being slowly boiled. One layering violation lets you meet an impossible deadline, but now two systems are tightly coupled, and all future features take 20 percent longer. A few more quick fixes like that and it’s another 20 percent, another 20 percent, another 20 percent—and now you can’t change the color of your drop-down menu without a multiquarter project that involves committed resources from every team in engineering.</p> 
+  <p>Yes, you could stop all work and refactor your codebase so that each team can work independently, but who has time for that? In the meantime, a feature that could take two weeks instead takes six months because it touches the codebase of eight other teams that all need to be involved. It’s easier to let the VP of sales assume that your engineers are slow and lazy than to justify a major code refactoring that would allow new features to ship at an accelerated rate.</p> 
+  <p>Easy is better. Right?</p> 
+  <p>Is ignoring a problem really unethical? Maybe not. You’ll be gone soon and then it will be someone else’s problem.</p> 
+  <p>Most CIOs/CTOs last only a few years. Engineers tend to change companies every three to five years. The change from pensions to 401(k)s back in the 1980s institutionalized the idea that loyalty to your employer’s future is for fools. It’s this quarter that matters.</p> 
+  <p>AI pundits have told me that AI will fix our tech debt. Some have even suggested that AI will fix it faster than AI can create it.</p> 
+  <p>Ignoring technical debt seems to be particularly popular with CEOs. That may be a little harsh. Is it really “ignoring” a problem when they don’t know the problem exists? Why should they bother themselves with minutiae like technical debt? While some say tech debt isn’t minutiae, I say any problem a CEO doesn’t understand doesn’t exist.</p> 
+  <p>&nbsp;</p> 
+  <h3>Unethical Technique 3: Tie It to the Elephant</h3>
+  <p>If an elephant is going to rampage through your village, and you just happen to need to get to the other side of the village, tie yourself to the elephant. Why walk?</p> 
+  <p>In terms of tech-debt reduction, this means attaching the tech-debt reduction to a major corporate initiative. If the project is big enough, your addition will hardly be noticed.</p> 
+  <p>Ideally, the technical debt you want to remediate actually is related to the initiative. However, it doesn’t need to be.</p> 
+  <p>Suppose the project uses database software that is out of date, unsupported, and starting to fail. All requests to upgrade it have been denied. Simply decide that the next big company initiative can be successful only if the database software is upgraded.</p> 
+  <p>Sometimes two wrongs do make a right. Fight unethical behavior (ignoring the problem, see #2 above) with unethical behavior (you can’t change the logo on the website until the current database software is replaced).</p> 
+  <p>If anyone asks why updating a JPEG logo requires different database software, all your engineers should be trained to reply, “Gosh, you don’t know anything about databases, do you?” and walk away.</p> 
+  <h3>Unethical Technique 4: The Electrician’s Rule</h3> 
+  <p>Electrical work can trigger upgrades. If you ask an electrician to add an outlet and the electrician finds outdated knob-and-tube wiring, most jurisdictions require the old wiring to be replaced with modern wiring as part of completing the job. Owners of old homes may find this frustrating, but it prevents a lot of fires. You may have simply requested a new outlet, but you’re getting a rewired basement.</p>
+  <p>Likewise, the “electrician’s rule” of technical debt is that if you touch a file, you have to bring it up to modern standards. This may be something simple like fixing coding style (formatting) or replacing calls to deprecated functions with their modern replacements.</p>
+  <p>I highly recommend this as a rule for engineering teams. It’s a good way to incrementally keep a codebase up to modern standards. This only treats superficial issues, however, and ignores big, cross-cutting issues that require dedicated resources.</p>
+  <p>This technique isn’t unethical. But it’s unethical to pretend it is all your team needs.</p>
+  <p>&nbsp;</p>
+  <h3>Unethical Technique 5: The 20 Percent Rule</h3>
+  <p>Some teams have a 20 percent rule. With each release, 20 percent of time spent on the release will be spent fixing technical debt.</p>
+  <p>This technique isn’t wholly unethical. Like #4, however, it is a piecemeal solution that doesn’t address larger problems. It definitely keeps tech debt in check and prevents its growth. But it doesn’t make room for major refactoring.</p>
+  <p>It’s like brushing your teeth. Everyone should do it as part of their hygiene regimen, but you still might need to allocate time for dental surgery.</p>
+  <p>This technique also works best in waterfall or “big bang” releases. I saw this technique used successfully when I was on a team that did software releases every three months. At the start of each quarter, we had a list of <i>x</i> hours of work we committed to for the release: 80 percent was picked by the product manager, and 20 percent was given over to the engineers, who had <i>carte blanche</i> to choose whatever tech debt they determined was most important. It worked pretty well and was popular with the engineers. They enjoyed the autonomy it provided.</p>
+  <p>This is more difficult to coordinate in a continuous integration/continuous delivery (CI/CD) environment. When features are shipped as they are completed, there isn’t a clear way to calculate 20 percent. Maybe one out of every five deliveries should be tech-debt reduction?</p>
+  <p>&nbsp;</p> 
+  <h3>Unethical Technique 6: Hide Solutions that Add to Technical Debt</h3>
+  <p>Just as an electrician doesn’t ask a client if they want to bypass fuses to save time, developers shouldn’t offer stakeholders the option to “skip” quality controls just to meet a short-term deadline.</p> 
+  <p>A consultant friend of mine once told me of a difficult lesson he learned early in his career. He told his client there were three potential solutions, one of which he wouldn’t recommend as it would end in disaster. The client, of course, requested the disaster. Even after being warned, the client refused to change their mind.</p> 
+  <p>The lesson? Don’t tell a client about solutions that aren’t solutions.</p> 
+  <p>A good engineer should examine every possibility, every combination and permutation. However, the client doesn’t need to hear all that. Surface only the good solutions. Your value is in being the filter.</p> 
+  <p>Sadly, engineers often find themselves asked to meet an impossible deadline, and they offer a “solution” that involves adding huge amounts of technical debt.</p> 
+  <p>They can meet that deadline only if the database upgrade is postponed. They will meet the deadline, but then all the code will have to be rewritten from scratch when they finally do the database upgrade. Oh, and now they have a new reason to postpone the database upgrade, because who the heck wants to rewrite all that code?</p> 
+  <p>This was the kind of <a href="https://www.cio.com/article/2132413/crm-breakdown-att-wireless-self-destructs.html">death spiral that killed AT&amp;T Wireless</a>. AT&amp;T Wireless skipped a few upgrades of its Siebel CRM system, a short-term benefit that accumulated huge technical debt. Soon it couldn’t handle new FCC requirements, which would have been easy to implement with the newest Siebel release. Attempts to upgrade to the newest Siebel CRM failed because jumping so many releases in one step was impossible.</p> 
+  <p>An immovable FCC deadline approached, and it was clear AT&amp;T could not comply. It became easier to sell its customers to Cingular than to fix the technical problems. That’s how skipping a database upgrade killed AT&amp;T Wireless, which people think still exists only because Cingular also bought the name. As a friend at Cingular told me during a very drunken bar conversation, “They basically exported their customer database to an Excel spreadsheet, we moved all the customers over, and AT&amp;T Wireless was no more.”</p> 
+  <p>It is unethical to offer to meet an impossible deadline by cutting corners. Sure, you secure a promise of time and resources to remediate the technical debt immediately after the deadline. Murphy’s Law, however, predicts that the promise will evaporate when the next impossible deadline appears.</p> 
+  <p>Every time you promise to meet an impossible deadline by accumulating technical debt, it teaches executives the wrong lesson. They walk away thinking that the timelines that engineers propose are just lies. The best way to deal with this is to give engineers impossible deadlines, and, magically, new work estimates will appear. “Those damn, lying engineers. That’s the last time we’ll trust them!”</p> 
+  <p>It also teaches them that engineers are fools who can be tricked by just promising future resources to fix that... “What did they call it? Technical debt? Oh, my brainstem just got triggered again. What were we talking about?”</p> 
+  <p>Anyway...</p> 
+  <p>Obviously, this is less of a problem when the executives are technical enough to understand the toxicity of technical debt and keep their promises of allowing time to fix it. This is most likely to happen when they are directly affected by the resulting operational burden and it benefits them to remove the operational drag.</p> 
+  <p>&nbsp;</p> 
+  <h3>A Few Ethical Solutions</h3> 
+  <p>I can’t suggest deceptive practices without suggesting a few ethical techniques for balance. Two of my favorites are Crawl/Walk/Run and the Reverse Farmer’s Rule.</p> 
+  <p>Crawl/Walk/Run is where you split the project into three phases, only the first of which has to meet the impossible deadline.</p> 
+  <p><i>Crawl</i> demonstrates viability but leaves many operational aspects unautomated. For example, customer onboarding might be manual instead of self service. <i>Walk</i> fulfills the main features but omits scaling and advanced features. For example, the user sees teasers or “coming soon” panels in the UI. <i>Run</i> focuses on scaling and operational efficiency—for example, reducing sign-up friction, optimizing systems for scale, and focusing on holistic efficiency.</p> 
+  <p>This structures the technical debt in a way that aligns with business growth, which is something executives do understand.</p> 
+  <p>Crawl/Walk/Run is easier to explain than techniques such as agile and minimum viable project (MVP). In my experience, <i>easy to explain</i> is greatly undervalued in this industry. Sure, you’re smuggling MVP under the guise of another name, but your goal is to ship software, not convert CEOs to your religion.</p> 
+  <p>By getting software-ignorant executives to think in terms of Crawl/Walk/Run, you build in technical-debt remediation under the guise of scaling. Walk is not “fixing technical debt,” but “enabling scale now that the basic product has been validated.”</p> 
+  <p>The Farmer’s Rule is never to name the livestock you intend to slaughter and eat. Naming an animal creates a bond and emotional attachment, which makes the inevitable day of butchering much harder and more distressing.</p> 
+  <p>The Reverse Farmer’s Rule is to name things that you want taken care of. That is, name a technical-debt project. Do not simply do it invisibly.</p> 
+  <p>I saw this play out well at a previous company.</p> 
+  <p>There once was a company whose executive leadership had a tendency to think that software was done when it was launched. Shortly after celebrating the release of a new product, all the developers would be moved to chase the CEO’s next whim. The newly launched product would fail, because post-launch is when the real work begins: finishing all the features that didn’t make the first cut, improving features that customers didn’t like, adding new features that could have been identified only when real users hit the system, fixing bugs, automating for scale, and so on.</p> 
+  <p>This CEO didn’t understand that, and the company is now one of those websites that nobody goes to anymore.</p> 
+  <p>This was going to be a big problem for a project I was working on. The main shiny part of the project had to be followed by two unglamorous projects to shut down the systems that the main project replaced. Without carefully coordinated effort, the company could face millions of dollars of additional cost.</p> 
+  <p>How could we assure that the unglamorous technical-debt projects would not be dropped? We gave them names and linked them all together.</p> 
+  <p>The glamorous project was code-named Ascension, a word that begins with the letter <i>A</i>. We named the two follow-on projects names that began with the letters <i>B</i> and <i>C</i>. Together they were Project A-B-C.</p> 
+  <p>We no longer talked about Project Ascension. We talked about Project A-B-C. It was a Jedi mind trick, and it worked. The CEO didn’t understand the technical details, but he understood the project wasn’t done until Projects B and C were complete. When we needed resources it wasn’t “to fix tech debt,” it was for Project A-B-C.</p> 
+  <p>Never before had I seen so much energy expended on strategizing how to guide an inexperienced CEO toward doing the right thing.</p> 
+  <p>It worked! B and C required effort from many different engineering teams plus nonengineering teams such as legal and finance. None of the people involved were pulled away after A was complete. There was never pushback on allocating resources to B and C, because they weren’t framed as technical debt. They were “that Project A-B-C that the CEO regularly mentions at the All-Hands Meeting.”</p> 
+  <p>Naming the tech-debt phases and including them prominently in the name was the Jedi mind trick. It wasn’t Project A, followed by B, then C. It was Project A-B-C. This forced the tech-debt remediation into the scope of the original project. Even though the executives generally couldn’t remember what the B and C stood for, they were unknowingly reinforcing their importance every time they opened their mouths to say the project’s name. This made it politically untenable to stop after the first lettered milestone. Yes, the last two phases were shorter than the first, but the Jedi mind trick made them equally visible and prominent—and thus, far more difficult to deprioritize, cancel, or forget.</p> 
+  <p>&nbsp;</p> 
+  <h3>Summary</h3>
+  <p>Technical debt is a big problem in our industry. Some companies have established ways to keep it under control, others let it grow unbounded, and some let it become the cause of their destruction. The name itself is problematic, as debt is considered a positive thing in finance.</p> 
+  <p>We can ignore it, and it becomes a problem for someone else. We can tie remediation projects to major company initiatives, which can be honestly justified or simply used as a rationalization. We can keep it in check with the electrician’s rule or by negotiating a minimum amount of tech-debt reduction each cycle, but that does not allow for major refactoring projects. We can feign ignorance and simply not offer solutions that add to technical debt, even when we know they exist. Lastly, we can adopt techniques such as Crawl/Walk/Run and the Reverse Farmer’s Rule, which reframe projects such that operational drag is included as part of the plan.</p> 
+  <p>&nbsp;</p> 
+  <h3>Related Material</h3>
+  <p><b>Managing Technical Debt</b></p> 
+  <p>Shortcuts that save money and time today can cost you down the road.</p> 
+  <p>Eric Allman</p> 
+  <p><a href="https://queue.acm.org/detail.cfm?id=2168798">https://queue.acm.org/detail.cfm?id=2168798</a></p> 
+  <p>&nbsp;</p> 
+  <p><b>Tom’s Top Ten Things Executives Should Know About Software</b></p> 
+  <p>Software acumen is the new norm.</p> 
+  <p>Thomas A. Limoncelli</p> 
+  <p><a href="https://queue.acm.org/detail.cfm?id=3325792">https://queue.acm.org/detail.cfm?id=3325792</a></p> 
+  <p>&nbsp;</p> 
+  <p><b>Working Models for Tackling Tech Debt</b></p> 
+  <p>Understand the options to tailor an approach that suits your needs.</p> 
+  <p>Kate Matsudaira</p> 
+  <p><a href="https://queue.acm.org/detail.cfm?id=3674114">https://queue.acm.org/detail.cfm?id=3674114</a></p> 
+  <p>&nbsp; &nbsp; &nbsp;</p> 
+  <p>&nbsp;</p> 
+  <p><b>Thomas A. Limoncelli</b> <i>is a software engineer and DevOps pundit living in New Jersey. His books include</i> The Practice of Cloud Administration<i> (</i><a href="https://the-cloud-book.com">https://the-cloud-book.com</a><i>),</i> The Practice of System and Network Administration<i> (</i><a href="https://the-sysadmin-book.com">https://the-sysadmin-book.com</a><i>), and</i> Time Management for System Administrators<i>. He is <a href="https://twitter.com/yesthattom">@YesThatTom</a> on BlueSky and blogs at <a href="https://yesthatblog.com/">YesThatBlog.com</a>. He holds a B.A. in computer science from Drew University. Views expressed are his own and do not represent the views of his employers, past or present.</i></p> 
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;3bb0add5452d43a2b5d4b3d6c628944c&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script> 
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
+ <script>window.__CF$cv$params={r:'a3044b0c4ce73c2f',t:'MTc4NzU5NDgxMA==',u:'01a034f4246176c388cc1223635138a0',ut:'DKdEX36Wc9u8u2aEitP89GnrR546cUcKkltQZZE4oeE-1787594810-1.2.1.1-o4zHuiX_FJH7sgsnaQIKHRBmKeO8jWxZwwfJN5Y_kLHgnP1aFlOz0cfIJAYWd_Qt1IRXrKWFix9cVHwf.M6T_BwU7yu4kGP825AxD4er2dE',i:60};(function(){if(!document.body)return;var s=document.createElement('script');s.src='/cdn-cgi/challenge-platform/scripts/precursor/main.js';document.head.appendChild(s);})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799"}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3044b0c4ce73c2f',t:'MTc4NzU5NDgxMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 4</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Paul Callaway</span> - <a href="detail.cfm?id=3799886"><b>Building Malleable Systems, not Future-Proof Ones: Design for Change</b></a>
+	  <br />
+	  Design for malleability isn’t a bulleted list of rules to follow; it’s a set of choices you make every day as you design and modify systems. Code is like a house, and people have to live in it, often for much longer than you expect.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Paul Vixie</span> - <a href="detail.cfm?id=3799737"><b>On the Evolution of Program State</b></a>
+	  <br />
+	  We are unlikely to make differences we cannot name, and the main purpose of this article is to provide a way to talk about, and thus a way to think about, the larger-scoped forces shaping both the history and opportunities of software engineering safety. Today’s AI coding assistants augur an era when more software will be created than ever before and by more people and agents than ever before. It’s undecided as yet whether this era will be safer or more dangerous than the last.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Justin Sheehy, Jonathan Reed</span> - <a href="detail.cfm?id=3762988"><b>Moving Faster by Not Breaking Things</b></a>
+	  <br />
+	  An engineering team that can move without fear, knowing that they have made themselves safe to do so, can ship more often and more quickly and make more dramatic changes without hesitation. This feels great to individual engineers and enables those engineers to be more effective for the business they work in. A bit of investment in safety pays huge dividends in speed as well as by reducing the frequency and severity of change-triggered incidents.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Dennis Roellke</span> - <a href="detail.cfm?id=3723152"><b>String Matching at Scale</b></a>
+	  <br />
+	  String matching can't be that difficult. But what are we matching on? What is the intrinsic identity of a software component? Does it change when developers copy and paste the source code instead of fetching it from a package manager? Is every package-manager request fetching the same artifact from the same upstream repository mirror? Can we trust that the source code published along with the artifact is indeed what's built into the release executable? Is the tool chain kosher?
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3044b08ec58ec2e',t:'MTc4NzU5NDgwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

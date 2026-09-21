@@ -1,0 +1,823 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Too Many DevEx Metrics, Too Little Guidance - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Business/Management' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			
+			<a href="issuedetail.cfm?issue=3786301" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3831360' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>August 17, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786301">Volume 24, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3831360">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  <h1 class="hidetitle">Too Many DevEx Metrics, Too Little Guidance</h1>
+  <h2>DevEx Metrics Compass: making sense of developer experience measurement</h2>
+  <h3>André N. Meyer, Patrick Meyer, Gail C. Murphy, and Thomas Fritz</h3>
+  <p>As AI-augmented development becomes standard practice, engineering leaders face mounting pressure to demonstrate its impact. Yet most organizations are measuring AI adoption and output while the effect on developer experience (DevEx) remains largely unknown. The right metrics can close that gap, surfacing the everyday friction developers face and monitoring the real impact of initiatives such as AI rollouts. But with more than 120 metrics in circulation across frameworks, companies, and scientific literature, identifying the right, meaningful, actionable ones for a specific context has become a challenge in itself.</p>
+  <p>This article introduces <a href="https://devexcompass.com/">DevEx Metrics Compass</a>, a public, open-source web app built on a structured analysis of that landscape across more than 50 engineering organizations. Alongside the tool, we share what the dataset reveals about how DevEx is measured today and where the gaps lie. Whether you are new to DevEx measurement and looking for a first meaningful set of metrics, or a seasoned practitioner assessing whether an existing collection has the right breadth and depth, Compass helps teams navigate the fragmented landscape and identify measures that actually matter for their context and goals.</p>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>Alex, VP of engineering at a financial technology (fintech) scale-up, is attending the monthly leadership meeting. The CEO turns to Alex: “We’ve rolled out generative AI tools across engineering this year. What has the impact been on our developers’ productivity and experience?” Alex already has some telemetry data, including AI tool adoption rates, percentage of AI-written code, throughput, and deployment frequency rates, as well as a handful of responses from a one-time developer satisfaction survey sent out a few months ago. None of it adds up to a clear answer. Alex promises the CEO to come back with a clearer picture at the next leadership meeting, but with more than 120 metrics in circulation across nine frameworks, Alex isn’t sure where to start.</p>
+  </div>
+  <p>This is not an unusual situation. As AI-augmented coding becomes standard practice, with 93 percent of developers now using AI tools,<sup>16</sup> engineering leaders face mounting pressure to demonstrate impact. Yet most organizations lack the measurement foundation to do so. The 2025 DevOps Research and Assessment (DORA) report shows that AI adoption tends to increase individual productivity and job satisfaction. However, it can also add cognitive load on complex tasks and invite higher output expectations without reducing demands on developers,<sup>1</sup><sup>,</sup><sup>5</sup> a tension that is impossible to detect, let alone navigate, without the right measurement in place.</p>
+  <p>AI has prompted many leaders and managers to ask questions they hadn’t asked before: How is AI actually changing how my developers work, and is it for the better? Those questions land squarely in the domain of developer experience. DevEx, for short, is a field concerned not just with tools and environments, but with the lived experience of developers: the friction they encounter, the flow they lose, and the conditions that determine whether they can do their best work sustainably and productively.<sup>10</sup><sup>,</sup><sup>13</sup></p>
+  <p>Frameworks such as SPACE, DORA, and DX Core 4 have helped organizations think more rigorously about the measurement of DevEx. But with an ever-growing list of frameworks and possible metrics, knowing where to start has become its own challenge. Interviews with more than 20 DevEx and engineering leaders consistently surfaced the same frustration: The problem is not a lack of metrics, but knowing which ones are relevant for their specific context and goals and how to instrument and interpret them to drive meaningful action.</p>
+  <p>This article introduces the <a href="https://devexcompass.com/">DevEx Metrics Compass</a>, a public, open-source web app built on a structured analysis of 120-plus metrics drawn from scientific literature and the public practices of more than 50 engineering organizations. The article shares what the data reveals about how DevEx is measured today, where the gaps are, and how to identify suitable metrics—whether you are just getting started or looking to extend an existing DevEx measurement initiative.</p>
+  <p>&nbsp;</p>
+  <h3>More Metrics, More Frameworks, More Confusion: The State of DevEx Measurement</h3>
+  <p>Measuring DevEx is genuinely hard.<sup>12</sup><sup>,</sup><sup>15</sup> On the surface, the challenge seems like a data problem; engineering teams generate enormous amounts of data: commits, pull requests (PRs), build times, chat messages, and AI meeting transcripts. But raw activity data tells you little about whether developers are productive, satisfied, or burning out. Answering those questions requires a different kind of measurement effort, combining automated signals from development systems with self-reported data from surveys and interviews. The right combination depends heavily on where an organization is in its measurement maturity and what it is trying to achieve; a small team running a yearly satisfaction survey to understand dev-tooling friction is in a very different position from an organization with a dedicated DevEx team, established data pipelines, and custom instrumentation across the entire development lifecycle.</p>
+  <p>More than nine frameworks have emerged to help. Here is a summary of the three most prominent ones:</p>
+  <p>– DORA<sup>7</sup> provides a focused set of delivery-performance metrics (i.e., deployment frequency, change lead time, mean time to recover [MTTR], change fail rate, and deployment rework rate) that has become an industry standard. Its strength is its focus on delivery performance, though it does not address DevEx more broadly, including team dynamics or the conditions that make sustainable delivery possible.</p>
+  <p>– SPACE<sup>8</sup> introduced a multidimensional view of developer productivity spanning satisfaction, performance, activity, communication, and efficiency. Rather than prescribing a fixed metric set, it offers a framework from which teams derive measures suited to their own context—explicitly pushing back against single-metric thinking.</p>
+  <p>– DX Core 4<sup>14</sup> is a commercial framework developed by the company DX designed to unify DORA, SPACE, and the DevEx framework<sup>13</sup> into a single actionable framework organized around speed, effectiveness, quality, and business impact. Unlike SPACE, it is prescriptive rather than navigational: The framework is shaped conceptually by team collaboration and psychological dimensions such as cognitive load and flow state, but these are not tracked as separate, explicit metrics. Its composite Developer Experience Index (DXI) is also proprietary, which can make it harder to see exactly how scores are constructed or how to reproduce comparisons across organizations.</p>
+  <p>Each has its merit in specific contexts. But taken together, they have also contributed to a fragmented landscape: overlapping definitions, inconsistent operationalization, and no clear guidance on which framework, or which specific metrics within it, best fits a given context, maturity level, and goal.</p>
+  <p>A growing ecosystem of developer intelligence platforms has emerged alongside these frameworks, including <a href="https://getdx.com/">DX</a>, <a href="https://linearb.io/">LinearB</a>, <a href="https://getquotient.com/">Quotient</a>, and <a href="https://www.faros.ai/">Faros</a>. Each takes a different approach to metric selection: DX pairs self-reported developer sentiment with system data from tools like GitHub and Jira, organized around its DX Core 4 framework and composite index (DXI); LinearB focuses on benchmarking and goal setting; Quotient automatically surfaces bottlenecks and recommends actions; and Faros aggregates engineering data across tools into a unified data platform, enabling custom metric definitions and analysis. These tools are valuable, but they address a different problem: tracking and monitoring a predefined set of metrics rather than helping organizations determine which metrics to track in the first place, and why.</p>
+  <p>The stakes of getting this wrong are high. Measuring the wrong things doesn’t just waste effort; it can be actively harmful, creating wrong incentives, gaming, and misaligned pressure on engineering teams. As Goodhart’s law warns: “When a measure becomes a target, it ceases to be a good measure.”</p>
+  <p>&nbsp;</p>
+  <h3>Five Misconceptions About DevEx Measurement</h3>
+  <p>Despite growing awareness of DevEx as a strategic concern, several persistent misconceptions continue to undermine measurement efforts in practice. Drawing on our research and conversations with DevEx and engineering leaders, the following five patterns stand out as particularly common and consequential:</p>
+  <p>– <b>Having more metrics means better insight.</b> Adding metrics without a clear hypothesis or goal creates noise, not clarity. A more effective approach is to start with the problem you want to solve: Define a hypothesis about what might be causing it, then identify metrics that will help you observe whether an intervention improves or worsens the situation. The challenge is not accumulation but deliberate selection.</p>
+  <p>– <b>What is easy to measure is worth measuring.</b> Automated metrics, such as number of commits, PR counts, AI token spend, and lines of code (LoC), are abundant and cheap to collect. But high numbers do not mean developers are working on the right things or solving meaningful problems. These metrics are also easy to game: Developers can increase commit frequency, split PRs artificially, or write more code without delivering more value. Higher activity does not equal better outcomes.</p>
+  <p>– <b>Automated data is enough.</b> Log-based and telemetry metrics (e.g., deployments, build times, PR throughput) capture system behavior and process outputs. They are valuable for tracking trends continuously over time. But they rarely provide enough context to interpret what is actually happening or to infer suitable interventions. For that, self-reported (qualitative) signals are essential: Periodic surveys and targeted follow-up interviews surface the human experience behind the numbers, explaining why a metric looks the way it does and pointing toward interventions that automated data alone could never suggest.<sup>3</sup></p>
+  <p>– <b>There is a perfect set of metrics for our company.</b> It is tempting to search for a definitive metric set: borrowing from a well-known engineering blog, adopting a popular framework without tailoring, or replicating what a high-profile company does. But as one senior engineering leader at a large financial company observed: “There is no universal set of metrics that will solve all the problems you face as a business. What works depends entirely on your tooling, your team structure, and the situation you find yourself in. It requires a very good understanding of how to develop metrics in the first place.” Metrics need to be tailored to your own context, goals, and hypotheses for improvement. Designing metrics that stakeholders will trust is itself demanding: Google’s productivity-research team frames a good metric as one that is intuitive to a broad audience, reflects patterns understood to exist in the world, doesn’t reflect patterns we know don’t exist, and is useful in decision-making.<sup>9</sup></p>
+  <p>– <b>The numbers tell the whole story.</b> Even well-chosen metrics are highly context dependent. A team tracking deployment frequency after a platform migration may see numbers drop, not because delivery slowed, but because they consolidated services. Interpreting metrics well requires understanding the processes, infrastructure, and organizational context behind the numbers. That understanding is hard to build and easy to get wrong.</p>
+  <p>&nbsp;</p>
+  <h3>The DevEx Metrics Compass: Navigating 120 Metrics Across Research and Industry</h3>
+  <h4>Building the Dataset</h4>
+  <p>To understand how DevEx is actually measured across both research and industry, we conducted a structured curation effort. This consisted of reviewing scientific literature alongside public company resources: engineering blogs, conference talks, case studies, and podcasts from more than 50 organizations, including Google, Microsoft, Atlassian, Spotify, Capital One, and Stripe. The goal was not to create yet another framework but to map the landscape as it actually exists, capturing the broad range of metrics that researchers study and that practitioners report using.</p>
+  <p>Each metric was annotated across multiple dimensions, chosen to reflect the practical decisions a team faces when selecting metrics: how data is collected (self-reported via surveys or interviews, automated via logs and telemetry, or both); collection maturity (what is achievable when getting started versus what requires established instrumentation or advanced custom tooling); the framework or company where it originated; whether it is relevant to measuring AI impact; and what outcome goal it serves (developer experience, product excellence, or organizational effectiveness).<sup>4</sup></p>
+  <p>The result is a dataset of 120-plus metrics organized across eight dimensions: developer enablement, system, process, business, quality, team, output, and customer. These dimensions reflect the range of concerns that matter for DevEx: from the immediate conditions that impact daily work (e.g., build times, cognitive load, focus time) through the outputs of that work (e.g., throughput, produced code), to the downstream outcomes it produces (e.g., customer satisfaction, business value). Together they form the structure of the DevEx Metrics Compass.</p>
+  <p>&nbsp;</p>
+  <h4>The Compass: Three Steps from Exploration to Implementation</h4>
+  <p>The DevEx Metrics Compass is a public interactive dashboard available at <a href="http://devexcompass.com/">devexcompass.com</a>. Rather than prescribing a fixed metric set, it is designed as a navigation and comparison tool—built on top of, and complementary to, existing frameworks such as DORA, SPACE, and DX Core 4 rather than replacing them. The Compass is organized as a three-step workflow: Explore the landscape, compare metric sets, then review and implement a shortlist.</p>
+  <p>– <b>Step 1: Explore.</b> The main view presents all 120-plus metrics as a sunburst chart, with the eight dimensions forming the middle ring and individual metrics arranged in the outer segments (figure 1). A filter panel on the right allows users to tailor the view along any of the annotation dimensions: data-collection type, collection maturity, company size, outcome goal, research framework, specific company, and AI relevance. A popularity filter (e.g., 10 percent of the most-referenced metrics across sources) helps cut through the volume.</p>
+  <p>Selecting any metric opens a detailed overlay showing a plain-language definition, synonymous names used across different organizations, the number of sources referencing it, which companies track it, and which research papers propose or validate it. At any point, users can mark a metric as “already tracking” or “plan to track,” building a personal shortlist throughout the session. For teams new to DevEx measurement, a guided wizard reduces the cold-start problem of facing 120-plus metrics at once: It asks a few questions about context, scope, and maturity, then preconfigures the filters accordingly.</p>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>Alex opens the Compass and marks five existing metrics as already tracking: deployment frequency, throughput, daily/weekly/monthly active users for AI tools, AI Spend, and percentage of AI-generated code—all automated, all pulled from continuous integration/continuous delivery (CI/CD) and the AI tool dashboard. Mapped onto the sunburst chart, a pattern is immediately visible: Existing metrics fall into process, output, business, and customer dimensions. Developer enablement, team, quality, and system are entirely uncovered. A different picture emerges after filtering by “AI impact” and browsing what the 25 percent most-referenced sources are measuring.Alex adds several automated metrics to the plan-to-track list, each addressing a question the current set cannot answer: AI suggestion acceptance rate (Are developers trusting what the AI produces?), diff authoring time (Is AI shifting time from writing code to reviewing it?), code rework rate (Is AI-generated code holding up over time?), change failure rate (Is delivery stability holding or degrading?), and mean time to recover (When incidents happen, how quickly does the team recover?).</p>
+  </div> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3831360/assets/html/072726.feature article.meyer.figure1.png" alt="Figure 1. The explore metrics view (step 1) visualizes metrics in a sunburst chart, with the eight dimensions forming the middle ring and the individual metrics the outermost segments.A filter panel on the right allows users to narrow the view and adjust the color of the sunburst chart along selected filters. In the screenshot, Alex has filtered to the 25 percent most frequently cited metrics and those tagged as “AI Impact.” Selecting a metric shows additional details, and Alex sets its tracking state as “already tracking” or “plan to track.”&nbsp;Click to launch this view in the Compass." /> 
+  <br /> 
+  <p style="font-size:small">Figure 1. The explore metrics view (step 1) visualizes metrics in a sunburst chart, with the eight dimensions forming the middle ring and the individual metrics the outermost segments. <br /> A filter panel on the right allows users to narrow the view and adjust the color of the sunburst chart along selected filters. In the screenshot, Alex has filtered to the 25 percent most frequently cited metrics and those tagged as “AI Impact.” Selecting a metric shows additional details, and Alex sets its tracking state as “already tracking” or “plan to track.”&nbsp;<a href="https://devexcompass.com/paper-step1">Click to launch this view in the Compass.</a></p> 
+  <p><b>– Step 2: Compare.</b> The comparison view visualizes any two metric sets—frameworks, companies, maturity levels, or the user’s own shortlist—side by side, showing which metrics they share, which are unique to each, and how the two sets break down across dimensions, outcome goals, and data types (figure 2). This step is particularly useful for users who want to understand how their current approach relates to a recognized framework or what related organizations are measuring that they are not.</p>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>Alex runs a Microsoft-versus-Google comparison to see how two companies with mature DevEx initiatives approach measurement in the AI era. While the two companies share only six metrics, what stands out is that both invested heavily in periodic surveys (i.e., self-reported data) to build metrics such as developer satisfaction, perceived productivity, ease of delivery, friction, and inner/outer loop time spent. Alex’s instinct had been to stick with quantitative signals: Survey data is subjective, responses are noisy, and it is hard to know what to do with the results. But seeing that Microsoft and Google, organizations with mature data pipelines and no shortage of automated telemetry, still run structured developer surveys makes that objection harder to hold. They are not doing it instead of quantitative measurement; they are doing it because automated data alone does not explain why the numbers look the way they do. Alex decides to introduce a quarterly DX survey.</p>
+  </div> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3831360/assets/html/072726.feature article.meyer.figure2.png" alt="Figure 2. The comparison view (step 2), where Alex is comparing the metrics that Google and Microsoft reported, sorted by data-collection type.Alex learns about popular self-reported measures and decides to implement a quarterly DevEx survey and notes the key AI impact metrics both companies employ. Click to launch this view in the Compass." />
+  <br />
+  <p style="font-size:small">Figure 2. The comparison view (step 2), where Alex is comparing the metrics that Google and Microsoft reported, sorted by data-collection type.<br />Alex learns about popular self-reported measures and decides to implement a quarterly DevEx survey and notes the key AI impact metrics both companies employ. <a href="https://devexcompass.com/paper-step2">Click to launch this view in the Compass</a>.</p>
+  <p><b>– Step 3: Review and implement.</b> The final step turns the shortlist into an actionable plan (figure 3). For each selected metric, the view links directly to companies and research papers that describe how it is operationalized. A summary panel covers the overall selection: dimensional coverage, outcome goal balance, data-type mix, and alignment with established frameworks. The full selection can be exported as a PDF to plan implementation, for internal discussion or stakeholder review.</p> 
+  <img src="https://spawn-queue.acm.org/cms/attachment/html/10.1145/3831360/assets/html/072726.feature article.meyer.figure3.png" alt="Figure 3. The review and implement view (step 3) lists Alex’s shortlisted metrics on the left (four as already tracking, ten as planned to track), each with a definition, maturity level, and links to companies and research recommending it.The panel on the right provides insights on the selection, including several popular metrics being captured, adequate coverage of outcome goals, a good mix of collection types, and framework alignment. From the actionable insights, Alex sees that they have a good balance in terms of capturing various dimensions and outcome goals and from various sources. Upon reviewing, Alex dropped “Percentage of AI-Written Code” for its lack of actionability (not pictured).&nbsp;Click to launch this view in the Compass." />
+  <br />
+  <p style="font-size:small">Figure 3. The review and implement view (step 3) lists <a href="https://devexcompass.com/?shortlist_current=146,140,30,129%26shortlist_planned=36,150,38,40,65,78,143,12,18,20%26step=nextsteps">Alex’s shortlisted</a> metrics on the left (four as already tracking, ten as planned to track), each with a definition, maturity level, and links to companies and research recommending it.<br />The panel on the right provides insights on the selection, including several popular metrics being captured, adequate coverage of outcome goals, a good mix of collection types, and framework alignment. From the actionable insights, Alex sees that they have a good balance in terms of capturing various dimensions and outcome goals and from various sources. Upon reviewing, Alex dropped “Percentage of AI-Written Code” for its lack of actionability (not pictured).&nbsp;<a href="https://devexcompass.com/paper-step3">Click to launch this view in the Compass</a>.</p>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>Reviewing the full shortlist, Alex makes one cut: Percentage of AI-written code gets removed, a utilization proxy that says nothing about quality or experience and, as it is, is easy to game. Cognitive load makes the final list despite being flagged as advanced maturity and harder to act on directly. With developers reviewing substantially more AI-generated code, it is the signal most likely to capture hidden costs before they show up in attrition or quality metrics. Alex is less interested in benchmarking cognitive load than in watching how its perception evolves as AI use grows. The health check confirms seven of eight dimensions as covered and all three outcome goals represented. Alex exports a PDF as the first concrete artifact for the conversation with the CEO.</p>
+  </div>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>Across the three steps, the Compass helped Alex identify the metrics most relevant to their specific context and goal: understanding the impact of the AI rollout on developer productivity and experience. Alex kept four metrics already in place, decided to implement ten new ones that surfaced through exploration and comparison, and dropped one that didn’t hold up under scrutiny.</p>
+  </div>
+  <p>&nbsp;</p>
+  <h4>Emerging Patterns Across 120-Plus Metrics</h4>
+  <p>The DevEx Metrics Compass dataset consists of 120-plus metrics drawn from scientific literature and the public practices of more than 50 engineering organizations, offering a broad view of how DevEx is measured today. Several patterns stand out:</p>
+  <p>– <b>Perceived satisfaction and DORA metrics are most referenced.</b> A small set of metrics shows broad consensus across both research and industry, while everything else fragments quickly. Developer satisfaction is the most broadly referenced metric overall, appearing in 45 sources. The (original four) DORA metrics follow closely: change failure rate (27 times), deployment frequency (21 times), cycle time (19 times), and MTTR (16 times)—reflecting broad consensus specifically around delivery-performance measurement. Two widely applied output-oriented measures are throughput (27 times) and produced code (25 times). A newer cluster of metrics is emerging around AI tool usage: AI tool adoption rate (23 times) and daily/weekly/monthly active users for AI tools (18 times), reflecting the growing demand to understand how developers engage with AI tooling. Beyond these widely shared metrics, coverage fragments quickly across eight dimensions with little agreement on what else matters, illuminating a field that is still, to a large degree, figuring out what to measure and why.</p>
+  <p>– <b>The further you move from day-to-day engineering activity, the fewer established metrics exist.</b> The dimensions closest to the craft and conditions of software development—process (25 times), developer enablement (26 times), and quality (20 times)—are the most referenced. System (11 times) and output (9 times) follow, capturing operational outcomes such as system reliability, build stability, and developer output. Team (6 times), customer (7 times), and business (16 times), by contrast, reflect broader organizational and relational outcomes: how teams collaborate, how end users experience the software, and how engineering contributes to business value. The latter ones are the hardest to instrument and attribute causally, suggesting a broader tendency to focus on what developers produce over the conditions that make sustainable, high-quality work possible in the first place. This gap is particularly consequential, given that collaboration is also the SPACE dimension where developers report the least perceived impact from AI,<sup>11</sup> making it both the hardest to measure and to improve without better instrumentation.</p>
+  <p>– <b>Research and industry overlap broadly, but diverge on well-being and AI.</b> A common assumption is that what research suggests and what industry actually measures differs. The data tells a more nuanced story: 63 percent of metrics in the dataset appear in both research and industry sources, suggesting stronger convergence between theory and practice than the fragmented framework landscape might imply. Yet sharp divergences exist at the edges. Well-being metrics such as cognitive load, focus time, and interruptions are well established in research but have very little industry adoption. These are the dimensions most relevant to sustainable developer productivity, yet they remain largely confined to academic study. At the other extreme, AI-specific metrics are almost entirely industry driven: metrics such as acceptance rate of AI suggestions, percentage of AI-generated code, and unused AI licenses have emerged rapidly in company measurement practices, with little to no research validation behind them (yet).</p>
+  <p>– <b>Most teams are measuring what is easy, not what matters most.</b> In the dataset, 72 percent of metrics are collected via automated instrumentation, reflecting the natural pull toward what can be automated and collected continuously. But the dimensions most relevant to sustainable productivity (i.e., developer enablement and team) show the highest proportion of self-reported metrics. Collaboration quality, autonomy, learning and development, and cognitive load all require data collection through surveys or interviews. Organizations that rely exclusively on automated instrumentation are not getting a complete picture; they are systematically missing the signals that explain why their quantitative metrics look the way they do, why certain trends are emerging, and what to do about it.</p>
+  <p>Note: These observations reflect the current state of the dataset. Many companies do not publicly share their measurement practices or provide only a partial picture, and research naturally lags behind fast-moving industry practices—particularly visible with AI metrics, given academic review cycles. The open-sourced dataset will continue to evolve as additional sources are identified and reported.</p>
+  <p>&nbsp;</p>
+  <h4>From First Steps to Systematic Comparison: Navigating DevEx Metrics at Any Maturity Level</h4>
+  <p>The observations just mentioned raise an immediate practical question: Given this landscape, where should an organization start with DevEx measurement and improvement? The answer depends heavily on measurement maturity, including the instrumentation, resources, and goals currently in place. The Compass organizes metrics across three cumulative levels that reflect this reality, from teams taking their first steps to organizations with dedicated DevEx functions and custom tooling:</p>
+  <p>– <b>Getting started.</b> This covers 59 metrics available out of the box from standard tooling (code repository, CI, issue tracker) or a short survey, without any custom instrumentation needed.</p>
+  <p>– <b>Established.</b> This level builds on the first level, adding metrics that require combining data sources, a structured survey instrument, or light custom instrumentation, bringing the total to 105 metrics achievable within a few weeks of setup.</p>
+  <p>– <b>Advanced.</b> This includes the full dataset, covering metrics that require significant custom tooling, IDE and/or calendar integration, dedicated research infrastructure, or ongoing qualitative data collection. These are typically the domain of organizations with a dedicated DevEx or research team.</p>
+  <p>Table 1 illustrates how different roles and maturity levels map onto concrete use cases in the Compass.</p>
+  <div id="T1">
+   <div class="table-caption">
+    <span class="table-number">Table 1.</span> <span class="table-title">Example use cases by role and maturity level, including Alex’s motivating example</span>
+   </div>
+   <table frame="hsides" rules="rows">
+    <thead valign="bottom">
+     <tr>
+      <th align="left">Role &amp; Maturity</th>
+      <th align="left">Challenge</th>
+      <th align="left">How to Use the Compass</th>
+      <th align="left">Example Outcome</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td align="left">A team lead picking up DevEx measurement for the first time</td>
+      <td align="left">Overwhelming landscape, limited resources and DevEx expertise</td>
+      <td align="left">Filter by “getting started” to identify a first set of metrics achievable with existing tooling, supplemented by a short periodic survey for what tooling alone can’t capture.</td>
+      <td align="left">Initial set combines automated metrics already available from existing tools (e.g., deployment frequency, cycle time) with a short survey covering perceived productivity, satisfaction, ease of deployment, ability to focus, and areas of friction.</td>
+     </tr>
+     <tr>
+      <td align="left">An engineering lead with an existing DevEx metrics program</td>
+      <td align="left">Existing collection has grown organically, making it hard to assess coverage and gaps systematically.</td>
+      <td align="left">Map existing metrics onto the Compass and see dimensional coverage gaps.</td>
+      <td align="left">Discover that metrics cluster around output and process, with no coverage of team or developer enablement.</td>
+     </tr>
+     <tr>
+      <td align="left">A dedicated, mature DevEx team</td>
+      <td align="left">No structured way to compare and challenge their measurement approach against frameworks and peer organizations</td>
+      <td align="left">Leverage comparison view: side-by-side comparison of the team’s existing metrics against SPACE and DX Core 4 and against what tech companies with mature DevEx practices, such as Google, Microsoft, and Spotify, measure.</td>
+      <td align="left">Comparison reveals the team’s existing metrics have no signal for day-to-day friction; the team extends its periodic DevEx survey to probe friction in engineering systems and workflows and develops a new quantitative measure of bad developer workdays to inform motivation and retention efforts.</td>
+     </tr>
+     <tr>
+      <td align="left">A researcher</td>
+      <td align="left">No structured overview of how metrics are operationalized across industry and research and where validated measures are lacking</td>
+      <td align="left">Filter by source to compare research versus industry coverage and identify dimensions where validated measures are lacking.</td>
+      <td align="left">Identify understudied metrics, such as the team dimension, including collaboration and communication, along with well-being metrics such as cognitive load and focus.</td>
+     </tr>
+     <tr>
+      <td align="left">Alex (motivating example)</td>
+      <td align="left">Current metrics don’t answer a specific business question: The CEO wants to understand AI’s impact on developer productivity and experience.</td>
+      <td align="left">Map existing metrics onto the Compass to see dimensional coverage; use the Compare view to benchmark against peer organizations.</td>
+      <td align="left">Discover that cheap-to-collect automated metrics leave developer enablement and team entirely unmeasured; a Microsoft-versus-Google comparison reveals both invest heavily in self-reported data, prompting a decision to introduce a quarterly DX survey and refine quantitative measures.</td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <p>&nbsp;</p>
+  <h3>Remaining Challenges the Compass Doesn’t Solve</h3>
+  <p>The Compass addresses a critical first step in the DevEx measurement process: providing a structured overview of the metrics landscape and supporting the identification of suitable candidates based on context and goals. Metrics selection, however, represents only one of several challenges organizations face when establishing or maturing a DevEx measurement initiative; contextual interpretation, organizational culture, and the risk of overoptimization each introduces additional complexity that warrants careful consideration.</p>
+  <p>The context in which metrics are applied shapes interpretation and action. The same metric can mean something entirely different after a reorganization, a platform migration, or a shift in team composition. For example, a deployment frequency target that made sense for a monolithic codebase may become meaningless after a move to microservices. This is why presenting metrics in isolation is rarely sufficient; different roles pose different questions to the same data, and without clear definitions, examples, and organizational context, the same number may be interpreted in incompatible ways by a DevEx practitioner, engineering leader, and individual developer.</p>
+  <p>Two practices help clarify this context: (1.) combining related qualitative and quantitative signals, since qualitative data from developers provides the organizational context needed to make quantitative patterns meaningful;<sup>15</sup> and (2.) emphasizing trends and relative changes over time rather than absolute values, since it is often the direction of change that motivates action, not the number itself.</p>
+  <p>Even well-instrumented and carefully framed metrics can mislead. Many DevEx metrics are influenced by factors outside engineering control, and correlation is not causation. A team might observe a temporary spike in developer satisfaction following the adoption of a leading AI coding assistant until developers realize that reviewing and validating substantially more AI-generated code in shorter timeframes has quietly increased their cognitive load.</p>
+  <p>Disentangling genuine improvement from noise, novelty effects, or confounding factors requires longitudinal data, careful study design, and a healthy skepticism toward early results. A number measured only after the fact says little on its own. Much as bloodwork taken after you already feel sick can’t tell you what your healthy baseline looked like, a metric measured only after implementing a DevEx initiative or rolling out an AI tool can’t tell you whether it actually changed anything. Establishing a clear baseline before an intervention and monitoring whether metrics move in the expected direction afterward is essential for detecting real change rather than random variation.</p>
+  <p>Organizational readiness is a prerequisite for measurement to drive meaningful change and is one of the most commonly underestimated challenges. Psychological safety, transparency about how data will be used, and a shared commitment to improving systems rather than evaluating individuals are foundational.<sup>6</sup> When these conditions are absent, metrics are easily misused, applied at the individual level to monitor, pressure, or evaluate developers in ways that erode trust and undermine the very productivity they are meant to support.</p>
+  <p>A related concern is privacy; individual-level metric data should generally not be collected or surfaced at that granularity, and organizations should be explicit about what is measured, at what level of aggregation, and for what purpose. Misuse also creates the conditions for gaming. When a metric becomes a target for individual performance, developers will rationally optimize for the number rather than the underlying goal, which is Goodhart’s law in practice, a tendency long observed in how developers respond to dashboard-driven targets.<sup>18</sup></p>
+  <p>Even with good culture and clear intent, acting on findings is demanding. DevEx improvements rarely happen organically; they compete with feature work for engineering time and are easily deferred when priorities shift. Organizations that treat DevEx measurement as a periodic exercise rather than an ongoing commitment, with dedicated ownership, protected capacity, and a seat at the table in planning processes, consistently struggle to translate findings into change.<sup>17</sup> This also implies continuous refinement; as interventions are implemented and the organizational context evolves, metrics and initiatives need to be revisited and adjusted accordingly. Making DevEx a genuine organizational priority rather than a nice-to-have is a precondition for measurement to have any lasting impact.</p>
+  <p>The Compass is one input into this process, not a complete solution. Treating it as exhaustive risks missing metrics relevant to a specific context, particularly in specialized domains or emerging areas such as agentic AI workflows where neither research nor industry practice has yet converged. Overoptimizing for measurement more broadly risks losing sight of what it is meant to serve: developer productivity and well-being, team autonomy, and the conditions that allow individuals and teams to do their best work. The goal is not to measure more but to improve understanding and act more informed.</p>
+  <p>&nbsp;</p>
+  <h3>A Living Resource for a Fast-Moving Field</h3>
+  <p>Much like SPACE,<sup>8</sup> which introduced a framework to move beyond single-metric thinking, the Compass is designed to move beyond single-framework thinking, sitting on top of and across DORA, SPACE, DX Core 4, and other frameworks rather than competing with them. The goal is not to replace existing frameworks but to give practitioners a way to navigate the full landscape—to see where the frameworks agree, where they diverge, and which metrics beyond their boundaries might be relevant for a specific context and goal.</p>
+  <p>That navigation especially matters when something changes. AI-augmented development is changing how developers spend their time, what they are responsible for, and what it feels like to do the work. Most organizations are making decisions about tooling, workflows, and investment without the right metrics in place to know whether those decisions are successful.</p>
+  <p>Alex’s situation at the start of this article is not unusual: a set of easy-to-collect output metrics, a major AI rollout (and spend), and no metrics that actually explain whether the investment is paying off. The right approach is to define a goal, identify the metrics that will tell you whether you are moving toward it, and then monitor them as you make changes—the same top-down logic behind the goal-question-metric approach to software measurement.<sup>2</sup> The Compass is designed to help start this process, choosing suitable metrics for your specific context and goals and assessing whether an existing collection provides sufficient breadth and depth.</p>
+  <p>The metrics that matter most in that process are not always the ones that are easiest to collect. Focusing exclusively on automated output signals misses the human dimensions of DevEx: collaboration, cognitive load, autonomy, and the conditions that determine whether developers can do their best work sustainably. These dimensions are often where job satisfaction and retention signals first appear, and they tend to surface the hidden costs and benefits of AI tooling that throughput numbers alone will never surface. As AI takes on more of the mechanical work of writing code, the quality of the human experience around that work becomes more important, not less.</p>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>A few months after implementing the new DevEx metrics, Alex analyzes the data. Similar to early industry research on AI-assisted development, developers report increased perceived productivity alongside higher cognitive load, resulting from writing less code but spending significantly more time reviewing AI-generated code that is harder to understand. Telemetry confirms this: Diff authoring time has increased and median PR size has nearly doubled. Change failure rates and code rework rates have also risen, consistent with reports that larger AI-assisted changesets carry greater defect risk. One finding Alex had not anticipated from qualitative feedback: “There’s more pressure than ever before from management to deliver quality software fast.”</p>
+  </div>
+  <div style="border:1px solid black;padding:20px;margin:20px;">
+   <p>None of this means the rollout failed. It means Alex now has evidence to devise improvements. The data points to two priorities: First, introducing spec-driven development practices—where AI generates code against explicit, upfront specifications rather than open-ended prompts—to keep AI-assisted changes well-scoped, reviewable, and less likely to introduce defects, and second, helping leadership set realistic expectations about where AI genuinely improves productivity and where it shifts effort toward specification, review, and validation.</p>
+  </div>
+  <p>The DevEx Metrics Compass is a starting point, not a finished artifact. The dataset and the Compass are open source, and we invite researchers and practitioners alike to extend them, adding metrics we have missed, contributing new company sources, and mapping emerging frameworks as the field evolves. The landscape is moving fast, particularly around AI, and keeping the Compass current requires the same kind of community that produces the practices it documents.</p> 
+  <p>Try out the Compass: <a href="https://devexcompass.com">devexcompass.com</a></p> 
+  <p>Contribute to the Compass: <a href="https://github.com/HASEL-UZH/DevEx-Metrics-Compass">https://github.com/HASEL-UZH/DevEx-Metrics-Compass</a></p>
+  <p>&nbsp;</p>
+  <h3>Acknowledgments</h3>
+  <p>We thank Sarah d’Angelo, Thomas Zimmermann, Brian Houck, Tom Kelk, and Tarek Alakmeh for their valuable feedback on earlier versions of the Compass.</p>
+  <p>&nbsp;</p>
+  <h3>References</h3>
+  <p>1. Atlassian. The State of DevEx in 2025 (2025); <a href="https://www.atlassian.com/blog/developer/developer-experience-report-2025">https://www.atlassian.com/blog/developer/developer-experience-report-2025</a>.</p>
+  <p>2. Basili, V.R. et al. The goal question metric approach. (1994); <a href="https://www.cs.umd.edu/users/mvz/handouts/gqm.pdf">https://www.cs.umd.edu/users/mvz/handouts/gqm.pdf</a>.</p>
+  <p>3. Corneille, O. and Gawronski, B. Self-reports are better measurement instruments than implicit measures. <i>Nature Reviews Psychology</i> 3, (2024), 835–846; <a href="https://www.nature.com/articles/s44159-024-00376-z">https://www.nature.com/articles/s44159-024-00376-z</a>.</p>
+  <p>4. d’Angelo, S. et al. Choosing measurement frameworks to fit your organizational goals. <i>DORA Research</i> (2025); <a href="https://dora.dev/research/2025/measurement-frameworks/">https://dora.dev/research/2025/measurement-frameworks/</a>.</p>
+  <p>5. DORA Research. <i>State of AI-assisted Software Development</i> (2025); <a href="https://dora.dev/research/2025/dora-report">https://dora.dev/research/2025/dora-report</a>.</p>
+  <p>6. Edmondson, A.C. <i>The Fearless Organization</i>. John Wiley and Sons (2018); <a href="https://www.wiley.com/en-us/The+Fearless+Organization-p-9781119477266">https://www.wiley.com/en-us/The+Fearless+Organization-p-9781119477266</a>.</p>
+  <p>7. Forsgren, N. et al. Accelerate. IT Revolution (2018); <a href="https://itrevolution.com/product/accelerate/">https://itrevolution.com/product/accelerate/</a>.</p>
+  <p>8. Forsgren, N. et al. The SPACE of developer productivity. <i>acmqueue</i> 19, 1 (2021); <a href="https://queue.acm.org/detail.cfm?id=3454124">https://queue.acm.org/detail.cfm?id=3454124</a>.</p>
+  <p>9. Green, C. et al. What makes a good productivity metric? <i>IEEE Software</i>. (2026); <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=%26arnumber=11527160">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=11527160</a>.</p>
+  <p>10. Greiler, M. et al. An actionable framework for understanding and improving developer experience. <i>IEEE Transactions on Software Engineering</i> 49, 4 (2022); <a href="https://ieeexplore.ieee.org/document/9785882">https://ieeexplore.ieee.org/document/9785882</a>.</p>
+  <p>11. Houck, B. et al. The SPACE of AI: Real-world lessons of AI’s impact on developers. <i>acmqueue</i> (2026); <a href="https://spawn-queue.acm.org/doi/10.1145/3807964">https://spawn-queue.acm.org/doi/10.1145/3807964</a>.</p>
+  <p>12. Meyer, A.N. et al. Software developers’ perceptions of productivity. <i>Proceedings of the 22<sup>nd</sup> ACM SIGSOFT Intern. Symp. on Foundations of Software Engineering</i> (2014), 19–29; <a href="https://dl.acm.org/doi/10.1145/2635868.2635892">https://dl.acm.org/doi/10.1145/2635868.2635892</a>.</p>
+  <p>13. Noda, A. et al. DevEx: what actually drives productivity. <i>Acmqueue</i> 21, 2 (2023); <a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3595878">https://spawn-queue.acm.org/doi/pdf/10.1145/3595878</a>.</p>
+  <p>14. Noda, A. et al. Introducing the DX Core 4 (2024); <a href="https://getdx.com/news/introducing-the-dx-core-4/">https://getdx.com/news/introducing-the-dx-core-4/</a>.</p>
+  <p>15. Noda, A. and Cochran, T. Measuring developer productivity via humans. <i>martinfowler.com</i> (2024); <a href="https://martinfowler.com/articles/measuring-developer-productivity-humans.html">https://martinfowler.com/articles/measuring-developer-productivity-humans.html</a>.</p>
+  <p>16. Reock, J. AI Impact Report: Q1 2026. DX (2026); <a href="https://getdx.com/blog/ai-impact-report-q1-2026/">https://getdx.com/blog/ai-impact-report-q1-2026/</a>.</p>
+  <p>17. Skelton, M. and Pais, M. Team Topologies (2019); <a href="https://teamtopologies.com/book">https://teamtopologies.com/book</a>.</p>
+  <p>18. Storey, M.A. and Treude, C. Software Engineering Dashboards: Types, Risks, and Future. In <i>Rethinking Productivity in Software Engineering</i>. C. Sadowski and T. Zimmerman (eds). Apress, Berkeley, California (2019). <a href="https://link.springer.com/chapter/10.1007/978-1-4842-4221-6_16">https://link.springer.com/chapter/10.1007/978-1-4842-4221-6_16</a>.</p>
+  <p>&nbsp;</p>
+  <h3>Related Material</h3>
+  <p><b>EngThrive: Make It Fast and Easy to Do Great Work</b></p>
+  <p>Building a durable model for outcome-oriented engineering measurement</p>
+  <p>Brian Houck, Tim Bozarth, David Liu, and Dean Carignan</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3819080">https://queue.acm.org/detail.cfm?id=3819080</a></p>
+  <p>&nbsp;</p>
+  <p><b>The SPACE of AI</b></p>
+  <p>Real-world lessons of AI’s impact on developers</p>
+  <p>Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, and Ben Hanrahan</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3807964">https://queue.acm.org/detail.cfm?id=3807964</a></p>
+  <p>&nbsp;</p>
+  <p><b>Eight Myths on Software Engineering and GenAI</b></p>
+  <p>Examining the most common misconceptions</p>
+  <p>Jenna Butler, Brian Houck, Margaret-Anne Storey, Travis Lowdermilk, Steven Clarke, and Emerson Murphy-Hill</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3807963">https://queue.acm.org/detail.cfm?id=3807963</a></p>
+  <p>&nbsp;</p>
+  <p><b>The AI-Native Developer</b></p>
+  <p>Redefining work, identity, and the future of craft</p>
+  <p>Rudrajit Choudhuri, Eirini Kalliamvakou, Brian Houck, and Thomas Zimmermann</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3807961">https://queue.acm.org/detail.cfm?id=3807961</a></p>
+  <p>&nbsp;</p>
+  <p><b>The SPACE of Developer Productivity</b></p>
+  <p>There’s more to it than you think.</p>
+  <p>Nicole Forsgren, Margaret-Anne Storey, Chandra Maddila, Thomas Zimmermann, Brian Houck, and Jenna Butler</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3454124">https://queue.acm.org/detail.cfm?id=3454124</a></p>
+  <p>&nbsp;</p>
+  <p><b>André N. Meyer</b> <i>is a human-centered senior researcher at the University of Zurich (Switzerland), studying developer experience and knowledge worker well-being. His work explores developers’ perceptions of productivity and flow, sustainable AI use in software development, and practical ways to improve focus and awareness—and he advises companies on translating these findings into practice.</i></p>
+  <p><b>Patrick Meyer</b> <i>is a program manager at the University of Zurich (Switzerland), where he leads continuing education initiatives for practitioners in artificial intelligence and computer science. He holds an M.Sc. in information systems from UZH, and this article builds upon and enhances his master’s thesis research on developer experience metrics.</i></p>
+  <p><b>Gail Murphy</b> <i>is a professor at the University of British Columbia. Her research focuses on improving the productivity of software developers and knowledge workers by providing the necessary tools to identify, manage, and coordinate the information that matters most for their work. Murphy is a fellow of the ACM, a fellow of the Royal Society of Canada, and a co-founder of Tasktop Technologies Inc., an enterprise software company that was acquired by Planview Inc. in 2022.</i></p>
+  <p><b>Thomas Fritz</b> <i>is an associate professor at the University of Zurich (Switzerland). He heads the Human Aspects of Software Engineering Lab that focuses on empirically studying software developers and on augmenting human capabilities to improve software developers’ productivity and well-being. For his research, he actively works with international companies, including Logitech, ABB, and Microsoft. He is an ACM and IEEE member.</i></p>
+  <p>&nbsp;</p>
+  <p>Copyright © 2026 held by the owner/author(s). Publication rights licensed to ACM.</p>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7f168b3cd354a55a4dd51b513830799&quot;}" crossorigin="anonymous"></script> 
+ <script>window.__CF$cv$params={r:'a2f0d68c6b1e5009',t:'MTc4NzM5MDgwOQ==',u:'01a028cb544d7bd094580fa6508c2e3f',ut:'5yRWm8MxAIV2Q0Bb5J6ZwGMBSz14rNKjRDrJhy7QtT4-1787390809-1.2.1.1-edcJn6Z0lc7X5qz8tZQMkQYCUtmnElBlbHzzxuD215xSNRFiII3HRL2sKXWU0uc0btG9e3iUFtXJZrrIjZqcAByUXaFiWlQIpYHZQWP4qVo',i:60};(function(){if(!document.body)return;var s=document.createElement('script');s.src='/cdn-cgi/challenge-platform/scripts/precursor/main.js';document.head.appendChild(s);})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799"}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2f0d68c6b1e5009',t:'MTc4NzM5MDgwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 4</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Brian Houck, Tim Bozarth, David Liu, Dan Carignan</span> - <a href="detail.cfm?id=3819080"><b>EngThrive: Make It Fast and Easy to Do Great Work</b></a>
+	  <br />
+	  While frameworks such as SPACE and DORA establish that developer productivity is multidimensional, many organizations continue to struggle with translating those principles into operational systems that drive improvement. This article introduces Engineering Thrive (EngThrive), a system deployed at Microsoft that organizes productivity into three dimensions: speed, ease, and quality, with “thriving” as a well-being guardrail. EngThrive pairs outcome-oriented North Star metrics with diagnostic submetrics, combining system telemetry with developer surveys for scale and context. The article outlines the design principles, data platform, and dashboard ecosystem required to operationalize this approach. Case studies demonstrate how outcome-oriented measurement enables sustained, system-level improvements. Finally, the article shows that EngThrive functions as a general-purpose evaluation language applicable to tools, AI, and organizational policies.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Titus Winters, Leah Rivers, Salim Virji</span> - <a href="detail.cfm?id=3733703"><b>Develop, Deploy, Operate</b></a>
+	  <br />
+	  By taking a holistic view of the commercial software-development process, we have identified tensions between various factors and where changes in one phase, or to infrastructure, affect other phases. We have distinguished four distinct forms of impact, warned against measuring against unknown counterfactuals, and suggested a consensus mechanism for estimating DDR (defect detection and resolution) costs. Our approach balances product outcomes and the strategic need for change with both the human and machine costs of producing valuable software.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Jo&#227;o Varaj&#227;o, Ant&#243;nio Trigo</span> - <a href="detail.cfm?id=3687999"><b>Assessing IT Project Success: Perception vs. Reality</b></a>
+	  <br />
+	  This study has significant implications for practice, research, and education by providing new insights into IT project success. It expands the body of knowledge on project management by reporting project success (and not exclusively project management success), grounded in several objective criteria such as deliverables usage by the client in the post-project stage, hiring of project-related support/maintenance services by the client, contracting of new projects by the client, and vendor recommendation by the client to potential clients. Researchers can find a set of criteria they can use when studying and reporting the success of IT projects, thus expanding the current perspective on evaluation and contributing to more accurate conclusions.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Abi Noda, Margaret-Anne Storey, Nicole Forsgren, Michaela Greiler</span> - <a href="detail.cfm?id=3595878"><b>DevEx: What Actually Drives Productivity</b></a>
+	  <br />
+	  Developer experience focuses on the lived experience of developers and the points of friction they encounter in their everyday work. In addition to improving productivity, DevEx drives business performance through increased efficiency, product quality, and employee retention. This paper provides a practical framework for understanding DevEx, and presents a measurement framework that combines feedback from developers with data about the engineering systems they interact with. These two frameworks provide leaders with clear, actionable insights into what to measure and where to focus in order to improve developer productivity.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2f0d688bddb8789',t:'MTc4NzM5MDgwOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>The Challenge of Efficiency Versus Isolation - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='Distributed Computing' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			
+			<a href="issuedetail.cfm?issue=3786301" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3831358' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>August 13, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786301">Volume 24, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3831358">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  ﻿ 
+  <meta http-equiv="Content-Type" content="text/html" /> 
+  <title>The Challenge of Efficiency Versus Isolation</title>
+  <h1 class="hidetitle">The Challenge of Efficiency Versus Isolation</h1>
+  <h2>Distributed systems lessons from serving inference</h2>
+  <h3>Sabina Anja</h3>
+  <p>The mechanisms that make production inference affordable are the same ones that dissolve the isolation and recovery guarantees built over two decades. This is a property of the workload, not a failure of the people running it.</p>
+  <p>The first time I watched this happen, it did not look like a memory problem: A model-serving cluster that had run cleanly for a few months suddenly started missing its latency targets under load that was not obviously heavier than usual. The dashboards the team had built and trusted mostly showed… nothing useful. Accelerator utilization was healthy, no worker was down, and the requests that suffered were not the ones causing the trouble. The team was also looking for a request that was behaving badly, and there wasn’t one. The requests that absolutely missed their targets were just ordinary.</p>
+  <p>The cause turned out to be the key-value cache (KV cache), and the deeper cause was an assumption the team had carried over from the kinds of systems they had built before. They were treating each worker as an isolated unit of execution, the way you would treat a stateless service replica, when the serving engine had quietly made every request on a worker dependent on every other request sharing it.</p>
+  <p>For roughly two decades, the dominant move in distributed systems design has been to make workers stateless and interchangeable (think AWS Lambda functions or MapReduce tasks). A stateless worker is cheap to replace, easy to load balance, and simple to reason about under failure. It also gives you isolation almost for free, because the natural way to keep two tenants from interfering is not to put their work on the same worker at the same time, and a stateless architecture lets you spread work however you like. In that world, the worker was both the unit of efficiency and the unit of isolation, and keeping those two roles aligned cost almost nothing.</p>
+  <p>Inference breaks that alignment, and it breaks it on purpose. Every technique that makes large-model serving economically viable works by packing more tenants and more requests onto the same hardware at the same time (some of us used to call that an <i>oversubscription mode</i>). That packing is where the efficiency comes from. It is also, in each case, exactly where the isolation goes. The remainder of this article walks through the specific mechanisms, what they do for you and what they take away, because the trade is not abstract. It shows up in tail latency, capacity planning, confidentiality, and the gap between what was sold to a customer and what is physically running.</p>
+  <p>&nbsp;</p>
+  <h3>When the Worker Is No Longer the Boundary</h3>
+  <p>The classic principles are not wrong. They were built for a worker that looks nothing like an inference worker, and the differences are concrete.</p>
+  <p>Take the stateless service tier behind almost any web product. A user hits a checkout endpoint; the load balancer drops the request on whichever of 40 identical instances is least busy; that instance reads the cart from Redis and the order from Postgres, writes the result back, and returns. It keeps nothing.</p>
+  <p>The next request from the same user can land on a completely different instance, and nothing breaks, because the state was never in the worker, it was in the data store. So, when an instance crashes midafternoon, the orchestrator reschedules its in-flight requests onto another node and starts a replacement, and that replacement is serving checkout traffic a second or two later, because all it had to do was boot and pull config. You can lose a third of the fleet to a bad deploy, and the user sees a brief blip while requests reroute.</p>
+  <p>The batch side works the same way. You run a nightly job over a few terabytes of logs; the framework splits it into thousands of tasks; and each task is handed a shard of input from the distributed file system, does its slice of the work, and writes its output. No task knows about any other. When a node dies partway through, the scheduler just reruns that task’s shard somewhere else because the input is still sitting in storage and the task carried no state of its own. A few stragglers rerun, and the job still lands on time.</p>
+  <p>Isolation in both cases is nearly free. If two tenants cannot share a box, you label the nodes and let the scheduler keep their work apart. It costs you nothing, because one more identical replica is interchangeable with every other, and there are dozens of equally good places to put the work. Cheap replacement, fast recovery, and free isolation all come from the same fact: The worker is carrying nothing you cannot rebuild in the time it takes to start a process.</p>
+  <p>An inference worker violates every part of that. It holds a large model resident in accelerator memory, which makes it expensive to start and slow to recover. It accumulates per-request state during generation, the KV cache, which is neither small nor cheap to reconstruct. The engine running on it earns its throughput by interleaving many requests through shared memory and shared compute, which means the requests on a worker are no longer independent. The worker is still the unit you provision and monitor. It is no longer the unit of isolation, because the engine has made isolation a property of how requests are batched and how memory is shared, not a property of which worker a request lands on.</p>
+  <p>Once you see the serving engine rather than the worker as the real arbiter of isolation, the failures stop looking like a collection of unrelated quirks and start looking like one trade applied in different places.</p>
+  <p>&nbsp;</p>
+  <h3>The Mystery of the Shared KV Cache</h3>
+  <p>During generation, every request accumulates a KV cache (the saved key and value vectors from attention, kept so the model doesn’t recompute the whole sequence for every new token) holding the attention state for the tokens it has processed so far. Modern engines such as virtual LLM (vLLM) store that cache as fixed-size blocks drawn from one shared pool of accelerator memory, an approach introduced as PagedAttention to cut the memory fragmentation that earlier serving systems suffered (<a href="https://arxiv.org/pdf/2309.06180">https://arxiv.org/pdf/2309.06180</a>). The shared pool is what lets many requests run concurrently without each one reserving memory for its worst case. The concurrency comes from the sharing, and so does the failure mode.</p>
+  <p>When the pool fills, the engine has to free space, and it does so by preempting requests that are already running. In the current version of vLLM, the default behavior is to discard the preempted request’s cache and recompute it from scratch when room reopens, because in that architecture, recomputation has lower overhead than swapping the blocks out to host memory and back (vLLM optimization docs, <a href="https://docs.vllm.ai/en/stable/configuration/optimization/">https://docs.vllm.ai/en/stable/configuration/optimization/</a>). Either way, the preempted request pays: It stalls, or it redoes work it had already done.</p>
+  <p>Here’s what violates the old mental model. The request that gets preempted is chosen by the eviction policy to free memory, not because it did anything wrong. A long-context request that occupies a large share of the pool can force the eviction of a shorter request sharing the same worker. The short request behaves normally. It absorbs a stall or a full recompute because of its neighbor’s memory footprint; and because the preemption leaves no mark on a standard latency-and-utilization dashboard, what the operator sees is a tail that wanders for no visible reason. The signal exists, but you have to know to look for it: The engine exposes a preemption counter, and sustained preemption under nominal load is a degradation state rather than a normal operating point (vLLM optimization docs, <a href="https://docs.vllm.ai/en/stable/configuration/optimization/">https://docs.vllm.ai/en/stable/configuration/optimization/</a>).</p>
+  <p>The cost is not marginal. One study of fairness in LLM serving measured, on an 8-billion-parameter model, P99 latency at roughly 1.6 times P50, with preemption-induced stalls accounting for close to 60 percent of that P99 figure (FastSwitch, <a href="https://arxiv.org/pdf/2411.18424">https://arxiv.org/pdf/2411.18424</a>). A latency budget can be eaten almost entirely by the contention between tenants who never knew they were sharing.</p>
+  <p>At this stage, there are two ways out. The first is to tune the shared pool: Raise the fraction of memory allocated to the cache, shard the model across more devices so each holds fewer weights and leaves more room for cache, and monitor the preemption counter the engine already reports. This keeps every tenant on shared workers and preserves the high concurrency that made the deployment affordable in the first place. What it does <i>not</i> do is remove the contention. It buys headroom, and under enough pressure the evictions return, because the tenants are still drawing from one pool.</p>
+  <p>The second way out is to stop mixing long and short requests on the same workers altogether. Route requests by expected length into separate pools: a fast pool sized for short requests and a higher-capacity pool that absorbs the long ones so they cannot block anyone else. This works for a reason that lives below the scheduler, in the hardware: Attention kernels run inefficiently on batches that mix sequence lengths, so a batch of similar-length requests extracts more from the accelerator than a heterogeneous one (CascadeInfer, <a href="https://arxiv.org/pdf/2512.19179">https://arxiv.org/pdf/2512.19179</a>).</p>
+  <p>It is worth being honest that the second fix is not purely a cost. One analysis of production traces found that the large majority of requests are short yet get served under configurations sized for the worst-case long context, and that partitioning the fleet into a short pool and a long pool reduced GPU hours by 31 to 42 percent while cutting preemptions more than fivefold on Llama 3 70B (dual-pool token-budget routing, <a href="https://arxiv.org/pdf/2604.08075">https://arxiv.org/pdf/2604.08075</a>).</p>
+  <p>&nbsp;</p>
+  <h3>One Forward Pass, Many Tenants</h3>
+  <p>The throughput of a modern serving engine rests on continuous batching, sometimes called iteration-level scheduling (the engine decides what to run at each token-step instead of locking a batch until every request in it finishes, so finished requests are replaced immediately rather than leaving the slot idle). Rather than assembling a fixed batch, running it to completion, and starting another, the engine admits and retires requests at the granularity of individual token steps, so the accelerator stays saturated as requests of different lengths come and go. The idea originated in the Orca serving system and is now standard across high-throughput engines (Orca, <a href="https://www.usenix.org/conference/osdi22/presentation/yu">https://www.usenix.org/conference/osdi22/presentation/yu</a>). This is mostly why inference is affordable at scale.</p>
+  <p>It is also a direct assault on isolation, because every request in the running batch advances through the same forward pass on the same step. There is no per-tenant partition of compute inside that step. A tenant whose request is simply present in the batch changes the per-token latency that every other tenant in the batch observes. The clearest version of this is head-of-line blocking from a large prefill: A request with a very long prompt can occupy the accelerator for one to several seconds of continuous computation on a large model, and every short request batched behind it waits (vLLM/PagedAttention serving analysis, <a href="https://www.runpod.io/articles/guides/vllm-pagedattention-continuous-batching">https://www.runpod.io/articles/guides/vllm-pagedattention-continuous-batching</a>).</p>
+  <p>The mitigation, chunked prefill, makes the point rather than refuting it. Instead of running a long prefill as one uninterruptible block, the engine splits it into chunks and interleaves those chunks with the decode steps of other in-flight requests, so the long request stops monopolizing the device (Sarathi-Serve, <a href="https://www.usenix.org/system/files/osdi24-agrawal.pdf">https://www.usenix.org/system/files/osdi24-agrawal.pdf</a>). This smooths the latency for everyone, and it does so by mixing tenants together even more tightly than before. The chunk size becomes a knob that trades one tenant’s prefill progress against every other tenant’s decode latency in the same step. The fix for the isolation problem is more sharing, carefully tuned. It is sharing all the way down.</p>
+  <h4>The Cache That Remembers Across Users</h4>
+  <p>Prefix caching is another reasonable efficiency win. It’s where you exchange latency for confidentiality. When two requests start with the same tokens, a shared system prompt, or a common retrieval context, the engine reuses the cache it already built for that prefix instead of recomputing it. For high-volume workloads with a fixed preamble, the cost of that shared part drops to almost nothing.</p>
+  <p>But there’s a catch: You’ll be reusing work across requests, which means reusing it across users, and a cache hit runs measurably faster than a miss. That timing gap is observable, which turns the optimization into a leak. A Stanford audit of commercial LLM APIs found cache sharing across users in seven providers, including OpenAI, where the timing difference lets an attacker tell that someone else’s prompt was recently cached (<a href="https://arxiv.org/abs/2502.07776">https://arxiv.org/abs/2502.07776</a>). Others have shown the attack working against open-source stacks, recovering system prompts token by token (<a href="https://arxiv.org/pdf/2409.20002">https://arxiv.org/pdf/2409.20002</a>).</p>
+  <p>This doesn’t come with a bugfix because it isn’t. The cache is shared because sharing is the whole point, and the timing varies because the cache is doing its job. The only real mitigation is to scope sharing per tenant, which hands back the efficiency the cache was there to capture.</p>
+  <p>&nbsp;</p>
+  <h3>The Model That Is Not Yours Alone</h3>
+  <p>Serving a separate fine-tuned model per customer is expensive, because each model copy wants its own accelerator memory. The technique that makes per-customer customization affordable is multi-adapter serving: Keep one shared base model resident and apply many small fine-tuned adapters, such as low-rank adaptation (LoRA) layers, against it, so the marginal cost of another customer’s customization is a small set of adapter weights rather than a whole model. Systems such as S-LoRA and Punica were built to serve large numbers of such adapters concurrently against a shared base.</p>
+  <p>The economics are compelling, and the isolation implication is immediate. The thing that makes per-customer fine-tunes cheap is that the customers share a base model, a worker, and a batch. Many of those customers, especially in regulated industries, were told they have a dedicated model, and they treat that as a compliance boundary. The physical reality is co-tenancy. The shared base, shared accelerator, and shared forward pass sit directly underneath a contractual and regulatory expectation of separation, and the gap between the two is not something an operator can tune away. It is the design.</p>
+  <p>&nbsp;</p>
+  <h3>What This Changes</h3>
+  <p>It would be a mistake to read any of this as an argument that the classical discipline has nothing to offer, or that the teams hitting these failures are doing something wrong. The opposite is closer to the truth. The teams that hit these problems hardest are often the ones with the strongest distributed systems instincts, because those instincts tell them to treat workers as isolated and interchangeable, and that instinct is now subtly false. The skill that used to be correct is now leading them astray.</p>
+  <p>The principles that survive are the ones that were never really about statelessness. Observability is still the prerequisite for everything, though the metrics that matter have changed: Preemption rate, time to first token, KV-cache occupancy, and per-tenant tail latency carry the signal now, and a dashboard inherited from a stateless service will show green while the system degrades. Graceful degradation still beats hard failure, though the levers are domain specific, shedding low-priority requests, capping context length, and falling back to a smaller model. And isolation still matters as a design goal.</p>
+  <p>What has changed is that it is no longer free. In the stateless world you got it as a side effect of how you scheduled work. In inference, you have to buy it back—in cache partitioning, in separated worker pools, and in per-tenant cache scoping—and every purchase is paid for in the efficiency that drew you to the shared design in the first place.</p>
+  <p>The job is no longer to apply the principle and move on. It is to ask, for each efficiency mechanism you turn on, what isolation guarantee it quietly spent, and whether you can afford the bill. That question does not have a permanent answer. It has to be asked again every time the workload, the model, or the tenancy model changes, which is to say continuously. The work is in keeping the trade visible, because the failures all come from the same place: a mechanism doing its job well enough that no one notices what it costs.</p>
+  <p>&nbsp;</p>
+  <h3>Related Material</h3>
+  <p>If You Have Too Much Data, then “Good Enough” Is Good Enough</p>
+  <p>In today’s humongous database systems, clarity may be relaxed, but business needs can still be met.</p>
+  <p>Pat Helland, Microsoft</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=1988603">https://queue.acm.org/detail.cfm?id=1988603</a></p>
+  <p>&nbsp;</p>
+  <p>Research for Practice: Prediction-Serving Systems</p>
+  <p>What happens when we wish to actually deploy a machine learning model to production?</p>
+  <p>Dan Crankshaw and Joseph Gonzalez</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=3210557">https://queue.acm.org/detail.cfm?id=3210557</a></p>
+  <p>&nbsp;</p>
+  <p>Statistics for Engineers</p>
+  <p>Applying statistical techniques to operations data</p>
+  <p>Heinrich Hartmann</p>
+  <p><a href="https://queue.acm.org/detail.cfm?id=2903468">https://queue.acm.org/detail.cfm?id=2903468</a></p>
+  <p>&nbsp;</p>
+  <p><b>Sabina Anja</b> <i>is a technologist and enterprise AI infrastructure expert with two decades of experience spanning engineering, executive advisory, and large-scale technology systems. She specializes in AI implementation, governance, operational resilience, and infrastructure modernization, helping organizations navigate the operational realities of deploying AI across complex enterprise environments.</i></p>
+ <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799"}' crossorigin="anonymous"></script>
+<script>window.__CF$cv$params={r:'a3044b04ee1a0a90',t:'MTc4NzU5NDgwOQ==',u:'01a034f41fbe7d509a8d989b941ac465',ut:'mbK9N8glazghBDt09FzsH6wwnky1n7Ql89y25mdyQSc-1787594809-1.2.1.1-LZa.GrtpVpmLK7yStYgUpqfxqWULyR96l6.lJAaELcbCpAvxlxHVOpW30Tux_1EhMoX1w43zwcRel9hIfKbDvOwDHqL0oJD057QikwsHhbA',i:60};(function(){if(!document.body)return;var s=document.createElement('script');s.src='/cdn-cgi/challenge-platform/scripts/precursor/main.js';document.head.appendChild(s);})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3044b04ee1a0a90',t:'MTc4NzU5NDgwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 4</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Marc Brooker, Ankush Desai</span> - <a href="detail.cfm?id=3712057"><b>Systems Correctness Practices at AWS</b></a>
+	  <br />
+	  Building reliable and secure software requires a range of approaches to reason about systems correctness. Alongside industry-standard testing methods (such as unit and integration testing), AWS has adopted model checking, fuzzing, property-based testing, fault-injection testing, deterministic simulation, event-based simulation, and runtime validation of execution traces. Formal methods have been an important part of the development process - perhaps most importantly, formal specifications as test oracles that provide the correct answers for many of AWS's testing practices. Correctness testing and formal methods remain key areas of investment at AWS, accelerated by the excellent returns seen on investments in these areas already.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Achilles Benetopoulos</span> - <a href="detail.cfm?id=3712258"><b>Intermediate Representations for the Datacenter Computer</b></a>
+	  <br />
+	  We have reached a point where distributed computing is ubiquitous. In-memory application data size is outstripping the capacity of individual machines, necessitating its partitioning over clusters of them; online services have high availability requirements, which can be met only by deploying systems as collections of multiple redundant components; high durability requirements can be satisfied only through data replication, sometimes across vast geographical distances.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>David R. Morrison</span> - <a href="detail.cfm?id=3711677"><b>Simulation: An Underutilized Tool in Distributed Systems</b></a>
+	  <br />
+	  Simulation has a huge role to play in the advent of AI systems: We need an efficient, fast, and cost-effective way to train AI agents to operate in our infrastructure, and simulation absolutely provides that capability.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Matt Fata, Philippe-Joseph Arida, Patrick Hahn, Betsy Beyer</span> - <a href="detail.cfm?id=3264508"><b>Corp to Cloud: Google&#8217;s Virtual Desktops</b></a>
+	  <br />
+	  Over one-fourth of Googlers use internal, data-center-hosted virtual desktops. This on-premises offering sits in the corporate network and allows users to develop code, access internal resources, and use GUI tools remotely from anywhere in the world. Among its most notable features, a virtual desktop instance can be sized according to the task at hand, has persistent user storage, and can be moved between corporate data centers to follow traveling Googlers. Until recently, our virtual desktops were hosted on commercially available hardware on Google&#8217;s corporate network using a homegrown open-source virtual cluster-management system called Ganeti. Today, this substantial and Google-critical workload runs on GCP (Google Compute Platform).
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3044b00ed22ec2e',t:'MTc4NzU5NDgwOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

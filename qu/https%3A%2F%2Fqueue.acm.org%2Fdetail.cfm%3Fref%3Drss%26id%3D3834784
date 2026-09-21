@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-20JYM3ZFN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-20JYM3ZFN0');
+</script>
+
+
+
+	  
+	  <title>Where to Draw the Line - ACM Queue</title>
+
+	  
+
+	  <meta name='description' value='' />
+	  <meta name='keywords' value='AI' />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P52H78L');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/global.js"></script>
+
+
+
+<!--
+<link rel="alternate" type="application/rss+xml" title="Latest Queue Content RSS 2.0" href="/rss/feeds/latestitems.xml" />
+-->
+<link rel="alternate" type="application/rss+xml" title="All Queue Content RSS 2.0" href="/rss/feeds/queuecontent.xml" />
+<link rel="alternate" type="application/rss+xml" title="Curmudgeon RSS 2.0"     href="/rss/feeds/curmudgeon.xml" />
+<link rel="alternate" type="application/rss+xml" title="Opinion RSS 2.0"        href="/rss/feeds/opinion.xml" />
+<link rel="alternate" type="application/rss+xml" title="Kode Vicious RSS 2.0"   href="/rss/feeds/kodevicious.xml" />
+<link rel="alternate" type="application/rss+xml" title="ACM TechNews RSS"       href="https://www.infoinc.com/acm/TechNews.rss" />
+<link rel="alternate" type="application/rss+xml" title="Washington Updates RSS" href="https://usacm.acm.org/weblog2/?feed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="RISKS Forum RSS"        href="/rss/feeds/risksforum.xml" />
+
+
+<link rel="alternate" type="application/rss+xml" title="AI RSS 2.0"        href="/rss/feeds/ai.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="API Design RSS 2.0"        href="/rss/feeds/apidesign.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Bioscience RSS 2.0"        href="/rss/feeds/bioscience.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Blockchain RSS 2.0"        href="/rss/feeds/blockchain.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Business/Management RSS 2.0"        href="/rss/feeds/business/management.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Compliance RSS 2.0"        href="/rss/feeds/compliance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Component Technologies RSS 2.0"        href="/rss/feeds/componenttechnologies.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Computer Architecture RSS 2.0"        href="/rss/feeds/computerarchitecture.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Concurrency RSS 2.0"        href="/rss/feeds/concurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Cryptocurrency RSS 2.0"        href="/rss/feeds/cryptocurrency.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="DSPs RSS 2.0"        href="/rss/feeds/dsps.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Data RSS 2.0"        href="/rss/feeds/data.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Databases RSS 2.0"        href="/rss/feeds/databases.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Debugging RSS 2.0"        href="/rss/feeds/debugging.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Development RSS 2.0"        href="/rss/feeds/development.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Computing RSS 2.0"        href="/rss/feeds/distributedcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Distributed Development RSS 2.0"        href="/rss/feeds/distributeddevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Education RSS 2.0"        href="/rss/feeds/education.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Email and IM RSS 2.0"        href="/rss/feeds/emailandim.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Embedded Systems RSS 2.0"        href="/rss/feeds/embeddedsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Failure and Recovery RSS 2.0"        href="/rss/feeds/failureandrecovery.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="File Systems and Storage RSS 2.0"        href="/rss/feeds/filesystemsandstorage.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Game Development RSS 2.0"        href="/rss/feeds/gamedevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Graphics RSS 2.0"        href="/rss/feeds/graphics.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="HCI RSS 2.0"        href="/rss/feeds/hci.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Managing Megaservices RSS 2.0"        href="/rss/feeds/managingmegaservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Mobile Computing RSS 2.0"        href="/rss/feeds/mobilecomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Networks RSS 2.0"        href="/rss/feeds/networks.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Object-Relational Mapping RSS 2.0"        href="/rss/feeds/object-relationalmapping.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Open Source RSS 2.0"        href="/rss/feeds/opensource.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Patching and Deployment RSS 2.0"        href="/rss/feeds/patchinganddeployment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Performance RSS 2.0"        href="/rss/feeds/performance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Power Management RSS 2.0"        href="/rss/feeds/powermanagement.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Privacy and Rights RSS 2.0"        href="/rss/feeds/privacyandrights.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Processors RSS 2.0"        href="/rss/feeds/processors.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Programming Languages RSS 2.0"        href="/rss/feeds/programminglanguages.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Purpose-built Systems RSS 2.0"        href="/rss/feeds/purpose-builtsystems.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Quality Assurance RSS 2.0"        href="/rss/feeds/qualityassurance.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="RFID RSS 2.0"        href="/rss/feeds/rfid.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="SIP RSS 2.0"        href="/rss/feeds/sip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Search Engines RSS 2.0"        href="/rss/feeds/searchengines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Security RSS 2.0"        href="/rss/feeds/security.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Semi-structured Data RSS 2.0"        href="/rss/feeds/semi-structureddata.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Social Computing RSS 2.0"        href="/rss/feeds/socialcomputing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Administration RSS 2.0"        href="/rss/feeds/systemadministration.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="System Evolution RSS 2.0"        href="/rss/feeds/systemevolution.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Testing RSS 2.0"        href="/rss/feeds/testing.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtual Machines RSS 2.0"        href="/rss/feeds/virtualmachines.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Virtualization RSS 2.0"        href="/rss/feeds/virtualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Visualization RSS 2.0"        href="/rss/feeds/visualization.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="VoIP RSS 2.0"        href="/rss/feeds/voip.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Development RSS 2.0"        href="/rss/feeds/webdevelopment.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Security RSS 2.0"        href="/rss/feeds/websecurity.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Web Services RSS 2.0"        href="/rss/feeds/webservices.xml" />
+
+<link rel="alternate" type="application/rss+xml" title="Workflow Systems RSS 2.0"        href="/rss/feeds/workflowsystems.xml" />
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-6562869-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<script type="text/javascript">
+function plusone_vote( obj ) {
+_gaq.push(['_trackEvent','plusone',obj.state]);
+}
+</script>
+
+
+
+<style>
+body {
+	font-family: jaf-bernino-sans, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+	color: #333;
+	max-width: 100%;
+}
+div.container p {
+	line-height: 1.65em;
+}
+h1 {
+	font-size: 32px;
+}
+h3 {
+	font-size: 18px;
+}
+h4 {
+	font-size: 14px;
+}
+
+div.container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div {
+	margin: 64px;
+//	max-width: 800px;
+	position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+	div {
+		max-width: 800px;
+	}
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+a {
+	color: #009;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+hr {
+	margin:64px;
+}
+label {
+	font-size: 0.8em;
+	color: #666;
+}
+input {
+	color: #999;
+}
+
+/* NAVBAR */
+.navbar {
+//	position: fixed;
+	background: #EEEEEE;
+	top: -64px;
+	z-index: 10000;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+
+/*  GROUPING  */
+.group:before,
+.group:after {
+	content:"";
+	display:table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+    zoom:1; /* For IE 6/7 */
+}
+
+/*  GRID OF THREE  */
+.span_3_of_3 {
+	width: 100%;
+}
+.span_2_of_3 {
+	width: 66.1%;
+}
+.span_1_of_3 {
+	width: 32.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_3_of_3 {
+		width: 100%;
+	}
+	.span_2_of_3 {
+		width: 100%;
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+}
+
+.span_2_of_2 {
+	width: 100%;
+}
+
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2 {
+		width: 100%;
+	}
+	.span_1_of_2 {
+		width: 100%;
+	}
+}
+</style>
+
+
+<style>
+body {
+	font-size: 19px;
+}
+#form-search > .st-default-search-input {
+	width: 170px;
+  display: inline-block;
+  height: 16px;
+  padding: 7px 11px 7px 28px;
+  border: 1px solid #bbb;
+  border: 1px solid rgba(0,0,0,0.25);
+  font-weight: 400;
+  color: #3B454F;
+  font-size: 14px;
+  line-height: 16px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+}
+
+
+blockquote
+{
+    color: #666;
+    font-size: 1.1em;
+    background: none;
+    border-left: .2rem solid #d3d3d3;
+
+    display: block;
+    padding: 20px 20px 10px 45px;
+    margin: 20px 0;
+    font-style: italic;
+
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+
+	font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+}
+
+.ldq {
+	display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 60px;
+    position: relative;
+    left: -50px;
+    top: 0;
+    height: 0;
+    color: #7a7a7a;
+}
+code {
+//	font-size:1.25em;
+}
+a {overflow-wrap: break-word;}
+pre {
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+h1 {font-size:1.75em}
+h2 {font-size:1.5em}
+h3 {font-size:1.35em}
+h4 {font-size:1.2em}
+h5 {font-size:1.1em}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript)
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P52H78L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ End Google Tag Manager (noscript) -->
+
+
+
+<div class=container>
+	<div class="navbar">
+		<form id="form-search" name="searchform" onsubmit="return false;" style='float:right;'>
+				<input type="text" class="st-default-search-input">
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','UyYECD1kdsPnbHJtPyzG','2.0.0');
+</script>
+				<br />
+			
+			
+			<a href="issuedetail.cfm?issue=3786301" style='width:150px;font-size:0.7em;'>Current Issue</a> &nbsp; <a href="pastissues.cfm" style='width:150px;font-size:0.7em;'>Past Issues</a> &nbsp; <a href="topics.cfm" style='width:150px;font-size:0.7em;'>Topics</a>
+			
+		</form>
+		<a href='/'><img src='/img/acmqueue_logo.gif' /></a>
+
+	</div>
+
+<div style='border:1px red solid;padding:15px;margin:15px;padding-left:40px;margin-left:40px;font-size:1.2em;'>
+We are redesigning the Queue website.
+<br />
+
+<a href='https://spawn-queue.acm.org/doi/10.1145/3834784' target='_new'>Take a look and let us know what you think</a>.
+
+</div>
+
+
+<br />
+
+
+
+<label>August 5, 2026<br /><b><a class="descriptor" href="issuedetail.cfm?issue=3786301">Volume 24, issue 4 </a></b></label>
+
+
+<p>
+<!-- // Check for existence of associated MP3 file-->
+
+ &nbsp;
+	
+				<a href="https://spawn-queue.acm.org/doi/pdf/10.1145/3834784">
+					<img src="img/icon_pdf.png" alt="Download PDF version of this article" />
+					PDF
+				</a>
+			
+</p>
+
+
+
+  ﻿ 
+  <meta http-equiv="Content-Type" content="text/html" /> 
+  <title>Where to Draw the Line</title>
+  <h1 class="hidetitle">Where to Draw the Line</h1>
+  <h2>Which decisions should not be handed over to LLMs?</h2>
+  <h3>Craig A. N. Soules</h3>
+  <p>In the teams that have leaned hardest into AI, models already write most, and sometimes all, of the code. Increasingly, no human reads that code before it ships. I argue that this inevitable automation is only replacing the visible artifact of software engineering, not the actual job. What was never automatable in the first place—deciding what to build, judging whether the result serves its purpose, and answering when it does not—now becomes the entire role. Drawing on observations from teams furthest along this path, in this article I describe the new discipline that emerges: one built on behavioral specifications, engineered dissent, and continuous instrumented oversight rather than authorship. I also confront an uncomfortable consequence: We are demanding senior judgment while eliminating the work that produces it. Finally, I argue there is a class of judgment we should refuse to delegate, even to a machine that appears capable of it.</p>
+  <p>Is AI going to replace programmers? It’s a question I hear a lot lately. In the teams that have leaned hardest into AI, models already write most, if not all, of the code. For routine implementation, models are faster than a person at a keyboard and increasingly write better and more accurate code. Some of these teams have gone a step further: They no longer even read what the models produce, relying on other models to review and test the code.</p>
+  <p>If your definition of a software developer is the person who turns a clear idea into syntax, then yes, that person is being automated. We can argue about the timeline, but the direction is set. And later, I’ll talk about the path teams are following to get there.</p>
+  <p>But turning ideas into syntax was never the real job of a software engineer. It was just the visible, time-consuming part. Underneath it sits a set of activities that are much harder: deciding what to build, deciding whether the result actually delivers on the objective, and answering for it when it does not. Those activities are not going away—and I will argue cannot go away. What changes is that they become the entire job.</p>
+  <p>So, the real question is not whether the developer survives, but what the developer becomes.</p>
+  <p>Over the next few years, the change will be practical and, I think, fairly predictable. Roles will shift, the scope each person owns will expand, and a number of skills that feel essential today will quietly expire.</p>
+  <p>As AI continues to improve, the long-term questions will involve which decisions to keep for ourselves. I argue that handing all of them to a capable machine would be a mistake—even if the machine appears able to take them.</p>
+  <p>&nbsp;</p>
+  <h3>What’s Happening</h3>
+  <p>The change is already underway and has been building up for the past two years. Tracing what has happened is the clearest way to see where it goes from here—each step has handed the models more of the work and responsibility.</p>
+  <p>The first step was autocomplete. A model trained on code suggested the next few tokens, and the developer accepted or rejected them. The human still wrote every line; the model shortened the typing. Next came IDE-driven generation in tools such as Cursor and Windsurf. The model produced whole functions and files from a natural-language instruction, and the developer’s role shifted from typing to editing—accepting a diff, correcting it, asking for another pass. Then came the coding agents: Claude Code, Codex, and similar tools that operate a full toolchain rather than a text buffer. An agent reads a repository, runs commands, executes tests, and iterates on the results, all without a human in the loop.</p>
+  <p>The same escalation continued inside the coding agents. Early sessions were step by step: The model proposed an action, the human approved it, the model took it. That checkpoint has been receding. Agents now run self-guided sessions that continue for an hour or more, making hundreds of decisions—which files to change, which tests to write, when the work is done—before returning to the human. The unit of human involvement has moved from the keystroke to the line to the function to the task to the entire session.</p>
+  <p>Code review has followed the same path, one step behind. At first, every AI-generated change was reviewed by a human, the same way any pull request (PR) would be. Then teams added a second model as a reviewer alongside the human, checking the first model’s output for defects. On the teams furthest along, the human has dropped out of the read path entirely: The code is written by one model, reviewed by another, and then shipped without a person having read it. Reading the code, not just writing it, is becoming optional. The volume of code being generated by the models means a human in the loop is just a bottleneck. Model-driven reviews are not just a nicety, but a requirement to maintain velocity.</p>
+  <p>Against that trajectory, we can name the specific things that will go away. Writing code goes first, and for many, already has; we did the same thing to assembly decades ago, and now almost no one reads a compiler’s output. Line-by-line human review goes next, though the human keeps the separate question of whether the code is the right solution rather than merely a working one. Debugging splits in two: Matching a stack trace to a fix is pattern work the model absorbs, while diagnosing the gap between what you meant and what you specified remains and becomes central. The human-facing IDE changes dramatically—syntax highlighting, autocomplete, and the rest exist to help a person type and verify code accurately, and an agent needs none of it. What replaces it is closer to a console for directing work and inspecting results.</p>
+  <p>&nbsp;</p>
+  <h3>What You Own Instead</h3>
+  <p>We’ve identified the parts of the job that leave, but nothing about removing typing removes the underlying challenges and responsibility of the job. If anything, it crystalizes it and places it more squarely on one person.</p>
+  <p>Consider what a developer used to own. A few years ago, a working programmer might have been responsible for 10,000 lines they had written themselves and could mostly hold in their head. Ownership meant authorship: You knew the system because you built it. Soon that same developer will be directing agents that produce far more code than they could ever write or read, building a system many times the size they are used to. The scope of what they own has gone up by a large factor. Their direct knowledge of it has gone down to nearly nothing.</p>
+  <p>The common response is that this is just management, and developers are simply becoming managers. It’s a useful parallel, since owning what you cannot personally inspect is what managers have always done: A structural engineer stamps drawings for a building they did not draft and will never assemble, an executive answers for a company whose every action they cannot see. The skills that go with it—delegation, describing work clearly, judging results you did not produce—are about to matter enormously. But the comparison breaks in three key places.</p>
+  <p>First, a manager delegates to people who are themselves accountable. The engineer you hand a task to has a career, a reputation, a stake in being right; if you ask them to do something unwise, they can (and hopefully will) push back. That accountability is distributed downward—everyone below you carries some of it. An agent carries none. It has no career to protect and no stake in the outcome, so the whole weight of responsibility that a hierarchy normally spreads across many people collapses onto the one human directing the work.</p>
+  <p>Second, a manager gets dissent for free. A good report tells you the deadline is unrealistic, or the design is worrisome, or you have misread the customer. That argument is how a manager discovers their own model is wrong. Agents, as they are today, do not argue. They are agreeable and confident, and they will carry out a flawed instruction as readily as a sound one. The error correction that human subordinates supply by default now has to be built—evals, red-teaming, adversarial agents whose assigned job is to disagree. Dissent becomes an engineering problem. At its core, it is difficult to construct an agent that will question the very premise of what you are asking it to do.</p>
+  <p>Third, management runs on human time. Its cadences—the one-on-one, the weekly review, the quarterly goal—assume work takes long enough that periodic check-ins catch drift before it goes far. Agents operate at machine speed. A task that once took a team a week can be done in minutes, which means “we’ll catch it at the next review” can arrive long after the thing is built, shipped, and wrong. Oversight has to become continuous and instrumented rather than periodic and conversational—closer to watching a control room than running a team.</p>
+  <p>This new pace also changes what oversight costs the person doing it. Interruption has always carried a price: If you lose your focus to a meeting, it takes time to rebuild the state you were holding. The old remedy was to protect human attention—batch the meetings, guard the calendar, leave long stretches to hold a problem in your head. That remedy assumed the human did the work, and interruptions were the exception.</p>
+  <p>With agents doing the work, both assumptions are wrong. One person now supervises several streams, each of which moves faster than they can: One needs a decision, another surfaces an ambiguity in the specification, a third has produced something that looks right but needs judgment before it ships. The context switch is no longer an interruption; it is the job. And unlike the machines it oversees, human attention does not scale: A person can hold only so many streams before the switching itself becomes the bottleneck.</p>
+  <p>Put these together, and the role that emerges is not quite a manager and not quite an engineer. It has the scope of management without its supports: no accountable subordinates, no dissent that arrives on its own, no human-paced rhythms—and more parallel work than one person’s attention can hold. It keeps the engineer’s accountability for how the system behaves without the engineer’s knowledge of how it works: no authorship, no familiarity with the parts, no ability to open the thing up and read it. The job is new, and almost nothing about how we work was designed for it. New tools, new practices, new ways of working—all of it has to be formalized and built.</p>
+  <p>&nbsp;</p>
+  <h3>What the Work Becomes</h3>
+  <p>If the job of an engineer is now directing and answering for systems they do not write, the day-to-day skills that matter change correspondingly. Some of what is replacing them has precedent; some of it does not.</p>
+  <h4>The Specification Returns</h4>
+  <p>Start with the engineering specification. The NASA engineer of the 1970s wrote specifications of implementation: which components, which interfaces, which sequence of operations, every edge case enumerated in advance. The document said exactly how the system was to be built, because the cost of being wrong was a launch failure, and iteration was not an option.</p>
+  <p>When software got inexpensive to change, the spec got lighter—a paragraph in a ticket, a bug report with some discussion, a whiteboard session—something you firmed up as you typed, because the typing was where the real thinking happened, and the next iteration was a day away. The code became the precise artifact; the spec was scaffolding you eventually threw away.</p>
+  <p>That is inverting again but not back toward the NASA document. Now the thing being specified is different. When the agent decides how the system is built, implementation detail is not what the specification needs. Instead, it is behavior: what the system must do, what invariants must always hold, what must never happen, and how each behavior should be measured and tested. The NASA spec said how; this one says what and how you will know—deliberately silent on the implementation the agent is free to choose.</p>
+  <p>That shift is what makes the specification durable. The implementation may change every time the agent does work; behavioral objectives do not. It becomes the artifact you version, review, and argue over, because it is the one description of the system that survives a rewrite.</p>
+  <p>And its failures become the ones that matter. A vague specification no longer produces a slightly off function you fix in passing; it produces 10,000 lines, faithfully implementing an objective you defined wrong or measured badly. Ambiguity used to be a small tax, course corrected over time. Now it is the main source of expensive mistakes.</p>
+  <p>&nbsp;</p>
+  <h4>Verification Becomes Instrumentation</h4>
+  <p>Verification changes in the same way. The question was always, “Does this code work?”, and a reviewer answered it by reading the code. A second model now answers that question faster and more consistently than any human. What it cannot answer is whether the working code is the code you wanted—whether the system that passes every test does the thing the business actually needs. That judgment stays with the human, and evidence is needed to support it. The tools you need are no longer an editor and a debugger. They are dashboards, evaluation suites, traces, and attestations—instruments for deciding whether a system you did not write or read is behaving the way you meant it to. The work of verification moves from reading lines to designing the checks that tell you the lines are right.</p>
+  <p>&nbsp;</p>
+  <h4>What Not to Build</h4>
+  <p>Until now, the cost of building software was a constraint that shaped every decision: You could not do everything, so you chose. When building approaches free, the constraint moves. The hard part is no longer producing the feature but deciding if it is worth producing at all. The failure mode changes accordingly. It used to be, “We could not build it in time.” It becomes, “We built the wrong thing, quickly, and at scale.” Knowing what not to build becomes the thing that separates a team that ships well from one that merely ships fast.</p>
+  <p>&nbsp;</p>
+  <h4>The Junior Engineer</h4>
+  <p>Teams will reshape to match. A team’s size and structure used to be set largely by how much code humans could write and how many people it took to coordinate that writing. Remove the writing, and the old head-count math stops applying. What a team needs is not more hands but more judgment, distributed across fewer people, each of whom owns more. The layers that existed to translate intent down a chain—product manager to lead to engineer—compress, because the chain was mostly there to move understanding between people, and there are fewer people to move it between.</p>
+  <p>Perhaps the biggest casualty in this is the entry-level job where judgment was grown. You learned what good behavior looked like by writing a great deal of mediocre code and watching it fail, by owning small pieces long enough to develop instinct. That rung is the first thing automation removes. We are asking a profession to run on senior judgment at the exact moment we stop producing the experience that develops that judgment. The pipeline that turns juniors into seniors runs on work that no longer needs doing.</p>
+  <p>The old pipeline was never designed; it was a byproduct. Judgment grew because the mechanical work happened to expose you to failure, ownership, best practices, and consequence over years. If the byproduct is going away, the exposure has to be built on purpose, likely with explicit mentorship. A junior engineer can review specifications rather than write boilerplate specifications—and defend their review to someone senior.</p>
+  <p>They can design the evaluation for a system before seeing its implementation, and then watch where the evaluation fails to catch what matters. They can shadow incident investigations on real postmortems, seeing where the spec is wrong rather than where the code is. They can critique an architecture the model proposed and be graded on the objection, because the most important skill in the new job may be the willingness to say no to confident output, and that is precisely the skill that atrophies when everything you are handed runs.</p>
+  <p>None of this is cheaper than the old apprenticeship. It is more expensive, because it requires lessons be taught deliberately rather than absorbed in passing. The industry has to choose to pay for what it once got for free. Solving this will be an industry-wide challenge in the coming years, and the teams that treat it as a training problem rather than a hiring problem will be the ones that still have senior judgment a decade from now.</p>
+  <p>&nbsp;</p>
+  <h3>Making the Transition</h3>
+  <p>Seeing where this ends is one thing; building a map of how to transition a team through this change is a different challenge. The common mistake is to treat it as a tooling change: Adopt Claude Code or Codex, point it at the existing workflow, and change nothing else about how the team works. The tool replaces the typing, and everything around the typing stays as it was.</p>
+  <p>This produces uncontrolled code that no one understands. We’ve already started to see examples of this in the wild. An agent pointed at a codebase with no specification to build against and no structured review to answer to is a junior engineer with no guardrails and unlimited speed—producing volume, confidently, in every direction at once. The output runs, and no one can vouch for it. Teams that try this usually conclude the models are not ready, when what is missing is the process around them.</p>
+  <p>The alternative is to change the process deliberately, one phase at a time, and to let the team’s confidence in their approach decide when to take each step.</p>
+  <h4>Specify Before You Generate</h4>
+  <p>Start with the design document. Before any team hands off code generation, its engineers have to be able to specify a change precisely enough that a model can build against it and a reviewer can check against it. This is a discipline most teams have to rebuild, because the previous generation of practice let people work out intent while writing the code. The concrete first move is to require a design document for work that currently goes straight to code and to review that document the way you review code—it is scrutinized, revised, and approved before implementation begins.</p>
+  <p>These documents describe behavior, not implementation. Their job is to pin down what the change must do—the interfaces it exposes, the behaviors it guarantees, the performance it must meet, the tests that decide whether it succeeded—and to leave how it is built to the model. Engineers should use the models themselves to help produce these documents: to explore the problem, surface constraints, and pressure-test the approach before it is written down. The document is where the thinking happens, which is exactly where the human attention should concentrate. And by working with the models in this step, the engineers learn to push back on the models’ assertions and apply critical judgment to the outputs.</p>
+  <p>&nbsp;</p>
+  <h4>Hand Off the Loop, in Steps</h4>
+  <p>Next, move code generation to the models, in steps. Have engineers build solutions end to end with the model rather than editing code themselves—the goal is to get them out of the editor, because as long as they are manually adjusting the output, they are neither trusting the process nor scaling past their own typing speed. Begin small: The model writes a small PR implementing one step of the specification; the engineer can review it closely, building confidence in the loop. This keeps the unit of work small enough that a human can still read every line, which is what makes the early stage comfortable.</p>
+  <p>As that confidence grows, the PRs grow with it—from a single step to changes covering the whole specification. This is the point where paired model review becomes necessary rather than optional. A human can read a small PR; no one can meaningfully read a spec-sized one. So as the PRs cross that threshold, add a model reviewer alongside the human—a model with separate context that checks the implementation against the design document and feeds its findings back before the change ships. For now, it runs paired with the traditional human review, not in place of it.</p>
+  <p>Eventually, human review also drops. Running the model reviewer alongside human review achieves two things at once. First, it builds the team’s trust in the approach by showing them what the models can achieve without entirely relying upon them. Second, it exposes the human to failures caused by errors in the spec itself, training them to build stronger specifications over time. Once the team has confidence in both, human review can be scaled back and eventually dropped.</p>
+  <p>That is the endpoint described earlier—code written by one model, reviewed by another, shipped without a person having read it—reached by building trust and skill at each step.</p>
+  <p>Once agents are generating, reviewing, and shipping code end to end, several activities that used to sit downstream of writing code have to be rethought too—because they were all built on the assumption that a human wrote the code and could reason about it directly.</p>
+  <p>&nbsp;</p>
+  <h4>Debugging Without Familiarity</h4>
+  <p>Debugging is the clearest example. If a human no longer writes or reads code, then it cannot be their responsibility to fix issues in the code, either. Instead, investigations must be handled by agents guided by humans. These agents should be provided with everything a human used to review—logs, traces, metrics, deployment history, the specification, the code itself—and be tasked with the job of finding the root cause.</p>
+  <p>The teams I’ve seen do this have been able to respond to incidents much more quickly and effectively than they could before. An agent can hold the entire telemetry surface at once and quickly correlate a symptom across sources no human would initially think to join. This changes what observability is for. Dashboards and log formats were designed for human eyes; they now have a second consumer, and the standard becomes completeness rather than readability. Any signal the agent cannot see is a place it cannot look.</p>
+  <p>What the agent cannot do is decide that the specification itself is the defect. Its definition of correct behavior comes from the spec—that is what it debugs against—so its investigation ends where the spec does. This is where human guidance is especially critical: when the system is doing exactly what the document says and users are worse off for it. In the old world, that judgment was a small fraction of debugging. In this one, it is most of what is left.</p>
+  <p>&nbsp;</p>
+  <h4>Testing the Specification, Not the Code</h4>
+  <p>Testing splits along the same line. Unit tests come cheap—the model writes them alongside the code—and they remain a useful way to prevent component regressions over time. But the tests that carry the load in this world are the integration and end-to-end suites, because they check the system against the specifications. When no person reads the code, the integration suite is the primary evidence that the system is behaving as expected.</p>
+  <p>But there is a new layer above all of this. Specifications are still written by people, at human speed, in parallel, by colleagues who cannot each hold everything the others are doing. Two documents can each be precise, internally consistent, and correct—and quietly disagree about a shared interface, an invariant, an assumption about who handles the failure case. In the old world, that disagreement surfaced when two engineers hashed it out over the code; there are fewer of those conversations now, and the code arrives too fast to be the place where the conflict is found.</p>
+  <p>Instead, model-driven tools are needed to help catch these conflicts in intent before they are woven into the system: validating the human-written specs against each other and surfacing where one document’s guarantee is another’s unexamined assumption. This is the engineered dissent described earlier, now applied between specifications. But the machine’s job ends at finding the argument the authors never had. Reconciling it is a judgment about what the system should do, which requires human input.</p>
+  <p>&nbsp;</p>
+  <h4>Deployment as Review</h4>
+  <p>Deployment already runs on heavy automation. Progressive rollout, automated gates, canaries, automatic rollback—the machinery for shipping without a human hand on every release was already built over the past decade. But if humans no longer write, read, or test the code, then there’s little reason to leave deployment in their hands. Whether a change can go out is already a judgment made against measurable ground: test results, canary metrics, error budgets, the blast radius of what could go wrong, the health of what is already running. An agent with the full telemetry surface can make that call faster and more consistently than a release manager working through a checklist, and it keeps making the call after the human would have moved on to the next thing.</p>
+  <p>What the model cannot own is the other deployment question: What is the release for? Which features must be included for the deployment to meet its objectives—the customer commitment it fulfills, the launch it supports, the problem it exists to solve—is not in the telemetry, because it is not a property of the system at all. It is a property of intent. So, the roles divide cleanly: The model decides whether the deployment is safe, and the human decides whether it is sufficient. A release can pass every gate and still omit the thing it exists to deliver. No metric flags that. Someone who knows why the release exists has to notice.</p>
+  <p>&nbsp;</p>
+  <h3>What We Should Keep</h3>
+  <p>Everything to this point has been observation, drawn from the companies that have leaned in hardest. But the goalposts keep moving. Today’s human bottlenecks—deciding what is worth building and judging whether the software actually serves its purpose—are precisely the gaps a sufficiently capable model will be built to fill next. So, the useful information is no longer what the models can take on. It is what we should refuse to hand over and why.</p>
+  <p>The handover will not arrive as a clear decision point. A product manager with nine decisions to make before lunch approves the model’s recommendation because it is Tuesday and the recommendation is probably right. A threshold is set once, below which proposals are approved automatically and then quietly raised. A competitor delegates one more category of judgment than you do and ships faster for it, and a quarter arrives where you decide you cannot afford to keep doing it the slow way. Each step is reasonable. The sum is a transfer of responsibility no one chose.</p>
+  <p>The tempting idea is that models can simply use data to decide what benefits humans. After all, companies already lean on data to decide what benefits a user, and the human in that loop often does little more than ratify what the numbers say. And it’s true that a model trained on enough human behavior may come to predict what satisfies people more reliably than any individual asked to speak for them. As we’ve seen from social media, however, satisfying is not the same as benefiting. What people do and what benefits them often diverge: A system tuned to maximize the time you spend with it learns to hold your attention, which is not the same as serving you. Behavior tells you what captured someone, not whether the capture was good for them—and that second question is not in the data. It is answered only when a person makes the judgment.</p>
+  <p>That judgment is not something a model has on its own. It is built from us—an enormous accumulation of human judgment about what is good, what is wanted, what counts as better. The machine is a mirror held up to that judgment. If you rely entirely on data rather than human judgment, it’s no longer a direct reflection of us. It turns, by degrees, to become an optimization of the model’s own output.</p>
+  <p>The turn is already visible in miniature. An inexperienced developer hands the machine an architectural decision they do not understand and accepts the result, because it runs and they have no basis to object. Months later, the bill arrives: costs that scale the wrong way, latency built into the foundation, a user experience shaped by a decision no person ever really made. The developer did not judge the architecture; they ratified it.</p>
+  <p>Now multiply that across a profession and feed it back into training. The record of human preference fills up with humans agreeing with the machine, and training on it does not teach the model what people want—it teaches the model that people approve of what it already proposed. This isn’t model decay. Each generation of the model gets better—genuinely, measurably better—at predicting its target. What changes is the target: a record increasingly made of the model’s own past output, ratified rather than judged. The machine improves, generation over generation, at hitting a mark that is quietly no longer benefiting us. The judgments that carried real information—the corrections, the refusals—are exactly the ones that stop being made, so nothing in the signal can say the mark has moved.</p>
+  <p>One objection is that perhaps not everyone has to keep judging. Today’s models are aligned by relatively small groups supplying feedback, and maybe a small profession of judges is enough while everyone else delegates. It could work. But it concentrates that authority into whoever holds the seats, and judgment is grown by exercising it—you cannot produce judges from people who never learned how. Nor is any single company’s delegation private: Each category of judgment handed over thins the signal every model learns from and moves the baseline the next company measures against. Ultimately, everyone benefits from leaving humans in the loop.</p>
+  <p>Bring this back to software. The conclusion is not that models will fail to write code, plan features, or test their own work; they will do all of it, and more of it every year. Let them build. Let them review each other, weigh one design against another, act as architect and product manager both.</p>
+  <p>But somewhere at the top there has to be a person who decides whether the thing that came out the other end serves the people it was built for. That judgment is the one input the system cannot generate for itself. Strip it away, and nothing breaks immediately; the machine keeps producing, confident as ever. It has simply lost the only thing that told it what has true value—and it will eventually drift, because nothing left in the loop knows that it should not.</p>
+  <p>&nbsp;</p>
+  <h3>What Remains</h3>
+  <p>It is reasonable for software engineers to be wary of the future. But for those of us who lean into what AI is offering us, it’s actually an opportunity to focus even more on the pieces that matter: deciding what to build, deciding whether the result is any good, and answering for it when it is not.</p>
+  <p>The difference between a good engineer and an exceptional one has always been judgment: knowing which problem was worth solving and which design would hold up and deriving the most benefit to the end user from their effort. There never was a good way to hire for that directly, so people grew into it over years of writing the mechanical work around it. Take that work away and judgment is what is left—which means it has to be taught deliberately instead of waiting for it to accrue. That is a harder path than the one it replaces, but it is also the first time the profession has had to say precisely what its judgment consists of. We may find we understand our own craft better for having to teach that judgment.</p>
+  <p>Ultimately, the job was never the code. The code was the part that looked like work. Deciding what is worth building, and whether we build it, will inevitably remain.</p>
+  <p>&nbsp;</p>
+  <h3>Related Material</h3>
+  <p><b>Is There Another System?</b></p>
+  <p content-type="inline-heading">Computer science is the study of what can be automated.</p>
+  <p content-type="inline-heading">George V. Neville-Neil</p>
+  <p content-type="inline-heading"><a href="https://queue.acm.org/detail.cfm?id=3639446">https://queue.acm.org/detail.cfm?id=3639446</a></p>
+  <p>&nbsp;</p>
+  <p content-type="inline-heading"><b>Cargo Cult AI</b></p>
+  <p content-type="inline-heading">Is the ability to think scientifically the defining essence of intelligence?</p>
+  <p content-type="inline-heading">Edlyn V. Levine</p>
+  <p content-type="inline-heading"><a href="https://queue.acm.org/detail.cfm?id=3595860">https://queue.acm.org/detail.cfm?id=3595860</a></p>
+  <p>&nbsp;</p>
+  <p content-type="inline-heading"><b>Unleashing the Power of End-User Programmable AI</b></p>
+  <p content-type="inline-heading">Creating an AI-first program Synthesis framework</p>
+  <p content-type="inline-heading">Erik Meijer</p>
+  <p content-type="inline-heading"><a href="https://queue.acm.org/detail.cfm?id=3746223">https://queue.acm.org/detail.cfm?id=3746223</a></p>
+  <p>&nbsp;</p>
+  <p><b>Craig A. N. Soules</b> <i>is a principal engineer at Shopify, where he works on data infrastructure. He joined through Shopify’s acquisition of Springtail, the PostgreSQL scale-out company he co-founded and led as CEO. Previously, he founded Natero (acquired by Freshworks) and before that was a researcher at HP Labs working on storage, databases, and distributed systems. He holds a Ph.D. in computer science from Carnegie Mellon University.</i></p>
+ <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"b7f168b3cd354a55a4dd51b513830799"}' crossorigin="anonymous"></script>
+<script>window.__CF$cv$params={r:'a3044b158c0dc5b2',t:'MTc4NzU5NDgxMQ==',u:'01a034f42a467d519369f22773572642',ut:'TnbX_sk3NRImeqtEjXUrY3RV6ku.NMhBEraD8cwVXTI-1787594811-1.2.1.1-Gq4WfFLp4BwyBK0lWmbK1rilUmaXUNYQkkPHfGP4TZE8BTQFGxNSOgxk8q2.MVn1jVH8VDno88AkpFZEmmTvG..IRhplEWAwZs2FyXzMdUg',i:60};(function(){if(!document.body)return;var s=document.createElement('script');s.src='/cdn-cgi/challenge-platform/scripts/precursor/main.js';document.head.appendChild(s);})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3044b158c0dc5b2',t:'MTc4NzU5NDgxMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script> 
+
+	<p>
+	
+		<img class="floatLeft" src="img/q stamp_small.jpg" width="26" height="45" alt="acmqueue"><br><br>
+	
+	<em>Originally published in Queue vol. 24, no. 4</em>
+ 	<br>
+ 	
+	
+	</p>
+	
+
+
+
+<br />
+<!--
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="ACMQueue">Tweet</a>
+-->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<br />
+
+<!--
+<fb:like></fb:like>
+-->
+
+<br />
+
+<div class="g-plusone" data-size="small" data-annotation="inline" data-width="120"></div>
+
+<!-- these get hooked up to js events -->
+<script type="text/javascript">
+	addthis_pub             = 'acm';
+	addthis_logo            = 'http://queue.acm.org/img/logo_queue_small.gif';
+	addthis_logo_background = '#ffffff';
+	addthis_logo_color      = '000000';
+	addthis_brand           = 'ACM Queue';
+	addthis_options         = 'reddit, slashdot, facebook, favorites, email, delicious, digg, technorati, blinklist, furl, myspace, google, live, more';
+</script>
+
+<!-- FB Like -->
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
+-->
+
+<!-- Place this tag after the last +1 button tag. -->
+
+<!--
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<br />
+<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+
+<script>
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+</script>
+-->
+
+
+
+<hr noshade size=1 />
+
+
+
+
+More related articles:
+
+	  <p>
+	  <span>Neil J. Gunther</span> - <a href="detail.cfm?id=3819082"><b>Titan Transients and LLM Scalability</b></a>
+	  <br />
+	  While training LLMs, OpenAI observed what it termed the compute-efficient frontier (CEF), which characterizes a lower bound on token-prediction error or test loss. This limit has raised concerns that it might constitute a universal constraint on the scalability of GenAI systems. This article presents a model of LLM computational dynamics, based on the universal scalability law (USL), that provides a framework for understanding the CEF. The USL defines bistable minima in the tokenized neural net landscape. The deeper minimum determines the lowest achievable loss of an LLM instance. Successively larger LLMs possess deeper global minima that align with the power-law slope of the CEF.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Erik Meijer</span> - <a href="detail.cfm?id=3806226"><b>In Code They Think; In Proof We Trust</b></a>
+	  <br />
+	  AI agents that use tools can be hijacked by prompt injection to exfiltrate sensitive data. Runtime defenses such as model alignment, output scanning, and content classifiers are fundamentally reactive: By the time they detect an attack, irreversible actions may already have been taken, and sophisticated encodings such as steganography, encryption, and chunking can evade any content-based check. We propose a preemptive alternative: Constrain the agent to express its plan as a Kotlin script, then statically verify the script against a security policy before any tool executes. The verification uses taint analysis, a well-established static analysis technique. A fact extractor walks the Kotlin AST to identify sources (sensitive data origins), sinks (network exit points), and data flows between them.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Brian Houck, Travis Lowdermilk, Cody Beyer, Steven Clarke, Benjamin V. Hanrahan</span> - <a href="detail.cfm?id=3807964"><b>The SPACE of AI</b></a>
+	  <br />
+	  As AI tools become increasingly embedded in software development workflows, there is a growing need to understand their true impact on developer productivity and experience. This article presents findings from a mixed-methods study examining how developers perceive AI’s influence across the dimensions of the SPACE framework: Satisfaction, Performance, Activity, Collaboration, and Efficiency. Drawing on survey responses from more than 500 developers and qualitative insights from interviews and observational studies, we find that AI is broadly adopted and widely seen as enhancing productivity, particularly for routine tasks. The benefits vary, however, depending on task complexity, individual usage patterns, and team-level adoption. Developers report increased efficiency and satisfaction, with less evidence of impact on collaboration.
+	  </p>
+	  <br />
+
+	  <p>
+	  <span>Margaret-Anne Storey</span> - <a href="detail.cfm?id=3807966"><b>From Technical Debt to Cognitive and Intent Debt</b></a>
+	  <br />
+	  Generative AI is dramatically accelerating software development, allowing teams to generate and modify code faster than ever before. For decades, software engineering has focused on managing technical debt—how code structure and implementation make systems harder to change. But in the age of AI, technical debt might no longer be the most important constraint. This article argues that the real risks are shifting toward two less visible forms of debt: cognitive debt and intent debt. Cognitive debt is the erosion of shared understanding across a team where no one can confidently explain how a system works or predict the impact of a change.
+	  </p>
+	  <br />
+
+
+<hr noshade size=1 />
+
+
+
+
+
+<hr noshade size=1 />
+
+	<p>
+	<a href='#'><img src='/img/logo_acm.gif' /></a>
+	<br />
+	&copy; ACM, Inc. All Rights Reserved.
+	</p>
+
+</div>
+
+
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3044b125872ec2e',t:'MTc4NzU5NDgxMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
